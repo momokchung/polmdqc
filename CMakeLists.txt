@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16.0)
-project(tinkerqm)
+project(polqcmd)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -9,30 +9,38 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 link_directories(/Users/moseschung/OpenBLAS)
 
 # Add the source files
-set(SOURCES
-source/tinkerqm.cpp
-source/mechanic.cpp
-source/katoms.cpp
-source/kbasis.cpp
-source/kgbs.cpp
-source/ioUtils.cpp
-source/stringUtils.cpp
-source/mathUtils.cpp
+add_library(polqcmd
+source/boys.cpp
 source/config.cpp
 source/energy.cpp
 source/hartree.cpp
-source/overlap.cpp
-source/kprim.cpp
-source/kinetic.cpp
-source/boys.cpp
-source/nuclear.cpp
 source/init.cpp
-source/nuclearRepulsion.cpp
+source/initial.cpp
+source/ioUtils.cpp
+source/katoms.cpp
+source/kbasis.cpp
+source/kgbs.cpp
+source/kinetic.cpp
+source/kprim.cpp
 source/kworker.cpp
+source/mathUtils.cpp
+source/mechanic.cpp
+source/nuclear.cpp
+source/nuclearRepulsion.cpp
+source/overlap.cpp
+source/promo.cpp
+source/stringUtils.cpp
 )
 
-# Add the executable
-add_executable(tinkerqm ${SOURCES})
+# Add the tinkerqm executable
+add_executable(tinkerqm source/tinkerqm.cpp)
 
-# Link the OpenBLAS library
-target_link_libraries(tinkerqm openblas)
+# Link the tinkerqm libraries
+target_link_libraries(tinkerqm polqcmd openblas)
+
+# Add the analyze executable
+add_executable(analyze source/analyze.cpp)
+
+# Link the polqcmd library
+target_link_libraries(analyze polqcmd)
+
