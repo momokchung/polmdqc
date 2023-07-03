@@ -1,10 +1,10 @@
 /////////////////////////////////////////////////////
 //                                                 //
-//  command.h  --  get any command line arguments  //
+//  initatom.h  --  setup atoms in periodic table  //
 //                                                 //
 /////////////////////////////////////////////////////
 
 
 #pragma once
 
-void command();
+void initatom();

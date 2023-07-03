@@ -12,8 +12,16 @@
 
 
 #include "initial.h"
+#include "argue.h"
+#include <stdio.h>
 
-int main()
+int main(int argc, char** argv)
 {
-    initial();
+    initial(argc, argv);
+
+    printf("narg %d\n", narg);
+
+    for (int i = 0; i < narg; i++) {
+        printf("argv[%d]: %s %s\n", i, argv[i], listarg[i] ? "true" : "false");
+    }
 }

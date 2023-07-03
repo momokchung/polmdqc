@@ -7,4 +7,4 @@
 
 #pragma once
 
-void initial();
+void initial(int argc, char** argv);
