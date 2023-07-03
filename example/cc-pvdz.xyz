@@ -1,0 +1,27 @@
+#! Single point energy MP2/aug-cc-pVTZ
+
+memory 6000 MB
+molecule H2O {
+0 1
+O          0.000000       0.000000       0.000000
+H         -0.756918      -0.588538       0.000000
+H          0.756918      -0.588538       0.000000
+units angstrom
+no_com
+no_reorient
+symmetry c1}
+
+basis cc-pvdz
+basis_guess False
+
+scf_type df
+opt_type min
+dynamic_level 1
+guess sad
+
+energy('mp2')
+
+grad, wfn = gradient('mp2', return_wfn=True)
+fchk_writer = psi4.FCHKWriter(wfn)
+fchk_writer.write('g01-HL.fchk')
+
