@@ -1,0 +1,8 @@
+#ifndef QCMD_EXTERN_DEFINITION_FILE
+#define QCMD_EXTERN_DEFINITION_FILE 0
+#endif
+#if QCMD_EXTERN_DEFINITION_FILE
+#define QCMD_EXTERN
+#else
+#define QCMD_EXTERN extern
+#endif

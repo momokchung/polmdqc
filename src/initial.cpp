@@ -18,14 +18,6 @@
 #include "promo.h"
 #include "sizes.h"
 
-int nkey;
-int nprm;
-int n;
-bool verbose;
-bool debug;
-bool silent;
-bool informAbort;
-
 void initial(int argc, char** argv)
 {
     promo();

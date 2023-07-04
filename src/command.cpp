@@ -16,10 +16,6 @@
 #include <cstring>
 #include <cctype>
 
-std::string arg[maxarg];
-int narg;
-bool listarg[maxarg];
-
 void command(int argc, char** argv)
 {
     // initialize command line arguments as blank strings

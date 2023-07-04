@@ -40,11 +40,6 @@
 #include <string>
 #include <vector>
 
-double atmass[maxele];
-double vdwrad[maxele];
-double covrad[maxele];
-std::string elemnt[maxele];
-
 void initatom()
 {
     // atomic symbol for each element

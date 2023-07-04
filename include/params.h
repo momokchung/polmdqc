@@ -10,8 +10,9 @@
 
 
 #pragma once
+#include "macro.h"
 #include <string>
 
 const int maxprm = 25000;
-extern int nprm;
-std::string prmline[maxprm];
+QCMD_EXTERN int nprm;
+QCMD_EXTERN std::string prmline[maxprm];

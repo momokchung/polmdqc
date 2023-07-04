@@ -12,11 +12,12 @@
 
 
 #pragma once
+#include "macro.h"
 #include "sizes.h"
 #include <string>
 
-extern int n;
-extern int type[maxatm];
-extern double x[maxatm];
-extern double y[maxatm];
-extern double z[maxatm];
+QCMD_EXTERN int n;
+QCMD_EXTERN int type[maxatm];
+QCMD_EXTERN double x[maxatm];
+QCMD_EXTERN double y[maxatm];
+QCMD_EXTERN double z[maxatm];

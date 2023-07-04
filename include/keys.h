@@ -10,8 +10,9 @@
 
 
 #pragma once
+#include "macro.h"
 #include <string>
 
 const int maxkey = 25000;
-extern int nkey;
-std::string keyline[maxkey];
+QCMD_EXTERN int nkey;
+QCMD_EXTERN std::string keyline[maxkey];

@@ -12,10 +12,11 @@
 
 
 #pragma once
+#include "macro.h"
 #include <string>
 
 const int maxele = 112;
-extern double atmass[maxele];
-extern double vdwrad[maxele];
-extern double covrad[maxele];
-extern std::string elemnt[maxele];
+QCMD_EXTERN double atmass[maxele];
+QCMD_EXTERN double vdwrad[maxele];
+QCMD_EXTERN double covrad[maxele];
+QCMD_EXTERN std::string elemnt[maxele];

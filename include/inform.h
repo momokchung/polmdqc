@@ -18,12 +18,13 @@
 
 
 #pragma once
+#include "macro.h"
 #include <string>
 
 const int maxask = 5;
-extern int gpucard,digits;
-extern int iprint,iwrite;
-extern int isend;
-extern bool verbose,debug;
-extern bool silent,holdup;
-extern bool informAbort;
+QCMD_EXTERN int gpucard,digits;
+QCMD_EXTERN int iprint,iwrite;
+QCMD_EXTERN int isend;
+QCMD_EXTERN bool verbose,debug;
+QCMD_EXTERN bool silent,holdup;
+QCMD_EXTERN bool informAbort;

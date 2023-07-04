@@ -13,10 +13,12 @@ include_directories(include)
 
 # Add the source files
 add_library(polqcmd
+src/basefile.cpp
 src/boys.cpp
 src/command.cpp
 src/config.cpp
 src/energy.cpp
+src/getcart.cpp
 src/hartree.cpp
 src/init.cpp
 src/initatom.cpp
@@ -28,8 +30,10 @@ src/kgbs.cpp
 src/kinetic.cpp
 src/kprim.cpp
 src/kworker.cpp
+src/mod.cpp
 src/mathUtils.cpp
 src/mechanic.cpp
+src/nextarg.cpp
 src/nuclear.cpp
 src/nuclearRepulsion.cpp
 src/overlap.cpp

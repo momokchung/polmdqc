@@ -11,9 +11,10 @@
 
 
 #pragma once
+#include "macro.h"
 #include <string>
 
 const int maxarg = 20;
-extern int narg;
-extern bool listarg[maxarg];
-extern std::string arg[maxarg];
+QCMD_EXTERN int narg;
+QCMD_EXTERN bool listarg[maxarg];
+QCMD_EXTERN std::string arg[maxarg];
