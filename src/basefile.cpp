@@ -10,8 +10,11 @@
 
 
 #include "basefile.h"
+#include "control.h"
 #include "files.h"
 #include "getkey.h"
+
+#include "inform.h"
 
 void basefile(std::string& string)
 {
@@ -58,8 +61,8 @@ void basefile(std::string& string)
     ldir = k;
 
     // read and store the keywords from the keyfile
-    // getkey();
+    getkey();
 
     // get the information level and output style
-    // control();
+    control();
 }

@@ -8,9 +8,85 @@
 // line images for subsequent keyword parameter searching
 
 
-#include "getkey.h"
+#include "argue.h"
+#include "fatal.h"
+#include "files.h"
+#include "gettext.h"
+#include "inquire.h"
+#include "keys.h"
+#include "suffix.h"
+#include "upcase.h"
+#include "version.h"
+#include <fstream>
 
 void getkey()
 {
+    bool exist,header;
+    std::string keyword;
+    std::string keyfile;
+    std::string record;
+    std::string string;
 
+    // check for a keyfile specified on command line
+    exist = false;
+    for (int i = 0; i < narg - 1; i++) {
+        string = arg[i];
+        upcase(string);
+        if (string.substr(0, 2).compare("-K") == 0) {
+            keyfile = arg[i + 1];
+            suffix (keyfile, "key", "old");
+            exist = inquire(keyfile);
+            if (!exist) {
+                printf("\n GETKEY  --  Keyfile Specified on Command Line was not Found\n");
+                fatal();
+            }
+        }
+    }
+
+    // try to get keyfile from base name of current system
+    if (!exist) {
+        keyfile = filename.substr(0,leng) + ".key";
+        version(keyfile, "old");
+        exist = inquire(keyfile);
+    }
+
+    // check for the existence of a generic keyfile
+    if (!exist) {
+        if (ldir == 0) {
+            keyfile = "polqcmd.key";
+        }
+        else {
+            keyfile = filename.substr(0,ldir) + "polqcmd.key";
+        }
+        version(keyfile, "old");
+        exist = inquire(keyfile);
+    }
+
+    // read the keyfile and store it for latter use
+    nkey = 0;
+    if (exist) {
+        std::ifstream file(keyfile);
+        while (std::getline(file, record)) {
+            keyline[nkey] = record;
+            nkey++;
+            
+            if (nkey >= maxkey) {
+                printf("\n GETKEY  --  Keyfile Too Large; Increase MAXKEY\n");
+                fatal();
+            }
+        }
+        file.close();
+    }
+
+    // convert underbar characters to dashes in all keywords
+    for (int i = 0; i < nkey; i++) {
+        int next = 0;
+        record = keyline[i];
+        gettext(record, keyword, next);
+        for (int j = 0; j < next; j++)
+        {
+            if (record[j] == '_') record[j] = '-';
+        }
+        keyline[i] = record;
+    }
 }

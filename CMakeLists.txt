@@ -17,12 +17,18 @@ src/basefile.cpp
 src/boys.cpp
 src/command.cpp
 src/config.cpp
+src/control.cpp
 src/energy.cpp
+src/fatal.cpp
+src/final.cpp
 src/getcart.cpp
+src/getkey.cpp
+src/gettext.cpp
 src/hartree.cpp
 src/init.cpp
 src/initatom.cpp
 src/initial.cpp
+src/inquire.cpp
 src/ioUtils.cpp
 src/katoms.cpp
 src/kbasis.cpp
@@ -30,6 +36,7 @@ src/kgbs.cpp
 src/kinetic.cpp
 src/kprim.cpp
 src/kworker.cpp
+src/lowcase.cpp
 src/mod.cpp
 src/mathUtils.cpp
 src/mechanic.cpp
@@ -39,6 +46,9 @@ src/nuclearRepulsion.cpp
 src/overlap.cpp
 src/promo.cpp
 src/stringUtils.cpp
+src/suffix.cpp
+src/upcase.cpp
+src/version.cpp
 )
 
 # Add the tinkerqm executable

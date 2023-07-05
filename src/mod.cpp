@@ -5,5 +5,6 @@
 #include "files.h"
 #include "inform.h"
 #include "keys.h"
+#include "output.h"
 #include "params.h"
 #include "ptable.h"
