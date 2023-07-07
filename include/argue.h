@@ -14,7 +14,7 @@
 #include "macro.h"
 #include <string>
 
-const int maxarg = 20;
+constexpr int maxarg = 20;
 QCMD_EXTERN int narg;
 QCMD_EXTERN bool listarg[maxarg];
 QCMD_EXTERN std::string arg[maxarg];

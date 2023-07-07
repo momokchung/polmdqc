@@ -23,11 +23,11 @@ namespace eri
 
 std::vector<real> cartERI;
 std::vector<real> sphERI;
-std::vector< std::vector<real> > pairPrimPx;
-std::vector< std::vector<real> > pairPrimPy;
-std::vector< std::vector<real> > pairPrimPz;
-std::vector< std::vector<real> > pairPrimZ;
-std::vector< std::vector<real> > pairPrimK;
+std::vector<std::vector<real>> pairPrimPx;
+std::vector<std::vector<real>> pairPrimPy;
+std::vector<std::vector<real>> pairPrimPz;
+std::vector<std::vector<real>> pairPrimZ;
+std::vector<std::vector<real>> pairPrimK;
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////

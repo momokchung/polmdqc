@@ -54,7 +54,7 @@ void initBoys()
 
 void boysIntegralPoly(real t, int m, std::vector<real>& boysPoly)
 {
-    const real d = 5e-4;
+    constexpr real d = 5e-4;
     real x = t/d;
     if (t >= 0. and t < 34)
     {

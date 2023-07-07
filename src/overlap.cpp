@@ -19,8 +19,8 @@ namespace overlap
 // cartS    cartesian overlap matrix
 // sphS     spherical overlap matrix
 
-std::vector< std::vector<real> > cartS;
-std::vector< std::vector<real> > sphS;
+std::vector<std::vector<real>> cartS;
+std::vector<std::vector<real>> sphS;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -37,9 +37,9 @@ void overlapOS()
     auto& partitionL = basis::partitionAngularMomentum;
 
     // initialize xS, yS, and zS matrix
-    std::vector< std::vector<real> > xS(maxL + 1, std::vector <real>(maxL + 1));
-    std::vector< std::vector<real> > yS(maxL + 1, std::vector <real>(maxL + 1));
-    std::vector< std::vector<real> > zS(maxL + 1, std::vector <real>(maxL + 1));
+    std::vector<std::vector<real>> xS(maxL + 1, std::vector <real>(maxL + 1));
+    std::vector<std::vector<real>> yS(maxL + 1, std::vector <real>(maxL + 1));
+    std::vector<std::vector<real>> zS(maxL + 1, std::vector <real>(maxL + 1));
 
     // allocate and initialize overlap matrix
     cartS.resize(basisN, std::vector<real>(basisN, 0.));

@@ -15,7 +15,7 @@
 #include "macro.h"
 #include <string>
 
-const int maxele = 112;
+constexpr int maxele = 112;
 QCMD_EXTERN double atmass[maxele];
 QCMD_EXTERN double vdwrad[maxele];
 QCMD_EXTERN double covrad[maxele];

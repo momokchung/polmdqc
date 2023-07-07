@@ -11,8 +11,8 @@
 
 namespace nuclear
 {
-extern std::vector< std::vector<real> > cartNE;
-extern std::vector< std::vector<real> > sphNE;
+extern std::vector<std::vector<real>> cartNE;
+extern std::vector<std::vector<real>> sphNE;
 
 void nuclearOS();
 
@@ -23,7 +23,7 @@ void nuclearOS();
 //                                                                                       //
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-inline void recursionNeA(int i, int j, real xPA, real xPC, real aP2, std::vector< std::vector< std::vector<real> > >& xNe)
+inline void recursionNeA(int i, int j, real xPA, real xPC, real aP2, std::vector<std::vector<std::vector<real>>>& xNe)
 {
     if (i == 0) return;
     
@@ -53,7 +53,7 @@ inline void recursionNeA(int i, int j, real xPA, real xPC, real aP2, std::vector
 //                                                                                        //
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-inline void recursionNeB(int i, int j, real xPB, real xPC, real aP2, std::vector< std::vector< std::vector<real> > >& xNe)
+inline void recursionNeB(int i, int j, real xPB, real xPC, real aP2, std::vector<std::vector<std::vector<real>>>& xNe)
 {
     if (j == 0) return;
 

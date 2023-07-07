@@ -13,6 +13,6 @@
 #include "macro.h"
 #include <string>
 
-const int maxkey = 25000;
+constexpr int maxkey = 25000;
 QCMD_EXTERN int nkey;
 QCMD_EXTERN std::string keyline[maxkey];

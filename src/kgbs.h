@@ -22,8 +22,8 @@ public:
     void setShellN(int shellN);
     void setContraction(std::vector<int>& vector);
     void setScale(std::vector<real>& vector);
-    void setPrimExp(std::vector< std::vector<real> >& vector);
-    void setContractionCoeff(std::vector< std::vector<real> >& vector);
+    void setPrimExp(std::vector<std::vector<real>>& vector);
+    void setContractionCoeff(std::vector<std::vector<real>>& vector);
 
     // getters
     std::string getElementName();
@@ -31,8 +31,8 @@ public:
     int getShellN();
     std::vector<int>& getContraction();
     std::vector<real>& getScale();
-    std::vector< std::vector<real> >& getPrimExp();
-    std::vector< std::vector<real> >& getContractionCoeff();
+    std::vector<std::vector<real>>& getPrimExp();
+    std::vector<std::vector<real>>& getContractionCoeff();
 
 private:
     // Example of hydrogen 3-21.gbs
@@ -49,8 +49,8 @@ private:
     int shellN;
     std::vector<int> contraction;
     std::vector<real> scale;
-    std::vector< std::vector<real> > primExp;
-    std::vector< std::vector<real> > contractionCoeff;
+    std::vector<std::vector<real>> primExp;
+    std::vector<std::vector<real>> contractionCoeff;
 };
 
 enum class BasisType

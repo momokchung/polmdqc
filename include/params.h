@@ -13,6 +13,6 @@
 #include "macro.h"
 #include <string>
 
-const int maxprm = 25000;
+constexpr int maxprm = 25000;
 QCMD_EXTERN int nprm;
 QCMD_EXTERN std::string prmline[maxprm];

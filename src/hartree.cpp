@@ -78,7 +78,7 @@ void rhf()
     // construct overlap matrix
     // change to overlap() later
     overlap::overlapOS();
-    std::vector< std::vector<real> >& S = (gbs::basisType == gbs::BasisType::cartesian) ? overlap::cartS : overlap::sphS;
+    std::vector<std::vector<real>>& S = (gbs::basisType == gbs::BasisType::cartesian) ? overlap::cartS : overlap::sphS;
 
     // diagonalize overlap matrix
     eigenS(S);
@@ -86,12 +86,12 @@ void rhf()
     // construct KE matrix
     // change to kinetic() later
     kinetic::kineticOS();
-    std::vector< std::vector<real> >& KE = (gbs::basisType == gbs::BasisType::cartesian) ? kinetic::cartKE : kinetic::sphKE;
+    std::vector<std::vector<real>>& KE = (gbs::basisType == gbs::BasisType::cartesian) ? kinetic::cartKE : kinetic::sphKE;
 
     // construct NE matrix
     // change to nuclear() later
     nuclear::nuclearOS();
-    std::vector< std::vector<real> >& NE = (gbs::basisType == gbs::BasisType::cartesian) ? nuclear::cartNE : nuclear::sphNE;
+    std::vector<std::vector<real>>& NE = (gbs::basisType == gbs::BasisType::cartesian) ? nuclear::cartNE : nuclear::sphNE;
 
     // compute nuclear nuclear repulsion
     nuclearRepulsion::nuclearRepulsion();
@@ -120,7 +120,7 @@ void rhf()
 
 // do symmetric orthogonalization if all eigenvalues are smaller than s_tolerance
 // else do canonical orthogonalization
-void eigenS(std::vector< std::vector<real> >& S)
+void eigenS(std::vector<std::vector<real>>& S)
 {
     int N = basis::N;
 

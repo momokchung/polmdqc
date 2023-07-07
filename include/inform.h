@@ -21,7 +21,7 @@
 #include "macro.h"
 #include <string>
 
-const int maxask = 5;
+constexpr int maxask = 5;
 QCMD_EXTERN int gpucard,digits;
 QCMD_EXTERN int iprint,iwrite;
 QCMD_EXTERN int isend;

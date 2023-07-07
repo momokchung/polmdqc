@@ -21,8 +21,8 @@ namespace nuclear
 // cartNE    cartesian nuclear electron attraction matrix
 // sphNE     spherical nuclear electron attraction matrix
 
-std::vector< std::vector<real> > cartNE;
-std::vector< std::vector<real> > sphNE;
+std::vector<std::vector<real>> cartNE;
+std::vector<std::vector<real>> sphNE;
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,9 +49,9 @@ void nuclearOS()
 
     // initialize xNe, yNe, and zNe matrix
     int maxTOrder = 2 * maxL + 1;
-    std::vector< std::vector< std::vector<real> > > xNe(maxL + 1, std::vector< std::vector<real> >(maxL + 1, std::vector<real>(maxTOrder)));
-    std::vector< std::vector< std::vector<real> > > yNe(maxL + 1, std::vector< std::vector<real> >(maxL + 1, std::vector<real>(maxTOrder)));
-    std::vector< std::vector< std::vector<real> > > zNe(maxL + 1, std::vector< std::vector<real> >(maxL + 1, std::vector<real>(maxTOrder)));
+    std::vector<std::vector<std::vector<real>>> xNe(maxL + 1, std::vector<std::vector<real>>(maxL + 1, std::vector<real>(maxTOrder)));
+    std::vector<std::vector<std::vector<real>>> yNe(maxL + 1, std::vector<std::vector<real>>(maxL + 1, std::vector<real>(maxTOrder)));
+    std::vector<std::vector<std::vector<real>>> zNe(maxL + 1, std::vector<std::vector<real>>(maxL + 1, std::vector<real>(maxTOrder)));
 
     // allocate and initialize nuclear electron attraction matrix
     cartNE.resize(basisN, std::vector<real>(basisN, 0.));

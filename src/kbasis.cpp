@@ -34,8 +34,8 @@ int basisN = 0;
 // std::vector<int> basisLy;
 // std::vector<int> basisLz;
 // std::vector<int> basisL;
-// std::vector< std::vector<real> > basisCoeff;
-// std::vector< std::vector<real> > basisExp;
+// std::vector<std::vector<real>> basisCoeff;
+// std::vector<std::vector<real>> basisExp;
 // std::vector<real> basisX;
 // std::vector<real> basisY;
 // std::vector<real> basisZ;
@@ -48,10 +48,10 @@ std::vector<real> basisNorm;
 // cartSphCoeff          returns list of spherical coefficients for a given cartesian basis
 
 int sphBasisN = 0;
-std::vector< std::vector<int> > sphContraction;
-std::vector< std::vector<real> > sphCoeff;
-std::vector< std::vector<int> > cartSphContraction;
-std::vector< std::vector<real> > cartSphCoeff;
+std::vector<std::vector<int>> sphContraction;
+std::vector<std::vector<real>> sphCoeff;
+std::vector<std::vector<int>> cartSphContraction;
+std::vector<std::vector<real>> cartSphCoeff;
 
 // N    N is basisN if cartesian basis is used, sphBasisN if spherical basis is used
 
@@ -76,8 +76,8 @@ std::vector<real> cShellY;
 std::vector<real> cShellZ;
 std::vector<int> cShellContraction;
 std::vector<real> cShellScale;
-std::vector< std::vector<real> > cShellPrimExp;
-std::vector< std::vector<real> > cShellContractionCoeff;
+std::vector<std::vector<real>> cShellPrimExp;
+std::vector<std::vector<real>> cShellContractionCoeff;
 
 // partitionAngularMomentum    given total angular momentum partitions it to cartesian component
 // The following python script will generate these
@@ -91,7 +91,7 @@ std::vector< std::vector<real> > cShellContractionCoeff;
 //         lz = j
 //         ang.append([lx, ly, lz])
 
-const std::vector< std::vector< std::vector<int> > > partitionAngularMomentum = {
+const std::vector<std::vector<std::vector<int>>> partitionAngularMomentum = {
     {{0, 0, 0}},
     {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}},
     {{2, 0, 0}, {1, 1, 0}, {1, 0, 1}, {0, 2, 0}, {0, 1, 1}, {0, 0, 2}},
@@ -112,7 +112,7 @@ const std::vector< std::vector< std::vector<int> > > partitionAngularMomentum = 
 //    https://theochem.github.io/horton/2.0.1/tech_ref_gaussian_basis.html
 //    Coefficients generated from QM/SCRIPTS/Generate_Spherical_to_Cartesian.ipynb
 // row representation
-const std::vector< std::vector< std::vector<int> > > partitionSphContraction = {
+const std::vector<std::vector<std::vector<int>>> partitionSphContraction = {
     { // S
         {0}
     },
@@ -179,7 +179,7 @@ const std::vector< std::vector< std::vector<int> > > partitionSphContraction = {
 };
 
 // row representation
-const std::vector< std::vector< std::vector<real> > > partitionSphCoeff = {
+const std::vector<std::vector<std::vector<real>>> partitionSphCoeff = {
     { // S
         {1.}
     },
@@ -246,7 +246,7 @@ const std::vector< std::vector< std::vector<real> > > partitionSphCoeff = {
 };
 
 // column representation
-const std::vector< std::vector< std::vector<int> > > partitionCartSphContraction = {
+const std::vector<std::vector<std::vector<int>>> partitionCartSphContraction = {
     { // S
         {0}
     },
@@ -348,7 +348,7 @@ const std::vector< std::vector< std::vector<int> > > partitionCartSphContraction
 };
 
 // column representation
-const std::vector< std::vector< std::vector<real> > > partitionCartSphCoeff = {
+const std::vector<std::vector<std::vector<real>>> partitionCartSphCoeff = {
     { // S
         {1.}
     },
@@ -504,8 +504,8 @@ void kbasis()
         std::vector<std::string>& shell = basis.getShell();
         std::vector<int>& contraction = basis.getContraction();
         std::vector<real>& scale = basis.getScale();
-        std::vector< std::vector<real> >& primExp = basis.getPrimExp();
-        std::vector< std::vector<real> >& contractionCoeff = basis.getContractionCoeff();
+        std::vector<std::vector<real>>& primExp = basis.getPrimExp();
+        std::vector<std::vector<real>>& contractionCoeff = basis.getContractionCoeff();
         for (int j = 0; j < shellN; ++j)
         {
             int l = sToL(shell[j]);

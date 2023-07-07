@@ -44,11 +44,11 @@ void AoBasis::setScale(std::vector<real>& vector)
 {
     scale = vector;
 }
-void AoBasis::setPrimExp(std::vector< std::vector<real> >& vector)
+void AoBasis::setPrimExp(std::vector<std::vector<real>>& vector)
 {
     primExp = vector;
 }
-void AoBasis::setContractionCoeff(std::vector< std::vector<real> >& vector)
+void AoBasis::setContractionCoeff(std::vector<std::vector<real>>& vector)
 {
     contractionCoeff = vector;
 }
@@ -74,11 +74,11 @@ std::vector<real>& AoBasis::getScale()
 {
     return scale;
 }
-std::vector< std::vector<real> >& AoBasis::getPrimExp()
+std::vector<std::vector<real>>& AoBasis::getPrimExp()
 {
     return primExp;
 }
-std::vector< std::vector<real> >& AoBasis::getContractionCoeff()
+std::vector<std::vector<real>>& AoBasis::getContractionCoeff()
 {
     return contractionCoeff;
 }
@@ -104,13 +104,13 @@ void readgbs(std::string basisName)
     int lineN = ioUtils::lineNumbers(fileName);
 
     // read line by line
-    std::vector< std::string > lines(lineN);
+    std::vector<std::string> lines(lineN);
     ioUtils::readlines(fileName, lines);
 
     // parse file
     for (int i = 0; i < lineN; ++i)
     {
-        std::vector< std::string > words = stringUtils::split(lines[i]);
+        std::vector<std::string> words = stringUtils::split(lines[i]);
         if (words[0] == "CARTESIAN")
             basisType = BasisType::cartesian;
         else if (words[0] == "SPHERICAL")
@@ -127,8 +127,8 @@ void readgbs(std::string basisName)
             std::vector<std::string> shellVec;
             std::vector<int> contractionVec;
             std::vector<real> scaleVec;
-            std::vector< std::vector<real> > primExpVec;
-            std::vector< std::vector<real> > contractionCoeffVec;
+            std::vector<std::vector<real>> primExpVec;
+            std::vector<std::vector<real>> contractionCoeffVec;
             i += 1;
             words = stringUtils::split(lines[i]);
             std::string shell;
@@ -210,8 +210,8 @@ void readgbs(std::string basisName)
     // std::vector<std::string>& shell = H.getShell();
     // std::vector<int>& contraction = H.getContraction();
     // std::vector<real>& scale = H.getScale();
-    // std::vector< std::vector<real> >& primExp = H.getPrimExp();
-    // std::vector< std::vector<real> >& contractionCoeff = H.getContractionCoeff();
+    // std::vector<std::vector<real>>& primExp = H.getPrimExp();
+    // std::vector<std::vector<real>>& contractionCoeff = H.getContractionCoeff();
 
     // std::cout << "element Name: " << elementName << std::endl;
     // for (int i = 0; i < shell.size(); ++i)

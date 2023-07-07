@@ -19,9 +19,9 @@ namespace stringUtils
 //                                                                         //
 /////////////////////////////////////////////////////////////////////////////
 
-std::vector< std::string > split(std::string line)
+std::vector<std::string> split(std::string line)
 {
-    std::vector< std::string > words{};
+    std::vector<std::string> words{};
     std::string word;
     std::istringstream iss(line);
     while (iss >> word)

@@ -11,8 +11,8 @@
 
 namespace overlap
 {
-extern std::vector< std::vector<real> > cartS;
-extern std::vector< std::vector<real> > sphS;
+extern std::vector<std::vector<real>> cartS;
+extern std::vector<std::vector<real>> sphS;
 
 void overlapOS();
 
@@ -23,7 +23,7 @@ void overlapOS();
 //                                                                  //
 //////////////////////////////////////////////////////////////////////
 
-inline void recursionOA(int i, int j, real xPA, real aP2, std::vector< std::vector<real> >& sx)
+inline void recursionOA(int i, int j, real xPA, real aP2, std::vector<std::vector<real>>& sx)
 {
     if (i == 0) return;
 
@@ -42,7 +42,7 @@ inline void recursionOA(int i, int j, real xPA, real aP2, std::vector< std::vect
 //                                                                   //
 ///////////////////////////////////////////////////////////////////////
 
-inline void recursionOB(int i, int j, real xPB, real aP2, std::vector< std::vector<real> >& sx)
+inline void recursionOB(int i, int j, real xPB, real aP2, std::vector<std::vector<real>>& sx)
 {
     if (j == 0) return;
 

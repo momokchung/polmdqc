@@ -18,7 +18,7 @@ namespace mathUtils{
 //                                                   //
 ///////////////////////////////////////////////////////
 
-void symmetrize(std::vector< std::vector<real> >& matrix)
+void symmetrize(std::vector<std::vector<real>>& matrix)
 {
     int N = matrix.size();
     for (int i = 0; i < N; ++i)
@@ -98,7 +98,7 @@ void dgemm(int m, int n, int k, real* A, real* B, real* C, char transa, char tra
 
 // Burden R, Faires D, Burden A. Numerical Analysis 10th Ed. pg. 607-609
 // Uses Householder algorithm to tridiagonalize real symmetric 2D matrix
-void triDiagSym(std::vector< std::vector<real> >& A)
+void triDiagSym(std::vector<std::vector<real>>& A)
 {
     // optimize A indexing
     int N = A.size();

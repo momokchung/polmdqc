@@ -37,12 +37,12 @@ extern int charge;
 extern int multiplicity;
 extern bool com;
 extern bool reorient;
-extern std::vector< int > core;
-extern std::vector< real > coordx;
-extern std::vector< real > coordy;
-extern std::vector< real > coordz;
+extern std::vector<int> core;
+extern std::vector<real> coordx;
+extern std::vector<real> coordy;
+extern std::vector<real> coordz;
 extern std::string name;
-extern std::vector< std::string> atom;
+extern std::vector<std::string> atom;
 extern LengthUnit lengthUnit;
 extern Symmetry symmetry;
 

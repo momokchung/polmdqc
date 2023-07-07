@@ -39,12 +39,12 @@ int charge;
 int multiplicity;
 bool com = false;
 bool reorient = false;
-std::vector< int > core;
-std::vector< real > coordx;
-std::vector< real > coordy;
-std::vector< real > coordz;
+std::vector<int> core;
+std::vector<real> coordx;
+std::vector<real> coordy;
+std::vector<real> coordz;
 std::string name;
-std::vector< std::string> atom;
+std::vector<std::string> atom;
 LengthUnit lengthUnit = LengthUnit::angstrom;
 Symmetry symmetry = Symmetry::C1;
 
@@ -291,13 +291,13 @@ void readxyz(std::string fileName)
     int lineN = ioUtils::lineNumbers(fileName);
 
     // read line by line
-    std::vector< std::string > lines(lineN);
+    std::vector<std::string> lines(lineN);
     ioUtils::readlines(fileName, lines);
 
     // parse file
     for (int i = 0; i < lineN; ++i)
     {
-        std::vector< std::string > words = stringUtils::split(lines[i]);
+        std::vector<std::string> words = stringUtils::split(lines[i]);
 
         // get machine memory
         if (words[0] == "MEMORY")

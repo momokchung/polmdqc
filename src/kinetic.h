@@ -11,8 +11,8 @@
 
 namespace kinetic
 {
-extern std::vector< std::vector<real> > cartKE;
-extern std::vector< std::vector<real> > sphKE;
+extern std::vector<std::vector<real>> cartKE;
+extern std::vector<std::vector<real>> sphKE;
 
 void kineticOS();
 }

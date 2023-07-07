@@ -21,11 +21,11 @@
 #pragma once
 #include <string>
 
-const int maxatm=1000000;
-const int maxtyp=5000;
-const int maxclass=1000;
-const int maxval=8;
-const int maxref=30;
-const int maxgrp=1000;
-const int maxres=10000;
-const int maxbio=10000;
+constexpr int maxatm=1000000;
+constexpr int maxtyp=5000;
+constexpr int maxclass=1000;
+constexpr int maxval=8;
+constexpr int maxref=30;
+constexpr int maxgrp=1000;
+constexpr int maxres=10000;
+constexpr int maxbio=10000;

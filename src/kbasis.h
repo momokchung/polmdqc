@@ -17,8 +17,8 @@ extern int basisN;
 // extern std::vector<int> basisLy;
 // extern std::vector<int> basisLz;
 // extern std::vector<int> basisL;
-// extern std::vector< std::vector<real> > basisCoeff;
-// extern std::vector< std::vector<real> > Exp;
+// extern std::vector<std::vector<real>> basisCoeff;
+// extern std::vector<std::vector<real>> Exp;
 // extern std::vector<real> basisX;
 // extern std::vector<real> basisY;
 // extern std::vector<real> basisZ;
@@ -27,10 +27,10 @@ extern std::vector<real> basisNorm;
 extern int N;
 
 extern int sphBasisN;
-extern std::vector< std::vector<int> > sphContraction;
-extern std::vector< std::vector<real> > sphCoeff;
-extern std::vector< std::vector<int> > cartSphContraction;
-extern std::vector< std::vector<real> > cartSphCoeff;
+extern std::vector<std::vector<int>> sphContraction;
+extern std::vector<std::vector<real>> sphCoeff;
+extern std::vector<std::vector<int>> cartSphContraction;
+extern std::vector<std::vector<real>> cartSphCoeff;
 
 extern int primN;
 extern std::vector<real> primNorm;
@@ -44,10 +44,10 @@ extern std::vector<real> cShellY;
 extern std::vector<real> cShellZ;
 extern std::vector<int> cShellContraction;
 extern std::vector<real> cShellScale;
-extern std::vector< std::vector<real> > cShellPrimExp;
-extern std::vector< std::vector<real> > cShellContractionCoeff;
+extern std::vector<std::vector<real>> cShellPrimExp;
+extern std::vector<std::vector<real>> cShellContractionCoeff;
 
-extern const std::vector< std::vector< std::vector<int> > > partitionAngularMomentum;
+extern const std::vector<std::vector<std::vector<int>>> partitionAngularMomentum;
 
 void kbasis();
 

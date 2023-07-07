@@ -14,10 +14,10 @@ using std::sqrt;
 using std::pow;
 using std::exp;
 namespace mathUtils{
-void symmetrize(std::vector< std::vector<real> >& matrix);
+void symmetrize(std::vector<std::vector<real>>& matrix);
 void dsyevd(int N, real* A, real* w);
 void dgemm(int m, int n, int k, real* A, real* B, real* C, char transa = 'N', char transb = 'N');
-void triDiagSym(std::vector< std::vector<real> >& A);
+void triDiagSym(std::vector<std::vector<real>>& A);
 
 
 ////////////////////////////////////////////////////////////////
@@ -97,7 +97,7 @@ inline real contract(int l, std::vector<real>& poly1, std::vector<real>& poly2)
 //                                                        //
 ////////////////////////////////////////////////////////////
 
-inline void flatten(int m, int n, std::vector< std::vector<real> >& inputA, std::vector<real>& outputA)
+inline void flatten(int m, int n, std::vector<std::vector<real>>& inputA, std::vector<real>& outputA)
 {
     for (int i = 0; i < m; ++i)
     {

@@ -11,6 +11,6 @@
 
 namespace stringUtils
 {
-std::vector< std::string > split(std::string line);
+std::vector<std::string> split(std::string line);
 bool checkIsDouble(std::string inputString, real& result);
 }
