@@ -78,7 +78,7 @@ void version(std::string& string, std::string status)
                 exist = true;
             }
             while (exist) {
-                printf("Enter File Name for Coordinate Output: ");
+                printf("\n Enter File Name for Coordinate Output:  ");
                 std::getline(std::cin, string);
                 exist = inquire(string);
             }

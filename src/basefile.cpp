@@ -14,8 +14,6 @@
 #include "files.h"
 #include "getkey.h"
 
-#include "inform.h"
-
 void basefile(std::string& string)
 {
     // account for home directory abbreviation in filename
