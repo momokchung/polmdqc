@@ -25,6 +25,7 @@ src/getcart.cpp
 src/getkey.cpp
 src/getline.cpp
 src/gettext.cpp
+src/getword.cpp
 src/hartree.cpp
 src/init.cpp
 src/initatom.cpp
@@ -32,6 +33,7 @@ src/initial.cpp
 src/initres.cpp
 src/inquire.cpp
 src/ioUtils.cpp
+src/justify.cpp
 src/katoms.cpp
 src/kbasis.cpp
 src/kgbs.cpp
@@ -50,6 +52,8 @@ src/promo.cpp
 src/readxyz.cpp
 src/stringUtils.cpp
 src/suffix.cpp
+src/trimhead.cpp
+src/trimtext.cpp
 src/unitcell.cpp
 src/upcase.cpp
 src/version.cpp
