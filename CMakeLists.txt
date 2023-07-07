@@ -47,8 +47,10 @@ src/nuclear.cpp
 src/nuclearRepulsion.cpp
 src/overlap.cpp
 src/promo.cpp
+src/readxyz.cpp
 src/stringUtils.cpp
 src/suffix.cpp
+src/unitcell.cpp
 src/upcase.cpp
 src/version.cpp
 )
