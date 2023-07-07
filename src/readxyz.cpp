@@ -40,7 +40,7 @@ void readxyz(std::string& xyzfile)
     // open the input file
     exist = inquire(xyzfile);
     if (!exist) {
-        printf("\n READXYZ  --  Unable to Find the Cartesian Coordinates File");
+        printf("\n READXYZ  --  Unable to Find the Cartesian Coordinates File\n");
         fatal();
     }
     std::ifstream file (xyzfile);
@@ -83,11 +83,11 @@ void readxyz(std::string& xyzfile)
 
     // check for too few or too many total atoms in the file
     if (n <= 0) {
-        printf("\n READXYZ  --  The Coordinate File Does Not Contain Any Atoms");
+        printf("\n READXYZ  --  The Coordinate File Does Not Contain Any Atoms\n");
         fatal();
     }
     else if (n > maxatm) {
-        printf("\n  READXYZ  --  The Maximum of %d Atoms has been Exceeded", maxatm);
+        printf("\n  READXYZ  --  The Maximum of %d Atoms has been Exceeded\n", maxatm);
         fatal();
     }
 
@@ -143,6 +143,23 @@ void readxyz(std::string& xyzfile)
 }
 
 
+
+
+// c
+// c     initialize coordinates and connectivities for each atom
+// c
+//       do i = 1, n
+//          tag(i) = 0
+//          name(i) = '   '
+//          x(i) = 0.0d0
+//          y(i) = 0.0d0
+//          z(i) = 0.0d0
+//          type(i) = 0
+//          n12(i) = 0
+//          do j = 1, maxval
+//             i12(j,i) = 0
+//          end do
+//       end do
 // c
 // c     read the coordinates and connectivities for each atom
 // c
