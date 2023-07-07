@@ -17,9 +17,9 @@
 #include <string>
 #include <vector>
 
-constexpr int maxprime = 15;
-int iprime[3][maxprime];
-int64_t planf;
-int64_t planb;
-std::vector<std::vector<double>> ffttable;
-std::string ffttyp;
+QCMD_EXTERN constexpr int maxprime = 15;
+QCMD_EXTERN int iprime[3][maxprime];
+QCMD_EXTERN int64_t planf;
+QCMD_EXTERN int64_t planb;
+QCMD_EXTERN std::vector<std::vector<double>> ffttable;
+QCMD_EXTERN std::string ffttyp;

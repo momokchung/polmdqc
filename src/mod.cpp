@@ -25,6 +25,7 @@
 #include "params.h"
 #include "pdb.h"
 #include "ptable.h"
+#include "resdue.h"
 #include "rigid.h"
 #include "scales.h"
 #include "sequen.h"

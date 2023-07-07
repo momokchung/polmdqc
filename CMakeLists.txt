@@ -28,6 +28,7 @@ src/hartree.cpp
 src/init.cpp
 src/initatom.cpp
 src/initial.cpp
+src/initres.cpp
 src/inquire.cpp
 src/ioUtils.cpp
 src/katoms.cpp

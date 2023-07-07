@@ -19,7 +19,6 @@
 #include "macro.h"
 #include <vector>
 
-// QCMD_EXTERN 
 QCMD_EXTERN int ngrp;
 QCMD_EXTERN std::vector<int> kgrp;
 QCMD_EXTERN std::vector<int> grplist;
