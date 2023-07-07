@@ -23,6 +23,7 @@ src/fatal.cpp
 src/final.cpp
 src/getcart.cpp
 src/getkey.cpp
+src/getline.cpp
 src/gettext.cpp
 src/hartree.cpp
 src/init.cpp
