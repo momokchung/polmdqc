@@ -16,11 +16,15 @@
 #include "files.h"
 #include "getline.h"
 #include "gettext.h"
+#include "getword.h"
 #include "inform.h"
 #include "inquire.h"
+#include "lattice.h"
 #include "readxyz.h"
 #include "titles.h"
+#include "trimtext.h"
 #include "unitcell.h"
+#include <sstream>
 
 void readxyz(std::string& xyzfile)
 {
@@ -33,6 +37,7 @@ void readxyz(std::string& xyzfile)
     std::string record;
     std::string string;
     std::string line;
+    std::istringstream iss;
 
     // initialize the total number of atoms in the system
     n = 0;
@@ -50,7 +55,7 @@ void readxyz(std::string& xyzfile)
     informAbort = true;
     size = 0;
     while (std::getline(file, record)) {
-        std::istringstream iss(record);
+        iss.str(record);
         std::string firstWord;
         iss >> firstWord;
         size = firstWord.length();
@@ -67,12 +72,8 @@ void readxyz(std::string& xyzfile)
     // parse the title line to get the number of atoms
     next = 0;
     gettext(record, string, next);
-    try {
-        n = std::stoi(string);
-    } 
-    catch (const std::exception& e) {
-        goto label_80;
-    }
+    iss.str(string);
+    if (!(iss >> n)) goto label_80;
 
     // extract the title and determine its length
     string = record.substr(next);
@@ -105,25 +106,23 @@ void readxyz(std::string& xyzfile)
         }
     }
 
-//     // read the coordinates and connectivities for each atom
-//     for (int i = 0; i < n; i++) {
-//         size = 0;
-//         while (size == 0) {
-//             unitcell();
-//             read (ixyz,50,err=80,end=80)  record
-//    50       format (a240)
-//             size = trimtext (record)
-//             if (i .eq. 1) then
-//                next = 1
-//                call getword (record,name(i),next)
-//                if (name(i) .ne. '   ')  goto 60
-//                read (record,*,err=60,end=60)  xbox,ybox,zbox,
-//      &                                        alpha,beta,gamma
-//                size = 0
-//             end if
-//    60       continue
-//             call lattice
-//         }
+    // read the coordinates and connectivities for each atom
+    for (int i = 0; i < n; i++) {
+        size = 0;
+        while (size == 0) {
+            unitcell();
+            std::getline(file, record);
+            size = trimtext(record);
+            if (i == 0) {
+                next = 0;
+                getword (record, name[i], next);
+                if (name[i].length() == 0) {
+                    iss.str(record);
+                    if ((iss >> xbox >> ybox >> zbox >> alpha >> beta >> gamma)) size = 0;
+                }
+            }
+            lattice();
+        }
 //          read (record,*,err=80,end=80)  tag(i)
 //          next = 1
 //          call getword (record,name(i),next)
@@ -131,7 +130,7 @@ void readxyz(std::string& xyzfile)
 //          read (string,*,err=70,end=70)  x(i),y(i),z(i),type(i),
 //      &                                  (i12(j,i),j=1,maxval)
 //    70    continue
-//     }
+    }
 //       quit = .false.
 //    80 continue
 //       if (.not. opened)  close (unit=ixyz)
@@ -142,24 +141,6 @@ void readxyz(std::string& xyzfile)
     printf("");
 }
 
-
-
-
-// c
-// c     initialize coordinates and connectivities for each atom
-// c
-//       do i = 1, n
-//          tag(i) = 0
-//          name(i) = '   '
-//          x(i) = 0.0d0
-//          y(i) = 0.0d0
-//          z(i) = 0.0d0
-//          type(i) = 0
-//          n12(i) = 0
-//          do j = 1, maxval
-//             i12(j,i) = 0
-//          end do
-//       end do
 // c
 // c     read the coordinates and connectivities for each atom
 // c

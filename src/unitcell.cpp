@@ -16,6 +16,7 @@
 #include "mathConst.h"
 #include "unitcell.h"
 #include "upcase.h"
+#include <sstream>
 
 void unitcell()
 {
@@ -35,84 +36,55 @@ void unitcell()
 
     // get keywords containing crystal lattice dimensions
     for (int i = 0; i < nkey; i++) {
-        int next = 0;
         std::string record = keyline[i];
+        std::istringstream iss(record);
         std::string keyword;
-        gettext(record, keyword, next);
+        iss >> keyword;
         upcase(keyword);
-        std::string string = record.substr(next);
-        std::string nextString;
-
+        double nextDouble;
         if (keyword == "X-AXIS") {
             if (xbox == 0.) {
-                gettext(string,nextString,next);
-                try {
-                    xbox = std::stod(keyword);
-                } catch (const std::exception& e) {}
+                if (iss >> nextDouble) xbox = nextDouble;
             }
         }
         else if (keyword == "Y-AXIS") {
             if (ybox == 0.)  {
-                gettext(string,nextString,next);
-                try {
-                    ybox = std::stod(keyword);
-                } catch (const std::exception& e) {}
+                if (iss >> nextDouble) ybox = nextDouble;
             }
         }
         else if (keyword == "Z-AXIS") {
             if (zbox == 0.)  {
-                gettext(string,nextString,next);
-                try {
-                    zbox = std::stod(keyword);
-                } catch (const std::exception& e) {}
+                if (iss >> nextDouble) zbox = nextDouble;
             }
         }
         else if (keyword == "A-AXIS") {
             if (xbox == 0.)  {
-                gettext(string,nextString,next);
-                try {
-                    xbox = std::stod(keyword);
-                } catch (const std::exception& e) {}
+                if (iss >> nextDouble) xbox = nextDouble;
             }
         }
         else if (keyword == "B-AXIS") {
             if (ybox == 0.)  {
-                gettext(string,nextString,next);
-                try {
-                    ybox = std::stod(keyword);
-                } catch (const std::exception& e) {}
+                if (iss >> nextDouble) ybox = nextDouble;
             }
         }
         else if (keyword == "C-AXIS") {
             if (zbox == 0.)  {
-                gettext(string,nextString,next);
-                try {
-                    zbox = std::stod(keyword);
-                } catch (const std::exception& e) {}
+                if (iss >> nextDouble) zbox = nextDouble;
             }
         }
         else if (keyword == "ALPHA") {
             if (alpha == 0.)  {
-                gettext(string,nextString,next);
-                try {
-                    alpha = std::stod(keyword);
-                } catch (const std::exception& e) {}
+                if (iss >> nextDouble) alpha = nextDouble;
             }
         }
         else if (keyword == "BETA") {
             if (beta == 0.)  {
-                gettext(string,nextString,next);
-                try {
-                    beta = std::stod(keyword);
-                } catch (const std::exception& e) {}
+                if (iss >> nextDouble) beta = nextDouble;
             }
         }
         else if (keyword == "GAMMA") {
             if (gamma == 0.)  {
-                gettext(string,nextString,next);
-                try {
-                    gamma = std::stod(keyword);
-                } catch (const std::exception& e) {}
+                if (iss >> nextDouble) gamma = nextDouble;
             }
         }
         else if (keyword == "OCTAHEDRON") {
@@ -125,7 +97,10 @@ void unitcell()
             nosymm = true;
         }
         else if (keyword == "SPACEGROUP") {
-            getword(record, spacegrp, next);
+            int next = 0;
+            std::string nextString;
+            iss >> nextString;
+            getword(nextString, spacegrp, next);
         }
     }
 

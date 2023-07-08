@@ -10,11 +10,11 @@
 
 #include "argue.h"
 #include "control.h"
-#include "gettext.h"
 #include "inform.h"
 #include "keys.h"
 #include "output.h"
 #include "upcase.h"
+#include <sstream>
 
 void control()
 {
@@ -49,13 +49,12 @@ void control()
         int next = 0;
         std::string record = keyline[i];
         std::string keyword;
-        gettext(record,keyword,next);
+        std::istringstream iss(record);
+        iss >> keyword;
         upcase(keyword);
         if (keyword == "DIGITS") {
-            gettext(record,keyword,next);
-            try {
-                digits = std::stoi(keyword);
-            } catch (const std::exception& e) {}
+            double nextDouble;
+            if (iss >> nextDouble) digits = nextDouble;
         }
         else if (keyword == "DEBUG") {
             debug = true;
