@@ -13,15 +13,15 @@
 
 void justify(std::string& string, int totalLength)
 {
+    getline(string);
     int stringLength = string.length();
     if (totalLength <= stringLength)
     {
         return;
     }
 
-    int firstNonBlank = string.find_first_not_of(' ');
-    int numSpaces = totalLength - stringLength + firstNonBlank;
+    int numSpaces = totalLength - stringLength;
     std::string spaces(numSpaces, ' ');
     
-    string = spaces + string.substr(firstNonBlank);
+    string = spaces + string;
 }

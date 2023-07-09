@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.16.0)
 
 set(POLQCMD_TEST
+getline.cpp
 gettext.cpp
+justify.cpp
 lowcase.cpp
 main.cpp
+trimhead.cpp
 trimtext.cpp
 upcase.cpp
 )

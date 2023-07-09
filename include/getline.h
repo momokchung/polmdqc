@@ -8,4 +8,4 @@
 #pragma once
 #include <string>
 
-std::string getline(std::string& string);
+void getline(std::string& string);

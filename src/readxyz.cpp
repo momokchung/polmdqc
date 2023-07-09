@@ -36,7 +36,6 @@ void readxyz(std::string& xyzfile)
     bool clash;
     std::string record;
     std::string string;
-    std::string line;
     std::istringstream iss;
 
     // initialize the total number of atoms in the system
@@ -77,9 +76,9 @@ void readxyz(std::string& xyzfile)
 
     // extract the title and determine its length
     string = record.substr(next);
-    line = getline(string);
-    ltitle = line.length();
-    title = line;
+    getline(string);
+    ltitle = string.length();
+    title = string;
     if (ltitle == 0) title = " ";
 
     // check for too few or too many total atoms in the file
