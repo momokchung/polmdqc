@@ -21,4 +21,5 @@ int main(int argc, char** argv)
 
     int ixyz;
     getcart(ixyz);
+    printf("\n");
 }

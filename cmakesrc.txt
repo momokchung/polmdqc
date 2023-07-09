@@ -1,6 +1,7 @@
 set (POLQCMD_SRC
 src/basefile.cpp
 src/boys.cpp
+src/chkxyz.cpp
 src/command.cpp
 src/config.cpp
 src/control.cpp
