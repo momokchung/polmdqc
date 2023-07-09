@@ -24,25 +24,33 @@
 
 void getword(std::string& string, std::string& word, int& next)
 {
-    gettext(string, word, next);
-
     // get starting index
-    int start = 0;
-    for (char c : word) {
+    int start = -1;
+    int stringLength = string.length();
+    for (int i = next; i < stringLength; i++) {
+        char c = string[i];
         if (std::isalpha(c)) {
+            start = i;
             break;
         }
-        start++;
     }
 
     // get ending index
-    int end = 0;
-    for (char c : word.substr(start)) {
-        if (!std::isalnum(c)) {
+    int end = -1;
+    for (int i = start; i < stringLength; i++) {
+        char c = string[i];
+        if (c == ' ' or c == '\t' or c == ',' or c == ':' or c == ';') {
+            end = i;
             break;
         }
-        end++;
     }
 
-    word = word.substr(start, end);
+    if (start == -1 or end == -1) {
+        word = "";
+        return;
+    }
+    
+    word = string.substr(start, end-start);
+
+    next = end;
 }

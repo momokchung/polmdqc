@@ -23,13 +23,14 @@
 
 void gettext(std::string& string, std::string& text, int& next)
 {
-    std::istringstream iss(string.substr(next));
+    std::string stringSub = string.substr(next);
+    std::istringstream iss(stringSub);
     std::string firstWord;
     iss >> firstWord;
     text = firstWord;
     int numSpaces = 0;
-    for (char ch : string.substr(next)) {
-        if (ch == ' ')
+    for (char ch : stringSub) {
+        if (ch == ' ' or ch == '\t')
             numSpaces++;
         else
             break;
