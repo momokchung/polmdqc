@@ -67,7 +67,7 @@ void getcart(int &ixyz)
 
     // quit if the Cartesian coordinates file contains no atoms
     if (informAbort) {
-        printf("\n GETCART  --  Cartesian Coordinate File was not Read Correctly\n");
+        printf("\n GETCART  --  Cartesian Coordinate File was not Read Correctly");
         fatal();
     }
 }

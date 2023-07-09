@@ -16,7 +16,7 @@
 void fatal()
 {
     // print a final warning message, then do final cleanup
-    printf("\n PolQCMD is Unable to Continue; Terminating the Current Calculation\n");
+    printf("\n\n PolQCMD is Unable to Continue; Terminating the Current Calculation\n");
     final();
     exit(1);
 }

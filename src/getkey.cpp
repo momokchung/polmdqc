@@ -37,7 +37,7 @@ void getkey()
             suffix (keyfile, "key", "old");
             exist = inquire(keyfile);
             if (!exist) {
-                printf("\n GETKEY  --  Keyfile Specified on Command Line was not Found\n");
+                printf("\n GETKEY  --  Keyfile Specified on Command Line was not Found");
                 fatal();
             }
         }
@@ -70,7 +70,7 @@ void getkey()
             keyline[nkey] = record;
             nkey++;
             if (nkey >= maxkey) {
-                printf("\n GETKEY  --  Keyfile Too Large; Increase MAXKEY\n");
+                printf("\n GETKEY  --  Keyfile Too Large; Increase MAXKEY");
                 fatal();
             }
         }
