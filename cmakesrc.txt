@@ -29,9 +29,10 @@ src/kprim.cpp
 src/kworker.cpp
 src/lattice.cpp
 src/lowcase.cpp
-src/mod.cpp
 src/mathUtils.cpp
 src/mechanic.cpp
+src/mechanicqm.cpp
+src/mod.cpp
 src/nextarg.cpp
 src/nuclear.cpp
 src/nuclearRepulsion.cpp

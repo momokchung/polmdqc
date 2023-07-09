@@ -1,59 +1,16 @@
-//////////////////////////////////////////////////////
-//                                                  //
-//  mechanic.cpp  --  initialize quantum mechanics  //
-//                                                  //
-//////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+//                                                    //
+//  mechanic.cpp  --  initialize molecular mechanics  //
+//                                                    //
+////////////////////////////////////////////////////////
+
+// "mechanic" sets up needed parameters for the potential energy
+// calculation and reads in many of the user selectable options
 
 
-#include "boys.h"
-#include "katoms.h"
-#include "kbasis.h"
-#include "kgbs.h"
-#include "kprim.h"
-#include "kworker.h"
 #include "mechanic.h"
-#include <string>
-#include <iostream>
 
-namespace mechanic
+void mechanic()
 {
-//////////////////////////////////////////////////
-//                                              //
-//  mechanic  --  initialize quantum mechanics  //
-//                                              //
-//////////////////////////////////////////////////
 
-void mechanic(std::string fileName)
-{
-    // read xyz file
-    atoms::readxyz(fileName);
-
-    // read gbs file
-    gbs::readgbs(gbs::basisName);
-
-    // set up basis
-    basis::kbasis();
-
-    // set up primitives
-    prim::kprim();
-
-    // read in boys function coefficients
-    boys::initBoys();
-
-    // allocate worker arrays
-    worker::allocateWorker();
-}
-
-
-///////////////////////////////////////////////
-//                                           //
-//  cleanup  --  clean up quantum mechanics  //
-//                                           //
-///////////////////////////////////////////////
-
-void cleanup()
-{
-    // cleanup boys function
-    boys::cleanupBoys();
-}
 }

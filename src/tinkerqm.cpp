@@ -6,7 +6,7 @@
 
 
 #include "energy.h"
-#include "mechanic.h"
+#include "mechanicqm.h"
 #include <string>
 
 int main(int argc, char** argv)
@@ -15,12 +15,12 @@ int main(int argc, char** argv)
     std::string fileName = argv[1];
 
     // set up quantum mechanics
-    mechanic::mechanic(fileName);
+    mechanicqm::mechanic(fileName);
 
     // add logic as to which function to run
     // for now we will just do HF
     energy::energy();
 
     // clean up quantum mechanics
-    mechanic::cleanup();
+    mechanicqm::cleanup();
 }

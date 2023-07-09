@@ -13,6 +13,7 @@
 
 #include "initial.h"
 #include "getcart.h"
+#include "mechanic.h"
 #include <stdio.h>
 
 int main(int argc, char** argv)
@@ -21,5 +22,7 @@ int main(int argc, char** argv)
 
     int ixyz;
     getcart(ixyz);
+    mechanic();
+
     printf("\n");
 }
