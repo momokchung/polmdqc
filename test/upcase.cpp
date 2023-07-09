@@ -1,5 +1,9 @@
 #include "catch.hpp"
+#include "upcase.h"
+#include <string>
 
-TEST_CASE("what") {
-    REQUIRE(4*4 == 16);
+TEST_CASE("upcase") {
+    std::string string = " Hello, World!  ";
+    upcase(string);
+    REQUIRE(string == " HELLO, WORLD!  ");
 }

@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.16.0)
 
 set(POLQCMD_TEST
 gettext.cpp
+lowcase.cpp
 main.cpp
+trimtext.cpp
 upcase.cpp
 )
 

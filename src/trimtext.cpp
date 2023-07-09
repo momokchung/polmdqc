@@ -6,7 +6,7 @@
 
 // "trimtext" finds and returns the location of the last
 // non-blank character before the first null character in
-// an input text string; the function returns zero if no
+// an input text string; the function returns -1 if no
 // such character is found
 
 
@@ -14,27 +14,12 @@
 
 int trimtext(std::string& string)
 {
-    // move forward through the string, one character
-    // at a time, looking for first null character
-    int trimtext = 0;
-    int size = string.length();
-    char null = '\0';
-    int last = size;
-    for (int i = 0; i < size; i++) {
-        if (string[i] == null) {
-            last = i;
+    int lastIndex = -1;
+    for (int i = string.length()-1; i >= 0; i--) {
+        if (!std::isspace(string[i])) {
+            lastIndex = i;
             break;
         }
     }
-
-    // move backward through the string, one character
-    // at a time, looking for first non-blank character
-    for (int i = last; i >= 0; i--) {
-        if (string[i] > ' ') {
-            trimtext = i;
-            break;
-        }
-    }
-
-    return trimtext + 1;
+    return lastIndex;
 }
