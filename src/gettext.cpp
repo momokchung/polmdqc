@@ -28,11 +28,11 @@ void gettext(std::string& string, std::string& text, int& next)
     iss >> firstWord;
     text = firstWord;
     int numSpaces = 0;
-    for (char ch : string) {
+    for (char ch : string.substr(next)) {
         if (ch == ' ')
             numSpaces++;
         else
             break;
     }
-    next = text.length() + numSpaces;
+    next += text.length() + numSpaces;
 }

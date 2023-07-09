@@ -13,50 +13,51 @@ include_directories(include)
 
 # Add the source files
 add_library(polqcmd
-src/basefile.cpp
-src/boys.cpp
-src/command.cpp
-src/config.cpp
-src/control.cpp
-src/energy.cpp
-src/fatal.cpp
-src/final.cpp
-src/getcart.cpp
-src/getkey.cpp
-src/getline.cpp
-src/gettext.cpp
-src/getword.cpp
-src/hartree.cpp
-src/init.cpp
-src/initatom.cpp
-src/initial.cpp
-src/initres.cpp
-src/inquire.cpp
-src/ioUtils.cpp
-src/justify.cpp
-src/katoms.cpp
-src/kbasis.cpp
-src/kgbs.cpp
-src/kinetic.cpp
-src/kprim.cpp
-src/kworker.cpp
-src/lowcase.cpp
-src/mod.cpp
-src/mathUtils.cpp
-src/mechanic.cpp
-src/nextarg.cpp
-src/nuclear.cpp
-src/nuclearRepulsion.cpp
-src/overlap.cpp
-src/promo.cpp
-src/readxyz.cpp
-src/stringUtils.cpp
-src/suffix.cpp
-src/trimhead.cpp
-src/trimtext.cpp
-src/unitcell.cpp
-src/upcase.cpp
-src/version.cpp
+    src/basefile.cpp
+    src/boys.cpp
+    src/command.cpp
+    src/config.cpp
+    src/control.cpp
+    src/energy.cpp
+    src/fatal.cpp
+    src/final.cpp
+    src/getcart.cpp
+    src/getkey.cpp
+    src/getline.cpp
+    src/gettext.cpp
+    src/getword.cpp
+    src/hartree.cpp
+    src/init.cpp
+    src/initatom.cpp
+    src/initial.cpp
+    src/initres.cpp
+    src/inquire.cpp
+    src/ioUtils.cpp
+    src/justify.cpp
+    src/katoms.cpp
+    src/kbasis.cpp
+    src/kgbs.cpp
+    src/kinetic.cpp
+    src/kprim.cpp
+    src/kworker.cpp
+    src/lattice.cpp
+    src/lowcase.cpp
+    src/mod.cpp
+    src/mathUtils.cpp
+    src/mechanic.cpp
+    src/nextarg.cpp
+    src/nuclear.cpp
+    src/nuclearRepulsion.cpp
+    src/overlap.cpp
+    src/promo.cpp
+    src/readxyz.cpp
+    src/stringUtils.cpp
+    src/suffix.cpp
+    src/trimhead.cpp
+    src/trimtext.cpp
+    src/unitcell.cpp
+    src/upcase.cpp
+    src/version.cpp
 )
 
 # Add the tinkerqm executable
@@ -71,3 +72,5 @@ add_executable(analyze src/analyze.cpp)
 # Link the polqcmd library
 target_link_libraries(analyze polqcmd)
 
+# Include tests directory
+add_subdirectory(test)
