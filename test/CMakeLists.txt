@@ -7,6 +7,7 @@ getword.cpp
 justify.cpp
 lowcase.cpp
 main.cpp
+sort.cpp
 trimhead.cpp
 trimtext.cpp
 upcase.cpp

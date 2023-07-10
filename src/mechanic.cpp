@@ -8,9 +8,13 @@
 // calculation and reads in many of the user selectable options
 
 
+#include "attach.h"
+#include "inform.h"
 #include "mechanic.h"
 
 void mechanic()
 {
-
+    // set the bonded connectivity lists and active atoms
+    attach();
+    // active();
 }
