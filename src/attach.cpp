@@ -47,77 +47,81 @@ void attach()
         }
         int n13tmp = i13tmp.size();
         if (n13tmp > maxn13) {
-            printf("\n ATTACH  --  Too many 1-3 Connected Atoms Attached to Atom%d", i);
+            printf("\n ATTACH  --  Too many 1-3 Connected Atoms Attached to Atom%6d", i);
             fatal();
         }
         sort(i13tmp);
-        // std::sort(i13[i], i13[i] + n13[i]);
+        n13tmp = i13tmp.size();
+        n13[i] = n13tmp;
+        for (int j = 0; j < n13tmp; j++){
+            i13[i][j] = i13tmp[j];
+        }
+    }
+
+    // loop over all atoms finding all the 1-4 relationships
+    for (int i = 0; i < n; i++) {
+        std::vector<int> i14tmp;
+        for (int j = 0; j < n13[i]; j++) {
+            int jj = i13[i][j];
+            for (int k = 0; k < n12[jj]; k++) {
+                int kk = i12[jj][k];
+                if (kk == i) goto label_30;
+                for (int m = 0; m < n12[i]; m++){
+                    if (kk == i12[i][m])  goto label_30;
+                }
+                for (int m = 0; m < n13[i]; m++){
+                    if (kk == i13[i][m])  goto label_30;
+                }
+                i14tmp.push_back(kk);
+                label_30:
+                continue;
+            }
+        }
+        int n14tmp = i14tmp.size();
+        if (n14tmp > maxn14) {
+            printf("\n ATTACH  --  Too many 1-4 Connected Atoms Attached to Atom%6d", i);
+            fatal();
+        }
+        sort(i14tmp);
+        n14tmp = i14tmp.size();
+        n14[i] = n14tmp;
+        for (int j = 0; j < n14tmp; j++){
+            i14[i][j] = i14tmp[j];
+        }
+    }
+
+    // loop over all atoms finding all the 1-5 relationships
+    for (int i = 0; i < n; i++) {
+        std::vector<int> i15tmp;
+        for (int j = 0; j < n14[i]; j++) {
+            int jj = i14[i][j];
+            for (int k = 0; k < n12[jj]; k++) {
+                int kk = i12[jj][k];
+                if (kk == i) goto label_50;
+                for (int m = 0; m < n12[i]; m++){
+                    if (kk == i12[i][m])  goto label_50;
+                }
+                for (int m = 0; m < n13[i]; m++){
+                    if (kk == i13[i][m])  goto label_50;
+                }
+                for (int m = 0; m < n14[i]; m++){
+                    if (kk == i14[i][m])  goto label_50;
+                }
+                i15tmp.push_back(kk);
+                label_50:
+                continue;
+            }
+        }
+        int n15tmp = i15tmp.size();
+        if (n15tmp > maxn15) {
+            printf("\n ATTACH  --  Too many 1-5 Connected Atoms Attached to Atom%6d", i);
+            fatal();
+        }
+        sort(i15tmp);
+        n15tmp = i15tmp.size();
+        n15[i] = n15tmp;
+        for (int j = 0; j < n15tmp; j++){
+            i15[i][j] = i15tmp[j];
+        }
     }
 }
-
-
-// c
-
-// c
-// c     loop over all atoms finding all the 1-4 relationships
-// c
-//       do i = 1, n
-//          n14(i) = 0
-//          do j = 1, n13(i)
-//             jj = i13(j,i)
-//             do k = 1, n12(jj)
-//                kk = i12(k,jj)
-//                if (kk .eq. i)  goto 30
-//                do m = 1, n12(i)
-//                   if (kk .eq. i12(m,i))  goto 30
-//                end do
-//                do m = 1, n13(i)
-//                   if (kk .eq. i13(m,i))  goto 30
-//                end do
-//                n14(i) = n14(i) + 1
-//                i14(n14(i),i) = kk
-//    30          continue
-//             end do
-//          end do
-//          if (n14(i) .gt. maxn14) then
-//             write (iout,40)  i
-//    40       format (/,' ATTACH  --  Too many 1-4 Connected Atoms',
-//      &                 ' Attached to Atom',i6)
-//             call fatal
-//          end if
-//          call sort8 (n14(i),i14(1,i))
-//       end do
-// c
-// c     loop over all atoms finding all the 1-5 relationships
-// c
-//       do i = 1, n
-//          n15(i) = 0
-//          do j = 1, n14(i)
-//             jj = i14(j,i)
-//             do k = 1, n12(jj)
-//                kk = i12(k,jj)
-//                if (kk .eq. i)  goto 50
-//                do m = 1, n12(i)
-//                   if (kk .eq. i12(m,i))  goto 50
-//                end do
-//                do m = 1, n13(i)
-//                   if (kk .eq. i13(m,i))  goto 50
-//                end do
-//                do m = 1, n14(i)
-//                   if (kk .eq. i14(m,i))  goto 50
-//                end do
-//                n15(i) = n15(i) + 1
-//                i15(n15(i),i) = kk
-//    50          continue
-//             end do
-//          end do
-//          if (n15(i) .gt. maxn15) then
-//             write (iout,60)  i
-//    60       format (/,' ATTACH  --  Too many 1-5 Connected Atoms',
-//      &                 ' Attached to Atom',i6)
-//             call fatal
-//          end if
-//          call sort8 (n15(i),i15(1,i))
-//       end do
-//       return
-//       end
