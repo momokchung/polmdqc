@@ -34,7 +34,7 @@ void chkxyz(bool& clash)
                     header = false;
                     printf("\n");
                 }
-                printf("\n CHKXYZ  --  Warning, Atoms%6d and%6d have Identical Coordinates", i+1, k+1);
+                printf("\n CHKXYZ  --  Warning, Atoms%6d and%6d have Identical Coordinates\n", i+1, k+1);
             }
         }
     }

@@ -1,4 +1,5 @@
 set (POLQCMD_SRC
+src/active.cpp
 src/attach.cpp
 src/basefile.cpp
 src/boys.cpp

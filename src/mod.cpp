@@ -31,6 +31,7 @@
 #include "sequen.h"
 #include "socket.h"
 #include "titles.h"
+#include "usage.h"
 #include "virial.h"
 #include "warp.h"
 #include "zclose.h"

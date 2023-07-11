@@ -23,6 +23,4 @@ int main(int argc, char** argv)
     int ixyz;
     getcart(ixyz);
     mechanic();
-
-    printf("\n");
 }

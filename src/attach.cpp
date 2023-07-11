@@ -47,7 +47,7 @@ void attach()
         }
         int n13tmp = i13tmp.size();
         if (n13tmp > maxn13) {
-            printf("\n ATTACH  --  Too many 1-3 Connected Atoms Attached to Atom%6d", i);
+            printf("\n ATTACH  --  Too many 1-3 Connected Atoms Attached to Atom%6d\n", i);
             fatal();
         }
         sort(i13tmp);
@@ -79,7 +79,7 @@ void attach()
         }
         int n14tmp = i14tmp.size();
         if (n14tmp > maxn14) {
-            printf("\n ATTACH  --  Too many 1-4 Connected Atoms Attached to Atom%6d", i);
+            printf("\n ATTACH  --  Too many 1-4 Connected Atoms Attached to Atom%6d\n", i);
             fatal();
         }
         sort(i14tmp);
@@ -114,7 +114,7 @@ void attach()
         }
         int n15tmp = i15tmp.size();
         if (n15tmp > maxn15) {
-            printf("\n ATTACH  --  Too many 1-5 Connected Atoms Attached to Atom%6d", i);
+            printf("\n ATTACH  --  Too many 1-5 Connected Atoms Attached to Atom%6d\n", i);
             fatal();
         }
         sort(i15tmp);

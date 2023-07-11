@@ -47,7 +47,7 @@ void readxyz(std::string& xyzfile)
     // open the input file
     exist = inquire(xyzfile);
     if (!exist) {
-        printf("\n READXYZ  --  Unable to Find the Cartesian Coordinates File");
+        printf("\n READXYZ  --  Unable to Find the Cartesian Coordinates File\n");
         fatal();
     }
     std::ifstream file (xyzfile);
@@ -57,6 +57,7 @@ void readxyz(std::string& xyzfile)
     informAbort = true;
     size = 0;
     while (std::getline(file, record)) {
+        iss.clear();
         iss.str(record);
         std::string firstWord;
         iss >> firstWord;
@@ -87,11 +88,11 @@ void readxyz(std::string& xyzfile)
 
     // check for too few or too many total atoms in the file
     if (n <= 0) {
-        printf("\n READXYZ  --  The Coordinate File Does Not Contain Any Atoms");
+        printf("\n READXYZ  --  The Coordinate File Does Not Contain Any Atoms\n");
         fatal();
     }
     else if (n > maxatm) {
-        printf("\n READXYZ  --  The Maximum of%9d Atoms has been Exceeded", maxatm);
+        printf("\n READXYZ  --  The Maximum of%9d Atoms has been Exceeded\n", maxatm);
         fatal();
     }
 
@@ -160,7 +161,7 @@ void readxyz(std::string& xyzfile)
 
     // an error occurred in reading the coordinate file
     if (quit) {
-        printf("\n READXYZ  --  Error in Coordinate File at Atom%9d", failAtom);
+        printf("\n READXYZ  --  Error in Coordinate File at Atom%9d\n", failAtom);
         fatal();
     }
 
@@ -213,30 +214,10 @@ void readxyz(std::string& xyzfile)
             for (int m = 0; m < n12[k]; m++) {
                 if (i12[k][m] == i)  goto label_130;
             }
-            printf("\n READXYZ  --  Check Connection of Atoms%9d and%9d", k+1, i+1);
+            printf("\n READXYZ  --  Check Connection of Atoms%9d and%9d\n", k+1, i+1);
             fatal();
             label_130:
             continue;
         }
     }
-
-    // // 
-    // printf("n: %d\n", n);
-    // printf("Title: %s\n", title.c_str());
-    // printf("Lattice: %f %f %f, %f %f %f\n\n", xbox, ybox, zbox, alpha, beta, gamma);
-    // for (int i = 0; i < n; i++) {
-    //     printf("%d:\n", i);
-    //     printf("tag: %d\n", tag[i]);
-    //     printf("name: %s\n", name[i].c_str());
-    //     printf("x y z: %f %f %f\n", x[i], y[i], z[i]);
-    //     printf("type: %d\n", type[i]);
-    //     printf("n12: %d\n", n12[i]);
-    //     printf("i12: ");
-    //     for (int j = 0; j < maxval; j++) {
-    //         int i12Int = i12[i][j];
-    //         if (i12Int != -1) printf("%d ", i12Int);
-    //     }
-    //     printf("\n\n");
-    // }
-    // // 
 }
