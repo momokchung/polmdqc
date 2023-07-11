@@ -6,6 +6,7 @@
 #include "atomid.h"
 #include "atoms.h"
 #include "bath.h"
+#include "bndstr.h"
 #include "bound.h"
 #include "boxes.h"
 #include "cell.h"
