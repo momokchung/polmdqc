@@ -2,6 +2,7 @@
 
 #include "align.h"
 #include "argue.h"
+#include "atmlst.h"
 #include "atomid.h"
 #include "atoms.h"
 #include "bath.h"
