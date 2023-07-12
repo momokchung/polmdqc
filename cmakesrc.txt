@@ -3,6 +3,7 @@ src/active.cpp
 src/angles.cpp
 src/attach.cpp
 src/basefile.cpp
+src/bitors.cpp
 src/bonds.cpp
 src/boys.cpp
 src/chkxyz.cpp

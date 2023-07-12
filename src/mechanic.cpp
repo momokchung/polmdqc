@@ -11,11 +11,14 @@
 #include "active.h"
 #include "angles.h"
 #include "attach.h"
+#include "bitors.h"
 #include "bonds.h"
 #include "fatal.h"
 #include "inform.h"
+#include "lattice.h"
 #include "mechanic.h"
 #include "torsions.h"
+#include "unitcell.h"
 
 void mechanic()
 {
@@ -27,27 +30,27 @@ void mechanic()
     bonds();
     angles();
     torsions();
-    // bitors();
+    bitors();
     // rings();
 
     // get the base force field from parameter file and keyfile
-    // field();
+    // field(); do
 
     // find unit cell type, lattice parameters and cutoff values
-    // unitcell();
-    // lattice();
+    unitcell();
+    lattice();
     // polymer();
-    // cutoffs();
+    // cutoffs(); do
 
     // setup needed for potential energy smoothing methods
     // flatten();
 
     // assign atom types, classes and other atomic information
-    // katom();
+    // katom(); do
 
     // assign atoms to molecules and set the atom groups
-    // molecule();
-    // cluster();
+    // molecule(); do
+    // cluster(); do
 
     // find any pisystem atoms, bonds and torsional angles
     // orbital();
@@ -75,25 +78,25 @@ void mechanic()
     // assign electrostatic interaction potential parameters
     // kcharge();
     // kdipole();
-    // kmpole();
-    // kpolar();
+    // kmpole(); do
+    // kpolar(); do
     // kchgtrn();
     // kchgflx();
 
     // assign van der Waals, repulsion and dispersion parameters
-    // kvdw();
+    // kvdw(); do
     // krepel();
     // kdisp();
 
     // assign solvation, metal, pisystem and restraint parameters
-    // ksolv();
+    // ksolv(); do
     // kmetal();
     // korbit();
     // kgeom();
     // kextra();
 
     // assign electrostatic and dispersion Ewald sum parameters
-    // kewald();
+    // kewald(); do
 
     // set any holonomic interatomic distance constraints
     // shakeup();
