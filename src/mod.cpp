@@ -7,6 +7,7 @@
 #include "atomid.h"
 #include "atoms.h"
 #include "bath.h"
+#include "bitor.h"
 #include "bndstr.h"
 #include "bound.h"
 #include "boxes.h"
