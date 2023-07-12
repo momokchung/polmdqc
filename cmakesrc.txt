@@ -46,6 +46,7 @@ src/readxyz.cpp
 src/sort.cpp
 src/stringUtils.cpp
 src/suffix.cpp
+src/torsions.cpp
 src/trimhead.cpp
 src/trimtext.cpp
 src/unitcell.cpp

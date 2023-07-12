@@ -12,8 +12,10 @@
 #include "angles.h"
 #include "attach.h"
 #include "bonds.h"
+#include "fatal.h"
 #include "inform.h"
 #include "mechanic.h"
+#include "torsions.h"
 
 void mechanic()
 {
@@ -24,7 +26,84 @@ void mechanic()
     // find bonds, angles, torsions, bitorsions and small rings
     bonds();
     angles();
-    // torsions();
+    torsions();
     // bitors();
     // rings();
+
+    // get the base force field from parameter file and keyfile
+    // field();
+
+    // find unit cell type, lattice parameters and cutoff values
+    // unitcell();
+    // lattice();
+    // polymer();
+    // cutoffs();
+
+    // setup needed for potential energy smoothing methods
+    // flatten();
+
+    // assign atom types, classes and other atomic information
+    // katom();
+
+    // assign atoms to molecules and set the atom groups
+    // molecule();
+    // cluster();
+
+    // find any pisystem atoms, bonds and torsional angles
+    // orbital();
+
+    // assign bond, angle and cross term potential parameters
+    // kbond();
+    // kangle();
+    // kstrbnd();
+    // kurey();
+    // kangang();
+
+    // assign out-of-plane deformation potential parameters
+    // kopbend();
+    // kopdist();
+    // kimprop();
+    // kimptor();
+
+    // assign torsion and torsion cross term potential parameters
+    // ktors();
+    // kpitors();
+    // kstrtor();
+    // kangtor();
+    // ktortor();
+
+    // assign electrostatic interaction potential parameters
+    // kcharge();
+    // kdipole();
+    // kmpole();
+    // kpolar();
+    // kchgtrn();
+    // kchgflx();
+
+    // assign van der Waals, repulsion and dispersion parameters
+    // kvdw();
+    // krepel();
+    // kdisp();
+
+    // assign solvation, metal, pisystem and restraint parameters
+    // ksolv();
+    // kmetal();
+    // korbit();
+    // kgeom();
+    // kextra();
+
+    // assign electrostatic and dispersion Ewald sum parameters
+    // kewald();
+
+    // set any holonomic interatomic distance constraints
+    // shakeup();
+
+    // set hybrid parameter values for free energy perturbation
+    // mutate();
+
+    // quit if essential parameter information is missing
+    if (informAbort) {
+        printf("\n MECHANIC  --  Some Required Potential Energy Parameters are Undefined\n");
+        fatal();
+    }
 }
