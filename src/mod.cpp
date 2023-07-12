@@ -1,6 +1,7 @@
 #define QCMD_EXTERN_DEFINITION_FILE 1
 
 #include "align.h"
+#include "angbnd.h"
 #include "argue.h"
 #include "atmlst.h"
 #include "atomid.h"
