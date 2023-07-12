@@ -2,6 +2,7 @@ set (POLQCMD_SRC
 src/active.cpp
 src/attach.cpp
 src/basefile.cpp
+src/bonds.cpp
 src/boys.cpp
 src/chkxyz.cpp
 src/command.cpp

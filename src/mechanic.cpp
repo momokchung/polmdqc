@@ -10,6 +10,7 @@
 
 #include "active.h"
 #include "attach.h"
+#include "bonds.h"
 #include "inform.h"
 #include "mechanic.h"
 
@@ -18,4 +19,11 @@ void mechanic()
     // set the bonded connectivity lists and active atoms
     attach();
     active();
+
+    // find bonds, angles, torsions, bitorsions and small rings
+    bonds();
+    // angles();
+    // torsions();
+    // bitors();
+    // rings();
 }
