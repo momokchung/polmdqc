@@ -9,6 +9,7 @@
 
 
 #include "active.h"
+#include "angles.h"
 #include "attach.h"
 #include "bonds.h"
 #include "inform.h"
@@ -22,7 +23,7 @@ void mechanic()
 
     // find bonds, angles, torsions, bitorsions and small rings
     bonds();
-    // angles();
+    angles();
     // torsions();
     // bitors();
     // rings();

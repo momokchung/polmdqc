@@ -1,5 +1,6 @@
 set (POLQCMD_SRC
 src/active.cpp
+src/angles.cpp
 src/attach.cpp
 src/basefile.cpp
 src/bonds.cpp
