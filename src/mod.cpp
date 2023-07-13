@@ -23,6 +23,7 @@
 #include "kbonds.h"
 #include "kcflux.h"
 #include "kdipol.h"
+#include "khbond.h"
 #include "keys.h"
 #include "linmin.h"
 #include "mathConst.h"
