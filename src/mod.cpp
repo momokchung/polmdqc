@@ -21,6 +21,7 @@
 #include "kangs.h"
 #include "kantor.h"
 #include "kbonds.h"
+#include "kcflux.h"
 #include "keys.h"
 #include "linmin.h"
 #include "mathConst.h"
