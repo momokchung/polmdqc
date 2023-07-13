@@ -19,6 +19,7 @@
 #include "group.h"
 #include "inform.h"
 #include "kangs.h"
+#include "kantor.h"
 #include "keys.h"
 #include "linmin.h"
 #include "mathConst.h"
