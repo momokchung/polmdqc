@@ -23,5 +23,5 @@ QCMD_EXTERN int maxncfa;
 QCMD_EXTERN std::vector<double> cflb;
 QCMD_EXTERN std::vector<std::vector<double>> cfla;
 QCMD_EXTERN std::vector<std::vector<double>> cflab;
-QCMD_EXTERN std::vector<std::string>> kcfb;
-QCMD_EXTERN std::vector<std::string>> kcfa;
+QCMD_EXTERN std::vector<std::string> kcfb;
+QCMD_EXTERN std::vector<std::string> kcfa;
