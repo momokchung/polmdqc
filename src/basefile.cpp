@@ -21,7 +21,7 @@ void basefile(std::string& string)
         char* homeDir = getenv("HOME");
         if (homeDir != nullptr) {
             std::string prefix = std::string(homeDir);
-            string = prefix + string.substr(1).c_str();
+            string = prefix + string.substr(1);
         }
     }
     

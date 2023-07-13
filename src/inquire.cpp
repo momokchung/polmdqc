@@ -10,6 +10,6 @@
 
 bool inquire(std::string& str)
 {
-    std::ifstream f(str.c_str());
+    std::ifstream f(str);
     return f.good();
 }
