@@ -20,6 +20,7 @@
 #include "inform.h"
 #include "kangs.h"
 #include "kantor.h"
+#include "kbonds.h"
 #include "keys.h"
 #include "linmin.h"
 #include "mathConst.h"
