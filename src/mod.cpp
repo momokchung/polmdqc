@@ -25,6 +25,7 @@
 #include "kdipol.h"
 #include "khbond.h"
 #include "kiprop.h"
+#include "kitors.h"
 #include "keys.h"
 #include "linmin.h"
 #include "mathConst.h"
