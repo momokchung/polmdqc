@@ -22,6 +22,7 @@
 #include "kantor.h"
 #include "kbonds.h"
 #include "kcflux.h"
+#include "kmulti.h"
 #include "kdipol.h"
 #include "khbond.h"
 #include "kiprop.h"
