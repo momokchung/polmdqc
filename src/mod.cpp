@@ -24,6 +24,7 @@
 #include "kcflux.h"
 #include "kdipol.h"
 #include "khbond.h"
+#include "kiprop.h"
 #include "keys.h"
 #include "linmin.h"
 #include "mathConst.h"
