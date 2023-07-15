@@ -17,7 +17,7 @@
 void basefile(std::string& string)
 {
     // account for home directory abbreviation in filename
-    if (string.substr(0,2).compare("~/") == 0) {
+    if (string.substr(0,2) == "~/") {
         char* homeDir = getenv("HOME");
         if (homeDir != nullptr) {
             std::string prefix = std::string(homeDir);

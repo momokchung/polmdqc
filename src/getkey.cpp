@@ -32,7 +32,7 @@ void getkey()
     for (int i = 0; i < narg - 1; i++) {
         string = arg[i];
         upcase(string);
-        if (string.substr(0, 2).compare("-K") == 0) {
+        if (string.substr(0, 2) == "-K") {
             keyfile = arg[i + 1];
             suffix (keyfile, "key", "old");
             exist = inquire(keyfile);

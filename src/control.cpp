@@ -35,11 +35,11 @@ void control()
     for (int i = 0; i < narg-1; i++) {
         std::string string = arg[i];
         upcase(string);
-        if (string.substr(0,2).compare("-D") == 0) {
+        if (string.substr(0,2) == "-D") {
             debug = true;
             verbose = true;
         }
-        else if (string.substr(0,2).compare("-V") == 0) {
+        else if (string.substr(0,2) == "-V") {
         verbose = true;
         }
     }
