@@ -59,7 +59,7 @@ void readxyz(std::string& xyzfile)
     while (std::getline(file, record)) {
         iss.clear();
         iss.str(record);
-        std::string firstWord;
+        std::string firstWord = "";
         iss >> firstWord;
         size = firstWord.length();
         if (size != 0) {

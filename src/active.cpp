@@ -59,7 +59,7 @@ void active()
 
         // get any lists of atoms whose coordinates are active
         if (keyword == "ACTIVE") {
-            int mobileInt;
+            int mobileInt = 0;
             int counter = 0;
             while (iss >> mobileInt) {
                 mobile[nmobile + counter] = mobileInt;
@@ -72,7 +72,7 @@ void active()
 
         // get any lists of atoms whose coordinates are inactive
         else if (keyword == "INACTIVE") {
-            int fixedInt;
+            int fixedInt = 0;
             int counter = 0;
             while (iss >> fixedInt) {
                 fixed[nfixed + counter] = fixedInt;

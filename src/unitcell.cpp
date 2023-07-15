@@ -38,7 +38,7 @@ void unitcell()
     for (int i = 0; i < nkey; i++) {
         std::string record = keyline[i];
         std::istringstream iss(record);
-        std::string keyword;
+        std::string keyword = "";
         iss >> keyword;
         upcase(keyword);
         double nextDouble;
@@ -98,7 +98,7 @@ void unitcell()
         }
         else if (keyword == "SPACEGROUP") {
             int next = 0;
-            std::string nextString;
+            std::string nextString = "";
             iss >> nextString;
             getword(nextString, spacegrp, next);
         }

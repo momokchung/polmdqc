@@ -48,7 +48,7 @@ void control()
     for (int i = 0; i < nkey; i++) {
         int next = 0;
         std::string record = keyline[i];
-        std::string keyword;
+        std::string keyword = "";
         std::istringstream iss(record);
         iss >> keyword;
         upcase(keyword);

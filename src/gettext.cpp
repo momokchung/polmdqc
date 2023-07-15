@@ -25,7 +25,7 @@ void gettext(std::string& string, std::string& text, int& next)
 {
     std::string stringSub = string.substr(next);
     std::istringstream iss(stringSub);
-    std::string firstWord;
+    std::string firstWord = "";
     iss >> firstWord;
     text = firstWord;
     int numSpaces = 0;
