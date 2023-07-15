@@ -12,10 +12,12 @@ src/config.cpp
 src/control.cpp
 src/energy.cpp
 src/fatal.cpp
+src/field.cpp
 src/final.cpp
 src/getcart.cpp
 src/getkey.cpp
 src/getline.cpp
+src/getprm.cpp
 src/gettext.cpp
 src/getword.cpp
 src/hartree.cpp
@@ -44,6 +46,7 @@ src/nuclearRepulsion.cpp
 src/overlap.cpp
 src/promo.cpp
 src/readxyz.cpp
+src/setprm.cpp
 src/sort.cpp
 src/stringUtils.cpp
 src/suffix.cpp

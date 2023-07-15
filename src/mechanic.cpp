@@ -14,6 +14,7 @@
 #include "bitors.h"
 #include "bonds.h"
 #include "fatal.h"
+#include "field.h"
 #include "inform.h"
 #include "lattice.h"
 #include "mechanic.h"
@@ -34,7 +35,7 @@ void mechanic()
     // rings();
 
     // get the base force field from parameter file and keyfile
-    // field(); do
+    field();
 
     // find unit cell type, lattice parameters and cutoff values
     unitcell();
