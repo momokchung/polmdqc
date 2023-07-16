@@ -13,6 +13,7 @@
 #include "gettext.h"
 #include "getprm.h"
 #include "inform.h"
+#include "initprm.h"
 #include "inquire.h"
 #include "keys.h"
 #include "nextarg.h"
@@ -155,7 +156,7 @@ void getprm()
     setprm();
 
     // initialize force field control and parameter values
-    // initprm();
+    initprm();
 
     // get control and parameter values from the parameter file
     // if (useprm) readprm();

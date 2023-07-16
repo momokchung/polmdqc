@@ -24,6 +24,7 @@ src/hartree.cpp
 src/init.cpp
 src/initatom.cpp
 src/initial.cpp
+src/initprm.cpp
 src/initres.cpp
 src/inquire.cpp
 src/ioUtils.cpp
