@@ -62,236 +62,217 @@
 #include "units.h"
 #include "uprior.h"
 #include "vdwpot.h"
+#include <string>
 
 void initprm()
 {
+    // initialize strings of parameter atom types and classes
+    for (int i = 0; i < maxnvp; i++) {
+        kvpr[i] = "";
+    }
+    for (int i = 0; i < maxnhb; i++) {
+        khb[i] = "";
+    }
+    for (int i = 0; i < maxnb; i++) {
+        kb[i] = "";
+    }
+    for (int i = 0; i < maxnb5; i++) {
+        kb5[i] = "";
+    }
+    for (int i = 0; i < maxnb4; i++) {
+        kb4[i] = "";
+    }
+    for (int i = 0; i < maxnb3; i++) {
+        kb3[i] = "";
+    }
+    for (int i = 0; i < maxnel; i++) {
+        kel[i] = "";
+    }
+    for (int i = 0; i < maxna; i++) {
+        ka[i] = "";
+    }
+    for (int i = 0; i < maxna5; i++) {
+        ka5[i] = "";
+    }
+    for (int i = 0; i < maxna4; i++) {
+        ka4[i] = "";
+    }
+    for (int i = 0; i < maxna3; i++) {
+        ka3[i] = "";
+    }
+    for (int i = 0; i < maxnap; i++) {
+        kap[i] = "";
+    }
+    for (int i = 0; i < maxnaf; i++) {
+        kaf[i] = "";
+    }
+    for (int i = 0; i < maxnsb; i++) {
+        ksb[i] = "";
+    }
+    for (int i = 0; i < maxnu; i++) {
+        ku[i] = "";
+    }
+    for (int i = 0; i < maxnopb; i++) {
+        kopb[i] = "";
+    }
+    for (int i = 0; i < maxnopd; i++) {
+        kopd[i] = "";
+    }
+    for (int i = 0; i < maxndi; i++) {
+        kdi[i] = "";
+    }
+    for (int i = 0; i < maxnti; i++) {
+        kti[i] = "";
+    }
+    for (int i = 0; i < maxnt; i++) {
+        kt[i] = "";
+    }
+    for (int i = 0; i < maxnt5; i++) {
+        kt5[i] = "";
+    }
+    for (int i = 0; i < maxnt4; i++) {
+        kt4[i] = "";
+    }
+    for (int i = 0; i < maxnpt; i++) {
+        kpt[i] = "";
+    }
+    for (int i = 0; i < maxnbt; i++) {
+        kbt[i] = "";
+    }
+    for (int i = 0; i < maxnat; i++) {
+        kat[i] = "";
+    }
+    for (int i = 0; i < maxntt; i++) {
+        ktt[i] = "";
+    }
+    for (int i = 0; i < maxnd; i++) {
+        kd[i] = "";
+    }
+    for (int i = 0; i < maxnd5; i++) {
+        kd5[i] = "";
+    }
+    for (int i = 0; i < maxnd4; i++) {
+        kd4[i] = "";
+    }
+    for (int i = 0; i < maxnd3; i++) {
+        kd3[i] = "";
+    }
+    for (int i = 0; i < maxnmp; i++) {
+        kmp[i] = "";
+    }
+    for (int i = 0; i < maxnpp; i++) {
+        kppr[i] = "";
+    }
+    for (int i = 0; i < maxncfb; i++) {
+        kcfb[i] = "";
+    }
+    for (int i = 0; i < maxncfa; i++) {
+        kcfa[i] = "";
+    }
+    for (int i = 0; i < maxnpi; i++) {
+        kpi[i] = "";
+    }
+    for (int i = 0; i < maxnpi5; i++) {
+        kpi5[i] = "";
+    }
+    for (int i = 0; i < maxnpi4; i++) {
+        kpi4[i] = "";
+    }
 
+    // perform dynamic allocation of some global arrays
+    atmcls.resize(maxtyp);
+    atmnum.resize(maxtyp);
+    ligand.resize(maxtyp);
+    weight.resize(maxtyp);
+    symbol.resize(maxtyp);
+    describe.resize(maxtyp);
+    anan.resize(maxclass, std::vector<double>(3));
+    rad.resize(maxtyp);
+    eps.resize(maxtyp);
+    rad4.resize(maxtyp);
+    eps4.resize(maxtyp);
+    reduct.resize(maxtyp);
+    prsiz.resize(maxclass);
+    prdmp.resize(maxclass);
+    prele.resize(maxclass);
+    dspsix.resize(maxclass);
+    dspdmp.resize(maxclass);
+    chg.resize(maxtyp);
+    cpele.resize(maxclass);
+    cpalp.resize(maxclass);
+    polr.resize(maxtyp);
+    athl.resize(maxtyp);
+    dthl.resize(maxtyp);
+    pgrp.resize(maxval, std::vector<int>(maxtyp));
+    pepk.resize(maxclass);
+    peppre.resize(maxclass);
+    pepdmp.resize(maxclass);
+    pepl.resize(maxclass);
+    ctchg.resize(maxclass);
+    ctdmp.resize(maxclass);
+    pbr.resize(maxtyp);
+    csr.resize(maxtyp);
+    gkr.resize(maxtyp);
+    electron.resize(maxclass);
+    ionize.resize(maxclass);
+    repulse.resize(maxclass);
+    biotyp.resize(maxbio);
+
+    // initialize values of force field model parameters
+    forcefield = "";
+    for (int i = 0; i < maxtyp; i++) {
+        atmcls[i] = 0;
+        atmnum[i] = 0;
+        ligand[i] = 0;
+        weight[i] = 0.;
+        symbol[i] = "";
+        describe[i] = "";
+        rad[i] = 0.;
+        eps[i] = 0.;
+        rad4[i] = 0.;
+        eps4[i] = 0.;
+        reduct[i] = 0.;
+        chg[i] = 0.;
+        polr[i] = 0.;
+        athl[i] = 0.;
+        dthl[i] = 0.;
+        for (int j = 0; j < maxval; j++) {
+            pgrp[i][j] = 0;
+        }
+        pbr[i] = 0.;
+        csr[i] = 0.;
+        gkr[i] = 0.;
+    }
+    for (int i = 0; i < maxclass; i++) {
+        for (int j = 0; j < 3; j++) {
+            anan[i][j] = 0.;
+        }
+        prsiz[i] = 0.;
+        prdmp[i] = 0.;
+        prele[i] = 0.;
+        dspsix[i] = 0.;
+        dspdmp[i] = 0.;
+        cpele[i] = 0.;
+        cpalp[i] = 0.;
+        pepk[i] = 0.;
+        peppre[i] = 0.;
+        pepdmp[i] = 0.;
+        pepl[i] = false;
+        ctchg[i] = 0.;
+        ctdmp[i] = 0.;
+        electron[i] = 0.;
+        ionize[i] = 0.;
+        repulse[i] = 0.;
+    }
+    for (int i = 0; i < maxbio; i++) {
+        biotyp[i] = 0;
+    }
 }
 
+// c
 
-//       implicit none
-//       integer i,j
-//       character*3 blank3
-//       character*8 blank8
-//       character*12 blank12
-//       character*16 blank16
-//       character*20 blank20
-//       character*24 blank24
 // c
-// c
-// c     define blank character strings of various lengths
-// c
-//       blank3 = '   '
-//       blank8 = '        '
-//       blank12 = '            '
-//       blank16 = '                '
-//       blank20 = '                    '
-//       blank24 = '                        '
-// c
-// c     initialize strings of parameter atom types and classes
-// c
-//       do i = 1, maxnvp
-//          kvpr(i) = blank8
-//       end do
-//       do i = 1, maxnhb
-//          khb(i) = blank8
-//       end do
-//       do i = 1, maxnb
-//          kb(i) = blank8
-//       end do
-//       do i = 1, maxnb5
-//          kb5(i) = blank8
-//       end do
-//       do i = 1, maxnb4
-//          kb4(i) = blank8
-//       end do
-//       do i = 1, maxnb3
-//          kb3(i) = blank8
-//       end do
-//       do i = 1, maxnel
-//          kel(i) = blank12
-//       end do
-//       do i = 1, maxna
-//          ka(i) = blank12
-//       end do
-//       do i = 1, maxna5
-//          ka5(i) = blank12
-//       end do
-//       do i = 1, maxna4
-//          ka4(i) = blank12
-//       end do
-//       do i = 1, maxna3
-//          ka3(i) = blank12
-//       end do
-//       do i = 1, maxnap
-//          kap(i) = blank12
-//       end do
-//       do i = 1, maxnaf
-//          kaf(i) = blank12
-//       end do
-//       do i = 1, maxnsb
-//          ksb(i) = blank12
-//       end do
-//       do i = 1, maxnu
-//          ku(i) = blank12
-//       end do
-//       do i = 1, maxnopb
-//          kopb(i) = blank16
-//       end do
-//       do i = 1, maxnopd
-//          kopd(i) = blank16
-//       end do
-//       do i = 1, maxndi
-//          kdi(i) = blank16
-//       end do
-//       do i = 1, maxnti
-//          kti(i) = blank16
-//       end do
-//       do i = 1, maxnt
-//          kt(i) = blank16
-//       end do
-//       do i = 1, maxnt5
-//          kt5(i) = blank16
-//       end do
-//       do i = 1, maxnt4
-//          kt4(i) = blank16
-//       end do
-//       do i = 1, maxnpt
-//          kpt(i) = blank8
-//       end do
-//       do i = 1, maxnbt
-//          kbt(i) = blank16
-//       end do
-//       do i = 1, maxnat
-//          kat(i) = blank16
-//       end do
-//       do i = 1, maxntt
-//          ktt(i) = blank20
-//       end do
-//       do i = 1, maxnd
-//          kd(i) = blank8
-//       end do
-//       do i = 1, maxnd5
-//          kd5(i) = blank8
-//       end do
-//       do i = 1, maxnd4
-//          kd4(i) = blank8
-//       end do
-//       do i = 1, maxnd3
-//          kd3(i) = blank8
-//       end do
-//       do i = 1, maxnmp
-//          kmp(i) = blank12
-//       end do
-//       do i = 1, maxnpp
-//          kppr(i) = blank8
-//       end do
-//       do i = 1, maxncfb
-//          kcfb(i) = blank8
-//       end do
-//       do i = 1, maxncfa
-//          kcfa(i) = blank12
-//       end do
-//       do i = 1, maxnpi
-//          kpi(i) = blank8
-//       end do
-//       do i = 1, maxnpi5
-//          kpi5(i) = blank8
-//       end do
-//       do i = 1, maxnpi4
-//          kpi4(i) = blank8
-//       end do
-// c
-// c     perform dynamic allocation of some global arrays
-// c
-//       if (.not. allocated(atmcls))  allocate (atmcls(maxtyp))
-//       if (.not. allocated(atmnum))  allocate (atmnum(maxtyp))
-//       if (.not. allocated(ligand))  allocate (ligand(maxtyp))
-//       if (.not. allocated(weight))  allocate (weight(maxtyp))
-//       if (.not. allocated(symbol))  allocate (symbol(maxtyp))
-//       if (.not. allocated(describe))  allocate (describe(maxtyp))
-//       if (.not. allocated(anan))  allocate (anan(3,maxclass))
-//       if (.not. allocated(rad))  allocate (rad(maxtyp))
-//       if (.not. allocated(eps))  allocate (eps(maxtyp))
-//       if (.not. allocated(rad4))  allocate (rad4(maxtyp))
-//       if (.not. allocated(eps4))  allocate (eps4(maxtyp))
-//       if (.not. allocated(reduct))  allocate (reduct(maxtyp))
-//       if (.not. allocated(prsiz))  allocate (prsiz(maxclass))
-//       if (.not. allocated(prdmp))  allocate (prdmp(maxclass))
-//       if (.not. allocated(prele))  allocate (prele(maxclass))
-//       if (.not. allocated(dspsix))  allocate (dspsix(maxclass))
-//       if (.not. allocated(dspdmp))  allocate (dspdmp(maxclass))
-//       if (.not. allocated(chg))  allocate (chg(maxtyp))
-//       if (.not. allocated(cpele))  allocate (cpele(maxclass))
-//       if (.not. allocated(cpalp))  allocate (cpalp(maxclass))
-//       if (.not. allocated(polr))  allocate (polr(maxtyp))
-//       if (.not. allocated(athl))  allocate (athl(maxtyp))
-//       if (.not. allocated(dthl))  allocate (dthl(maxtyp))
-//       if (.not. allocated(pgrp))  allocate (pgrp(maxval,maxtyp))
-//       if (.not. allocated(pepk))  allocate (pepk(maxclass))
-//       if (.not. allocated(peppre))  allocate (peppre(maxclass))
-//       if (.not. allocated(pepdmp))  allocate (pepdmp(maxclass))
-//       if (.not. allocated(pepl))  allocate (pepl(maxclass))
-//       if (.not. allocated(ctchg))  allocate (ctchg(maxclass))
-//       if (.not. allocated(ctdmp))  allocate (ctdmp(maxclass))
-//       if (.not. allocated(pbr))  allocate (pbr(maxtyp))
-//       if (.not. allocated(csr))  allocate (csr(maxtyp))
-//       if (.not. allocated(gkr))  allocate (gkr(maxtyp))
-//       if (.not. allocated(electron))  allocate (electron(maxclass))
-//       if (.not. allocated(ionize))  allocate (ionize(maxclass))
-//       if (.not. allocated(repulse))  allocate (repulse(maxclass))
-//       if (.not. allocated(biotyp))  allocate (biotyp(maxbio))
-// c
-// c     initialize values of force field model parameters
-// c
-//       forcefield = blank20
-//       do i = 1, maxtyp
-//          atmcls(i) = 0
-//          atmnum(i) = 0
-//          ligand(i) = 0
-//          weight(i) = 0.0d0
-//          symbol(i) = blank3
-//          describe(i) = blank24
-//          rad(i) = 0.0d0
-//          eps(i) = 0.0d0
-//          rad4(i) = 0.0d0
-//          eps4(i) = 0.0d0
-//          reduct(i) = 0.0d0
-//          chg(i) = 0.0d0
-//          polr(i) = 0.0d0
-//          athl(i) = 0.0d0
-//          dthl(i) = 0.0d0
-//          do j = 1, maxval
-//             pgrp(j,i) = 0
-//          end do
-//          pbr(i) = 0.0d0
-//          csr(i) = 0.0d0
-//          gkr(i) = 0.0d0
-//       end do
-//       do i = 1, maxclass
-//          do j = 1, 3
-//             anan(j,i) = 0.0d0
-//          end do
-//          prsiz(i) = 0.0d0
-//          prdmp(i) = 0.0d0
-//          prele(i) = 0.0d0
-//          dspsix(i) = 0.0d0
-//          dspdmp(i) = 0.0d0
-//          cpele(i) = 0.0d0
-//          cpalp(i) = 0.0d0
-//          pepk(i) = 0.0d0
-//          peppre(i) = 0.0d0
-//          pepdmp(i) = 0.0d0
-//          pepl(i) = .false.
-//          ctchg(i) = 0.0d0
-//          ctdmp(i) = 0.0d0
-//          electron(i) = 0.0d0
-//          ionize(i) = 0.0d0
-//          repulse(i) = 0.0d0
-//       end do
-//       do i = 1, maxbio
-//          biotyp(i) = 0
-//       end do
+
 // c
 // c     set default control parameters for local geometry terms
 // c
@@ -430,8 +411,8 @@ void initprm()
 // c
 // c     set default control parameters for implicit solvation
 // c
-//       solvtyp = blank8
-//       borntyp = blank8
+//       solvtyp = ""
+//       borntyp = ""
 // c
 // c     set default control parameters for reaction field
 // c
