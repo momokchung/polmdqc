@@ -6,7 +6,7 @@
 
 
 #include "hartree.h"
-#include "katoms.h"
+#include "katomsqm.h"
 #include "kbasis.h"
 #include "kgbs.h"
 #include "kinetic.h"
