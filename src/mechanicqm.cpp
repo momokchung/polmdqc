@@ -6,7 +6,7 @@
 
 
 #include "boys.h"
-#include "katoms.h"
+#include "katomsqm.h"
 #include "kbasis.h"
 #include "kgbs.h"
 #include "kprim.h"

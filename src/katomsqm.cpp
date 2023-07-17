@@ -1,13 +1,13 @@
-//////////////////////////////////////////////
-//                                          //
-//  katoms.cpp  --  assign atom parameters  //
-//                                          //
-//////////////////////////////////////////////
+////////////////////////////////////////////////
+//                                            //
+//  katomsqm.cpp  --  assign atom parameters  //
+//                                            //
+////////////////////////////////////////////////
 
 
 #include "config.h"
 #include "ioUtils.h"
-#include "katoms.h"
+#include "katomsqm.h"
 #include "kbasis.h"
 #include "kgbs.h"
 #include "stringUtils.h"

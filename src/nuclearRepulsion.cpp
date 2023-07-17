@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////////////////////
 
 
-#include "katoms.h"
+#include "katomsqm.h"
 #include "mathUtils.h"
 #include "nuclearRepulsion.h"
 #include <iostream>

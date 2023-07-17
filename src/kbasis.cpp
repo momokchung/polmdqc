@@ -6,7 +6,7 @@
 
 
 #include "kbasis.h"
-#include "katoms.h"
+#include "katomsqm.h"
 #include "kgbs.h"
 #include "mathUtils.h"
 #include "units.h"
