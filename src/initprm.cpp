@@ -62,6 +62,7 @@
 #include "units.h"
 #include "uprior.h"
 #include "vdwpot.h"
+#include <cmath>
 #include <string>
 
 void initprm()
@@ -267,165 +268,147 @@ void initprm()
     for (int i = 0; i < maxbio; i++) {
         biotyp[i] = 0;
     }
+
+    // set default control parameters for local geometry terms
+    bndtyp = "HARMONIC";
+    bndunit = 1.;
+    cbnd = 0.;
+    qbnd = 0.;
+    angunit = 1. / std::pow(radian,2);
+    cang = 0.;
+    qang = 0.;
+    pang = 0.;
+    sang = 0.;
+    stbnunit = 1. / radian;
+    ureyunit = 1.;
+    cury = 0.;
+    qury = 0.;
+    aaunit = 1. / std::pow(radian,2);
+    opbtyp = "W-D-C";
+    opbunit = 1. / std::pow(radian,2);
+    copb = 0.;
+    qopb = 0.;
+    popb = 0.;
+    sopb = 0.;
+    opdunit = 1.;
+    copd = 0.;
+    qopd = 0.;
+    popd = 0.;
+    sopd = 0.;
+    idihunit = 1. / std::pow(radian,2);
+    itorunit = 1.;
+    torsunit = 1.;
+    ptorunit = 1.;
+    storunit = 1.;
+    atorunit = 1. / radian;
+    ttorunit = 1.;
+
+    // set default control parameters for van der Waals terms
+    vdwindex = "CLASS";
+    vdwtyp = "LENNARD-JONES";
+    radrule = "ARITHMETIC";
+    radtyp = "R-MIN";
+    radsiz = "RADIUS";
+    epsrule = "GEOMETRIC";
+    gausstyp = "NONE";
+    ngauss = 0;
+    abuck = 0.;
+    bbuck = 0.;
+    cbuck = 0.;
+    ghal = 0.12;
+    dhal = 0.07;
+    v2scale = 0.;
+    v3scale = 0.;
+    v4scale = 1.;
+    v5scale = 1.;
+    use_vcorr = false;
+
+    // set default control parameters for repulsion terms
+    r2scale = 0.;
+    r3scale = 0.;
+    r4scale = 1.;
+    r5scale = 1.;
+
+    // set default control parameters for dispersion terms
+    dsp2scale = 0.;
+    dsp3scale = 0.;
+    dsp4scale = 1.;
+    dsp5scale = 1.;
+    use_dcorr = false;
+
+    // set default control parameters for charge-charge terms
+    electric = coulomb;
+    dielec = 1.;
+    ebuffer = 0.;
+    c1scale = 0.;
+    c2scale = 0.;
+    c3scale = 0.;
+    c4scale = 1.;
+    c5scale = 1.;
+    neutnbr = false;
+    neutcut = false;
+    use_exfld = false;
+    for (int i = 0; i < 3; i++) {
+        exfld[i] = 0.;
+    }
+
+    // set default control parameters for atomic multipole terms
+    pentyp = "GORDON1";
+    m2scale = 0.;
+    m3scale = 0.;
+    m4scale = 1.;
+    m5scale = 1.;
+    d1scale = 0.;
+    d2scale = 1.;
+    d3scale = 1.;
+    d4scale = 1.;
+    use_chgpen = false;
+
+    // set default control parameters for polarization terms
+    poltyp = "MUTUAL";
+    scrtyp = "S2U";
+    politer = 100;
+    poleps = 0.000001;
+    uaccel = 2.;
+    p2scale = 0.;
+    p3scale = 0.;
+    p4scale = 1.;
+    p5scale = 1.;
+    p2iscale = 0.;
+    p3iscale = 0.;
+    p4iscale = 0.5;
+    p5iscale = 1.;
+    u1scale = 1.;
+    u2scale = 1.;
+    u3scale = 1.;
+    u4scale = 1.;
+    w2scale = 1.;
+    w3scale = 1.;
+    w4scale = 1.;
+    w5scale = 1.;
+    use_thole = true;
+    use_tholed = false;
+    use_pred = false;
+    use_ielscf = false;
+    dpequal = false;
+    use_expol = false;
+
+    // set default control parameters for charge transfer terms
+    ctrntyp = "SEPARATE";
+
+    // set default control parameters for implicit solvation
+    solvtyp = "";
+    borntyp = "";
+
+    // set default control parameters for reaction field
+    rfsize = 1000000.;
+    rfbulkd = 80.;
+    rfterms = 1;
+
+    // initialize some Merck Molecular force field parameters
+    // initmmff();
 }
 
-// c
-
-// c
-
-// c
-// c     set default control parameters for local geometry terms
-// c
-//       bndtyp = 'HARMONIC'
-//       bndunit = 1.0d0
-//       cbnd = 0.0d0
-//       qbnd = 0.0d0
-//       angunit = 1.0d0 / radian**2
-//       cang = 0.0d0
-//       qang = 0.0d0
-//       pang = 0.0d0
-//       sang = 0.0d0
-//       stbnunit = 1.0d0 / radian
-//       ureyunit = 1.0d0
-//       cury = 0.0d0
-//       qury = 0.0d0
-//       aaunit = 1.0d0 / radian**2
-//       opbtyp = 'W-D-C'
-//       opbunit = 1.0d0 / radian**2
-//       copb = 0.0d0
-//       qopb = 0.0d0
-//       popb = 0.0d0
-//       sopb = 0.0d0
-//       opdunit = 1.0d0
-//       copd = 0.0d0
-//       qopd = 0.0d0
-//       popd = 0.0d0
-//       sopd = 0.0d0
-//       idihunit = 1.0d0 / radian**2
-//       itorunit = 1.0d0
-//       torsunit = 1.0d0
-//       ptorunit = 1.0d0
-//       storunit = 1.0d0
-//       atorunit = 1.0d0 / radian
-//       ttorunit = 1.0d0
-// c
-// c     set default control parameters for van der Waals terms
-// c
-//       vdwindex = 'CLASS'
-//       vdwtyp = 'LENNARD-JONES'
-//       radrule = 'ARITHMETIC'
-//       radtyp = 'R-MIN'
-//       radsiz = 'RADIUS'
-//       epsrule = 'GEOMETRIC'
-//       gausstyp = 'NONE'
-//       ngauss = 0
-//       abuck = 0.0d0
-//       bbuck = 0.0d0
-//       cbuck = 0.0d0
-//       ghal = 0.12d0
-//       dhal = 0.07d0
-//       v2scale = 0.0d0
-//       v3scale = 0.0d0
-//       v4scale = 1.0d0
-//       v5scale = 1.0d0
-//       use_vcorr = .false.
-// c
-// c     set default control parameters for repulsion terms
-// c
-//       r2scale = 0.0d0
-//       r3scale = 0.0d0
-//       r4scale = 1.0d0
-//       r5scale = 1.0d0
-// c
-// c     set default control parameters for dispersion terms
-// c
-//       dsp2scale = 0.0d0
-//       dsp3scale = 0.0d0
-//       dsp4scale = 1.0d0
-//       dsp5scale = 1.0d0
-//       use_dcorr = .false.
-// c
-// c     set default control parameters for charge-charge terms
-// c
-//       electric = coulomb
-//       dielec = 1.0d0
-//       ebuffer = 0.0d0
-//       c1scale = 0.0d0
-//       c2scale = 0.0d0
-//       c3scale = 0.0d0
-//       c4scale = 1.0d0
-//       c5scale = 1.0d0
-//       neutnbr = .false.
-//       neutcut = .false.
-//       use_exfld = .false.
-//       do i = 1, 3
-//          exfld(i) = 0.0d0
-//       end do
-// c
-// c     set default control parameters for atomic multipole terms
-// c
-//       pentyp = 'GORDON1'
-//       m2scale = 0.0d0
-//       m3scale = 0.0d0
-//       m4scale = 1.0d0
-//       m5scale = 1.0d0
-//       d1scale = 0.0d0
-//       d2scale = 1.0d0
-//       d3scale = 1.0d0
-//       d4scale = 1.0d0
-//       use_chgpen = .false.
-// c
-// c     set default control parameters for polarization terms
-// c
-//       poltyp = 'MUTUAL'
-//       scrtyp = 'S2U'
-//       politer = 100
-//       poleps = 0.000001d0
-//       uaccel = 2.0d0
-//       p2scale = 0.0d0
-//       p3scale = 0.0d0
-//       p4scale = 1.0d0
-//       p5scale = 1.0d0
-//       p2iscale = 0.0d0
-//       p3iscale = 0.0d0
-//       p4iscale = 0.5d0
-//       p5iscale = 1.0d0
-//       u1scale = 1.0d0
-//       u2scale = 1.0d0
-//       u3scale = 1.0d0
-//       u4scale = 1.0d0
-//       w2scale = 1.0d0
-//       w3scale = 1.0d0
-//       w4scale = 1.0d0
-//       w5scale = 1.0d0
-//       use_thole = .true.
-//       use_tholed = .false.
-//       use_pred = .false.
-//       use_ielscf = .false.
-//       dpequal = .false.
-//       use_expol = .false.
-// c
-// c     set default control parameters for charge transfer terms
-// c
-//       ctrntyp = 'SEPARATE'
-// c
-// c     set default control parameters for implicit solvation
-// c
-//       solvtyp = ""
-//       borntyp = ""
-// c
-// c     set default control parameters for reaction field
-// c
-//       rfsize = 1000000.0d0
-//       rfbulkd = 80.0d0
-//       rfterms = 1
-// c
-// c     initialize some Merck Molecular force field parameters
-// c
-//       call initmmff
-//       return
-//       end
-// c
 // c
 // c     ################################################################
 // c     ##                                                            ##
@@ -559,10 +542,10 @@ void initprm()
 // c
 //       do i = 1, 100
 //          do j = 1, 100
-//             mmff_kb(j,i) = 1000.0d0
-//             mmff_kb1(j,i) = 1000.0d0
-//             mmff_b0(j,i) = 1000.0d0
-//             mmff_b1(j,i) = 1000.0d0
+//             mmff_kb(j,i) = 1000.
+//             mmff_kb1(j,i) = 1000.
+//             mmff_b0(j,i) = 1000.
+//             mmff_b1(j,i) = 1000.
 //          end do
 //       end do
 // c
@@ -571,24 +554,24 @@ void initprm()
 //       do i = 0, 100
 //          do j = 1, 100
 //             do k = 0, 100
-//                mmff_ka(k,j,i) = 1000.0d0
-//                mmff_ka1(k,j,i) = 1000.0d0
-//                mmff_ka2(k,j,i) = 1000.0d0
-//                mmff_ka3(k,j,i) = 1000.0d0
-//                mmff_ka4(k,j,i) = 1000.0d0
-//                mmff_ka5(k,j,i) = 1000.0d0
-//                mmff_ka6(k,j,i) = 1000.0d0
-//                mmff_ka7(k,j,i) = 1000.0d0
-//                mmff_ka8(k,j,i) = 1000.0d0
-//                mmff_ang0(k,j,i) = 1000.0d0
-//                mmff_ang1(k,j,i) = 1000.0d0
-//                mmff_ang2(k,j,i) = 1000.0d0
-//                mmff_ang3(k,j,i) = 1000.0d0
-//                mmff_ang4(k,j,i) = 1000.0d0
-//                mmff_ang5(k,j,i) = 1000.0d0
-//                mmff_ang6(k,j,i) = 1000.0d0
-//                mmff_ang7(k,j,i) = 1000.0d0
-//                mmff_ang8(k,j,i) = 1000.0d0
+//                mmff_ka(k,j,i) = 1000.
+//                mmff_ka1(k,j,i) = 1000.
+//                mmff_ka2(k,j,i) = 1000.
+//                mmff_ka3(k,j,i) = 1000.
+//                mmff_ka4(k,j,i) = 1000.
+//                mmff_ka5(k,j,i) = 1000.
+//                mmff_ka6(k,j,i) = 1000.
+//                mmff_ka7(k,j,i) = 1000.
+//                mmff_ka8(k,j,i) = 1000.
+//                mmff_ang0(k,j,i) = 1000.
+//                mmff_ang1(k,j,i) = 1000.
+//                mmff_ang2(k,j,i) = 1000.
+//                mmff_ang3(k,j,i) = 1000.
+//                mmff_ang4(k,j,i) = 1000.
+//                mmff_ang5(k,j,i) = 1000.
+//                mmff_ang6(k,j,i) = 1000.
+//                mmff_ang7(k,j,i) = 1000.
+//                mmff_ang8(k,j,i) = 1000.
 //             end do
 //          end do
 //       end do
@@ -598,30 +581,30 @@ void initprm()
 //       do i = 1, 100
 //          do j = 1, 100
 //             do k = 1, 100
-//                stbn_abc(k,j,i) = 1000.0d0
-//                stbn_cba(k,j,i) = 1000.0d0
-//                stbn_abc1(k,j,i) = 1000.0d0
-//                stbn_cba1(k,j,i) = 1000.0d0
-//                stbn_abc2(k,j,i) = 1000.0d0
-//                stbn_cba2(k,j,i) = 1000.0d0
-//                stbn_abc3(k,j,i) = 1000.0d0
-//                stbn_cba3(k,j,i) = 1000.0d0
-//                stbn_abc4(k,j,i) = 1000.0d0
-//                stbn_cba4(k,j,i) = 1000.0d0
-//                stbn_abc5(k,j,i) = 1000.0d0
-//                stbn_cba5(k,j,i) = 1000.0d0
-//                stbn_abc6(k,j,i) = 1000.0d0
-//                stbn_cba6(k,j,i) = 1000.0d0
-//                stbn_abc7(k,j,i) = 1000.0d0
-//                stbn_cba7(k,j,i) = 1000.0d0
-//                stbn_abc8(k,j,i) = 1000.0d0
-//                stbn_cba8(k,j,i) = 1000.0d0
-//                stbn_abc9(k,j,i) = 1000.0d0
-//                stbn_cba9(k,j,i) = 1000.0d0
-//                stbn_abc10(k,j,i) = 1000.0d0
-//                stbn_cba10(k,j,i) = 1000.0d0
-//                stbn_abc11(k,j,i) = 1000.0d0
-//                stbn_cba11(k,j,i) = 1000.0d0
+//                stbn_abc(k,j,i) = 1000.
+//                stbn_cba(k,j,i) = 1000.
+//                stbn_abc1(k,j,i) = 1000.
+//                stbn_cba1(k,j,i) = 1000.
+//                stbn_abc2(k,j,i) = 1000.
+//                stbn_cba2(k,j,i) = 1000.
+//                stbn_abc3(k,j,i) = 1000.
+//                stbn_cba3(k,j,i) = 1000.
+//                stbn_abc4(k,j,i) = 1000.
+//                stbn_cba4(k,j,i) = 1000.
+//                stbn_abc5(k,j,i) = 1000.
+//                stbn_cba5(k,j,i) = 1000.
+//                stbn_abc6(k,j,i) = 1000.
+//                stbn_cba6(k,j,i) = 1000.
+//                stbn_abc7(k,j,i) = 1000.
+//                stbn_cba7(k,j,i) = 1000.
+//                stbn_abc8(k,j,i) = 1000.
+//                stbn_cba8(k,j,i) = 1000.
+//                stbn_abc9(k,j,i) = 1000.
+//                stbn_cba9(k,j,i) = 1000.
+//                stbn_abc10(k,j,i) = 1000.
+//                stbn_cba10(k,j,i) = 1000.
+//                stbn_abc11(k,j,i) = 1000.
+//                stbn_cba11(k,j,i) = 1000.
 //             end do
 //          end do
 //       end do
@@ -632,32 +615,32 @@ void initprm()
 //          kt(i) = blank16
 //          kt_1(i) = blank16
 //          kt_2(i) = blank16
-//          t1(1,i) = 1000.0d0
-//          t1(2,i) = 1000.0d0
-//          t2(1,i) = 1000.0d0
-//          t2(2,i) = 1000.0d0
-//          t3(1,i) = 1000.0d0
-//          t3(2,i) = 1000.0d0
-//          t1_1(1,i) = 1000.0d0
-//          t1_1(2,i) = 1000.0d0
-//          t2_1(1,i) = 1000.0d0
-//          t2_1(2,i) = 1000.0d0
-//          t3_1(1,i) = 1000.0d0
-//          t3_1(2,i) = 1000.0d0
-//          t1_2(1,i) = 1000.0d0
-//          t1_2(2,i) = 1000.0d0
-//          t2_2(1,i) = 1000.0d0
-//          t2_2(2,i) = 1000.0d0
-//          t3_2(1,i) = 1000.0d0
-//          t3_2(2,i) = 1000.0d0
+//          t1(1,i) = 1000.
+//          t1(2,i) = 1000.
+//          t2(1,i) = 1000.
+//          t2(2,i) = 1000.
+//          t3(1,i) = 1000.
+//          t3(2,i) = 1000.
+//          t1_1(1,i) = 1000.
+//          t1_1(2,i) = 1000.
+//          t2_1(1,i) = 1000.
+//          t2_1(2,i) = 1000.
+//          t3_1(1,i) = 1000.
+//          t3_1(2,i) = 1000.
+//          t1_2(1,i) = 1000.
+//          t1_2(2,i) = 1000.
+//          t2_2(1,i) = 1000.
+//          t2_2(2,i) = 1000.
+//          t3_2(1,i) = 1000.
+//          t3_2(2,i) = 1000.
 //       end do
 // c
 // c     initialize values for MMFF bond charge increment parameters
 // c
 //       do i = 1, 100
 //          do j = 1, 100
-//             bci(j,i) = 1000.0d0
-//             bci_1(j,i) = 1000.0d0
+//             bci(j,i) = 1000.
+//             bci_1(j,i) = 1000.
 //          end do
 //       end do
 //       return
