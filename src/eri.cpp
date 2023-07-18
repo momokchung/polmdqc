@@ -12,7 +12,7 @@
 #include "kprim.h"
 #include "mathUtils.h"
 #include "eri.h"
-#include "units.h"
+#include "unitsqm.h"
 #include <iostream>
 #include <vector>
 
@@ -96,7 +96,7 @@ void inCoreEriOS()
             real yP = (ai*coordyi + aj*coordyj)/aP;
             real zP = (ai*coordzi + aj*coordzj)/aP;
 
-            real k = sqrt(2.) * pow(units::pi,1.25) / aP * exp(-aij / aP * r2);
+            real k = sqrt(2.) * pow(unitsqm::pi,1.25) / aP * exp(-aij / aP * r2);
 
             pairPrimPx[i][j] = xP;
             pairPrimPy[i][j] = yP;

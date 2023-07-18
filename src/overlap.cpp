@@ -10,7 +10,7 @@
 #include "kprim.h"
 #include "mathUtils.h"
 #include "overlap.h"
-#include "units.h"
+#include "unitsqm.h"
 #include <iostream>
 #include <vector>
 
@@ -86,7 +86,7 @@ void overlapOS()
             real yPJ = yP - coordyj;
             real zPJ = zP - coordzj;
             real kp = exp(-aij/aP*r2);
-            real pre = kp * coeffi * coeffj * pow(units::pi/aP,1.5);
+            real pre = kp * coeffi * coeffj * pow(unitsqm::pi/aP,1.5);
 
             // initialize xS, yS, zS matrix
             for (int k = 0; k <= iL; ++k)

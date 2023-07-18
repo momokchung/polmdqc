@@ -68,7 +68,7 @@ void boysIntegralPoly(real t, int m, std::vector<real>& boysPoly)
     else
     {
         real t2 = t * 2.;
-        boysPoly[0] = sqrt(units::pi / 2. / t2);
+        boysPoly[0] = sqrt(unitsqm::pi / 2. / t2);
         for (int i = 1; i <= m; ++i)
         {
             // boysPoly[i] = boysPoly[i] * (2 * i - 1) / t2; // less accurate, fast

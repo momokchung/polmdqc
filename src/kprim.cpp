@@ -9,7 +9,7 @@
 #include "kbasis.h"
 #include "kprim.h"
 #include "mathUtils.h"
-#include "units.h"
+#include "unitsqm.h"
 #include <iostream>
 #include <vector>
 
@@ -143,7 +143,7 @@ void normalizePrimitive()
     primNorm.reserve(primN);
     const auto& DF = mathUtils::doubleFactorial;
     auto& partitionL = basis::partitionAngularMomentum;
-    real pre1 = pow(2. / units::pi, 0.75);
+    real pre1 = pow(2. / unitsqm::pi, 0.75);
 
     // loop over primitive shell
     for (int i = 0; i < primShellN; ++i)

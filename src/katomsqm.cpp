@@ -11,7 +11,7 @@
 #include "kbasis.h"
 #include "kgbs.h"
 #include "stringUtils.h"
-#include "units.h"
+#include "unitsqm.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -414,9 +414,9 @@ void readxyz(std::string fileName)
     {
         for (int i = 0; i < n; ++i)
         {
-            coordx[i] = coordx[i] * units::bohr;
-            coordy[i] = coordy[i] * units::bohr;
-            coordz[i] = coordz[i] * units::bohr;
+            coordx[i] = coordx[i] * unitsqm::bohr;
+            coordy[i] = coordy[i] * unitsqm::bohr;
+            coordz[i] = coordz[i] * unitsqm::bohr;
         }
     }
     // // uncomment below to check readxyz

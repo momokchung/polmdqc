@@ -12,7 +12,7 @@
 #include "kprim.h"
 #include "mathUtils.h"
 #include "nuclear.h"
-#include "units.h"
+#include "unitsqm.h"
 #include <iostream>
 #include <vector>
 
@@ -98,7 +98,7 @@ void nuclearOS()
             real yPJ = yP - coordyj;
             real zPJ = zP - coordzj;
             real kp = exp(-aij/aP*r2);
-            real pre = kp * coeffi * coeffj * 2. * units::pi / aP;
+            real pre = kp * coeffi * coeffj * 2. * unitsqm::pi / aP;
 
             // loop over nuclei
             for (int k = 0; k < atomN; ++k)

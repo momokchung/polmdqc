@@ -9,7 +9,7 @@
 #include "katomsqm.h"
 #include "kgbs.h"
 #include "mathUtils.h"
-#include "units.h"
+#include "unitsqm.h"
 #include <algorithm>
 #include <iostream>
 #include <string>
