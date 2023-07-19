@@ -60,6 +60,7 @@
 #include "kvdws.h"
 #include "linmin.h"
 #include "mathConst.h"
+#include "merck.h"
 #include "minima.h"
 #include "molcul.h"
 #include "mplpot.h"

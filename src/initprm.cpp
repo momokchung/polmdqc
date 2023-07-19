@@ -65,6 +65,8 @@
 #include <cmath>
 #include <string>
 
+void initmmff();
+
 void initprm()
 {
     // initialize strings of parameter atom types and classes
@@ -181,8 +183,8 @@ void initprm()
     }
 
     // perform dynamic allocation of some global arrays
-    atmcls.resize(maxtyp);
-    atmnum.resize(maxtyp);
+    atmcls.resize(maxtyp, 0);
+    atmnum.resize(maxtyp, 0);
     ligand.resize(maxtyp);
     weight.resize(maxtyp);
     symbol.resize(maxtyp);
@@ -204,7 +206,7 @@ void initprm()
     polr.resize(maxtyp);
     athl.resize(maxtyp);
     dthl.resize(maxtyp);
-    pgrp.resize(maxval, std::vector<int>(maxtyp));
+    pgrp.resize(maxtyp, std::vector<int>(maxval));
     pepk.resize(maxclass);
     peppre.resize(maxclass);
     pepdmp.resize(maxclass);
@@ -222,8 +224,6 @@ void initprm()
     // initialize values of force field model parameters
     forcefield = "";
     for (int i = 0; i < maxtyp; i++) {
-        atmcls[i] = 0;
-        atmnum[i] = 0;
         ligand[i] = 0;
         weight[i] = 0.;
         symbol[i] = "";
@@ -406,242 +406,181 @@ void initprm()
     rfterms = 1;
 
     // initialize some Merck Molecular force field parameters
-    // initmmff();
+    initmmff();
 }
 
-// c
-// c     ################################################################
-// c     ##                                                            ##
-// c     ##  subroutine initmmff  --  initialize some MMFF parameters  ##
-// c     ##                                                            ##
-// c     ################################################################
-// c
-// c
-// c     "initmmff" initializes some parameter values for the Merck
-// c     Molecular force field
-// c
-// c
-//       subroutine initmmff
-//       use ktorsn
-//       use merck
-//       implicit none
-//       integer i,j,k
-//       character*16 blank16
-// c
-// c
-// c     define blank character strings of various lengths
-// c
-//       blank16 = '                '
-// c
-// c     perform dynamic allocation of some global arrays
-// c
-//       if (.not. allocated(mmff_ka))
-//      &   allocate (mmff_ka(0:100,100,0:100))
-//       if (.not. allocated(mmff_ka1))
-//      &   allocate (mmff_ka1(0:100,100,0:100))
-//       if (.not. allocated(mmff_ka2))
-//      &   allocate (mmff_ka2(0:100,100,0:100))
-//       if (.not. allocated(mmff_ka3))
-//      &   allocate (mmff_ka3(0:100,100,0:100))
-//       if (.not. allocated(mmff_ka4))
-//      &   allocate (mmff_ka4(0:100,100,0:100))
-//       if (.not. allocated(mmff_ka5))
-//      &   allocate (mmff_ka5(0:100,100,0:100))
-//       if (.not. allocated(mmff_ka6))
-//      &   allocate (mmff_ka6(0:100,100,0:100))
-//       if (.not. allocated(mmff_ka7))
-//      &   allocate (mmff_ka7(0:100,100,0:100))
-//       if (.not. allocated(mmff_ka8))
-//      &   allocate (mmff_ka8(0:100,100,0:100))
-//       if (.not. allocated(mmff_ang0))
-//      &   allocate (mmff_ang0(0:100,100,0:100))
-//       if (.not. allocated(mmff_ang1))
-//      &   allocate (mmff_ang1(0:100,100,0:100))
-//       if (.not. allocated(mmff_ang2))
-//      &   allocate (mmff_ang2(0:100,100,0:100))
-//       if (.not. allocated(mmff_ang3))
-//      &   allocate (mmff_ang3(0:100,100,0:100))
-//       if (.not. allocated(mmff_ang4))
-//      &   allocate (mmff_ang4(0:100,100,0:100))
-//       if (.not. allocated(mmff_ang5))
-//      &   allocate (mmff_ang5(0:100,100,0:100))
-//       if (.not. allocated(mmff_ang6))
-//      &   allocate (mmff_ang6(0:100,100,0:100))
-//       if (.not. allocated(mmff_ang7))
-//      &   allocate (mmff_ang7(0:100,100,0:100))
-//       if (.not. allocated(mmff_ang8))
-//      &   allocate (mmff_ang8(0:100,100,0:100))
-//       if (.not. allocated(stbn_abc))
-//      &   allocate (stbn_abc(100,100,100))
-//       if (.not. allocated(stbn_cba))
-//      &   allocate (stbn_cba(100,100,100))
-//       if (.not. allocated(stbn_abc1))
-//      &   allocate (stbn_abc1(100,100,100))
-//       if (.not. allocated(stbn_cba1))
-//      &   allocate (stbn_cba1(100,100,100))
-//       if (.not. allocated(stbn_abc2))
-//      &   allocate (stbn_abc2(100,100,100))
-//       if (.not. allocated(stbn_cba2))
-//      &   allocate (stbn_cba2(100,100,100))
-//       if (.not. allocated(stbn_abc3))
-//      &   allocate (stbn_abc3(100,100,100))
-//       if (.not. allocated(stbn_cba3))
-//      &   allocate (stbn_cba3(100,100,100))
-//       if (.not. allocated(stbn_abc4))
-//      &   allocate (stbn_abc4(100,100,100))
-//       if (.not. allocated(stbn_cba4))
-//      &   allocate (stbn_cba4(100,100,100))
-//       if (.not. allocated(stbn_abc5))
-//      &   allocate (stbn_abc5(100,100,100))
-//       if (.not. allocated(stbn_cba5))
-//      &   allocate (stbn_cba5(100,100,100))
-//       if (.not. allocated(stbn_abc6))
-//      &   allocate (stbn_abc6(100,100,100))
-//       if (.not. allocated(stbn_cba6))
-//      &   allocate (stbn_cba6(100,100,100))
-//       if (.not. allocated(stbn_abc7))
-//      &   allocate (stbn_abc7(100,100,100))
-//       if (.not. allocated(stbn_cba7))
-//      &   allocate (stbn_cba7(100,100,100))
-//       if (.not. allocated(stbn_abc8))
-//      &   allocate (stbn_abc8(100,100,100))
-//       if (.not. allocated(stbn_cba8))
-//      &   allocate (stbn_cba8(100,100,100))
-//       if (.not. allocated(stbn_abc9))
-//      &   allocate (stbn_abc9(100,100,100))
-//       if (.not. allocated(stbn_cba9))
-//      &   allocate (stbn_cba9(100,100,100))
-//       if (.not. allocated(stbn_abc10))
-//      &   allocate (stbn_abc10(100,100,100))
-//       if (.not. allocated(stbn_cba10))
-//      &   allocate (stbn_cba10(100,100,100))
-//       if (.not. allocated(stbn_abc11))
-//      &   allocate (stbn_abc11(100,100,100))
-//       if (.not. allocated(stbn_cba11))
-//      &   allocate (stbn_cba11(100,100,100))
-// c
-// c     initialize values for MMFF atom class equivalencies
-// c
-//       do i = 1, 5
-//          do j = 1, 500
-//             eqclass(j,i) = 1000
-//          end do
-//       end do
-// c
-// c     initialize values for MMFF aromatic ring parameters
-// c
-//       do i = 1, 6
-//          do j = 1, maxtyp
-//             mmffarom(j,i) = 0
-//             mmffaromc(j,i) = 0
-//             mmffaroma(j,i) = 0
-//          end do
-//       end do
-// c
-// c     initialize values for MMFF bond stretching parameters
-// c
-//       do i = 1, 100
-//          do j = 1, 100
-//             mmff_kb(j,i) = 1000.
-//             mmff_kb1(j,i) = 1000.
-//             mmff_b0(j,i) = 1000.
-//             mmff_b1(j,i) = 1000.
-//          end do
-//       end do
-// c
-// c     initialize values for MMFF angle bending parameters
-// c
-//       do i = 0, 100
-//          do j = 1, 100
-//             do k = 0, 100
-//                mmff_ka(k,j,i) = 1000.
-//                mmff_ka1(k,j,i) = 1000.
-//                mmff_ka2(k,j,i) = 1000.
-//                mmff_ka3(k,j,i) = 1000.
-//                mmff_ka4(k,j,i) = 1000.
-//                mmff_ka5(k,j,i) = 1000.
-//                mmff_ka6(k,j,i) = 1000.
-//                mmff_ka7(k,j,i) = 1000.
-//                mmff_ka8(k,j,i) = 1000.
-//                mmff_ang0(k,j,i) = 1000.
-//                mmff_ang1(k,j,i) = 1000.
-//                mmff_ang2(k,j,i) = 1000.
-//                mmff_ang3(k,j,i) = 1000.
-//                mmff_ang4(k,j,i) = 1000.
-//                mmff_ang5(k,j,i) = 1000.
-//                mmff_ang6(k,j,i) = 1000.
-//                mmff_ang7(k,j,i) = 1000.
-//                mmff_ang8(k,j,i) = 1000.
-//             end do
-//          end do
-//       end do
-// c
-// c     initialize values for MMFF stretch-bend parameters
-// c
-//       do i = 1, 100
-//          do j = 1, 100
-//             do k = 1, 100
-//                stbn_abc(k,j,i) = 1000.
-//                stbn_cba(k,j,i) = 1000.
-//                stbn_abc1(k,j,i) = 1000.
-//                stbn_cba1(k,j,i) = 1000.
-//                stbn_abc2(k,j,i) = 1000.
-//                stbn_cba2(k,j,i) = 1000.
-//                stbn_abc3(k,j,i) = 1000.
-//                stbn_cba3(k,j,i) = 1000.
-//                stbn_abc4(k,j,i) = 1000.
-//                stbn_cba4(k,j,i) = 1000.
-//                stbn_abc5(k,j,i) = 1000.
-//                stbn_cba5(k,j,i) = 1000.
-//                stbn_abc6(k,j,i) = 1000.
-//                stbn_cba6(k,j,i) = 1000.
-//                stbn_abc7(k,j,i) = 1000.
-//                stbn_cba7(k,j,i) = 1000.
-//                stbn_abc8(k,j,i) = 1000.
-//                stbn_cba8(k,j,i) = 1000.
-//                stbn_abc9(k,j,i) = 1000.
-//                stbn_cba9(k,j,i) = 1000.
-//                stbn_abc10(k,j,i) = 1000.
-//                stbn_cba10(k,j,i) = 1000.
-//                stbn_abc11(k,j,i) = 1000.
-//                stbn_cba11(k,j,i) = 1000.
-//             end do
-//          end do
-//       end do
-// c
-// c     initialize values for MMFF torsional parameters
-// c
-//       do i = 1, maxnt
-//          kt(i) = blank16
-//          kt_1(i) = blank16
-//          kt_2(i) = blank16
-//          t1(1,i) = 1000.
-//          t1(2,i) = 1000.
-//          t2(1,i) = 1000.
-//          t2(2,i) = 1000.
-//          t3(1,i) = 1000.
-//          t3(2,i) = 1000.
-//          t1_1(1,i) = 1000.
-//          t1_1(2,i) = 1000.
-//          t2_1(1,i) = 1000.
-//          t2_1(2,i) = 1000.
-//          t3_1(1,i) = 1000.
-//          t3_1(2,i) = 1000.
-//          t1_2(1,i) = 1000.
-//          t1_2(2,i) = 1000.
-//          t2_2(1,i) = 1000.
-//          t2_2(2,i) = 1000.
-//          t3_2(1,i) = 1000.
-//          t3_2(2,i) = 1000.
-//       end do
-// c
-// c     initialize values for MMFF bond charge increment parameters
-// c
-//       do i = 1, 100
-//          do j = 1, 100
-//             bci(j,i) = 1000.
-//             bci_1(j,i) = 1000.
-//          end do
-//       end do
-//       return
-//       end
+/////////////////////////////////////////////////////////
+//                                                     //
+//  initmmff.cpp  --  initialize some MMFF parameters  //
+//                                                     //
+/////////////////////////////////////////////////////////
+
+// "initmmff" initializes some parameter values for the Merck
+// Molecular force field
+
+
+#include "merck.h"
+
+void initmmff()
+{
+    // perform dynamic allocation of some global arrays
+    mmff_ka.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ka1.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ka2.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ka3.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ka4.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ka5.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ka6.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ka7.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ka8.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ang0.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ang1.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ang2.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ang3.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ang4.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ang5.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ang6.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ang7.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    mmff_ang8.resize(101, std::vector<std::vector<double>>(100, std::vector<double>(101,1000.)));
+    stbn_abc.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc1.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba1.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc2.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba2.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc3.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba3.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc4.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba4.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc5.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba5.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc6.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba6.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc7.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba7.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc8.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba8.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc9.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba9.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc10.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba10.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_abc11.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+    stbn_cba11.resize(100, std::vector<std::vector<double>>(100, std::vector<double>(100,1000.)));
+
+    // initialize values for MMFF atom class equivalencies
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 500; j++) {
+            eqclass[i][j] = 1000;
+        }
+    }
+
+    // initialize values for MMFF aromatic ring parameters
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < maxtyp; j++) {
+            mmffarom[i][j] = 0;
+            mmffaromc[i][j] = 0;
+            mmffaroma[i][j] = 0;
+        }
+    }
+
+    // initialize values for MMFF bond stretching parameters
+    for (int i = 0; i < 100; i++) {
+        for (int j = 0; j < 100; j++) {
+            mmff_kb[i][j] = 1000.;
+            mmff_kb1[i][j] = 1000.;
+            mmff_b0[i][j] = 1000.;
+            mmff_b1[i][j] = 1000.;
+        }
+    }
+
+    // // initialize values for MMFF angle bending parameters
+    // for (int i = 0; i < 101; i++) {
+    //     for (int j = 0; j < 100; j++) {
+    //         for (int k = 0; k < 101; k++) {
+    //             mmff_ka[i][j][k] = 1000.;
+    //             mmff_ka1[i][j][k] = 1000.;
+    //             mmff_ka2[i][j][k] = 1000.;
+    //             mmff_ka3[i][j][k] = 1000.;
+    //             mmff_ka4[i][j][k] = 1000.;
+    //             mmff_ka5[i][j][k] = 1000.;
+    //             mmff_ka6[i][j][k] = 1000.;
+    //             mmff_ka7[i][j][k] = 1000.;
+    //             mmff_ka8[i][j][k] = 1000.;
+    //             mmff_ang0[i][j][k] = 1000.;
+    //             mmff_ang1[i][j][k] = 1000.;
+    //             mmff_ang2[i][j][k] = 1000.;
+    //             mmff_ang3[i][j][k] = 1000.;
+    //             mmff_ang4[i][j][k] = 1000.;
+    //             mmff_ang5[i][j][k] = 1000.;
+    //             mmff_ang6[i][j][k] = 1000.;
+    //             mmff_ang7[i][j][k] = 1000.;
+    //             mmff_ang8[i][j][k] = 1000.;
+    //         }
+    //     }
+    // }
+
+    // // initialize values for MMFF stretch-bend parameters
+    // for (int i = 0; i < 100; i++) {
+    //     for (int j = 0; j < 100; j++) {
+    //         for (int k = 0; k < 100; k++) {
+    //             stbn_abc[i][j][k] = 1000.;
+    //             stbn_cba[i][j][k] = 1000.;
+    //             stbn_abc1[i][j][k] = 1000.;
+    //             stbn_cba1[i][j][k] = 1000.;
+    //             stbn_abc2[i][j][k] = 1000.;
+    //             stbn_cba2[i][j][k] = 1000.;
+    //             stbn_abc3[i][j][k] = 1000.;
+    //             stbn_cba3[i][j][k] = 1000.;
+    //             stbn_abc4[i][j][k] = 1000.;
+    //             stbn_cba4[i][j][k] = 1000.;
+    //             stbn_abc5[i][j][k] = 1000.;
+    //             stbn_cba5[i][j][k] = 1000.;
+    //             stbn_abc6[i][j][k] = 1000.;
+    //             stbn_cba6[i][j][k] = 1000.;
+    //             stbn_abc7[i][j][k] = 1000.;
+    //             stbn_cba7[i][j][k] = 1000.;
+    //             stbn_abc8[i][j][k] = 1000.;
+    //             stbn_cba8[i][j][k] = 1000.;
+    //             stbn_abc9[i][j][k] = 1000.;
+    //             stbn_cba9[i][j][k] = 1000.;
+    //             stbn_abc10[i][j][k] = 1000.;
+    //             stbn_cba10[i][j][k] = 1000.;
+    //             stbn_abc11[i][j][k] = 1000.;
+    //             stbn_cba11[i][j][k] = 1000.;
+    //         }
+    //     }
+    // }
+
+    // initialize values for MMFF torsional parameters
+    for (int i = 0; i < maxnt; i++) {
+        kt[i] = "";
+        kt_1[i] = "";
+        kt_2[i] = "";
+        t1[i][0] = 1000.;
+        t1[i][1] = 1000.;
+        t2[i][0] = 1000.;
+        t2[i][1] = 1000.;
+        t3[i][0] = 1000.;
+        t3[i][1] = 1000.;
+        t1_1[i][0] = 1000.;
+        t1_1[i][1] = 1000.;
+        t2_1[i][0] = 1000.;
+        t2_1[i][1] = 1000.;
+        t3_1[i][0] = 1000.;
+        t3_1[i][1] = 1000.;
+        t1_2[i][0] = 1000.;
+        t1_2[i][1] = 1000.;
+        t2_2[i][0] = 1000.;
+        t2_2[i][1] = 1000.;
+        t3_2[i][0] = 1000.;
+        t3_2[i][1] = 1000.;
+    }
+
+    // initialize values for MMFF bond charge increment parameters
+    for (int i = 0; i < 100; i++) {
+        for (int j = 0; j < 100; j++) {
+            bci[i][j] = 1000.;
+            bci_1[i][j] = 1000.;
+        }
+    }
+}
