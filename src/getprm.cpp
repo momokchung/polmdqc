@@ -18,6 +18,7 @@
 #include "keys.h"
 #include "nextarg.h"
 #include "params.h"
+#include "readprm.h"
 #include "setprm.h"
 #include "suffix.h"
 #include "upcase.h"
@@ -159,5 +160,5 @@ void getprm()
     initprm();
 
     // get control and parameter values from the parameter file
-    // if (useprm) readprm();
+    if (useprm) readprm();
 }

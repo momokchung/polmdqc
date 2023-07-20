@@ -44,8 +44,10 @@ src/mod.cpp
 src/nextarg.cpp
 src/nuclear.cpp
 src/nuclearRepulsion.cpp
+src/numeral.cpp
 src/overlap.cpp
 src/promo.cpp
+src/readprm.cpp
 src/readxyz.cpp
 src/setprm.cpp
 src/sort.cpp
