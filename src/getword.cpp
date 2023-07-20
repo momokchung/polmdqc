@@ -36,16 +36,17 @@ void getword(std::string& string, std::string& word, int& next)
     }
 
     // get ending index
-    int end = -1;
+    int end = start;
     for (int i = start; i < stringLength; i++) {
         char c = string[i];
         if (c == ' ' or c == '\t' or c == ',' or c == ':' or c == ';') {
-            end = i;
             break;
         }
+        end++;
+        
     }
 
-    if (start == -1 or end == -1) {
+    if (start == -1) {
         word = "";
         return;
     }

@@ -20,4 +20,9 @@ TEST_CASE("getword") {
     getword(string, word, next);
     REQUIRE(word == "");
     REQUIRE(next == 0);
+    string = "Hello";
+    next = 0;
+    getword(string, word, next);
+    REQUIRE(word == "Hello");
+    REQUIRE(next == 5);
 }
