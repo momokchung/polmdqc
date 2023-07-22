@@ -17,10 +17,22 @@
 
 
 #include "getnumb.h"
+#include <sstream>
 
 void getnumb(std::string& string, int& number, int& next)
 {
+    number = 0;
+    std::string newString = string.substr(next);
+    std::istringstream iss(newString);
 
+    if (!(iss >> number)) return;
+
+    std::streampos pos = iss.tellg();
+    int posInt = static_cast<int>(pos);
+    int length = newString.length();
+    int addLength = (posInt == -1 ? length : posInt);
+
+    next += addLength;
 }
 
 
