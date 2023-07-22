@@ -88,4 +88,21 @@ void getkey()
         }
         keyline[i] = record;
     }
+
+    // check for comment lines to be echoed to the output
+    header = true;
+    for (int i = 0; i < nkey; i++) {
+        int next = 0;
+        record = keyline[i];
+        gettext(record,keyword,next);
+        upcase(keyword);
+        string = record.substr(next);
+        if (keyword == "ECHO") {
+            if (header) {
+               header = false;
+               printf("\n");
+            }
+            printf("%s\n", string.c_str());
+        }
+    }
 }
