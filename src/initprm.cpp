@@ -409,6 +409,7 @@ void initprm()
     initmmff();
 }
 
+
 /////////////////////////////////////////////////////////
 //                                                     //
 //  initmmff.cpp  --  initialize some MMFF parameters  //

@@ -46,6 +46,7 @@ src/nuclear.cpp
 src/nuclearRepulsion.cpp
 src/numeral.cpp
 src/overlap.cpp
+src/prmkey.cpp
 src/promo.cpp
 src/readprm.cpp
 src/readxyz.cpp
