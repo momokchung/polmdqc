@@ -14,6 +14,7 @@
 #include "inform.h"
 #include "keys.h"
 #include "potent.h"
+#include "prmkey.h"
 #include "sizes.h"
 #include <string>
 
@@ -58,9 +59,6 @@ void field()
 
     // read the potential energy force field parameter file
     getprm();
-}
-
-
 
 // c
 // c     check keywords for biopolymer atom type definitions
@@ -102,12 +100,10 @@ void field()
 //             end if
 //          end if
 //       end do
-// c
-// c     check keywords for potential function control parameters
-// c
-//       do i = 1, nkey
-//          record = keyline(i)
-//          call prmkey (record)
-//       end do
-//       return
-//       end
+
+    // check keywords for potential function control parameters
+    for (int i = 0; i < nkey; i++) {
+        record = keyline[i];
+        prmkey(record);
+    }
+}

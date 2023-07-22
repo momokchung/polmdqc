@@ -8,7 +8,11 @@
 // in order to define the default force field parameters
 
 
+#include "fatal.h"
 #include "fields.h"
+#include "getnumb.h"
+#include "getstring.h"
+#include "gettext.h"
 #include "kanang.h"
 #include "kangs.h"
 #include "kantor.h"
@@ -43,11 +47,67 @@
 #include "merck.h"
 #include "numeral.h"
 #include "params.h"
+#include "prmkey.h"
 #include "readprm.h"
 #include "solute.h"
+#include "upcase.h"
+#include <sstream>
 
 void readprm()
 {
+    int iprm;
+    int ia,ib,ic,id;
+    int ie,ig,ih,ii;
+    int imin;
+    int size,next;
+    int cls,atn,lig;
+    int nx,ny,nxy;
+    int bt,at,sbt,tt;
+    int ilpr;
+    int ft[6],pg[maxval];
+    double wght,rd;
+    double ep,rdn;
+    double spr,apr,epr;
+    double cdp,adp;
+    double an1,an2,an3;
+    double ba1,ba2;
+    double aa1,aa2,aa3;
+    double bt1,bt2,bt3;
+    double bt4,bt5,bt6;
+    double bt7,bt8,bt9;
+    double at1,at2,at3;
+    double at4,at5,at6;
+    double an,pr,ds,dk;
+    double vd,cg,dp,ps;
+    double fc,bd,dl;
+    double pt,pel,pal;
+    double pol,thl,thd;
+    double kpr,ppr,dpr;
+    double ctrn,atrn;
+    double cfb,cfb1,cfb2;
+    double cfa1,cfa2;
+    double pbrd,csrd,gkrd;
+    double el,iz,rp;
+    double ss,ts;
+    double abc,cba;
+    double gi,alphi;
+    double nni,factor;
+    double vt[6],st[6];
+    double pl[13];
+    double tx(maxtgrd2);
+    double ty(maxtgrd2);
+    double tf(maxtgrd2);
+    bool header,swap;
+    char da1;
+    std::string pa,pb,pc;
+    std::string pd,pe;
+    std::string axt;
+    std::string keyword;
+    std::string text;
+    std::string record;
+    std::string string;
+    std::istringstream iss;
+
     // initialize the counters for some parameter types
     int nb = 0;
     int nb5 = 0;
@@ -87,137 +147,73 @@ void readprm()
     int npi5 = 0;
     int npi4 = 0;
 
-    int number = 42;
-    int width = 0; // Set the desired width of the output string
+    // number of characters in an atom number text string
+    size = 4;
 
-    std::string paddedNumber = numeral(number, width);
-    printf("%s\n", paddedNumber.c_str());
+    // set blank line header before echoed comment lines
+    header = true;
+
+    // process each line of the parameter file, first
+    // extract the keyword at the start of each line
+    iprm = 0;
+    while (iprm < nprm) {
+        record = prmline[iprm];
+        next = 0;
+        gettext(record,keyword,next);
+        upcase(keyword);
+        string = record.substr(next);
+        iss.clear();
+        iss.str(string);
+
+        // check for a force field modification keyword
+        prmkey(record);
+
+        // comment line to be echoed to the output
+        if (keyword == "ECHO") {
+            if (header) {
+               header = false;
+               printf("\n");
+            }
+            printf("%s\n", string.c_str());
+        }
+
+        // atom type definitions and parameters
+        else if (keyword == "ATOM") {
+            ia = 0;
+            cls = 0;
+            atn = 0;
+            wght = 0.;
+            lig = 0;
+            getnumb(record,ia,next);
+            getnumb(record,cls,next);
+            if (cls == 0)  cls = ia;
+            atmcls[ia] = cls;
+            if (ia > maxtyp) {
+                printf("\n READPRM  --  Too many Atom Types; Increase MAXTYP\n");
+                fatal();
+            }
+            else if (cls > maxclass) {
+                printf("\n READPRM  --  Too many Atom Classes; Increase MAXCLASS\n");
+                fatal();
+            }
+            if (ia != 0) {
+                gettext(record,symbol[ia],next);
+                getstring(record,describe[ia],next);
+                string = record.substr(next);
+                iss.clear();
+                iss.str(string);
+                iss >> atn >> wght >> lig;
+                atmnum[ia] = atn;
+                weight[ia] = wght;
+                ligand[ia] = lig;
+            }
+        }
+        iprm++;
+    }
 }
 
-//       integer cls,atn,lig
-//       integer nx,ny,nxy
-//       integer bt,at,sbt,tt
-//       integer ilpr
-//       integer ft(6),pg(maxval)
-//       real*8 wght,rd
-//       real*8 ep,rdn
-//       real*8 spr,apr,epr
-//       real*8 cdp,adp
-//       real*8 an1,an2,an3
-//       real*8 ba1,ba2
-//       real*8 aa1,aa2,aa3
-//       real*8 bt1,bt2,bt3
-//       real*8 bt4,bt5,bt6
-//       real*8 bt7,bt8,bt9
-//       real*8 at1,at2,at3
-//       real*8 at4,at5,at6
-//       real*8 an,pr,ds,dk
-//       real*8 vd,cg,dp,ps
-//       real*8 fc,bd,dl
-//       real*8 pt,pel,pal
-//       real*8 pol,thl,thd
-//       real*8 kpr,ppr,dpr
-//       real*8 ctrn,atrn
-//       real*8 cfb,cfb1,cfb2
-//       real*8 cfa1,cfa2
-//       real*8 pbrd,csrd,gkrd
-//       real*8 el,iz,rp
-//       real*8 ss,ts
-//       real*8 abc,cba
-//       real*8 gi,alphi
-//       real*8 nni,factor
-//       real*8 vt(6),st(6)
-//       real*8 pl(13)
-//       real*8 tx(maxtgrd2)
-//       real*8 ty(maxtgrd2)
-//       real*8 tf(maxtgrd2)
-//       logical header,swap
-//       character*1 da1
-//       character*4 pa,pb,pc
-//       character*4 pd,pe
-//       character*8 axt
-//       character*20 keyword
-//       character*20 text
-//       character*240 record
-//       character*240 string
-// c
 // c
 
-// c
-// c     number of characters in an atom number text string
-// c
-//       size = 4
-// c
-// c     set blank line header before echoed comment lines
-// c
-//       header = .true.
-// c
-// c     process each line of the parameter file, first
-// c     extract the keyword at the start of each line
-// c
-//       iprm = 0
-//       do while (iprm .lt. nprm)
-//          iprm = iprm + 1
-//          record = prmline(iprm)
-//          next = 1
-//          call gettext (record,keyword,next)
-//          call upcase (keyword)
-// c
-// c     check for a force field modification keyword
-// c
-//          call prmkey (record)
-// c
-// c     comment line to be echoed to the output
-// c
-//          if (keyword(1:5) .eq. 'ECHO ') then
-//             string = record(next:240)
-//             length = trimtext (string)
-//             if (header) then
-//                header = .false.
-//                write (iout,10)
-//    10          format ()
-//             end if
-//             if (length .eq. 0) then
-//                write (iout,20)
-//    20          format ()
-//             else
-//                write (iout,30)  string(1:length)
-//    30          format (a)
-//             end if
-// c
-// c     atom type definitions and parameters
-// c
-//          else if (keyword(1:5) .eq. 'ATOM ') then
-//             ia = 0
-//             cls = 0
-//             atn = 0
-//             wght = 0.0d0
-//             lig = 0
-//             call getnumb (record,ia,next)
-//             call getnumb (record,cls,next)
-//             if (cls .eq. 0)  cls = ia
-//             atmcls(ia) = cls
-//             if (ia .ge. maxtyp) then
-//                write (iout,40)
-//    40          format (/,' READPRM  --  Too many Atom Types;',
-//      &                    ' Increase MAXTYP')
-//                call fatal
-//             else if (cls .ge. maxclass) then
-//                write (iout,50)
-//    50          format (/,' READPRM  --  Too many Atom Classes;',
-//      &                    ' Increase MAXCLASS')
-//                call fatal
-//             end if
-//             if (ia .ne. 0) then
-//                call gettext (record,symbol(ia),next)
-//                call getstring (record,describe(ia),next)
-//                string = record(next:240)
-//                read (string,*,err=60,end=60)  atn,wght,lig
-//    60          continue
-//                atmnum(ia) = atn
-//                weight(ia) = wght
-//                ligand(ia) = lig
-//             end if
 // c
 // c     bond stretching parameters
 // c
