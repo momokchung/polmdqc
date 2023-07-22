@@ -19,11 +19,20 @@
 
 #include "getstring.h"
 #include <iostream>
-#include <sstream>
 
 void getstring(std::string& string, std::string& text, int& next)
 {
+    std::string newString = string.substr(next);
+    size_t firstQuotePos = newString.find("\"");
+    size_t secondQuotePos = newString.find("\"", firstQuotePos + 1);
 
+    if (firstQuotePos != std::string::npos && secondQuotePos != std::string::npos) {
+        text = newString.substr(firstQuotePos + 1, secondQuotePos - firstQuotePos - 1);
+        next += secondQuotePos + 1;
+    } else {
+        text = "";
+    }
+    
 }
 
 
