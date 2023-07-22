@@ -17,7 +17,9 @@ src/final.cpp
 src/getcart.cpp
 src/getkey.cpp
 src/getline.cpp
+src/getnumb.cpp
 src/getprm.cpp
+src/getstring.cpp
 src/gettext.cpp
 src/getword.cpp
 src/hartree.cpp

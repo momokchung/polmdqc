@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.16.0)
 
 set(POLQCMD_TEST
 getline.cpp
+getnumb.cpp
+getstring.cpp
 gettext.cpp
 getword.cpp
 justify.cpp
