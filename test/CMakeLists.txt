@@ -11,6 +11,7 @@ lowcase.cpp
 main.cpp
 numeral.cpp
 sort.cpp
+torphase.cpp
 trimhead.cpp
 trimtext.cpp
 upcase.cpp
