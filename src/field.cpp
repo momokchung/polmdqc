@@ -8,22 +8,28 @@
 // a parameter file and modifications specified in a keyfile
 
 
+#include "fatal.h"
 #include "field.h"
 #include "fields.h"
 #include "getprm.h"
+#include "getstring.h"
+#include "gettext.h"
+#include "getword.h"
 #include "inform.h"
 #include "keys.h"
 #include "potent.h"
 #include "prmkey.h"
 #include "sizes.h"
-#include <string>
+#include "upcase.h"
+#include <sstream>
 
 void field()
 {
     std::string keyword;
     std::string record;
     std::string string;
-    int next;
+    std::istringstream iss;
+    int ia,ib,next;
     bool header;
 
     // set the default values for the active potentials
@@ -60,46 +66,42 @@ void field()
     // read the potential energy force field parameter file
     getprm();
 
-// c
-// c     check keywords for biopolymer atom type definitions
-// c
-//       header = .true.
-//       do i = 1, nkey
-//          next = 1
-//          record = keyline(i)
-//          call gettext (record,keyword,next)
-//          call upcase (keyword)
-//          if (keyword(1:8) .eq. 'BIOTYPE ') then
-//             ia = 0
-//             ib = 0
-//             string = record(next:240)
-//             read (string,*,err=10,end=10)  ia
-//             call getword (record,string,next)
-//             call getstring (record,string,next)
-//             string = record(next:240)
-//             read (string,*,err=10,end=10)  ib
-//    10       continue
-//             if (ia.ge.0 .and. ia.le.maxbio) then
-//                if (header .and. .not.silent) then
-//                   header = .false.
-//                   write (iout,20)
-//    20             format (/,' Additional Biopolymer Type Definitions',
-//      &                    //,5x,'BioType',10x,'Atom Type',/)
-//                end if
-//                biotyp(ia) = ib
-//                if (.not. silent) then
-//                   write (iout,30)  ia,ib
-//    30             format (1x,i8,8x,i8)
-//                end if
-
-//             else if (ia .gt. maxbio) then
-//                write (iout,40)
-//    40          format (/,' FIELDS  --  Too many Biopolymer Types;',
-//      &                    ' Increase MAXBIO')
-//                call fatal
-//             end if
-//          end if
-//       end do
+    // check keywords for biopolymer atom type definitions
+    header = true;
+    for (int i = 0; i < nkey; i++) {
+        next = 0;
+        record = keyline[i];
+        gettext(record,keyword,next);
+        upcase(keyword);
+        if (keyword == "BIOTYPE") {
+            ia = 0;
+            ib = 0;
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            iss >> ia;
+            getword(record,string,next);
+            getstring(record,string,next);
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            iss >> ib;
+            if (ia>=0 and ia<=maxbio) {
+                if (header and !silent) {
+                    header = false;
+                    printf("\n Additional Biopolymer Type Definitions\n\n     BioType          Atom Type\n\n");
+                }
+                biotyp[ia-1] = ib-1;
+                if (!silent) {
+                    printf(" %8d        %8d\n", ia,ib);
+                }
+            }
+            else if (ia > maxbio) {
+                printf("\n FIELDS  --  Too many Biopolymer Types; Increase MAXBIO\n");
+                fatal();
+            }
+        }
+    }
 
     // check keywords for potential function control parameters
     for (int i = 0; i < nkey; i++) {
