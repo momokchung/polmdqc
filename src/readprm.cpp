@@ -1627,7 +1627,7 @@ void readprm()
             iss >> ib;
             ib--;
             if (ia >= maxbio) {
-                printf(" READPRM  --  Too many Biopolymer Types; Increase MAXBIO\n");
+                printf("\n READPRM  --  Too many Biopolymer Types; Increase MAXBIO\n");
                 fatal();
             }
             if (ia > -1)  biotyp[ia] = ib;
