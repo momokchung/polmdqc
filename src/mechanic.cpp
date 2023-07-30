@@ -17,6 +17,7 @@
 #include "fatal.h"
 #include "field.h"
 #include "inform.h"
+#include "katom.h"
 #include "lattice.h"
 #include "mechanic.h"
 #include "torsions.h"
@@ -48,7 +49,7 @@ void mechanic()
     // flatten();
 
     // assign atom types, classes and other atomic information
-    // katom(); do
+    katom();
 
     // assign atoms to molecules and set the atom groups
     // molecule(); do

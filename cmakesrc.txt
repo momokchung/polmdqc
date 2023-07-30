@@ -32,6 +32,7 @@ src/initres.cpp
 src/inquire.cpp
 src/ioUtils.cpp
 src/justify.cpp
+src/katom.cpp
 src/katomsqm.cpp
 src/kbasis.cpp
 src/kgbs.cpp
