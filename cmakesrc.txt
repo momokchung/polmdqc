@@ -10,6 +10,7 @@ src/chkxyz.cpp
 src/command.cpp
 src/config.cpp
 src/control.cpp
+src/cutoffs.cpp
 src/energy.cpp
 src/fatal.cpp
 src/field.cpp

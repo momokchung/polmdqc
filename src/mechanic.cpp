@@ -13,6 +13,7 @@
 #include "attach.h"
 #include "bitors.h"
 #include "bonds.h"
+#include "cutoffs.h"
 #include "fatal.h"
 #include "field.h"
 #include "inform.h"
@@ -41,7 +42,7 @@ void mechanic()
     unitcell();
     lattice();
     // polymer();
-    // cutoffs(); do
+    cutoffs();
 
     // setup needed for potential energy smoothing methods
     // flatten();
