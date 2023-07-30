@@ -19,6 +19,6 @@
 QCMD_EXTERN int nmol;
 QCMD_EXTERN std::vector<std::vector<int>> imol;
 QCMD_EXTERN std::vector<int> kmol;
-QCMD_EXTERN std::vector<int> molecule;
+QCMD_EXTERN std::vector<int> molcule;
 QCMD_EXTERN double totmass;
 QCMD_EXTERN std::vector<double> molmass;
