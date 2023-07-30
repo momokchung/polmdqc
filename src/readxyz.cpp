@@ -84,7 +84,7 @@ void readxyz(std::string& xyzfile)
     getline(string);
     ltitle = string.length();
     title = string;
-    if (ltitle == 0) title = " ";
+    if (ltitle == 0) title = "";
 
     // check for too few or too many total atoms in the file
     if (n <= 0) {
@@ -145,6 +145,7 @@ void readxyz(std::string& xyzfile)
         iss.clear();
         iss.str(string);
         iss >> x[i] >> y[i] >> z[i] >> type[i];
+        type[i]--;
         for (int j = 0; j < maxval; j++) {
             int i12Int;
             if (iss >> i12Int) {

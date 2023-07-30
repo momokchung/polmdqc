@@ -183,7 +183,7 @@ void initprm()
     }
 
     // perform dynamic allocation of some global arrays
-    atmcls.resize(maxtyp, 0);
+    atmcls.resize(maxtyp, -1);
     atmnum.resize(maxtyp, 0);
     ligand.resize(maxtyp);
     weight.resize(maxtyp);
