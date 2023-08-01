@@ -11,16 +11,26 @@
 #include <algorithm>
 
 template <typename T>
-void sort(std::vector<T>& vector)
+void sort(std::vector<T>& vector, size_t startIndex, size_t endIndex)
 {
+    // Invalid subset range, do nothing
+    if (startIndex >= endIndex || startIndex >= vector.size()) {
+        return;
+    }
+
+    // Adjust endIndex if it exceeds the vector size
+    endIndex = std::min(endIndex, vector.size());
+
+    // Sort the subset within the given range
+    std::sort(vector.begin() + startIndex, vector.begin() + endIndex);
+
     // remove duplicates
-    std::sort(vector.begin(), vector.end());
-    auto last = std::unique(vector.begin(), vector.end());
-    vector.erase(last, vector.end());
+    auto last = std::unique(vector.begin() + startIndex, vector.begin() + endIndex);
+    vector.erase(last, vector.begin() + endIndex);
 }
 
-template void sort<int>(std::vector<int>& vector);
-template void sort<double>(std::vector<double>& vector);
+template void sort<int>(std::vector<int>& vector, size_t startIndex, size_t endIndex);
+template void sort<double>(std::vector<double>& vector, size_t startIndex, size_t endIndex);
 
 
 // "sortkey" sorts and returns a key into the original ordering

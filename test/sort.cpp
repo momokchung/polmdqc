@@ -11,6 +11,14 @@ TEST_CASE("sort") {
     sort(doubles);
     REQUIRE(doubles == sortedDoubles);
     numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
+    sortedNumbers = {5, 1, 2, 5, 8, 9, 2};
+    doubles = {1.1, 2.2, -3.3, -2.2, 2.2, 3.3, -1.1, 0., 2.2, -3.3};
+    sortedDoubles = {1.1, -3.3, -2.2, -1.1, 2.2, 3.3, 0., 2.2, -3.3};
+    sort(numbers, 1, 8);
+    REQUIRE(numbers == sortedNumbers);
+    sort(doubles, 1, 7);
+    REQUIRE(doubles == sortedDoubles);
+    numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
     sortedNumbers = {1, 2, 2, 2, 5, 5, 8, 8, 9};
     std::vector<int> key;
     std::vector<int> sortedKey = {4, 1, 8, 3, 5, 0, 7, 2, 6};
