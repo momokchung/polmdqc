@@ -45,6 +45,7 @@ src/mathUtils.cpp
 src/mechanic.cpp
 src/mechanicqm.cpp
 src/mod.cpp
+src/molecule.cpp
 src/nextarg.cpp
 src/nuclear.cpp
 src/nuclearRepulsion.cpp

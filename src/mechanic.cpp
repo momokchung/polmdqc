@@ -20,6 +20,7 @@
 #include "katom.h"
 #include "lattice.h"
 #include "mechanic.h"
+#include "molecule.h"
 #include "torsions.h"
 #include "unitcell.h"
 
@@ -52,7 +53,7 @@ void mechanic()
     katom();
 
     // assign atoms to molecules and set the atom groups
-    // molecule(); do
+    molecule();
     // cluster(); do
 
     // find any pisystem atoms, bonds and torsional angles
