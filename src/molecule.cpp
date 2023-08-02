@@ -19,7 +19,7 @@ void molecule()
     std::vector<int> list;
 
     // perform dynamic allocation of some global arrays
-    imol.resize(n, std::vector<int>(2));
+    imol.resize(n, std::vector<int>(2,-1));
     kmol.resize(n);
     molcule.resize(n, -1);
     molmass.resize(n);
@@ -86,7 +86,7 @@ void molecule()
             imol[k][0] = i;
         }
     }
-    imol[nmol][1] = n-1;
+    imol[nmol-1][1] = n-1;
 
     // sort the list of atoms in each molecule by atom number
     for (int i = 0; i < nmol; i++) {
@@ -107,7 +107,7 @@ void molecule()
     totmass = 0.;
     for (int i = 0; i < nmol; i++) {
         molmass[i] = 0.;
-        for (int k = imol[i][0]; k < imol[i][1]; k++) {
+        for (int k = imol[i][0]; k <= imol[i][1]; k++) {
             molmass[i] += mass[kmol[k]];
         }
         totmass += molmass[i];
