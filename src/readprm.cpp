@@ -1016,7 +1016,9 @@ void readprm()
             pd = numeral(id, size);
             pe = numeral(ie, size);
             ktt[ntt] = pa + pb + pc + pd + pe;
+            nx = nxy;
             sortUnique(nx, tx);
+            ny = nxy;
             sortUnique(ny, ty);
             tnx[ntt] = nx;
             tny[ntt] = ny;
