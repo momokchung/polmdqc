@@ -113,8 +113,4 @@ void molecule()
         }
         totmass += molmass[i];
     }
-
-    for (int i = 0; i < n; i++) {
-        printf("%d %d\n", imol[i][0], imol[i][1]);
-    }
 }
