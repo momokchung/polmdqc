@@ -16,6 +16,7 @@
 
 #pragma once
 #include "macro.h"
+#include <vector>
 
 QCMD_EXTERN int ncell;
 QCMD_EXTERN std::vector<std::vector<int>> icell;

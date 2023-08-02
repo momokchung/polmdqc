@@ -14,6 +14,7 @@
 #include "inform.h"
 #include "lattice.h"
 #include "mathConst.h"
+#include <algorithm>
 #include <cmath>
 
 void lattice()
@@ -27,9 +28,9 @@ void lattice()
         if (xbox == 0.)  xbox = boxmax;
         if (ybox == 0.)  ybox = boxmax;
         if (zbox == 0.)  zbox = boxmax;
-        if (alpha == 0.)  alpha = 90.;
-        if (beta == 0.)  beta = 90.;
-        if (gamma == 0.)  gamma = 90.;
+        if (alphaA == 0.)  alphaA = 90.;
+        if (betaA == 0.)  betaA = 90.;
+        if (gammaA == 0.)  gammaA = 90.;
 
         // determine the general periodic boundary lattice type
         orthogonal = false;
@@ -38,10 +39,10 @@ void lattice()
         if (nosymm) {
             triclinic = true;
         }
-        else if (alpha == 90. && beta == 90. && gamma == 90.) {
+        else if (alphaA == 90. && betaA == 90. && gammaA == 90.) {
             orthogonal = true;
         }
-        else if (alpha == 90.0 && gamma == 90.0) {
+        else if (alphaA == 90.0 && gammaA == 90.0) {
             monoclinic = true;
         }
         else {
@@ -73,20 +74,20 @@ void lattice()
 
     // get values needed for fractional coordinate computations
     if (triclinic) {
-        alpha_sin = std::sin(alpha/radian);
-        alpha_cos = std::cos(alpha/radian);
-        beta_sin = std::sin(beta/radian);
-        beta_cos = std::cos(beta/radian);
-        gamma_sin = std::sin(gamma/radian);
-        gamma_cos = std::cos(gamma/radian);
+        alpha_sin = std::sin(alphaA/radian);
+        alpha_cos = std::cos(alphaA/radian);
+        beta_sin = std::sin(betaA/radian);
+        beta_cos = std::cos(betaA/radian);
+        gamma_sin = std::sin(gammaA/radian);
+        gamma_cos = std::cos(gammaA/radian);
         beta_term = (alpha_cos - beta_cos*gamma_cos) / gamma_sin;
         gamma_term = std::sqrt(std::pow(beta_sin,2) - std::pow(beta_term,2));
     }
     else if (monoclinic) {
         alpha_sin = 1.;
         alpha_cos = 0.;
-        beta_sin = std::sin(beta/radian);
-        beta_cos = std::cos(beta/radian);
+        beta_sin = std::sin(betaA/radian);
+        beta_cos = std::cos(betaA/radian);
         gamma_sin = 1.;
         gamma_cos = 0.;
         beta_term = 0.;

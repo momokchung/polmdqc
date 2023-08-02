@@ -25,6 +25,7 @@
 #include "titles.h"
 #include "trimtext.h"
 #include "unitcell.h"
+#include <algorithm>
 #include <sstream>
 
 void readxyz(std::string& xyzfile)
@@ -124,7 +125,7 @@ void readxyz(std::string& xyzfile)
                 if (name[i].length() == 0) {
                     iss.clear();
                     iss.str(record);
-                    if ((iss >> xbox >> ybox >> zbox >> alpha >> beta >> gamma)) size = -1;
+                    if ((iss >> xbox >> ybox >> zbox >> alphaA >> betaA >> gammaA)) size = -1;
                 }
             }
             lattice();

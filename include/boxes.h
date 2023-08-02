@@ -7,9 +7,9 @@
 // xbox        length of a-axis of periodic box in Angstroms
 // ybox        length of b-axis of periodic box in Angstroms
 // zbox        length of c-axis of periodic box in Angstroms
-// alpha       angle between b- and c-axes of box in degrees
-// beta        angle between a- and c-axes of box in degrees
-// gamma       angle between a- and b-axes of box in degrees
+// alphaA      angle between b- and c-axes of box in degrees
+// betaA       angle between a- and c-axes of box in degrees
+// gammaA      angle between a- and b-axes of box in degrees
 // xbox2       half of the a-axis length of periodic box
 // ybox2       half of the b-axis length of periodic box
 // zbox2       half of the c-axis length of periodic box
@@ -40,7 +40,7 @@
 #include <string>
 
 QCMD_EXTERN double xbox,ybox,zbox;
-QCMD_EXTERN double alpha,beta,gamma;
+QCMD_EXTERN double alphaA,betaA,gammaA;
 QCMD_EXTERN double xbox2,ybox2,zbox2;
 QCMD_EXTERN double box34,volbox;
 QCMD_EXTERN double alpha_sin;

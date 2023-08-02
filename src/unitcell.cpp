@@ -16,6 +16,7 @@
 #include "mathConst.h"
 #include "unitcell.h"
 #include "upcase.h"
+#include <algorithm>
 #include <sstream>
 
 void unitcell()
@@ -73,18 +74,18 @@ void unitcell()
             }
         }
         else if (keyword == "ALPHA") {
-            if (alpha == 0.)  {
-                if (iss >> nextDouble) alpha = nextDouble;
+            if (alphaA == 0.)  {
+                if (iss >> nextDouble) alphaA = nextDouble;
             }
         }
         else if (keyword == "BETA") {
-            if (beta == 0.)  {
-                if (iss >> nextDouble) beta = nextDouble;
+            if (betaA == 0.)  {
+                if (iss >> nextDouble) betaA = nextDouble;
             }
         }
         else if (keyword == "GAMMA") {
-            if (gamma == 0.)  {
-                if (iss >> nextDouble) gamma = nextDouble;
+            if (gammaA == 0.)  {
+                if (iss >> nextDouble) gammaA = nextDouble;
             }
         }
         else if (keyword == "OCTAHEDRON") {
@@ -113,18 +114,18 @@ void unitcell()
         if (xbox !=  0.)  xbox = boxmax;
         if (ybox !=  0.)  ybox = boxmax;
         if (zbox !=  0.)  zbox = boxmax;
-        if (alpha !=  0.)  alpha = 90.;
-        if (beta !=  0.)  beta = 90.;
-        if (gamma != 0.)  gamma = 90.;
+        if (alphaA !=  0.)  alphaA = 90.;
+        if (betaA !=  0.)  betaA = 90.;
+        if (gammaA != 0.)  gammaA = 90.;
 
         // determine the general periodic boundary lattice type
         if (nosymm) {
             triclinic = true;
         }
-        else if (alpha==90. and beta==90. and gamma==90.) {
+        else if (alphaA==90. and betaA==90. and gammaA==90.) {
             orthogonal = true;
         }
-        else if (alpha==90. and gamma==90.) {
+        else if (alphaA==90. and gammaA==90.) {
             monoclinic = true;
         }
         else {
@@ -141,8 +142,8 @@ void unitcell()
         ybox = xbox;
         if (octahedron) zbox = xbox;
         else if (dodecadron) zbox = xbox * root2;
-        alpha = 90.;
-        beta = 90.;
-        gamma = 90.;
+        alphaA = 90.;
+        betaA = 90.;
+        gammaA = 90.;
     }
 }

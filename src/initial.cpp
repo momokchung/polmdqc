@@ -154,9 +154,9 @@ void initial(int argc, char** argv)
     xbox = 0.;
     ybox = 0.;
     zbox = 0.;
-    alpha = 0.;
-    beta = 0.;
-    gamma = 0.;
+    alphaA = 0.;
+    betaA = 0.;
+    gammaA = 0.;
 
     // default values used by optimizations
     fctmin = 0.;

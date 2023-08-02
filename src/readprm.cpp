@@ -54,6 +54,7 @@
 #include "sort.h"
 #include "torphase.h"
 #include "upcase.h"
+#include <algorithm>
 #include <sstream>
 
 void readprm()
