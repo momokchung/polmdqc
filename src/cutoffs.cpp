@@ -15,9 +15,9 @@
 #include "gettext.h"
 #include "hescut.h"
 #include "keys.h"
-#include "qcmdlimits.h"
 #include "neigh.h"
 #include "polpot.h"
+#include "qcmdlimits.h"
 #include "tarray.h"
 #include "upcase.h"
 #include <cmath>
