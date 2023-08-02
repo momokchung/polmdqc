@@ -38,10 +38,10 @@ template void sortUnique<double>(int& n, std::vector<double>& vector, size_t sta
 // "sortKey" sorts and returns a key into the original ordering
 
 template <typename T>
-void sortKey(std::vector<T>& vector, std::vector<int>& key)
+void sortKey(size_t n, std::vector<T>& vector, std::vector<int>& key)
 {
-    int n = vector.size();
-    key.resize(n);
+    // Invalid range, do nothing
+    if (n > vector.size()) return;
 
     // Create a temporary vector with pairs of (value, index)
     std::vector<std::pair<T,int>> temp;
@@ -66,5 +66,5 @@ void sortKey(std::vector<T>& vector, std::vector<int>& key)
     }
 }
 
-template void sortKey<int>(std::vector<int>& vector, std::vector<int>& key);
-template void sortKey<double>(std::vector<double>& vector, std::vector<int>& key);
+template void sortKey<int>(size_t n, std::vector<int>& vector, std::vector<int>& key);
+template void sortKey<double>(size_t n, std::vector<double>& vector, std::vector<int>& key);
