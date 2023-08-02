@@ -13,6 +13,7 @@
 #include "couple.h"
 #include "molcul.h"
 #include "sort.h"
+#include <algorithm>
 
 void molecule()
 {
@@ -91,7 +92,7 @@ void molecule()
     // sort the list of atoms in each molecule by atom number
     for (int i = 0; i < nmol; i++) {
         k = imol[i][1] - imol[i][0] + 1;
-        sort(kmol, imol[i][0], imol[i][0]+k);
+        std::sort(kmol.begin() + imol[i][0], kmol.begin() + imol[i][0] + k);
     }
 
     // if all atomic masses are zero, set them all to unity
@@ -111,5 +112,9 @@ void molecule()
             molmass[i] += mass[kmol[k]];
         }
         totmass += molmass[i];
+    }
+
+    for (int i = 0; i < n; i++) {
+        printf("%d %d\n", imol[i][0], imol[i][1]);
     }
 }

@@ -179,11 +179,11 @@ void readxyz(std::string& xyzfile)
     }
 
     // perform dynamic allocation of some local arrays
-    nmax = -1;
+    nmax = 0;
     for (int i = 0; i < n; i++) {
-        nmax = std::max(tag[i], nmax);
+        nmax = std::max(tag[i]+1, nmax);
         for (int j = 0; j < n12[i]; j++) {
-            nmax = std::max(i12[i][j], nmax);
+            nmax = std::max(i12[i][j]+1, nmax);
         }
     }
     list.resize(nmax);
