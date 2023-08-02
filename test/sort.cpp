@@ -3,22 +3,27 @@
 #include <set>
 
 TEST_CASE("sort") {
+    int n;
     std::vector<int> numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
     std::vector<int> sortedNumbers = {1, 2, 5, 8, 9};
     std::vector<double> doubles = {1.1, 2.2, -3.3, -2.2, 2.2, 3.3, -1.1, 0., 2.2, -3.3};
     std::vector<double> sortedDoubles = {-3.3, -2.2, -1.1, 0., 1.1, 2.2, 3.3};
-    sort(numbers);
+    sortUnique(n, numbers);
     REQUIRE(numbers == sortedNumbers);
-    sort(doubles);
+    REQUIRE(n == 5);
+    sortUnique(n, doubles);
     REQUIRE(doubles == sortedDoubles);
+    REQUIRE(n == 7);
     numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
     sortedNumbers = {5, 1, 2, 5, 8, 9, 2};
     doubles = {1.1, 2.2, -3.3, -2.2, 2.2, 3.3, -1.1, 0., 2.2, -3.3};
     sortedDoubles = {1.1, -3.3, -2.2, -1.1, 2.2, 3.3, 0., 2.2, -3.3};
-    sort(numbers, 1, 8);
+    sortUnique(n, numbers, 1, 8);
     REQUIRE(numbers == sortedNumbers);
-    sort(doubles, 1, 7);
+    REQUIRE(n == 7);
+    sortUnique(n, doubles, 1, 7);
     REQUIRE(doubles == sortedDoubles);
+    REQUIRE(n == 9);
     numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
     sortedNumbers = {1, 2, 2, 2, 5, 5, 8, 8, 9};
     std::vector<int> key;

@@ -4,14 +4,15 @@
 //                                              //
 //////////////////////////////////////////////////
 
-// "sort" sorts and removes duplicates from a std::vector object
+// "sortUnique" sorts and removes duplicates from a std::vector object
+// and returns the number of unique objects
 
 
 #include "sort.h"
 #include <algorithm>
 
 template <typename T>
-void sort(std::vector<T>& vector, size_t startIndex, size_t endIndex)
+void sortUnique(int& n, std::vector<T>& vector, size_t startIndex, size_t endIndex)
 {
     // Invalid subset range, do nothing
     if (startIndex >= endIndex || startIndex >= vector.size()) {
@@ -27,10 +28,11 @@ void sort(std::vector<T>& vector, size_t startIndex, size_t endIndex)
     // remove duplicates
     auto last = std::unique(vector.begin() + startIndex, vector.begin() + endIndex);
     vector.erase(last, vector.begin() + endIndex);
+    n = vector.size();
 }
 
-template void sort<int>(std::vector<int>& vector, size_t startIndex, size_t endIndex);
-template void sort<double>(std::vector<double>& vector, size_t startIndex, size_t endIndex);
+template void sortUnique<int>(int& n, std::vector<int>& vector, size_t startIndex, size_t endIndex);
+template void sortUnique<double>(int& n, std::vector<double>& vector, size_t startIndex, size_t endIndex);
 
 
 // "sortkey" sorts and returns a key into the original ordering
