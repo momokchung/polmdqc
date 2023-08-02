@@ -74,7 +74,7 @@ void molecule()
     for (int i = 0; i < n; i++) {
         list[i] = molcule[i];
     }
-    sortkey(list,kmol);
+    sortKey(list,kmol);
 
     // find the first and last atom in each molecule
     int k = 0;

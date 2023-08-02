@@ -27,7 +27,7 @@ TEST_CASE("sort") {
     numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
     sortedNumbers = {1, 2, 2, 2, 5, 5, 8, 8, 9};
     std::vector<int> key;
-    sortkey(numbers, key);
+    sortKey(numbers, key);
     std::set<int> uniqueInts(key.begin(), key.end());
     int numUniqueInts = uniqueInts.size();
     REQUIRE(numbers == sortedNumbers);
@@ -43,7 +43,7 @@ TEST_CASE("sort") {
     REQUIRE(key[8] == 6);
     doubles = {1.1, 2.2, -3.3, -2.2, 2.2, 3.3, -1.1, 0., 2.2, -3.3};
     sortedDoubles = {-3.3, -3.3, -2.2, -1.1, 0., 1.1, 2.2, 2.2, 2.2, 3.3};
-    sortkey(doubles, key);
+    sortKey(doubles, key);
     std::set<int> uniqueDoubles(key.begin(), key.end());
     int numUniqueDoubles = uniqueDoubles.size();
     REQUIRE(doubles == sortedDoubles);

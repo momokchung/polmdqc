@@ -35,10 +35,10 @@ template void sortUnique<int>(int& n, std::vector<int>& vector, size_t startInde
 template void sortUnique<double>(int& n, std::vector<double>& vector, size_t startIndex, size_t endIndex);
 
 
-// "sortkey" sorts and returns a key into the original ordering
+// "sortKey" sorts and returns a key into the original ordering
 
 template <typename T>
-void sortkey(std::vector<T>& vector, std::vector<int>& key)
+void sortKey(std::vector<T>& vector, std::vector<int>& key)
 {
     int n = vector.size();
     key.resize(n);
@@ -66,5 +66,5 @@ void sortkey(std::vector<T>& vector, std::vector<int>& key)
     }
 }
 
-template void sortkey<int>(std::vector<int>& vector, std::vector<int>& key);
-template void sortkey<double>(std::vector<double>& vector, std::vector<int>& key);
+template void sortKey<int>(std::vector<int>& vector, std::vector<int>& key);
+template void sortKey<double>(std::vector<double>& vector, std::vector<int>& key);
