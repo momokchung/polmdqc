@@ -214,13 +214,11 @@ void readprm()
 
         // bond stretching parameters
         else if (keyword == "BOND") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             fc = 0.;
             bd = 0.;
             iss >> ia >> ib >> fc >> bd;
-            ia--;
-            ib--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             if (ia <= ib) {
@@ -236,13 +234,11 @@ void readprm()
 
         // bond stretching parameters for 5-membered rings
         else if (keyword == "BOND5") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             fc = 0.;
             bd = 0.;
             iss >> ia >> ib >> fc >> bd;
-            ia--;
-            ib--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             if (ia <= ib) {
@@ -258,13 +254,11 @@ void readprm()
 
         // bond stretching parameters for 4-membered rings
         else if (keyword == "BOND4") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             fc = 0.;
             bd = 0.;
             iss >> ia >> ib >> fc >> bd;
-            ia--;
-            ib--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             if (ia <= ib) {
@@ -280,13 +274,11 @@ void readprm()
 
         // bond stretching parameters for 3-membered rings
         else if (keyword == "BOND3") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             fc = 0.;
             bd = 0.;
             iss >> ia >> ib >> fc >> bd;
-            ia--;
-            ib--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             if (ia <= ib) {
@@ -302,14 +294,11 @@ void readprm()
 
         // electronegativity bond length correction parameters
         else if (keyword == "ELECTNEG") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             ic = 0;
             dl = 0.;
             iss >> ia >> ib >> ic >> dl;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -325,17 +314,14 @@ void readprm()
 
         // bond angle bending parameters
         else if (keyword == "ANGLE") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
             fc = 0.;
             an1 = 0.;
             an2 = 0.;
             an3 = 0.;
             iss >> ia >> ib >> ic >> fc >> an1 >> an2 >> an3;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral (ia, size);
             pb = numeral (ib, size);
             pc = numeral (ic, size);
@@ -354,17 +340,14 @@ void readprm()
 
         // angle bending parameters for 5-membered rings
         else if (keyword == "ANGLE5") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
             fc = 0.;
             an1 = 0.;
             an2 = 0.;
             an3 = 0.;
             iss >> ia >> ib >> ic >> fc >> an1 >> an2 >> an3;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -383,17 +366,14 @@ void readprm()
 
         // angle bending parameters for 4-membered rings
         else if (keyword == "ANGLE4") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
             fc = 0.;
             an1 = 0.;
             an2 = 0.;
             an3 = 0.;
             iss >> ia >> ib >> ic >> fc >> an1 >> an2 >> an3;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -412,17 +392,14 @@ void readprm()
 
         // angle bending parameters for 3-membered rings
         else if (keyword == "ANGLE3") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
             fc = 0.;
             an1 = 0.;
             an2 = 0.;
             an3 = 0.;
             iss >> ia >> ib >> ic >> fc >> an1 >> an2 >> an3;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -441,16 +418,13 @@ void readprm()
 
         // in-plane projected angle bending parameters
         else if (keyword == "ANGLEP") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
             fc = 0.;
             an1 = 0.;
             an2 = 0.;
             iss >> ia >> ib >> ic >> fc >> an1 >> an2;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -468,16 +442,13 @@ void readprm()
 
         // Fourier bond angle bending parameters
         else if (keyword == "ANGLEF") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
             fc = 0.;
             an = 0.;
             pr = 0.;
             iss >> ia >> ib >> ic >> fc >> an >> pr;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -495,15 +466,12 @@ void readprm()
 
         // stretch-bend parameters
         else if (keyword == "STRBND") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
             ba1 = 0.;
             ba2 = 0.;
             iss >> ia >> ib >> ic >> ba1 >> ba2;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -522,15 +490,12 @@ void readprm()
 
         // Urey-Bradley parameters
         else if (keyword == "UREYBRAD") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
             fc = 0.;
             ds = 0.;
             iss >> ia >> ib >> ic >> fc >> ds;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -562,16 +527,12 @@ void readprm()
 
         // out-of-plane bend parameters
         else if (keyword == "OPBEND") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
             fc = 0.;
             iss >> ia >> ib >> ic >> id >> fc;
-            ia--;
-            ib--;
-            ic--;
-            id--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -588,16 +549,12 @@ void readprm()
 
         // out-of-plane distance parameters
         else if (keyword == "OPDIST") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
             fc = 0.;
             iss >> ia >> ib >> ic >> id >> fc;
-            ia--;
-            ib--;
-            ic--;
-            id--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -633,17 +590,13 @@ void readprm()
 
         // improper dihedral parameters
         else if (keyword == "IMPROPER") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
             dk = 0.;
             vd = 0.;
             iss >> ia >> ib >> ic >> id >> dk >> vd;
-            ia--;
-            ib--;
-            ic--;
-            id--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -656,20 +609,16 @@ void readprm()
 
         // improper torsional parameters
         else if (keyword == "IMPTORS") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
             for (int i = 0; i < 6; i++) {
                vt[i] = 0.;
                st[i] = 0.;
                ft[i] = -1;
             }
             iss >> ia >> ib >> ic >> id;
-            ia--;
-            ib--;
-            ic--;
-            id--;
             for (int i = 0; i < 6; i++) {
                 iss >> vt[i] >> st[i] >> ft[i];
                 ft[i]--;
@@ -691,20 +640,16 @@ void readprm()
 
         // torsional parameters
         else if (keyword == "TORSION") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
             for (int i = 0; i < 6; i++) {
                vt[i] = 0.;
                st[i] = 0.;
                ft[i] = -1;
             }
             iss >> ia >> ib >> ic >> id;
-            ia--;
-            ib--;
-            ic--;
-            id--;
             for (int i = 0; i < 6; i++) {
                 iss >> vt[i] >> st[i] >> ft[i];
                 ft[i]--;
@@ -743,20 +688,16 @@ void readprm()
 
         // torsional parameters for 5-membered rings
         else if (keyword == "TORSION5") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
             for (int i = 0; i < 6; i++) {
                vt[i] = 0.;
                st[i] = 0.;
                ft[i] = -1;
             }
             iss >> ia >> ib >> ic >> id;
-            ia--;
-            ib--;
-            ic--;
-            id--;
             for (int i = 0; i < 6; i++) {
                 iss >> vt[i] >> st[i] >> ft[i];
                 ft[i]--;
@@ -795,20 +736,16 @@ void readprm()
 
         // torsional parameters for 4-membered rings
         else if (keyword == "TORSION4") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
             for (int i = 0; i < 6; i++) {
                vt[i] = 0.;
                st[i] = 0.;
                ft[i] = -1;
             }
             iss >> ia >> ib >> ic >> id;
-            ia--;
-            ib--;
-            ic--;
-            id--;
             for (int i = 0; i < 6; i++) {
                 iss >> vt[i] >> st[i] >> ft[i];
                 ft[i]--;
@@ -847,12 +784,10 @@ void readprm()
 
         // pi-system torsion parameters
         else if (keyword == "PITORS") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             pt = 0.;
             iss >> ia >> ib >> pt;
-            ia--;
-            ib--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             if (ia <= ib) {
@@ -867,10 +802,10 @@ void readprm()
 
         // stretch-torsion parameters
         else if (keyword == "STRTORS") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
             bt1 = 0.;
             bt2 = 0.;
             bt3 = 0.;
@@ -881,10 +816,6 @@ void readprm()
             bt8 = 0.;
             bt9 = 0.;
             iss >> ia >> ib >> ic >> id >> bt1 >> bt2 >> bt3 >> bt4 >> bt5 >> bt6 >> bt7 >> bt8 >> bt9;
-            ia--;
-            ib--;
-            ic--;
-            id--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -929,10 +860,10 @@ void readprm()
 
         // angle-torsion parameters
         else if (keyword == "ANGTORS") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
             at1 = 0.;
             at2 = 0.;
             at3 = 0.;
@@ -940,10 +871,6 @@ void readprm()
             at5 = 0.;
             at6 = 0.;
             iss >> ia >> ib >> ic >> id >> at1 >> at2 >> at3 >> at4 >> at5 >> at6;
-            ia--;
-            ib--;
-            ic--;
-            id--;
             pa = numeral(ia, size);
             pb = numeral(ib, size);
             pc = numeral(ic, size);
@@ -985,20 +912,15 @@ void readprm()
 
         // torsion-torsion parameters
         else if (keyword == "TORTORS") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
-            id = -1;
-            ie = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
+            id = 0;
+            ie = 0;
             nx = 0;
             ny = 0;
             nxy = 0;
             iss >> ia >> ib >> ic >> id >> ie >> nx >> ny;
-            ia--;
-            ib--;
-            ic--;
-            id--;
-            ie--;
             nxy = nx * ny;
             std::vector<double> tx(nxy, 0.);
             std::vector<double> ty(nxy, 0.);
@@ -1064,13 +986,11 @@ void readprm()
 
         // van der Waals parameters for specific atom pairs
         else if (keyword == "VDWPAIR" or keyword == "VDWPR") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             rd = 0.;
             ep = 0.;
             iss >> ia >> ib >> rd >> ep;
-            ia--;
-            ib--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             if (ia <= ib) {
@@ -1086,13 +1006,11 @@ void readprm()
 
         // van der Waals parameters for hydrogen bonding pairs
         else if (keyword == "HBOND") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             rd = 0.;
             ep = 0.;
             iss >> ia >> ib >> rd >> ep;
-            ia--;
-            ib--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             if (ia <= ib) {
@@ -1145,13 +1063,11 @@ void readprm()
 
         // bond dipole moment parameters
         else if (keyword == "DIPOLE") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             dp = 0.0;
             ps = 0.5;
             iss >> ia >> ib >> dp >> ps;
-            ia--;
-            ib--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             if (ia <= ib) {
@@ -1169,8 +1085,8 @@ void readprm()
 
         // bond dipole moment parameters for 5-membered rings
         else if (keyword == "DIPOLE5") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             dp = 0.0;
             ps = 0.5;
             iss >> ia >> ib >> dp >> ps;
@@ -1191,8 +1107,8 @@ void readprm()
 
         // bond dipole moment parameters for 4-membered rings
         else if (keyword == "DIPOLE4") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             dp = 0.0;
             ps = 0.5;
             iss >> ia >> ib >> dp >> ps;
@@ -1213,8 +1129,8 @@ void readprm()
 
         // bond dipole moment parameters for 3-membered rings
         else if (keyword == "DIPOLE3") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             dp = 0.0;
             ps = 0.5;
             iss >> ia >> ib >> dp >> ps;
@@ -1291,10 +1207,6 @@ void readprm()
             ib = std::abs(ib);
             ic = std::abs(ic);
             id = std::abs(id);
-            ia--;
-            ib--;
-            ic--;
-            id--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             pc = numeral(ic,size);
@@ -1398,13 +1310,11 @@ void readprm()
 
         // polarization parameters for specific atom pairs
         else if (keyword == "POLPAIR") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             thl = 0.;
             thd = 0.;
             iss >> ia >> ib >> thl >> thd;
-            ia--;
-            ib--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             if (ia <= ib) {
@@ -1455,12 +1365,10 @@ void readprm()
 
         // bond charge flux parameters
         else if (keyword == "BNDCFLUX") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             cfb = 0.;
             iss >> ia >> ib >> cfb;
-            ia--;
-            ib--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             if (ia < ib) {
@@ -1480,17 +1388,14 @@ void readprm()
 
         // angle charge flux parameters
         else if (keyword == "ANGCFLUX") {
-            ia = -1;
-            ib = -1;
-            ic = -1;
+            ia = 0;
+            ib = 0;
+            ic = 0;
             cfa1 = 0.;
             cfa2 = 0.;
             cfb1 = 0.;
             cfb2 = 0.;
             iss >> ia >> ib >> ic >> cfa1 >> cfa2 >> cfb1 >> cfb2;
-            ia--;
-            ib--;
-            ic--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             pc = numeral(ic,size);
@@ -1543,13 +1448,11 @@ void readprm()
 
         // conjugated pisystem bond parameters
         else if (keyword == "PIBOND") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             ss = 0.;
             ts = 0.;
             iss >> ia >> ib >> ss >> ts;
-            ia--;
-            ib--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             if (ia <= ib) {
@@ -1565,13 +1468,11 @@ void readprm()
 
         // conjugated pisystem bond parameters for 5-membered rings
         else if (keyword == "PIBOND5") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             ss = 0.;
             ts = 0.;
             iss >> ia >> ib >> ss >> ts;
-            ia--;
-            ib--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             if (ia <= ib) {
@@ -1587,13 +1488,11 @@ void readprm()
 
         // conjugated pisystem bond parameters for 4-membered rings
         else if (keyword == "PIBOND4") {
-            ia = -1;
-            ib = -1;
+            ia = 0;
+            ib = 0;
             ss = 0.;
             ts = 0.;
             iss >> ia >> ib >> ss >> ts;
-            ia--;
-            ib--;
             pa = numeral(ia,size);
             pb = numeral(ib,size);
             if (ia <= ib) {
