@@ -7,6 +7,7 @@ src/bitors.cpp
 src/bonds.cpp
 src/boys.cpp
 src/chkxyz.cpp
+src/cluster.cpp
 src/command.cpp
 src/config.cpp
 src/control.cpp

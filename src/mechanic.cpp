@@ -13,6 +13,7 @@
 #include "attach.h"
 #include "bitors.h"
 #include "bonds.h"
+#include "cluster.h"
 #include "cutoffs.h"
 #include "fatal.h"
 #include "field.h"
@@ -54,7 +55,7 @@ void mechanic()
 
     // assign atoms to molecules and set the atom groups
     molecule();
-    // cluster(); do
+    cluster();
 
     // find any pisystem atoms, bonds and torsional angles
     // orbital();
