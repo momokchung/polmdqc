@@ -32,6 +32,8 @@ void active()
     bool header;
 
     // allocation and initialization of some global arrays
+    if (iuse.size() != 0) iuse.resize(0);
+    if (use.size() != 0) use.resize(0);
     iuse.resize(n);
     use.resize(n, true);
 

@@ -21,6 +21,12 @@ void attach()
     int maxn13 = 3 * maxval;
     int maxn14 = 9 * maxval;
     int maxn15 = 27 * maxval;
+    if (n13.size() != 0) n13.resize(0);
+    if (n14.size() != 0) n14.resize(0);
+    if (n15.size() != 0) n15.resize(0);
+    if (i13.size() != 0) i13.resize(0);
+    if (i14.size() != 0) i14.resize(0);
+    if (i15.size() != 0) i15.resize(0);
     n13.resize(n, 0);
     n14.resize(n, 0);
     n15.resize(n, 0);

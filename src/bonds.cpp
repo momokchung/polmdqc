@@ -21,6 +21,8 @@ void bonds()
 
     // perform dynamic allocation of some global arrays
     maxbnd = 4 * n;
+    if (ibnd.size() != 0) ibnd.resize(0);
+    if (bndlist.size() != 0) bndlist.resize(0);
     ibnd.resize(maxbnd, std::vector<int>(2));
     bndlist.resize(n, std::vector<int>(maxval));
 

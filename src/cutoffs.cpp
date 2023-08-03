@@ -318,6 +318,11 @@ void cutoffs()
 
     // perform dynamic allocation of some global arrays
     if (use_vlist or use_dlist) {
+        if (nvlst.size() != 0) nvlst.resize(0);
+        if (vlst.size() != 0) vlst.resize(0);
+        if (xvold.size() != 0) xvold.resize(0);
+        if (yvold.size() != 0) yvold.resize(0);
+        if (zvold.size() != 0) zvold.resize(0);
         nvlst.resize(n);
         vlst.resize(n, std::vector<int>(maxvlst));
         xvold.resize(n);
@@ -325,17 +330,29 @@ void cutoffs()
         zvold.resize(n);
     }
     if (use_clist or use_mlist) {
+        if (nelst.size() != 0) nelst.resize(0);
+        if (elst.size() != 0) elst.resize(0);
+        if (xeold.size() != 0) xeold.resize(0);
+        if (yeold.size() != 0) yeold.resize(0);
+        if (zeold.size() != 0) zeold.resize(0);
         nelst.resize(n);
         elst.resize(n,std::vector<int>(maxelst));
         xeold.resize(n);
         yeold.resize(n);
         zeold.resize(n);
         if (poltyp != "DIRECT") {
+            if (tindex.size() != 0) tindex.resize(0);
+            if (tdipdip.size() != 0) tdipdip.resize(0);
             tindex.resize(n*maxelst, std::vector<int>(2));
             tdipdip.resize(n*maxelst, std::vector<double>(6));
         }
     }
     if (use_ulist) {
+        if (nulst.size() != 0) nulst.resize(0);
+        if (ulst.size() != 0) ulst.resize(0);
+        if (xuold.size() != 0) xuold.resize(0);
+        if (yuold.size() != 0) yuold.resize(0);
+        if (zuold.size() != 0) zuold.resize(0);
         nulst.resize(n);
         ulst.resize(n, std::vector<int>(maxulst));
         xuold.resize(n);

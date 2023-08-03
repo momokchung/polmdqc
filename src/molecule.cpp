@@ -20,6 +20,10 @@ void molecule()
     std::vector<int> list;
 
     // perform dynamic allocation of some global arrays
+    if (imol.size() != 0) imol.resize(0);
+    if (kmol.size() != 0) kmol.resize(0);
+    if (molcule.size() != 0) molcule.resize(0);
+    if (molmass.size() != 0) molmass.resize(0);
     imol.resize(n, std::vector<int>(2,-1));
     kmol.resize(n);
     molcule.resize(n, -1);
