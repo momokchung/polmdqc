@@ -79,6 +79,7 @@
 #include "potent.h"
 #include "ptable.h"
 #include "qcmdlimits.h"
+#include "repel.h"
 #include "reppot.h"
 #include "resdue.h"
 #include "restrn.h"

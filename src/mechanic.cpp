@@ -19,6 +19,7 @@
 #include "field.h"
 #include "inform.h"
 #include "katom.h"
+#include "kmpole.h"
 #include "lattice.h"
 #include "mechanic.h"
 #include "molecule.h"
@@ -83,7 +84,7 @@ void mechanic()
     // assign electrostatic interaction potential parameters
     // kcharge();
     // kdipole();
-    // kmpole(); do
+    kmpole();
     // kpolar(); do
     // kchgtrn();
     // kchgflx();

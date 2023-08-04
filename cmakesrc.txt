@@ -6,6 +6,7 @@ src/basefile.cpp
 src/bitors.cpp
 src/bonds.cpp
 src/boys.cpp
+src/chkpole.cpp
 src/chkxyz.cpp
 src/cluster.cpp
 src/command.cpp

@@ -11,7 +11,9 @@
 #include "atomid.h"
 #include "atoms.h"
 #include "chgpen.h"
+#include "chkpole.h"
 #include "couple.h"
+#include "gettext.h"
 #include "inform.h"
 #include "kcpen.h"
 #include "keys.h"
@@ -20,692 +22,687 @@
 #include "mathConst.h"
 #include "mplpot.h"
 #include "mpole.h"
+#include "numeral.h"
 #include "polar.h"
 #include "polgrp.h"
 #include "potent.h"
 #include "units.h"
+#include "upcase.h"
+#include <algorithm>
+#include <cmath>
+#include <iostream>
+#include <sstream>
 
 void kmpole()
 {
+    int i,j,k,l,m;
+    int ji,ki,li;
+    int it,jt,kt,lt;
+    int ic,imp,nmp;
+    int size,next;
+    int number;
+    int kz,kx,ky;
+    int ztyp,xtyp,ytyp;
+    int polmax;
+    std::vector<int> mpt;
+    std::vector<int> mpz;
+    std::vector<int> mpx;
+    std::vector<int> mpy;
+    double pel,pal;
+    double mpl[13];
+    bool header,path;
+    std::string pa,pb,pc,pd;
+    std::string axt;
+    std::string blank,pt;
+    std::string keyword;
+    std::string record;
+    std::string string;
+    std::istringstream iss;
 
+    // count the number of existing multipole parameters
+    blank = "";
+    nmp = maxnmp;
+    for (int i = maxnmp-1; i >=0; i--) {
+        if (kmp[i] == blank)  nmp = i;
+    }
+
+    // find and count new multipole parameters in the keyfile
+    imp = 0;
+    for (int i = 0; i < nkey; i++) {
+        next = 0;
+        record = keyline[i];
+        gettext(record,keyword,next);
+        upcase(keyword);
+        if (keyword == "MULTIPOLE") {
+            k = 0;
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            int numObjects = 0;
+            int value;
+            while (iss >> value) {
+                numObjects++;
+            }
+            iss.clear();
+            iss.seekg(0);
+            if (numObjects == 5) {
+                if (!(iss >> k >> kz >> kx >> ky >> mpl[0])) goto label_50;
+            }
+            else if (numObjects == 4) {
+                if (!(iss >> k >> kz >> kx >> mpl[0])) goto label_50;
+            }
+            else if (numObjects == 3) {
+                if (!(iss >> k >> kz >> mpl[0])) goto label_50;
+            }
+            else if (numObjects == 2) {
+                if (!(iss >> k >> mpl[0])) goto label_50;
+            }
+            else {
+                goto label_50;
+            }
+            if (k > 0) {
+                record = keyline[i+1];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[1] >> mpl[2] >> mpl[3])) goto label_50;
+                record = keyline[i+2];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[4])) goto label_50;
+                record = keyline[i+3];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[7] >> mpl[8])) goto label_50;
+                record = keyline[i+4];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[10] >> mpl[11] >> mpl[12])) goto label_50;
+                imp++;
+            }
+        label_50:
+        continue;
+        }
+    }
+
+    // check for too many combined parameter values
+    nmp += imp;
+    if (nmp > maxnmp) {
+        printf("\n KMPOLE  --  Too many Atomic Multipole Parameters\n");
+        informAbort = true;
+    }
+
+    // move existing parameters to make room for new values
+    if (imp != 0) {
+        for (int j = nmp-1; j >= imp; j--) {
+            k = j - imp;
+            kmp[j] = kmp[k];
+            mpaxis[j] = mpaxis[k];
+            for (int m = 0; m < 13; m++) {
+                multip[j][m] = multip[k][m];
+            }
+        }
+    }
+
+    // process keywords containing atomic multipole parameters
+    imp = 0;
+    header = true;
+    for (int i = 0; i < nkey; i++) {
+        next = 0;
+        record = keyline[i];
+        gettext(record,keyword,next);
+        upcase(keyword);
+        if (keyword == "MULTIPOLE") {
+            k = 0;
+            kz = 0;
+            kx = 0;
+            ky = 0;
+            axt = "Z-then-X";
+            for (int j = 0; j < 13; j++) {
+                mpl[j] = 0.;
+            }
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            int numObjects = 0;
+            int value;
+            while (iss >> value) {
+                numObjects++;
+            }
+            iss.clear();
+            iss.seekg(0);
+            if (numObjects == 5) {
+                if (!(iss >> k >> kz >> kx >> ky >> mpl[0])) goto label_130;
+            }
+            else if (numObjects == 4) {
+                if (!(iss >> k >> kz >> kx >> mpl[0])) goto label_130;
+            }
+            else if (numObjects == 3) {
+                if (!(iss >> k >> kz >> mpl[0])) goto label_130;
+            }
+            else if (numObjects == 2) {
+                if (!(iss >> k >> mpl[0])) goto label_130;
+            }
+            else {
+                goto label_130;
+            }
+            if (k > 0) {
+                if (kz == 0) axt = "None";
+                if (kz!=0 and kx==0) axt = "Z-Only";
+                if (kz<0 or kx<0) axt = "Bisector";
+                if (kx<0 and ky<0) axt = "Z-Bisect";
+                if (std::max({kz,kx,ky}) < 0) axt = "3-Fold";
+                kz = std::abs(kz);
+                kx = std::abs(kx);
+                ky = std::abs(ky);
+                record = keyline[i+1];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[1] >> mpl[2] >> mpl[3])) goto label_130;
+                record = keyline[i+2];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[4])) goto label_130;
+                record = keyline[i+3];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[7] >> mpl[8])) goto label_130;
+                record = keyline[i+4];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[10] >> mpl[11] >> mpl[12])) goto label_130;
+                mpl[5] = mpl[7];
+                mpl[6] = mpl[10];
+                mpl[9] = mpl[11];
+                if (header and !silent) {
+                    header = false;
+                    printf("\n Additional Atomic Multipole Parameters :\n\n");
+                    printf("     Atom Type     Coordinate Frame");
+                    printf(" Definition         Multipole Moments\n");
+                }
+                if (!silent) {
+                    printf("\n      %6d   %6d %6d %6d   %-8s   %9.5f\n", k, kz, kx, ky, axt.c_str(), mpl[0]);
+                    printf("                                                 %9.5f%9.5f%9.5f\n", mpl[1], mpl[2], mpl[3]);
+                    printf("                                                 %9.5f\n", mpl[4]);
+                    printf("                                                 %9.5f%9.5f\n", mpl[7], mpl[8]);
+                    printf("                                                 %9.5f%9.5f%9.5f\n", mpl[10], mpl[11], mpl[12]);
+                }
+                size = 4;
+                pa = numeral (k,size);
+                pb = numeral (kz,size);
+                pc = numeral (kx,size);
+                pd = numeral (ky,size);
+                pt = pa + pb + pc + pd;
+                kmp[imp] = pt;
+                mpaxis[imp] = axt;
+                for (int j = 0; j < 13; j++) {
+                    multip[imp][j] = mpl[j];
+                }
+                imp++;
+            }
+            label_130:
+            continue;
+        }
+    }
+
+    // perform dynamic allocation of some global arrays
+    if (ipole.size() != 0) ipole.resize(0);
+    if (polsiz.size() != 0) polsiz.resize(0);
+    if (pollist.size() != 0) pollist.resize(0);
+    if (zaxis.size() != 0) zaxis.resize(0);
+    if (xaxis.size() != 0) xaxis.resize(0);
+    if (yaxis.size() != 0) yaxis.resize(0);
+    if (pole.size() != 0) pole.resize(0);
+    if (rpole.size() != 0) rpole.resize(0);
+    if (mono0.size() != 0) mono0.resize(0);
+    if (polaxe.size() != 0) polaxe.resize(0);
+    if (np11.size() != 0) np11.resize(0);
+    if (np12.size() != 0) np12.resize(0);
+    if (np13.size() != 0) np13.resize(0);
+    if (np14.size() != 0) np14.resize(0);
+    ipole.resize(n, -1);
+    polsiz.resize(n, 0);
+    pollist.resize(n, -1);
+    zaxis.resize(n, 0);
+    xaxis.resize(n, 0);
+    yaxis.resize(n, 0);
+    pole.resize(n, std::vector<double>(maxpole, 0.));
+    rpole.resize(n, std::vector<double>(maxpole));
+    mono0.resize(n, 0.);
+    polaxe.resize(n, "None");
+    np11.resize(n, 0);
+    np12.resize(n, 0);
+    np13.resize(n, 0);
+    np14.resize(n, 0);
+
+    // perform dynamic allocation of some local arrays
+    mpt.resize(maxnmp);
+    mpz.resize(maxnmp);
+    mpx.resize(maxnmp);
+    mpy.resize(maxnmp);
+
+    // store the atom types associated with each parameter
+    for (int i = 0; i < nmp; i++) {
+        mpt[i] = std::stoi(kmp[i].substr(0,4)) - 1;
+        mpz[i] = std::stoi(kmp[i].substr(4,4)) - 1;
+        mpx[i] = std::stoi(kmp[i].substr(8,4)) - 1;
+        mpy[i] = std::stoi(kmp[i].substr(12,4)) - 1;
+    }
+
+    // assign multipole parameters via only 1-2 connected atoms
+    for (int i = 0; i < n; i++) {
+        it = type[i];
+        for (int imp = 0; imp < nmp; imp++) {
+            if (it == mpt[imp]) {
+                ztyp = mpz[imp];
+                xtyp = mpx[imp];
+                ytyp = mpy[imp];
+                for (int j = 0; j < n12[i]; j++) {
+                    ji = i12[i][j];
+                    jt = type[ji];
+                    if (jt == ztyp) {
+                        for (int k = 0; k < n12[i]; k++) {
+                            ki = i12[i][k];
+                            kt = type[ki];
+                            if (kt==xtyp and ki!=ji) {
+                                if (ytyp == -1) {
+                                    pollist[i] = i;
+                                    zaxis[i] = ji+1;
+                                    xaxis[i] = ki+1;
+                                    polaxe[i] = mpaxis[imp];
+                                    for (int m = 0; m < 13; m++) {
+                                        pole[i][m] = multip[imp][m];
+                                    }
+                                    goto label_140;
+                                }
+                                for (int l = 0; l < n12[i]; l++) {
+                                    li = i12[i][l];
+                                    lt = type[li];
+                                    if (lt==ytyp and li!=ji and li!=ki) {
+                                        pollist[i] = i;
+                                        zaxis[i] = ji+1;
+                                        xaxis[i] = ki+1;
+                                        yaxis[i] = li+1;
+                                        polaxe[i] = mpaxis[imp];
+                                        for (int m = 0; m < 13; m++) {
+                                            pole[i][m] = multip[imp][m];
+                                        }
+                                        goto label_140;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // assign multipole parameters via 1-2 and 1-3 connected atoms
+        for (int imp = 0; imp < nmp; imp++) {
+            if (it == mpt[imp]) {
+                ztyp = mpz[imp];
+                xtyp = mpx[imp];
+                ytyp = mpy[imp];
+                for (int j = 0; j < n12[i]; j++) {
+                    ji = i12[i][j];
+                    jt = type[ji];
+                    if (jt == ztyp) {
+                        for (int k = 0; k < n13[i]; k++) {
+                            ki = i13[i][k];
+                            kt = type[ki];
+                            path = false;
+                            for (int m = 0; m < n12[ki]; m++) {
+                                if (i12[ki][m] == ji) path = true;
+                            }
+                            if (kt==xtyp and path) {
+                                if (ytyp == -1) {
+                                    pollist[i] = i;
+                                    zaxis[i] = ji+1;
+                                    xaxis[i] = ki+1;
+                                    polaxe[i] = mpaxis[imp];
+                                    for (int m = 0; m < 13; m++) {
+                                        pole[i][m] = multip[imp][m];
+                                    }
+                                    goto label_140;
+                                }
+                                for (int l = 0; l < n13[i]; l++) {
+                                    li = i13[i][l];
+                                    lt = type[li];
+                                    path = false;
+                                    for (int m = 0; m < n12[li]; m++) {
+                                        if (i12[li][m] == ji) path = true;
+                                    }
+                                    if (lt==ytyp and li!=ki and path) {
+                                        pollist[i] = i;
+                                        zaxis[i] = ji+1;
+                                        xaxis[i] = ki+1;
+                                        yaxis[i] = li+1;
+                                        polaxe[i] = mpaxis[imp];
+                                        for (int m = 0; m < 13; m++) {
+                                            pole[i][m] = multip[imp][m];
+                                        }
+                                        goto label_140;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // assign multipole parameters via only a z-defining atom
+        for (int imp = 0; imp < nmp; imp++) {
+            if (it == mpt[imp]) {
+                ztyp = mpz[imp];
+                xtyp = mpx[imp];
+                ytyp = mpy[imp];
+                for (int j = 0; j < n12[i]; j++) {
+                    ji = i12[i][j];
+                    jt = type[ji];
+                    if (jt == ztyp) {
+                        if (xtyp == -1) {
+                            pollist[i] = i;
+                            zaxis[i] = ji+1;
+                            polaxe[i] = mpaxis[imp];
+                            for (int m = 0; m < 13; m++) {
+                                pole[i][m] = multip[imp][m];
+                            }
+                            goto label_140;
+                        }
+                    }
+                }
+            }
+        }
+
+        // assign multipole parameters via no connected atoms
+        for (int imp = 0; imp < nmp; imp++) {
+            if (it == mpt[imp]) {
+                ztyp = mpz[imp];
+                xtyp = mpx[imp];
+                ytyp = mpy[imp];
+                if (ztyp == -1) {
+                    pollist[i] = i;
+                    polaxe[i] = mpaxis[imp];
+                    for (int m = 0; m < 13; m++) {
+                        pole[i][m] = multip[imp][m];
+                    }
+                    goto label_140;
+                }
+            }
+        }
+        label_140:
+        continue;
+    }
+
+    // process keywords with multipole parameters for specific atoms
+    header = true;
+    for (int i = 0; i < nkey; i++) {
+        next = 0;
+        record = keyline[i];
+        gettext(record,keyword,next);
+        upcase(keyword);
+        if (keyword == "MULTIPOLE") {
+            k = 0;
+            kz = 0;
+            kx = 0;
+            ky = 0;
+            axt = "Z-then-X";
+            for (int j = 0; j < 13; j++) {
+                mpl[j] = 0.;
+            }
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            int numObjects = 0;
+            int value;
+            while (iss >> value) {
+                numObjects++;
+            }
+            iss.clear();
+            iss.seekg(0);
+            if (numObjects == 5) {
+                if (!(iss >> k >> kz >> kx >> ky >> mpl[0])) goto label_210;
+            }
+            else if (numObjects == 4) {
+                if (!(iss >> k >> kz >> kx >> mpl[0])) goto label_210;
+            }
+            else if (numObjects == 3) {
+                if (!(iss >> k >> kz >> mpl[0])) goto label_210;
+            }
+            else if (numObjects == 2) {
+                if (!(iss >> k >> mpl[0])) goto label_210;
+            }
+            else {
+                goto label_210;
+            }
+            if (k<0 and k>=-n) {
+                k = -k;
+                if (kz == 0)  axt = "None";
+                if (kz!=0 and kx==0) axt = "Z-Only";
+                if (kz<0 or kx<0) axt = "Bisector";
+                if (kx<0 and ky<0) axt = "Z-Bisect";
+                if (std::max({kz,kx,ky}) < 0) axt = "3-Fold";
+                kz = std::abs(kz);
+                kx = std::abs(kx);
+                ky = std::abs(ky);
+                record = keyline[i+1];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[1] >> mpl[2] >> mpl[3])) goto label_210;
+                record = keyline[i+2];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[4])) goto label_210;
+                record = keyline[i+3];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[7] >> mpl[8])) goto label_210;
+                record = keyline[i+4];
+                iss.clear();
+                iss.str(record);
+                if (!(iss >> mpl[10] >> mpl[11] >> mpl[12])) goto label_210;
+                mpl[5] = mpl[7];
+                mpl[6] = mpl[10];
+                mpl[9] = mpl[11];
+                if (header and !silent) {
+                    header = false;
+                    printf("\n Additional Atomic Multipoles for Specific Atoms :\n\n");
+                    printf("     Atom          Coordinate Frame");
+                    printf(" Definition         Multipole Moments\n");
+                }
+                if (!silent) {
+                    printf("\n   %6d      %6d %6d %6d   %-8s   %9.5f\n", k, kz, kx, ky, axt.c_str(), mpl[0]);
+                    printf("                                                 %9.5f%9.5f%9.5f\n", mpl[1], mpl[2], mpl[3]);
+                    printf("                                                 %9.5f\n", mpl[4]);
+                    printf("                                                 %9.5f%9.5f\n", mpl[7], mpl[8]);
+                    printf("                                                 %9.5f%9.5f%9.5f\n", mpl[10], mpl[11], mpl[12]);
+                }
+                k--;
+                kz--;
+                kx--;
+                ky--;
+                pollist[k] = k;
+                zaxis[k] = kz+1;
+                xaxis[k] = kx+1;
+                yaxis[k] = ky+1;
+                polaxe[k] = axt;
+                for (int j = 0; j < 13; j++) {
+                    pole[k][j] = mpl[j];
+                }
+            }
+            label_210:
+            continue;
+        }
+    }
+
+    // convert the dipole and quadrupole moments to Angstroms,
+    // quadrupole divided by 3 for use as traceless values
+    for (int i = 0; i < n; i++) {
+        for (int k = 1; k < 4; k++) {
+            pole[i][k] = pole[i][k] * bohr;
+        }
+        for (int k = 4; k < 13; k++) {
+            pole[i][k] = pole[i][k] * bohr*bohr / 3.;
+        }
+    }
+
+    // get the order of the multipole expansion at each site
+    npole = n;
+    polmax = 0;
+    for (int i = 0; i < n; i++) {
+        size = 0;
+        for (int k = 0; k < maxpole; k++) {
+            if (pole[i][k] != 0.)  size = std::max(k+1,size);
+        }
+        if (size > 4) size = 13;
+        else if (size > 1) size = 4;
+        polsiz[i] = size;
+        polmax = std::max(polmax,size);
+    }
+
+    // warn if there are sites with no atomic multipole values
+    if (polmax != 0) {
+        header = true;
+        for (int i = 0; i < n; i++) {
+            if (pollist[i] == -1) {
+                if (header) {
+                    header = false;
+                    printf("\n Undefined Atomic Multipole Parameters :\n\n");
+                }
+                printf(" Warning, No Multipole Parameters for Atom%7d\n", i+1);
+            }
+            pollist[i] = -1;
+        }
+    }
+
+    // perform dynamic allocation of some global arrays
+    // if polarization not used, zero out induced dipoles
+    if (!use_polar) {
+        if (uind.size() != 0) uind.resize(0);
+        if (uinp.size() != 0) uinp.resize(0);
+        if (uinds.size() != 0) uinds.resize(0);
+        if (uinps.size() != 0) uinps.resize(0);
+        uind.resize(n, std::vector<double>(3, 0.));
+        uinp.resize(n, std::vector<double>(3, 0.));
+        uinds.resize(n, std::vector<double>(3, 0.));
+        uinps.resize(n, std::vector<double>(3, 0.));
+    }
+
+    // perform dynamic allocation of some global arrays
+    if (pcore.size() != 0) pcore.resize(0);
+    if (pval.size() != 0) pval.resize(0);
+    if (pval0.size() != 0) pval0.resize(0);
+    if (palpha.size() != 0) palpha.resize(0);
+    pcore.resize(n);
+    pval.resize(n);
+    pval0.resize(n);
+    palpha.resize(n);
+
+    // test
+    // find new charge penetration parameters in the keyfile
+    header = true;
+    for (int i = 0; i < nkey; i++) {
+        next = 0;
+        record = keyline[i];
+        gettext(record,keyword,next);
+        upcase(keyword);
+        if (keyword == "CHGPEN") {
+            k = 0;
+            pel = 0.;
+            pal = 0.;
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            if (!(iss >> k >> pel >> pal)) goto label_260;
+            if (k > 0) {
+                k--;
+                cpele[k] = std::abs(pel);
+                cpalp[k] = pal;
+                if (header and !silent) {
+                    header = false;
+                    printf("\n Additional Charge Penetration Parameters :\n\n");
+                    printf("     Atom Class           Core Chg           Damp\n\n");
+                }
+                if (!silent) {
+                    printf("      %6d       %15.3f%15.4f\n", k+1, pel, pal);
+                }
+            }
+            label_260:
+            continue;
+        }
+    }
+
+    // assign the charge penetration charge and alpha parameters 
+    ncp = 0;
+    for (int i = 0; i < n; i++) {
+        pcore[i] = 0.;
+        pval[i] = pole[i][0];
+        pval0[i] = pval[i];
+        palpha[i] = 0.;
+        ic = atomClass[i];
+        if (ic != 0) {
+            pcore[i] = cpele[ic];
+            pval[i] = pole[i][0] - cpele[ic];
+            pval0[i] = pval[i];
+            palpha[i] = cpalp[ic];
+        }
+    }
+
+    // test
+    // process keywords with charge penetration for specific atoms
+    header = true;
+    for (int i = 0; i < nkey; i++) {
+        next = 0;
+        record = keyline[i];
+        gettext(record,keyword,next);
+        upcase(keyword);
+        if (keyword == "CHGPEN") {
+            k = 0;
+            pel = 0.;
+            pal = 0.;
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            if (!(iss >> k >> pel >> pal)) goto label_290;
+            if (k<0 and k>=-n) {
+                k = -k;
+                k--;
+                pcore[k] = std::abs(pel);
+                pval[k] = pole[k][0] - std::abs(pel);
+                palpha[k] = pal;
+                if (header and !silent) {
+                    header = false;
+                    printf("\n Additional Charge Penetration for Specific Atoms :\n\n");
+                    printf("     Atom                 Core Chg           Damp\n\n");
+                }
+                if (!silent) {
+                    printf("      %6d       %15.3f%15.4f\n", k+1, pel, pal);
+                }
+            }
+            label_290:
+            continue;
+        }
+    }
+
+    // remove zero or undefined electrostatic sites from the list
+    if ((use_mpole or use_repel or use_solv) and !use_polar and !use_chgtrn) {
+        npole = 0;
+        ncp = 0;
+        for (int i = 0; i < n; i++) {
+            if (polsiz[i] != 0) {
+                ipole[npole] = i;
+                pollist[i] = npole;
+                npole++;
+                mono0[i] = pole[i][0];
+                if (palpha[i] != 0.)  ncp++;
+            }
+        }
+    }
+
+    // test multipoles at chiral sites and invert if necessary
+    if (use_mpole and !use_polar and !use_chgtrn) chkpole();
+
+    // turn off atomic multipole potentials if not used
+    if (npole == 0)  use_mpole = false;
+    if (ncp != 0)  use_chgpen = true;
 }
-
-
-
-//       integer i,j,k,l,m
-//       integer ji,ki,li
-//       integer it,jt,kt,lt
-//       integer ic,imp,nmp
-//       integer size,next
-//       integer number
-//       integer kz,kx,ky
-//       integer ztyp,xtyp,ytyp
-//       integer polmax
-//       integer, allocatable :: mpt(:)
-//       integer, allocatable :: mpz(:)
-//       integer, allocatable :: mpx(:)
-//       integer, allocatable :: mpy(:)
-//       real*8 pel,pal
-//       real*8 mpl(13)
-//       logical header,path
-//       character*4 pa,pb,pc,pd
-//       character*8 axt
-//       character*16 blank,pt
-//       character*20 keyword
-//       character*240 record
-//       character*240 string
-// c
-// c
-// c     count the number of existing multipole parameters
-// c
-//       blank = '                '
-//       nmp = maxnmp
-//       do i = maxnmp, 1, -1
-//          if (kmp(i) .eq. blank)  nmp = i - 1
-//       end do
-// c
-// c     find and count new multipole parameters in the keyfile
-// c
-//       imp = 0
-//       do i = 1, nkey
-//          next = 1
-//          record = keyline(i)
-//          call gettext (record,keyword,next)
-//          call upcase (keyword)
-//          if (keyword(1:10) .eq. 'MULTIPOLE ') then
-//             k = 0
-//             string = record(next:240)
-//             read (string,*,err=10,end=10)  k,kz,kx,ky,mpl(1)
-//             goto 40
-//    10       continue
-//             read (string,*,err=20,end=20)  k,kz,kx,mpl(1)
-//             goto 40
-//    20       continue
-//             read (string,*,err=30,end=30)  k,kz,mpl(1)
-//             goto 40
-//    30       continue
-//             read (string,*,err=50,end=50)  k,mpl(1)
-//    40       continue
-//             if (k .gt. 0) then
-//                record = keyline(i+1)
-//                read (record,*,err=50,end=50)  mpl(2),mpl(3),mpl(4)
-//                record = keyline(i+2)
-//                read (record,*,err=50,end=50)  mpl(5)
-//                record = keyline(i+3)
-//                read (record,*,err=50,end=50)  mpl(8),mpl(9)
-//                record = keyline(i+4)
-//                read (record,*,err=50,end=50)  mpl(11),mpl(12),mpl(13)
-//                imp = imp + 1
-//             end if
-//    50       continue
-//          end if
-//       end do
-// c
-// c     check for too many combined parameter values
-// c
-//       nmp = nmp + imp
-//       if (nmp .gt. maxnmp) then
-//          write (iout,60)
-//    60    format (/,' KMPOLE  --  Too many Atomic Multipole',
-//      &              ' Parameters')
-//          abort = .true.
-//       end if
-// c
-// c     move existing parameters to make room for new values
-// c
-//       if (imp .ne. 0) then
-//          do j = nmp, imp+1, -1
-//             k = j - imp
-//             kmp(j) = kmp(k)
-//             mpaxis(j) = mpaxis(k)
-//             do m = 1, 13
-//                multip(m,j) = multip(m,k)
-//             end do
-//          end do
-//       end if
-// c
-// c     process keywords containing atomic multipole parameters
-// c
-//       imp = 0
-//       header = .true.
-//       do i = 1, nkey
-//          next = 1
-//          record = keyline(i)
-//          call gettext (record,keyword,next)
-//          call upcase (keyword)
-//          if (keyword(1:10) .eq. 'MULTIPOLE ') then
-//             k = 0
-//             kz = 0
-//             kx = 0
-//             ky = 0
-//             axt = 'Z-then-X'
-//             do j = 1, 13
-//                mpl(j) = 0.0d0
-//             end do
-//             string = record(next:240)
-//             read (string,*,err=70,end=70)  k,kz,kx,ky,mpl(1)
-//             goto 100
-//    70       continue
-//             ky = 0
-//             read (string,*,err=80,end=80)  k,kz,kx,mpl(1)
-//             goto 100
-//    80       continue
-//             kx = 0
-//             read (string,*,err=90,end=90)  k,kz,mpl(1)
-//             goto 100
-//    90       continue
-//             kz = 0
-//             read (string,*,err=130,end=130)  k,mpl(1)
-//   100       continue
-//             if (k .gt. 0) then
-//                if (kz .eq. 0)  axt = 'None'
-//                if (kz.ne.0 .and. kx.eq.0)  axt = 'Z-Only'
-//                if (kz.lt.0 .or. kx.lt.0)  axt = 'Bisector'
-//                if (kx.lt.0 .and. ky.lt.0)  axt = 'Z-Bisect'
-//                if (max(kz,kx,ky) .lt. 0)  axt = '3-Fold'
-//                kz = abs(kz)
-//                kx = abs(kx)
-//                ky = abs(ky)
-//                record = keyline(i+1)
-//                read (record,*,err=130,end=130)  mpl(2),mpl(3),mpl(4)
-//                record = keyline(i+2)
-//                read (record,*,err=130,end=130)  mpl(5)
-//                record = keyline(i+3)
-//                read (record,*,err=130,end=130)  mpl(8),mpl(9)
-//                record = keyline(i+4)
-//                read (record,*,err=130,end=130)  mpl(11),mpl(12),mpl(13)
-//                mpl(6) = mpl(8)
-//                mpl(7) = mpl(11)
-//                mpl(10) = mpl(12)
-//                if (header .and. .not.silent) then
-//                   header = .false.
-//                   write (iout,110)
-//   110             format (/,' Additional Atomic Multipole Parameters :',
-//      &                    //,5x,'Atom Type',5x,'Coordinate Frame',
-//      &                       ' Definition',9x,'Multipole Moments')
-//                end if
-//                if (.not. silent) then
-//                   write (iout,120)  k,kz,kx,ky,axt,(mpl(j),j=1,5),
-//      &                             mpl(8),mpl(9),(mpl(j),j=11,13)
-//   120             format (/,6x,i6,3x,i6,1x,i6,1x,i6,3x,a8,3x,f9.5,
-//      &                       /,49x,3f9.5,/,49x,f9.5,
-//      &                       /,49x,2f9.5,/,49x,3f9.5)
-//                end if
-//                size = 4
-//                call numeral (k,pa,size)
-//                call numeral (kz,pb,size)
-//                call numeral (kx,pc,size)
-//                call numeral (ky,pd,size)
-//                pt = pa//pb//pc//pd
-//                imp = imp + 1
-//                kmp(imp) = pt
-//                mpaxis(imp) = axt
-//                do j = 1, 13
-//                   multip(j,imp) = mpl(j)
-//                end do
-//             end if
-//   130       continue
-//          end if
-//       end do
-// c
-// c     perform dynamic allocation of some global arrays
-// c
-//       if (allocated(ipole))  deallocate (ipole)
-//       if (allocated(polsiz))  deallocate (polsiz)
-//       if (allocated(pollist))  deallocate (pollist)
-//       if (allocated(zaxis))  deallocate (zaxis)
-//       if (allocated(xaxis))  deallocate (xaxis)
-//       if (allocated(yaxis))  deallocate (yaxis)
-//       if (allocated(pole))  deallocate (pole)
-//       if (allocated(rpole))  deallocate (rpole)
-//       if (allocated(mono0))  deallocate (mono0)
-//       if (allocated(polaxe))  deallocate (polaxe)
-//       if (allocated(np11))  deallocate (np11)
-//       if (allocated(np12))  deallocate (np12)
-//       if (allocated(np13))  deallocate (np13)
-//       if (allocated(np14))  deallocate (np14)
-//       allocate (ipole(n))
-//       allocate (polsiz(n))
-//       allocate (pollist(n))
-//       allocate (zaxis(n))
-//       allocate (xaxis(n))
-//       allocate (yaxis(n))
-//       allocate (pole(maxpole,n))
-//       allocate (rpole(maxpole,n))
-//       allocate (mono0(n))
-//       allocate (polaxe(n))
-//       allocate (np11(n))
-//       allocate (np12(n))
-//       allocate (np13(n))
-//       allocate (np14(n))
-// c
-// c     zero out local axes, multipoles and polarization attachments
-// c
-//       do i = 1, n
-//          ipole(i) = 0
-//          polsiz(i) = 0
-//          pollist(i) = 0
-//          zaxis(i) = 0
-//          xaxis(i) = 0
-//          yaxis(i) = 0
-//          polaxe(i) = 'None'
-//          do j = 1, 13
-//             pole(j,i) = 0.0d0
-//          end do
-//          mono0(i) = 0.0d0
-//          np11(i) = 0
-//          np12(i) = 0
-//          np13(i) = 0
-//          np14(i) = 0
-//       end do
-// c
-// c     perform dynamic allocation of some local arrays
-// c
-//       allocate (mpt(maxnmp))
-//       allocate (mpz(maxnmp))
-//       allocate (mpx(maxnmp))
-//       allocate (mpy(maxnmp))
-// c
-// c     store the atom types associated with each parameter
-// c
-//       do i = 1, nmp
-//          mpt(i) = number(kmp(i)(1:4))
-//          mpz(i) = number(kmp(i)(5:8))
-//          mpx(i) = number(kmp(i)(9:12))
-//          mpy(i) = number(kmp(i)(13:16))
-//       end do
-// c
-// c     assign multipole parameters via only 1-2 connected atoms
-// c
-//       do i = 1, n
-//          it = type(i)
-//          do imp = 1, nmp
-//             if (it .eq. mpt(imp)) then
-//                ztyp = mpz(imp)
-//                xtyp = mpx(imp)
-//                ytyp = mpy(imp)
-//                do j = 1, n12(i)
-//                   ji = i12(j,i)
-//                   jt = type(ji)
-//                   if (jt .eq. ztyp) then
-//                      do k = 1, n12(i)
-//                         ki = i12(k,i)
-//                         kt = type(ki)
-//                         if (kt.eq.xtyp .and. ki.ne.ji) then
-//                            if (ytyp .eq. 0) then
-//                               pollist(i) = i
-//                               zaxis(i) = ji
-//                               xaxis(i) = ki
-//                               polaxe(i) = mpaxis(imp)
-//                               do m = 1, 13
-//                                  pole(m,i) = multip(m,imp)
-//                               end do
-//                               goto 140
-//                            end if
-//                            do l = 1, n12(i)
-//                               li = i12(l,i)
-//                               lt = type(li)
-//                               if (lt.eq.ytyp .and. li.ne.ji
-//      &                               .and. li.ne.ki) then
-//                                  pollist(i) = i
-//                                  zaxis(i) = ji
-//                                  xaxis(i) = ki
-//                                  yaxis(i) = li
-//                                  polaxe(i) = mpaxis(imp)
-//                                  do m = 1, 13
-//                                     pole(m,i) = multip(m,imp)
-//                                  end do
-//                                  goto 140
-//                               end if
-//                            end do
-//                         end if
-//                      end do
-//                   end if
-//                end do
-//             end if
-//          end do
-// c
-// c     assign multipole parameters via 1-2 and 1-3 connected atoms
-// c
-//          do imp = 1, nmp
-//             if (it .eq. mpt(imp)) then
-//                ztyp = mpz(imp)
-//                xtyp = mpx(imp)
-//                ytyp = mpy(imp)
-//                do j = 1, n12(i)
-//                   ji = i12(j,i)
-//                   jt = type(ji)
-//                   if (jt .eq. ztyp) then
-//                      do k = 1, n13(i)
-//                         ki = i13(k,i)
-//                         kt = type(ki)
-//                         path = .false.
-//                         do m = 1, n12(ki)
-//                            if (i12(m,ki) .eq. ji)  path = .true.
-//                         end do
-//                         if (kt.eq.xtyp .and. path) then
-//                            if (ytyp .eq. 0) then
-//                               pollist(i) = i
-//                               zaxis(i) = ji
-//                               xaxis(i) = ki
-//                               polaxe(i) = mpaxis(imp)
-//                               do m = 1, 13
-//                                  pole(m,i) = multip(m,imp)
-//                               end do
-//                               goto 140
-//                            end if
-//                            do l = 1, n13(i)
-//                               li = i13(l,i)
-//                               lt = type(li)
-//                               path = .false.
-//                               do m = 1, n12(li)
-//                                  if (i12(m,li) .eq. ji)  path = .true.
-//                               end do
-//                               if (lt.eq.ytyp .and. li.ne.ki
-//      &                               .and. path) then
-//                                  pollist(i) = i
-//                                  zaxis(i) = ji
-//                                  xaxis(i) = ki
-//                                  yaxis(i) = li
-//                                  polaxe(i) = mpaxis(imp)
-//                                  do m = 1, 13
-//                                     pole(m,i) = multip(m,imp)
-//                                  end do
-//                                  goto 140
-//                               end if
-//                            end do
-//                         end if
-//                      end do
-//                   end if
-//                end do
-//             end if
-//          end do
-// c
-// c     assign multipole parameters via only a z-defining atom
-// c
-//          do imp = 1, nmp
-//             if (it .eq. mpt(imp)) then
-//                ztyp = mpz(imp)
-//                xtyp = mpx(imp)
-//                ytyp = mpy(imp)
-//                do j = 1, n12(i)
-//                   ji = i12(j,i)
-//                   jt = type(ji)
-//                   if (jt .eq. ztyp) then
-//                      if (xtyp .eq. 0) then
-//                         pollist(i) = i
-//                         zaxis(i) = ji
-//                         polaxe(i) = mpaxis(imp)
-//                         do m = 1, 13
-//                            pole(m,i) = multip(m,imp)
-//                         end do
-//                         goto 140
-//                      end if
-//                   end if
-//                end do
-//             end if
-//          end do
-// c
-// c     assign multipole parameters via no connected atoms
-// c
-//          do imp = 1, nmp
-//             if (it .eq. mpt(imp)) then
-//                ztyp = mpz(imp)
-//                xtyp = mpx(imp)
-//                ytyp = mpy(imp)
-//                if (ztyp .eq. 0) then
-//                   pollist(i) = i
-//                   polaxe(i) = mpaxis(imp)
-//                   do m = 1, 13
-//                      pole(m,i) = multip(m,imp)
-//                   end do
-//                   goto 140
-//                end if
-//             end if
-//          end do
-//   140    continue
-//       end do
-// c
-// c     perform deallocation of some local arrays
-// c
-//       deallocate (mpt)
-//       deallocate (mpz)
-//       deallocate (mpx)
-//       deallocate (mpy)
-// c
-// c     process keywords with multipole parameters for specific atoms
-// c
-//       header = .true.
-//       do i = 1, nkey
-//          next = 1
-//          record = keyline(i)
-//          call gettext (record,keyword,next)
-//          call upcase (keyword)
-//          if (keyword(1:10) .eq. 'MULTIPOLE ') then
-//             k = 0
-//             kz = 0
-//             kx = 0
-//             ky = 0
-//             axt = 'Z-then-X'
-//             do j = 1, 13
-//                mpl(j) = 0.0d0
-//             end do
-//             string = record(next:240)
-//             read (string,*,err=150,end=150)  k,kz,kx,ky,mpl(1)
-//             goto 180
-//   150       continue
-//             ky = 0
-//             read (string,*,err=160,end=160)  k,kz,kx,mpl(1)
-//             goto 180
-//   160       continue
-//             kx = 0
-//             read (string,*,err=170,end=170)  k,kz,mpl(1)
-//             goto 180
-//   170       continue
-//             kz = 0
-//             read (string,*,err=210,end=210)  k,mpl(1)
-//   180       continue
-//             if (k.lt.0 .and. k.ge.-n) then
-//                k = -k
-//                if (kz .eq. 0)  axt = 'None'
-//                if (kz.ne.0 .and. kx.eq.0)  axt = 'Z-Only'
-//                if (kz.lt.0 .or. kx.lt.0)  axt = 'Bisector'
-//                if (kx.lt.0 .and. ky.lt.0)  axt = 'Z-Bisect'
-//                if (max(kz,kx,ky) .lt. 0)  axt = '3-Fold'
-//                kz = abs(kz)
-//                kx = abs(kx)
-//                ky = abs(ky)
-//                record = keyline(i+1)
-//                read (record,*,err=210,end=210)  mpl(2),mpl(3),mpl(4)
-//                record = keyline(i+2)
-//                read (record,*,err=210,end=210)  mpl(5)
-//                record = keyline(i+3)
-//                read (record,*,err=210,end=210)  mpl(8),mpl(9)
-//                record = keyline(i+4)
-//                read (record,*,err=210,end=210)  mpl(11),mpl(12),mpl(13)
-//                mpl(6) = mpl(8)
-//                mpl(7) = mpl(11)
-//                mpl(10) = mpl(12)
-//                if (header .and. .not.silent) then
-//                   header = .false.
-//                   write (iout,190)
-//   190             format (/,' Additional Atomic Multipoles',
-//      &                       ' for Specific Atoms :',
-//      &                    //,5x,'Atom',10x,'Coordinate Frame',
-//      &                       ' Definition',9x,'Multipole Moments')
-//                end if
-//                if (.not. silent) then
-//                   write (iout,200)  k,kz,kx,ky,axt,(mpl(j),j=1,5),
-//      &                              mpl(8),mpl(9),(mpl(j),j=11,13)
-//   200             format (/,3x,i6,6x,i6,1x,i6,1x,i6,3x,a8,3x,f9.5,
-//      &                       /,49x,3f9.5,/,49x,f9.5,
-//      &                       /,49x,2f9.5,/,49x,3f9.5)
-//                end if
-//                pollist(k) = k
-//                zaxis(k) = kz
-//                xaxis(k) = kx
-//                yaxis(k) = ky
-//                polaxe(k) = axt
-//                do j = 1, 13
-//                   pole(j,k) = mpl(j)
-//                end do
-//             end if
-//   210       continue
-//          end if
-//       end do
-// c
-// c     convert the dipole and quadrupole moments to Angstroms,
-// c     quadrupole divided by 3 for use as traceless values
-// c
-//       do i = 1, n
-//          do k = 2, 4
-//             pole(k,i) = pole(k,i) * bohr
-//          end do
-//          do k = 5, 13
-//             pole(k,i) = pole(k,i) * bohr**2 / 3.0d0
-//          end do
-//       end do
-// c
-// c     get the order of the multipole expansion at each site
-// c
-//       npole = n
-//       polmax = 0
-//       do i = 1, n
-//          size = 0
-//          do k = 1, maxpole
-//             if (pole(k,i) .ne. 0.0d0)  size = max(k,size)
-//          end do
-//          if (size .gt. 4) then
-//             size = 13
-//          else if (size .gt. 1) then
-//             size = 4
-//          end if
-//          polsiz(i) = size
-//          polmax = max(polmax,size)
-//       end do
-// c
-// c     warn if there are sites with no atomic multipole values
-// c
-//       if (polmax .ne. 0) then
-//          header = .true.
-//          do i = 1, n
-//             if (pollist(i) .eq. 0) then
-//                if (header) then
-//                   header = .false.
-//                   write (iout,220)
-//   220             format (/,' Undefined Atomic Multipole',
-//      &                       ' Parameters :',/)
-//                end if 
-//                write (iout,230)  i
-//   230          format (' Warning, No Multipole Parameters',
-//      &                    ' for Atom',i7)
-//             end if
-//             pollist(i) = 0
-//          end do
-//       end if
-// c
-// c     perform dynamic allocation of some global arrays
-// c
-//       if (.not. use_polar) then
-//          if (allocated(uind))  deallocate (uind)
-//          if (allocated(uinp))  deallocate (uinp)
-//          if (allocated(uinds))  deallocate (uinds)
-//          if (allocated(uinps))  deallocate (uinps)
-//          allocate (uind(3,n))
-//          allocate (uinp(3,n))
-//          allocate (uinds(3,n))
-//          allocate (uinps(3,n))
-// c
-// c     if polarization not used, zero out induced dipoles
-// c
-//          do i = 1, n
-//             do j = 1, 3
-//                uind(j,i) = 0.0d0
-//                uinp(j,i) = 0.0d0
-//                uinds(j,i) = 0.0d0
-//                uinps(j,i) = 0.0d0
-//             end do
-//          end do
-//       end if
-// c
-// c     perform dynamic allocation of some global arrays
-// c
-//       if (allocated(pcore))  deallocate (pcore)
-//       if (allocated(pval))  deallocate (pval)
-//       if (allocated(pval0))  deallocate (pval0)
-//       if (allocated(palpha))  deallocate (palpha)
-//       allocate (pcore(n))
-//       allocate (pval(n))
-//       allocate (pval0(n))
-//       allocate (palpha(n))
-// c
-// c     find new charge penetration parameters in the keyfile
-// c
-//       header = .true.
-//       do i = 1, nkey
-//          next = 1
-//          record = keyline(i)
-//          call gettext (record,keyword,next)
-//          call upcase (keyword)
-//          if (keyword(1:7) .eq. 'CHGPEN ') then
-//             k = 0
-//             pel = 0.0d0
-//             pal = 0.0d0
-//             string = record(next:240)
-//             read (string,*,err=260,end=260)  k,pel,pal
-//             cpele(k) = abs(pel)
-//             cpalp(k) = pal
-//             if (header .and. .not.silent) then
-//                header = .false.
-//                write (iout,240)
-//   240          format (/,' Additional Charge Penetration Parameters :',
-//      &                 //,5x,'Atom Class',11x,'Core Chg',11x,'Damp',/)
-//             end if
-//             if (.not. silent) then
-//                write (iout,250)  k,pel,pal
-//   250          format (6x,i6,7x,f15.3,f15.4)
-//             end if
-//   260       continue
-//          end if
-//       end do
-// c
-// c     assign the charge penetration charge and alpha parameters 
-// c
-//       ncp = 0
-//       do i = 1, n
-//          pcore(i) = 0.0d0
-//          pval(i) = pole(1,i)
-//          pval0(i) = pval(i)
-//          palpha(i) = 0.0d0
-//          ic = class(i)
-//          if (ic .ne. 0) then
-//             pcore(i) = cpele(ic)
-//             pval(i) = pole(1,i) - cpele(ic)
-//             pval0(i) = pval(i)
-//             palpha(i) = cpalp(ic)
-//          end if
-//       end do
-// c
-// c     process keywords with charge penetration for specific atoms
-// c
-//       header = .true.
-//       do i = 1, nkey
-//          next = 1
-//          record = keyline(i)
-//          call gettext (record,keyword,next)
-//          call upcase (keyword)
-//          if (keyword(1:7) .eq. 'CHGPEN ') then
-//             k = 0
-//             pel = 0.0d0
-//             pal = 0.0d0
-//             string = record(next:240)
-//             read (string,*,err=290,end=290)  k,pel,pal
-//             if (k.lt.0 .and. k.ge.-n) then
-//                k = -k
-//                pcore(k) = abs(pel)
-//                pval(k) = pole(1,k) - abs(pel)
-//                palpha(k) = pal
-//                if (header .and. .not.silent) then
-//                   header = .false.
-//                   write (iout,270)
-//   270             format (/,' Additional Charge Penetration',
-//      &                       ' for Specific Atoms :',
-//      &                    //,5x,'Atom',17x,'Core Chg',11x,'Damp',/)
-//                end if
-//                if (.not. silent) then
-//                   write (iout,280)  k,pel,pal
-//   280             format (6x,i6,7x,f15.3,f15.4)
-//                end if
-//             end if
-//   290       continue
-//          end if
-//       end do
-// c
-// c     remove zero or undefined electrostatic sites from the list
-// c
-//       if ((use_mpole .or. use_repel .or. use_solv) .and.
-//      &      .not.use_polar .and. .not.use_chgtrn) then
-//          npole = 0
-//          ncp = 0
-//          do i = 1, n
-//             if (polsiz(i) .ne. 0) then
-//                npole = npole + 1
-//                ipole(npole) = i
-//                pollist(i) = npole
-//                mono0(i) = pole(1,i)
-//                if (palpha(i) .ne. 0.0d0)  ncp = ncp + 1
-//             end if
-//          end do
-//       end if
-// c
-// c     test multipoles at chiral sites and invert if necessary
-// c
-//       if (use_mpole .and. .not.use_polar .and. .not.use_chgtrn)
-//      &   call chkpole
-// c
-// c     turn off atomic multipole potentials if not used
-// c
-//       if (npole .eq. 0)  use_mpole = .false.
-//       if (ncp .ne. 0)  use_chgpen = .true.
-//       return
-//       end

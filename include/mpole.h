@@ -8,10 +8,10 @@
 // npole     total number of multipole sites in the system
 // ipole     number of the atom for each multipole site
 // polsiz    number of multipole components for each atom
-// pollist   multipole site for each atom (0=no multipole)
-// zaxis     number of the z-axis defining atom for each atom
-// xaxis     number of the x-axis defining atom for each atom
-// yaxis     number of the y-axis defining atom for each atom
+// pollist   multipole site for each atom (-1=no multipole)
+// zaxis     number of the z-axis defining atom for each atom (starting index=1)
+// xaxis     number of the x-axis defining atom for each atom (starting index=1)
+// yaxis     number of the y-axis defining atom for each atom (starting index=1)
 // pole      local frame Cartesian multipoles for each atom
 // rpole     global frame Cartesian multipoles for each atom
 // mono0     original atomic monopole values for charge flux
