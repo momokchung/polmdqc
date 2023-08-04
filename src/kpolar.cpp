@@ -776,9 +776,7 @@ void polargrp()
                 nlist++;
             }
         }
-        printf(" nlist %11d\n", nlist);
         sortUnique(nlist, list, 0);
-        printf(" nlist %11d\n", nlist);
         if (nlist <= maxp12) {
             np12[i] = nlist;
             for (int j = 0; j < nlist; j++) {
