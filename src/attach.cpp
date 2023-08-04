@@ -56,7 +56,7 @@ void attach()
             printf("\n ATTACH  --  Too many 1-3 Connected Atoms Attached to Atom%6d\n", i);
             fatal();
         }
-        sortUnique(n13tmp, i13tmp);
+        sortUnique(n13tmp, i13tmp, 0);
         n13[i] = n13tmp;
         for (int j = 0; j < n13tmp; j++){
             i13[i][j] = i13tmp[j];
@@ -87,7 +87,7 @@ void attach()
             printf("\n ATTACH  --  Too many 1-4 Connected Atoms Attached to Atom%6d\n", i);
             fatal();
         }
-        sortUnique(n14tmp, i14tmp);
+        sortUnique(n14tmp, i14tmp, 0);
         n14[i] = n14tmp;
         for (int j = 0; j < n14tmp; j++){
             i14[i][j] = i14tmp[j];
@@ -121,7 +121,7 @@ void attach()
             printf("\n ATTACH  --  Too many 1-5 Connected Atoms Attached to Atom%6d\n", i);
             fatal();
         }
-        sortUnique(n15tmp, i15tmp);
+        sortUnique(n15tmp, i15tmp, 0);
         n15[i] = n15tmp;
         for (int j = 0; j < n15tmp; j++){
             i15[i][j] = i15tmp[j];

@@ -4,29 +4,36 @@
 
 TEST_CASE("sort") {
     int n;
-    std::vector<int> numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
-    std::vector<int> sortedNumbers = {1, 2, 5, 8, 9};
+    std::vector<int> numbers;
+    std::vector<int> sortedNumbers;
+
+    n = 9;
+    numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
+    sortedNumbers = {1, 2, 5, 8, 9, 5, 9, 8, 2};
     sortUnique(n, numbers);
     REQUIRE(numbers == sortedNumbers);
     REQUIRE(n == 5);
 
+    n = 5;
+    numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
+    sortedNumbers = {5, 1, 2, 5, 8, 5, 9, 8, 2};
+    sortUnique(n, numbers, 1);
+    REQUIRE(numbers == sortedNumbers);
+    REQUIRE(n == 4);
+
+    n = 10;
     std::vector<double> doubles = {1.1, 2.2, -3.3, -2.2, 2.2, 3.3, -1.1, 0., 2.2, -3.3};
-    std::vector<double> sortedDoubles = {-3.3, -2.2, -1.1, 0., 1.1, 2.2, 3.3};
+    std::vector<double> sortedDoubles = {-3.3, -2.2, -1.1, 0., 1.1, 2.2, 3.3, 0., 2.2, -3.3};
     sortUnique(n, doubles);
     REQUIRE(doubles == sortedDoubles);
     REQUIRE(n == 7);
 
-    numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
-    sortedNumbers = {5, 1, 2, 5, 8, 9, 2};
-    sortUnique(n, numbers, 1, 8);
-    REQUIRE(numbers == sortedNumbers);
-    REQUIRE(n == 7);
-
+    n = 7;
     doubles = {1.1, 2.2, -3.3, -2.2, 2.2, 3.3, -1.1, 0., 2.2, -3.3};
-    sortedDoubles = {1.1, -3.3, -2.2, -1.1, 2.2, 3.3, 0., 2.2, -3.3};
-    sortUnique(n, doubles, 1, 7);
+    sortedDoubles = {1.1, 2.2, -3.3, -2.2, -1.1, 0., 2.2, 3.3, 2.2, -3.3};
+    sortUnique(n, doubles, 2);
     REQUIRE(doubles == sortedDoubles);
-    REQUIRE(n == 9);
+    REQUIRE(n == 6);
 
     numbers = {5, 2, 8, 2, 1, 5, 9, 8, 2};
     sortedNumbers = {1, 2, 2, 2, 5, 5, 8, 8, 9};

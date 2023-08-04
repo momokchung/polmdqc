@@ -939,9 +939,9 @@ void readprm()
             pe = numeral(ie, size);
             ktt[ntt] = pa + pb + pc + pd + pe;
             nx = nxy;
-            sortUnique(nx, tx);
+            sortUnique(nx, tx, 0);
             ny = nxy;
-            sortUnique(ny, ty);
+            sortUnique(ny, ty, 0);
             tnx[ntt] = nx;
             tny[ntt] = ny;
             for (int i = 0; i < nx; i++) {

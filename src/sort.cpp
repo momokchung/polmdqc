@@ -4,35 +4,35 @@
 //                                              //
 //////////////////////////////////////////////////
 
-// "sortUnique" sorts and removes duplicates from a std::vector object
-// and returns the number of unique objects
+// "sortUnique" sorts and removes duplicates from a std::vector
+// object and returns the number of unique objects
 
 
 #include "sort.h"
 #include <algorithm>
+#include <unordered_set>
 
 template <typename T>
-void sortUnique(int& n, std::vector<T>& vector, size_t startIndex, size_t endIndex)
+void sortUnique(int& n, std::vector<T>& vector, int startIndex)
 {
-    // Invalid subset range, do nothing
-    if (startIndex >= endIndex || startIndex >= vector.size()) {
-        return;
+    std::unordered_set<T> s;
+    for (int i = startIndex; i < startIndex + n; i++) {
+        s.insert(vector[i]);
+    }
+    int setSize = s.size();
+
+    size_t start = startIndex;
+    for (auto it = s.begin(); it != s.end(); ++it) {
+        vector[start] = *it;
+        ++start;
     }
 
-    // Adjust endIndex if it exceeds the vector size
-    endIndex = std::min(endIndex, vector.size());
-
-    // Sort the subset within the given range
-    std::sort(vector.begin() + startIndex, vector.begin() + endIndex);
-
-    // remove duplicates
-    auto last = std::unique(vector.begin() + startIndex, vector.begin() + endIndex);
-    vector.erase(last, vector.begin() + endIndex);
-    n = vector.size();
+    std::sort(vector.begin()+startIndex, vector.begin()+startIndex+setSize);
+    n = setSize;
 }
 
-template void sortUnique<int>(int& n, std::vector<int>& vector, size_t startIndex, size_t endIndex);
-template void sortUnique<double>(int& n, std::vector<double>& vector, size_t startIndex, size_t endIndex);
+template void sortUnique<int>(int& n, std::vector<int>& vector, int startIndex);
+template void sortUnique<double>(int& n, std::vector<double>& vector, int startIndex);
 
 
 // "sortKey" sorts and returns a key into the original ordering
