@@ -27,8 +27,7 @@
 
 #pragma once
 #include "macro.h"
-// #include <string>
-// #include <vector>
+#include <string>
 
 constexpr int maxgauss = 10;
 QCMD_EXTERN int ngauss;

@@ -101,6 +101,7 @@
 #include "uprior.h"
 #include "urypot.h"
 #include "usage.h"
+#include "vdw.h"
 #include "vdwpot.h"
 #include "virial.h"
 #include "warp.h"

@@ -11,8 +11,7 @@
 
 #pragma once
 #include "macro.h"
-// #include <string>
-// #include <vector>
+#include <vector>
 
 QCMD_EXTERN std::vector<double> pbr;
 QCMD_EXTERN std::vector<double> csr;
