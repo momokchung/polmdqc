@@ -20,6 +20,7 @@
 #include "inform.h"
 #include "katom.h"
 #include "kmpole.h"
+#include "kpolar.h"
 #include "lattice.h"
 #include "mechanic.h"
 #include "molecule.h"
@@ -85,7 +86,7 @@ void mechanic()
     // kcharge();
     // kdipole();
     kmpole();
-    // kpolar(); do
+    kpolar();
     // kchgtrn();
     // kchgflx();
 

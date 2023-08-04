@@ -40,6 +40,7 @@ src/kbasis.cpp
 src/kgbs.cpp
 src/kinetic.cpp
 src/kmpole.cpp
+src/kpolar.cpp
 src/kprim.cpp
 src/kworker.cpp
 src/lattice.cpp
