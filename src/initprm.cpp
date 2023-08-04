@@ -238,7 +238,7 @@ void initprm()
         athl[i] = 0.;
         dthl[i] = 0.;
         for (int j = 0; j < maxval; j++) {
-            pgrp[i][j] = 0;
+            pgrp[i][j] = -1;
         }
         pbr[i] = 0.;
         csr[i] = 0.;
@@ -266,7 +266,7 @@ void initprm()
         repulse[i] = 0.;
     }
     for (int i = 0; i < maxbio; i++) {
-        biotyp[i] = 0;
+        biotyp[i] = -1;
     }
 
     // set default control parameters for local geometry terms
