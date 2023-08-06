@@ -21,6 +21,7 @@
 #include "katom.h"
 #include "kmpole.h"
 #include "kpolar.h"
+#include "kvdw.h"
 #include "lattice.h"
 #include "mechanic.h"
 #include "molecule.h"
@@ -91,7 +92,7 @@ void mechanic()
     // kchgflx();
 
     // assign van der Waals, repulsion and dispersion parameters
-    // kvdw(); do
+    kvdw();
     // krepel();
     // kdisp();
 
