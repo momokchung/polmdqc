@@ -10,6 +10,7 @@ justify.cpp
 lowcase.cpp
 main.cpp
 numeral.cpp
+qcmdvector.cpp
 sort.cpp
 torphase.cpp
 trimhead.cpp
