@@ -8,7 +8,7 @@ TEST_CASE("torphase") {
     torphase(ft,vt,st);
     double expected_vt[6] = {3.3,1.1,2.2,4.4,6.6,5.5};
     double expected_st[6] = {50.,-80.,160.,0.,120.,-120.};
-    for (int i = 0; i < 6; ++i) {
+    for (int i = 0; i < 6; i++) {
         REQUIRE(vt[i] == expected_vt[i]);
         REQUIRE(st[i] == expected_st[i]);
     }

@@ -19,6 +19,9 @@ void torphase(int (&ft)[6], double (&vt)[6], double (&st)[6])
     for (int i = 0; i < 6; i++){
         ampli[i] = vt[i];
         phase[i] = st[i];
+    }
+
+    for (int i = 0; i < 6; i++){
         vt[i] = 0.;
         st[i] = 0.;
     }
