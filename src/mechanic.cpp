@@ -21,6 +21,7 @@
 #include "katom.h"
 #include "kmpole.h"
 #include "kpolar.h"
+#include "ksolv.h"
 #include "kvdw.h"
 #include "lattice.h"
 #include "mechanic.h"
@@ -97,7 +98,7 @@ void mechanic()
     // kdisp();
 
     // assign solvation, metal, pisystem and restraint parameters
-    // ksolv(); do
+    ksolv();
     // kmetal();
     // korbit();
     // kgeom();
