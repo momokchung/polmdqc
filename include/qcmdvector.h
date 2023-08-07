@@ -6,6 +6,7 @@
 
 
 #pragma once
+#include <cstdio>
 
 template <typename T>
 class Vector1D 
