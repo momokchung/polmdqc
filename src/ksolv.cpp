@@ -27,6 +27,14 @@
 #include <cmath>
 #include <sstream>
 
+void kgb();
+void kgk();
+void khpmf();
+void knp();
+void kpb();
+void ksa();
+void setrad(std::string radtyp);
+
 void ksolv()
 {
     int i,k,next;
@@ -193,67 +201,68 @@ void ksolv()
             }
         }
     }
-    for (int i = 0; i < 20; i++) {
-        printf(" pbr %20.16f\n", pbr[i]);
+
+    // perform dynamic allocation of some global arrays
+    if (rsolv.size() != 0) rsolv.resize(0);
+    rsolv.resize(n);
+
+    // invoke the setup needed for perfect Born radius model
+    if (borntyp == "PERFECT") kpb();
+
+    // invoke the setup needed for specific solvation models
+    if (solvtyp=="ASP" or solvtyp=="SASA") {
+        ksa();
     }
-// c
-// c     perform dynamic allocation of some global arrays
-// c
-//       if (allocated(rsolv))  deallocate (rsolv)
-//       allocate (rsolv(n))
-// c
-// c     invoke the setup needed for perfect Born radius model
-// c
-//       if (borntyp == "PERFECT")  call kpb
-// c
-// c     invoke the setup needed for specific solvation models
-// c
-//       if (solvtyp=="ASP" .or. solvtyp=="SASA") {
-//          call ksa
-//       else if (solvtyp == "GB-HPMF") {
-//          call kgb
-//          call khpmf
-//       else if (solvtyp == "GB") {
-//          call kgb
-//       else if (solvtyp == "GK-HPMF") {
-//          call kgk
-//          call khpmf
-//       else if (solvtyp == "GK") {
-//          call kgk
-//          call knp
-//       else if (solvtyp == "PB-HPMF") {
-//          call kpb
-//          call khpmf
-//       else if (solvtyp == "PB") {
-//          call kpb
-//          call knp
-//       }
-//       return
-//       end
-// c
-// c
-// c     #################################################################
-// c     ##                                                             ##
-// c     ##  subroutine ksa  --  set surface area solvation parameters  ##
-// c     ##                                                             ##
-// c     #################################################################
-// c
-// c
-// c     "ksa" initializes parameters needed for surface area-based
-// c     implicit solvation models including ASP and SASA
-// c
-// c     literature references:
-// c
-// c     L. Wesson and D. Eisenberg, "Atomic Solvation Parameters
-// c     Applied to Molecular Dynamics of Proteins in Solution",
-// c     Protein Science, 1, 227-235 (1992)  (Eisenberg-McLachlan ASP)
-// c
-// c     T. Ooi, M. Oobatake, G. Nemethy and H. A. Scheraga, "Accessible
-// c     Surface Areas as a Measure of the Thermodynamic Parameters of
-// c     Hydration of Peptides", PNAS, 84, 3086-3090 (1987)  (SASA)
-// c
-// c
-//       subroutine ksa
+    else if (solvtyp == "GB-HPMF") {
+        kgb();
+        khpmf();
+    }
+    else if (solvtyp == "GB") {
+        kgb();
+    }
+    else if (solvtyp == "GK-HPMF") {
+        kgk();
+        khpmf();
+    }
+    else if (solvtyp == "GK") {
+        kgk();
+        // knp();
+    }
+    else if (solvtyp == "PB-HPMF") {
+        kpb();
+        khpmf();
+    }
+    else if (solvtyp == "PB") {
+        kpb();
+        knp();
+    }
+}
+
+
+//////////////////////////////////////////////////////////
+//                                                      //
+//  ksa.cpp  --  set surface area solvation parameters  //
+//                                                      //
+//////////////////////////////////////////////////////////
+
+// "ksa" initializes parameters needed for surface area-based
+// implicit solvation models including ASP and SASA
+// 
+// literature references:
+// 
+// L. Wesson and D. Eisenberg, "Atomic Solvation Parameters
+// Applied to Molecular Dynamics of Proteins in Solution",
+// Protein Science, 1, 227-235 (1992)  (Eisenberg-McLachlan ASP)
+// 
+// T. Ooi, M. Oobatake, G. Nemethy and H. A. Scheraga, "Accessible
+// Surface Areas as a Measure of the Thermodynamic Parameters of
+// Hydration of Peptides", PNAS, 84, 3086-3090 (1987)  (SASA)
+
+
+void ksa()
+{
+
+}
 //       use sizes
 //       use atomid
 //       use atoms
@@ -371,29 +380,29 @@ void ksolv()
 //             }
 //          }
 //       }
-//       return
-//       end
-// c
-// c
-// c     ##############################################################
-// c     ##                                                          ##
-// c     ##  subroutine kgb  --  assign generalized Born parameters  ##
-// c     ##                                                          ##
-// c     ##############################################################
-// c
-// c
-// c     "kgb" initializes parameters needed for the generalized
-// c     Born implicit solvation models
-// c
-// c     literature references:
-// c
-// c     M. Schaefer, C. Bartels, F. Leclerc and M. Karplus, "Effective
-// c     Atom Volumes for Implicit Solvent Models: Comparison between
-// c     Voronoi Volumes and Minimum Fluctuations Volumes", Journal of
-// c     Computational Chemistry, 22, 1857-1879 (2001)  (ACE)
-// c
-// c
-//       subroutine kgb
+
+
+///////////////////////////////////////////////////////
+//                                                   //
+//  kgb.cpp  --  assign generalized Born parameters  //
+//                                                   //
+///////////////////////////////////////////////////////
+
+// "kgb" initializes parameters needed for the generalized
+// Born implicit solvation models
+// 
+// literature references:
+// 
+// M. Schaefer, C. Bartels, F. Leclerc and M. Karplus, "Effective
+// Atom Volumes for Implicit Solvent Models: Comparison between
+// Voronoi Volumes and Minimum Fluctuations Volumes", Journal of
+// Computational Chemistry, 22, 1857-1879 (2001)  (ACE)
+
+
+void kgb()
+{
+    
+}
 //       use sizes
 //       use angbnd
 //       use atmlst
@@ -464,7 +473,7 @@ void ksolv()
 // c
 // c     set overlap scale factors for HCT and OBC methods
 // c
-//       if (borntyp=="HCT" .or. borntyp=="OBC") {
+//       if (borntyp=="HCT" or borntyp=="OBC") {
 //          do i = 1, n
 //             shct[i] = 0.8
 //             atmnum = atomic[i]
@@ -666,7 +675,7 @@ void ksolv()
 //                else if (atomic[k]==7 and n12[k]==4) {
 //                   rsolv[i] = 0.6
 //                   vsolv[i] = 9.138
-//                else if (atomic[k]==7 .or. atomic[k]==8) {
+//                else if (atomic[k]==7 or atomic[k]==8) {
 //                   rsolv[i] = 0.6
 //                   vsolv[i] = 9.901
 //                else if (atomic[k]!=16) {
@@ -847,180 +856,184 @@ void ksolv()
 //             }
 //          }
 //       }
-//       return
-//       end
-// c
-// c
-// c     ###############################################################
-// c     ##                                                           ##
-// c     ##  subroutine kgk  --  set generalized Kirkwood parameters  ##
-// c     ##                                                           ##
-// c     ###############################################################
-// c
-// c
-// c     "kgk" initializes parameters needed for the generalized
-// c     Kirkwood implicit solvation model
-// c
-// c
-//       subroutine kgk
-//       use sizes
-//       use atomid
-//       use atoms
-//       use couple
-//       use gkstuf
-//       use keys
-//       use kvdws
-//       use polar
-//       use polopt
-//       use polpot
-//       use ptable
-//       use solute
-//       use vdw
-//       implicit none
-//       integer i,it,next
-//       integer atmnum
-//       real*8 dhct
-//       character*10 radtyp
-//       character*20 keyword
-//       character*20 value
-//       logical descreenVDW
-//       logical descreenHydrogen
-//       character*240 record
-//       character*240 string
-// c
-// c
-// c     perform dynamic allocation of some global arrays
-// c
-//       if (allocated(rsolv))  deallocate (rsolv)
-//       if (allocated(rdescr))  deallocate (rdescr)
-//       if (allocated(rborn))  deallocate (rborn)
-//       if (allocated(drb))  deallocate (drb)
-//       if (allocated(drbp))  deallocate (drbp)
-//       if (allocated(drobc))  deallocate (drobc)
-//       if (allocated(shct))  deallocate (shct)
-//       if (allocated(udirs))  deallocate (udirs)
-//       if (allocated(udirps))  deallocate (udirps)
-//       if (allocated(uinds))  deallocate (uinds)
-//       if (allocated(uinps))  deallocate (uinps)
-//       if (allocated(uopts))  deallocate (uopts)
-//       if (allocated(uoptps))  deallocate (uoptps)
-//       allocate (rsolv(n))
-//       allocate (rdescr(n))
-//       allocate (rborn(n))
-//       allocate (drb(n))
-//       allocate (drbp(n))
-//       allocate (drobc(n))
-//       allocate (shct(n))
-//       allocate (udirs(3,n))
-//       allocate (udirps(3,n))
-//       allocate (uinds(3,n))
-//       allocate (uinps(3,n))
-//       if (poltyp == "OPT") {
-//          allocate (uopts(0:optorder,3,n))
-//          allocate (uoptps(0:optorder,3,n))
-//       }
-// c
-// c     set default value for exponent in the GB/GK function
-// c
-//       gkc = 2.455
-//       dhct = 0.72
-//       radtyp = "SOLUTE"
-//       descreenVDW = true
-//       descreenHydrogen = false
-// c
-// c     get any altered generalized Kirkwood values from keyfile
-// c
-//       do i = 1, nkey
-//          next = 1
-//          record = keyline[i]
-//          call gettext (record,keyword,next)
-//          call upcase (keyword)
-//          string = record(next:240)
-//          if (keyword(1:4) == "GKC") {
-//             read (string,*,err=10,end=10)  gkc
-//    10       continue
-//          else if (keyword(1:10) == "GK-RADIUS") {
-//             call getword (record,value,next)
-//             call upcase (value)
-//             if (value(1:3) == "VDW") {
-//                radtyp = "VDW"
-//             else if (value(1:10) == "MACROMODEL") {
-//                radtyp = "MACROMODEL"
-//             else if (value(1:6) == "AMOEBA") {
-//                radtyp = "AMOEBA"
-//             else if (value(1:5) == "BONDI") {
-//                radtyp = "BONDI"
-//             else if (value(1:6) == "TOMASI") {
-//                radtyp = "TOMASI"
-//             else if (value(1:6) == "SOLUTE") {
-//                radtyp = "SOLUTE"
-//             }
-//          else if (keyword(1:13) == "DESCREEN-VDW") {
-//             call getword (record,value,next)
-//             call upcase (value)
-//             if (value(1:4) == "TRUE") {
-//                descreenVDW = true
-//             }
-//          else if (keyword(1:18) == "DESCREEN-HYDROGEN") {
-//             call getword (record,value,next)
-//             call upcase (value)
-//             if (value(1:5) == "FALSE") {
-//                descreenHydrogen = false
-//             }
-//          else if (keyword(1:10) == "HCT-SCALE") {
-//             read (string,*,err=20,end=20)  dhct
-//    20       continue
-//          }
-//       }
-// c
-// c     determine the solute atomic radii values to be used
-// c
-//       call setrad (radtyp)
-// c
-// c     assign generic value for the HCT overlap scale factor
-// c
-//       do i = 1, n
-//          shct[i] = dhct
-//          rdescr[i] = rsolv[i]
-//          if (descreenVDW) {
-//             it = jvdw[i]
-//             rdescr[i] = 0.5 * radmin(it,it)
-//          }
-//          if (!descreenHydrogen) {
-//             atmnum = atomic[i]
-//             if (atmnum == 1) shct[i] = 0.
-//          }
-//       }
-//       if (radtyp == "MACROMODEL") {
-//          do i = 1, n
-//             shct[i] = 0.8
-//             atmnum = atomic[i]
-//             if (atmnum == 1)  shct[i] = 0.85
-//             if (atmnum == 6)  shct[i] = 0.72
-//             if (atmnum == 7)  shct[i] = 0.79
-//             if (atmnum == 8)  shct[i] = 0.85
-//             if (atmnum == 9)  shct[i] = 0.88
-//             if (atmnum == 15)  shct[i] = 0.86
-//             if (atmnum == 16)  shct[i] = 0.96
-//             if (atmnum == 26)  shct[i] = 0.88
-//          }
-//       }
-//       return
-//       end
-// c
-// c
-// c     ###############################################################
-// c     ##                                                           ##
-// c     ##  subroutine kpb  --  assign Poisson-Boltzmann parameters  ##
-// c     ##                                                           ##
-// c     ###############################################################
-// c
-// c
-// c     "kpb" assigns parameters needed for the Poisson-Boltzmann
-// c     implicit solvation model implemented via APBS
-// c
-// c
-//       subroutine kpb
+
+
+////////////////////////////////////////////////////////
+//                                                    //
+//  kgk.cpp  --  set generalized Kirkwood parameters  //
+//                                                    //
+////////////////////////////////////////////////////////
+
+
+// "kgk" initializes parameters needed for the generalized
+// Kirkwood implicit solvation model
+
+
+#include "sizes.h"
+#include "atomid.h"
+#include "atoms.h"
+#include "couple.h"
+#include "gkstuf.h"
+#include "keys.h"
+#include "kvdws.h"
+#include "polar.h"
+#include "polopt.h"
+#include "polpot.h"
+#include "ptable.h"
+#include "solute.h"
+#include "vdw.h"
+
+void kgk()
+{
+    int i,it,next;
+    int atmnum;
+    double dhct;
+    bool descreenVDW;
+    bool descreenHydrogen;
+    std::string radtyp;
+    std::string keyword;
+    std::string value;
+    std::string record;
+    std::string string;
+    std::istringstream iss;
+
+    // perform dynamic allocation of some global arrays
+    if (rsolv.size() != 0) rsolv.resize(0);
+    if (rdescr.size() != 0) rdescr.resize(0);
+    if (rborn.size() != 0) rborn.resize(0);
+    if (drb.size() != 0) drb.resize(0);
+    if (drbp.size() != 0) drbp.resize(0);
+    if (drobc.size() != 0) drobc.resize(0);
+    if (shct.size() != 0) shct.resize(0);
+    if (udirs.size() != 0) udirs.resize(0);
+    if (udirps.size() != 0) udirps.resize(0);
+    if (uinds.size() != 0) uinds.resize(0);
+    if (uinps.size() != 0) uinps.resize(0);
+    if (uopts.size() != 0) uopts.resize(0);
+    if (uoptps.size() != 0) uoptps.resize(0);
+    rsolv.resize(n);
+    rdescr.resize(n);
+    rborn.resize(n);
+    drb.resize(n);
+    drbp.resize(n);
+    drobc.resize(n);
+    shct.resize(n);
+    udirs.resize(n, std::vector<double>(3));
+    udirps.resize(n, std::vector<double>(3));
+    uinds.resize(n, std::vector<double>(3));
+    uinps.resize(n, std::vector<double>(3));
+    if (poltyp == "OPT") {
+        uopts.resize(n, std::vector<std::vector<double>>(3, std::vector<double>(optorder+1)));
+        uoptps.resize(n, std::vector<std::vector<double>>(3, std::vector<double>(optorder+1)));
+    }
+
+    // set default value for exponent in the GB/GK function
+    gkc = 2.455;
+    dhct = 0.72;
+    radtyp = "SOLUTE";
+    descreenVDW = true;
+    descreenHydrogen = false;
+
+    // get any altered generalized Kirkwood values from keyfile
+    for (int i = 0; i < nkey; i++) {
+        next = 0;
+        record = keyline[i];
+        gettext (record,keyword,next);
+        upcase (keyword);
+        string = record.substr(next);
+        iss.clear();
+        iss.str(string);
+        if (keyword == "GKC") {
+            iss >> gkc;
+        }
+        else if (keyword == "GK-RADIUS") {
+            getword(record,value,next);
+            upcase(value);
+            if (value == "VDW") {
+               radtyp = "VDW";
+            }
+            else if (value == "MACROMODEL") {
+               radtyp = "MACROMODEL";
+            }
+            else if (value == "AMOEBA") {
+               radtyp = "AMOEBA";
+            }
+            else if (value == "BONDI") {
+               radtyp = "BONDI";
+            }
+            else if (value == "TOMASI") {
+               radtyp = "TOMASI";
+            }
+            else if (value == "SOLUTE") {
+               radtyp = "SOLUTE";
+            }
+        }
+        else if (keyword == "DESCREEN-VDW") {
+            getword(record,value,next);
+            upcase(value);
+            if (value == "TRUE") {
+               descreenVDW = true;
+            }
+        }
+        else if (keyword == "DESCREEN-HYDROGEN") {
+            getword (record,value,next);
+            upcase (value);
+            if (value == "FALSE") {
+               descreenHydrogen = false;
+            }
+        }
+        else if (keyword == "HCT-SCALE") {
+            iss >> dhct;
+        }
+    }
+
+    // determine the solute atomic radii values to be used
+    setrad(radtyp);
+
+    // assign generic value for the HCT overlap scale factor
+    for (int i = 0; i < n; i++) {
+        shct[i] = dhct;
+        rdescr[i] = rsolv[i];
+        if (descreenVDW) {
+            it = jvdw[i];
+            rdescr[i] = 0.5 * radmin[it][it];
+        }
+        if (!descreenHydrogen) {
+            atmnum = atomic[i];
+            if (atmnum == 1) shct[i] = 0.;
+        }
+    }
+    if (radtyp == "MACROMODEL") {
+        for (int i = 0; i < n; i++) {
+            shct[i] = 0.8;
+            atmnum = atomic[i];
+            if (atmnum == 1) shct[i] = 0.85;
+            if (atmnum == 6) shct[i] = 0.72;
+            if (atmnum == 7) shct[i] = 0.79;
+            if (atmnum == 8) shct[i] = 0.85;
+            if (atmnum == 9) shct[i] = 0.88;
+            if (atmnum == 15) shct[i] = 0.86;
+            if (atmnum == 16) shct[i] = 0.96;
+            if (atmnum == 26) shct[i] = 0.88;
+        }
+    }
+}
+
+
+////////////////////////////////////////////////////////
+//                                                    //
+//  kpb.cpp  --  assign Poisson-Boltzmann parameters  //
+//                                                    //
+////////////////////////////////////////////////////////
+
+// "kpb" assigns parameters needed for the Poisson-Boltzmann
+// implicit solvation model implemented via APBS
+
+
+void kpb()
+{
+
+}
 //       use sizes
 //       use atomid
 //       use atoms
@@ -1415,178 +1428,173 @@ void ksolv()
 //   160    format (/," APBS Grid Dimensions and Spacing :",
 //      &           //,10x,3i8,10x,f10.4)
 //       }
-//       return
-//       end
-// c
-// c
-// c     ###############################################################
-// c     ##                                                           ##
-// c     ##  subroutine knp  --  assign cavity-dispersion parameters  ##
-// c     ##                                                           ##
-// c     ###############################################################
-// c
-// c
-// c     "knp" initializes parameters needed for the cavity-plus-
-// c     dispersion nonpolar implicit solvation model
-// c
-// c
-//       subroutine knp
-//       use sizes
-//       use atomid
-//       use atoms
-//       use couple
-//       use keys
-//       use kvdws
-//       use math
-//       use nonpol
-//       use potent
-//       use solute
-//       use vdwpot
-//       implicit none
-//       integer i,next
-//       real*8 cross,ah,ao
-//       real*8 rmini,epsi
-//       real*8 rmixh,rmixh3
-//       real*8 rmixh7,emixh
-//       real*8 rmixo,rmixo3
-//       real*8 rmixo7,emixo
-//       real*8 ri,ri3,ri7,ri11
-//       character*20 keyword
-//       character*240 record
-//       character*240 string
-// c
-// c
-// c     set default values for solvent pressure and surface tension
-// c
-//       solvprs = 0.0334
-//       surften = 0.103
-// c
-// c     get any altered surface tension value from keyfile
-// c
-//       do i = 1, nkey
-//          next = 1
-//          record = keyline[i]
-//          call gettext (record,keyword,next)
-//          call upcase (keyword)
-//          string = record(next:240)
-//          if (keyword(1:17) == "SOLVENT-PRESSURE") {
-//             read (string,*,err=10,end=10)  solvprs
-//          else if (keyword(1:16) == "SURFACE-TENSION") {
-//             read (string,*,err=10,end=10)  surften
-//          }
-//    10    continue
-//       }
-// c
-// c     set switching function values for pressure and tension
-// c     cross = 9.251 = 3.0 * 0.103 / 0.0334
-// c
-//       cross = 3. * surften / solvprs
-//       spcut = cross - 3.5
-//       spoff = cross + 3.5
-// c
-// c     The SASA term is switched on 0.2 Angtroms after 
-// c     the cross-over point to give a smooth transition
-// c
-//       stcut = cross + 3.5 + 0.2
-//       stoff = cross - 3.5 + 0.2
-// c
-// c     perform dynamic allocation of some global arrays
-// c
-//       if (allocated(asolv))  deallocate (asolv)
-//       if (allocated(radcav))  deallocate (radcav)
-//       if (allocated(raddsp))  deallocate (raddsp)
-//       if (allocated(epsdsp))  deallocate (epsdsp)
-//       if (allocated(cdsp))  deallocate (cdsp)
-//       allocate (asolv(n))
-//       allocate (radcav(n))
-//       allocate (raddsp(n))
-//       allocate (epsdsp(n))
-//       allocate (cdsp(n))
-// c
-// c     assign surface area factors for nonpolar solvation
-// c
-//       do i = 1, n
-//          asolv[i] = surften
-//       }
-// c
-// c     set cavity and dispersion radii for nonpolar solvation
-// c
-//       do i = 1, n
-//          if (vdwindex == "CLASS") {
-//             radcav[i] = rad(class[i]) + cavoff
-//             raddsp[i] = rad(class[i])
-//             epsdsp[i] = eps(class[i])
-//          else
-//             radcav[i] = rad(type[i]) + cavoff
-//             raddsp[i] = rad(type[i])
-//             epsdsp[i] = eps(type[i])
-//          }
-//       }
-// c
-// c     compute maximum dispersion energies for each atom
-// c
-//       do i = 1, n
-//          epsi = epsdsp[i]
-//          rmini = raddsp[i]
-//          if (rmini>0. and epsi>0.) {
-//             emixo = 4. * epso * epsi / (std::pow(std::sqrt(epso)+std::sqrt(epsi)),2)
-//             rmixo = 2. * (std::pow(rmino,3)+std::pow(rmini,3)) / (std::pow(rmino,2)+std::pow(rmini,2))
-//             rmixo3 = std::pow(rmixo,3)
-//             rmixo7 = std::pow(rmixo,7)
-//             ao = emixo * rmixo7
-//             emixh = 4. * epsh * epsi / (std::pow(std::sqrt(epsh)+std::sqrt(epsi)),2)
-//             rmixh = 2. * (std::pow(rminh,3)+std::pow(rmini,3)) / (std::pow(rminh,2)+std::pow(rmini,2))
-//             rmixh3 = std::pow(rmixh,3)
-//             rmixh7 = std::pow(rmixh,7)
-//             ah = emixh * rmixh7
-//             ri = 0.5*rmixh + dspoff
-//             ri3 = std::pow(ri,3)
-//             ri7 = std::pow(ri,7)
-//             ri11 = std::pow(ri,11)
-//             if (ri < rmixh) {
-//                cdsp[i] = -4.*pi*emixh*(rmixh3-ri3)/3.
-//                cdsp[i] = cdsp[i] - emixh*18./11.*rmixh3*pi
-//             else
-//                cdsp[i] = 2.*pi*(2.*rmixh7-11.*ri7)*ah
-//                cdsp[i] = cdsp[i] / (11.*ri11)
-//             }
-//             cdsp[i] = 2. * cdsp[i]
-//             ri = 0.5*rmixo + dspoff
-//             ri3 = std::pow(ri,3)
-//             ri7 = std::pow(ri,7)
-//             ri11 = std::pow(ri,11)
-//             if (ri < rmixo) {
-//                cdsp[i] = cdsp[i] - 4.*pi*emixo*(rmixo3-ri3)/3.
-//                cdsp[i] = cdsp[i] - emixo*18./11.*rmixo3*pi
-//             else
-//                cdsp[i] = cdsp[i] + 2.*pi*(2.*rmixo7-11.*ri7)
-//      &                                  * ao/(11.*ri11)
-//             }
-//          }
-//          cdsp[i] = slevy * awater * cdsp[i]
-//       }
-//       return
-//       end
-// c
-// c
-// c     ###############################################################
-// c     ##                                                           ##
-// c     ##  subroutine khpmf  --  assign hydrophobic PMF parameters  ##
-// c     ##                                                           ##
-// c     ###############################################################
-// c
-// c
-// c     "khpmf" initializes parameters needed for the hydrophobic
-// c     potential of mean force nonpolar implicit solvation model
-// c
-// c     literature reference:
-// c
-// c     M. S. Lin, N. L. Fawzi and T. Head-Gordon, "Hydrophobic
-// c     Potential of Mean Force as a Solvation Function for Protein
-// c     Structure Prediction", Structure, 15, 727-740 (2007)
-// c
-// c
-//       subroutine khpmf
+
+
+////////////////////////////////////////////////////////
+//                                                    //
+//  knp.cpp  --  assign cavity-dispersion parameters  //
+//                                                    //
+////////////////////////////////////////////////////////
+
+// "knp" initializes parameters needed for the cavity-plus-
+// dispersion nonpolar implicit solvation model
+
+
+#include "sizes.h"
+#include "atomid.h"
+#include "atoms.h"
+#include "couple.h"
+#include "keys.h"
+#include "kvdws.h"
+#include "mathConst.h"
+#include "nonpol.h"
+#include "potent.h"
+#include "solute.h"
+#include "vdwpot.h"
+
+void knp()
+{
+    int i,next;
+    double cross,ah,ao;
+    double rmini,epsi;
+    double rmixh,rmixh3;
+    double rmixh7,emixh;
+    double rmixo,rmixo3;
+    double rmixo7,emixo;
+    double ri,ri3,ri7,ri11;
+    std::string keyword;
+    std::string record;
+    std::string string;
+    std::istringstream iss;
+
+    // set default values for solvent pressure and surface tension
+    solvprs = 0.0334;
+    surften = 0.103;
+
+    // get any altered surface tension value from keyfile
+    for (int i = 0; i < nkey; i++) {
+        next = 0;
+        record = keyline[i];
+        gettext(record,keyword,next);
+        upcase(keyword);
+        string = record.substr(next);
+        iss.clear();
+        iss.str(string);
+        if (keyword == "SOLVENT-PRESSURE") {
+            iss >> solvprs;
+        }
+        else if (keyword == "SURFACE-TENSION") {
+            iss >> surften;
+        }
+    }
+
+    // set switching function values for pressure and tension
+    // cross = 9.251 = 3.0 * 0.103 / 0.0334
+    cross = 3. * surften / solvprs;
+    spcut = cross - 3.5;
+    spoff = cross + 3.5;
+
+    // The SASA term is switched on 0.2 Angtroms after 
+    // the cross-over point to give a smooth transition
+    stcut = cross + 3.5 + 0.2;
+    stoff = cross - 3.5 + 0.2;
+
+    // perform dynamic allocation of some global arrays
+    if (asolv.size() != 0) asolv.resize(0);
+    if (radcav.size() != 0) radcav.resize(0);
+    if (raddsp.size() != 0) raddsp.resize(0);
+    if (epsdsp.size() != 0) epsdsp.resize(0);
+    if (cdsp.size() != 0) cdsp.resize(0);
+    asolv.resize(n);
+    radcav.resize(n);
+    raddsp.resize(n);
+    epsdsp.resize(n);
+    cdsp.resize(n);
+
+    // assign surface area factors for nonpolar solvation
+    for (int i = 0; i < n; i++) {
+        asolv[i] = surften;
+    }
+
+    // set cavity and dispersion radii for nonpolar solvation
+    for (int i = 0; i < n; i++) {
+        if (vdwindex == "CLASS") {
+            radcav[i] = rad[atomClass[i]] + cavoff;
+            raddsp[i] = rad[atomClass[i]];
+            epsdsp[i] = eps[atomClass[i]];
+        }
+        else {
+            radcav[i] = rad[type[i]] + cavoff;
+            raddsp[i] = rad[type[i]];
+            epsdsp[i] = eps[type[i]];
+        }
+    }
+
+    // compute maximum dispersion energies for each atom
+    for (int i = 0; i < n; i++) {
+        epsi = epsdsp[i];
+        rmini = raddsp[i];
+        if (rmini>0. and epsi>0.) {
+            emixo = 4. * epso * epsi / std::pow((std::sqrt(epso)+std::sqrt(epsi)),2);
+            rmixo = 2. * (std::pow(rmino,3)+std::pow(rmini,3)) / (std::pow(rmino,2)+std::pow(rmini,2));
+            rmixo3 = std::pow(rmixo,3);
+            rmixo7 = std::pow(rmixo,7);
+            ao = emixo * rmixo7;
+            emixh = 4. * epsh * epsi / std::pow((std::sqrt(epsh)+std::sqrt(epsi)),2);
+            rmixh = 2. * (std::pow(rminh,3)+std::pow(rmini,3)) / (std::pow(rminh,2)+std::pow(rmini,2));
+            rmixh3 = std::pow(rmixh,3);
+            rmixh7 = std::pow(rmixh,7);
+            ah = emixh * rmixh7;
+            ri = 0.5*rmixh + dspoff;
+            ri3 = std::pow(ri,3);
+            ri7 = std::pow(ri,7);
+            ri11 = std::pow(ri,11);
+            if (ri < rmixh) {
+                cdsp[i] = -4.*pi*emixh*(rmixh3-ri3)/3.;
+                cdsp[i] = cdsp[i] - emixh*18./11.*rmixh3*pi;
+            }
+            else {
+                cdsp[i] = 2.*pi*(2.*rmixh7-11.*ri7)*ah;
+                cdsp[i] = cdsp[i] / (11.*ri11);
+            }
+            cdsp[i] = 2. * cdsp[i];
+            ri = 0.5*rmixo + dspoff;
+            ri3 = std::pow(ri,3);
+            ri7 = std::pow(ri,7);
+            ri11 = std::pow(ri,11);
+            if (ri < rmixo) {
+                cdsp[i] = cdsp[i] - 4.*pi*emixo*(rmixo3-ri3)/3.;
+                cdsp[i] = cdsp[i] - emixo*18./11.*rmixo3*pi;
+            }
+            else {
+                cdsp[i] = cdsp[i] + 2.*pi*(2.*rmixo7-11.*ri7) * ao/(11.*ri11);
+            }
+        }
+        cdsp[i] = slevy * awater * cdsp[i];
+    }
+}
+
+
+////////////////////////////////////////////////////////
+//                                                    //
+//  khpmf.cpp  --  assign hydrophobic PMF parameters  //
+//                                                    //
+////////////////////////////////////////////////////////
+
+//  "khpmf" initializes parameters needed for the hydrophobic
+//  potential of mean force nonpolar implicit solvation model
+// 
+//  literature reference:
+// 
+//  M. S. Lin, N. L. Fawzi and T. Head-Gordon, "Hydrophobic
+//  Potential of Mean Force as a Solvation Function for Protein
+//  Structure Prediction", Structure, 15, 727-740 (2007)
+
+
+void khpmf()
+{
+
+}
 //       use sizes
 //       use atomid
 //       use atoms
@@ -1649,265 +1657,284 @@ void ksolv()
 //          if (atn == 8)  rpmf[i] = 1.5
 //          if (atn == 35)  rpmf[i] = 1.85
 //       }
-//       return
-//       end
-// c
-// c
-// c     ################################################################
-// c     ##                                                            ##
-// c     ##  subroutine setrad  --  assign solute radii for PB and GK  ##
-// c     ##                                                            ##
-// c     ################################################################
-// c
-// c
-// c     "setrad" chooses a set of atomic radii to solute atoms for use
-// c     during Poission-Boltzmann and Generalized Kirkwood implicit
-// c     solvation calculations
-// c
-// c
-//       subroutine setrad (radtyp)
-//       use sizes
-//       use atomid
-//       use atoms
-//       use bath
-//       use couple
-//       use inform
-//       use iounit
-//       use keys
-//       use ksolut
-//       use kvdws
-//       use math
-//       use nonpol
-//       use polar
-//       use potent
-//       use ptable
-//       use vdw
-//       use solpot
-//       use solute
-//       implicit none
-//       integer i,j,k,l,m
-//       integer atmnum
-//       real*8 rscale
-//       real*8 offset
-//       character*10 radtyp
-// c
-// c
-// c     assign default solute radii from consensus vdw values
-// c
-//       do i = 1, n
-//          atmnum = atomic[i]
-//          if (atmnum == 0)  rsolv[i] = 0.
-//          rsolv[i] = vdwrad(atmnum)
-//       }
-// c
-// c     assign solute atomic radii from force field vdw values
-// c
-//       if (radtyp == "VDW") {
-//          do i = 1, n
-//             k = jvdw[i]
-//             rsolv[i] = 2.
-//             if (k != 0) {
-//                rsolv[i] = 0.5 * radmin(k,k)
-//             }
-//          }
-// c
-// c     assign solute radii from parametrized solvation values
-// c
-//       else if (radtyp == "SOLUTE") {
-//          if (solvtyp(1:2) == "GK") {     
-//             do i = 1, n
-//                if (type[i] != 0) {
-//                   if (gkr(type[i]) != 0.) {
-//                      rsolv[i] = gkr(type[i])
-//                   }
-//                }
-//             }
-//          else if (solvtyp(1:2) == "PB") {
-//             do i = 1, n
-//                if (type[i] != 0) {
-//                   if (pbr(type[i]) != 0.) {
-//                      rsolv[i] = pbr(type[i])
-//                   }
-//                }
-//             }
-//          }
-// c
-// c     assign solute atomic radii adapted from Macromodel
-// c
-//       else if (radtyp == "MACROMODEL") {
-//          do i = 1, n
-//             atmnum = atomic[i]
-//             if (atmnum == 0)  rsolv[i] = 0.
-//             rsolv[i] = vdwrad(atmnum)
-//             if (atmnum == 1) {
-//                rsolv[i] = 1.25
-//                k = i12(1,i)
-//                if (atomic[k] == 7)  rsolv[i] = 1.15
-//                if (atomic[k] == 8)  rsolv[i] = 1.05
-//             else if (atmnum == 3) {
-//                rsolv[i] = 1.432
-//             else if (atmnum == 6) {
-//                rsolv[i] = 1.9
-//                if (n12[i] == 3)  rsolv[i] = 1.875
-//                if (n12[i] == 2)  rsolv[i] = 1.825
-//             else if (atmnum == 7) {
-//                rsolv[i] = 1.7063
-//                if (n12[i] == 4)  rsolv[i] = 1.625
-//                if (n12[i] == 1)  rsolv[i] = 1.6
-//             else if (atmnum == 8) {
-//                rsolv[i] = 1.535
-//                if (n12[i] == 1)  rsolv[i] = 1.48
-//             else if (atmnum == 9) {
-//                rsolv[i] = 1.47
-//             else if (atmnum == 10) {
-//                rsolv[i] = 1.39
-//             else if (atmnum == 11) {
-//                rsolv[i] = 1.992
-//             else if (atmnum == 12) {
-//                rsolv[i] = 1.7
-//             else if (atmnum == 14) {
-//                rsolv[i] = 1.8
-//             else if (atmnum == 15) {
-//                rsolv[i] = 1.87
-//             else if (atmnum == 16) {
-//                rsolv[i] = 1.775
-//             else if (atmnum == 17) {
-//                rsolv[i] = 1.735
-//             else if (atmnum == 18) {
-//                rsolv[i] = 1.7
-//             else if (atmnum == 19) {
-//                rsolv[i] = 2.123
-//             else if (atmnum == 20) {
-//                rsolv[i] = 1.817
-//             else if (atmnum == 35) {
-//                rsolv[i] = 1.9
-//             else if (atmnum == 36) {
-//                rsolv[i] = 1.812
-//             else if (atmnum == 37) {
-//                rsolv[i] = 2.26
-//             else if (atmnum == 53) {
-//                rsolv[i] = 2.1
-//             else if (atmnum == 54) {
-//                rsolv[i] = 1.967
-//             else if (atmnum == 55) {
-//                rsolv[i] = 2.507
-//             else if (atmnum == 56) {
-//                rsolv[i] = 2.188
-//             }
-//          }
-// c
-// c     assign solute atomic radii as modified Bondi values
-// c
-//       else if (radtyp == "AMOEBA") {
-//          do i = 1, n
-//             atmnum = atomic[i]
-//             if (atmnum == 0)  rsolv[i] = 0.
-//             rsolv[i] = vdwrad(atmnum)
-//             if (atmnum == 1) {
-//                rsolv[i] = 1.32
-//                k = i12(1,i)
-//                if (atomic[k] == 7)  rsolv[i] = 1.1
-//                if (atomic[k] == 8)  rsolv[i] = 1.05
-//             }
-//             if (atmnum == 3)  rsolv[i] = 1.5
-//             if (atmnum == 6) {
-//                rsolv[i] = 2.0
-//                if (n12[i] == 3)  rsolv[i] = 2.05
-//                if (n12[i] == 4) {
-//                   do j = 1, n12[i]
-//                      k = i12(j,i)
-//                      if (atomic[k] == 7)  rsolv[i] = 1.75
-//                      if (atomic[k] == 8)  rsolv[i] = 1.75
-//                   }
-//                }
-//             }
-//             if (atmnum == 7) {
-//                rsolv[i] = 1.6
-//             }
-//             if (atmnum == 8) {
-//                rsolv[i] = 1.55
-//                if (n12[i] == 2)  rsolv[i] = 1.45
-//             }
-//          }
-// c
-// c     make Tomasi-style modifications to the solute radii values
-// c
-//       else if (radtyp == "TOMASI") {
-//          do i = 1, n
-//             offset = 0.
-//             atmnum = atomic[i]
-//             if (atomic[i] == 1) {
-//                do j = 1, n12[i]
-//                   k = i12(j,i)
-//                   if (atomic[k] == 6) {
-//                      do l = 1, n12[k]
-//                         m = i12(l,k)
-//                         if (atomic(m) == 7)  offset = -0.05
-//                         if (atomic(m) == 8)  offset = -0.1
-//                      }
-//                   }
-//                   if (atomic[k] == 7)  offset = -0.25
-//                   if (atomic[k] == 8)  offset = -0.4
-//                   if (atomic[k] == 16)  offset = -0.1
-//                }
-//             else if (atomic[i] == 6) {
-//                if (n12[i] == 4)  offset = 0.05
-//                if (n12[i] == 3)  offset = 0.02
-//                if (n12[i] == 2)  offset = -0.03
-//                do j = 1, n12[i]
-//                   k = i12(j,i)
-//                   if (atomic[k] == 6)  offset = offset - 0.07
-//                }
-//                do j = 1, n12[i]
-//                   k = i12(j,i)
-//                   if (atomic[k]==7 and n12[k]==4)
-//      &               offset = -0.2
-//                   if (atomic[k]==7 and n12[k]==3)
-//      &               offset = -0.25
-//                   if (atomic[k] == 8)  offset = -0.2
-//                }
-//             else if (atomic[i] == 7) {
-//                if (n12[i] == 3) {
-//                   offset = -0.1
-//                   do j = 1, n12[i]
-//                      k = i12(j,i)
-//                      if (atomic[k] == 6)  offset = offset - 0.24
-//                   }
-//                else
-//                   offset = -0.2
-//                   do j = 1, n12[i]
-//                      k = i12(j,i)
-//                      if (atomic[k] == 6)  offset = offset - 0.16
-//                   }
-//                }
-//             else if (atomic[i] == 8) {
-//                if (n12[i] == 2) {
-//                   offset = -0.21
-//                   do j = 1, n12[i]
-//                      k = i12(j,i)
-//                      if (atomic[k] == 6)  offset = -0.36
-//                   }
-//                else
-//                   offset = -0.25
-//                }
-//             else if (atomic[i] == 16) {
-//                offset = -0.03
-//                do j = 1, n12[i]
-//                   k = i12(j,i)
-//                   if (atomic[k] == 6)  offset = offset - 0.1
-//                }
-//             }
-//             rsolv[i] = rsolv[i] + offset
-//          }
-//       }
-// c
-// c     apply an overall scale factor to the solute atomic radii
-// c
-//       rscale = 1.
-//       if (radtyp == "MACROMODEL")  rscale = 1.15
-//       if (radtyp == "BONDI")  rscale = 1.21
-//       if (radtyp == "TOMASI")  rscale = 1.47
-//       do i = 1, n
-//          rsolv[i] = rsolv[i] * rscale
-//       }
+
+
+/////////////////////////////////////////////////////////
+//                                                     //
+//  setrad.cpp  --  assign solute radii for PB and GK  //
+//                                                     //
+/////////////////////////////////////////////////////////
+
+// "setrad" chooses a set of atomic radii to solute atoms for use
+// during Poission-Boltzmann and Generalized Kirkwood implicit
+// solvation calculations
+
+
+#include "sizes.h"
+#include "atomid.h"
+#include "atoms.h"
+#include "bath.h"
+#include "couple.h"
+#include "inform.h"
+#include "keys.h"
+#include "ksolut.h"
+#include "kvdws.h"
+#include "mathConst.h"
+#include "nonpol.h"
+#include "polar.h"
+#include "potent.h"
+#include "ptable.h"
+#include "vdw.h"
+#include "solpot.h"
+#include "solute.h"
+
+void setrad(std::string radtyp)
+{
+    int i,j,k,l,m;
+    int atmnum;
+    double rscale;
+    double offset;
+
+    // assign default solute radii from consensus vdw values
+    for (int i = 0; i < n; i++) {
+        atmnum = atomic[i];
+        if (atmnum == 0)  rsolv[i] = 0.;
+        rsolv[i] = vdwrad[atmnum-1];
+    }
+
+    // assign solute atomic radii from force field vdw values
+    if (radtyp == "VDW") {
+        for (int i = 0; i < n; i++) {
+            k = jvdw[i];
+            rsolv[i] = 2.;
+            if (k != -1) {
+                rsolv[i] = 0.5 * radmin[k][k];
+            }
+        }
+    }    
+
+    // assign solute radii from parametrized solvation values
+    else if (radtyp == "SOLUTE") {
+        if (solvtyp == "GK") {     
+            for (int i = 0; i < n; i++) {
+                if (type[i] != -1) {
+                    if (gkr[type[i]] != 0.) {
+                        rsolv[i] = gkr[type[i]];
+                    }
+                }
+            }
+        }
+        else if (solvtyp == "PB") {
+            for (int i = 0; i < n; i++) {
+                if (type[i] != -1) {
+                    if (pbr[type[i]] != 0.) {
+                        rsolv[i] = pbr[type[i]];
+                    }
+                }
+            }
+        }
+    }
+
+    // assign solute atomic radii adapted from Macromodel
+    else if (radtyp == "MACROMODEL") {
+        for (int i = 0; i < n; i++) {
+            atmnum = atomic[i];
+            if (atmnum == 0) rsolv[i] = 0.;
+            rsolv[i] = vdwrad[atmnum-1];
+            if (atmnum == 1) {
+                rsolv[i] = 1.25;
+                k = i12[i][0];
+                if (atomic[k] == 7) rsolv[i] = 1.15;
+                if (atomic[k] == 8) rsolv[i] = 1.05;
+            }
+            else if (atmnum == 3) {
+                rsolv[i] = 1.432;
+            }
+            else if (atmnum == 6) {
+                rsolv[i] = 1.9;
+                if (n12[i] == 3) rsolv[i] = 1.875;
+                if (n12[i] == 2) rsolv[i] = 1.825;
+            }
+            else if (atmnum == 7) {
+                rsolv[i] = 1.7063;
+                if (n12[i] == 4) rsolv[i] = 1.625;
+                if (n12[i] == 1) rsolv[i] = 1.6;
+            }
+            else if (atmnum == 8) {
+                rsolv[i] = 1.535;
+                if (n12[i] == 1) rsolv[i] = 1.48;
+            }
+            else if (atmnum == 9) {
+                rsolv[i] = 1.47;
+            }
+            else if (atmnum == 10) {
+                rsolv[i] = 1.39;
+            }
+            else if (atmnum == 11) {
+                rsolv[i] = 1.992;
+            }
+            else if (atmnum == 12) {
+                rsolv[i] = 1.7;
+            }
+            else if (atmnum == 14) {
+                rsolv[i] = 1.8;
+            }
+            else if (atmnum == 15) {
+                rsolv[i] = 1.87;
+            }
+            else if (atmnum == 16) {
+                rsolv[i] = 1.775;
+            }
+            else if (atmnum == 17) {
+                rsolv[i] = 1.735;
+            }
+            else if (atmnum == 18) {
+                rsolv[i] = 1.7;
+            }
+            else if (atmnum == 19) {
+                rsolv[i] = 2.123;
+            }
+            else if (atmnum == 20) {
+                rsolv[i] = 1.817;
+            }
+            else if (atmnum == 35) {
+                rsolv[i] = 1.9;
+            }
+            else if (atmnum == 36) {
+                rsolv[i] = 1.812;
+            }
+            else if (atmnum == 37) {
+                rsolv[i] = 2.26;
+            }
+            else if (atmnum == 53) {
+                rsolv[i] = 2.1;
+            }
+            else if (atmnum == 54) {
+                rsolv[i] = 1.967;
+            }
+            else if (atmnum == 55) {
+                rsolv[i] = 2.507;
+            }
+            else if (atmnum == 56) {
+                rsolv[i] = 2.188;
+            }
+        }
+    }
+
+    // assign solute atomic radii as modified Bondi values
+    else if (radtyp == "AMOEBA") {
+        for (int i = 0; i < n; i++) {
+            atmnum = atomic[i];
+            if (atmnum == 0) rsolv[i] = 0.;
+            rsolv[i] = vdwrad[atmnum-1];
+            if (atmnum == 1) {
+                rsolv[i] = 1.32;
+                k = i12[i][0];
+                if (atomic[k] == 7) rsolv[i] = 1.1;
+                if (atomic[k] == 8) rsolv[i] = 1.05;
+            }
+            if (atmnum == 3) rsolv[i] = 1.5;
+            if (atmnum == 6) {
+                rsolv[i] = 2.0;
+                if (n12[i] == 3) rsolv[i] = 2.05;
+                if (n12[i] == 4) {
+                    for (int j = 0; j < n12[i]; j++) {
+                        k = i12[i][j];
+                        if (atomic[k] == 7) rsolv[i] = 1.75;
+                        if (atomic[k] == 8) rsolv[i] = 1.75;
+                    }
+                }
+            }
+            if (atmnum == 7) {
+                rsolv[i] = 1.6;
+            }
+            if (atmnum == 8) {
+                rsolv[i] = 1.55;
+                if (n12[i] == 2) rsolv[i] = 1.45;
+            }
+        }
+    }
+
+    // make Tomasi-style modifications to the solute radii values
+    else if (radtyp == "TOMASI") {
+        for (int i = 0; i < n; i++) {
+            offset = 0.;
+            atmnum = atomic[i];
+            if (atomic[i] == 1) {
+                for (int j = 0; j < n12[i]; j++) {
+                    k = i12[i][j];
+                    if (atomic[k] == 6) {
+                        for (int l = 0; l < n12[k]; l++) {
+                            m = i12[k][l];
+                            if (atomic[m] == 7) offset = -0.05;
+                            if (atomic[m] == 8) offset = -0.1;
+                        }
+                    }
+                    if (atomic[k] == 7) offset = -0.25;
+                    if (atomic[k] == 8) offset = -0.4;
+                    if (atomic[k] == 16) offset = -0.1;
+                }
+            }
+            else if (atomic[i] == 6) {
+                if (n12[i] == 4) offset = 0.05;
+                if (n12[i] == 3) offset = 0.02;
+                if (n12[i] == 2) offset = -0.03;
+                for (int j = 0; j < n12[i]; j++) {
+                    k = i12[i][j];
+                    if (atomic[k] == 6) offset = offset - 0.07;
+                }
+                for (int j = 0; j < n12[i]; j++) {
+                    k = i12[i][j];
+                    if (atomic[k]==7 and n12[k]==4) offset = -0.2;
+                    if (atomic[k]==7 and n12[k]==3) offset = -0.25;
+                    if (atomic[k] == 8) offset = -0.2;
+                }
+            }
+            else if (atomic[i] == 7) {
+                if (n12[i] == 3) {
+                    offset = -0.1;
+                    for (int j = 0; j < n12[i]; j++) {
+                        k = i12[i][j];
+                        if (atomic[k] == 6) offset = offset - 0.24;
+                    }
+                }
+                else {
+                    offset = -0.2;
+                    for (int j = 0; j < n12[i]; j++) {
+                        k = i12[i][j];
+                        if (atomic[k] == 6) offset = offset - 0.16;
+                    }
+                }
+            }
+            else if (atomic[i] == 8) {
+                if (n12[i] == 2) {
+                    offset = -0.21;
+                    for (int j = 0; j < n12[i]; j++) {
+                        k = i12[i][j];
+                        if (atomic[k] == 6) offset = -0.36;
+                    }
+                }
+                else {
+                    offset = -0.25;
+                }
+            }
+            else if (atomic[i] == 16) {
+                offset = -0.03;
+                for (int j = 0; j < n12[i]; j++) {
+                    k = i12[i][j];
+                    if (atomic[k] == 6) offset = offset - 0.1;
+                }
+            }
+            rsolv[i] = rsolv[i] + offset;
+        }
+    }
+
+    // apply an overall scale factor to the solute atomic radii
+    rscale = 1.;
+    if (radtyp == "MACROMODEL") rscale = 1.15;
+    if (radtyp == "BONDI") rscale = 1.21;
+    if (radtyp == "TOMASI") rscale = 1.47;
+    for (int i = 0; i < n; i++) {
+        rsolv[i] = rsolv[i] * rscale;
+    }
 }

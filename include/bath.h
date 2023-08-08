@@ -32,7 +32,7 @@
 #include "macro.h"
 #include <string>
 
-QCMD_EXTERN constexpr int maxnose = 4;
+constexpr int maxnose = 4;
 QCMD_EXTERN int voltrial;
 QCMD_EXTERN double kelvin,atmsph;
 QCMD_EXTERN double tautemp,taupres;

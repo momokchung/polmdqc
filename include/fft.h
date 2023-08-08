@@ -17,7 +17,7 @@
 #include <string>
 #include <vector>
 
-QCMD_EXTERN constexpr int maxprime = 15;
+constexpr int maxprime = 15;
 QCMD_EXTERN int iprime[3][maxprime];
 QCMD_EXTERN int64_t planf;
 QCMD_EXTERN int64_t planb;

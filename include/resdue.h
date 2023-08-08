@@ -55,8 +55,8 @@
 #include "macro.h"
 #include <string>
 
-QCMD_EXTERN constexpr int maxamino=38;
-QCMD_EXTERN constexpr int maxnuc=12;
+constexpr int maxamino=38;
+constexpr int maxnuc=12;
 QCMD_EXTERN int ntyp[maxamino];
 QCMD_EXTERN int catyp[maxamino];
 QCMD_EXTERN int ctyp[maxamino];
