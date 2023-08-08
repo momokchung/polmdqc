@@ -19,6 +19,7 @@
 #include "field.h"
 #include "inform.h"
 #include "katom.h"
+#include "kewald.h"
 #include "kmpole.h"
 #include "kpolar.h"
 #include "ksolv.h"
@@ -105,7 +106,7 @@ void mechanic()
     // kextra();
 
     // assign electrostatic and dispersion Ewald sum parameters
-    // kewald(); do
+    kewald();
 
     // set any holonomic interatomic distance constraints
     // shakeup();

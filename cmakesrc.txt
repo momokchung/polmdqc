@@ -37,6 +37,7 @@ src/justify.cpp
 src/katom.cpp
 src/katomsqm.cpp
 src/kbasis.cpp
+src/kewald.cpp
 src/kgbs.cpp
 src/kinetic.cpp
 src/kmpole.cpp
