@@ -26,6 +26,7 @@
 #include "pme.h"
 #include "potent.h"
 #include "upcase.h"
+#include <algorithm>
 #include <cmath>
 #include <sstream>
 
