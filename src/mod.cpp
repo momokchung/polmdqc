@@ -1,5 +1,6 @@
 #define QCMD_EXTERN_DEFINITION_FILE 1
 
+#include "action.h"
 #include "align.h"
 #include "angbnd.h"
 #include "angpot.h"
@@ -20,6 +21,7 @@
 #include "couple.h"
 #include "ctrpot.h"
 #include "dsppot.h"
+#include "energi.h"
 #include "ewald.h"
 #include "expol.h"
 #include "extfld.h"
@@ -31,6 +33,7 @@
 #include "hescut.h"
 #include "ielscf.h"
 #include "inform.h"
+#include "inter.h"
 #include "kanang.h"
 #include "kangs.h"
 #include "kantor.h"
