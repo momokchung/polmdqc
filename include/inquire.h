@@ -6,6 +6,9 @@
 
 
 #pragma once
+#include <fstream>
 #include <string>
 
-bool inquire(std::string& str);
+bool inquireFile(std::string& str);
+
+bool inquireUnit(std::ifstream& unit);

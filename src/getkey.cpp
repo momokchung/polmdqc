@@ -35,7 +35,7 @@ void getkey()
         if (string.substr(0, 2) == "-K") {
             keyfile = arg[i + 1];
             suffix (keyfile, "key", "old");
-            exist = inquire(keyfile);
+            exist = inquireFile(keyfile);
             if (!exist) {
                 printf("\n GETKEY  --  Keyfile Specified on Command Line was not Found\n");
                 fatal();
@@ -47,7 +47,7 @@ void getkey()
     if (!exist) {
         keyfile = filename.substr(0,leng) + ".key";
         version(keyfile, "old");
-        exist = inquire(keyfile);
+        exist = inquireFile(keyfile);
     }
 
     // check for the existence of a generic keyfile
@@ -59,7 +59,7 @@ void getkey()
             keyfile = filename.substr(0,ldir) + "polqcmd.key";
         }
         version(keyfile, "old");
-        exist = inquire(keyfile);
+        exist = inquireFile(keyfile);
     }
 
     // read the keyfile and store it for latter use

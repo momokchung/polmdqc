@@ -13,9 +13,11 @@
 
 #pragma once
 #include "macro.h"
+#include <fstream>
 #include <string>
 
 QCMD_EXTERN int nprior;
 QCMD_EXTERN int ldir,leng;
 QCMD_EXTERN std::string filename;
 QCMD_EXTERN std::string outfile;
+QCMD_EXTERN std::ifstream ffile;

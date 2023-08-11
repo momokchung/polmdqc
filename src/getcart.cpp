@@ -22,7 +22,7 @@
 #include <fstream>
 #include <string>
 
-void getcart(int &ixyz)
+void getcart(std::ifstream& ffile)
 {
     std::string xyzfile;
     bool exist;
@@ -31,7 +31,7 @@ void getcart(int &ixyz)
     if (exist) {
         basefile(xyzfile);
         suffix(xyzfile, "xyz", "old");
-        exist = inquire(xyzfile);
+        exist = inquireFile(xyzfile);
     }
 
     // ask for the user specified input structure filename
@@ -42,17 +42,16 @@ void getcart(int &ixyz)
         std::getline(std::cin, xyzfile);
         basefile(xyzfile);
         suffix(xyzfile, "xyz", "old");
-        exist = inquire(xyzfile);
+        exist = inquireFile(xyzfile);
     }
     if (!exist) fatal();
 
     // get file format type by inspection of first character
     filename = xyzfile;
     coordtype = "CARTESIAN";
-    std::ifstream file(xyzfile);
+    ffile.open(xyzfile);
     char letter = ' ';
-    file.get(letter);
-    file.close();
+    ffile.get(letter);
     archive = false;
     if (std::isspace(letter)) archive = true;
     if (letter>='0' and letter <='9') archive = true;
@@ -60,7 +59,9 @@ void getcart(int &ixyz)
 
     // read initial Cartesian coordinates from formatted file
     if (archive) {
-        readxyz(xyzfile);
+        ffile.clear(); // Clear any error flags that might have been set
+        ffile.seekg(0, std::ios::beg);
+        readxyz(ffile);
     }
 
     // TODO: read in binary files
@@ -68,6 +69,7 @@ void getcart(int &ixyz)
     // quit if the Cartesian coordinates file contains no atoms
     if (informAbort) {
         printf("\n GETCART  --  Cartesian Coordinate File was not Read Correctly\n");
+        ffile.close();
         fatal();
     }
 }

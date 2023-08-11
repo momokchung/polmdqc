@@ -66,7 +66,7 @@ void getprm()
 
     // check existence of default or specified parameter file
     suffix(prmfile, "prm", "old");
-    exist = inquire(prmfile);
+    exist = inquireFile(prmfile);
 
     // test for user specified absence of a parameter file
     if (!exist) {
@@ -83,7 +83,7 @@ void getprm()
         nextarg (prmfile, exist);
         if (exist) {
             suffix(prmfile, "prm", "old");
-            exist = inquire(prmfile);
+            exist = inquireFile(prmfile);
         }
     }
 
@@ -121,7 +121,7 @@ void getprm()
                 }
             }
             suffix(prmfile, "prm", "old");
-            exist = inquire(prmfile);
+            exist = inquireFile(prmfile);
         }
     }
     if (!exist) fatal();

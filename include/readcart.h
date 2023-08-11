@@ -1,12 +1,11 @@
 //////////////////////////////////////////////////////
 //                                                  //
-//  readxyz.h  --  input of XYZ-format coordinates  //
+//  readcart.h  --  input of Cartesian coordinates  //
 //                                                  //
 //////////////////////////////////////////////////////
 
 
 #pragma once
-#include <iostream>
 #include <fstream>
 
-void readxyz(std::ifstream& ffile);
+void readcart(std::ifstream& ffile, bool& first);

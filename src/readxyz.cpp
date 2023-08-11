@@ -25,18 +25,20 @@
 #include "titles.h"
 #include "trimtext.h"
 #include "unitcell.h"
+#include "version.h"
 #include <algorithm>
 #include <sstream>
 
-void readxyz(std::string& xyzfile)
+void readxyz(std::ifstream& ffile)
 {
     int nmax;
     int next,size;
     int failAtom;
     std::vector<int> list;
-    bool exist;
+    bool exist,opened;
     bool quit,reorder;
     bool clash;
+    std::string xyzfile;
     std::string record;
     std::string string;
     std::istringstream iss;
@@ -45,30 +47,35 @@ void readxyz(std::string& xyzfile)
     // initialize the total number of atoms in the system
     n = 0;
 
-    // open the input file
-    exist = inquire(xyzfile);
-    if (!exist) {
-        printf("\n READXYZ  --  Unable to Find the Cartesian Coordinates File\n");
-        fatal();
+    // open the input file if it has not already been done
+    opened = inquireUnit(ffile);
+    if (!opened) {
+        xyzfile = filename.substr(0,leng) + ".xyz";
+        version(xyzfile,"old");
+        exist = inquireFile(xyzfile);
+        if (exist) {
+            ffile.open(xyzfile);
+        }
+        else {
+            printf("\n READXYZ  --  Unable to Find the Cartesian Coordinates File\n");
+            fatal();
+        }
     }
-    std::ifstream file (xyzfile);
 
     // read first line and return if already at end of file
     quit = false;
     informAbort = true;
     size = 0;
-    while (std::getline(file, record)) {
-        iss.clear();
-        iss.str(record);
-        std::string firstWord = "";
-        iss >> firstWord;
-        size = firstWord.length();
-        if (size != 0) {
-            break;
+    while (size == 0) {
+        if (std::getline(ffile, record)) {
+            iss.clear();
+            iss.str(record);
+            std::string firstWord = "";
+            iss >> firstWord;
+            size = firstWord.length();
+        } else {
+            goto label_80;
         }
-    }
-    if (size == 0) {
-        goto label_80;
     }
     informAbort = false;
     quit = true;
@@ -117,7 +124,7 @@ void readxyz(std::string& xyzfile)
         size = -1;
         while (size == -1) {
             unitcell();
-            std::getline(file, record);
+            if (!std::getline(ffile, record)) goto label_80;
             size = trimtext(record);
             if (i == 0) {
                 next = 0;
@@ -159,7 +166,7 @@ void readxyz(std::string& xyzfile)
     }
     quit = false;
     label_80:
-    file.close();
+    if (!opened) ffile.close();
 
     // an error occurred in reading the coordinate file
     if (quit) {

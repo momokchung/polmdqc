@@ -25,7 +25,7 @@ void version(std::string& string, std::string status)
 
     // no change is needed if the file doesn't exist
     bool exist = false;
-    if (leng != 0)  exist = inquire(string);
+    if (leng != 0)  exist = inquireFile(string);
     if (!exist)  return;
 
     // set initial values for the current and next versions
@@ -60,7 +60,7 @@ void version(std::string& string, std::string status)
                 number = std::to_string(ones);
             }
             newfile = string + "_" + number;
-            exist = inquire(newfile);
+            exist = inquireFile(newfile);
         }
     }
 
@@ -69,18 +69,18 @@ void version(std::string& string, std::string status)
         string = oldfile;
     } else if (status == "new") {
         string = newfile;
-        exist = inquire(string);
+        exist = inquireFile(string);
         if (exist) {
             nextarg(string, exist);
             if (exist) {
-                exist = inquire(string);
+                exist = inquireFile(string);
             } else {
                 exist = true;
             }
             while (exist) {
                 printf("\n Enter File Name for Coordinate Output:  ");
                 std::getline(std::cin, string);
-                exist = inquire(string);
+                exist = inquireFile(string);
             }
         }
     }

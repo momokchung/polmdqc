@@ -14,6 +14,7 @@ src/config.cpp
 src/control.cpp
 src/cutoffs.cpp
 src/energy.cpp
+src/enrgyze.cpp
 src/fatal.cpp
 src/field.cpp
 src/final.cpp
@@ -57,9 +58,12 @@ src/nextarg.cpp
 src/nuclear.cpp
 src/nuclearRepulsion.cpp
 src/numeral.cpp
+src/optinit.cpp
 src/overlap.cpp
+src/partyze.cpp
 src/prmkey.cpp
 src/promo.cpp
+src/readcart.cpp
 src/readprm.cpp
 src/readxyz.cpp
 src/setprm.cpp

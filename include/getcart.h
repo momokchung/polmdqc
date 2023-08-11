@@ -6,5 +6,6 @@
 
 
 #pragma once
+#include <fstream>
 
-void getcart(int &ixyz);
+void getcart(std::ifstream& ffile);

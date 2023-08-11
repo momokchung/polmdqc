@@ -40,7 +40,7 @@ void suffix(std::string& string, std::string extension, std::string status)
     if (k == leng) {
         bool exist = false;
         if (leng != 0) {
-            exist = inquire(string);
+            exist = inquireFile(string);
         }
         if (!exist) {
             string = string + "." + extension;
