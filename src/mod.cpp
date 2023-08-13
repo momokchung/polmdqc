@@ -2,6 +2,7 @@
 
 #include "action.h"
 #include "align.h"
+#include "analyz.h"
 #include "angbnd.h"
 #include "angpot.h"
 #include "argue.h"
