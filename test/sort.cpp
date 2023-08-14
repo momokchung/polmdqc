@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "sort.h"
+#include "sort.hpp"
 #include <set>
 
 TEST_CASE("sort") {

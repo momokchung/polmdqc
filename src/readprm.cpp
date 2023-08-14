@@ -51,7 +51,7 @@
 #include "prmkey.h"
 #include "readprm.h"
 #include "solute.h"
-#include "sort.h"
+#include "sort.hpp"
 #include "torphase.h"
 #include "upcase.h"
 #include <algorithm>

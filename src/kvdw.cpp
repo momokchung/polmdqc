@@ -25,7 +25,7 @@
 #include "merck.h"
 #include "numeral.h"
 #include "potent.h"
-#include "sort.h"
+#include "sort.hpp"
 #include "upcase.h"
 #include "vdw.h"
 #include "vdwpot.h"

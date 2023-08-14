@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////
 //                                              //
-//  sort.cpp  --  sorts and removes duplicates  //
+//  sort.hpp  --  sorts and removes duplicates  //
 //                                              //
 //////////////////////////////////////////////////
 
@@ -8,12 +8,13 @@
 // object and returns the number of unique objects
 
 
-#include "sort.h"
+#pragma once
 #include <algorithm>
 #include <unordered_set>
+#include <vector>
 
 template <typename T>
-void sortUnique(int& n, std::vector<T>& vector, int startIndex)
+void sortUnique(int& n, std::vector<T>& vector, int startIndex=0)
 {
     std::unordered_set<T> s;
     for (int i = startIndex; i < startIndex + n; i++) {
@@ -30,9 +31,6 @@ void sortUnique(int& n, std::vector<T>& vector, int startIndex)
     std::sort(vector.begin()+startIndex, vector.begin()+startIndex+setSize);
     n = setSize;
 }
-
-template void sortUnique<int>(int& n, std::vector<int>& vector, int startIndex);
-template void sortUnique<double>(int& n, std::vector<double>& vector, int startIndex);
 
 
 // "sortKey" sorts and returns a key into the original ordering
@@ -65,6 +63,3 @@ void sortKey(size_t n, std::vector<T>& vector, std::vector<int>& key)
         vector[i] = temp[i].first;
     }
 }
-
-template void sortKey<int>(size_t n, std::vector<int>& vector, std::vector<int>& key);
-template void sortKey<double>(size_t n, std::vector<double>& vector, std::vector<int>& key);

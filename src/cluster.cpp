@@ -21,7 +21,7 @@
 #include "keys.h"
 #include "molcul.h"
 #include "qcmdlimits.h"
-#include "sort.h"
+#include "sort.hpp"
 #include "upcase.h"
 #include <algorithm>
 #include <cmath>

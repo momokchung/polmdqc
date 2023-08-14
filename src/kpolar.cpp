@@ -41,7 +41,7 @@
 #include "polpot.h"
 #include "poltcg.h"
 #include "potent.h"
-#include "sort.h"
+#include "sort.hpp"
 #include "upcase.h"
 #include <cmath>
 #include <iostream>

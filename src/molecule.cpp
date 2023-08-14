@@ -12,7 +12,7 @@
 #include "atoms.h"
 #include "couple.h"
 #include "molcul.h"
-#include "sort.h"
+#include "sort.hpp"
 #include <algorithm>
 
 void molecule()

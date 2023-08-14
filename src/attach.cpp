@@ -13,7 +13,7 @@
 #include "attach.h"
 #include "couple.h"
 #include "fatal.h"
-#include "sort.h"
+#include "sort.hpp"
 
 void attach()
 {
