@@ -12,6 +12,8 @@
 #include "analysis.h"
 #include "analyz.h"
 #include "atoms.h"
+#include "calcMode.h"
+#include "empole.h"
 #include "energi.h"
 #include "fatal.h"
 #include "group.h"
@@ -25,6 +27,8 @@ void analysis(double& energy)
 {
     int i;
     double cutoff;
+
+    calcMode calculationMode = calcMode::ANALYSIS;
 
     // zero out each of the potential energy components
     esum = 0.;
@@ -196,7 +200,7 @@ void analysis(double& energy)
     // if (use_charge) echarge3(); // TODO
     // if (use_chgdpl) echgdpl3(); // TODO
     // if (use_dipole) edipole3(); // TODO
-    // if (use_mpole) empole3(); // TODO
+    if (use_mpole) empole(calculationMode);
     // if (use_polar) epolar3(); // TODO
     // if (use_chgtrn) echgtrn3(); // TODO
     // if (use_rxnfld) erxnfld3(); // TODO

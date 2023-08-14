@@ -14,6 +14,7 @@ src/command.cpp
 src/config.cpp
 src/control.cpp
 src/cutoffs.cpp
+src/empole.cpp
 src/energy.cpp
 src/enrgyze.cpp
 src/fatal.cpp
@@ -67,8 +68,8 @@ src/promo.cpp
 src/readcart.cpp
 src/readprm.cpp
 src/readxyz.cpp
+src/rotpole.cpp
 src/setprm.cpp
-src/sort.cpp
 src/stringUtils.cpp
 src/suffix.cpp
 src/torphase.cpp
