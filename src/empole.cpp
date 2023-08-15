@@ -59,8 +59,10 @@ void empole(calcMode calculationMode)
 #include "chgpot.h"
 #include "chkpole.h"
 #include "couple.h"
+#include "cutoffSwitch.h"
 #include "energi.h"
 #include "group.h"
+#include "groups.h"
 #include "inform.h"
 #include "inter.h"
 #include "mathConst.h"
@@ -133,95 +135,74 @@ void empole_a(calcMode calculationMode)
 
     // rotate the multipole components into the global frame
     rotpole("MPOLE");
-// c
-// c     perform dynamic allocation of some local arrays
-// c
-//       allocate (mscale(n))
-// c
-// c     initialize connected atom exclusion coefficients
-// c
-//       do i = 1, n
-//          mscale(i) = 1.
-//       end do
-// c
-// c     set conversion factor, cutoff and switching coefficients
-// c
-//       f = electric / dielec
-//       mode = 'MPOLE'
-//       call switch (mode)
-// c
-// c     print header information if debug output was requested
-// c
-//       header = .true.
-//       if (debug .and. npole.ne.0) then
-//          header = .false.
-//          write (iout,10)
-//    10    format (/,' Individual Atomic Multipole Interactions :',
-//      &           //,' Type',14x,'Atom Names',15x,'Distance',
-//      &              8x,'Energy',/)
-//       end if
-}
 
+    // allocate and initialize connected atom exclusion coefficients
+    mscale.resize(n, 1.);
 
+    // set conversion factor, cutoff and switching coefficients
+    f = electric / dielec;
+    mode = "MPOLE";
+    cutoffSwitch(mode);
 
-// c
-// c
+    // print header information if debug output was requested
+    header = true;
+    if (debug and npole!=0) {
+        header = false;
+        printf("\n Individual Atomic Multipole Interactions :\n\n");
+        printf(" Type              Atom Names               Distance        Energy\n\n");
+    }
 
-// c
-// c     calculate the multipole interaction energy term
-// c
-//       do ii = 1, npole-1
-//          i = ipole(ii)
-//          iz = zaxis(i)
-//          ix = xaxis(i)
-//          iy = abs(yaxis(i))
-//          xi = x(i)
-//          yi = y(i)
-//          zi = z(i)
-//          ci = rpole(1,i)
-//          dix = rpole(2,i)
-//          diy = rpole(3,i)
-//          diz = rpole(4,i)
-//          qixx = rpole(5,i)
-//          qixy = rpole(6,i)
-//          qixz = rpole(7,i)
-//          qiyy = rpole(9,i)
-//          qiyz = rpole(10,i)
-//          qizz = rpole(13,i)
-//          if (use_chgpen) then
-//             corei = pcore(i)
-//             vali = pval(i)
-//             alphai = palpha(i)
-//          end if
-//          usei = (use(i) .or. use(iz) .or. use(ix) .or. use(iy))
-// c
-// c     set exclusion coefficients for connected atoms
-// c
-//          do j = 1, n12(i)
-//             mscale(i12(j,i)) = m2scale
-//          end do
-//          do j = 1, n13(i)
-//             mscale(i13(j,i)) = m3scale
-//          end do
-//          do j = 1, n14(i)
-//             mscale(i14(j,i)) = m4scale
-//          end do
-//          do j = 1, n15(i)
-//             mscale(i15(j,i)) = m5scale
-//          end do
-// c
-// c     evaluate all sites within the cutoff distance
-// c
-//          do kk = ii+1, npole
-//             k = ipole(kk)
-//             kz = zaxis(k)
-//             kx = xaxis(k)
-//             ky = abs(yaxis(k))
-//             usek = (use(k) .or. use(kz) .or. use(kx) .or. use(ky))
-//             proceed = .true.
-//             if (use_group)  call groups (proceed,fgrp,i,k,0,0,0,0)
-//             if (.not. use_intra)  proceed = .true.
-//             if (proceed)  proceed = (usei .or. usek)
+    // calculate the multipole interaction energy term
+    for (int ii = 0; ii < npole-1; ii++) {
+        i = ipole[ii];
+        iz = zaxis[i] -1;
+        ix = xaxis[i] -1;
+        iy = std::abs(yaxis[i]) -1;
+        xi = x[i];
+        yi = y[i];
+        zi = z[i];
+        ci = rpole[i][0];
+        dix = rpole[i][1];
+        diy = rpole[i][2];
+        diz = rpole[i][3];
+        qixx = rpole[i][4];
+        qixy = rpole[i][5];
+        qixz = rpole[i][6];
+        qiyy = rpole[i][8];
+        qiyz = rpole[i][9];
+        qizz = rpole[i][12];
+        if (use_chgpen) {
+            corei = pcore[i];
+            vali = pval[i];
+            alphai = palpha[i];
+        }
+        usei = (use[i] or use[iz] or use[ix] or use[iy]);
+
+        // set exclusion coefficients for connected atoms
+        for (int j = 0; j < n12[i]; j++) {
+            mscale[i12[i][j]] = m2scale;
+        }
+        for (int j = 0; j < n13[i]; j++) {
+            mscale[i13[i][j]] = m3scale;
+        }
+        for (int j = 0; j < n14[i]; j++) {
+            mscale[i14[i][j]] = m4scale;
+        }
+        for (int j = 0; j < n15[i]; j++) {
+            mscale[i15[i][j]] = m5scale;
+        }
+
+        // evaluate all sites within the cutoff distance
+        for (int kk = ii+1; kk < npole; kk++) {
+            k = ipole[kk];
+            kz = zaxis[k] - 1;
+            kx = xaxis[k] - 1;
+            ky = std::abs(yaxis[k]) - 1;
+            usek = (use[k] or use[kz] or use[kx] or use[ky]);
+            proceed = true;
+            if (use_group) groups(proceed,fgrp,i,k,-1,-1,-1,-1);
+            if (!use_intra) proceed = true;
+            if (proceed) proceed = (usei or usek);
 //             if (proceed) then
 //                xr = x(k) - xi
 //                yr = y(k) - yi
@@ -367,8 +348,17 @@ void empole_a(calcMode calculationMode)
 //          end do
 //          do j = 1, n15(i)
 //             mscale(i15(j,i)) = 1.
-//          end do
-//       end do
+        }
+    }
+}
+
+
+
+// c
+// c
+
+// c
+
 void empole_b(calcMode calculationMode){}
 void empole_c(calcMode calculationMode){}
 void empole_d(calcMode calculationMode){}

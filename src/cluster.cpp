@@ -224,8 +224,11 @@ void cluster()
             size = igrp[i][1] - igrp[i][0] + 1;
             if (size != 0) {
                 printf("\n List of Atoms in Group%3d :\n\n   ", i);
+                int counter = 0;
                 for (int j = igrp[i][0]; j <= igrp[i][1]; j++) {
                     printf("%7d", kgrp[j]+1);
+                    counter++;
+                    if ((counter) % 10 == 0) printf("\n   ");
                 }
                 printf("\n");
             }

@@ -14,6 +14,7 @@ src/command.cpp
 src/config.cpp
 src/control.cpp
 src/cutoffs.cpp
+src/cutoffSwitch.cpp
 src/empole.cpp
 src/energy.cpp
 src/enrgyze.cpp
@@ -28,6 +29,7 @@ src/getprm.cpp
 src/getstring.cpp
 src/gettext.cpp
 src/getword.cpp
+src/groups.cpp
 src/hartree.cpp
 src/init.cpp
 src/initatom.cpp

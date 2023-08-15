@@ -66,7 +66,6 @@ void enrgyze()
         precision = 8;
     }
     if (std::abs(energy) >= 1.e10) useScientific = true;
-    energy = -267.407833;
     if (!useScientific) {
         printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, energy);
     }
