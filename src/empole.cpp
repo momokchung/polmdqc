@@ -133,9 +133,6 @@ void empole_a(calcMode calculationMode)
 
     // rotate the multipole components into the global frame
     rotpole("MPOLE");
-    for (int i = 0; i < n; i++) {
-        printf(" %11d %20.16f\n", i+1, rpole[i][0]);
-    }
 // c
 // c     perform dynamic allocation of some local arrays
 // c

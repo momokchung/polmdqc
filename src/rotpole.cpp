@@ -125,9 +125,9 @@ void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar)
     xi = x[i];
     yi = y[i];
     zi = z[i];
-    iz = zaxis[i];
-    ix = xaxis[i];
-    iy = std::abs(yaxis[i]);
+    iz = zaxis[i] - 1;
+    ix = xaxis[i] - 1;
+    iy = std::abs(yaxis[i]) - 1;
     axetyp = polaxe[i];
     planar = false;
 

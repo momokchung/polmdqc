@@ -19,6 +19,7 @@
 #include "field.h"
 #include "inform.h"
 #include "katom.h"
+#include "kchgtrn.h"
 #include "kewald.h"
 #include "kmpole.h"
 #include "kpolar.h"
@@ -90,7 +91,7 @@ void mechanic()
     // kdipole();
     kmpole();
     kpolar();
-    // kchgtrn();
+    kchgtrn();
     // kchgflx();
 
     // assign van der Waals, repulsion and dispersion parameters

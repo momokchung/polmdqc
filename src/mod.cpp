@@ -19,6 +19,7 @@
 #include "cell.h"
 #include "chgpen.h"
 #include "chgpot.h"
+#include "chgtrn.h"
 #include "chunks.h"
 #include "couple.h"
 #include "ctrpot.h"
