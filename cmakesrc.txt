@@ -15,6 +15,7 @@ src/config.cpp
 src/control.cpp
 src/cutoffs.cpp
 src/cutoffSwitch.cpp
+src/damping.cpp
 src/empole.cpp
 src/energy.cpp
 src/enrgyze.cpp
