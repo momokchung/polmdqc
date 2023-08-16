@@ -229,7 +229,7 @@ void katom()
     for (int i = 0; i < n; i++) {
         int k = type[i];
         cls = atomClass[i];
-        if (k<0 or k>=maxtyp or cls<0 or cls>=maxclass) {
+        if (k<0 or k>maxtyp-1 or cls<0 or cls>maxclass-1) {
             informAbort = true;
             if (header) {
                 header = false;

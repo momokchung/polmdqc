@@ -598,7 +598,6 @@ void kmpole()
     pval0.resize(n);
     palpha.resize(n);
 
-    // test
     // find new charge penetration parameters in the keyfile
     header = true;
     for (int i = 0; i < nkey; i++) {
@@ -640,7 +639,7 @@ void kmpole()
         pval0[i] = pval[i];
         palpha[i] = 0.;
         ic = atomClass[i];
-        if (ic != 0) {
+        if (ic != -1) {
             pcore[i] = cpele[ic];
             pval[i] = pole[i][0] - cpele[ic];
             pval0[i] = pval[i];
@@ -648,7 +647,6 @@ void kmpole()
         }
     }
 
-    // test
     // process keywords with charge penetration for specific atoms
     header = true;
     for (int i = 0; i < nkey; i++) {

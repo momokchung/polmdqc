@@ -10,8 +10,12 @@
 
 
 #include "final.h"
+#include "inform.h"
 
 void final()
 {
-
+    // print a final status message before exiting PolQCMD
+    if (debug) {
+        printf("\n PolQCMD is Exiting following Normal Termination\n");
+    }
 }
