@@ -63,6 +63,7 @@ void empole(calcMode calculationMode)
 #include "energi.h"
 #include "group.h"
 #include "groups.h"
+#include "image.h"
 #include "inform.h"
 #include "inter.h"
 #include "mathConst.h"
@@ -203,12 +204,12 @@ void empole_a(calcMode calculationMode)
             if (use_group) groups(proceed,fgrp,i,k,-1,-1,-1,-1);
             if (!use_intra) proceed = true;
             if (proceed) proceed = (usei or usek);
-//             if (proceed) then
-//                xr = x(k) - xi
-//                yr = y(k) - yi
-//                zr = z(k) - zi
-//                if (use_bounds)  call image (xr,yr,zr)
-//                r2 = xr*xr + yr* yr + zr*zr
+            if (proceed) {
+                xr = x[k] - xi;
+                yr = y[k] - yi;
+                zr = z[k] - zi;
+                if (use_bounds) image(xr,yr,zr);
+                r2 = xr*xr + yr* yr + zr*zr;
 //                if (r2 .le. off2) then
 //                   r = sqrt(r2)
 //                   ck = rpole(1,k)
@@ -332,8 +333,8 @@ void empole_a(calcMode calculationMode)
 //      &                          f10.4,2x,f12.4)
 //                   end if
 //                end if
-//             end if
-//          end do
+            }
+        }
 // c
 // c     reset exclusion coefficients for connected atoms
 // c
@@ -348,7 +349,6 @@ void empole_a(calcMode calculationMode)
 //          end do
 //          do j = 1, n15(i)
 //             mscale(i15(j,i)) = 1.
-        }
     }
 }
 
