@@ -252,13 +252,13 @@ void cutoffs()
     }
 
     // convert any tapering percentages to absolute distances
-    if (vdwtaper > 1.)  vdwtaper = vdwtaper * vdwcut;
-    if (reptaper > 1.)  reptaper = reptaper * repcut;
-    if (disptaper > 1.)  disptaper = disptaper * dispcut;
-    if (chgtaper > 1.)  chgtaper = chgtaper * chgcut;
-    if (dpltaper > 1.)  dpltaper = dpltaper * dplcut;
-    if (mpoletaper > 1.)  mpoletaper = mpoletaper * mpolecut;
-    if (ctrntaper > 1.)  ctrntaper = ctrntaper * ctrncut;
+    if (vdwtaper < 1.)  vdwtaper = vdwtaper * vdwcut;
+    if (reptaper < 1.)  reptaper = reptaper * repcut;
+    if (disptaper < 1.)  disptaper = disptaper * dispcut;
+    if (chgtaper < 1.)  chgtaper = chgtaper * chgcut;
+    if (dpltaper < 1.)  dpltaper = dpltaper * dplcut;
+    if (mpoletaper < 1.)  mpoletaper = mpoletaper * mpolecut;
+    if (ctrntaper < 1.)  ctrntaper = ctrntaper * ctrncut;
 
     // apply truncation cutoffs if they were requested
     if (truncate) {

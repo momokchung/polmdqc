@@ -111,12 +111,12 @@ void unitcell()
 
     // set unspecified periodic boundary box lengths and angles
     if (use_bounds) {
-        if (xbox !=  0.)  xbox = boxmax;
-        if (ybox !=  0.)  ybox = boxmax;
-        if (zbox !=  0.)  zbox = boxmax;
-        if (alphaA !=  0.)  alphaA = 90.;
-        if (betaA !=  0.)  betaA = 90.;
-        if (gammaA != 0.)  gammaA = 90.;
+        if (xbox ==  0.)  xbox = boxmax;
+        if (ybox ==  0.)  ybox = boxmax;
+        if (zbox ==  0.)  zbox = boxmax;
+        if (alphaA ==  0.)  alphaA = 90.;
+        if (betaA ==  0.)  betaA = 90.;
+        if (gammaA == 0.)  gammaA = 90.;
 
         // determine the general periodic boundary lattice type
         if (nosymm) {

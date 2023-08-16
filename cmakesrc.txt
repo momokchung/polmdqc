@@ -31,6 +31,7 @@ src/gettext.cpp
 src/getword.cpp
 src/groups.cpp
 src/hartree.cpp
+src/image.cpp
 src/init.cpp
 src/initatom.cpp
 src/initial.cpp
