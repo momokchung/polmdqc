@@ -24,7 +24,7 @@ add_executable(tinkerqm src/tinkerqm.cpp)
 target_link_libraries(tinkerqm polqcmd openblas)
 
 # Add the analyze executable
-add_executable(analyze src/analyze.cpp)
+add_executable(analyze src/analyzeExe.cpp)
 
 # Link the polqcmd library
 target_link_libraries(analyze polqcmd)

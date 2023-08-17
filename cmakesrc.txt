@@ -1,6 +1,7 @@
 set (POLQCMD_SRC
 src/active.cpp
 src/analysis.cpp
+src/analyze.cpp
 src/angles.cpp
 src/attach.cpp
 src/basefile.cpp

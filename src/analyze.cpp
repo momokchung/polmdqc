@@ -33,7 +33,7 @@
 #include <string>
 #include <vector>
 
-int main(int argc, char** argv)
+void analyze(int argc, char** argv)
 {
     int i,j,ixyz;
     int frame;
