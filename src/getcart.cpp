@@ -26,6 +26,7 @@ void getcart(std::ifstream& ffile)
 {
     std::string xyzfile;
     bool exist;
+
     // try to get a filename from the command line arguments
     nextarg (xyzfile, exist);
     if (exist) {

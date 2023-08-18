@@ -29,5 +29,11 @@ add_executable(analyze src/analyzeExe.cpp)
 # Link the polqcmd library
 target_link_libraries(analyze polqcmd)
 
+# Add the volume executable
+add_executable(volume src/volumeExe.cpp)
+
+# Link the polqcmd library
+target_link_libraries(volume polqcmd)
+
 # Include tests directory
 add_subdirectory(test)

@@ -23,6 +23,7 @@ src/enrgyze.cpp
 src/fatal.cpp
 src/field.cpp
 src/final.cpp
+src/gaussvol.cpp
 src/getcart.cpp
 src/getkey.cpp
 src/getline.cpp
@@ -31,6 +32,7 @@ src/getprm.cpp
 src/getstring.cpp
 src/gettext.cpp
 src/getword.cpp
+src/getxyz.cpp
 src/groups.cpp
 src/hartree.cpp
 src/image.cpp
@@ -85,4 +87,5 @@ src/trimtext.cpp
 src/unitcell.cpp
 src/upcase.cpp
 src/version.cpp
+src/volume.cpp
 )
