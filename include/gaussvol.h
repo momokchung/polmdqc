@@ -26,7 +26,6 @@
 
 #pragma once
 
-#include <cfloat>
 #include <cmath>
 #include <limits>
 #include <stdexcept>
@@ -192,11 +191,11 @@ public:
         tree = new GOverlap_Tree(natoms);
         this->natoms = natoms;
         this->radii.resize(natoms);
-        for(int i=0;i<natoms;i++) radii[i] = 1.;
+        for(int i = 0; i < natoms; i++) radii[i] = 1.;
         this->volumes.resize(natoms);
-        for(int i=0;i<natoms;i++) volumes[i] = 0.;
+        for(int i = 0; i < natoms; i++) volumes[i] = 0.;
         this->gammas.resize(natoms);
-        for(int i=0;i<natoms;i++) gammas[i] = 0.;
+        for(int i = 0; i < natoms; i++) gammas[i] = 0.;
         this->ishydrogen = ishydrogen;
     }
     GaussVol(const int natoms, std::vector<double>& radii, std::vector<double>& volumes, std::vector<double>& gammas, std::vector<int>& ishydrogen)
@@ -278,7 +277,7 @@ public:
     }
 
 private:
-    GOverlap_Tree *tree;
+    GOverlap_Tree* tree;
     int natoms;
     std::vector<double> radii;
     std::vector<double> volumes;

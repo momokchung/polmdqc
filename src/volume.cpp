@@ -53,7 +53,7 @@ void volume(int argc, char** argv)
     std::vector<double> dv;
     std::vector<double> free_volume;
     std::vector<double> self_volume;
-    bool exist,query;
+    bool exist,query,use_hydrogen;
     std::string answer;
     std::string xyzfile;
     std::string record;
@@ -82,8 +82,10 @@ void volume(int argc, char** argv)
         next = 0;
         gettext(record,answer,next);
     }
+    use_hydrogen = true;
     upcase(answer);
     if (answer != "Y") {
+        use_hydrogen = false;
         for (int i = 0; i < n; i++) {
             if (atomic[i] == 1) use[i] = false;
         }
@@ -119,7 +121,7 @@ void volume(int argc, char** argv)
     free_volume.resize(n);
     self_volume.resize(n);
     for (int i = 0; i < n; i++) {
-        if (atomic[i] == 1) ishydrogen[i] = 1;
+        if (atomic[i] == 1 and !use_hydrogen) ishydrogen[i] = 1;
         posx[i] = x[i];
         posy[i] = y[i];
         posz[i] = z[i];
@@ -129,18 +131,19 @@ void volume(int argc, char** argv)
     rad_offset = 0.005;
     // rad_offset = 0.001;
     for (int i = 0; i < n; i++) {
+        radius[i] = rad[atomClass[i]];
+        radius2[i] = rad[atomClass[i]] + rad_offset;
+        // radius[i] = rad[atomClass[i]] / twosix;
+        // radius[i] = vdwrad(atomic[i]);
+    }
+    constexpr double four_thirds_pi = 4./3.*pi;
+    for (int i = 0; i < n; i++) {
         if (use[i]) {
-            radius[i] = rad[atomClass[i]];
-            vol[i] = 4./3.*pi*std::pow(radius[i],3);
-            radius2[i] = rad[atomClass[i]] + rad_offset;
-            vol2[i] = 4./3.*pi*std::pow(radius2[i],3);
-            // radius[i] = rad[atomClass[i]] / twosix;
-            // radius[i] = vdwrad(atomic[i]);
+            vol[i] = four_thirds_pi*std::pow(radius[i],3);
+            vol2[i] = four_thirds_pi*std::pow(radius2[i],3);
         }
         else {
-            radius[i] = 0.;
             vol[i] = 0.;
-            radius2[i] = 0.;
             vol2[i] = 0.;
         }
     }
@@ -157,7 +160,7 @@ void volume(int argc, char** argv)
     gvol.setRadii(radius);
     gvol.setVolumes(vol);
     gvol.compute_tree(posx, posy, posz);
-    // call gvol%GaussVol_print_tree()
+    // gvol.print_tree();
     gvol.compute_volume(posx, posy, posz, gv_volume, gv_energy, drx, dry, drz, dv, free_volume, self_volume);
     // write(*,*) "GaussVol Volume:  ", volume
     gvol.setRadii(radius2);
@@ -165,8 +168,9 @@ void volume(int argc, char** argv)
     gvol.rescan_tree_volumes(posx, posy, posz);
     gvol.compute_volume(posx, posy, posz, gv_volume2, gv_energy, drx, dry, drz, dv, free_volume, self_volume);
     gv_area = (gv_volume2 - gv_volume)/rad_offset;
-    printf(" GaussVol Volume: %20.16f\n", gv_volume);
-    printf(" GaussVol Area: %20.16f\n", gv_area);
+    printf(" GaussVol Volume: %20.16e\n", gv_volume);
+    printf(" GaussVol Volume2: %20.16e\n", gv_volume2);
+    printf(" GaussVol Area: %20.16e\n", gv_area);
 
 // c     get area and volume for successive coordinate structures
 // c

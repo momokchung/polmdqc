@@ -13,28 +13,19 @@ static int _nov_ = 0;
 // overlap volume switching function + 1st derivative
 double pol_switchfunc(double gvol, double volmina, double volminb, double& sp)
 {
-    double swf = 0.;
-    double swfp = 1.;
-    double swd, swu, swu2, swu3, s;
-    if(gvol > volminb) {
-        swf = 1.;
-        swfp = 0.;
+    if (gvol > volminb) {
+        sp = 0.0;
+        return 1.0;
+    } else if (gvol < volmina) {
+        sp = 0.0;
+        return 0.0;
     }
-    else if (gvol < volmina) {
-        swf = 0.;
-        swfp = 0.;
-    }
-    swd = 1./(volminb - volmina);
-    swu = (gvol - volmina)*swd;
-    swu2 = swu*swu;
-    swu3 = swu*swu2;
-    s = swf + swfp*swu3*(10.-15.*swu+6.*swu2);
-    sp = swfp*swd*30.*swu2*(1. - 2.*swu + swu2);
-
-    //turn off switching function
-    //*sp = 0.0;
-    //s = 1.0;
-    return s;
+    double swd = 1.0 / (volminb - volmina);
+    double swu = (gvol - volmina) * swd;
+    double swu2 = swu * swu;
+    double swu3 = swu * swu2;
+    sp = swd * 30.0 * swu2 * (1.0 - 2.0 * swu + swu2);
+    return swu3 * (10.0 - 15.0 * swu + 6.0 * swu2);
 }
 
 // overlap between two Gaussians represented by a (V,c,a) triplet
@@ -101,8 +92,8 @@ double ogauss_alpha(GaussianVca& g1, GaussianVca& g2, GaussianVca& g12, double& 
 // overlap comparison function
 bool goverlap_compare(const GOverlap& overlap1, const GOverlap& overlap2)
 {
-    // order by volume, larger first
-    return overlap1.volume > overlap2.volume;
+    // order by volume, smaller first
+    return overlap1.volume < overlap2.volume;
 }
 
 int GOverlap_Tree::init_overlap_tree(std::vector<double>& posx, std::vector<double>& posy, std::vector<double>& posz, std::vector<double>& radius, std::vector<double>& volume, std::vector<double>& gamma, std::vector<int>& ishydrogen)
@@ -114,12 +105,12 @@ int GOverlap_Tree::init_overlap_tree(std::vector<double>& posx, std::vector<doub
 
     // slot 0 contains the master tree information, children = all of the atoms
     overlap.level = 0;
-    overlap.volume = 0;
+    overlap.volume = 0.;
     overlap.dv1x = 0.;
     overlap.dv1y = 0.;
     overlap.dv1z = 0.;
     overlap.dvv1 = 0.;
-    overlap.self_volume = 0;
+    overlap.self_volume = 0.;
     overlap.sfp = 1.;
     overlap.gamma1i = 0.;
     overlap.parent_index = -1;
@@ -199,7 +190,6 @@ int GOverlap_Tree::add_children(int parent_index, std::vector<GOverlap>& childre
     return start_index;
 }
 
-
 // scans the siblings of overlap identified by "root_index" to create children overlaps,
 // returns them into the "children_overlaps" buffer: (root) + (atom) -> (root, atom)
 int GOverlap_Tree::compute_children(int root_index, std::vector<GOverlap>& children_overlaps)
@@ -243,7 +233,7 @@ int GOverlap_Tree::compute_children(int root_index, std::vector<GOverlap>& child
             GOverlap ov;
             ov.g = g12;
             ov.volume = gvol;
-            ov.self_volume = 0;
+            ov.self_volume = 0.;
             ov.atom = atom2;
             // dv1 is the gradient of V(123..)n with respect to the position of 1
             ov.dv1x = (g2.cx - g1.cx) * (-dVdr);
@@ -259,7 +249,6 @@ int GOverlap_Tree::compute_children(int root_index, std::vector<GOverlap>& child
 
     return 1;
 }
-
 
 // rescan the sub-tree to recompute the volumes, does not modify the tree
 int GOverlap_Tree::rescan_r(int slot)
@@ -308,12 +297,12 @@ int GOverlap_Tree::rescan_tree_v(std::vector<double>& posx, std::vector<double>&
     slot = 0;
     GOverlap* ov = &(overlaps[slot]);
     ov->level = 0;
-    ov->volume = 0;
+    ov->volume = 0.;
     ov->dv1x = 0.;
     ov->dv1y = 0.;
     ov->dv1z = 0.;
     ov->dvv1 = 0.;
-    ov->self_volume = 0;
+    ov->self_volume = 0.;
     ov->sfp = 1.;
     ov->gamma1i = 0.;
 
@@ -386,8 +375,6 @@ int GOverlap_Tree::rescan_tree_g(std::vector<double>& gamma)
     return 1;
 }
 
-
-
 int GOverlap_Tree::compute_andadd_children_r(int root)
 {
     std::vector<GOverlap> children_overlaps;
@@ -395,7 +382,7 @@ int GOverlap_Tree::compute_andadd_children_r(int root)
     int noverlaps = children_overlaps.size();
     if(noverlaps > 0) {
         int start_slot = add_children(root, children_overlaps);
-        for (int ichild=start_slot; ichild < start_slot+noverlaps ; ichild++) {
+        for (int ichild=start_slot; ichild < start_slot+noverlaps; ichild++) {
             compute_andadd_children_r(ichild);
         }
     }
@@ -424,8 +411,8 @@ int GOverlap_Tree::compute_volume_underslot2_r(
 {
     GOverlap& ov = overlaps[slot];
     double cf = ov.level % 2 == 0 ? -1.0 : 1.0;
-    double volcoeff  = ov.level > 0 ? cf : 0;
-    double volcoeffp = ov.level > 0 ? volcoeff/(double)ov.level : 0;
+    double volcoeff  = ov.level > 0 ? cf : 0.;
+    double volcoeffp = ov.level > 0 ? volcoeff/(double)ov.level : 0.;
 
     int atom = ov.atom;
     double ai = overlaps[atom+1].g.a;
@@ -537,8 +524,8 @@ int GOverlap_Tree::compute_volume2_r(
     for(int i = 0 ; i < dry.size(); ++i) dry[i] = 0.;
     for(int i = 0 ; i < drz.size(); ++i) drz[i] = 0.;
     for(int i = 0 ; i < dv.size(); ++i) dv[i] = 0.;
-    for(int i = 0 ; i < free_volume.size(); ++i) free_volume[i] = 0;
-    for(int i = 0 ; i < self_volume.size(); ++i) self_volume[i] = 0;
+    for(int i = 0 ; i < free_volume.size(); ++i) free_volume[i] = 0.;
+    for(int i = 0 ; i < self_volume.size(); ++i) self_volume[i] = 0.;
 
     compute_volume_underslot2_r(
         0,
@@ -611,13 +598,17 @@ static void test_gaussian(GOverlap_Tree& tree)
 
 void GOverlap::print_overlap(void)
 {
-    std::cout << std::setprecision(4) << std::setw(7) << level << " " << std::setw(7)  << atom << " " << std::setw(7)  << parent_index << " " <<  std::setw(7) << children_startindex << " " << std::setw(7) << children_count << " " << std::setw(10) << self_volume << " " << std::setw(10) << volume << " " << std::setw(10) << gamma1i << " " << std::setw(10) << g.a << " " << std::setw(10) << g.cx << " " <<  std::setw(10) << g.cy << " " <<  std::setw(10) << g.cz << " " <<  std::setw(10) << dv1x << " " << std::setw(10) << dv1y << " " << std::setw(10) << dv1z << " " << std::setw(10) << sfp << std::endl;
+    printf("           %6d %6d %6d %7d %7d", level, atom, parent_index, children_startindex, children_count);
+    printf(" %10.6f %10.6f %10.6f %10.6f", volume, gamma1i, g.a, g.v);
+    printf(" %10.6f %10.6f %10.6f", g.cx, g.cy, g.cz);
+    printf(" %10.6f %10.6f %10.6f %10.6f\n", dv1x, dv1y, dv1z, sfp);
+    // printf("           %6d %20.16e\n", level, volume);
 }
 
 void GOverlap_Tree::print_tree_r(int slot)
 {
     GOverlap& ov = overlaps[slot];
-    std::cout << "tg: " << std::setw(6) << slot << " ";
+    printf("tg: %6d\n", slot);
     ov.print_overlap();
     for(int i = ov.children_startindex; i < ov.children_startindex+ov.children_count; i++){
         print_tree_r(i);
@@ -626,7 +617,12 @@ void GOverlap_Tree::print_tree_r(int slot)
 
 void GOverlap_Tree::print_tree(void)
 {
-    std::cout << "slot level LastAtom parent ChStart ChCount SelfV V gamma a x y z dedx dedy dedz sfp" << std::endl;
+    printf("      slot");
+    printf("  level   Atom parent ChStart ChCount");
+    printf("          V      gamma          a          v");
+    printf("          x          y          z");
+    printf("       dedx       dedy       dedz        sfp\n");
+    // printf("  level          V\n");
     for(int i = 1; i<= natoms; i++){
         print_tree_r(i);
     }
