@@ -220,7 +220,7 @@ int GOverlap_Tree::compute_children(int root_index, std::vector<GOverlap>& child
     for(int slotj = root_index+1; slotj < sibling_start+sibling_count; slotj++){
         GaussianVca g12;
         GOverlap& sibling = overlaps[slotj];
-        double gvol, dVdr,dVdV, sfp;
+        double gvol,dVdr,dVdV,sfp;
 
         // atomic gaussian of last atom of sibling
         int atom2 = sibling.atom;
@@ -598,7 +598,7 @@ static void test_gaussian(GOverlap_Tree& tree)
 
 void GOverlap::print_overlap(void)
 {
-    printf("           %6d %6d %6d %7d %7d", level, atom, parent_index, children_startindex, children_count);
+    printf("           %6d %6d %6d %7d %7d", level, atom+1, parent_index, children_startindex, children_count);
     printf(" %10.6f %10.6f %10.6f %10.6f", volume, gamma1i, g.a, g.v);
     printf(" %10.6f %10.6f %10.6f", g.cx, g.cy, g.cz);
     printf(" %10.6f %10.6f %10.6f %10.6f\n", dv1x, dv1y, dv1z, sfp);

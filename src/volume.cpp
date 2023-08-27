@@ -162,10 +162,10 @@ void volume(int argc, char** argv)
     gvol.compute_tree(posx, posy, posz);
     // gvol.print_tree();
     gvol.compute_volume(posx, posy, posz, gv_volume, gv_energy, drx, dry, drz, dv, free_volume, self_volume);
-    // write(*,*) "GaussVol Volume:  ", volume
     gvol.setRadii(radius2);
     gvol.setVolumes(vol2);
     gvol.rescan_tree_volumes(posx, posy, posz);
+    // gvol.print_tree();
     gvol.compute_volume(posx, posy, posz, gv_volume2, gv_energy, drx, dry, drz, dv, free_volume, self_volume);
     gv_area = (gv_volume2 - gv_volume)/rad_offset;
     printf(" GaussVol Volume: %20.16e\n", gv_volume);

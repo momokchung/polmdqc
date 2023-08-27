@@ -195,7 +195,7 @@ public:
         this->volumes.resize(natoms);
         for(int i = 0; i < natoms; i++) volumes[i] = 0.;
         this->gammas.resize(natoms);
-        for(int i = 0; i < natoms; i++) gammas[i] = 0.;
+        for(int i = 0; i < natoms; i++) gammas[i] = 1.;
         this->ishydrogen = ishydrogen;
     }
     GaussVol(const int natoms, std::vector<double>& radii, std::vector<double>& volumes, std::vector<double>& gammas, std::vector<int>& ishydrogen)
