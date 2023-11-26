@@ -316,8 +316,8 @@ void kvdw()
     maxdim = maxclass;
     if (vdwindex == "TYPE")  maxdim = maxtyp;
     for (int i = 0; i < maxdim; i++) {
-        if (rad4[i] == 0.)  rad4[i] = rad[i];
-        if (eps4[i] == 0.)  eps4[i] = eps[i];
+        if (rad4[i] == 0.) rad4[i] = rad[i];
+        if (eps4[i] == 0.) eps4[i] = eps[i];
         if (radtyp == "SIGMA") {
             rad[i] = twosix * rad[i];
             rad4[i] = twosix * rad4[i];

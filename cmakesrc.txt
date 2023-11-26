@@ -1,5 +1,6 @@
 set (POLQCMD_SRC
 src/active.cpp
+src/alphamol.cpp
 src/analysis.cpp
 src/analyze.cpp
 src/angles.cpp
@@ -23,7 +24,6 @@ src/enrgyze.cpp
 src/fatal.cpp
 src/field.cpp
 src/final.cpp
-src/gaussvol.cpp
 src/getcart.cpp
 src/getkey.cpp
 src/getline.cpp
@@ -87,5 +87,4 @@ src/trimtext.cpp
 src/unitcell.cpp
 src/upcase.cpp
 src/version.cpp
-src/volume.cpp
 )
