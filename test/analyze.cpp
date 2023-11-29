@@ -1,8 +1,8 @@
 #include "action.h"
 #include "analyze.h"
-#include "catch.hpp"
 #include "energi.h"
 #include "inter.h"
+#include "testrt.h"
 #include <cmath>
 
 TEST_CASE("analyze-1", "[AMOEBA][water09]") {
@@ -14,20 +14,16 @@ TEST_CASE("analyze-1", "[AMOEBA][water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    double einterTest = -0.25063531;
-    double emTest = -0.25063531;
+    double einterTest = -0.25063530556952029;
+    double emTest = -0.25063530556952029;
     double nemTest = 27;
+    double eps = 1e-14;
 
     analyze(argc, argv);
 
-    double einterDiff = einterTest - einter;
-    double emDiff = emTest - em;
-    int nemDiff = nemTest - nem;
-
-    double eps = 1e-8;
-    REQUIRE(std::abs(einterDiff) < eps);
-    REQUIRE(std::abs(emDiff) < eps);
-    REQUIRE(nemDiff == 0);
+    COMPARE_REALS(einter, einterTest, eps);
+    COMPARE_REALS(em, emTest, eps);
+    REQUIRE(nem == nemTest);
 }
 
 TEST_CASE("analyze-2", "[HIPPO][water21]") {
@@ -39,18 +35,14 @@ TEST_CASE("analyze-2", "[HIPPO][water21]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    double einterTest = -0.22354978;
-    double emTest = -0.22354978;
+    double einterTest = -0.22354977915893826;
+    double emTest = -0.22354977915893826;
     double nemTest = 27;
+    double eps = 1e-12;
 
     analyze(argc, argv);
 
-    double einterDiff = einterTest - einter;
-    double emDiff = emTest - em;
-    int nemDiff = nemTest - nem;
-
-    double eps = 1e-8;
-    REQUIRE(std::abs(einterDiff) < eps);
-    REQUIRE(std::abs(emDiff) < eps);
-    REQUIRE(nemDiff == 0);
+    COMPARE_REALS(einter, einterTest, eps);
+    COMPARE_REALS(em, emTest, eps);
+    REQUIRE(nem == nemTest);
 }

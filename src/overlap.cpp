@@ -42,6 +42,7 @@ void overlapOS()
     std::vector<std::vector<real>> zS(maxL + 1, std::vector <real>(maxL + 1));
 
     // allocate and initialize overlap matrix
+    cartS.resize(0);
     cartS.resize(basisN, std::vector<real>(basisN, 0.));
 
     // outer loop over primitive shell
@@ -159,6 +160,7 @@ void overlapOS()
     if (gbs::basisType == gbs::BasisType::spherical)
     {
         int sphBasisN = basis::sphBasisN;
+        sphS.resize(0);
         sphS.resize(sphBasisN, std::vector<real>(sphBasisN, 0.));
 
         // loop over cartesian basis, add to appropriate spherical basis
@@ -234,35 +236,35 @@ void overlapOS()
     //     mathUtils::symmetrize(sphS);
     // }
 
-    // print to debug
-    if (gbs::basisType == gbs::BasisType::cartesian)
-    {
-        printf("\n\nOverlap\n");
-        for (int i = 0; i < basisN; ++i)
-        {
-            printf("[");
-            for (int j = 0; j < basisN; ++j)
-            {
-                printf("%22.18f,", cartS[i][j]);
-            }
-            printf("],");
-            std::cout << std::endl;
-        }
-    }
-    else if (gbs::basisType == gbs::BasisType::spherical)
-    {
-        printf("\n\nOverlap\n");
-        int sphBasisN = basis::sphBasisN;
-        for (int i = 0; i < sphBasisN; ++i)
-        {
-            printf("[");
-            for (int j = 0; j < sphBasisN; ++j)
-            {
-                printf("%22.18f,", sphS[i][j]);
-            }
-            printf("],");
-            std::cout << std::endl;
-        }
-    }
+    // // print to debug
+    // if (gbs::basisType == gbs::BasisType::cartesian)
+    // {
+    //     printf("\n\nOverlap\n");
+    //     for (int i = 0; i < basisN; ++i)
+    //     {
+    //         printf("[");
+    //         for (int j = 0; j < basisN; ++j)
+    //         {
+    //             printf("%22.18f,", cartS[i][j]);
+    //         }
+    //         printf("],");
+    //         std::cout << std::endl;
+    //     }
+    // }
+    // else if (gbs::basisType == gbs::BasisType::spherical)
+    // {
+    //     printf("\n\nOverlap\n");
+    //     int sphBasisN = basis::sphBasisN;
+    //     for (int i = 0; i < sphBasisN; ++i)
+    //     {
+    //         printf("[");
+    //         for (int j = 0; j < sphBasisN; ++j)
+    //         {
+    //             printf("%22.18f,", sphS[i][j]);
+    //         }
+    //         printf("],");
+    //         std::cout << std::endl;
+    //     }
+    // }
 }
 }

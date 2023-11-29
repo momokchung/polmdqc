@@ -54,6 +54,7 @@ void nuclearOS()
     std::vector<std::vector<std::vector<real>>> zNe(maxL + 1, std::vector<std::vector<real>>(maxL + 1, std::vector<real>(maxTOrder)));
 
     // allocate and initialize nuclear electron attraction matrix
+    cartNE.resize(0);
     cartNE.resize(basisN, std::vector<real>(basisN, 0.));
 
     // outer loop over primitive shell
@@ -212,6 +213,7 @@ void nuclearOS()
     if (gbs::basisType == gbs::BasisType::spherical)
     {
         int sphBasisN = basis::sphBasisN;
+        sphNE.resize(0);
         sphNE.resize(sphBasisN, std::vector<real>(sphBasisN, 0.));
 
         // loop over cartesian basis, add to appropriate spherical basis
@@ -287,35 +289,35 @@ void nuclearOS()
     //     mathUtils::symmetrize(sphNE);
     // }
 
-    // print to debug
-    if (gbs::basisType == gbs::BasisType::cartesian)
-    {
-        printf("\n\nNuclear\n");
-        for (int i = 0; i < basisN; ++i)
-        {
-            printf("[");
-            for (int j = 0; j < basisN; ++j)
-            {
-                printf("%22.18f,", cartNE[i][j]);
-            }
-            printf("],");
-            std::cout << std::endl;
-        }
-    }
-    else if (gbs::basisType == gbs::BasisType::spherical)
-    {
-        printf("\n\nNuclear\n");
-        int sphBasisN = basis::sphBasisN;
-        for (int i = 0; i < sphBasisN; ++i)
-        {
-            printf("[");
-            for (int j = 0; j < sphBasisN; ++j)
-            {
-                printf("%22.18f,", sphNE[i][j]);
-            }
-            printf("],");
-            std::cout << std::endl;
-        }
-    }
+    // // print to debug
+    // if (gbs::basisType == gbs::BasisType::cartesian)
+    // {
+    //     printf("\n\nNuclear\n");
+    //     for (int i = 0; i < basisN; ++i)
+    //     {
+    //         printf("[");
+    //         for (int j = 0; j < basisN; ++j)
+    //         {
+    //             printf("%22.18f,", cartNE[i][j]);
+    //         }
+    //         printf("],");
+    //         std::cout << std::endl;
+    //     }
+    // }
+    // else if (gbs::basisType == gbs::BasisType::spherical)
+    // {
+    //     printf("\n\nNuclear\n");
+    //     int sphBasisN = basis::sphBasisN;
+    //     for (int i = 0; i < sphBasisN; ++i)
+    //     {
+    //         printf("[");
+    //         for (int j = 0; j < sphBasisN; ++j)
+    //         {
+    //             printf("%22.18f,", sphNE[i][j]);
+    //         }
+    //         printf("],");
+    //         std::cout << std::endl;
+    //     }
+    // }
 }
 }

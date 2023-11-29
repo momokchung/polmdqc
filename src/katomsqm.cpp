@@ -284,6 +284,13 @@ std::map<std::string, real> atomicWeight = {
 
 void readxyz(std::string fileName)
 {
+    // initialize
+    core.resize(0);
+    coordx.resize(0);
+    coordy.resize(0);
+    coordz.resize(0);
+    atom.resize(0);
+
     // check if file exists
     ioUtils::fileExists(fileName);
 

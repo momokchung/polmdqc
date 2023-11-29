@@ -7,11 +7,13 @@ getnumb.cpp
 getstring.cpp
 gettext.cpp
 getword.cpp
+hartree.cpp
 justify.cpp
 lowcase.cpp
 main.cpp
 numeral.cpp
 qcmdvector.cpp
+rotpole.cpp
 sort.cpp
 torphase.cpp
 trimhead.cpp
@@ -20,5 +22,5 @@ upcase.cpp
 )
 
 add_executable(alltests ${POLQCMD_TEST})
-target_link_libraries(alltests polqcmd)
+target_link_libraries(alltests polqcmd openblas int2)
 add_custom_target(test COMMAND alltests)

@@ -48,6 +48,7 @@ void kineticOS()
     std::vector<std::vector<real>> zKE(maxL + 1, std::vector<real>(maxL + 1));
 
     // allocate and initialize kinetic energy matrix
+    cartKE.resize(0);
     cartKE.resize(basisN, std::vector<real>(basisN, 0.));
 
     // outer loop over primitive shell
@@ -209,6 +210,7 @@ void kineticOS()
     if (gbs::basisType == gbs::BasisType::spherical)
     {
         int sphBasisN = basis::sphBasisN;
+        sphKE.resize(0);
         sphKE.resize(sphBasisN, std::vector<real>(sphBasisN, 0.));
 
         // loop over cartesian basis, add to appropriate spherical basis
@@ -284,34 +286,34 @@ void kineticOS()
     //     mathUtils::symmetrize(sphKE);
     // }
 
-    // print to debug
-    if (gbs::basisType == gbs::BasisType::cartesian)
-    {
-        printf("\n\nKinetic\n");
-        for (int i = 0; i < basisN; ++i)
-        {
-            printf("[");
-            for (int j = 0; j < basisN; ++j)
-            {
-                printf("%22.18f,", cartKE[i][j]);
-            }
-            printf("],\n");
-        }
-    }
-    else if (gbs::basisType == gbs::BasisType::spherical)
-    {
-        printf("\n\nKinetic\n");
-        int sphBasisN = basis::sphBasisN;
-        for (int i = 0; i < sphBasisN; ++i)
-        {
-            printf("[");
-            for (int j = 0; j < sphBasisN; ++j)
-            {
-                printf("%22.18f,", sphKE[i][j]);
-            }
-            printf("],");
-            std::cout << std::endl;
-        }
-    }
+    // // print to debug
+    // if (gbs::basisType == gbs::BasisType::cartesian)
+    // {
+    //     printf("\n\nKinetic\n");
+    //     for (int i = 0; i < basisN; ++i)
+    //     {
+    //         printf("[");
+    //         for (int j = 0; j < basisN; ++j)
+    //         {
+    //             printf("%22.18f,", cartKE[i][j]);
+    //         }
+    //         printf("],\n");
+    //     }
+    // }
+    // else if (gbs::basisType == gbs::BasisType::spherical)
+    // {
+    //     printf("\n\nKinetic\n");
+    //     int sphBasisN = basis::sphBasisN;
+    //     for (int i = 0; i < sphBasisN; ++i)
+    //     {
+    //         printf("[");
+    //         for (int j = 0; j < sphBasisN; ++j)
+    //         {
+    //             printf("%22.18f,", sphKE[i][j]);
+    //         }
+    //         printf("],");
+    //         std::cout << std::endl;
+    //     }
+    // }
 }
 }

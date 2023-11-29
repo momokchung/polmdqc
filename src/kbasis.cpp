@@ -29,7 +29,7 @@ namespace basis
 // basisZ        z coordinate
 // basisNorm     cartesian basis normalization
 
-int basisN = 0;
+int basisN;
 // std::vector<int> basisLx;
 // std::vector<int> basisLy;
 // std::vector<int> basisLz;
@@ -47,7 +47,7 @@ std::vector<real> basisNorm;
 // cartSphContraction    returns list of spherical basis index for a given cartesian basis index
 // cartSphCoeff          returns list of spherical coefficients for a given cartesian basis
 
-int sphBasisN = 0;
+int sphBasisN;
 std::vector<std::vector<int>> sphContraction;
 std::vector<std::vector<real>> sphCoeff;
 std::vector<std::vector<int>> cartSphContraction;
@@ -68,7 +68,7 @@ int N;
 // cShellPrimExp             exponent of primitive function in contraction
 // cShellContractionCoeff    coefficient of primitive function in contraction
 
-int cShellN = 0;
+int cShellN;
 int cShellLMax;
 std::vector<int> cShellL;
 std::vector<real> cShellX;
@@ -492,6 +492,19 @@ int sToL(std::string orbital)
 
 void kbasis()
 {
+    // initialize
+    basisN = 0;
+    sphBasisN = 0;
+    cShellN = 0;
+    cShellL.resize(0);
+    cShellX.resize(0);
+    cShellY.resize(0);
+    cShellZ.resize(0);
+    cShellContraction.resize(0);
+    cShellScale.resize(0);
+    cShellPrimExp.resize(0);
+    cShellContractionCoeff.resize(0);
+
     for (int i = 0; i < atoms::n; ++i)
     {
         std::string atomName = atoms::atom[i];
@@ -553,7 +566,8 @@ void kbasis()
 // Also consult Cartesian Overlap documentation for derivation
 void normalizeContraction()
 {
-    basisNorm.reserve(basisN);
+    // basisNorm has length basisN
+    basisNorm.resize(0);
     auto& partitionL = partitionAngularMomentum;
     // loop over shell
     for (int i = 0; i < cShellN; ++i)
@@ -595,9 +609,9 @@ void normalizeContraction()
 
 void buildSphContractionCoeff()
 {
-    // reserve array
-    sphContraction.reserve(sphBasisN);
-    sphCoeff.reserve(sphBasisN);
+    // sphContraction and sphCoeff have length sphBasisN
+    sphContraction.resize(0);
+    sphCoeff.resize(0);
 
     int counter = 0;
 
@@ -650,9 +664,9 @@ void buildSphContractionCoeff()
 
 void buildCartSphContractionCoeff()
 {
-    // reserve array
-    cartSphContraction.reserve(basisN);
-    cartSphCoeff.reserve(basisN);
+    // cartSphContraction and cartSphCoeff has length basisN
+    cartSphContraction.resize(0);
+    cartSphCoeff.resize(0);
 
     int counter = 0;
 

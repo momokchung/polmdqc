@@ -6,11 +6,15 @@
 
 
 #include "energy.h"
+#include "init.h"
 #include "mechanicqm.h"
 #include <string>
 
-int main(int argc, char** argv)
+void tinkerqm(int argc, char** argv)
 {
+    // initialize
+    init::init(argv);
+
     // take xyz file as first argument
     std::string fileName = argv[1];
 

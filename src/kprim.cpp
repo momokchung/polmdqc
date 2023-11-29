@@ -73,8 +73,17 @@ void buildPrimMaps();
 
 void kprim()
 {
+    // initialize
     primN = 0;
     primShellN = 0;
+    primShellL.resize(0);
+    primShellIndex.resize(0);
+    primShellX.resize(0);
+    primShellY.resize(0);
+    primShellZ.resize(0);
+    primShellExp.resize(0);
+    primShellCoeff.resize(0);
+    primShellScale.resize(0);
 
     // loop over shell
     for (int i = 0; i < basis::cShellN; ++i)
@@ -140,7 +149,8 @@ void kprim()
 // primitive cartesian gaussian normalization Eq. 2.11 (Fermann, J. T. & Valeev, E. F. Fundamentals of Molecular Integrals Evaluation. (2020).)
 void normalizePrimitive()
 {
-    primNorm.reserve(primN);
+    // primNorm has length primN
+    primNorm.resize(0);
     const auto& DF = mathUtils::doubleFactorial;
     auto& partitionL = basis::partitionAngularMomentum;
     real pre1 = pow(2. / unitsqm::pi, 0.75);
@@ -171,8 +181,11 @@ void normalizePrimitive()
 
 void buildPrimMaps()
 {
-    primToBasis.reserve(primN);
-    primToShell.reserve(primShellN);
+    // primToBasis has length primN
+    primToBasis.resize(0);
+
+    // primToShell has length primShellN
+    primToShell.resize(0);
     int basisN = 0;
     auto& partitionL = basis::partitionAngularMomentum;
 

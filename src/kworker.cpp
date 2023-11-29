@@ -33,6 +33,11 @@ void allocateWorker()
     int N = basis::N;
     int N2 = N * N;
 
+    workerN_1.resize(0);
+    workerN_2.resize(0);
+    workerN2_1.resize(0);
+    workerN2_2.resize(0);
+
     workerN_1.reserve(N);
     workerN_2.reserve(N);
     workerN2_1.reserve(N2);

@@ -91,6 +91,9 @@ std::vector<std::vector<real>>& AoBasis::getContractionCoeff()
 
 void readgbs(std::string basisName)
 {
+    // initialize
+    AoBasisMap.clear();
+
     std::string fileName = init::cwd;
     fileName.append("/basis/");
     std::transform(basisName.begin(), basisName.end(), basisName.begin(), tolower);

@@ -1,14 +1,18 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(polqcmd)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -finline-functions -march=native -ffast-math")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -finline-functions -ffast-math")
 
 # Add the directory containing OpenBLAS libraries
-link_directories(/Users/moseschung/OpenBLAS)
+link_directories(/home/kchung25/OpenBLAS)
+
+link_directories(/home/kchung25/libint/build/libint-2.8.0)
+include_directories(/home/kchung25/libint/include)
+include_directories(/home/kchung25/libint/build/include)
 
 # Add the directories containing header files
 include_directories(include)
@@ -18,10 +22,10 @@ include (cmakesrc.txt)
 add_library (polqcmd STATIC "${POLQCMD_SRC}")
 
 # Add the tinkerqm executable
-add_executable(tinkerqm src/tinkerqm.cpp)
+add_executable(tinkerqm src/tinkerqmExe.cpp)
 
 # Link the tinkerqm libraries
-target_link_libraries(tinkerqm polqcmd openblas)
+target_link_libraries(tinkerqm polqcmd openblas int2)
 
 # Add the analyze executable
 add_executable(analyze src/analyzeExe.cpp)

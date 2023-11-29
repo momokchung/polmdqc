@@ -15,6 +15,7 @@
 #include "nuclearRepulsion.h"
 #include "overlap.h"
 #include <iostream>
+#include <libint2.hpp>
 
 namespace hartree
 {
@@ -56,6 +57,7 @@ std::vector<real> wS;
 // need to implement other convergence methods as well (damping, 2nd order, etc.)
 void rhf()
 {
+    // libint2::initialize();
     int N = basis::N;
     int N2 = N * N;
     int nElec = atoms::nElec;
@@ -68,6 +70,12 @@ void rhf()
     int ndocc = nElec/2;
 
     // allocate and initialize matrices
+    H.resize(0, 0.);
+    F.resize(0);
+    Fp.resize(0);
+    C.resize(0);
+    E.resize(0);
+    D.resize(0);
     H.resize(N2, 0.);
     F.reserve(N2);
     Fp.reserve(N2);
@@ -109,6 +117,7 @@ void rhf()
     guess();
 
     // conventional scf
+    // libint2::finalize();
 }
 
 
@@ -125,6 +134,8 @@ void eigenS(std::vector<std::vector<real>>& S)
     int N = basis::N;
 
     // allocate memory for vS and wS
+    vS.resize(0);
+    wS.resize(0);
     vS.reserve(N * N);
     wS.reserve(N);
 

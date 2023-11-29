@@ -32,7 +32,7 @@ void initBoys()
 {
     std::streampos size;
     std::string fileName = init::cwd;
-    fileName.append("/source/f0052.bin");
+    fileName.append("/src/f0052.bin");
     std::ifstream file (fileName, std::ios::in|std::ios::binary|std::ios::ate);
     size = file.tellg();
     // std::cout << "size = " << size << "\n";
