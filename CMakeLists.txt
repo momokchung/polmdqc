@@ -10,9 +10,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -finline-functions -ffast-math")
 # Add the directory containing OpenBLAS libraries
 link_directories(/home/kchung25/OpenBLAS)
 
-link_directories(/home/kchung25/libint/build/libint-2.8.0)
-include_directories(/home/kchung25/libint/include)
-include_directories(/home/kchung25/libint/build/include)
+# Add libint2 package
+find_package(Libint2)
 
 # Add the directories containing header files
 include_directories(include)
