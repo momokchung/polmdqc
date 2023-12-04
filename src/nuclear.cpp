@@ -12,6 +12,7 @@
 #include "kprim.h"
 #include "mathUtils.h"
 #include "nuclear.h"
+#include "print.h"
 #include "unitsqm.h"
 #include <iostream>
 #include <vector>
@@ -248,76 +249,14 @@ void nuclearOS()
         }
     }
 
-    // // construct spherical nuclear electron attraction
-    // if (gbs::basisType == gbs::BasisType::spherical)
-    // {
-    //     int sphBasisN = basis::sphBasisN;
-    //     sphNE.resize(sphBasisN, std::vector<real>(sphBasisN, 0.));
-
-    //     for (int i = 0; i < sphBasisN; ++i)
-    //     {
-    //         auto& iContraction = basis::sphContraction[i];
-    //         auto& iCoeff = basis::sphCoeff[i];
-    //         int iN = iContraction.size();
-
-    //         for (int j = 0; j <= i; ++j)
-    //         {
-    //             auto& jContraction = basis::sphContraction[j];
-    //             auto& jCoeff = basis::sphCoeff[j];
-    //             int jN = jContraction.size();
-
-    //             real ne = 0;
-
-    //             for (int ii = 0; ii < iN; ++ii)
-    //             {
-    //                 int cii = iContraction[ii];
-    //                 real coeffii = iCoeff[ii];
-
-    //                 for (int jj = 0; jj < jN; ++jj)
-    //                 {
-    //                     int cjj = jContraction[jj];
-    //                     real coefjj = jCoeff[jj];
-
-    //                     ne += coeffii * coefjj * cartNE[cii][cjj];
-    //                 }
-    //             }
-    //             sphNE[i][j] = ne;
-    //         }
-    //     }
-
-    //     // symmetrize cartesian nuclear electron attraction
-    //     mathUtils::symmetrize(sphNE);
-    // }
-
-    // // print to debug
-    // if (gbs::basisType == gbs::BasisType::cartesian)
-    // {
-    //     printf("\n\nNuclear\n");
-    //     for (int i = 0; i < basisN; ++i)
-    //     {
-    //         printf("[");
-    //         for (int j = 0; j < basisN; ++j)
-    //         {
-    //             printf("%22.18f,", cartNE[i][j]);
-    //         }
-    //         printf("],");
-    //         std::cout << std::endl;
-    //     }
-    // }
-    // else if (gbs::basisType == gbs::BasisType::spherical)
-    // {
-    //     printf("\n\nNuclear\n");
-    //     int sphBasisN = basis::sphBasisN;
-    //     for (int i = 0; i < sphBasisN; ++i)
-    //     {
-    //         printf("[");
-    //         for (int j = 0; j < sphBasisN; ++j)
-    //         {
-    //             printf("%22.18f,", sphNE[i][j]);
-    //         }
-    //         printf("],");
-    //         std::cout << std::endl;
-    //     }
-    // }
+    // print to debug
+    if (gbs::basisType == gbs::BasisType::cartesian)
+    {
+        print::printMatrix(cartNE, "Cartesian Nuclear Attraction Integral");
+    }
+    else if (gbs::basisType == gbs::BasisType::spherical)
+    {
+        print::printMatrix(sphNE, "Spherical Nuclear Attraction Integral");
+    }
 }
 }

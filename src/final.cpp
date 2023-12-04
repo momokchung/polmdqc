@@ -14,8 +14,8 @@
 
 void final()
 {
-    // print a final status message before exiting PolQCMD
+    // print a final status message before exiting PolMDQC
     if (debug) {
-        printf("\n PolQCMD is Exiting following Normal Termination\n");
+        printf("\n PolMDQC is Exiting following Normal Termination\n");
     }
 }

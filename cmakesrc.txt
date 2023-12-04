@@ -1,4 +1,4 @@
-set (POLQCMD_SRC
+set (POLMDQC_SRC
 src/active.cpp
 src/alphamol.cpp
 src/analysis.cpp
@@ -71,6 +71,7 @@ src/numeral.cpp
 src/optinit.cpp
 src/overlap.cpp
 src/partyze.cpp
+src/print.cpp
 src/prmkey.cpp
 src/promo.cpp
 src/readcart.cpp
@@ -81,6 +82,7 @@ src/rotpole.cpp
 src/setprm.cpp
 src/stringUtils.cpp
 src/suffix.cpp
+src/tbFock.cpp
 src/tinkerqm.cpp
 src/torphase.cpp
 src/torsions.cpp

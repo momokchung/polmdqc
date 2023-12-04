@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////
 
 // "control" gets initial values for parameters that determine
-// the output style and information level provided by PolQCMD
+// the output style and information level provided by PolMDQC
 
 
 #include "argue.h"

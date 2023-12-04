@@ -12,8 +12,9 @@
 #include "kprim.h"
 #include "kworker.h"
 #include "mechanic.h"
-#include <string>
 #include <iostream>
+#include <libint2.hpp>
+#include <string>
 
 namespace mechanicqm
 {
@@ -42,6 +43,9 @@ void mechanic(std::string fileName)
 
     // allocate worker arrays
     worker::allocateWorker();
+
+    // initialize libin2
+    libint2::initialize();
 }
 
 
@@ -55,5 +59,8 @@ void cleanup()
 {
     // cleanup boys function
     boys::cleanupBoys();
+
+    // finalize libint2
+    libint2::finalize();
 }
 }

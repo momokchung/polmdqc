@@ -54,7 +54,7 @@ void nuclearRepulsion()
         }
     }
 
-    // // print to debug
-    // std::cout << nr << std::endl;
+    // print to debug
+    std::cout << "Nuclear Repulsion " << nr << std::endl;
 }
 }

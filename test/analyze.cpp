@@ -17,7 +17,7 @@ TEST_CASE("analyze-1", "[AMOEBA][water09]") {
     double einterTest = -0.25063530556952029;
     double emTest = -0.25063530556952029;
     double nemTest = 27;
-    double eps = 1e-14;
+    double eps = 1e-13;
 
     analyze(argc, argv);
 

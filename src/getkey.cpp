@@ -53,10 +53,10 @@ void getkey()
     // check for the existence of a generic keyfile
     if (!exist) {
         if (ldir == 0) {
-            keyfile = "polqcmd.key";
+            keyfile = "polmdqc.key";
         }
         else {
-            keyfile = filename.substr(0,ldir) + "polqcmd.key";
+            keyfile = filename.substr(0,ldir) + "polmdqc.key";
         }
         version(keyfile, "old");
         exist = inquireFile(keyfile);

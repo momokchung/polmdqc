@@ -11,6 +11,7 @@
 #include "kprim.h"
 #include "mathUtils.h"
 #include "overlap.h"
+#include "print.h"
 #include "unitsqm.h"
 #include <iostream>
 #include <vector>
@@ -245,75 +246,14 @@ void kineticOS()
         }
     }
 
-    // // construct spherical kinetic energy
-    // if (gbs::basisType == gbs::BasisType::spherical)
-    // {
-    //     int sphBasisN = basis::sphBasisN;
-    //     sphKE.resize(sphBasisN, std::vector<real>(sphBasisN, 0.));
-
-    //     for (int i = 0; i < sphBasisN; ++i)
-    //     {
-    //         auto& iContraction = basis::sphContraction[i];
-    //         auto& iCoeff = basis::sphCoeff[i];
-    //         int iN = iContraction.size();
-
-    //         for (int j = 0; j <= i; ++j)
-    //         {
-    //             auto& jContraction = basis::sphContraction[j];
-    //             auto& jCoeff = basis::sphCoeff[j];
-    //             int jN = jContraction.size();
-
-    //             real ke = 0;
-
-    //             for (int ii = 0; ii < iN; ++ii)
-    //             {
-    //                 int cii = iContraction[ii];
-    //                 real coeffii = iCoeff[ii];
-
-    //                 for (int jj = 0; jj < jN; ++jj)
-    //                 {
-    //                     int cjj = jContraction[jj];
-    //                     real coefjj = jCoeff[jj];
-
-    //                     ke += coeffii * coefjj * cartKE[cii][cjj];
-    //                 }
-    //             }
-    //             sphKE[i][j] = ke;
-    //         }
-    //     }
-
-    //     // symmetrize cartesian kinetic energy
-    //     mathUtils::symmetrize(sphKE);
-    // }
-
-    // // print to debug
-    // if (gbs::basisType == gbs::BasisType::cartesian)
-    // {
-    //     printf("\n\nKinetic\n");
-    //     for (int i = 0; i < basisN; ++i)
-    //     {
-    //         printf("[");
-    //         for (int j = 0; j < basisN; ++j)
-    //         {
-    //             printf("%22.18f,", cartKE[i][j]);
-    //         }
-    //         printf("],\n");
-    //     }
-    // }
-    // else if (gbs::basisType == gbs::BasisType::spherical)
-    // {
-    //     printf("\n\nKinetic\n");
-    //     int sphBasisN = basis::sphBasisN;
-    //     for (int i = 0; i < sphBasisN; ++i)
-    //     {
-    //         printf("[");
-    //         for (int j = 0; j < sphBasisN; ++j)
-    //         {
-    //             printf("%22.18f,", sphKE[i][j]);
-    //         }
-    //         printf("],");
-    //         std::cout << std::endl;
-    //     }
-    // }
+    // print to debug
+    if (gbs::basisType == gbs::BasisType::cartesian)
+    {
+        print::printMatrix(cartKE, "Cartesian Kinetic-Energy Integral");
+    }
+    else if (gbs::basisType == gbs::BasisType::spherical)
+    {
+        print::printMatrix(sphKE, "Spherical Kinetic-Energy Integral");
+    }
 }
 }

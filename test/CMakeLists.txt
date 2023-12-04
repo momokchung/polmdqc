@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.0)
 
-set(POLQCMD_TEST
+set(POLMDQC_TEST
 analyze.cpp
 getline.cpp
 getnumb.cpp
@@ -21,6 +21,6 @@ trimtext.cpp
 upcase.cpp
 )
 
-add_executable(alltests ${POLQCMD_TEST})
-target_link_libraries(alltests polqcmd openblas int2)
+add_executable(alltests ${POLMDQC_TEST})
+target_link_libraries(alltests polmdqc openblas int2)
 add_custom_target(test COMMAND alltests)

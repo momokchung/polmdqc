@@ -30,4 +30,5 @@ extern real s_tolerance;
 void eigenS(std::vector<std::vector<real>>& S);
 void guess();
 void rhf();
+void scf();
 }
