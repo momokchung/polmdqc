@@ -15,6 +15,7 @@
 #include "nuclearRepulsion.h"
 #include "overlap.h"
 #include "print.h"
+#include "fock.h"
 #include "valeev1.h"
 #include <iostream>
 #include <libint2.hpp>
@@ -30,6 +31,7 @@ int s_i;
 // H     column major Hamiltonian matrix
 // F     column major Fock matrix
 // Fp    transformed F
+// G     column major two-electron matrix
 // C     coefficient matrix
 // E     energy eigenvalues of FC = CE
 // D     density matrix
@@ -40,12 +42,18 @@ int s_i;
 std::vector<real> H;
 std::vector<real> F;
 std::vector<real> Fp;
+std::vector<real> G;
 std::vector<real> C;
 std::vector<real> E;
 std::vector<real> D;
 std::vector<real> X;
 std::vector<real> vS;
 std::vector<real> wS;
+
+// temporary, remove after you modify to CCA standards
+std::vector<std::vector<real>> S;
+std::vector<std::vector<real>> KE;
+std::vector<std::vector<real>> NE;
 
 
 /////////////////////////////////////////////////////
@@ -74,20 +82,36 @@ void rhf()
     H.resize(0);
     F.resize(0);
     Fp.resize(0);
+    G.resize(0);
     C.resize(0);
     E.resize(0);
     D.resize(0);
     H.resize(N2, 0.);
     F.reserve(N2);
     Fp.reserve(N2);
+    G.reserve(N2);
     C.reserve(N2);
     E.reserve(N);
     D.reserve(N2);
 
+    // temporary
+    S.resize(0);
+    NE.resize(0);
+    KE.resize(0);
+    S.resize(N, std::vector<real>(N, 0.));
+    NE.resize(N, std::vector<real>(N, 0.));
+    KE.resize(N, std::vector<real>(N, 0.));
+
+    // temporary
+    fock::fock_1body_lib();
+    print::printMatrix(S, "Overlap Integral");
+    print::printMatrix(KE, "Kinetic-Energy Integral");
+    print::printMatrix(NE, "Nuclear Attraction Integral");
+
     // construct overlap matrix
     // change to overlap() later
     overlap::overlapOS();
-    std::vector<std::vector<real>>& S = (gbs::basisType == gbs::BasisType::cartesian) ? overlap::cartS : overlap::sphS;
+    // std::vector<std::vector<real>>& S = (gbs::basisType == gbs::BasisType::cartesian) ? overlap::cartS : overlap::sphS;
 
     // diagonalize overlap matrix
     eigenS(S);
@@ -95,12 +119,12 @@ void rhf()
     // construct KE matrix
     // change to kinetic() later
     kinetic::kineticOS();
-    std::vector<std::vector<real>>& KE = (gbs::basisType == gbs::BasisType::cartesian) ? kinetic::cartKE : kinetic::sphKE;
+    // std::vector<std::vector<real>>& KE = (gbs::basisType == gbs::BasisType::cartesian) ? kinetic::cartKE : kinetic::sphKE;
 
     // construct NE matrix
     // change to nuclear() later
     nuclear::nuclearOS();
-    std::vector<std::vector<real>>& NE = (gbs::basisType == gbs::BasisType::cartesian) ? nuclear::cartNE : nuclear::sphNE;
+    // std::vector<std::vector<real>>& NE = (gbs::basisType == gbs::BasisType::cartesian) ? nuclear::cartNE : nuclear::sphNE;
 
     // compute nuclear nuclear repulsion
     nuclearRepulsion::nuclearRepulsion();
@@ -116,59 +140,16 @@ void rhf()
     }
 
     // print to debug
-    print::printVMatrix(H, N, N, "Core Hamiltonian");
+    // print::printVMatrix(H, N, N, "Core Hamiltonian");
 
     // core guess
     guess();
 
     // print to debug
-    print::printVMatrix(D, N, N, "Initial Density Matrix");
+    // print::printVMatrix(D, N, N, "Initial Density Matrix");
 
     // conventional scf
     scf();
-
-    // libint2::initialize();
-    // std::string xyzfilename = "/Users/moseschung/polmdqc/example/QMexample/tmp.xyz";
-    // std::ifstream input_file(xyzfilename);
-    // std::vector<libint2::Atom> atoms = libint2::read_dotxyz(input_file);
-    // libint2::BasisSet obs("3-21g", atoms);
-
-    // libint2::Engine s_engine(libint2::Operator::overlap,  // will compute overlap ints
-    //                         obs.max_nprim(),              // max # of primitives in shells this engine will accept
-    //                         obs.max_l()                   // max angular momentum of shells this engine will accept
-    //                         );
-    // //
-    // auto shell2bf = obs.shell2bf(); // maps shell index to basis function index
-    //                                 // shell2bf[0] = index of the first basis function in shell 0
-    //                                 // shell2bf[1] = index of the first basis function in shell 1
-    //                                 // ...
-    // const auto& buf_vec = s_engine.results(); // will point to computed shell sets
-    //                                           // const auto& is very important!
-
-    // for(auto s1=0; s1!=obs.size(); ++s1) {
-    //     for(auto s2=0; s2!=obs.size(); ++s2) {
-
-    //         std::cout << "compute shell set {" << s1 << "," << s2 << "} ... ";
-    //         s_engine.compute(obs[s1], obs[s2]);
-    //         std::cout << "done" << std::endl;
-    //         auto ints_shellset = buf_vec[0];  // location of the computed integrals
-    //         if (ints_shellset == nullptr)
-    //             continue;  // nullptr returned if the entire shell-set was screened out
-
-    //         auto bf1 = shell2bf[s1];  // first basis function in first shell
-    //         auto n1 = obs[s1].size(); // number of basis functions in first shell
-    //         auto bf2 = shell2bf[s2];  // first basis function in second shell
-    //         auto n2 = obs[s2].size(); // number of basis functions in second shell
-
-    //         // integrals are packed into ints_shellset in row-major (C) form
-    //         // this iterates over integrals in this order
-    //         for(auto f1=0; f1!=n1; ++f1)
-    //             for(auto f2=0; f2!=n2; ++f2)
-    //                 std::cout << "  " << bf1+f1 << " " << bf2+f2 << " " << ints_shellset[f1*n2+f2] << std::endl;
-    //     }
-    // }
-    
-    // libint2::finalize();
 }
 
 
@@ -318,7 +299,12 @@ void scf()
     int nElec = atoms::nElec;
     int ndocc = nElec/2;
 
-    const int maxiter = 5;
+    // dimension of X is N x (N - S_i)
+    int Xn = N - s_i;
+    // reference workerN2
+    std::vector<real>& workerN2 = worker::workerN2_1;
+
+    const int maxiter = 100;
     const real conv = 1e-12;
     int iter = 0;
     real rmsd = 0.0;
@@ -339,10 +325,53 @@ void scf()
         }
 
         // build a new Fock matrix
+        fock::fock_2body_lib();
         for (int i = 0; i < N2; i++)
         {
-            F[i] = H[i];
+            F[i] = H[i] + G[i];
         }
+        if (iter == 1) {
+            // print::printVMatrix(F, N, N, "Fock Matrix");
+        }
+
+        // transformed Fock matrix F' = X^T * F * X
+        // X^T * F
+        mathUtils::dgemm(Xn, N, N, X.data(), F.data(), workerN2.data(), 'T', 'N');
+        // (X^T * F) * X
+        mathUtils::dgemm(Xn, Xn, N, workerN2.data(), X.data(), Fp.data(), 'N', 'N');
+
+        // solve eigenvalues and eigenvectors of Fp, Fp now becomes Cp
+        mathUtils::dsyevd(Xn, Fp.data(), E.data());
+
+        // transform Cp back to C, C = X * Cp
+        mathUtils::dgemm(N, Xn, Xn, X.data(), Fp.data(), C.data());
+
+        // build density matrix D = C * C^T
+        mathUtils::dgemm(N, N, ndocc, C.data(), C.data(), D.data(), 'N', 'T');
+        
+        // compute HF energy
+        ehf = 0.;
+        for (int i = 0; i < N2; i++)
+            ehf += D[i] * (H[i] + F[i]);
+
+        // compute difference with last iteration
+        ediff = ehf - ehf_last;
+        rmsd = 0.;
+        for (int i = 0; i < N2; i++)
+        {
+            real d = D[i] - D_last[i];
+            rmsd += d*d;
+        }
+        rmsd = sqrt(rmsd);
+        if (iter == 1)
+        {
+            std::cout <<
+            "\n\n Iter        E(elec)              E(tot)               Delta(E)             RMS(D)\n";
+        }
+        printf(" %02d %20.12f %20.12f %20.12f %20.12f\n", iter, ehf, ehf + nuclearRepulsion::nr, ediff, rmsd);
     } while (((fabs(ediff) > conv) || (fabs(rmsd) > conv)) && (iter < maxiter));
+
+    printf("** Hartree-Fock energy = %20.12f\n", ehf + nuclearRepulsion::nr);
+    print::printVMatrix(E, 1, N, "Orbital energies");
 }
 }

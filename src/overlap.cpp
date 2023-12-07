@@ -196,14 +196,14 @@ void overlapOS()
         }
     }
 
-    // print to debug
-    if (gbs::basisType == gbs::BasisType::cartesian)
-    {
-        print::printMatrix(cartS, "Cartesian Overlap Integral");
-    }
-    else if (gbs::basisType == gbs::BasisType::spherical)
-    {
-        print::printMatrix(sphS, "Spherical Overlap Integral");
-    }
+    // // print to debug
+    // if (gbs::basisType == gbs::BasisType::cartesian)
+    // {
+    //     print::printMatrix(cartS, "Cartesian Overlap Integral");
+    // }
+    // else if (gbs::basisType == gbs::BasisType::spherical)
+    // {
+    //     print::printMatrix(sphS, "Spherical Overlap Integral");
+    // }
 }
 }

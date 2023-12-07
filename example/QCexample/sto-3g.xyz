@@ -12,15 +12,15 @@ no_reorient
 symmetry c1}
 
 basis sto-3g
-basis_guess False
+#basis_guess False
 
-scf_type df
-opt_type min
-dynamic_level 1
-guess sad
+#scf_type df
+#opt_type min
+#dynamic_level 1
+#guess sad
 
-energy('mp2')
+energy('scf')
 
-grad, wfn = gradient('mp2', return_wfn=True)
-fchk_writer = psi4.FCHKWriter(wfn)
-fchk_writer.write('g01-HL.fchk')
+#grad, wfn = gradient('mp2', return_wfn=True)
+#fchk_writer = psi4.FCHKWriter(wfn)
+#fchk_writer.write('g01-HL.fchk')

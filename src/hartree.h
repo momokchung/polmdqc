@@ -27,6 +27,13 @@ enum class SCFConvergence
 // set s_tolerance from xyz/key file in the future
 extern real s_tolerance;
 
+extern std::vector<real> D;
+extern std::vector<real> G;
+
+extern std::vector<std::vector<real>> S;
+extern std::vector<std::vector<real>> KE;
+extern std::vector<std::vector<real>> NE;
+
 void eigenS(std::vector<std::vector<real>>& S);
 void guess();
 void rhf();

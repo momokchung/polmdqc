@@ -246,14 +246,14 @@ void kineticOS()
         }
     }
 
-    // print to debug
-    if (gbs::basisType == gbs::BasisType::cartesian)
-    {
-        print::printMatrix(cartKE, "Cartesian Kinetic-Energy Integral");
-    }
-    else if (gbs::basisType == gbs::BasisType::spherical)
-    {
-        print::printMatrix(sphKE, "Spherical Kinetic-Energy Integral");
-    }
+    // // print to debug
+    // if (gbs::basisType == gbs::BasisType::cartesian)
+    // {
+    //     print::printMatrix(cartKE, "Cartesian Kinetic-Energy Integral");
+    // }
+    // else if (gbs::basisType == gbs::BasisType::spherical)
+    // {
+    //     print::printMatrix(sphKE, "Spherical Kinetic-Energy Integral");
+    // }
 }
 }

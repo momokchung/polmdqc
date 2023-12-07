@@ -82,7 +82,7 @@ src/rotpole.cpp
 src/setprm.cpp
 src/stringUtils.cpp
 src/suffix.cpp
-src/tbFock.cpp
+src/fock.cpp
 src/tinkerqm.cpp
 src/torphase.cpp
 src/torsions.cpp

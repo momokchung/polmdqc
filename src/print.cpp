@@ -34,7 +34,11 @@ void printVMatrix(const std::vector<real>& vmatrix, int rowN, int colN, std::str
     for (int i = 0; i < N2; ++i)
     {
         printf("%22.18f,", vmatrix[i]);
-        if ((i+1) % rowN == 0)
+        if (i == N2-1)
+        {
+            printf("],\n");
+        }
+        else if ((i+1) % rowN == 0)
             printf("],\n[");
     }
 }

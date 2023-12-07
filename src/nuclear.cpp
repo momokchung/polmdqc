@@ -249,14 +249,14 @@ void nuclearOS()
         }
     }
 
-    // print to debug
-    if (gbs::basisType == gbs::BasisType::cartesian)
-    {
-        print::printMatrix(cartNE, "Cartesian Nuclear Attraction Integral");
-    }
-    else if (gbs::basisType == gbs::BasisType::spherical)
-    {
-        print::printMatrix(sphNE, "Spherical Nuclear Attraction Integral");
-    }
+    // // print to debug
+    // if (gbs::basisType == gbs::BasisType::cartesian)
+    // {
+    //     print::printMatrix(cartNE, "Cartesian Nuclear Attraction Integral");
+    // }
+    // else if (gbs::basisType == gbs::BasisType::spherical)
+    // {
+    //     print::printMatrix(sphNE, "Spherical Nuclear Attraction Integral");
+    // }
 }
 }

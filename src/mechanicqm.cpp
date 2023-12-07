@@ -44,7 +44,7 @@ void mechanic(std::string fileName)
     // allocate worker arrays
     worker::allocateWorker();
 
-    // initialize libin2
+    // initialize libint2
     libint2::initialize();
 }
 
