@@ -1,3 +1,10 @@
+// Author: Moses KJ Chung
+// Year:   2023
+
+#include ""
+
+namespace somename
+{
 //////////////////////////////////////////////////////////////
 //                                                          //
 //    //
@@ -6,10 +13,8 @@
 
 // comment
 
-
-#include ""
-
-void ()
+void somefunc()
 {
 
+}
 }

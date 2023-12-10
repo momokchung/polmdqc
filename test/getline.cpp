@@ -2,6 +2,8 @@
 #include "getline.h"
 #include <string>
 
+namespace polmdqc
+{
 TEST_CASE("getline") {
     std::string string = " Hello, World!  \n";
     getline(string);
@@ -9,4 +11,5 @@ TEST_CASE("getline") {
     string = "   \t \n";
     getline(string);
     REQUIRE(string == "");
+}
 }

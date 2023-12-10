@@ -2,6 +2,8 @@
 #include "justify.h"
 #include <string>
 
+namespace polmdqc
+{
 TEST_CASE("justify") {
     std::string string = " Hello, World!   ";
     justify(string, 50);
@@ -9,4 +11,5 @@ TEST_CASE("justify") {
     string = "  ";
     justify(string, 50);
     REQUIRE(string == "                                                  ");
+}
 }

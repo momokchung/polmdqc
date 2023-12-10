@@ -1,4 +1,7 @@
-#define QCMD_EXTERN_DEFINITION_FILE 1
+// Author: Moses KJ Chung
+// Year:   2023
+
+#define MDQC_EXTERN_DEFINITION_FILE 1
 
 #include "action.h"
 #include "align.h"
@@ -92,7 +95,7 @@
 #include "poltcg.h"
 #include "potent.h"
 #include "ptable.h"
-#include "qcmdlimits.h"
+#include "mdqclimits.h"
 #include "repel.h"
 #include "reppot.h"
 #include "resdue.h"

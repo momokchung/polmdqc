@@ -1,3 +1,6 @@
+// Author: Moses KJ Chung
+// Year:   2023
+
 #pragma once
 #include "catch.hpp"
 #include <vector>

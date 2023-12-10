@@ -1,8 +1,11 @@
-#ifndef QCMD_EXTERN_DEFINITION_FILE
-#define QCMD_EXTERN_DEFINITION_FILE 0
+// Author: Moses KJ Chung
+// Year:   2023
+
+#ifndef MDQC_EXTERN_DEFINITION_FILE
+#define MDQC_EXTERN_DEFINITION_FILE 0
 #endif
-#if QCMD_EXTERN_DEFINITION_FILE
-#define QCMD_EXTERN
+#if MDQC_EXTERN_DEFINITION_FILE
+#define MDQC_EXTERN
 #else
-#define QCMD_EXTERN extern
+#define MDQC_EXTERN extern
 #endif

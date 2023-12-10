@@ -2,6 +2,8 @@
 #include "getnumb.h"
 #include <string>
 
+namespace polmdqc
+{
 TEST_CASE("getnumb") {
     std::string string = "a 42 ";
     int number;
@@ -43,4 +45,5 @@ TEST_CASE("getnumb") {
     getnumb(string, number, next);
     REQUIRE(number == 6);
     REQUIRE(next == 20);
+}
 }

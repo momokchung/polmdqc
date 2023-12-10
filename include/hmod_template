@@ -1,3 +1,11 @@
+// Author: Moses KJ Chung
+// Year:   2023
+
+#pragma once
+#include "macro.h"
+
+namespace somename
+{
 /////////////////////////////////////////////////////////////
 //                                                         //
 //    //
@@ -6,8 +14,5 @@
 
 // comment
 
-
-#pragma once
-#include "macro.h"
-
-// QCMD_EXTERN 
+// MDQC_EXTERN 
+}

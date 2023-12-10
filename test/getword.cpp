@@ -2,6 +2,8 @@
 #include "getword.h"
 #include <string>
 
+namespace polmdqc
+{
 TEST_CASE("getword") {
     std::string string = "  Hel,,lo3 4There!!  \n";
     std::string word;
@@ -25,4 +27,5 @@ TEST_CASE("getword") {
     getword(string, word, next);
     REQUIRE(word == "Hello");
     REQUIRE(next == 5);
+}
 }

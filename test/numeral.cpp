@@ -2,6 +2,8 @@
 #include "numeral.h"
 #include <string>
 
+namespace polmdqc
+{
 TEST_CASE("numeral") {
     int number = 42;
     int width = 6;
@@ -16,4 +18,5 @@ TEST_CASE("numeral") {
     width = 1;
     paddedNumber = numeral(number, width);
     REQUIRE(paddedNumber == "42");
+}
 }

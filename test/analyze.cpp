@@ -5,6 +5,8 @@
 #include "testrt.h"
 #include <cmath>
 
+namespace polmdqc
+{
 TEST_CASE("analyze-1", "[AMOEBA][water09]") {
     int argc = 3;
     const char* strings[] = {
@@ -45,4 +47,5 @@ TEST_CASE("analyze-2", "[HIPPO][water21]") {
     COMPARE_REALS(einter, einterTest, eps);
     COMPARE_REALS(em, emTest, eps);
     REQUIRE(nem == nemTest);
+}
 }

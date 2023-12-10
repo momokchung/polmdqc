@@ -1,15 +1,19 @@
-////////////////////////////////////////////////////////
-//                                                    //
-//  promo.cpp  --  version info and copywrite notice  //
-//                                                    //
-////////////////////////////////////////////////////////
-
-// "promo" writes a banner message containing information
-// about the PolMDQC version, release date and copyright notice
-
+// Author: Moses KJ Chung
+// Year:   2023
 
 #include "promo.h"
 #include <stdio.h>
+
+namespace polmdqc
+{
+////////////////////////////////////////////////////
+//                                                //
+//  promo  --  version info and copywrite notice  //
+//                                                //
+////////////////////////////////////////////////////
+
+// "promo" writes a banner message containing information
+// about the PolMDQC version, release date and copyright notice
 
 void promo()
 {
@@ -25,4 +29,5 @@ void promo()
     printf("\n  ###                                                                       ###");
     printf("\n   ###########################################################################");
     printf("\n     ########################################################################\n\n");
+}
 }

@@ -12,7 +12,7 @@ justify.cpp
 lowcase.cpp
 main.cpp
 numeral.cpp
-qcmdvector.cpp
+mdqcvector.cpp
 rotpole.cpp
 sort.cpp
 torphase.cpp

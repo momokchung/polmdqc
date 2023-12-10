@@ -2,6 +2,8 @@
 #include "trimtext.h"
 #include <string>
 
+namespace polmdqc
+{
 TEST_CASE("trimtext") {
     std::string string = " Hello, World!  \n";
     int trimint = trimtext(string);
@@ -9,4 +11,5 @@ TEST_CASE("trimtext") {
     string = "      ";
     trimint = trimtext(string);
     REQUIRE(trimint == -1);
+}
 }

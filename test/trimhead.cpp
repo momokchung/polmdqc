@@ -2,6 +2,8 @@
 #include "trimhead.h"
 #include <string>
 
+namespace polmdqc
+{
 TEST_CASE("trimhead") {
     std::string string = " Hello, World!  \n";
     trimhead(string);
@@ -9,4 +11,5 @@ TEST_CASE("trimhead") {
     string = "      \n";
     trimhead(string);
     REQUIRE(string == "\n");
+}
 }

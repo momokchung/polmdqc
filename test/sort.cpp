@@ -1,7 +1,9 @@
 #include "catch.hpp"
-#include "sort.hpp"
+#include "sort.h"
 #include <set>
 
+namespace polmdqc
+{
 TEST_CASE("sort") {
     int n;
     std::vector<int> numbers;
@@ -104,4 +106,5 @@ TEST_CASE("sort") {
     REQUIRE((key[3] == 1 or key[3] == 4));
     REQUIRE((key[4] == 1 or key[4] == 4));
     REQUIRE(key[5] == 5);
+}
 }

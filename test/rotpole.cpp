@@ -6,6 +6,8 @@
 #include "readjson.h"
 #include "testrt.h"
 
+namespace polmdqc
+{
 TEST_CASE("rotpole-1", "[AMOEBA][axetyp]") {
     // Tests Bisector, None, Z-Only, and Z-then-X
     int argc = 3;
@@ -80,4 +82,5 @@ TEST_CASE("rotpole-3", "[AMOEBA][lysine_3fold]") {
     COMPARE_VECTOR(refrpole, rpole[0], epsR);
     COMPARE_REALS(em, emTest, eps);
     REQUIRE(nem == nemTest);
+}
 }

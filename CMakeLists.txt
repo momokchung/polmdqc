@@ -20,25 +20,27 @@ include_directories(/opt/homebrew/Cellar/boost/1.83.0/include)
 
 # Add the directories containing header files
 include_directories(include)
+include_directories(include/md)
+include_directories(include/qc)
 
 # Add the source files
 include (cmakesrc.txt)
 add_library (polmdqc STATIC "${POLMDQC_SRC}")
 
 # Add the tinkerqm executable
-add_executable(tinkerqm src/tinkerqmExe.cpp)
+add_executable(tinkerqm src/qc/tinkerqmExe.cpp)
 
 # Link the tinkerqm libraries
 target_link_libraries(tinkerqm polmdqc openblas int2)
 
 # Add the analyze executable
-add_executable(analyze src/analyzeExe.cpp)
+add_executable(analyze src/md/analyzeExe.cpp)
 
 # Link the polmdqc library
 target_link_libraries(analyze polmdqc)
 
 # Add the alphamol executable
-add_executable(alphamol src/alphamolExe.cpp)
+add_executable(alphamol src/md/alphamolExe.cpp)
 
 # Link the polmdqc library
 target_link_libraries(alphamol polmdqc)
@@ -47,5 +49,5 @@ target_link_libraries(alphamol polmdqc)
 add_subdirectory(test)
 
 # Link the tinkerqm libraries
-add_executable(valeev1 src/valeev1.cpp)
+add_executable(valeev1 src/qc/valeev1.cpp)
 target_link_libraries(valeev1 polmdqc int2)

@@ -2,6 +2,8 @@
 #include "gettext.h"
 #include <string>
 
+namespace polmdqc
+{
 TEST_CASE("gettext") {
     std::string string = " Example  string!  ";
     std::string text;
@@ -17,4 +19,5 @@ TEST_CASE("gettext") {
     gettext(string, text, next);
     REQUIRE(text == "");
     REQUIRE(next == 5);
+}
 }

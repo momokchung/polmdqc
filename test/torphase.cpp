@@ -1,6 +1,8 @@
 #include "catch.hpp"
 #include "torphase.h"
 
+namespace polmdqc
+{
 TEST_CASE("torphase") {
     int ft[6] = {1,2,0,3,5,4};
     double vt[6] = {1.1,2.2,3.3,4.4,5.5,6.6};
@@ -12,4 +14,5 @@ TEST_CASE("torphase") {
         REQUIRE(vt[i] == expected_vt[i]);
         REQUIRE(st[i] == expected_st[i]);
     }
+}
 }
