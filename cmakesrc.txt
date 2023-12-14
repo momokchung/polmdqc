@@ -2,6 +2,8 @@ set (POLMDQC_SRC
 src/mod.cpp
 src/promo.cpp
 src/md/active.cpp
+src/md/alfcx.cpp
+src/md/alfcxgmp.cpp
 src/md/alphamol.cpp
 src/md/analysis.cpp
 src/md/analyze.cpp
@@ -18,11 +20,15 @@ src/md/control.cpp
 src/md/cutoffs.cpp
 src/md/cutoffSwitch.cpp
 src/md/damping.cpp
+src/md/delcx.cpp
+src/md/edge.cpp
 src/md/empole.cpp
 src/md/enrgyze.cpp
+src/md/face.cpp
 src/md/fatal.cpp
 src/md/field.cpp
 src/md/final.cpp
+src/md/gausscorners.cpp
 src/md/getcart.cpp
 src/md/getkey.cpp
 src/md/getline.cpp
@@ -61,7 +67,12 @@ src/md/readprm.cpp
 src/md/readxyz.cpp
 src/md/rotpole.cpp
 src/md/setprm.cpp
+src/md/sorttools.cpp
+src/md/sosgmp.cpp
+src/md/spacefill.cpp
 src/md/suffix.cpp
+src/md/tetra.cpp
+src/md/tetrahedron.cpp
 src/md/torphase.cpp
 src/md/torsions.cpp
 src/md/trimhead.cpp
@@ -69,6 +80,8 @@ src/md/trimtext.cpp
 src/md/unitcell.cpp
 src/md/upcase.cpp
 src/md/version.cpp
+src/md/vertex.cpp
+src/md/volumes.cpp
 src/qc/boys.cpp
 src/qc/config.cpp
 src/qc/energy.cpp

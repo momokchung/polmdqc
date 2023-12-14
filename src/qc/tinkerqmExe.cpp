@@ -2,7 +2,6 @@
 // Year:   2023
 
 #include "tinkerqm.h"
-#include <iostream>
 
 //////////////////
 //              //

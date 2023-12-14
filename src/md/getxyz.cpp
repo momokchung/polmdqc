@@ -30,7 +30,7 @@ void getxyz()
     std::string xyzfile;
 
     // try to get a filename from the command line arguments
-    nextarg (xyzfile, exist);
+    nextarg(xyzfile, exist);
     if (exist) {
         basefile(xyzfile);
         suffix(xyzfile, "xyz", "old");

@@ -84,7 +84,7 @@ void getprm()
 
     // try to get a parameter filename from the command line
     if (!exist) {
-        nextarg (prmfile, exist);
+        nextarg(prmfile, exist);
         if (exist) {
             suffix(prmfile, "prm", "old");
             exist = inquireFile(prmfile);
