@@ -133,6 +133,30 @@ void alphamol(double r_h2o, int flag_deriv)
 	std::cout << "Weighted Gauss curvature   : " << std::setw(16) << std::fixed << std::setprecision(8) << WGauss << std::endl;
 	std::cout << " " << std::endl;
 
+    // std::cout << "Surface derivatives: " << std::endl;
+	// for(int i = 0; i < natoms; i++) {
+    //     printf("%24.16e%24.16e%24.16e\n", dsurf[3*i], dsurf[3*i+1], dsurf[3*i+2]);
+	// }
+	// std::cout << " " << std::endl;
+
+    // std::cout << "Volume derivatives: " << std::endl;
+	// for(int i = 0; i < natoms; i++) {
+    //     printf("%24.16e%24.16e%24.16e\n", dvol[3*i], dvol[3*i+1], dvol[3*i+2]);
+	// }
+	// std::cout << " " << std::endl;
+
+	// std::cout << "Mean curvature derivatives: " << std::endl;
+	// for(int i = 0; i < natoms; i++) {
+    //     printf("%24.16e%24.16e%24.16e\n", dmean[3*i], dmean[3*i+1], dmean[3*i+2]);
+	// }
+	// std::cout << " " << std::endl;
+
+	// std::cout << "Gauss curvature derivatives: " << std::endl;
+	// for(int i = 0; i < natoms; i++) {
+    //     printf("%24.16e%24.16e%24.16e\n", dgauss[3*i], dgauss[3*i+1], dgauss[3*i+2]);
+	// }
+	// std::cout << " " << std::endl;
+
 	delete [] coord; delete [] radii; delete [] coefS; delete [] coefV; delete [] coefM; delete [] coefG;
 	delete [] ballwsurf; delete [] dsurf; delete [] ballwvol; delete [] dvol;
 	delete [] ballwmean; delete [] dmean; delete [] ballwgauss; delete [] dgauss;

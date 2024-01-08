@@ -6,6 +6,7 @@
 #include "chgpen.h"
 #include "chkpole.h"
 #include "couple.h"
+#include "fatal.h"
 #include "gettext.h"
 #include "inform.h"
 #include "kcpen.h"
@@ -707,5 +708,22 @@ void kmpole()
     // turn off atomic multipole potentials if not used
     if (npole == 0)  use_mpole = false;
     if (ncp != 0)  use_chgpen = true;
+
+    // set penetration type
+    if (!use_chgpen) {
+        pentype = PenTyp::None;
+    }
+    else {
+        if (pentyps == "GORDON1") {
+            pentype = PenTyp::Gordon1;
+        }
+        else if (pentyps == "GORDON2") {
+            pentype = PenTyp::Gordon2;
+        }
+        else {
+            printf("\n KMPOLE  --  If using charge penetration, set to Gordon1 or Gordon2\n");
+            fatal();
+        }
+    }
 }
 }

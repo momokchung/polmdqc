@@ -492,7 +492,7 @@ void prmkey(std::string record)
 
     // set control parameters for atomic multipole potentials
     else if (keyword == "PENETRATION") {
-        getword(record,pentyp,next);
+        getword(record,pentyps,next);
     }
     else if (keyword == "MPOLE-12-SCALE") {
         iss >> m2scale;

@@ -356,7 +356,7 @@ void initprm()
     }
 
     // set default control parameters for atomic multipole terms
-    pentyp = "GORDON1";
+    pentyps = "GORDON1";
     m2scale = 0.;
     m3scale = 0.;
     m4scale = 1.;

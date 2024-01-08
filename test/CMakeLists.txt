@@ -1,13 +1,15 @@
 cmake_minimum_required(VERSION 3.16.0)
 
 set(POLMDQC_TEST
-analyze.cpp
+amoeba.cpp
+amoebap.cpp
 getline.cpp
 getnumb.cpp
 getstring.cpp
 gettext.cpp
 getword.cpp
 hartree.cpp
+hippo.cpp
 justify.cpp
 lowcase.cpp
 main.cpp

@@ -18,7 +18,7 @@ namespace boys
 
 constexpr int M = 52;
 constexpr int intervalLength = 67999;
-constexpr int N = intervalLength * 4 * (M + 1);
+// constexpr int N = intervalLength * 4 * (M + 1);
 
 char* memblock;
 real* coefficients;

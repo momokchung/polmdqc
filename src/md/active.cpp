@@ -27,6 +27,7 @@ void active()
     int next;
     int nmobile,nfixed;
     int center,nsphere;
+    double xr,yr,zr;
     double xcenter,ycenter,zcenter;
     double radius,radius2,dist2;
     std::string keyword;
@@ -56,7 +57,7 @@ void active()
     // get any keywords containing active atom parameters
     for (int j = 0; j < nkey; j++) {
         record = keyline[j];
-        int next = 0;
+        next = 0;
         gettext(record, keyword, next);
         upcase(keyword);
         string = record.substr(next);
@@ -122,10 +123,10 @@ void active()
             radius2 = radius * radius;
             for (int i = 0; i < n; i++) {
                 if (!use[i]) {
-                    double xr = x[i] - xcenter;
-                    double yr = y[i] - ycenter;
-                    double zr = z[i] - zcenter;
-                    double dist2 = xr*xr + yr*yr + zr*zr;
+                    xr = x[i] - xcenter;
+                    yr = y[i] - ycenter;
+                    zr = z[i] - zcenter;
+                    dist2 = xr*xr + yr*yr + zr*zr;
                     if (dist2 <= radius2) {
                         nuse++;
                         use[i] = true;

@@ -3,6 +3,7 @@
 
 #pragma once
 #include "calcMode.h"
+#include "mplpot.h"
 
 namespace polmdqc
 {
@@ -12,13 +13,17 @@ namespace polmdqc
 //                                            //
 ////////////////////////////////////////////////
 
-void empole(calcMode calculationMode);
+void empole(CalcMode CalculationMode);
 
-void empole_a(calcMode calculationMode);
+template <CalcMode CalculationMode, PenTyp PenType>
+void empole_a();
 
-void empole_b(calcMode calculationMode);
+// template <CalcMode CalculationMode>
+// void empole_b();
 
-void empole_c(calcMode calculationMode);
+// template <CalcMode CalculationMode>
+// void empole_c();
 
-void empole_d(calcMode calculationMode);
+// template <CalcMode CalculationMode>
+// void empole_d();
 }

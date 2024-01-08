@@ -828,7 +828,7 @@ void ALFCX::triangle_radius(double *a, double *b, double *c, double ra, double r
  
 	if(std::abs(alpha-num) < eps) {
 		int val;
-		alf_gmp.triangle_radius_gmp(a, b, c, ra, rc, rc, &val, alpha, memory);
+		alf_gmp.triangle_radius_gmp(a, b, c, ra, rb, rc, &val, alpha, memory);
 		*memory = 1;
 		if(val == 1) *testr = 1;
 		return;

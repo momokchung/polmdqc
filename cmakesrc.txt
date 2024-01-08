@@ -19,7 +19,6 @@ src/md/command.cpp
 src/md/control.cpp
 src/md/cutoffs.cpp
 src/md/cutoffSwitch.cpp
-src/md/damping.cpp
 src/md/delcx.cpp
 src/md/edge.cpp
 src/md/empole.cpp
