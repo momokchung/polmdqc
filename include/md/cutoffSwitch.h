@@ -12,5 +12,22 @@ namespace polmdqc
 //                                                         //
 /////////////////////////////////////////////////////////////
 
-void cutoffSwitch(std::string& mode);
+enum class CutoffMode
+{
+    VdW,
+    Repuls,
+    Disp,
+    Charge,
+    ChgDpl,
+    Dipole,
+    Mpole,
+    ChgTrn,
+    Ewald,
+    DEwald,
+    USolv,
+    GKV,
+    GKSA,
+};
+
+void cutoffSwitch(CutoffMode mode);
 }

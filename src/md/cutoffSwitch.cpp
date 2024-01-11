@@ -19,7 +19,7 @@ namespace polmdqc
 // "cutoffSwitch" sets the coeffcients used by the fifth and seventh
 // order polynomial switching functions for spherical cutoffs
 
-void cutoffSwitch(std::string& mode)
+void cutoffSwitch(CutoffMode mode)
 {
     double denom,term;
     double off3,off4,off5;
@@ -28,55 +28,55 @@ void cutoffSwitch(std::string& mode)
     double cut6,cut7;
 
     // get the switching window for the current potential type
-    if (mode == "VDW") {
+    if (mode == CutoffMode::VdW) {
         off = vdwcut;
         cut = vdwtaper;
     }
-    else if (mode == "REPULS") {
+    else if (mode == CutoffMode::Repuls) {
         off = repcut;
         cut = reptaper;
     }
-    else if (mode == "DISP") {
+    else if (mode == CutoffMode::Disp) {
         off = dispcut;
         cut = disptaper;
     }
-    else if (mode == "CHARGE") {
+    else if (mode == CutoffMode::Charge) {
         off = chgcut;
         cut = chgtaper;
     }
-    else if (mode == "CHGDPL") {
+    else if (mode == CutoffMode::ChgDpl) {
         off = std::sqrt(chgcut*dplcut);
         cut = std::sqrt(chgtaper*dpltaper);
     }
-    else if (mode == "DIPOLE") {
+    else if (mode == CutoffMode::Dipole) {
         off = dplcut;
         cut = dpltaper;
     }
-    else if (mode == "MPOLE") {
+    else if (mode == CutoffMode::Mpole) {
         off = mpolecut;
         cut = mpoletaper;
     }
-    else if (mode == "CHGTRN") {
+    else if (mode == CutoffMode::ChgTrn) {
         off = ctrncut;
         cut = ctrntaper;
     }
-    else if (mode == "EWALD") {
+    else if (mode == CutoffMode::Ewald) {
         off = ewaldcut;
         cut = ewaldcut;
     }
-    else if (mode == "DEWALD") {
+    else if (mode == CutoffMode::DEwald) {
         off = dewaldcut;
         cut = dewaldcut;
     }
-    else if (mode == "USOLVE") {
+    else if (mode == CutoffMode::USolv) {
         off = usolvcut;
         cut = usolvcut;
     }
-    else if (mode == "GKV") {
+    else if (mode == CutoffMode::GKV) {
         off = spoff;
         cut = spcut;
     }
-    else if (mode == "GKSA") {
+    else if (mode == CutoffMode::GKSA) {
         off = stcut;
         cut = stoff;
     }
@@ -130,7 +130,7 @@ void cutoffSwitch(std::string& mode)
     }
 
     // get 7th degree additive switching function coefficients
-    if (cut<off and mode=="CHARGE") {
+    if (cut<off and mode==CutoffMode::Charge) {
         term = 9.3 * cut*off / (off-cut);
         denom = cut7 - 7.*cut6*off + 21.*cut5*off2 - 35.*cut4*off3 + 35.*cut3*off4 - 21.*cut2*off5 + 7.*cut*off6 - off7;
         denom = term * denom;

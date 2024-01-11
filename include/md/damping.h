@@ -93,7 +93,7 @@ void damppole(real r, real alphai, real alphak, real* dmpi, real* dmpk, real* dm
             dmpik[2] = 1. - (1. + dampi + 0.5*dampi2 + dampi3/6. + dampi4/24. + dampi5/144.)*expi;
             dmpik[3] = 1. - (1. + dampi + 0.5*dampi2 + dampi3/6. + dampi4/24. + dampi5/120. + dampi6/720.)*expi;
             dmpik[4] = 1. - (1. + dampi + 0.5*dampi2 + dampi3/6. + dampi4/24. + dampi5/120. + dampi6/720. + dampi7/5040.)*expi;
-            if (rorder >= 11) {
+            if constexpr (rorder >= 11) {
                 dampi8 = dampi4 * dampi4;
                 dmpik[5] = 1. - (1. + dampi + 0.5*dampi2 + dampi3/6. + dampi4/24. + dampi5/120. + dampi6/720. + dampi7/5040. + dampi8/45360.)*expi;
             }
@@ -123,7 +123,7 @@ void damppole(real r, real alphai, real alphak, real* dmpi, real* dmpk, real* dm
                           - termk2*(1. + dampk + 0.5*dampk2 + dampk3/6. + 4.*dampk4/105. + dampk5/210.)*expk
                           - 2.*termi2*termk*(1. + dampi + 3.*dampi2/7. + 2.*dampi3/21. + dampi4/105.)*expi 
                           - 2.*termk2*termi*(1. + dampk + 3.*dampk2/7. + 2.*dampk3/21. + dampk4/105.)*expk;
-            if (rorder >= 11) {
+            if constexpr (rorder >= 11) {
                 dampi6 = dampi3 * dampi3;
                 dampk6 = dampk3 * dampk3;
                 dmpik[5] = 1. - termi2*(1. + dampi + 0.5*dampi2 + dampi3/6. + 5.*dampi4/126. + 2.*dampi5/315. + dampi6/1890.)*expi
@@ -167,7 +167,7 @@ void damppole(real r, real alphai, real alphak, real* dmpi, real* dmpk, real* dm
             dmpik[2] = 1. - (1. + dampi + 0.5*dampi2 + dampi3/6.)*expi;
             dmpik[3] = 1. - (1. + dampi + 0.5*dampi2 + dampi3/6. + dampi4/30.)*expi;
             dmpik[4] = 1. - (1. + dampi + 0.5*dampi2 + dampi3/6. + 4.*dampi4/105. + dampi5/210.)*expi;
-            if (rorder >= 11) {
+            if constexpr (rorder >= 11) {
                 dmpik[5] = 1. - (1. + dampi + 0.5*dampi2 + dampi3/6. + 5.*dampi4/126. + 2.*dampi5/315. + dampi6/1890.)*expi;
             }
         }
@@ -187,7 +187,7 @@ void damppole(real r, real alphai, real alphak, real* dmpi, real* dmpk, real* dm
                           - termk*(1. + dampk + 0.4*dampk2 + dampk3/15.)*expk;
             dmpik[4] = 1. - termi*(1. + dampi + 3.*dampi2/7. + 2.*dampi3/21. + dampi4/105.)*expi
                           - termk*(1. + dampk + 3.*dampk2/7. + 2.*dampk3/21. + dampk4/105.)*expk;
-            if (rorder >= 11) {
+            if constexpr (rorder >= 11) {
                 dmpik[5] = 1. - termi*(1. + dampi + 4.*dampi2/9. + dampi3/9. + dampi4/63. + dampi5/945.)*expi
                               - termk*(1. + dampk + 4.*dampk2/9. + dampk3/9. + dampk4/63. + dampk5/945.)*expk;
             }

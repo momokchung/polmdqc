@@ -2,9 +2,9 @@
 // Year:   2023
 
 #pragma once
+#include "kmulti.h"
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -38,5 +38,5 @@ MDQC_EXTERN std::vector<int> yaxis;
 MDQC_EXTERN std::vector<std::vector<double>> pole;
 MDQC_EXTERN std::vector<std::vector<double>> rpole;
 MDQC_EXTERN std::vector<double>  mono0;
-MDQC_EXTERN std::vector<std::string> polaxe;
+MDQC_EXTERN std::vector<LocalFrame> polaxe;
 }

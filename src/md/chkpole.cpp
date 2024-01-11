@@ -34,15 +34,15 @@ void chkpole()
         dopol = false;
         dorep = false;
         if (pollist.size() != 0) {
-            if (pollist[0] != -1)  dopol = true;
+            if (pollist[0] != -1) dopol = true;
         }
         if (replist.size() != 0) {
-            if (replist[i] != -1)  dorep = true;
+            if (replist[i] != -1) dorep = true;
         }
         if (dopol or dorep) {
             check = true;
-            if (polaxe[i] != "Z-then-X")  check = false;
-            if (yaxis[i] == 0)  check = false;
+            if (polaxe[i] != LocalFrame::ZthenX) check = false;
+            if (yaxis[i] == 0) check = false;
             if (check) {
                 k = yaxis[i];
                 ia = i;

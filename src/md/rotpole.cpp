@@ -6,7 +6,6 @@
 #include "mpole.h"
 #include "repel.h"
 #include "rotpole.h"
-#include "upcase.h"
 #include <cmath>
 
 namespace polmdqc
@@ -20,15 +19,14 @@ namespace polmdqc
 // "rotpole" constructs the global atomic multipoles by applying
 // a rotation matrix to convert from local to global frame
 
-void rotpole(std::string rotMode)
+void rotpole(RotMode rotMode)
 {
     int i;
     Eigen::Matrix<double, 3, 3> a;
     bool planar;
 
     // rotate local multipoles to global frame at each site
-    upcase(rotMode);
-    if (rotMode == "MPOLE") {
+    if (rotMode == RotMode::Mpole) {
         for (int i = 0; i < n; i++) {
             if (pollist[i] != -1) {
                 rotmat(i,a,planar);
@@ -36,7 +34,7 @@ void rotpole(std::string rotMode)
             }
         }
     }
-    else if (rotMode == "REPEL") {
+    else if (rotMode == RotMode::Repel) {
         for (int i = 0; i < n; i++) {
             if (replist[i] != -1) {
                 rotmat(i,a,planar);
@@ -64,15 +62,14 @@ void rotpole(std::string rotMode)
 // "rotrpole" constructs the local atomic multipoles by applying
 // a rotation matrix to convert from global to local frame
 
-void rotrpole(std::string rotMode)
+void rotrpole(RotMode rotMode)
 {
     int i;
     Eigen::Matrix<double, 3, 3> a;
     bool planar;
 
     // rotate global multipoles to local frame at each site
-    upcase(rotMode);
-    if (rotMode == "MPOLE") {
+    if (rotMode == RotMode::Mpole) {
         for (int i = 0; i < n; i++) {
             if (pollist[i] != -1) {
                 rotmat(i,a,planar);
@@ -82,7 +79,7 @@ void rotrpole(std::string rotMode)
             }
         }
     }
-    else if (rotMode == "REPEL") {
+    else if (rotMode == RotMode::Repel) {
         for (int i = 0; i < n; i++) {
             if (replist[i] != -1) {
                 rotmat(i,a,planar);
@@ -114,7 +111,7 @@ void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar)
     double dx2,dy2,dz2;
     double dx3,dy3,dz3;
     double dx4,dy4,dz4;
-    std::string axetyp;
+    LocalFrame axetyp;
 
     // get coordinates and frame definition for multipole site
     xi = x[i];
@@ -138,7 +135,7 @@ void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar)
     a(2,2) = 1.;
 
     // get Z-Only rotation matrix elements for z-axis only
-    if (axetyp == "Z-Only") {
+    if (axetyp == LocalFrame::ZOnly) {
         dx = x[iz] - xi;
         dy = y[iz] - yi;
         dz = z[iz] - zi;
@@ -166,7 +163,7 @@ void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar)
     }
 
     // get Z-then-X rotation matrix elements for z- and x-axes
-    else if (axetyp == "Z-then-X") {
+    else if (axetyp == LocalFrame::ZthenX) {
         dx = x[iz] - xi;
         dy = y[iz] - yi;
         dz = z[iz] - zi;
@@ -188,7 +185,7 @@ void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar)
     }
 
     // get Bisector rotation matrix elements for z- and x-axes
-    else if (axetyp == "Bisector") {
+    else if (axetyp == LocalFrame::Bisector) {
         dx = x[iz] - xi;
         dy = y[iz] - yi;
         dz = z[iz] - zi;
@@ -222,7 +219,7 @@ void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar)
 
     // get Z-Bisect rotation matrix elements for z- and x-axes;
     // use alternate x-axis if central atom is close to planar
-    else if (axetyp == "Z-Bisect") {
+    else if (axetyp == LocalFrame::ZBisect) {
         dx = x[iz] - xi;
         dy = y[iz] - yi;
         dz = z[iz] - zi;
@@ -278,7 +275,7 @@ void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar)
 
     // get 3-Fold rotation matrix elements for z- and x-axes;
     // use alternate z-axis if central atom is close to planar
-    else if (axetyp == "3-Fold") {
+    else if (axetyp == LocalFrame::ThreeFold) {
         dx = x[iz] - xi;
         dy = y[iz] - yi;
         dz = z[iz] - zi;
@@ -363,7 +360,7 @@ void rotsite(int ii, Eigen::Matrix<double, 3, 3>& a, bool& planar, std::vector<s
     double spole[maxpole];
     double mp[3][3];
     double rp[3][3];
-    std::string axetyp;
+    LocalFrame axetyp;
 
     // copy input multipoles and modify at planar sites
     for (int i = 0; i < maxpole; i++) {
@@ -371,14 +368,14 @@ void rotsite(int ii, Eigen::Matrix<double, 3, 3>& a, bool& planar, std::vector<s
     }
     if (planar) {
         axetyp = polaxe[ii];
-        if (axetyp == "Z-Bisect") {
+        if (axetyp == LocalFrame::ZBisect) {
             spole[1] = 0.;
             spole[6] = 0.;
             spole[10] = 0.;
             spole[4] = 0.5 * (spole[4]+spole[8]);
             spole[8] = spole[4];
         }
-        else if (axetyp == "3-Fold") {
+        else if (axetyp == LocalFrame::ThreeFold) {
             for (int i = 1; i < maxpole; i++) {
                 spole[i] = 0.;
             }

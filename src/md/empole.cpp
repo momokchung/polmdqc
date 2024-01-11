@@ -107,7 +107,6 @@ void empole_a()
     std::vector<real> mscale;
     bool proceed;
     bool usei,usek;
-    std::string mode;
     MAYBE_UNUSED std::vector<std::vector<real>> tem;
 
     if (npole == 0) return;
@@ -132,7 +131,7 @@ void empole_a()
     chkpole();
 
     // rotate the multipole components into the global frame
-    rotpole("MPOLE");
+    rotpole(RotMode::Mpole);
 
     // allocate and initialize connected atom exclusion coefficients
     mscale.resize(n, 1.);
@@ -142,8 +141,7 @@ void empole_a()
 
     // set conversion factor, cutoff and switching coefficients
     f = electric / dielec;
-    mode = "MPOLE";
-    cutoffSwitch(mode);
+    cutoffSwitch(CutoffMode::Mpole);
 
     // calculate the multipole interaction energy term
     for (int ii = 0; ii < npole-1; ii++) {

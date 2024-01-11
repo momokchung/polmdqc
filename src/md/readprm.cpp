@@ -1216,7 +1216,7 @@ void readprm()
             pc = numeral(ic,size);
             pd = numeral(id,size);
             kmp[nmp] = pa + pb + pc + pd;
-            mpaxis[nmp] = axt;
+            mpaxis[nmp] = retLFRM(axt);
             multip[nmp][0] = pl[0];
             multip[nmp][1] = pl[1];
             multip[nmp][2] = pl[2];

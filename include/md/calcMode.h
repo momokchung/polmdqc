@@ -17,12 +17,12 @@ namespace polmdqc
 
 enum class CalcMode
 {
-   None,
-   Energy,
-   Analysis,
-   Gradient,
-   Virial,
-   Hessian,
+    None,
+    Energy,
+    Analysis,
+    Gradient,
+    Virial,
+    Hessian,
 };
 
 struct CalcFlag {

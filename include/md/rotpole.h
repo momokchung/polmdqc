@@ -3,7 +3,6 @@
 
 #pragma once
 #include <Eigen/Dense>
-#include <string>
 
 namespace polmdqc
 {
@@ -13,9 +12,16 @@ namespace polmdqc
 //                                                  //
 //////////////////////////////////////////////////////
 
-void rotpole(std::string rotMode);
+enum class RotMode
+{
+    None,
+    Mpole,
+    Repel,
+};
 
-void rotrpole(std::string rotMode);
+void rotpole(RotMode rotMode);
+
+void rotrpole(RotMode rotMode);
 
 void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar);
 

@@ -238,7 +238,7 @@ void kmpole()
                 pd = numeral (ky,size);
                 pt = pa + pb + pc + pd;
                 kmp[imp] = pt;
-                mpaxis[imp] = axt;
+                mpaxis[imp] = retLFRM(axt);
                 for (int j = 0; j < 13; j++) {
                     multip[imp][j] = mpl[j];
                 }
@@ -273,7 +273,7 @@ void kmpole()
     pole.resize(n, std::vector<double>(maxpole, 0.));
     rpole.resize(n, std::vector<double>(maxpole));
     mono0.resize(n, 0.);
-    polaxe.resize(n, "None");
+    polaxe.resize(n, LocalFrame::None);
     np11.resize(n, 0);
     np12.resize(n, 0);
     np13.resize(n, 0);
@@ -530,7 +530,7 @@ void kmpole()
                 zaxis[k] = kz+1;
                 xaxis[k] = kx+1;
                 yaxis[k] = ky+1;
-                polaxe[k] = axt;
+                polaxe[k] = retLFRM(axt);
                 for (int j = 0; j < 13; j++) {
                     pole[k][j] = mpl[j];
                 }
