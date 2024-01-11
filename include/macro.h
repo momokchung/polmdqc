@@ -9,3 +9,5 @@
 #else
 #define MDQC_EXTERN extern
 #endif
+
+#define MAYBE_UNUSED [[maybe_unused]]

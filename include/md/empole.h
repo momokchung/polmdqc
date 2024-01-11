@@ -13,7 +13,8 @@ namespace polmdqc
 //                                            //
 ////////////////////////////////////////////////
 
-void empole(CalcMode CalculationMode);
+template <CalcMode CalculationMode>
+void empole();
 
 template <CalcMode CalculationMode, PenTyp PenType>
 void empole_a();

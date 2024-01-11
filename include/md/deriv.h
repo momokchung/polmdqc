@@ -3,6 +3,7 @@
 
 #pragma once
 #include "macro.h"
+#include "precision.h"
 #include <vector>
 
 namespace polmdqc
@@ -43,33 +44,33 @@ namespace polmdqc
 // deg     geometric restraint Cartesian coordinate derivatives
 // dex     extra energy term Cartesian coordinate derivatives
 
-MDQC_EXTERN std::vector<double> desum;
-MDQC_EXTERN std::vector<double> deb;
-MDQC_EXTERN std::vector<double> dea;
-MDQC_EXTERN std::vector<double> deba;
-MDQC_EXTERN std::vector<double> deub;
-MDQC_EXTERN std::vector<double> deaa;
-MDQC_EXTERN std::vector<double> deopb;
-MDQC_EXTERN std::vector<double> deopd;
-MDQC_EXTERN std::vector<double> deid;
-MDQC_EXTERN std::vector<double> deit;
-MDQC_EXTERN std::vector<double> det;
-MDQC_EXTERN std::vector<double> dept;
-MDQC_EXTERN std::vector<double> debt;
-MDQC_EXTERN std::vector<double> deat;
-MDQC_EXTERN std::vector<double> dett;
-MDQC_EXTERN std::vector<double> dev;
-MDQC_EXTERN std::vector<double> der;
-MDQC_EXTERN std::vector<double> dedsp;
-MDQC_EXTERN std::vector<double> dec;
-MDQC_EXTERN std::vector<double> decd;
-MDQC_EXTERN std::vector<double> ded;
-MDQC_EXTERN std::vector<double> dem;
-MDQC_EXTERN std::vector<double> dep;
-MDQC_EXTERN std::vector<double> dect;
-MDQC_EXTERN std::vector<double> derxf;
-MDQC_EXTERN std::vector<double> des;
-MDQC_EXTERN std::vector<double> delf;
-MDQC_EXTERN std::vector<double> deg;
-MDQC_EXTERN std::vector<double> dex;
+MDQC_EXTERN std::vector<std::vector<real>> desum;
+MDQC_EXTERN std::vector<std::vector<real>> deb;
+MDQC_EXTERN std::vector<std::vector<real>> dea;
+MDQC_EXTERN std::vector<std::vector<real>> deba;
+MDQC_EXTERN std::vector<std::vector<real>> deub;
+MDQC_EXTERN std::vector<std::vector<real>> deaa;
+MDQC_EXTERN std::vector<std::vector<real>> deopb;
+MDQC_EXTERN std::vector<std::vector<real>> deopd;
+MDQC_EXTERN std::vector<std::vector<real>> deid;
+MDQC_EXTERN std::vector<std::vector<real>> deit;
+MDQC_EXTERN std::vector<std::vector<real>> det;
+MDQC_EXTERN std::vector<std::vector<real>> dept;
+MDQC_EXTERN std::vector<std::vector<real>> debt;
+MDQC_EXTERN std::vector<std::vector<real>> deat;
+MDQC_EXTERN std::vector<std::vector<real>> dett;
+MDQC_EXTERN std::vector<std::vector<real>> dev;
+MDQC_EXTERN std::vector<std::vector<real>> der;
+MDQC_EXTERN std::vector<std::vector<real>> dedsp;
+MDQC_EXTERN std::vector<std::vector<real>> dec;
+MDQC_EXTERN std::vector<std::vector<real>> decd;
+MDQC_EXTERN std::vector<std::vector<real>> ded;
+MDQC_EXTERN std::vector<std::vector<real>> dem;
+MDQC_EXTERN std::vector<std::vector<real>> dep;
+MDQC_EXTERN std::vector<std::vector<real>> dect;
+MDQC_EXTERN std::vector<std::vector<real>> derxf;
+MDQC_EXTERN std::vector<std::vector<real>> des;
+MDQC_EXTERN std::vector<std::vector<real>> delf;
+MDQC_EXTERN std::vector<std::vector<real>> deg;
+MDQC_EXTERN std::vector<std::vector<real>> dex;
 }

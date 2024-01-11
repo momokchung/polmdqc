@@ -5,7 +5,6 @@ src/md/active.cpp
 src/md/alfcx.cpp
 src/md/alfcxgmp.cpp
 src/md/alphamol.cpp
-src/md/analysis.cpp
 src/md/analyze.cpp
 src/md/angles.cpp
 src/md/attach.cpp
@@ -22,6 +21,7 @@ src/md/cutoffSwitch.cpp
 src/md/delcx.cpp
 src/md/edge.cpp
 src/md/empole.cpp
+src/md/energy.cpp
 src/md/enrgyze.cpp
 src/md/face.cpp
 src/md/fatal.cpp
@@ -70,6 +70,7 @@ src/md/sorttools.cpp
 src/md/sosgmp.cpp
 src/md/spacefill.cpp
 src/md/suffix.cpp
+src/md/testgrad.cpp
 src/md/tetra.cpp
 src/md/tetrahedron.cpp
 src/md/torphase.cpp
@@ -83,7 +84,7 @@ src/md/vertex.cpp
 src/md/volumes.cpp
 src/qc/boys.cpp
 src/qc/config.cpp
-src/qc/energy.cpp
+src/qc/energyqm.cpp
 src/qc/fock.cpp
 src/qc/hartree.cpp
 src/qc/init.cpp

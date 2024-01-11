@@ -1,7 +1,7 @@
 // Author: Moses KJ Chung
 // Year:   2023
 
-#include "energy.h"
+#include "energyqm.h"
 #include "init.h"
 #include "mechanicqm.h"
 #include <string>
@@ -25,7 +25,7 @@ void tinkerqm(int argc, char** argv)
 
     // add logic as to which function to run
     // for now we will just do HF
-    energy::energy();
+    energyqm::energy();
 
     // clean up quantum mechanics
     mechanicqm::cleanup();

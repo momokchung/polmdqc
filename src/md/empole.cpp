@@ -13,6 +13,7 @@
 #include "chkpole.h"
 #include "couple.h"
 #include "cutoffSwitch.h"
+#include "deriv.h"
 #include "empole.h"
 #include "energi.h"
 #include "group.h"
@@ -29,6 +30,7 @@
 #include "rotpole.h"
 #include "shunt.h"
 #include "usage.h"
+#include "virial.h"
 #include <cmath>
 
 namespace polmdqc
@@ -42,7 +44,8 @@ namespace polmdqc
 // "empole" calculates the electrostatic energy and/or
 // gradient due to atomic multipole interactions
 
-void empole(CalcMode CalculationMode)
+template <CalcMode CalculationMode>
+void empole()
 {
     // choose the method to sum over multipole interactions
     if (use_ewald) {
@@ -58,14 +61,12 @@ void empole(CalcMode CalculationMode)
             // empole_b<CalculationMode>();
         }
         else {
-            if (CalculationMode == CalcMode::Analysis) {
-                if (pentype == PenTyp::None)
-                    empole_a<CalcMode::Analysis, PenTyp::None>();
-                else if (pentype == PenTyp::Gordon1)
-                    empole_a<CalcMode::Analysis, PenTyp::Gordon1>();
-                else if (pentype == PenTyp::Gordon2)
-                    empole_a<CalcMode::Analysis, PenTyp::Gordon2>();
-            }
+            if (pentype == PenTyp::None)
+                empole_a<CalculationMode, PenTyp::None>();
+            else if (pentype == PenTyp::Gordon1)
+                empole_a<CalculationMode, PenTyp::Gordon1>();
+            else if (pentype == PenTyp::Gordon2)
+                empole_a<CalculationMode, PenTyp::Gordon2>();
         }
     }
 }
@@ -107,6 +108,9 @@ void empole_a()
     bool proceed;
     bool usei,usek;
     std::string mode;
+    MAYBE_UNUSED std::vector<std::vector<real>> tem;
+
+    if (npole == 0) return;
 
     // choose calculation mode
     constexpr CalcFlag flags = getCalculationFlags<CalculationMode>();
@@ -123,7 +127,6 @@ void empole_a()
             aem[i] = 0.;
         }
     }
-    if (npole == 0)  return
 
     // check the sign of multipole components at chiral sites
     chkpole();
@@ -133,6 +136,9 @@ void empole_a()
 
     // allocate and initialize connected atom exclusion coefficients
     mscale.resize(n, 1.);
+
+    // allocate and initialize torque array
+    if constexpr (do_g) tem.resize(n, std::vector<real>(3,0.));
 
     // set conversion factor, cutoff and switching coefficients
     f = electric / dielec;
@@ -232,7 +238,16 @@ void empole_a()
 
                     // increment the overall multipoles
                     if (use_group) {
-                        e = e * fgrp;
+                        if constexpr (do_e) e *= fgrp;
+                        if constexpr (do_g) {
+                            frcx *= fgrp;
+                            frcy *= fgrp;
+                            frcz *= fgrp;
+                        }
+                        if constexpr (do_v) {
+                            ttmxi *= fgrp; ttmyi *= fgrp; ttmzi *= fgrp;
+                            ttmxk *= fgrp; ttmyk *= fgrp; ttmzk *= fgrp;
+                        }
                     }
                     if constexpr (do_a) {
                         if (e != 0.) nem++;
@@ -244,6 +259,31 @@ void empole_a()
                     }
                     if constexpr (do_e) {
                         em += e;
+                    }
+                    if constexpr (do_g) {
+                        dem[i][0] += frcx;
+                        dem[i][1] += frcy;
+                        dem[i][2] += frcz;
+                        tem[i][0] += ttmxi;
+                        tem[i][1] += ttmyi;
+                        tem[i][2] += ttmzi;
+                        dem[k][0] -= frcx;
+                        dem[k][1] -= frcy;
+                        dem[k][2] -= frcz;
+                        tem[k][0] += ttmxk;
+                        tem[k][1] += ttmyk;
+                        tem[k][2] += ttmzk;
+                    }
+                    if constexpr (do_v) {
+                        vir[0][0] += vxx;
+                        vir[0][1] += vxy;
+                        vir[0][2] += vxz;
+                        vir[1][0] += vxy;
+                        vir[1][1] += vyy;
+                        vir[1][2] += vyz;
+                        vir[2][0] += vxz;
+                        vir[2][1] += vyz;
+                        vir[2][2] += vzz;
                     }
                 }
             }
@@ -262,6 +302,45 @@ void empole_a()
             mscale[i15[i][j]] = 1.;
         }
     }
+
+    // // resolve site torques then increment forces and virial
+    // do ii = 1, npole
+    //     i = ipole(ii)
+    //     call torque (i,tem(1,i),fix,fiy,fiz,dem)
+    //     iz = zaxis(i)
+    //     ix = xaxis(i)
+    //     iy = abs(yaxis(i))
+    //     if (iz .eq. 0)  iz = i
+    //     if (ix .eq. 0)  ix = i
+    //     if (iy .eq. 0)  iy = i
+    //     xiz = x(iz) - x(i)
+    //     yiz = y(iz) - y(i)
+    //     ziz = z(iz) - z(i)
+    //     xix = x(ix) - x(i)
+    //     yix = y(ix) - y(i)
+    //     zix = z(ix) - z(i)
+    //     xiy = x(iy) - x(i)
+    //     yiy = y(iy) - y(i)
+    //     ziy = z(iy) - z(i)
+    //     vxx = xix*fix(1) + xiy*fiy(1) + xiz*fiz(1)
+    //     vxy = 0.5d0 * (yix*fix(1) + yiy*fiy(1) + yiz*fiz(1)
+    //  &                    + xix*fix(2) + xiy*fiy(2) + xiz*fiz(2))
+    //     vxz = 0.5d0 * (zix*fix(1) + ziy*fiy(1) + ziz*fiz(1)
+    //  &                    + xix*fix(3) + xiy*fiy(3) + xiz*fiz(3)) 
+    //     vyy = yix*fix(2) + yiy*fiy(2) + yiz*fiz(2)
+    //     vyz = 0.5d0 * (zix*fix(2) + ziy*fiy(2) + ziz*fiz(2)
+    //  &                    + yix*fix(3) + yiy*fiy(3) + yiz*fiz(3))
+    //     vzz = zix*fix(3) + ziy*fiy(3) + ziz*fiz(3)
+    //     vir(1,1) = vir(1,1) + vxx
+    //     vir(2,1) = vir(2,1) + vxy
+    //     vir(3,1) = vir(3,1) + vxz
+    //     vir(1,2) = vir(1,2) + vxy
+    //     vir(2,2) = vir(2,2) + vyy
+    //     vir(3,2) = vir(3,2) + vyz
+    //     vir(1,3) = vir(1,3) + vxz
+    //     vir(2,3) = vir(2,3) + vyz
+    //     vir(3,3) = vir(3,3) + vzz
+    // end do
 }
 
 // for neighborlist, use Zhi's method of dividing calculations
@@ -276,8 +355,8 @@ void empole_a()
 // void empole_d(){}
 
 // explicit instatiation
-// template void empole<CalcMode::Energy>();
-// template void empole<CalcMode::Analysis>();
-// template void empole<CalcMode::Gradient>();
-// template void empole<CalcMode::Virial>();
+template void empole<CalcMode::Energy>();
+template void empole<CalcMode::Analysis>();
+template void empole<CalcMode::Gradient>();
+template void empole<CalcMode::Virial>();
 }

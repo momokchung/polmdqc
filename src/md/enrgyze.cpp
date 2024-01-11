@@ -1,8 +1,9 @@
 // Author: Moses KJ Chung
 // Year:   2023
 
-#include "analysis.h"
 #include "atoms.h"
+#include "calcMode.h"
+#include "energy.h"
 #include "enrgyze.h"
 #include "inform.h"
 #include "inter.h"
@@ -23,10 +24,12 @@ namespace polmdqc
 
 void enrgyze()
 {
-    double energy;
+    constexpr CalcMode CalculationMode = CalcMode::Analysis;
+
+    double etot;
 
     // perform the energy analysis by atom and component
-    analysis(energy);
+    energy<CalculationMode>(etot);
 
     // intermolecular energy for systems with multiple molecules
     int numSpaces = 9;
@@ -69,12 +72,12 @@ void enrgyze()
         width = 20;
         precision = 8;
     }
-    if (std::abs(energy) >= 1.e10) useScientific = true;
+    if (std::abs(etot) >= 1.e10) useScientific = true;
     if (!useScientific) {
-        printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, energy);
+        printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, etot);
     }
     else {
-        printf("\n Total Potential Energy :%*s%*.*e Kcal/mole\n", numSpaces, "", width, precision, energy);
+        printf("\n Total Potential Energy :%*s%*.*e Kcal/mole\n", numSpaces, "", width, precision, etot);
     }
 }
 }

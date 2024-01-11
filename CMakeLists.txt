@@ -36,6 +36,8 @@ add_library (polmdqc STATIC "${POLMDQC_SRC}")
 # Add executable
 # analyze
 add_executable(analyze src/md/analyzeExe.cpp)
+# testgrad
+add_executable(testgrad src/md/testgradExe.cpp)
 # spacefill
 add_executable(spacefill src/md/spacefillExe.cpp)
 # tinkerqm
@@ -46,6 +48,8 @@ add_executable(valeev1 src/qc/valeev1.cpp)
 # Target link libraries
 # analyze
 target_link_libraries(analyze polmdqc)
+# testgrad
+target_link_libraries(testgrad polmdqc)
 # spacefill
 target_link_libraries(spacefill polmdqc gmp)
 # tinkerqm
