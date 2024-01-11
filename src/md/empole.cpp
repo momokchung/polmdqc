@@ -29,6 +29,7 @@
 #include "mdqclimits.h"
 #include "rotpole.h"
 #include "shunt.h"
+#include "torque.h"
 #include "usage.h"
 #include "virial.h"
 #include <cmath>
@@ -144,7 +145,7 @@ void empole_a()
     cutoffSwitch(CutoffMode::Mpole);
 
     // calculate the multipole interaction energy term
-    for (int ii = 0; ii < npole-1; ii++) {
+    for (int ii = 0; ii < n-1; ii++) {
         i = ipole[ii];
         iz = zaxis[i] - 1;
         ix = xaxis[i] - 1;
@@ -184,7 +185,7 @@ void empole_a()
         }
 
         // evaluate all sites within the cutoff distance
-        for (int kk = ii+1; kk < npole; kk++) {
+        for (int kk = ii+1; kk < n; kk++) {
             k = ipole[kk];
             kz = zaxis[k] - 1;
             kx = xaxis[k] - 1;
@@ -301,44 +302,9 @@ void empole_a()
         }
     }
 
-    // // resolve site torques then increment forces and virial
-    // do ii = 1, npole
-    //     i = ipole(ii)
-    //     call torque (i,tem(1,i),fix,fiy,fiz,dem)
-    //     iz = zaxis(i)
-    //     ix = xaxis(i)
-    //     iy = abs(yaxis(i))
-    //     if (iz .eq. 0)  iz = i
-    //     if (ix .eq. 0)  ix = i
-    //     if (iy .eq. 0)  iy = i
-    //     xiz = x(iz) - x(i)
-    //     yiz = y(iz) - y(i)
-    //     ziz = z(iz) - z(i)
-    //     xix = x(ix) - x(i)
-    //     yix = y(ix) - y(i)
-    //     zix = z(ix) - z(i)
-    //     xiy = x(iy) - x(i)
-    //     yiy = y(iy) - y(i)
-    //     ziy = z(iy) - z(i)
-    //     vxx = xix*fix(1) + xiy*fiy(1) + xiz*fiz(1)
-    //     vxy = 0.5d0 * (yix*fix(1) + yiy*fiy(1) + yiz*fiz(1)
-    //  &                    + xix*fix(2) + xiy*fiy(2) + xiz*fiz(2))
-    //     vxz = 0.5d0 * (zix*fix(1) + ziy*fiy(1) + ziz*fiz(1)
-    //  &                    + xix*fix(3) + xiy*fiy(3) + xiz*fiz(3)) 
-    //     vyy = yix*fix(2) + yiy*fiy(2) + yiz*fiz(2)
-    //     vyz = 0.5d0 * (zix*fix(2) + ziy*fiy(2) + ziz*fiz(2)
-    //  &                    + yix*fix(3) + yiy*fiy(3) + yiz*fiz(3))
-    //     vzz = zix*fix(3) + ziy*fiy(3) + ziz*fiz(3)
-    //     vir(1,1) = vir(1,1) + vxx
-    //     vir(2,1) = vir(2,1) + vxy
-    //     vir(3,1) = vir(3,1) + vxz
-    //     vir(1,2) = vir(1,2) + vxy
-    //     vir(2,2) = vir(2,2) + vyy
-    //     vir(3,2) = vir(3,2) + vyz
-    //     vir(1,3) = vir(1,3) + vxz
-    //     vir(2,3) = vir(2,3) + vyz
-    //     vir(3,3) = vir(3,3) + vzz
-    // end do
+    if constexpr (do_g or do_v) {
+        torque<CalculationMode>(&tem, &dem);
+    }
 }
 
 // for neighborlist, use Zhi's method of dividing calculations

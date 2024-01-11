@@ -352,17 +352,17 @@ void pairMpoleCP_a(
             - 2 * (qixx * qkxy + qixy * qkyy + qixz * qkyz - qixy * qkxx
             - qiyy * qkxy - qiyz * qkxz);
 
-        ttmxi = -rr3 * dikx + term1 * dirx + term3 * (dqikx + dkqirx)
+        ttmxi = -rr3ik * dikx + term1 * dirx + term3 * (dqikx + dkqirx)
             - term4 * qirx - term6 * (qikrx + qikx);
-        ttmyi = -rr3 * diky + term1 * diry + term3 * (dqiky + dkqiry)
+        ttmyi = -rr3ik * diky + term1 * diry + term3 * (dqiky + dkqiry)
             - term4 * qiry - term6 * (qikry + qiky);
-        ttmzi = -rr3 * dikz + term1 * dirz + term3 * (dqikz + dkqirz)
+        ttmzi = -rr3ik * dikz + term1 * dirz + term3 * (dqikz + dkqirz)
             - term4 * qirz - term6 * (qikrz + qikz);
-        ttmxk = rr3 * dikx + term2 * dkrx - term3 * (dqikx + diqkrx)
+        ttmxk = rr3ik * dikx + term2 * dkrx - term3 * (dqikx + diqkrx)
             - term5 * qkrx - term6 * (qkirx - qikx);
-        ttmyk = rr3 * diky + term2 * dkry - term3 * (dqiky + diqkry)
+        ttmyk = rr3ik * diky + term2 * dkry - term3 * (dqiky + diqkry)
             - term5 * qkry - term6 * (qkiry - qiky);
-        ttmzk = rr3 * dikz + term2 * dkrz - term3 * (dqikz + diqkrz)
+        ttmzk = rr3ik * dikz + term2 * dkrz - term3 * (dqikz + diqkrz)
             - term5 * qkrz - term6 * (qkirz - qikz);
     }
 

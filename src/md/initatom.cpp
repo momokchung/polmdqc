@@ -17,29 +17,29 @@ namespace polmdqc
 // "initatom" sets the atomic symbol, standard atomic weight,
 // van der Waals radius and covalent radius for each element in
 // the periodic table
-
+// 
 // literature references:
-
+// 
 // J. Emsley, The Elements, 3rd Edition, Oxford University Press,
 // (1999)  [relative atomic masses]
-
+// 
 // J. Meija, T. B. Coplen, M. Berglund, W. A. Brand, P. De Bievre,
 // M. Groning, N. E. Holden, J. Irrgeher, R. D. Loss, T. Walczyk and
 // R. Prohaska, Atomic Weights of the Elements 2013, Pure and Applied
 // Chemistry, 88, 265-291 (2016)  [standard atomic weights]
-
+// 
 // A. Bondi, van der Waals Volumes and Radii, Journal of Physical
 // Chemistry, 68, 441-451 (1964)  [original vdw radii; not used]
-
+// 
 // S. Alvarez, "A Cartography of the van der Waals Territories",
 // Dalton Transactions, 42, 8617-8636 (2013)  [vdw radii for most
 // elements 1-99]
-
+// 
 // B. Cordero, V. Gomez. A. E. Platero-Prats, M. Reves,
 // J. Echeverria, E. Cremades, F. Barragan and S. Alverez,
 // "Covalent Radii Revisited", Dalton Transactions, 2832-2838 (2008)
 // [covalent radii for elements 1-96]
-
+// 
 // P. Pyykko and M. Atsumi, "Molecular Single-Bond Covalent Radii
 // for Elements 1-118", Chemistry- A European Journal, 15, 187-197
 // (2009)  [covalent radii for elements 97-112]

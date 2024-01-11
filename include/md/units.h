@@ -13,32 +13,32 @@ namespace polmdqc
 //////////////////////////////////////////////////////////
 
 // literature references:
-
+// 
 // M. Stock, R. Davis, E. de Mirandes and M. J. T. Milton, "The
 // Revision of the SI - The Result of Three Decades of Progress
 // in Metrology", Metrologia, 56, 022001 (2019)
-
+// 
 // E. Teisinga, P. J. Mohr, D. B. Newell and B. N. Taylor, "CODATA
 // Recommended Values of the Fundamental Physical Constants: 2018",
 // Journal of Physical and Chemical Reference Data, 50, 033105 (2021)
-
+// 
 // Where appropriate, values are from the November 2018 revision
 // of SI units to fixed values by the 26th General Conference on
 // Weights and Measures; other values are taken from 2018 CODATA
 // reference constants or are described below
-
+// 
 // The conversion from calorie to Joule is the definition of the
 // thermochemical calorie as 1 cal = 4.1840 J from ISO 31-4 (1992)
-
+// 
 // The "coulomb" energy conversion factor is found by dimensional
 // analysis of Coulomb's Law, that is by dividing the square of the
 // elementary charge in Coulombs by 4*pi*eps0*rij, where eps0 is
 // the permittivity of vacuum (the "electric constant"); note that
 // eps0 is typically given in F/m, equivalent to C**2/(J-m)
-
+// 
 // The approximate value used for the Debye, 3.33564 x 10-30 C-m,
 // is from IUPAC Compendium of Chemical Technology, 2nd Ed. (1997)
-
+// 
 // The value of "prescon" is based on definition of 1 atmosphere
 // as 101325 Pa set by the 10th Conference Generale des Poids et
 // Mesures (Paris, 1954), where a Pascal (Pa) is equal to a J/m**3
