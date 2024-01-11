@@ -324,15 +324,15 @@ void testgrad(int argc, char** argv)
                 for (int j = 0; j < 3; j++) {
                     if (j == 0) {
                         old = x[i];
-                        x[i] = x[i] - 0.5 * eps;
+                        x[i] -= (real)0.5 * eps;
                     }
                     else if (j == 1) {
                         old = y[i];
-                        y[i] = y[i] - 0.5 * eps;
+                        y[i] -= (real)0.5 * eps;
                     }
                     else if (j == 2) {
                         old = z[i];
-                        z[i] = z[i] - 0.5 * eps;
+                        z[i] -= (real)0.5 * eps;
                     }
                     energy<EnergyMode>(f0);
                     eb0 = eb;
@@ -364,13 +364,13 @@ void testgrad(int argc, char** argv)
                     eg0 = eg;
                     ex0 = ex;
                     if (j == 0) {
-                        x[i] = x[i] + eps;
+                        x[i] += eps;
                     }
                     else if (j == 1) {
-                        y[i] = y[i] + eps;
+                        y[i] += eps;
                     }
                     else if (j == 2) {
-                        z[i] = z[i] + eps;
+                        z[i] += eps;
                     }
                     energy<EnergyMode>(f);
                     if (j == 0) {

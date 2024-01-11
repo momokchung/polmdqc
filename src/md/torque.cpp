@@ -6,6 +6,7 @@
 #include "libfunc.h"
 #include "mpole.h"
 #include "torque.h"
+#include "virial.h"
 
 namespace polmdqc
 {
@@ -121,9 +122,9 @@ void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vecto
             }
         }
         if (axetyp==LocalFrame::ZBisect or axetyp==LocalFrame::ThreeFold) {
-            w[1] = x[id] - x[ib];
-            w[2] = y[id] - y[ib];
-            w[3] = z[id] - z[ib];
+            w[0] = x[id] - x[ib];
+            w[1] = y[id] - y[ib];
+            w[2] = z[id] - z[ib];
         }
         else {
             crossp(w,u,v);
@@ -227,7 +228,7 @@ void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vecto
                 du = uv[j]*dphidv/(usiz*uvsin) + uw[j]*dphidw/usiz;
                 de[ia][j] = de[ia][j] + du;
                 de[ib][j] = de[ib][j] - du;
-                frcz[j] = frcz[j] + du;
+                if constexpr (do_v) frcz[j] += du;
             }
         }
         // force distribution for Z-then-X local coordinate frame
@@ -238,8 +239,10 @@ void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vecto
                 de[ia][j] = de[ia][j] + du;
                 de[ic][j] = de[ic][j] + dv;
                 de[ib][j] = de[ib][j] - du - dv;
-                frcz[j] = frcz[j] + du;
-                frcx[j] = frcx[j] + dv;
+                if constexpr (do_v) {
+                    frcz[j] += du;
+                    frcx[j] += dv;
+                }
             }
         }
         // force distribution for Bisector local coordinate frame
@@ -250,8 +253,10 @@ void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vecto
                 de[ia][j] = de[ia][j] + du;
                 de[ic][j] = de[ic][j] + dv;
                 de[ib][j] = de[ib][j] - du - dv;
-                frcz[j] = frcz[j] + du;
-                frcx[j] = frcx[j] + dv;
+                if constexpr (do_v) {
+                    frcz[j] += du;
+                    frcx[j] += dv;
+                }
             }
         }
         // force distribution for Z-Bisect local coordinate frame
@@ -264,9 +269,11 @@ void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vecto
                 de[ic][j] = de[ic][j] + dv;
                 de[id][j] = de[id][j] + dw;
                 de[ib][j] = de[ib][j] - du - dv - dw;
-                frcz[j] = frcz[j] + du;
-                frcx[j] = frcx[j] + dv;
-                frcy[j] = frcy[j] + dw;
+                if constexpr (do_v) {
+                    frcz[j] += du;
+                    frcx[j] += dv;
+                    frcy[j] += dw;
+                }
             }
         }
         // force distribution for 3-Fold local coordinate frame
@@ -302,7 +309,7 @@ void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vecto
                 dw = del[j]*dphidr/(wsiz*rwsin) + eps[j]*dphiddel*wpcos/(wsiz*psiz) ;
                 de[id][j] = de[id][j] + dw;
                 de[ib][j] = de[ib][j] - dw;
-                frcy[j] = frcy[j] + dw;
+                if constexpr (do_v) frcy[j] += dw;
             }
             r[0] = v[0] + w[0];
             r[1] = v[1] + w[1];
@@ -325,7 +332,7 @@ void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vecto
                 du = del[j]*dphidr/(usiz*rusin) + eps[j]*dphiddel*upcos/(usiz*psiz);
                 de[ia][j] = de[ia][j] + du;
                 de[ib][j] = de[ib][j] - du;
-                frcz[j] = frcz[j] + du;
+                if constexpr (do_v) frcz[j] += du;
             }
             r[0] = u[0] + w[0];
             r[1] = u[1] + w[1];
@@ -348,48 +355,47 @@ void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vecto
                 dv = del[j]*dphidr/(vsiz*rvsin) + eps[j]*dphiddel*vpcos/(vsiz*psiz);
                 de[ic][j] = de[ic][j] + dv;
                 de[ib][j] = de[ib][j] - dv;
-                frcx[j] = frcx[j] + dv;
+                if constexpr (do_v) frcx[j] += dv;
             }
+        }
+        // resolve site torques then increment forces and virial
+        if constexpr (do_v) {
+            int iz = ia;
+            int ix = ic;
+            int iy = id;
+            if (iz == -1) iz = i;
+            if (ix == -1) ix = i;
+            if (iy == -1) iy = i;
+            real xiz = x[iz] - x[i];
+            real yiz = y[iz] - y[i];
+            real ziz = z[iz] - z[i];
+            real xix = x[ix] - x[i];
+            real yix = y[ix] - y[i];
+            real zix = z[ix] - z[i];
+            real xiy = x[iy] - x[i];
+            real yiy = y[iy] - y[i];
+            real ziy = z[iy] - z[i];
+            real vxx = xix*frcx[0] + xiy*frcy[0] + xiz*frcz[0];
+            real vxy = (real)0.5 * (yix*frcx[0] + yiy*frcy[0] + yiz*frcz[0]
+                                  + xix*frcx[1] + xiy*frcy[1] + xiz*frcz[1]);
+            real vxz = (real)0.5 * (zix*frcx[0] + ziy*frcy[0] + ziz*frcz[0]
+                                  + xix*frcx[2] + xiy*frcy[2] + xiz*frcz[2]);
+            real vyy = yix*frcx[1] + yiy*frcy[1] + yiz*frcz[1];
+            real vyz = (real)0.5 * (zix*frcx[1] + ziy*frcy[1] + ziz*frcz[1]
+                                  + yix*frcx[2] + yiy*frcy[2] + yiz*frcz[2]);
+            real vzz = zix*frcx[2] + ziy*frcy[2] + ziz*frcz[2];
+            vir[0][0] += vxx;
+            vir[0][1] += vxy;
+            vir[0][2] += vxz;
+            vir[1][0] += vxy;
+            vir[1][1] += vyy;
+            vir[1][2] += vyz;
+            vir[2][0] += vxz;
+            vir[2][1] += vyz;
+            vir[2][2] += vzz;
         }
     }
 }
-
-
-    // // resolve site torques then increment forces and virial
-    //     int iz = ia;
-    //     int ix = ic;
-    //     int iy = id;
-    //     if (iz == -1) iz = i;
-    //     if (ix == -1) ix = i;
-    //     if (iy == -1) iy = i;
-    //     xiz = x[iz] - x[i];
-    //     yiz = y[iz] - y[i];
-    //     ziz = z[iz] - z[i];
-    //     xix = x[ix] - x[i];
-    //     yix = y[ix] - y[i];
-    //     zix = z[ix] - z[i];
-    //     xiy = x[iy] - x[i];
-    //     yiy = y[iy] - y[i];
-    //     ziy = z[iy] - z[i];
-    //     vxx = xix*frcx[0] + xiy*frcy[0] + xiz*frcz[0]
-    //     vxy = (real)0.5 * (yix*frcx[0] + yiy*frcy[0] + yiz*frcz[0]
-    //  &                    + xix*frcx[1] + xiy*frcy[1] + xiz*frcz[1])
-    //     vxz = (real)0.5 * (zix*frcx[0] + ziy*frcy[0] + ziz*frcz[0]
-    //  &                    + xix*frcx[2] + xiy*frcy[2] + xiz*frcz[2]) 
-    //     vyy = yix*frcx[1] + yiy*frcy[1] + yiz*frcz[1]
-    //     vyz = (real)0.5 * (zix*frcx[1] + ziy*frcy[1] + ziz*frcz[1]
-    //  &                    + yix*frcx[2] + yiy*frcy[2] + yiz*frcz[2])
-    //     vzz = zix*frcx[2] + ziy*frcy[2] + ziz*frcz[2]
-    //     vir(1,1) = vir(1,1) + vxx
-    //     vir(2,1) = vir(2,1) + vxy
-    //     vir(3,1) = vir(3,1) + vxz
-    //     vir(1,2) = vir(1,2) + vxy
-    //     vir(2,2) = vir(2,2) + vyy
-    //     vir(3,2) = vir(3,2) + vyz
-    //     vir(1,3) = vir(1,3) + vxz
-    //     vir(2,3) = vir(2,3) + vyz
-    //     vir(3,3) = vir(3,3) + vzz
-    // end do
 
 // define some functions to be used in torque
 inline real dotp(const real a[3], const real b[3])

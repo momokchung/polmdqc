@@ -74,6 +74,7 @@ src/md/testgrad.cpp
 src/md/tetra.cpp
 src/md/tetrahedron.cpp
 src/md/torphase.cpp
+src/md/torque.cpp
 src/md/torsions.cpp
 src/md/trimhead.cpp
 src/md/trimtext.cpp
