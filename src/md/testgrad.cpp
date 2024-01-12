@@ -46,7 +46,7 @@ void testgrad(int argc, char** argv)
     int width;
     int precision;
     // integer freeunit
-    real etot,f,f0,eps,eps0,old;
+    real f,f0,eps,eps0,old;
     real eb0,ea0,eba0,eub0,eaa0,eopb0;
     real eopd0,eid0,eit0,et0,ept0,ebt0;
     real eat0,ett0,ev0,er0,edsp0,ec0;
@@ -55,36 +55,6 @@ void testgrad(int argc, char** argv)
     real totnorm,ntotnorm,rms,nrms;
     std::vector<real> denorm;
     std::vector<real> ndenorm;
-    std::vector<std::vector<real>> detot;
-    std::vector<std::vector<real>> ndetot;
-    std::vector<std::vector<real>> ndeb;
-    std::vector<std::vector<real>> ndea;
-    std::vector<std::vector<real>> ndeba;
-    std::vector<std::vector<real>> ndeub;
-    std::vector<std::vector<real>> ndeaa;
-    std::vector<std::vector<real>> ndeopb;
-    std::vector<std::vector<real>> ndeopd;
-    std::vector<std::vector<real>> ndeid;
-    std::vector<std::vector<real>> ndeit;
-    std::vector<std::vector<real>> ndet;
-    std::vector<std::vector<real>> ndept;
-    std::vector<std::vector<real>> ndebt;
-    std::vector<std::vector<real>> ndeat;
-    std::vector<std::vector<real>> ndett;
-    std::vector<std::vector<real>> ndev;
-    std::vector<std::vector<real>> nder;
-    std::vector<std::vector<real>> ndedsp;
-    std::vector<std::vector<real>> ndec;
-    std::vector<std::vector<real>> ndecd;
-    std::vector<std::vector<real>> nded;
-    std::vector<std::vector<real>> ndem;
-    std::vector<std::vector<real>> ndep;
-    std::vector<std::vector<real>> ndect;
-    std::vector<std::vector<real>> nderxf;
-    std::vector<std::vector<real>> ndes;
-    std::vector<std::vector<real>> ndelf;
-    std::vector<std::vector<real>> ndeg;
-    std::vector<std::vector<real>> ndex;
     bool exist,query;
     bool doanalyt,donumer,dofull;
     // character*1 axis(3)
@@ -92,8 +62,6 @@ void testgrad(int argc, char** argv)
     std::string xyzfile,record,string;
     std::istringstream iss;
     const char axis[] = {'X', 'Y', 'Z'};
-
-    printf("My Char %c\n", axis[0]);
 
     // set up the structure and mechanics calculation
     initial(argc, argv);
@@ -180,10 +148,9 @@ void testgrad(int argc, char** argv)
 
     // perform dynamic allocation of some local arrays
     denorm.resize(n);
-    detot.resize(n, std::vector<real>(3));
     if (donumer) {
         ndenorm.resize(n);
-        ndetot.resize(n, std::vector<real>(3));
+        ndesum.resize(n, std::vector<real>(3));
         ndeb.resize(n, std::vector<real>(3));
         ndea.resize(n, std::vector<real>(3));
         ndeba.resize(n, std::vector<real>(3));
@@ -216,13 +183,14 @@ void testgrad(int argc, char** argv)
 
     // perform analysis for each successive coordinate structure
     while (!informAbort) {
-        if (frame > 0) {
-            printf("\n Analysis for Archive Structure :        %8d\n", frame+1);
+        frame++;
+        if (frame > 1) {
+            printf("\n Analysis for Archive Structure :        %8d\n", frame);
         }
 
         // compute the analytical gradient components
         if (doanalyt) {
-            energy<GradientMode>(etot,&detot);
+            energy<GradientMode>();
         }
 
         // print the total potential energy of the system
@@ -240,7 +208,7 @@ void testgrad(int argc, char** argv)
                 width = 16;
                 precision = 4;
             }
-            printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, etot);
+            printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, esum);
 
             // print the energy breakdown over individual components
             printf("\n Potential Energy Breakdown by Individual Components :\n");
@@ -334,7 +302,8 @@ void testgrad(int argc, char** argv)
                         old = z[i];
                         z[i] -= (real)0.5 * eps;
                     }
-                    energy<EnergyMode>(f0);
+                    energy<EnergyMode>();
+                    f0 = esum;
                     eb0 = eb;
                     ea0 = ea;
                     eba0 = eba;
@@ -372,7 +341,8 @@ void testgrad(int argc, char** argv)
                     else if (j == 2) {
                         z[i] += eps;
                     }
-                    energy<EnergyMode>(f);
+                    energy<EnergyMode>();
+                    f = esum;
                     if (j == 0) {
                         x[i] = old;
                     }
@@ -382,7 +352,7 @@ void testgrad(int argc, char** argv)
                     else if (j == 2) {
                         z[i] = old;
                     }
-                    ndetot[i][j] = (f - f0) / eps;
+                    ndesum[i][j] = (f - f0) / eps;
                     ndeb[i][j] = (eb - eb0) / eps;
                     ndea[i][j] = (ea - ea0) / eps;
                     ndeba[i][j] = (eba - eba0) / eps;
@@ -530,31 +500,31 @@ void testgrad(int argc, char** argv)
         ntotnorm = 0.;
         for (int i = 0; i < n; i++) {
             if (doanalyt and use[i]) {
-                denorm[i] = REAL_POW(detot[i][0],2) + REAL_POW(detot[i][1],2) + REAL_POW(detot[i][2],2);
+                denorm[i] = REAL_POW(desum[i][0],2) + REAL_POW(desum[i][1],2) + REAL_POW(desum[i][2],2);
                 totnorm = totnorm + denorm[i];
                 denorm[i] = REAL_SQRT(denorm[i]);
                 if (digits >= 8) {
-                    printf(" Anlyt%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,detot[i][0],detot[i][1],detot[i][2],denorm[i]);
+                    printf(" Anlyt%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,desum[i][0],desum[i][1],desum[i][2],denorm[i]);
                 }
                 else if (digits >= 6) {
-                    printf(" Anlyt  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,detot[i][0],detot[i][1],detot[i][2],denorm[i]);
+                    printf(" Anlyt  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,desum[i][0],desum[i][1],desum[i][2],denorm[i]);
                 }
                 else {
-                    printf(" Anlyt  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,detot[i][0],detot[i][1],detot[i][2],denorm[i]);
+                    printf(" Anlyt  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,desum[i][0],desum[i][1],desum[i][2],denorm[i]);
                 }
             }
             if (donumer and use[i]) {
-                ndenorm[i] = REAL_POW(ndetot[i][0],2) + REAL_POW(ndetot[i][1],2) + REAL_POW(ndetot[i][2],2);
+                ndenorm[i] = REAL_POW(ndesum[i][0],2) + REAL_POW(ndesum[i][1],2) + REAL_POW(ndesum[i][2],2);
                 ntotnorm = ntotnorm + ndenorm[i];
                 ndenorm[i] = REAL_SQRT(ndenorm[i]);
                 if (digits >= 8) {
-                    printf(" Numer%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,ndetot[i][0],ndetot[i][1],ndetot[i][2],ndenorm[i]);
+                    printf(" Numer%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,ndesum[i][0],ndesum[i][1],ndesum[i][2],ndenorm[i]);
                 }
                 else if (digits >= 6) {
-                    printf(" Numer  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,ndetot[i][0],ndetot[i][1],ndetot[i][2],ndenorm[i]);
+                    printf(" Numer  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,ndesum[i][0],ndesum[i][1],ndesum[i][2],ndenorm[i]);
                 }
                 else {
-                    printf(" Numer  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,ndetot[i][0],ndetot[i][1],ndetot[i][2],ndenorm[i]);
+                    printf(" Numer  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,ndesum[i][0],ndesum[i][1],ndesum[i][2],ndenorm[i]);
                 }
             }
         }
@@ -620,7 +590,9 @@ void testgrad(int argc, char** argv)
 
         // attempt to read next structure from the coordinate file
         readxyz(ffile);
-        frame ++;
     }
+
+    // perform any final tasks before program exit
+    ffile.close();
 }
 }

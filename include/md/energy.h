@@ -15,5 +15,5 @@ namespace polmdqc
 //////////////////////////////////////////////////////////
 
 template <CalcMode CalculationMode>
-void energy(real& etot, std::vector<std::vector<real>>* derivsPtr = nullptr);
+void energy();
 }

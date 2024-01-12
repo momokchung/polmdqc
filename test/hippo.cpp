@@ -1,30 +1,46 @@
 #include "action.h"
+#include "analyz.h"
 #include "analyze.h"
+#include "deriv.h"
 #include "energi.h"
+#include "hippo.h"
 #include "inter.h"
+#include "testgrad.h"
 #include "testrt.h"
 #include <cmath>
 
 namespace polmdqc
 {
-TEST_CASE("hippo-1", "[HIPPO][water21]") {
+TEST_CASE("hippo-1", "[analyze][HIPPO][water21]") {
     int argc = 3;
     const char* strings[] = {
         "analyze",
         "../../test/testFiles/water21/water21.xyz",
-        "e"
+        "e",
     };
     char** argv = const_cast<char**>(strings);
 
-    real einterTest = -7.3522485663420181;
-    real emTest = -7.3522485663420181;
-    real nemTest = 9;
-    real eps = 1e-10;
-
     analyze(argc, argv);
 
-    COMPARE_REALS(einter, einterTest, eps);
-    COMPARE_REALS(em, emTest, eps);
-    REQUIRE(nem == nemTest);
+    COMPARE_REALS(einter, hippo1::einter, hippo1::eps);
+    COMPARE_REALS(em, hippo1::em, hippo1::eps);
+    REQUIRE(nem == hippo1::nem);
+    COMPARE_VECTOR(aem, hippo1::aem, hippo1::eps);
+}
+
+TEST_CASE("hippo-2", "[testgrad][HIPPO][water21]") {
+    int argc = 5;
+    const char* strings[] = {
+        "testgrad",
+        "../../test/testFiles/water21/water21.xyz",
+        "Y",
+        "Y",
+        "1e-5",
+    };
+    char** argv = const_cast<char**>(strings);
+
+    testgrad(argc, argv);
+
+    COMPARE_MATRIX(desum, hippo2::desum, hippo2::eps);
 }
 }

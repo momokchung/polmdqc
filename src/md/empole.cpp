@@ -145,8 +145,7 @@ void empole_a()
     cutoffSwitch(CutoffMode::Mpole);
 
     // calculate the multipole interaction energy term
-    for (int ii = 0; ii < n-1; ii++) {
-        i = ipole[ii];
+    for (int i = 0; i < n-1; i++) {
         iz = zaxis[i] - 1;
         ix = xaxis[i] - 1;
         iy = std::abs(yaxis[i]) - 1;
@@ -185,8 +184,7 @@ void empole_a()
         }
 
         // evaluate all sites within the cutoff distance
-        for (int kk = ii+1; kk < n; kk++) {
-            k = ipole[kk];
+        for (int k = i+1; k < n; k++) {
             kz = zaxis[k] - 1;
             kx = xaxis[k] - 1;
             ky = std::abs(yaxis[k]) - 1;

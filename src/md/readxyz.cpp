@@ -123,7 +123,7 @@ void readxyz(std::ifstream& ffile)
     }
 
     // read the coordinates and connectivities for each atom
-    failAtom = 0;
+    failAtom = -1;
     for (int i = 0; i < n; i++) {
         size = -1;
         while (size == -1) {

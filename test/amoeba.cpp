@@ -1,31 +1,46 @@
 #include "action.h"
+#include "amoeba.h"
+#include "analyz.h"
 #include "analyze.h"
+#include "deriv.h"
 #include "energi.h"
 #include "inter.h"
-#include "precision.h"
+#include "testgrad.h"
 #include "testrt.h"
 #include <cmath>
 
 namespace polmdqc
 {
-TEST_CASE("amoeba-1", "[AMOEBA][water09]") {
+TEST_CASE("amoeba-1", "[analyze][AMOEBA][water09]") {
     int argc = 3;
     const char* strings[] = {
         "analyze",
         "../../test/testFiles/water09/water09.xyz",
-        "e"
+        "e",
     };
     char** argv = const_cast<char**>(strings);
 
-    real einterTest = -5.5415386409028713;
-    real emTest = -5.5415386409028713;
-    real nemTest = 9;
-    real eps = 1e-10;
-
     analyze(argc, argv);
 
-    COMPARE_REALS(einter, einterTest, eps);
-    COMPARE_REALS(em, emTest, eps);
-    REQUIRE(nem == nemTest);
+    COMPARE_REALS(einter, amoeba1::einter, amoeba1::eps);
+    COMPARE_REALS(em, amoeba1::em, amoeba1::eps);
+    REQUIRE(nem == amoeba1::nem);
+    COMPARE_VECTOR(aem, amoeba1::aem, amoeba1::eps);
+}
+
+TEST_CASE("amoeba-2", "[testgrad][AMOEBA][water09]") {
+    int argc = 5;
+    const char* strings[] = {
+        "testgrad",
+        "../../test/testFiles/water09/water09.xyz",
+        "Y",
+        "Y",
+        "1e-5",
+    };
+    char** argv = const_cast<char**>(strings);
+
+    testgrad(argc, argv);
+
+    COMPARE_MATRIX(desum, amoeba2::desum, amoeba2::eps);
 }
 }

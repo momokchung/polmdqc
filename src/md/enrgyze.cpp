@@ -3,6 +3,7 @@
 
 #include "atoms.h"
 #include "calcMode.h"
+#include "energi.h"
 #include "energy.h"
 #include "enrgyze.h"
 #include "inform.h"
@@ -26,10 +27,8 @@ void enrgyze()
 {
     constexpr CalcMode CalculationMode = CalcMode::Analysis;
 
-    real etot;
-
     // perform the energy analysis by atom and component
-    energy<CalculationMode>(etot);
+    energy<CalculationMode>();
 
     // intermolecular energy for systems with multiple molecules
     int numSpaces = 9;
@@ -72,12 +71,12 @@ void enrgyze()
         width = 20;
         precision = 8;
     }
-    if (std::abs(etot) >= 1.e10) useScientific = true;
+    if (std::abs(esum) >= 1.e10) useScientific = true;
     if (!useScientific) {
-        printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, etot);
+        printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, esum);
     }
     else {
-        printf("\n Total Potential Energy :%*s%*.*e Kcal/mole\n", numSpaces, "", width, precision, etot);
+        printf("\n Total Potential Energy :%*s%*.*e Kcal/mole\n", numSpaces, "", width, precision, esum);
     }
 }
 }

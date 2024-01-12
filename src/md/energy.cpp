@@ -26,10 +26,8 @@ namespace polmdqc
 // energy, gradient and virial terms and sums their totals
 
 template <CalcMode CalculationMode>
-void energy(real& etot, std::vector<std::vector<real>>* derivsPtr)
+void energy()
 {
-    std::vector<std::vector<real>>& derivs = *derivsPtr;
-
     // choose calculation mode
     constexpr CalcFlag flags = getCalculationFlags<CalculationMode>();
     constexpr bool do_e = flags.do_energy;
@@ -245,7 +243,6 @@ void energy(real& etot, std::vector<std::vector<real>>* derivsPtr)
         // zero out each of the first derivative components
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < 3; j++) {
-                derivs[i][j] = 0.;
                 desum[i][j] = 0.;
                 deb[i][j] = 0.;
                 dea[i][j] = 0.;
@@ -351,11 +348,12 @@ void energy(real& etot, std::vector<std::vector<real>>* derivsPtr)
     // if (use_extra) extra();
 
     // sum up to give the total potential energy
-    esum = eb + ea + eba + eub + eaa + eopb + eopd + eid + eit
-        + et + ept + ebt + eat + ett + ev + er + edsp
-        + ec + ecd + ed + em + ep + ect + erxf + es + elf
-        + eg + ex;
-    etot = esum;
+    if constexpr (do_e) {
+        esum = eb + ea + eba + eub + eaa + eopb + eopd + eid + eit
+            + et + ept + ebt + eat + ett + ev + er + edsp
+            + ec + ecd + ed + em + ep + ect + erxf + es + elf
+            + eg + ex;
+    }
 
     // sum up to give the total potential energy per atom
     if constexpr (do_a) {
@@ -383,7 +381,6 @@ void energy(real& etot, std::vector<std::vector<real>>* derivsPtr)
                     + dep[i][j] + dect[i][j] + derxf[i][j]
                     + des[i][j] + delf[i][j]
                     + deg[i][j] + dex[i][j];
-                derivs[i][j] = desum[i][j];
             }
         }
     }
@@ -396,8 +393,8 @@ void energy(real& etot, std::vector<std::vector<real>>* derivsPtr)
 }
 
 // explicit instatiation
-template void energy<CalcMode::Energy>(real& etot, std::vector<std::vector<real>>* derivsPtr);
-template void energy<CalcMode::Analysis>(real& etot, std::vector<std::vector<real>>* derivsPtr);
-template void energy<CalcMode::Gradient>(real& etot, std::vector<std::vector<real>>* derivsPtr);
-template void energy<CalcMode::Virial>(real& etot, std::vector<std::vector<real>>* derivsPtr);
+template void energy<CalcMode::Energy>();
+template void energy<CalcMode::Analysis>();
+template void energy<CalcMode::Gradient>();
+template void energy<CalcMode::Virial>();
 }

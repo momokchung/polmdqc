@@ -32,7 +32,7 @@ void getcart(std::ifstream& ffile)
     bool exist;
 
     // try to get a filename from the command line arguments
-    nextarg (xyzfile, exist);
+    nextarg(xyzfile, exist);
     if (exist) {
         basefile(xyzfile);
         suffix(xyzfile, "xyz", "old");
@@ -68,7 +68,6 @@ void getcart(std::ifstream& ffile)
         ffile.seekg(0, std::ios::beg);
         readxyz(ffile);
     }
-
     // TODO: read in binary files
 
     // quit if the Cartesian coordinates file contains no atoms
