@@ -16,7 +16,7 @@ namespace polmdqc
 // qury       quartic coefficient in Urey-Bradley potential
 // ureyunit   convert Urey-Bradley energy to kcal/mole
 
-MDQC_EXTERN double cury;
-MDQC_EXTERN double qury;
-MDQC_EXTERN double ureyunit;
+MDQC_EXTERN real cury;
+MDQC_EXTERN real qury;
+MDQC_EXTERN real ureyunit;
 }

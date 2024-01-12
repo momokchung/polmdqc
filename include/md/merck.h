@@ -53,14 +53,14 @@ MDQC_EXTERN int mmffaroma[6][maxtyp];
 // mmff_b0   bond length value for pairs of atom classes
 // mmff_b1   bond length value for class pairs with Bond Type 1
 
-MDQC_EXTERN double rad0[100];
-MDQC_EXTERN double paulel[100];
-MDQC_EXTERN double r0ref[100][100];
-MDQC_EXTERN double kbref[100][100];
-MDQC_EXTERN double mmff_kb[100][100];
-MDQC_EXTERN double mmff_kb1[100][100];
-MDQC_EXTERN double mmff_b0[100][100];
-MDQC_EXTERN double mmff_b1[100][100];
+MDQC_EXTERN real rad0[100];
+MDQC_EXTERN real paulel[100];
+MDQC_EXTERN real r0ref[100][100];
+MDQC_EXTERN real kbref[100][100];
+MDQC_EXTERN real mmff_kb[100][100];
+MDQC_EXTERN real mmff_kb1[100][100];
+MDQC_EXTERN real mmff_b0[100][100];
+MDQC_EXTERN real mmff_b1[100][100];
 
 // mmff_ka     angle force constant for triples of atom classes
 // mmff_ka1    angle force constant with one bond of Type 1
@@ -81,24 +81,24 @@ MDQC_EXTERN double mmff_b1[100][100];
 // mmff_ang7   ideal bond angle for 4-ring and one Bond Type 1
 // mmff_ang8   ideal bond angle for 4-ring and both Bond Type 1
 
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ka;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ka1;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ka2;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ka3;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ka4;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ka5;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ka6;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ka7;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ka8;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang0;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang1;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang2;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang3;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang4;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang5;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang6;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang7;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang8;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ka;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ka1;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ka2;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ka3;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ka4;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ka5;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ka6;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ka7;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ka8;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ang0;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ang1;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ang2;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ang3;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ang4;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ang5;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ang6;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ang7;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> mmff_ang8;
 
 // Stretch-Bend Type 0
 // stbn_abc     stretch-bend parameters for A-B-C atom classes
@@ -139,32 +139,32 @@ MDQC_EXTERN std::vector<std::vector<std::vector<double>>> mmff_ang8;
 // defstbn_abc  default stretch-bend parameters for A-B-C classes
 // defstbn_cba  default stretch-bend parameters for C-B-A classes
 
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc1;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba1;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc2;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba2;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc3;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba3;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc4;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba4;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc5;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba5;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc6;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba6;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc7;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba7;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc8;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba8;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc9;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba9;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc10;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba10;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_abc11;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> stbn_cba11;
-MDQC_EXTERN double defstbn_abc[5][5][5];
-MDQC_EXTERN double defstbn_cba[5][5][5];
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc1;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba1;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc2;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba2;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc3;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba3;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc4;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba4;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc5;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba5;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc6;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba6;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc7;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba7;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc8;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba8;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc9;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba9;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc10;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba10;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_abc11;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> stbn_cba11;
+MDQC_EXTERN real defstbn_abc[5][5][5];
+MDQC_EXTERN real defstbn_cba[5][5][5];
 
 // t1_1     torsional parameters for 1-fold, MMFF Torsion Type 1
 // t1_2     torsional parameters for 1-fold, MMFF Torsion Type 2
@@ -175,12 +175,12 @@ MDQC_EXTERN double defstbn_cba[5][5][5];
 // kt_1     string of classes for torsions, MMFF Torsion Type 1
 // kt_2     string of classes for torsions, MMFF Torsion Type 2
 
-MDQC_EXTERN double t1_1[2001][2];
-MDQC_EXTERN double t2_1[2001][2];
-MDQC_EXTERN double t3_1[2001][2];
-MDQC_EXTERN double t1_2[2001][2];
-MDQC_EXTERN double t2_2[2001][2];
-MDQC_EXTERN double t3_2[2001][2];
+MDQC_EXTERN real t1_1[2001][2];
+MDQC_EXTERN real t2_1[2001][2];
+MDQC_EXTERN real t3_1[2001][2];
+MDQC_EXTERN real t1_2[2001][2];
+MDQC_EXTERN real t2_2[2001][2];
+MDQC_EXTERN real t3_2[2001][2];
 MDQC_EXTERN std::string kt_1[2001];
 MDQC_EXTERN std::string kt_2[2001];
 
@@ -189,9 +189,9 @@ MDQC_EXTERN std::string kt_2[2001];
 // nn       effective number of valence electrons for MMFF eps
 // da       donor/acceptor atom classes
 
-MDQC_EXTERN double g[maxclass];
-MDQC_EXTERN double alph[maxclass];
-MDQC_EXTERN double nn[maxclass];
+MDQC_EXTERN real g[maxclass];
+MDQC_EXTERN real alph[maxclass];
+MDQC_EXTERN real nn[maxclass];
 MDQC_EXTERN char da[maxclass];
 
 // bci      bond charge increments for building atom charges
@@ -199,8 +199,8 @@ MDQC_EXTERN char da[maxclass];
 // pbci     partial BCI for building missing BCI's
 // fcadj    formal charge adjustment factor
 
-MDQC_EXTERN double bci[100][100];
-MDQC_EXTERN double bci_1[100][100];
-MDQC_EXTERN double pbci[maxclass];
-MDQC_EXTERN double fcadj[maxclass];
+MDQC_EXTERN real bci[100][100];
+MDQC_EXTERN real bci_1[100][100];
+MDQC_EXTERN real pbci[maxclass];
+MDQC_EXTERN real fcadj[maxclass];
 }

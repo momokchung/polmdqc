@@ -22,7 +22,7 @@ namespace polmdqc
 void rotpole(RotMode rotMode)
 {
     int i;
-    Eigen::Matrix<double, 3, 3> a;
+    Eigen::Matrix<real, 3, 3> a;
     bool planar;
 
     // rotate local multipoles to global frame at each site
@@ -65,7 +65,7 @@ void rotpole(RotMode rotMode)
 void rotrpole(RotMode rotMode)
 {
     int i;
-    Eigen::Matrix<double, 3, 3> a;
+    Eigen::Matrix<real, 3, 3> a;
     bool planar;
 
     // rotate global multipoles to local frame at each site
@@ -100,17 +100,17 @@ void rotrpole(RotMode rotMode)
 // "rotmat" finds the rotation matrix that rotates the local
 // coordinate system into the global frame at a specified atom
 
-void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar)
+void rotmat(int i, Eigen::Matrix<real, 3, 3>& a, bool& planar)
 {
     int ix,iy,iz;
-    double r,dot;
-    double eps,angle;
-    double xi,yi,zi;
-    double dx,dy,dz;
-    double dx1,dy1,dz1;
-    double dx2,dy2,dz2;
-    double dx3,dy3,dz3;
-    double dx4,dy4,dz4;
+    real r,dot;
+    real eps,angle;
+    real xi,yi,zi;
+    real dx,dy,dz;
+    real dx1,dy1,dz1;
+    real dx2,dy2,dz2;
+    real dx3,dy3,dz3;
+    real dx4,dy4,dz4;
     LocalFrame axetyp;
 
     // get coordinates and frame definition for multipole site
@@ -354,12 +354,12 @@ void rotmat(int i, Eigen::Matrix<double, 3, 3>& a, bool& planar)
 // "rotsite" rotates atomic multipoles from the input to final
 // frame at a specified atom by applying a rotation matrix
 
-void rotsite(int ii, Eigen::Matrix<double, 3, 3>& a, bool& planar, std::vector<std::vector<double>>& inpole, std::vector<std::vector<double>>& outpole)
+void rotsite(int ii, Eigen::Matrix<real, 3, 3>& a, bool& planar, std::vector<std::vector<real>>& inpole, std::vector<std::vector<real>>& outpole)
 {
     int i,j,k,m;
-    double spole[maxpole];
-    double mp[3][3];
-    double rp[3][3];
+    real spole[maxpole];
+    real mp[3][3];
+    real rp[3][3];
     LocalFrame axetyp;
 
     // copy input multipoles and modify at planar sites

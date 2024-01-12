@@ -19,9 +19,9 @@ namespace polmdqc
 // adewald    Ewald convergence coefficient for dispersion
 // boundary   Ewald boundary condition; none, tinfoil or vacuum
 
-MDQC_EXTERN double aewald;
-MDQC_EXTERN double aeewald;
-MDQC_EXTERN double apewald;
-MDQC_EXTERN double adewald;
+MDQC_EXTERN real aewald;
+MDQC_EXTERN real aeewald;
+MDQC_EXTERN real apewald;
+MDQC_EXTERN real adewald;
 MDQC_EXTERN std::string boundary;
 }

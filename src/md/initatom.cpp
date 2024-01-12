@@ -67,7 +67,7 @@ void initatom()
     };
 
     // standard atomic weight for each element
-    double amas[maxele] = {
+    real amas[maxele] = {
         1.008,   4.003,   6.941,   9.012,  10.811,
         12.011,  14.007,  15.999,  18.998,  20.180,
         22.990,  24.305,  26.982,  28.086,  30.974,
@@ -94,7 +94,7 @@ void initatom()
     };
 
     // van der Waals radius for each element (Angstroms)
-    double vrad[maxele] = {
+    real vrad[maxele] = {
         1.20, 1.43, 2.12, 1.98, 1.91, 1.77,
         1.66, 1.50, 1.46, 1.58, 2.50, 2.51,
         2.25, 2.19, 1.90, 1.89, 1.82, 1.83,
@@ -117,7 +117,7 @@ void initatom()
     };
 
     // covalent radius for each element (Angstroms)
-    double crad[maxele] = {
+    real crad[maxele] = {
         0.31, 0.28, 1.28, 0.96, 0.84, 0.76,
         0.71, 0.66, 0.57, 0.58, 1.66, 1.41,
         1.21, 1.11, 1.07, 1.05, 1.02, 1.06,

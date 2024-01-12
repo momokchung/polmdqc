@@ -43,20 +43,20 @@ namespace polmdqc
 // nosymm      flag to mark use or lack of lattice symmetry
 // spacegrp    space group symbol for the unit cell type
 
-MDQC_EXTERN double xbox,ybox,zbox;
-MDQC_EXTERN double alphaA,betaA,gammaA;
-MDQC_EXTERN double xbox2,ybox2,zbox2;
-MDQC_EXTERN double box34,volbox;
-MDQC_EXTERN double alpha_sin;
-MDQC_EXTERN double alpha_cos;
-MDQC_EXTERN double beta_sin;
-MDQC_EXTERN double beta_cos;
-MDQC_EXTERN double gamma_sin;
-MDQC_EXTERN double gamma_cos;
-MDQC_EXTERN double beta_term;
-MDQC_EXTERN double gamma_term;
-MDQC_EXTERN double lvec[3][3];
-MDQC_EXTERN double recip[3][3];
+MDQC_EXTERN real xbox,ybox,zbox;
+MDQC_EXTERN real alphaA,betaA,gammaA;
+MDQC_EXTERN real xbox2,ybox2,zbox2;
+MDQC_EXTERN real box34,volbox;
+MDQC_EXTERN real alpha_sin;
+MDQC_EXTERN real alpha_cos;
+MDQC_EXTERN real beta_sin;
+MDQC_EXTERN real beta_cos;
+MDQC_EXTERN real gamma_sin;
+MDQC_EXTERN real gamma_cos;
+MDQC_EXTERN real beta_term;
+MDQC_EXTERN real gamma_term;
+MDQC_EXTERN real lvec[3][3];
+MDQC_EXTERN real recip[3][3];
 MDQC_EXTERN bool orthogonal;
 MDQC_EXTERN bool monoclinic;
 MDQC_EXTERN bool triclinic;

@@ -28,8 +28,8 @@ enum class PenTyp
    Gordon1,
    Gordon2,
 };
-MDQC_EXTERN double m2scale,m3scale;
-MDQC_EXTERN double m4scale,m5scale;
+MDQC_EXTERN real m2scale,m3scale;
+MDQC_EXTERN real m4scale,m5scale;
 MDQC_EXTERN bool use_chgpen;
 MDQC_EXTERN std::string pentyps;
 MDQC_EXTERN PenTyp pentype;

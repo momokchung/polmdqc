@@ -22,8 +22,8 @@ namespace polmdqc
 
 MDQC_EXTERN int skttyp;
 MDQC_EXTERN int cstep;
-MDQC_EXTERN double cdt;
-MDQC_EXTERN double cenergy;
+MDQC_EXTERN real cdt;
+MDQC_EXTERN real cenergy;
 MDQC_EXTERN bool sktstart;
 MDQC_EXTERN bool sktstop;
 MDQC_EXTERN bool use_socket;

@@ -25,13 +25,13 @@ namespace polmdqc
 // use_ielscf   flag to use inertial extended Lagrangian method
 
 MDQC_EXTERN int nfree_aux;
-MDQC_EXTERN double tautemp_aux;
-MDQC_EXTERN double kelvin_aux;
-MDQC_EXTERN std::vector<std::vector<double>> uaux;
-MDQC_EXTERN std::vector<std::vector<double>> upaux;
-MDQC_EXTERN std::vector<std::vector<double>> vaux;
-MDQC_EXTERN std::vector<std::vector<double>> vpaux;
-MDQC_EXTERN std::vector<std::vector<double>> aaux;
-MDQC_EXTERN std::vector<std::vector<double>> apaux;
+MDQC_EXTERN real tautemp_aux;
+MDQC_EXTERN real kelvin_aux;
+MDQC_EXTERN std::vector<std::vector<real>> uaux;
+MDQC_EXTERN std::vector<std::vector<real>> upaux;
+MDQC_EXTERN std::vector<std::vector<real>> vaux;
+MDQC_EXTERN std::vector<std::vector<real>> vpaux;
+MDQC_EXTERN std::vector<std::vector<real>> aaux;
+MDQC_EXTERN std::vector<std::vector<real>> apaux;
 MDQC_EXTERN bool use_ielscf;
 }

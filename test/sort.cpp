@@ -1,4 +1,5 @@
 #include "catch.hpp"
+#include "precision.h"
 #include "sort.h"
 #include <set>
 
@@ -24,8 +25,8 @@ TEST_CASE("sort") {
     REQUIRE(n == 4);
 
     n = 10;
-    std::vector<double> doubles = {1.1, 2.2, -3.3, -2.2, 2.2, 3.3, -1.1, 0., 2.2, -3.3};
-    std::vector<double> sortedDoubles = {-3.3, -2.2, -1.1, 0., 1.1, 2.2, 3.3, 0., 2.2, -3.3};
+    std::vector<real> doubles = {1.1, 2.2, -3.3, -2.2, 2.2, 3.3, -1.1, 0., 2.2, -3.3};
+    std::vector<real> sortedDoubles = {-3.3, -2.2, -1.1, 0., 1.1, 2.2, 3.3, 0., 2.2, -3.3};
     sortUnique(n, doubles);
     REQUIRE(doubles == sortedDoubles);
     REQUIRE(n == 7);

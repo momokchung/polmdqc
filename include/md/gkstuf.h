@@ -15,5 +15,5 @@ namespace polmdqc
 
 // gkc      tuning parameter exponent in the f(GB) function
 
-MDQC_EXTERN double gkc;
+MDQC_EXTERN real gkc;
 }

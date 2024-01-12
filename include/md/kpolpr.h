@@ -20,7 +20,7 @@ namespace polmdqc
 // kppr     string of atom types for special polarization pairs
 
 MDQC_EXTERN int maxnpp;
-MDQC_EXTERN std::vector<double> thlpr;
-MDQC_EXTERN std::vector<double> thdpr;
+MDQC_EXTERN std::vector<real> thlpr;
+MDQC_EXTERN std::vector<real> thdpr;
 MDQC_EXTERN std::vector<std::string> kppr;
 }

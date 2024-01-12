@@ -16,6 +16,6 @@ namespace polmdqc
 // ctchg     charge transfer magnitude for each atom class
 // ctdmp     alpha charge transfer parameter for each atom class
 
-MDQC_EXTERN std::vector<double> ctchg;
-MDQC_EXTERN std::vector<double> ctdmp;
+MDQC_EXTERN std::vector<real> ctchg;
+MDQC_EXTERN std::vector<real> ctdmp;
 }

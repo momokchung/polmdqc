@@ -34,8 +34,8 @@ namespace polmdqc
 // "kewald" assigns particle mesh Ewald parameters and options
 // for a periodic system
 
-void ewaldcof(double& alpha, double& cutoff);
-void extent(double& rmax);
+void ewaldcof(real& alpha, real& cutoff);
+void extent(real& rmax);
 
 void kewald()
 {
@@ -46,10 +46,10 @@ void kewald()
     int iefft1,idfft1;
     int iefft2,idfft2;
     int iefft3,idfft3;
-    double delta,rmax;
-    double edens,ddens;
-    double size,slope;
-    double fft1,fft2,fft3;
+    real delta,rmax;
+    real edens,ddens;
+    real size,slope;
+    real fft1,fft2,fft3;
     std::string keyword;
     std::string record;
     std::string string;
@@ -258,10 +258,10 @@ void kewald()
     bsmod1.resize(nfft1);
     bsmod2.resize(nfft2);
     bsmod3.resize(nfft3);
-    bsbuild.resize(bsorder, std::vector<double>(bsorder));
-    thetai1.resize(n, std::vector<std::vector<double>>(bsorder, std::vector<double>(4)));
-    thetai2.resize(n, std::vector<std::vector<double>>(bsorder, std::vector<double>(4)));
-    thetai3.resize(n, std::vector<std::vector<double>>(bsorder, std::vector<double>(4)));
+    bsbuild.resize(bsorder, std::vector<real>(bsorder));
+    thetai1.resize(n, std::vector<std::vector<real>>(bsorder, std::vector<real>(4)));
+    thetai2.resize(n, std::vector<std::vector<real>>(bsorder, std::vector<real>(4)));
+    thetai3.resize(n, std::vector<std::vector<real>>(bsorder, std::vector<real>(4)));
     pmetable.resize(6*nthread, std::vector<int>(n));
 
     // print a message listing some of the Ewald parameters
@@ -291,10 +291,10 @@ void kewald()
 // than a specified tolerance
 
 
-void ewaldcof(double& alpha, double& cutoff)
+void ewaldcof(real& alpha, real& cutoff)
 {
     int i,k;
-    double x,xlo,xhi,y,ratio,eps;
+    real x,xlo,xhi,y,ratio,eps;
 
     // set tolerance value; use of 1.0d-8 over 1.0d-6 gives
     // larger Ewald coefficients to ensure gradient continuity
@@ -334,10 +334,10 @@ void ewaldcof(double& alpha, double& cutoff)
 // "extent" finds the largest interatomic distance in a system
 
 
-void extent(double& rmax)
+void extent(real& rmax)
 {
     int i,k;
-    double xi,yi,zi,xk,yk,zk,r2;
+    real xi,yi,zi,xk,yk,zk,r2;
 
     // search all atom pairs to find the largest distance
     rmax = 0.;

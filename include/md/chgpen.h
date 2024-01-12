@@ -20,8 +20,8 @@ namespace polmdqc
 // palpha    charge penetration damping value at each atom
 
 MDQC_EXTERN int ncp;
-MDQC_EXTERN std::vector<double> pcore;
-MDQC_EXTERN std::vector<double> pval;
-MDQC_EXTERN std::vector<double> pval0;
-MDQC_EXTERN std::vector<double> palpha;
+MDQC_EXTERN std::vector<real> pcore;
+MDQC_EXTERN std::vector<real> pval;
+MDQC_EXTERN std::vector<real> pval0;
+MDQC_EXTERN std::vector<real> palpha;
 }

@@ -2,6 +2,7 @@
 // Year:   2023
 
 #pragma once
+#include "precision.h"
 
 namespace polmdqc
 {
@@ -11,5 +12,5 @@ namespace polmdqc
 //                                                 //
 /////////////////////////////////////////////////////
 
-void image(double& xr, double& yr, double& zr);
+void image(real& xr, real& yr, real& zr);
 }

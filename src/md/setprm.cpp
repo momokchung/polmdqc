@@ -316,17 +316,17 @@ void setprm()
     if (aconf.size() != 0) aconf.resize(0);
     aconf.resize(maxnaf);
     if (ang.size() != 0) ang.resize(0);
-    ang.resize(maxna, std::vector<double>(3));
+    ang.resize(maxna, std::vector<real>(3));
     if (ang5.size() != 0) ang5.resize(0);
-    ang5.resize(maxna5, std::vector<double>(3));
+    ang5.resize(maxna5, std::vector<real>(3));
     if (ang4.size() != 0) ang4.resize(0);
-    ang4.resize(maxna4, std::vector<double>(3));
+    ang4.resize(maxna4, std::vector<real>(3));
     if (ang3.size() != 0) ang3.resize(0);
-    ang3.resize(maxna3, std::vector<double>(3));
+    ang3.resize(maxna3, std::vector<real>(3));
     if (angp.size() != 0) angp.resize(0);
-    angp.resize(maxnap, std::vector<double>(2));
+    angp.resize(maxnap, std::vector<real>(2));
     if (angf.size() != 0) angf.resize(0);
-    angf.resize(maxnaf, std::vector<double>(2));
+    angf.resize(maxnaf, std::vector<real>(2));
     if (ka.size() != 0) ka.resize(0);
     ka.resize(maxna);
     if (ka5.size() != 0) ka5.resize(0);
@@ -342,7 +342,7 @@ void setprm()
 
     // allocate stretch-bend forcefield parameters
     if (stbn.size() != 0) stbn.resize(0);
-    stbn.resize(maxnsb, std::vector<double>(2));
+    stbn.resize(maxnsb, std::vector<real>(2));
     if (ksb.size() != 0) ksb.resize(0);
     ksb.resize(maxnsb);
 
@@ -376,51 +376,51 @@ void setprm()
 
     // allocate improper torsion forcefield parameters
     if (ti1.size() != 0) ti1.resize(0);
-    ti1.resize(maxnti, std::vector<double>(2));
+    ti1.resize(maxnti, std::vector<real>(2));
     if (ti2.size() != 0) ti2.resize(0);
-    ti2.resize(maxnti, std::vector<double>(2));
+    ti2.resize(maxnti, std::vector<real>(2));
     if (ti3.size() != 0) ti3.resize(0);
-    ti3.resize(maxnti, std::vector<double>(2));
+    ti3.resize(maxnti, std::vector<real>(2));
     if (kti.size() != 0) kti.resize(0);
     kti.resize(maxnti);
 
     // allocate torsion angle forcefield parameters
     if (t1.size() != 0) t1.resize(0);
-    t1.resize(maxnt, std::vector<double>(2));
+    t1.resize(maxnt, std::vector<real>(2));
     if (t2.size() != 0) t2.resize(0);
-    t2.resize(maxnt, std::vector<double>(2));
+    t2.resize(maxnt, std::vector<real>(2));
     if (t3.size() != 0) t3.resize(0);
-    t3.resize(maxnt, std::vector<double>(2));
+    t3.resize(maxnt, std::vector<real>(2));
     if (t4.size() != 0) t4.resize(0);
-    t4.resize(maxnt, std::vector<double>(2));
+    t4.resize(maxnt, std::vector<real>(2));
     if (t5.size() != 0) t5.resize(0);
-    t5.resize(maxnt, std::vector<double>(2));
+    t5.resize(maxnt, std::vector<real>(2));
     if (t6.size() != 0) t6.resize(0);
-    t6.resize(maxnt, std::vector<double>(2));
+    t6.resize(maxnt, std::vector<real>(2));
     if (t15.size() != 0) t15.resize(0);
-    t15.resize(maxnt5, std::vector<double>(2));
+    t15.resize(maxnt5, std::vector<real>(2));
     if (t25.size() != 0) t25.resize(0);
-    t25.resize(maxnt5, std::vector<double>(2));
+    t25.resize(maxnt5, std::vector<real>(2));
     if (t35.size() != 0) t35.resize(0);
-    t35.resize(maxnt5, std::vector<double>(2));
+    t35.resize(maxnt5, std::vector<real>(2));
     if (t45.size() != 0) t45.resize(0);
-    t45.resize(maxnt5, std::vector<double>(2));
+    t45.resize(maxnt5, std::vector<real>(2));
     if (t55.size() != 0) t55.resize(0);
-    t55.resize(maxnt5, std::vector<double>(2));
+    t55.resize(maxnt5, std::vector<real>(2));
     if (t65.size() != 0) t65.resize(0);
-    t65.resize(maxnt5, std::vector<double>(2));
+    t65.resize(maxnt5, std::vector<real>(2));
     if (t14.size() != 0) t14.resize(0);
-    t14.resize(maxnt4, std::vector<double>(2));
+    t14.resize(maxnt4, std::vector<real>(2));
     if (t24.size() != 0) t24.resize(0);
-    t24.resize(maxnt4, std::vector<double>(2));
+    t24.resize(maxnt4, std::vector<real>(2));
     if (t34.size() != 0) t34.resize(0);
-    t34.resize(maxnt4, std::vector<double>(2));
+    t34.resize(maxnt4, std::vector<real>(2));
     if (t44.size() != 0) t44.resize(0);
-    t44.resize(maxnt4, std::vector<double>(2));
+    t44.resize(maxnt4, std::vector<real>(2));
     if (t54.size() != 0) t54.resize(0);
-    t54.resize(maxnt4, std::vector<double>(2));
+    t54.resize(maxnt4, std::vector<real>(2));
     if (t64.size() != 0) t64.resize(0);
-    t64.resize(maxnt4, std::vector<double>(2));
+    t64.resize(maxnt4, std::vector<real>(2));
     if (kt.size() != 0) kt.resize(0);
     kt.resize(maxnt);
     if (kt5.size() != 0) kt5.resize(0);
@@ -436,13 +436,13 @@ void setprm()
 
     // allocate stretch-torsion forcefield parameters
     if (btcon.size() != 0) btcon.resize(0);
-    btcon.resize(maxnbt, std::vector<double>(9));
+    btcon.resize(maxnbt, std::vector<real>(9));
     if (kbt.size() != 0) kbt.resize(0);
     kbt.resize(maxnbt);
 
     // allocate angle-torsion forcefield parameters
     if (atcon.size() != 0) atcon.resize(0);
-    atcon.resize(maxnat, std::vector<double>(6));
+    atcon.resize(maxnat, std::vector<real>(6));
     if (kat.size() != 0) kat.resize(0);
     kat.resize(maxnat);
 
@@ -452,17 +452,17 @@ void setprm()
     if (tny.size() != 0) tny.resize(0);
     tny.resize(maxntt);
     if (ttx.size() != 0) ttx.resize(0);
-    ttx.resize(maxntt, std::vector<double>(maxtgrd));
+    ttx.resize(maxntt, std::vector<real>(maxtgrd));
     if (tty.size() != 0) tty.resize(0);
-    tty.resize(maxntt, std::vector<double>(maxtgrd));
+    tty.resize(maxntt, std::vector<real>(maxtgrd));
     if (tbf.size() != 0) tbf.resize(0);
-    tbf.resize(maxntt, std::vector<double>(maxtgrd2));
+    tbf.resize(maxntt, std::vector<real>(maxtgrd2));
     if (tbx.size() != 0) tbx.resize(0);
-    tbx.resize(maxntt, std::vector<double>(maxtgrd2));
+    tbx.resize(maxntt, std::vector<real>(maxtgrd2));
     if (tby.size() != 0) tby.resize(0);
-    tby.resize(maxntt, std::vector<double>(maxtgrd2));
+    tby.resize(maxntt, std::vector<real>(maxtgrd2));
     if (tbxy.size() != 0) tbxy.resize(0);
-    tbxy.resize(maxntt, std::vector<double>(maxtgrd2));
+    tbxy.resize(maxntt, std::vector<real>(maxtgrd2));
     if (ktt.size() != 0) ktt.resize(0);
     ktt.resize(maxntt);
 
@@ -510,7 +510,7 @@ void setprm()
 
     // allocate atomic multipole forcefield parameters
     if (multip.size() != 0) multip.resize(0);
-    multip.resize(maxnmp, std::vector<double>(13));
+    multip.resize(maxnmp, std::vector<real>(13));
     if (mpaxis.size() != 0) mpaxis.resize(0);
     mpaxis.resize(maxnmp);
     if (kmp.size() != 0) kmp.resize(0);
@@ -528,9 +528,9 @@ void setprm()
     if (cflb.size() != 0) cflb.resize(0);
     cflb.resize(maxncfb);
     if (cfla.size() != 0) cfla.resize(0);
-    cfla.resize(maxncfa, std::vector<double>(2));
+    cfla.resize(maxncfa, std::vector<real>(2));
     if (cflab.size() != 0) cflab.resize(0);
-    cflab.resize(maxncfa, std::vector<double>(2));
+    cflab.resize(maxncfa, std::vector<real>(2));
     if (kcfb.size() != 0) kcfb.resize(0);
     kcfb.resize(maxncfb);
     if (kcfa.size() != 0) kcfa.resize(0);

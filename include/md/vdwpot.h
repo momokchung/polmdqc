@@ -35,11 +35,11 @@ namespace polmdqc
 
 constexpr int maxgauss = 10;
 MDQC_EXTERN int ngauss;
-MDQC_EXTERN double igauss[maxgauss][2];
-MDQC_EXTERN double abuck,bbuck,cbuck;
-MDQC_EXTERN double ghal,dhal;
-MDQC_EXTERN double v2scale,v3scale;
-MDQC_EXTERN double v4scale,v5scale;
+MDQC_EXTERN real igauss[maxgauss][2];
+MDQC_EXTERN real abuck,bbuck,cbuck;
+MDQC_EXTERN real ghal,dhal;
+MDQC_EXTERN real v2scale,v3scale;
+MDQC_EXTERN real v4scale,v5scale;
 MDQC_EXTERN bool use_vcorr;
 MDQC_EXTERN std::string vdwindex;
 MDQC_EXTERN std::string radtyp;

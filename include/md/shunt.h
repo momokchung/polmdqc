@@ -31,10 +31,10 @@ namespace polmdqc
 // f6     sixth order coefficient of additive switch function
 // f7     seventh order coefficient of additive switch function
 
-MDQC_EXTERN double off,off2;
-MDQC_EXTERN double cut,cut2;
-MDQC_EXTERN double c0,c1,c2;
-MDQC_EXTERN double c3,c4,c5;
-MDQC_EXTERN double f0,f1,f2,f3;
-MDQC_EXTERN double f4,f5,f6,f7;
+MDQC_EXTERN real off,off2;
+MDQC_EXTERN real cut,cut2;
+MDQC_EXTERN real c0,c1,c2;
+MDQC_EXTERN real c3,c4,c5;
+MDQC_EXTERN real f0,f1,f2,f3;
+MDQC_EXTERN real f4,f5,f6,f7;
 }

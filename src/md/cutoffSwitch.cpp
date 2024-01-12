@@ -21,11 +21,11 @@ namespace polmdqc
 
 void cutoffSwitch(CutoffMode mode)
 {
-    double denom,term;
-    double off3,off4,off5;
-    double off6,off7;
-    double cut3,cut4,cut5;
-    double cut6,cut7;
+    real denom,term;
+    real off3,off4,off5;
+    real off6,off7;
+    real cut3,cut4,cut5;
+    real cut6,cut7;
 
     // get the switching window for the current potential type
     if (mode == CutoffMode::VdW) {

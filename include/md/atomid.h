@@ -26,7 +26,7 @@ MDQC_EXTERN int tag[maxatm];
 MDQC_EXTERN int atomClass[maxatm];
 MDQC_EXTERN int atomic[maxatm];
 MDQC_EXTERN int valence[maxatm];
-MDQC_EXTERN double mass[maxatm];
+MDQC_EXTERN real mass[maxatm];
 MDQC_EXTERN std::string name[maxatm];
 MDQC_EXTERN std::string story[maxatm];
 }

@@ -42,14 +42,14 @@ namespace polmdqc
 // eg     geometric restraint potential energy of the system
 // ex     extra term potential energy of the system
 
-MDQC_EXTERN double esum,eb,ea;
-MDQC_EXTERN double eba,eub,eaa;
-MDQC_EXTERN double eopb,eopd,eid;
-MDQC_EXTERN double eit,et,ept;
-MDQC_EXTERN double ebt,eat,ett;
-MDQC_EXTERN double ev,er,edsp;
-MDQC_EXTERN double ec,ecd,ed;
-MDQC_EXTERN double em,ep,ect;
-MDQC_EXTERN double erxf,es,elf;
-MDQC_EXTERN double eg,ex;
+MDQC_EXTERN real esum,eb,ea;
+MDQC_EXTERN real eba,eub,eaa;
+MDQC_EXTERN real eopb,eopd,eid;
+MDQC_EXTERN real eit,et,ept;
+MDQC_EXTERN real ebt,eat,ett;
+MDQC_EXTERN real ev,er,edsp;
+MDQC_EXTERN real ec,ecd,ed;
+MDQC_EXTERN real em,ep,ect;
+MDQC_EXTERN real erxf,es,elf;
+MDQC_EXTERN real eg,ex;
 }

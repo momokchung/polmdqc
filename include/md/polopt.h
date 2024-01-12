@@ -28,12 +28,12 @@ namespace polmdqc
 constexpr int maxopt = 6;
 MDQC_EXTERN int optorder;
 MDQC_EXTERN int optlevel;
-MDQC_EXTERN std::vector<double> copt;
-MDQC_EXTERN std::vector<double> copm;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> uopt;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> uoptp;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> uopts;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> uoptps;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> fopt;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> foptp;
+MDQC_EXTERN std::vector<real> copt;
+MDQC_EXTERN std::vector<real> copm;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uopt;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uoptp;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uopts;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uoptps;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> fopt;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> foptp;
 }

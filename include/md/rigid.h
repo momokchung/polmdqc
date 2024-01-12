@@ -19,9 +19,9 @@ namespace polmdqc
 // rbc         current rigid body coordinates for each group
 // use_rigid   flag to mark use of rigid body coordinate system 
 
-MDQC_EXTERN std::vector<double> xrb;
-MDQC_EXTERN std::vector<double> yrb;
-MDQC_EXTERN std::vector<double> zrb;
-MDQC_EXTERN std::vector<std::vector<double>> rbc;
+MDQC_EXTERN std::vector<real> xrb;
+MDQC_EXTERN std::vector<real> yrb;
+MDQC_EXTERN std::vector<real> zrb;
+MDQC_EXTERN std::vector<std::vector<real>> rbc;
 MDQC_EXTERN bool use_rigid;
 }

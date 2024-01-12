@@ -19,6 +19,6 @@ namespace polmdqc
 // kopd      string of atom classes for out-of-plane distance
 
 MDQC_EXTERN int maxnopd;
-MDQC_EXTERN std::vector<double> opds;
+MDQC_EXTERN std::vector<real> opds;
 MDQC_EXTERN std::vector<std::string> kopd;
 }

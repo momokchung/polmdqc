@@ -24,9 +24,9 @@ namespace polmdqc
 
 MDQC_EXTERN int maxncfb;
 MDQC_EXTERN int maxncfa;
-MDQC_EXTERN std::vector<double> cflb;
-MDQC_EXTERN std::vector<std::vector<double>> cfla;
-MDQC_EXTERN std::vector<std::vector<double>> cflab;
+MDQC_EXTERN std::vector<real> cflb;
+MDQC_EXTERN std::vector<std::vector<real>> cfla;
+MDQC_EXTERN std::vector<std::vector<real>> cflab;
 MDQC_EXTERN std::vector<std::string> kcfb;
 MDQC_EXTERN std::vector<std::string> kcfa;
 }

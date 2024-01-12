@@ -19,6 +19,6 @@ namespace polmdqc
 // ksb      string of atom classes for stretch-bend terms
 
 MDQC_EXTERN int maxnsb;
-MDQC_EXTERN std::vector<std::vector<double>> stbn;
+MDQC_EXTERN std::vector<std::vector<real>> stbn;
 MDQC_EXTERN std::vector<std::string> ksb;
 }

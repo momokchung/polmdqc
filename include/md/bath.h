@@ -38,14 +38,14 @@ namespace polmdqc
 
 constexpr int maxnose = 4;
 MDQC_EXTERN int voltrial;
-MDQC_EXTERN double kelvin,atmsph;
-MDQC_EXTERN double tautemp,taupres;
-MDQC_EXTERN double compress,collide;
-MDQC_EXTERN double eta,volmove;
-MDQC_EXTERN double vbar,qbar,gbar;
-MDQC_EXTERN double vnh[maxnose];
-MDQC_EXTERN double qnh[maxnose];
-MDQC_EXTERN double gnh[maxnose];
+MDQC_EXTERN real kelvin,atmsph;
+MDQC_EXTERN real tautemp,taupres;
+MDQC_EXTERN real compress,collide;
+MDQC_EXTERN real eta,volmove;
+MDQC_EXTERN real vbar,qbar,gbar;
+MDQC_EXTERN real vnh[maxnose];
+MDQC_EXTERN real qnh[maxnose];
+MDQC_EXTERN real gnh[maxnose];
 MDQC_EXTERN bool isothermal;
 MDQC_EXTERN bool isobaric;
 MDQC_EXTERN bool anisotrop;

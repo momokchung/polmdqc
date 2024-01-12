@@ -19,6 +19,6 @@ namespace polmdqc
 // kopb      string of atom classes for out-of-plane bending
 
 MDQC_EXTERN int maxnopb;
-MDQC_EXTERN std::vector<double> opbn;
+MDQC_EXTERN std::vector<real> opbn;
 MDQC_EXTERN std::vector<std::string> kopb;
 }

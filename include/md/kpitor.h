@@ -19,6 +19,6 @@ namespace polmdqc
 // kpt      string of atom classes for pi-system torsion terms
 
 MDQC_EXTERN int maxnpt;
-MDQC_EXTERN std::vector<double> ptcon;
+MDQC_EXTERN std::vector<real> ptcon;
 MDQC_EXTERN std::vector<std::string> kpt;
 }

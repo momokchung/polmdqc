@@ -20,7 +20,7 @@ namespace polmdqc
 // ku      string of atom classes for Urey-Bradley terms
 
 MDQC_EXTERN int maxnu;
-MDQC_EXTERN std::vector<double> ucon;
-MDQC_EXTERN std::vector<double> dst13;
+MDQC_EXTERN std::vector<real> ucon;
+MDQC_EXTERN std::vector<real> dst13;
 MDQC_EXTERN std::vector<std::string> ku;
 }

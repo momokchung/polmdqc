@@ -21,7 +21,7 @@ namespace polmdqc
 // note the default group-based interaction weight is 1.0; only
 // interactions involving two or fewer groups can be scaled
 
-void groups(bool& proceed, double& weigh, int ia, int ib, int ic, int id, int ie, int ig)
+void groups(bool& proceed, real& weigh, int ia, int ib, int ic, int id, int ie, int ig)
 {
     int iga,igb,igc;
     int igd,ige,igg;

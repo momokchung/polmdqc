@@ -18,9 +18,9 @@ namespace polmdqc
 // dsp5scale   scale factor for 1-5 dispersion energy interactions
 // use_dcorr   flag to use long range dispersion correction
 
-MDQC_EXTERN double dsp2scale;
-MDQC_EXTERN double dsp3scale;
-MDQC_EXTERN double dsp4scale;
-MDQC_EXTERN double dsp5scale;
+MDQC_EXTERN real dsp2scale;
+MDQC_EXTERN real dsp3scale;
+MDQC_EXTERN real dsp4scale;
+MDQC_EXTERN real dsp5scale;
 MDQC_EXTERN bool use_dcorr;
 }

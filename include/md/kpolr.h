@@ -19,7 +19,7 @@ namespace polmdqc
 // dthl   alternate Thole direct polarization damping values
 
 MDQC_EXTERN std::vector<std::vector<int>> pgrp;
-MDQC_EXTERN std::vector<double> polr;
-MDQC_EXTERN std::vector<double> athl;
-MDQC_EXTERN std::vector<double> dthl;
+MDQC_EXTERN std::vector<real> polr;
+MDQC_EXTERN std::vector<real> athl;
+MDQC_EXTERN std::vector<real> dthl;
 }

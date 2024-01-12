@@ -22,7 +22,7 @@ namespace polmdqc
 
 MDQC_EXTERN int n;
 MDQC_EXTERN int type[maxatm];
-MDQC_EXTERN double x[maxatm];
-MDQC_EXTERN double y[maxatm];
-MDQC_EXTERN double z[maxatm];
+MDQC_EXTERN real x[maxatm];
+MDQC_EXTERN real y[maxatm];
+MDQC_EXTERN real z[maxatm];
 }

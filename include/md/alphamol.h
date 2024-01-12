@@ -11,6 +11,7 @@
 #include "delcx.h"
 #include "edge.h"
 #include "face.h"
+#include "precision.h"
 #include "tetrahedron.h"
 #include "vertex.h"
 #include "volumes.h"
@@ -39,5 +40,5 @@ namespace polmdqc
 //                                                 //
 /////////////////////////////////////////////////////
 
-void alphamol(double r_h2o, int flag_deriv);
+void alphamol(real r_h2o, int flag_deriv);
 }

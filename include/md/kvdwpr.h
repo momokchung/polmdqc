@@ -20,7 +20,7 @@ namespace polmdqc
 // kvpr     string of atom classes for special van der Waals pairs
 
 MDQC_EXTERN int maxnvp;
-MDQC_EXTERN std::vector<double> radpr;
-MDQC_EXTERN std::vector<double> epspr;
+MDQC_EXTERN std::vector<real> radpr;
+MDQC_EXTERN std::vector<real> epspr;
 MDQC_EXTERN std::vector<std::string> kvpr;
 }

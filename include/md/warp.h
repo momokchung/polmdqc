@@ -24,11 +24,11 @@ namespace polmdqc
 // use_tophat   flag to use analytical tophat smoothed potential
 // use_stophat  flag to use shifted tophat smoothed potential
 
-MDQC_EXTERN double deform;
-MDQC_EXTERN double difft;
-MDQC_EXTERN double diffv;
-MDQC_EXTERN double diffc;
-MDQC_EXTERN std::vector<double> m2;
+MDQC_EXTERN real deform;
+MDQC_EXTERN real difft;
+MDQC_EXTERN real diffv;
+MDQC_EXTERN real diffc;
+MDQC_EXTERN std::vector<real> m2;
 MDQC_EXTERN bool use_smooth;
 MDQC_EXTERN bool use_dem;
 MDQC_EXTERN bool use_gda;

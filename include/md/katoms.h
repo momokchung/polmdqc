@@ -24,7 +24,7 @@ namespace polmdqc
 MDQC_EXTERN std::vector<int> atmcls;
 MDQC_EXTERN std::vector<int> atmnum;
 MDQC_EXTERN std::vector<int> ligand;
-MDQC_EXTERN std::vector<double> weight;
+MDQC_EXTERN std::vector<real> weight;
 MDQC_EXTERN std::vector<std::string> symbol;
 MDQC_EXTERN std::vector<std::string> describe;
 }

@@ -20,6 +20,6 @@ namespace polmdqc
 
 MDQC_EXTERN int nbond;
 MDQC_EXTERN std::vector<std::vector<int>> ibnd;
-MDQC_EXTERN std::vector<double> bk;
-MDQC_EXTERN std::vector<double> bl;
+MDQC_EXTERN std::vector<real> bk;
+MDQC_EXTERN std::vector<real> bl;
 }

@@ -33,20 +33,20 @@ namespace polmdqc
 // epsdsp    vdw well depth of each atom for dispersion energy
 // cdsp      maximum dispersion energy for each atom
 
-constexpr double epso = 0.1100;
-constexpr double epsh = 0.0135;
-constexpr double rmino = 1.7025;
-constexpr double rminh = 1.3275;
-constexpr double awater = 0.033428;
-constexpr double slevy = 1.0;
-constexpr double shctd = 0.75;
-constexpr double cavoff = 0.0;
-constexpr double dspoff = 1.056;
-MDQC_EXTERN double solvprs,surften;
-MDQC_EXTERN double spcut,spoff;
-MDQC_EXTERN double stcut,stoff;
-MDQC_EXTERN std::vector<double> radcav;
-MDQC_EXTERN std::vector<double> raddsp;
-MDQC_EXTERN std::vector<double> epsdsp;
-MDQC_EXTERN std::vector<double> cdsp;
+constexpr real epso = 0.1100;
+constexpr real epsh = 0.0135;
+constexpr real rmino = 1.7025;
+constexpr real rminh = 1.3275;
+constexpr real awater = 0.033428;
+constexpr real slevy = 1.0;
+constexpr real shctd = 0.75;
+constexpr real cavoff = 0.0;
+constexpr real dspoff = 1.056;
+MDQC_EXTERN real solvprs,surften;
+MDQC_EXTERN real spcut,spoff;
+MDQC_EXTERN real stcut,stoff;
+MDQC_EXTERN std::vector<real> radcav;
+MDQC_EXTERN std::vector<real> raddsp;
+MDQC_EXTERN std::vector<real> epsdsp;
+MDQC_EXTERN std::vector<real> cdsp;
 }

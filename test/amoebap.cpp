@@ -16,10 +16,10 @@ TEST_CASE("amoebap-1", "[AMOEBAPLUS][water]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    double einterTest = -7.5295245698070445;
-    double emTest = -7.5295245698070445;
-    double nemTest = 9;
-    double eps = 1e-10;
+    real einterTest = -7.5295245698070445;
+    real emTest = -7.5295245698070445;
+    real nemTest = 9;
+    real eps = 1e-10;
 
     analyze(argc, argv);
 

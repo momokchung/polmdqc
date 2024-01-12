@@ -18,8 +18,8 @@ namespace polmdqc
 // bndunit   convert bond stretch energy to kcal/mole
 // bndtyp    type of bond stretch potential energy function
 
-MDQC_EXTERN double cbnd;
-MDQC_EXTERN double qbnd;
-MDQC_EXTERN double bndunit;
+MDQC_EXTERN real cbnd;
+MDQC_EXTERN real qbnd;
+MDQC_EXTERN real bndunit;
 MDQC_EXTERN std::string bndtyp;
 }

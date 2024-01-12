@@ -35,7 +35,7 @@ void kchgtrn()
 {
     int i,k;
     int ia,ic,next;
-    double chtrn,actrn;
+    real chtrn,actrn;
     bool header;
     std::string keyword;
     std::string record;

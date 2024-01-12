@@ -19,6 +19,6 @@ namespace polmdqc
 // kbt      string of atom classes for stretch-torsion terms
 
 MDQC_EXTERN int maxnbt;
-MDQC_EXTERN std::vector<std::vector<double>> btcon;
+MDQC_EXTERN std::vector<std::vector<real>> btcon;
 MDQC_EXTERN std::vector<std::string> kbt;
 }

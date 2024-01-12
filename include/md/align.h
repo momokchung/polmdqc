@@ -19,5 +19,5 @@ namespace polmdqc
 
 MDQC_EXTERN int nfit;
 MDQC_EXTERN std::vector<std::vector<int>> ifit;
-MDQC_EXTERN std::vector<double> wfit;
+MDQC_EXTERN std::vector<real> wfit;
 }

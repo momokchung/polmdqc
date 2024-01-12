@@ -23,8 +23,8 @@ namespace polmdqc
 // use_replica   flag to use replicates for periodic system
 // use_polymer   flag to mark presence of infinite polymer
 
-MDQC_EXTERN double polycut;
-MDQC_EXTERN double polycut2;
+MDQC_EXTERN real polycut;
+MDQC_EXTERN real polycut2;
 MDQC_EXTERN bool use_bounds;
 MDQC_EXTERN bool use_replica;
 MDQC_EXTERN bool use_polymer;

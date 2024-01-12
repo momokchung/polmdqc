@@ -2,6 +2,7 @@
 // Year:   2023
 
 #pragma once
+#include "precision.h"
 
 namespace polmdqc
 {
@@ -11,5 +12,5 @@ namespace polmdqc
 //                                               //
 ///////////////////////////////////////////////////
 
-void torphase(int (&ft)[6], double (&vt)[6], double (&st)[6]);
+void torphase(int (&ft)[6], real (&vt)[6], real (&st)[6]);
 }

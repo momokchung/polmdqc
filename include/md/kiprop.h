@@ -20,7 +20,7 @@ namespace polmdqc
 // kdi      string of atom classes for improper dihedral angles
 
 MDQC_EXTERN int maxndi;
-MDQC_EXTERN std::vector<double> dcon;
-MDQC_EXTERN std::vector<double> tdi;
+MDQC_EXTERN std::vector<real> dcon;
+MDQC_EXTERN std::vector<real> tdi;
 MDQC_EXTERN std::vector<std::string> kdi;
 }

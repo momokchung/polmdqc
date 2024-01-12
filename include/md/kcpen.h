@@ -16,6 +16,6 @@ namespace polmdqc
 // cpele     valence electron magnitude for each atom class
 // cpalp     alpha charge penetration parameter for each atom class
 
-MDQC_EXTERN std::vector<double> cpele;
-MDQC_EXTERN std::vector<double> cpalp;
+MDQC_EXTERN std::vector<real> cpele;
+MDQC_EXTERN std::vector<real> cpalp;
 }

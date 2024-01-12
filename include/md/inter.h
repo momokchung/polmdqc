@@ -3,6 +3,7 @@
 
 #pragma once
 #include "macro.h"
+#include "precision.h"
 
 namespace polmdqc
 {
@@ -14,5 +15,5 @@ namespace polmdqc
 
 // einter   total intermolecular potential energy
 
-MDQC_EXTERN double einter;
+MDQC_EXTERN real einter;
 }

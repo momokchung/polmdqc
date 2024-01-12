@@ -35,11 +35,11 @@ MDQC_EXTERN std::vector<int> type0;
 MDQC_EXTERN std::vector<int> class0;
 MDQC_EXTERN std::vector<int> type1;
 MDQC_EXTERN std::vector<int> class1;
-MDQC_EXTERN double lambda;
-MDQC_EXTERN double vlambda;
-MDQC_EXTERN double elambda;
-MDQC_EXTERN double tlambda;
-MDQC_EXTERN double scexp;
-MDQC_EXTERN double scalpha;
+MDQC_EXTERN real lambda;
+MDQC_EXTERN real vlambda;
+MDQC_EXTERN real elambda;
+MDQC_EXTERN real tlambda;
+MDQC_EXTERN real scexp;
+MDQC_EXTERN real scalpha;
 MDQC_EXTERN std::vector<bool> mut;
 }

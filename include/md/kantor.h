@@ -19,6 +19,6 @@ namespace polmdqc
 // kat      string of atom classes for angle-torsion terms
 
 MDQC_EXTERN int maxnat;
-MDQC_EXTERN std::vector<std::vector<double>> atcon;
+MDQC_EXTERN std::vector<std::vector<real>> atcon;
 MDQC_EXTERN std::vector<std::string> kat;
 }

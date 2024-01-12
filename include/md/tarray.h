@@ -19,5 +19,5 @@ namespace polmdqc
 
 MDQC_EXTERN int ntpair;
 MDQC_EXTERN std::vector<std::vector<int>> tindex;
-MDQC_EXTERN std::vector<std::vector<double>> tdipdip;
+MDQC_EXTERN std::vector<std::vector<real>> tdipdip;
 }

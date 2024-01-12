@@ -16,6 +16,6 @@ namespace polmdqc
 // dspsix   C6 dispersion coefficient for each atom class
 // dspdmp   alpha dispersion parameter for each atom class
 
-MDQC_EXTERN std::vector<double> dspsix;
-MDQC_EXTERN std::vector<double> dspdmp;
+MDQC_EXTERN std::vector<real> dspsix;
+MDQC_EXTERN std::vector<real> dspdmp;
 }

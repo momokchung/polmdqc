@@ -21,8 +21,8 @@ namespace polmdqc
 // kti      string of atom classes for improper torsional parameters
 
 MDQC_EXTERN int maxnti;
-MDQC_EXTERN std::vector<std::vector<double>> ti1;
-MDQC_EXTERN std::vector<std::vector<double>> ti2;
-MDQC_EXTERN std::vector<std::vector<double>> ti3;
+MDQC_EXTERN std::vector<std::vector<real>> ti1;
+MDQC_EXTERN std::vector<std::vector<real>> ti2;
+MDQC_EXTERN std::vector<std::vector<real>> ti3;
 MDQC_EXTERN std::vector<std::string> kti;
 }

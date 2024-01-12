@@ -35,8 +35,8 @@ MDQC_EXTERN std::vector<int> pollist;
 MDQC_EXTERN std::vector<int> zaxis;
 MDQC_EXTERN std::vector<int> xaxis;
 MDQC_EXTERN std::vector<int> yaxis;
-MDQC_EXTERN std::vector<std::vector<double>> pole;
-MDQC_EXTERN std::vector<std::vector<double>> rpole;
-MDQC_EXTERN std::vector<double>  mono0;
+MDQC_EXTERN std::vector<std::vector<real>> pole;
+MDQC_EXTERN std::vector<std::vector<real>> rpole;
+MDQC_EXTERN std::vector<real>  mono0;
 MDQC_EXTERN std::vector<LocalFrame> polaxe;
 }

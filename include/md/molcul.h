@@ -24,6 +24,6 @@ MDQC_EXTERN int nmol;
 MDQC_EXTERN std::vector<std::vector<int>> imol;
 MDQC_EXTERN std::vector<int> kmol;
 MDQC_EXTERN std::vector<int> molcule;
-MDQC_EXTERN double totmass;
-MDQC_EXTERN std::vector<double> molmass;
+MDQC_EXTERN real totmass;
+MDQC_EXTERN std::vector<real> molmass;
 }

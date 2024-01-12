@@ -15,6 +15,6 @@ namespace polmdqc
 // vir         total internal virial Cartesian tensor components
 // use_virial  logical flag governing use of virial computation
 
-MDQC_EXTERN double vir[3][3];
+MDQC_EXTERN real vir[3][3];
 MDQC_EXTERN bool use_virial;
 }

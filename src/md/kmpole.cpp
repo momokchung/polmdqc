@@ -53,8 +53,8 @@ void kmpole()
     std::vector<int> mpz;
     std::vector<int> mpx;
     std::vector<int> mpy;
-    double pel,pal;
-    double mpl[13];
+    real pel,pal;
+    real mpl[13];
     bool header,path;
     std::string pa,pb,pc,pd;
     std::string axt;
@@ -270,8 +270,8 @@ void kmpole()
     zaxis.resize(n, 0);
     xaxis.resize(n, 0);
     yaxis.resize(n, 0);
-    pole.resize(n, std::vector<double>(maxpole, 0.));
-    rpole.resize(n, std::vector<double>(maxpole));
+    pole.resize(n, std::vector<real>(maxpole, 0.));
+    rpole.resize(n, std::vector<real>(maxpole));
     mono0.resize(n, 0.);
     polaxe.resize(n, LocalFrame::None);
     np11.resize(n, 0);
@@ -587,10 +587,10 @@ void kmpole()
         if (uinp.size() != 0) uinp.resize(0);
         if (uinds.size() != 0) uinds.resize(0);
         if (uinps.size() != 0) uinps.resize(0);
-        uind.resize(n, std::vector<double>(3, 0.));
-        uinp.resize(n, std::vector<double>(3, 0.));
-        uinds.resize(n, std::vector<double>(3, 0.));
-        uinps.resize(n, std::vector<double>(3, 0.));
+        uind.resize(n, std::vector<real>(3, 0.));
+        uinp.resize(n, std::vector<real>(3, 0.));
+        uinds.resize(n, std::vector<real>(3, 0.));
+        uinps.resize(n, std::vector<real>(3, 0.));
     }
 
     // perform dynamic allocation of some global arrays

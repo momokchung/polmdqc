@@ -57,7 +57,7 @@ void control()
         iss >> keyword;
         upcase(keyword);
         if (keyword == "DIGITS") {
-            double nextDouble;
+            real nextDouble;
             if (iss >> nextDouble) digits = nextDouble;
         }
         else if (keyword == "DEBUG") {

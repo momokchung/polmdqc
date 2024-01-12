@@ -20,9 +20,9 @@ namespace polmdqc
 // angmax   maximum angle between search direction and -gradient
 
 MDQC_EXTERN int intmax;
-MDQC_EXTERN double stpmin;
-MDQC_EXTERN double stpmax;
-MDQC_EXTERN double cappa;
-MDQC_EXTERN double slpmax;
-MDQC_EXTERN double angmax;
+MDQC_EXTERN real stpmin;
+MDQC_EXTERN real stpmax;
+MDQC_EXTERN real cappa;
+MDQC_EXTERN real slpmax;
+MDQC_EXTERN real angmax;
 }

@@ -18,20 +18,20 @@ namespace polmdqc
 void chkxyz(bool& clash)
 {
     // initialize distance tolerance and atom collision flag
-    double eps = 0.000001;
+    real eps = 0.000001;
     clash = false;
     bool header = true;
 
     // loop over atom pairs testing for identical coordinates
     for (int i = 0; i < n-1; i++) {
-        double xi = x[i];
-        double yi = y[i];
-        double zi = z[i];
+        real xi = x[i];
+        real yi = y[i];
+        real zi = z[i];
         for (int k = i+1; k < n; k++) {
-            double xr = x[k] - xi;
-            double yr = y[k] - yi;
-            double zr = z[k] - zi;
-            double r2 = xr*xr + yr*yr + zr*zr;
+            real xr = x[k] - xi;
+            real yr = y[k] - yi;
+            real zr = z[k] - zi;
+            real r2 = xr*xr + yr*yr + zr*zr;
             if (r2 < eps) {
                 clash = true;
                 if (header) {

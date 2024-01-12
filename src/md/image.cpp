@@ -34,9 +34,9 @@ namespace polmdqc
 // which one is faster depends upon specific machine and compiler
 // combinations, and other implementations are also possible
 
-void image(double& xr, double& yr, double& zr)
+void image(real& xr, real& yr, real& zr)
 {
-    double corr;
+    real corr;
 
     // for orthogonal lattice, find the desired image directly
     if (orthogonal) {

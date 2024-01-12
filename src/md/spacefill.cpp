@@ -28,7 +28,7 @@ namespace polmdqc
 void spacefill(int argc, char** argv)
 {
     int mode;
-    double value,exclude;
+    real value,exclude;
     bool exist,query;
     std::string xyzfile,record,string;
     std::istringstream iss;

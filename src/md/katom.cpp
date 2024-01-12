@@ -41,9 +41,9 @@ void katom()
 {
     int next,nh;
     int cls,atn,lig;
-    double wght,sum;
-    double hmax,hmass;
-    double dmin,dmass;
+    real wght,sum;
+    real hmax,hmass;
+    real dmin,dmass;
     bool header,heavy;
     std::string symb,notice;
     std::string keyword,record,string;
@@ -146,7 +146,7 @@ void katom()
                     sum += mass[k];
                 }
             }
-            hmass = std::min(hmax,sum/static_cast<double>(nh+1));
+            hmass = std::min(hmax,sum/static_cast<real>(nh+1));
             for (int j = 0; j < n12[i]; j++) {
                 int k = i12[i][j];
                 if (atomic[k] == 1) {

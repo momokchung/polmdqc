@@ -18,15 +18,15 @@ TEST_CASE("rotpole-1", "[AMOEBA][axetyp]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    double einterTest = -4.0617143343279807;
-    double emTest = -4.0617143343279807;
-    double nemTest = 15;
-    double eps = 1e-13;
-    double epsR = 1e-16;
+    real einterTest = -4.0617143343279807;
+    real emTest = -4.0617143343279807;
+    real nemTest = 15;
+    real eps = 1e-13;
+    real epsR = 1e-16;
 
     std::string axetypJson = "../../test/testFiles/rotpole/axetyp.json";
 
-    std::vector<std::vector<double>> refrpole = readMatrixFromJson(axetypJson);
+    std::vector<std::vector<real>> refrpole = readMatrixFromJson(axetypJson);
 
     analyze(argc, argv);
 
@@ -45,13 +45,13 @@ TEST_CASE("rotpole-2", "[AMOEBA][lysine_zbisect]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    double emTest = -68.364751107958028;
-    double nemTest = 207;
-    double eps = 1e-13;
-    double epsR = 1e-16;
+    real emTest = -68.364751107958028;
+    real nemTest = 207;
+    real eps = 1e-13;
+    real epsR = 1e-16;
 
     std::string filename = "../../test/testFiles/rotpole/lysine_zbisect.json";
-    std::vector<double> refrpole = readVectorFromJson(filename);
+    std::vector<real> refrpole = readVectorFromJson(filename);
 
     analyze(argc, argv);
 
@@ -69,13 +69,13 @@ TEST_CASE("rotpole-3", "[AMOEBA][lysine_3fold]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    double emTest = -68.399778638605881;
-    double nemTest = 207;
-    double eps = 1e-13;
-    double epsR = 1e-16;
+    real emTest = -68.399778638605881;
+    real nemTest = 207;
+    real eps = 1e-13;
+    real epsR = 1e-16;
 
     std::string filename = "../../test/testFiles/rotpole/lysine_3fold.json";
-    std::vector<double> refrpole = readVectorFromJson(filename);
+    std::vector<real> refrpole = readVectorFromJson(filename);
 
     analyze(argc, argv);
 

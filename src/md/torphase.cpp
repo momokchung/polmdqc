@@ -14,10 +14,10 @@ namespace polmdqc
 // "torphase" sets the n-fold amplitude and phase values
 // for each torsion via sorting of the input parameters
 
-void torphase(int (&ft)[6], double (&vt)[6], double (&st)[6])
+void torphase(int (&ft)[6], real (&vt)[6], real (&st)[6])
 {
-    double ampli[6];
-    double phase[6];
+    real ampli[6];
+    real phase[6];
 
     // copy the input fold, amplitude and phase angles
     for (int i = 0; i < 6; i++){

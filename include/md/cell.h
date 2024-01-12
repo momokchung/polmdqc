@@ -24,10 +24,10 @@ namespace polmdqc
 
 MDQC_EXTERN int ncell;
 MDQC_EXTERN std::vector<std::vector<int>> icell;
-MDQC_EXTERN double xcell;
-MDQC_EXTERN double ycell;
-MDQC_EXTERN double zcell;
-MDQC_EXTERN double xcell2;
-MDQC_EXTERN double ycell2;
-MDQC_EXTERN double zcell2;
+MDQC_EXTERN real xcell;
+MDQC_EXTERN real ycell;
+MDQC_EXTERN real zcell;
+MDQC_EXTERN real xcell2;
+MDQC_EXTERN real ycell2;
+MDQC_EXTERN real zcell2;
 }

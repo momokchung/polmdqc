@@ -20,11 +20,11 @@ namespace polmdqc
 // atorunit  convert angle-torsion energy to kcal/mole
 // ttorunit  convert torsion-torsion energy to kcal/mole
 
-MDQC_EXTERN double idihunit;
-MDQC_EXTERN double itorunit;
-MDQC_EXTERN double torsunit;
-MDQC_EXTERN double ptorunit;
-MDQC_EXTERN double storunit;
-MDQC_EXTERN double atorunit;
-MDQC_EXTERN double ttorunit;
+MDQC_EXTERN real idihunit;
+MDQC_EXTERN real itorunit;
+MDQC_EXTERN real torsunit;
+MDQC_EXTERN real ptorunit;
+MDQC_EXTERN real storunit;
+MDQC_EXTERN real atorunit;
+MDQC_EXTERN real ttorunit;
 }

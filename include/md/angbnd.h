@@ -21,7 +21,7 @@ namespace polmdqc
 
 MDQC_EXTERN int nangle;
 MDQC_EXTERN std::vector<std::vector<int>> iang;
-MDQC_EXTERN std::vector<double> ak;
-MDQC_EXTERN std::vector<double> anat;
-MDQC_EXTERN std::vector<double> afld;
+MDQC_EXTERN std::vector<real> ak;
+MDQC_EXTERN std::vector<real> anat;
+MDQC_EXTERN std::vector<real> afld;
 }

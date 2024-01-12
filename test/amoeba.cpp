@@ -2,6 +2,7 @@
 #include "analyze.h"
 #include "energi.h"
 #include "inter.h"
+#include "precision.h"
 #include "testrt.h"
 #include <cmath>
 
@@ -16,10 +17,10 @@ TEST_CASE("amoeba-1", "[AMOEBA][water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    double einterTest = -5.5415386409028713;
-    double emTest = -5.5415386409028713;
-    double nemTest = 9;
-    double eps = 1e-10;
+    real einterTest = -5.5415386409028713;
+    real emTest = -5.5415386409028713;
+    real nemTest = 9;
+    real eps = 1e-10;
 
     analyze(argc, argv);
 

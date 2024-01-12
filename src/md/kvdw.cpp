@@ -45,11 +45,11 @@ void kvdw()
     int maxdim;
     int nlist,number;
     std::vector<int> list;
-    double rd,ep,rdn,gik;
-    std::vector<double> srad;
-    std::vector<double> srad4;
-    std::vector<double> seps;
-    std::vector<double> seps4;
+    real rd,ep,rdn,gik;
+    std::vector<real> srad;
+    std::vector<real> srad4;
+    std::vector<real> seps;
+    std::vector<real> seps4;
     bool header;
     std::string pa,pb;
     std::string blank,pt;
@@ -345,12 +345,12 @@ void kvdw()
     if (epsilon4.size() != 0) epsilon4.resize(0);
     if (radhbnd.size() != 0) radhbnd.resize(0);
     if (epshbnd.size() != 0) epshbnd.resize(0);
-    radmin.resize(nlist, std::vector<double>(nlist));
-    epsilon.resize(nlist, std::vector<double>(nlist));
-    radmin4.resize(nlist, std::vector<double>(nlist));
-    epsilon4.resize(nlist, std::vector<double>(nlist));
-    radhbnd.resize(nlist, std::vector<double>(nlist));
-    epshbnd.resize(nlist, std::vector<double>(nlist));
+    radmin.resize(nlist, std::vector<real>(nlist));
+    epsilon.resize(nlist, std::vector<real>(nlist));
+    radmin4.resize(nlist, std::vector<real>(nlist));
+    epsilon4.resize(nlist, std::vector<real>(nlist));
+    radhbnd.resize(nlist, std::vector<real>(nlist));
+    epshbnd.resize(nlist, std::vector<real>(nlist));
 
     // use combination rules to set pairwise vdw radii sums
     for (int ii = 0; ii < nlist; ii++) {
@@ -373,12 +373,12 @@ void kvdw()
             else if (radrule == "ARITHMETIC") rd = rad[i] + rad[k];
             else if (radrule == "GEOMETRIC") rd = 2. * (srad[i] * srad[k]);
             else if (radrule == "CUBIC-MEAN") {
-                double radi = rad[i];
-                double radk = rad[k];
-                double radi2 = radi * radi;
-                double radk2 = radk * radk;
-                double radi3 = radi2 * radi;
-                double radk3 = radk2 * radk;
+                real radi = rad[i];
+                real radk = rad[k];
+                real radi2 = radi * radi;
+                real radk2 = radk * radk;
+                real radi3 = radi2 * radi;
+                real radk3 = radk2 * radk;
                 rd = 2. * (radi3+radk3)/(radi2+radk2);
             }
             else rd = rad[i] + rad[k];
@@ -405,14 +405,14 @@ void kvdw()
             else if (epsrule == "GEOMETRIC") ep = seps[i] * seps[k];
             else if (epsrule == "HARMONIC") ep = 2. * (eps[i]*eps[k]) / (eps[i]+eps[k]);
             else if (epsrule == "HHG") {
-                double sepsik = seps[i]+seps[k];
-                double sepsik2 = sepsik * sepsik;
+                real sepsik = seps[i]+seps[k];
+                real sepsik2 = sepsik * sepsik;
                 ep = 4. * (eps[i]*eps[k]) / sepsik2;
             }
             else if (epsrule == "W-H") {
-                double radik = rad[i]*rad[k];
-                double radik3 = std::pow(radik, 3);
-                double radik6 = std::pow(rad[i],6) + std::pow(rad[k],6);
+                real radik = rad[i]*rad[k];
+                real radik3 = std::pow(radik, 3);
+                real radik6 = std::pow(rad[i],6) + std::pow(rad[k],6);
                 ep = 2. * (seps[i]*seps[k]) * radik3 / radik6;
             }
             else ep = seps[i] * seps[k];
@@ -442,10 +442,10 @@ void kvdw()
             else if (radrule == "ARITHMETIC") rd = rad4[i] + rad4[k];
             else if (radrule == "GEOMETRIC") rd = 2. * (srad4[i] * srad4[k]);
             else if (radrule == "CUBIC-MEAN") {
-                double rad4i2 = std::pow(rad4[i],2);
-                double rad4k2 = std::pow(rad4[k],2);
-                double rad4i3 = std::pow(rad4[i],3);
-                double rad4k3 = std::pow(rad4[k],3);
+                real rad4i2 = std::pow(rad4[i],2);
+                real rad4k2 = std::pow(rad4[k],2);
+                real rad4i3 = std::pow(rad4[i],3);
+                real rad4k3 = std::pow(rad4[k],3);
                 rd = 2. * (rad4i3+rad4k3) / (rad4i2+rad4k2);
             }
             else rd = rad4[i] + rad4[k];
@@ -574,7 +574,7 @@ void kvdw()
 
     // set coefficients for Gaussian fit to eps=1 and radmin=1
     if (vdwtyp == "GAUSSIAN") {
-        double twosix2 = twosix * twosix;
+        real twosix2 = twosix * twosix;
         if (gausstyp == "LJ-4") {
             ngauss = 4;
             igauss[0][0] = 846706.7;

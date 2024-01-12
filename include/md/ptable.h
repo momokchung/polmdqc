@@ -20,8 +20,8 @@ namespace polmdqc
 // elemnt   atomic symbol for each chemical element
 
 constexpr int maxele = 112;
-MDQC_EXTERN double atmass[maxele];
-MDQC_EXTERN double vdwrad[maxele];
-MDQC_EXTERN double covrad[maxele];
+MDQC_EXTERN real atmass[maxele];
+MDQC_EXTERN real vdwrad[maxele];
+MDQC_EXTERN real covrad[maxele];
 MDQC_EXTERN std::string elemnt[maxele];
 }

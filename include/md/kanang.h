@@ -15,5 +15,5 @@ namespace polmdqc
 
 // anan   angle-angle cross term parameters for each atom class
 
-MDQC_EXTERN std::vector<std::vector<double>> anan;
+MDQC_EXTERN std::vector<std::vector<real>> anan;
 }

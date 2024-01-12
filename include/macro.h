@@ -1,6 +1,9 @@
 // Author: Moses KJ Chung
 // Year:   2023
 
+#pragma once
+#include "precision.h"
+
 #ifndef MDQC_EXTERN_DEFINITION_FILE
 #define MDQC_EXTERN_DEFINITION_FILE 0
 #endif

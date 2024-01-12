@@ -37,22 +37,22 @@ namespace polmdqc
 // s2ace     "sigma^2" values for atom class pairs for use with ACE
 // uace      "mu" values for atom class pairs for use with ACE
 
-MDQC_EXTERN double doffset,onipr;
-MDQC_EXTERN double p1,p2,p3,p4,p5;
-MDQC_EXTERN std::vector<double> rsolv;
-MDQC_EXTERN std::vector<double> rdescr;
-MDQC_EXTERN std::vector<double> asolv;
-MDQC_EXTERN std::vector<double> rborn;
-MDQC_EXTERN std::vector<double> drb;
-MDQC_EXTERN std::vector<double> drbp;
-MDQC_EXTERN std::vector<double> drobc;
-MDQC_EXTERN std::vector<double> gpol;
-MDQC_EXTERN std::vector<double> shct;
-MDQC_EXTERN std::vector<double> aobc;
-MDQC_EXTERN std::vector<double> bobc;
-MDQC_EXTERN std::vector<double> gobc;
-MDQC_EXTERN std::vector<double> vsolv;
-MDQC_EXTERN std::vector<std::vector<double>> wace;
-MDQC_EXTERN std::vector<std::vector<double>> s2ace;
-MDQC_EXTERN std::vector<std::vector<double>> uace;
+MDQC_EXTERN real doffset,onipr;
+MDQC_EXTERN real p1,p2,p3,p4,p5;
+MDQC_EXTERN std::vector<real> rsolv;
+MDQC_EXTERN std::vector<real> rdescr;
+MDQC_EXTERN std::vector<real> asolv;
+MDQC_EXTERN std::vector<real> rborn;
+MDQC_EXTERN std::vector<real> drb;
+MDQC_EXTERN std::vector<real> drbp;
+MDQC_EXTERN std::vector<real> drobc;
+MDQC_EXTERN std::vector<real> gpol;
+MDQC_EXTERN std::vector<real> shct;
+MDQC_EXTERN std::vector<real> aobc;
+MDQC_EXTERN std::vector<real> bobc;
+MDQC_EXTERN std::vector<real> gobc;
+MDQC_EXTERN std::vector<real> vsolv;
+MDQC_EXTERN std::vector<std::vector<real>> wace;
+MDQC_EXTERN std::vector<std::vector<real>> s2ace;
+MDQC_EXTERN std::vector<std::vector<real>> uace;
 }

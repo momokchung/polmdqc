@@ -17,7 +17,7 @@ namespace polmdqc
 // prdmp     alpha Pauli repulsion parameter for each atom class
 // prele     number of valence electrons for each atom class
 
-MDQC_EXTERN std::vector<double> prsiz;
-MDQC_EXTERN std::vector<double> prdmp;
-MDQC_EXTERN std::vector<double> prele;
+MDQC_EXTERN std::vector<real> prsiz;
+MDQC_EXTERN std::vector<real> prdmp;
+MDQC_EXTERN std::vector<real> prele;
 }

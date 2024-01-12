@@ -34,15 +34,15 @@ namespace polmdqc
 // opbtyp     type of out-of-plane bend potential energy function
 // angtyp     type of angle bending function for each bond angle
 
-MDQC_EXTERN double angunit,stbnunit;
-MDQC_EXTERN double aaunit,opbunit;
-MDQC_EXTERN double opdunit;
-MDQC_EXTERN double cang,qang;
-MDQC_EXTERN double pang,sang;
-MDQC_EXTERN double copb,qopb;
-MDQC_EXTERN double popb,sopb;
-MDQC_EXTERN double copd,qopd;
-MDQC_EXTERN double popd,sopd;
+MDQC_EXTERN real angunit,stbnunit;
+MDQC_EXTERN real aaunit,opbunit;
+MDQC_EXTERN real opdunit;
+MDQC_EXTERN real cang,qang;
+MDQC_EXTERN real pang,sang;
+MDQC_EXTERN real copb,qopb;
+MDQC_EXTERN real popb,sopb;
+MDQC_EXTERN real copd,qopd;
+MDQC_EXTERN real popd,sopd;
 MDQC_EXTERN std::string opbtyp;
 MDQC_EXTERN std::vector<std::string> angtyp;
 }

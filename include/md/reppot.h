@@ -17,8 +17,8 @@ namespace polmdqc
 // r4scale    scale factor for 1-4 repulsion energy interactions
 // r5scale    scale factor for 1-5 repulsion energy interactions
 
-MDQC_EXTERN double r2scale;
-MDQC_EXTERN double r3scale;
-MDQC_EXTERN double r4scale;
-MDQC_EXTERN double r5scale;
+MDQC_EXTERN real r2scale;
+MDQC_EXTERN real r3scale;
+MDQC_EXTERN real r4scale;
+MDQC_EXTERN real r5scale;
 }

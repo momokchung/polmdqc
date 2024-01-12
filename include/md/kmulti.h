@@ -32,7 +32,7 @@ enum class LocalFrame
 };
 
 MDQC_EXTERN int maxnmp;
-MDQC_EXTERN std::vector<std::vector<double>> multip;
+MDQC_EXTERN std::vector<std::vector<real>> multip;
 MDQC_EXTERN std::vector<LocalFrame> mpaxis;
 MDQC_EXTERN std::vector<std::string> kmp;
 

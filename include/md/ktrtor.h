@@ -32,11 +32,11 @@ constexpr int maxtgrd = 30;
 constexpr int maxtgrd2= maxtgrd*maxtgrd;
 MDQC_EXTERN std::vector<int> tnx;
 MDQC_EXTERN std::vector<int> tny;
-MDQC_EXTERN std::vector<std::vector<double>> ttx;
-MDQC_EXTERN std::vector<std::vector<double>> tty;
-MDQC_EXTERN std::vector<std::vector<double>> tbf;
-MDQC_EXTERN std::vector<std::vector<double>> tbx;
-MDQC_EXTERN std::vector<std::vector<double>> tby;
-MDQC_EXTERN std::vector<std::vector<double>> tbxy;
+MDQC_EXTERN std::vector<std::vector<real>> ttx;
+MDQC_EXTERN std::vector<std::vector<real>> tty;
+MDQC_EXTERN std::vector<std::vector<real>> tbf;
+MDQC_EXTERN std::vector<std::vector<real>> tbx;
+MDQC_EXTERN std::vector<std::vector<real>> tby;
+MDQC_EXTERN std::vector<std::vector<real>> tbxy;
 MDQC_EXTERN std::vector<std::string> ktt;
 }

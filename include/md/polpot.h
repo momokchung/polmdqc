@@ -45,18 +45,18 @@ namespace polmdqc
 // poltyp       type of polarization (MUTUAL, DIRECT, OPT or TCG)
 
 MDQC_EXTERN int politer;
-MDQC_EXTERN double poleps;
-MDQC_EXTERN double p2scale,p3scale;
-MDQC_EXTERN double p4scale,p5scale;
-MDQC_EXTERN double p2iscale,p3iscale;
-MDQC_EXTERN double p4iscale,p5iscale;
-MDQC_EXTERN double d1scale,d2scale;
-MDQC_EXTERN double d3scale,d4scale;
-MDQC_EXTERN double u1scale,u2scale;
-MDQC_EXTERN double u3scale,u4scale;
-MDQC_EXTERN double w2scale,w3scale;
-MDQC_EXTERN double w4scale,w5scale;
-MDQC_EXTERN double uaccel;
+MDQC_EXTERN real poleps;
+MDQC_EXTERN real p2scale,p3scale;
+MDQC_EXTERN real p4scale,p5scale;
+MDQC_EXTERN real p2iscale,p3iscale;
+MDQC_EXTERN real p4iscale,p5iscale;
+MDQC_EXTERN real d1scale,d2scale;
+MDQC_EXTERN real d3scale,d4scale;
+MDQC_EXTERN real u1scale,u2scale;
+MDQC_EXTERN real u3scale,u4scale;
+MDQC_EXTERN real w2scale,w3scale;
+MDQC_EXTERN real w4scale,w5scale;
+MDQC_EXTERN real uaccel;
 MDQC_EXTERN bool polprt;
 MDQC_EXTERN bool dpequal;
 MDQC_EXTERN bool use_thole;

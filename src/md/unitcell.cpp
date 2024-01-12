@@ -46,7 +46,7 @@ void unitcell()
         std::string keyword = "";
         iss >> keyword;
         upcase(keyword);
-        double nextDouble;
+        real nextDouble;
         if (keyword == "X-AXIS") {
             if (xbox == 0.) {
                 if (iss >> nextDouble) xbox = nextDouble;
@@ -110,7 +110,7 @@ void unitcell()
     }
 
     // use periodic boundary conditions if a cell was defined
-    double boxmax = std::max({xbox,ybox,zbox});
+    real boxmax = std::max({xbox,ybox,zbox});
     if (boxmax != 0.)  use_bounds = true;
 
     // set unspecified periodic boundary box lengths and angles

@@ -17,6 +17,6 @@ namespace polmdqc
 // rfterms   number of terms to use in reaction field summation
 
 MDQC_EXTERN int rfterms;
-MDQC_EXTERN double rfsize;
-MDQC_EXTERN double rfbulkd;
+MDQC_EXTERN real rfsize;
+MDQC_EXTERN real rfbulkd;
 }

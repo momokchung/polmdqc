@@ -22,10 +22,10 @@ void chkpole()
 {
     int i,k;
     int ia,ib,ic,id;
-    double xad,yad,zad;
-    double xbd,ybd,zbd;
-    double xcd,ycd,zcd;
-    double c1,c2,c3,vol;
+    real xad,yad,zad;
+    real xbd,ybd,zbd;
+    real xcd,ycd,zcd;
+    real c1,c2,c3,vol;
     bool dopol,dorep;
     bool check;
 

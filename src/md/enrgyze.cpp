@@ -26,7 +26,7 @@ void enrgyze()
 {
     constexpr CalcMode CalculationMode = CalcMode::Analysis;
 
-    double etot;
+    real etot;
 
     // perform the energy analysis by atom and component
     energy<CalculationMode>(etot);

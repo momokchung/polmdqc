@@ -27,9 +27,9 @@ void active()
     int next;
     int nmobile,nfixed;
     int center,nsphere;
-    double xr,yr,zr;
-    double xcenter,ycenter,zcenter;
-    double radius,radius2,dist2;
+    real xr,yr,zr;
+    real xcenter,ycenter,zcenter;
+    real radius,radius2,dist2;
     std::string keyword;
     std::string record;
     std::string string;

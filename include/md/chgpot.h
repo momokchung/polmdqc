@@ -23,10 +23,10 @@ namespace polmdqc
 // neutnbr    logical flag governing use of neutral group neighbors
 // neutcut    logical flag governing use of neutral group cutoffs
 
-MDQC_EXTERN double electric;
-MDQC_EXTERN double dielec,ebuffer;
-MDQC_EXTERN double c1scale,c2scale;
-MDQC_EXTERN double c3scale,c4scale;
-MDQC_EXTERN double c5scale;
+MDQC_EXTERN real electric;
+MDQC_EXTERN real dielec,ebuffer;
+MDQC_EXTERN real c1scale,c2scale;
+MDQC_EXTERN real c3scale,c4scale;
+MDQC_EXTERN real c5scale;
 MDQC_EXTERN bool neutnbr,neutcut;
 }

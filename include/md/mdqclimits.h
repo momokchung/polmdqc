@@ -39,16 +39,16 @@ namespace polmdqc
 // use_mlist   logical flag governing use of multipole list
 // use_ulist   logical flag governing use of preconditioner list
 
-MDQC_EXTERN double vdwcut,repcut;
-MDQC_EXTERN double dispcut,chgcut;
-MDQC_EXTERN double dplcut,mpolecut;
-MDQC_EXTERN double ctrncut;
-MDQC_EXTERN double vdwtaper,reptaper;
-MDQC_EXTERN double disptaper,chgtaper;
-MDQC_EXTERN double dpltaper,mpoletaper;
-MDQC_EXTERN double ctrntaper;
-MDQC_EXTERN double ewaldcut,dewaldcut;
-MDQC_EXTERN double usolvcut;
+MDQC_EXTERN real vdwcut,repcut;
+MDQC_EXTERN real dispcut,chgcut;
+MDQC_EXTERN real dplcut,mpolecut;
+MDQC_EXTERN real ctrncut;
+MDQC_EXTERN real vdwtaper,reptaper;
+MDQC_EXTERN real disptaper,chgtaper;
+MDQC_EXTERN real dpltaper,mpoletaper;
+MDQC_EXTERN real ctrntaper;
+MDQC_EXTERN real ewaldcut,dewaldcut;
+MDQC_EXTERN real usolvcut;
 MDQC_EXTERN bool use_ewald,use_dewald;
 MDQC_EXTERN bool use_lights,use_list;
 MDQC_EXTERN bool use_vlist,use_dlist;

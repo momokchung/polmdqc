@@ -33,16 +33,16 @@ namespace polmdqc
 constexpr int maxpred = 17;
 MDQC_EXTERN int nualt;
 MDQC_EXTERN int maxualt;
-MDQC_EXTERN double gear[maxpred];
-MDQC_EXTERN double aspc[maxpred];
-MDQC_EXTERN double bpred[maxpred];
-MDQC_EXTERN double bpredp[maxpred];
-MDQC_EXTERN double bpreds[maxpred];
-MDQC_EXTERN double bpredps[maxpred];
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> udalt;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> upalt;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> usalt;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> upsalt;
+MDQC_EXTERN real gear[maxpred];
+MDQC_EXTERN real aspc[maxpred];
+MDQC_EXTERN real bpred[maxpred];
+MDQC_EXTERN real bpredp[maxpred];
+MDQC_EXTERN real bpreds[maxpred];
+MDQC_EXTERN real bpredps[maxpred];
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> udalt;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> upalt;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> usalt;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> upsalt;
 MDQC_EXTERN bool use_pred;
 MDQC_EXTERN std::string polpred;
 }

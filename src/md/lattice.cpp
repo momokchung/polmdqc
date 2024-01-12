@@ -24,7 +24,7 @@ namespace polmdqc
 void lattice()
 {
     // use periodic boundary conditions if a cell was defined
-    double boxmax = std::max({xbox, ybox, zbox});
+    real boxmax = std::max({xbox, ybox, zbox});
     if (boxmax != 0.0) use_bounds = true;
 
     // set unspecified periodic boundary box lengths and angles
@@ -121,15 +121,15 @@ void lattice()
     }
 
     // compute and store real space lattice vectors as rows
-    double ar1 = xbox;
-    double ar2 = 0.;
-    double ar3 = 0.;
-    double br1 = ybox * gamma_cos;
-    double br2 = ybox * gamma_sin;
-    double br3 = 0.;
-    double cr1 = zbox * beta_cos;
-    double cr2 = zbox * beta_term;
-    double cr3 = zbox * gamma_term;
+    real ar1 = xbox;
+    real ar2 = 0.;
+    real ar3 = 0.;
+    real br1 = ybox * gamma_cos;
+    real br2 = ybox * gamma_sin;
+    real br3 = 0.;
+    real cr1 = zbox * beta_cos;
+    real cr2 = zbox * beta_term;
+    real cr3 = zbox * gamma_term;
     lvec[0][0] = ar1;
     lvec[1][0] = ar2;
     lvec[2][0] = ar3;

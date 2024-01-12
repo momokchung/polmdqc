@@ -46,7 +46,7 @@ namespace polmdqc
 void ksolv()
 {
     int i,k,next;
-    double pbrd,csrd,gkrd;
+    real pbrd,csrd,gkrd;
     bool header;
     std::string keyword;
     std::string value;
@@ -875,7 +875,7 @@ void kgk()
 {
     int i,it,next;
     int atmnum;
-    double dhct;
+    real dhct;
     bool descreenVDW;
     bool descreenHydrogen;
     std::string radtyp;
@@ -906,13 +906,13 @@ void kgk()
     drbp.resize(n);
     drobc.resize(n);
     shct.resize(n);
-    udirs.resize(n, std::vector<double>(3));
-    udirps.resize(n, std::vector<double>(3));
-    uinds.resize(n, std::vector<double>(3));
-    uinps.resize(n, std::vector<double>(3));
+    udirs.resize(n, std::vector<real>(3));
+    udirps.resize(n, std::vector<real>(3));
+    uinds.resize(n, std::vector<real>(3));
+    uinps.resize(n, std::vector<real>(3));
     if (poltyp == "OPT") {
-        uopts.resize(n, std::vector<std::vector<double>>(3, std::vector<double>(optorder+1)));
-        uoptps.resize(n, std::vector<std::vector<double>>(3, std::vector<double>(optorder+1)));
+        uopts.resize(n, std::vector<std::vector<real>>(3, std::vector<real>(optorder+1)));
+        uoptps.resize(n, std::vector<std::vector<real>>(3, std::vector<real>(optorder+1)));
     }
 
     // set default value for exponent in the GB/GK function
@@ -1427,13 +1427,13 @@ void kpb()
 void knp()
 {
     int i,next;
-    double cross,ah,ao;
-    double rmini,epsi;
-    double rmixh,rmixh3;
-    double rmixh7,emixh;
-    double rmixo,rmixo3;
-    double rmixo7,emixo;
-    double ri,ri3,ri7,ri11;
+    real cross,ah,ao;
+    real rmini,epsi;
+    real rmixh,rmixh3;
+    real rmixh7,emixh;
+    real rmixo,rmixo3;
+    real rmixo7,emixo;
+    real ri,ri3,ri7,ri11;
     std::string keyword;
     std::string record;
     std::string string;
@@ -1642,8 +1642,8 @@ void setrad(std::string radtyp)
 {
     int i,j,k,l,m;
     int atmnum;
-    double rscale;
-    double offset;
+    real rscale;
+    real offset;
 
     // assign default solute radii from consensus vdw values
     for (int i = 0; i < n; i++) {

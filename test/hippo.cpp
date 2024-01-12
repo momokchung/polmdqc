@@ -16,10 +16,10 @@ TEST_CASE("hippo-1", "[HIPPO][water21]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    double einterTest = -7.3522485663420181;
-    double emTest = -7.3522485663420181;
-    double nemTest = 9;
-    double eps = 1e-10;
+    real einterTest = -7.3522485663420181;
+    real emTest = -7.3522485663420181;
+    real nemTest = 9;
+    real eps = 1e-10;
 
     analyze(argc, argv);
 

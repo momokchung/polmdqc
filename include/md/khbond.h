@@ -20,7 +20,7 @@ namespace polmdqc
 // khb      string of atom types for hydrogen bonding pairs
 
 MDQC_EXTERN int maxnhb;
-MDQC_EXTERN std::vector<double> radhb;
-MDQC_EXTERN std::vector<double> epshb;
+MDQC_EXTERN std::vector<real> radhb;
+MDQC_EXTERN std::vector<real> epshb;
 MDQC_EXTERN std::vector<std::string> khb;
 }

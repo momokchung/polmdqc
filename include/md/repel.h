@@ -25,9 +25,9 @@ namespace polmdqc
 MDQC_EXTERN int nrep;
 MDQC_EXTERN std::vector<int> irep;
 MDQC_EXTERN std::vector<int> replist;
-MDQC_EXTERN std::vector<double> sizpr;
-MDQC_EXTERN std::vector<double> dmppr;
-MDQC_EXTERN std::vector<double> elepr;
-MDQC_EXTERN std::vector<std::vector<double>> repole;
-MDQC_EXTERN std::vector<std::vector<double>> rrepole;
+MDQC_EXTERN std::vector<real> sizpr;
+MDQC_EXTERN std::vector<real> dmppr;
+MDQC_EXTERN std::vector<real> elepr;
+MDQC_EXTERN std::vector<std::vector<real>> repole;
+MDQC_EXTERN std::vector<std::vector<real>> rrepole;
 }

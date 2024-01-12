@@ -66,8 +66,8 @@ void kpolar()
     int pg[maxval];
     std::vector<int> list;
     std::vector<int> rlist;
-    double pol,thl,thd;
-    double sixth;
+    real pol,thl,thd;
+    real sixth;
     bool header;
     std::string pa,pb;
     std::string blank,pt;
@@ -208,7 +208,7 @@ void kpolar()
             for (int j = 0; j <= maxopt; j++) {
                 copt[j] = 0.;
             }
-            double coptVal;
+            real coptVal;
             int j = 0;
             while ((iss >> coptVal) and (j <= maxopt)) {
                 copt[j] = coptVal;
@@ -248,20 +248,20 @@ void kpolar()
     thole.resize(n);
     tholed.resize(n);
     pdamp.resize(n);
-    udir.resize(n, std::vector<double>(3));
-    udirp.resize(n, std::vector<double>(3));
-    uind.resize(n, std::vector<double>(3));
-    uinp.resize(n, std::vector<double>(3));
+    udir.resize(n, std::vector<real>(3));
+    udirp.resize(n, std::vector<real>(3));
+    uind.resize(n, std::vector<real>(3));
+    uinp.resize(n, std::vector<real>(3));
     douind.resize(n, true);
     if (uopt.size() != 0) uopt.resize(0);
     if (uoptp.size() != 0) uoptp.resize(0);
     if (fopt.size() != 0) fopt.resize(0);
     if (foptp.size() != 0) foptp.resize(0);
     if (poltyp == "OPT") {
-        uopt.resize(n, std::vector<std::vector<double>>(3, std::vector<double>(optorder+1)));
-        uoptp.resize(n, std::vector<std::vector<double>>(3, std::vector<double>(optorder+1)));
-        fopt.resize(n, std::vector<std::vector<double>>(10, std::vector<double>(optorder+1)));
-        foptp.resize(n, std::vector<std::vector<double>>(10, std::vector<double>(optorder+1)));
+        uopt.resize(n, std::vector<std::vector<real>>(3, std::vector<real>(optorder+1)));
+        uoptp.resize(n, std::vector<std::vector<real>>(3, std::vector<real>(optorder+1)));
+        fopt.resize(n, std::vector<std::vector<real>>(10, std::vector<real>(optorder+1)));
+        foptp.resize(n, std::vector<std::vector<real>>(10, std::vector<real>(optorder+1)));
     }
 
     // set the atoms allowed to have nonzero induced dipoles
@@ -513,8 +513,8 @@ void kpolar()
     // perform dynamic allocation of some global arrays
     if (thlval.size() != 0) thlval.resize(0);
     if (thdval.size() != 0) thdval.resize(0);
-    thlval.resize(nlist, std::vector<double>(nlist));
-    thdval.resize(nlist, std::vector<double>(nlist));
+    thlval.resize(nlist, std::vector<real>(nlist));
+    thdval.resize(nlist, std::vector<real>(nlist));
 
     // use combination rules for pairwise Thole damping values
     for (int ii = 0; ii < nlist; ii++) {

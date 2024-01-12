@@ -36,7 +36,7 @@ void cluster()
     int next,size;
     int gnum,ga,gb;
     std::vector<int> list;
-    double wg;
+    real wg;
     bool header;
     std::string keyword;
     std::string record;
@@ -46,7 +46,7 @@ void cluster()
     // perform dynamic allocation of some global arrays
     if (igrp.size() == 0) igrp.resize(maxgrp+1, std::vector<int>(2)); // same
     if (grpmass.size() == 0) grpmass.resize(maxgrp+1);
-    if (wgrp.size() == 0) wgrp.resize(maxgrp+1, std::vector<double>(maxgrp+1, 1.)); // same
+    if (wgrp.size() == 0) wgrp.resize(maxgrp+1, std::vector<real>(maxgrp+1, 1.)); // same
     if (kgrp.size() != 0) (kgrp.resize(0)); // same
     if (grplist.size() != 0) (grplist.resize(0)); // same
     kgrp.resize(n, -1);

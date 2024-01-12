@@ -22,10 +22,10 @@ namespace polmdqc
 // lpep       flag to use exchange polarization at each site
 
 MDQC_EXTERN int nexpol;
-MDQC_EXTERN std::vector<double> kpep;
-MDQC_EXTERN std::vector<double> prepep;
-MDQC_EXTERN std::vector<double> dmppep;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> polscale;
-MDQC_EXTERN std::vector<std::vector<std::vector<double>>> polinv;
+MDQC_EXTERN std::vector<real> kpep;
+MDQC_EXTERN std::vector<real> prepep;
+MDQC_EXTERN std::vector<real> dmppep;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> polscale;
+MDQC_EXTERN std::vector<std::vector<std::vector<real>>> polinv;
 MDQC_EXTERN std::vector<bool> lpep;
 }

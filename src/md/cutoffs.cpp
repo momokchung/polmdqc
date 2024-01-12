@@ -31,7 +31,7 @@ void cutoffs()
 {
     int next;
     int limit;
-    double big,value;
+    real big,value;
     bool truncate;
     std::string keyword;
     std::string record;
@@ -348,7 +348,7 @@ void cutoffs()
             if (tindex.size() != 0) tindex.resize(0);
             if (tdipdip.size() != 0) tdipdip.resize(0);
             tindex.resize(n*maxelst, std::vector<int>(2));
-            tdipdip.resize(n*maxelst, std::vector<double>(6));
+            tdipdip.resize(n*maxelst, std::vector<real>(6));
         }
     }
     if (use_ulist) {

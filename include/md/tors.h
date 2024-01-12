@@ -24,10 +24,10 @@ namespace polmdqc
 
 MDQC_EXTERN int ntors;
 MDQC_EXTERN std::vector<std::vector<int>>  itors;
-MDQC_EXTERN std::vector<std::vector<double>> tors1;
-MDQC_EXTERN std::vector<std::vector<double>> tors2;
-MDQC_EXTERN std::vector<std::vector<double>> tors3;
-MDQC_EXTERN std::vector<std::vector<double>> tors4;
-MDQC_EXTERN std::vector<std::vector<double>> tors5;
-MDQC_EXTERN std::vector<std::vector<double>> tors6;
+MDQC_EXTERN std::vector<std::vector<real>> tors1;
+MDQC_EXTERN std::vector<std::vector<real>> tors2;
+MDQC_EXTERN std::vector<std::vector<real>> tors3;
+MDQC_EXTERN std::vector<std::vector<real>> tors4;
+MDQC_EXTERN std::vector<std::vector<real>> tors5;
+MDQC_EXTERN std::vector<std::vector<real>> tors6;
 }

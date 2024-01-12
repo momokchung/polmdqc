@@ -15,5 +15,5 @@ namespace polmdqc
 
 // chg   partial charge parameters for each atom type
 
-MDQC_EXTERN std::vector<double> chg;
+MDQC_EXTERN std::vector<real> chg;
 }

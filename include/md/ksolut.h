@@ -17,7 +17,7 @@ namespace polmdqc
 // csr      ddCOSMO solvation radius value for each atom type
 // gkr      Generalized Kirkwood radius value for each atom type
 
-MDQC_EXTERN std::vector<double> pbr;
-MDQC_EXTERN std::vector<double> csr;
-MDQC_EXTERN std::vector<double> gkr;
+MDQC_EXTERN std::vector<real> pbr;
+MDQC_EXTERN std::vector<real> csr;
+MDQC_EXTERN std::vector<real> gkr;
 }

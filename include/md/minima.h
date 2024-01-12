@@ -19,6 +19,6 @@ namespace polmdqc
 
 MDQC_EXTERN int maxiter;
 MDQC_EXTERN int nextiter;
-MDQC_EXTERN double fctmin;
-MDQC_EXTERN double hguess;
+MDQC_EXTERN real fctmin;
+MDQC_EXTERN real hguess;
 }

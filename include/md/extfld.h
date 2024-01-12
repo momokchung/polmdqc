@@ -15,6 +15,6 @@ namespace polmdqc
 // exfld       components of applied external electric field
 // use_exfld   flag to include applied external electric field
 
-MDQC_EXTERN double exfld[3];
+MDQC_EXTERN real exfld[3];
 MDQC_EXTERN bool use_exfld;
 }

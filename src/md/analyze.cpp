@@ -44,9 +44,9 @@ void analyze(int argc, char** argv)
     int nlist,nold;
     int freeunit;
     std::vector<int> list;
-    double energy;
-    std::vector<double> told;
-    std::vector<std::vector<double>> derivs;
+    real energy;
+    std::vector<real> told;
+    std::vector<std::vector<real>> derivs;
     bool dosystem,doparam;
     bool doenergy,doatom;
     bool dolarge,dodetail;

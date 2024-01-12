@@ -62,22 +62,22 @@ namespace polmdqc
 // debye       conversion from electron-Ang to Debye
 // prescon     conversion from kcal/mole/Ang**3 to Atm
 
-constexpr double avogadro = 6.02214076e+23;
-constexpr double lightspd = 2.99792458e-2;
-constexpr double boltzmann = 0.8314462618e0;
-constexpr double gasconst = 1.9872042586e-3;
-constexpr double elemchg = 1.602176634e-19;
-constexpr double vacperm = 8.8541878128e-12;
-constexpr double emass = 5.48579909065e-4;
-constexpr double planck = 6.62607015e-34;
-constexpr double joule = 4.1840e0;
-constexpr double ekcal = 4.1840e+2;
-constexpr double bohr = 0.529177210903e0;
-constexpr double hartree = 627.509474063e0;
-constexpr double evolt = 27.211386245988e0;
-constexpr double efreq = 2.194746314e+5;
-constexpr double coulomb = 332.0637133e0;
-constexpr double elefield = 1439.96455e0;
-constexpr double debye = 4.80321e0;
-constexpr double prescon = 6.85684112e+4;
+constexpr real avogadro = 6.02214076e+23;
+constexpr real lightspd = 2.99792458e-2;
+constexpr real boltzmann = 0.8314462618e0;
+constexpr real gasconst = 1.9872042586e-3;
+constexpr real elemchg = 1.602176634e-19;
+constexpr real vacperm = 8.8541878128e-12;
+constexpr real emass = 5.48579909065e-4;
+constexpr real planck = 6.62607015e-34;
+constexpr real joule = 4.1840e0;
+constexpr real ekcal = 4.1840e+2;
+constexpr real bohr = 0.529177210903e0;
+constexpr real hartree = 627.509474063e0;
+constexpr real evolt = 27.211386245988e0;
+constexpr real efreq = 2.194746314e+5;
+constexpr real coulomb = 332.0637133e0;
+constexpr real elefield = 1439.96455e0;
+constexpr real debye = 4.80321e0;
+constexpr real prescon = 6.85684112e+4;
 }
