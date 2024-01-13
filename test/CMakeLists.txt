@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16.0)
 
 set(POLMDQC_TEST
 amoeba.cpp
+amoebaMisc.cpp
 amoebap.cpp
 getline.cpp
 getnumb.cpp

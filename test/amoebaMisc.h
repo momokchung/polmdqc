@@ -4,7 +4,23 @@
 
 namespace polmdqc
 {
-namespace amoeba1
+namespace amoebaMisc1
+{
+    real eps = 1e-10;
+    real einter = -1.7649529782005535E+00;
+    real em = -1.7649529782005535E+00;
+    int nem = 9;
+    std::vector<real> aem = {
+        1.4468978968337352E+00,
+       -6.9269443898060867E-01,
+       -1.6366799469534032E+00,
+       -2.1250014998236111E+00,
+        6.2091892304014173E-01,
+        6.2160608768319259E-01,
+    };
+}
+
+namespace amoebaMisc2
 {
     real eps = 1e-10;
     real einter = -5.5415386409028713E+00;
@@ -20,7 +36,7 @@ namespace amoeba1
     };
 }
 
-namespace amoeba2
+namespace amoebaMisc3
 {
     real eps1 = 1e-10;
     real eps2 = 1e-8;

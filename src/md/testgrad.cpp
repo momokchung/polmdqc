@@ -15,6 +15,7 @@
 #include "mechanic.h"
 #include "nextarg.h"
 #include "output.h"
+#include "readcart.cpp"
 #include "readxyz.h"
 #include "suffix.h"
 #include "upcase.h"
@@ -35,6 +36,8 @@ namespace polmdqc
 // gradient vectors of the potential energy function with respect
 // to Cartesian coordinates
 
+void resizeNumDer();
+
 void testgrad(int argc, char** argv)
 {
     constexpr CalcMode EnergyMode = CalcMode::Energy;
@@ -42,6 +45,7 @@ void testgrad(int argc, char** argv)
 
     // integer i,j,ixyz
     int next,frame;
+    int nold;
     int numSpaces;
     int width;
     int precision;
@@ -55,8 +59,10 @@ void testgrad(int argc, char** argv)
     real totnorm,ntotnorm,rms,nrms;
     std::vector<real> denorm;
     std::vector<real> ndenorm;
+    std::vector<real> told;
     bool exist,query;
     bool doanalyt,donumer,dofull;
+    bool first;
     // character*1 axis(3)
     std::string answer;
     std::string xyzfile,record,string;
@@ -150,35 +156,7 @@ void testgrad(int argc, char** argv)
     denorm.resize(n);
     if (donumer) {
         ndenorm.resize(n);
-        ndesum.resize(n, std::vector<real>(3));
-        ndeb.resize(n, std::vector<real>(3));
-        ndea.resize(n, std::vector<real>(3));
-        ndeba.resize(n, std::vector<real>(3));
-        ndeub.resize(n, std::vector<real>(3));
-        ndeaa.resize(n, std::vector<real>(3));
-        ndeopb.resize(n, std::vector<real>(3));
-        ndeopd.resize(n, std::vector<real>(3));
-        ndeid.resize(n, std::vector<real>(3));
-        ndeit.resize(n, std::vector<real>(3));
-        ndet.resize(n, std::vector<real>(3));
-        ndept.resize(n, std::vector<real>(3));
-        ndebt.resize(n, std::vector<real>(3));
-        ndeat.resize(n, std::vector<real>(3));
-        ndett.resize(n, std::vector<real>(3));
-        ndev.resize(n, std::vector<real>(3));
-        nder.resize(n, std::vector<real>(3));
-        ndedsp.resize(n, std::vector<real>(3));
-        ndec.resize(n, std::vector<real>(3));
-        ndecd.resize(n, std::vector<real>(3));
-        nded.resize(n, std::vector<real>(3));
-        ndem.resize(n, std::vector<real>(3));
-        ndep.resize(n, std::vector<real>(3));
-        ndect.resize(n, std::vector<real>(3));
-        nderxf.resize(n, std::vector<real>(3));
-        ndes.resize(n, std::vector<real>(3));
-        ndelf.resize(n, std::vector<real>(3));
-        ndeg.resize(n, std::vector<real>(3));
-        ndex.resize(n, std::vector<real>(3));
+        resizeNumDer();
     }
 
     // perform analysis for each successive coordinate structure
@@ -186,6 +164,22 @@ void testgrad(int argc, char** argv)
         frame++;
         if (frame > 1) {
             printf("\n Analysis for Archive Structure :        %8d\n", frame);
+            if (nold != n) {
+                mechanic();
+                denorm.resize(n);
+                if (donumer) {
+                    ndenorm.resize(n);
+                    resizeNumDer();
+                }
+            }
+            else {
+                for (int i = 0; i < n; i++) {
+                    if (type[i] != told[i]) {
+                        mechanic();
+                        break;                        
+                    }
+                }
+            }
         }
 
         // compute the analytical gradient components
@@ -589,10 +583,50 @@ void testgrad(int argc, char** argv)
         }
 
         // attempt to read next structure from the coordinate file
-        readxyz(ffile);
+        if (told.size() != n) {
+            told.resize(n);
+        }
+        nold = n;
+        for (int i = 0; i < nold; i++) {
+            told[i] = type[i];
+        }
+        first = false;
+        readcart(ffile,first);
     }
 
     // perform any final tasks before program exit
     ffile.close();
+}
+
+void resizeNumDer() {
+    ndesum.resize(n, std::vector<real>(3));
+    ndeb.resize(n, std::vector<real>(3));
+    ndea.resize(n, std::vector<real>(3));
+    ndeba.resize(n, std::vector<real>(3));
+    ndeub.resize(n, std::vector<real>(3));
+    ndeaa.resize(n, std::vector<real>(3));
+    ndeopb.resize(n, std::vector<real>(3));
+    ndeopd.resize(n, std::vector<real>(3));
+    ndeid.resize(n, std::vector<real>(3));
+    ndeit.resize(n, std::vector<real>(3));
+    ndet.resize(n, std::vector<real>(3));
+    ndept.resize(n, std::vector<real>(3));
+    ndebt.resize(n, std::vector<real>(3));
+    ndeat.resize(n, std::vector<real>(3));
+    ndett.resize(n, std::vector<real>(3));
+    ndev.resize(n, std::vector<real>(3));
+    nder.resize(n, std::vector<real>(3));
+    ndedsp.resize(n, std::vector<real>(3));
+    ndec.resize(n, std::vector<real>(3));
+    ndecd.resize(n, std::vector<real>(3));
+    nded.resize(n, std::vector<real>(3));
+    ndem.resize(n, std::vector<real>(3));
+    ndep.resize(n, std::vector<real>(3));
+    ndect.resize(n, std::vector<real>(3));
+    nderxf.resize(n, std::vector<real>(3));
+    ndes.resize(n, std::vector<real>(3));
+    ndelf.resize(n, std::vector<real>(3));
+    ndeg.resize(n, std::vector<real>(3));
+    ndex.resize(n, std::vector<real>(3));
 }
 }

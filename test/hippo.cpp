@@ -15,7 +15,7 @@ TEST_CASE("hippo-1", "[analyze][HIPPO][water21]") {
     int argc = 3;
     const char* strings[] = {
         "analyze",
-        "../../test/testFiles/water21/water21.xyz",
+        "../../test/testFiles/hippo/water21.xyz",
         "e",
     };
     char** argv = const_cast<char**>(strings);
@@ -32,7 +32,7 @@ TEST_CASE("hippo-2", "[testgrad][HIPPO][water21]") {
     int argc = 5;
     const char* strings[] = {
         "testgrad",
-        "../../test/testFiles/water21/water21.xyz",
+        "../../test/testFiles/hippo/water21.xyz",
         "Y",
         "Y",
         "1e-5",
@@ -41,6 +41,10 @@ TEST_CASE("hippo-2", "[testgrad][HIPPO][water21]") {
 
     testgrad(argc, argv);
 
-    COMPARE_MATRIX(desum, hippo2::desum, hippo2::eps);
+    COMPARE_MATRIX(desum, hippo2::desum, hippo2::eps1);
+    COMPARE_MATRIX(dem, hippo2::dem, hippo2::eps1);
+
+    COMPARE_MATRIX(ndesum, hippo2::desum, hippo2::eps2);
+    COMPARE_MATRIX(ndem, hippo2::dem, hippo2::eps2);
 }
 }

@@ -115,7 +115,6 @@ void analyze(int argc, char** argv)
     nlist = 40;
     list.resize(nlist);
     active.resize(n);
-    told.resize(n);
 
 // c
 // c     get the list of atoms for which output is desired
@@ -276,8 +275,7 @@ void analyze(int argc, char** argv)
 //          if (dosave)  call saveyze (frame)
 
         // attempt to read next structure from the coordinate file
-        if (told.size() < n) {
-            told.resize(0);
+        if (told.size() != n) {
             told.resize(n);
         }
         nold = n;
@@ -287,11 +285,6 @@ void analyze(int argc, char** argv)
         first = false;
         readcart(ffile,first);
     }
-
-    // perform deallocation of some local arrays
-    list.resize(0);
-    active.resize(0);
-    told.resize(0);
 
     // perform any final tasks before program exit
     ffile.close();

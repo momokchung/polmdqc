@@ -74,7 +74,7 @@ void energy()
     if constexpr (do_a) {
         // perform dynamic allocation of some global arrays
         if (aesum.size() != 0) {
-            if (aesum.size() < n) {
+            if (aesum.size() != n) {
                 aesum.resize(0);
                 aeb.resize(0);
                 aea.resize(0);
@@ -176,7 +176,7 @@ void energy()
     if constexpr (do_g) {
         // perform dynamic allocation of some global arrays
         if (desum.size() != 0) {
-            if (desum.size() < n) {
+            if (desum.size() != n) {
                 desum.resize(0);
                 deb.resize(0);
                 dea.resize(0);
