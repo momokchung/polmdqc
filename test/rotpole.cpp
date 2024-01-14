@@ -3,7 +3,7 @@
 #include "energi.h"
 #include "inter.h"
 #include "mpole.h"
-#include "readjson.h"
+#include "rotpole.h"
 #include "testrt.h"
 
 namespace polmdqc
@@ -18,22 +18,12 @@ TEST_CASE("rotpole-1", "[AMOEBA][axetyp]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    real einterTest = -4.0617143343279807;
-    real emTest = -4.0617143343279807;
-    real nemTest = 15;
-    real eps = 1e-13;
-    real epsR = 1e-16;
-
-    std::string axetypJson = "../../test/testFiles/rotpole/axetyp.json";
-
-    std::vector<std::vector<real>> refrpole = readMatrixFromJson(axetypJson);
-
     analyze(argc, argv);
 
-    COMPARE_MATRIX(refrpole, rpole, epsR);
-    COMPARE_REALS(einter, einterTest, eps);
-    COMPARE_REALS(em, emTest, eps);
-    REQUIRE(nem == nemTest);
+    COMPARE_MATRIX(rpole, rotpole1::rpole, rotpole1::epsR);
+    COMPARE_REALS(einter, rotpole1::einter, rotpole1::eps);
+    COMPARE_REALS(em, rotpole1::em, rotpole1::eps);
+    REQUIRE(nem == rotpole1::nem);
 }
 
 TEST_CASE("rotpole-2", "[AMOEBA][lysine_zbisect]") {
@@ -45,19 +35,11 @@ TEST_CASE("rotpole-2", "[AMOEBA][lysine_zbisect]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    real emTest = -68.364751107958028;
-    real nemTest = 207;
-    real eps = 1e-13;
-    real epsR = 1e-16;
-
-    std::string filename = "../../test/testFiles/rotpole/lysine_zbisect.json";
-    std::vector<real> refrpole = readVectorFromJson(filename);
-
     analyze(argc, argv);
 
-    COMPARE_VECTOR(refrpole, rpole[0], epsR);
-    COMPARE_REALS(em, emTest, eps);
-    REQUIRE(nem == nemTest);
+    COMPARE_VECTOR(rpole[0], rotpole2::rpole, rotpole2::epsR);
+    COMPARE_REALS(em, rotpole2::em, rotpole2::eps);
+    REQUIRE(nem == rotpole2::nem);
 }
 
 TEST_CASE("rotpole-3", "[AMOEBA][lysine_3fold]") {
@@ -69,18 +51,10 @@ TEST_CASE("rotpole-3", "[AMOEBA][lysine_3fold]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    real emTest = -68.399778638605881;
-    real nemTest = 207;
-    real eps = 1e-13;
-    real epsR = 1e-16;
-
-    std::string filename = "../../test/testFiles/rotpole/lysine_3fold.json";
-    std::vector<real> refrpole = readVectorFromJson(filename);
-
     analyze(argc, argv);
 
-    COMPARE_VECTOR(refrpole, rpole[0], epsR);
-    COMPARE_REALS(em, emTest, eps);
-    REQUIRE(nem == nemTest);
+    COMPARE_VECTOR(rpole[0], rotpole3::rpole, rotpole3::epsR);
+    COMPARE_REALS(em, rotpole3::em, rotpole3::eps);
+    REQUIRE(nem == rotpole3::nem);
 }
 }

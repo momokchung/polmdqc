@@ -102,7 +102,6 @@ src/qc/nuclear.cpp
 src/qc/nuclearRepulsion.cpp
 src/qc/overlap.cpp
 src/qc/print.cpp
-src/qc/readjson.cpp
 src/qc/stringUtils.cpp
 src/qc/tinkerqm.cpp
 )

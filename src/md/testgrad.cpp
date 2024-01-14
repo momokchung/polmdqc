@@ -16,8 +16,6 @@
 #include "nextarg.h"
 #include "output.h"
 #include "readcart.cpp"
-#include "readxyz.h"
-#include "suffix.h"
 #include "upcase.h"
 #include "usage.h"
 #include <iostream>
@@ -65,7 +63,7 @@ void testgrad(int argc, char** argv)
     bool first;
     // character*1 axis(3)
     std::string answer;
-    std::string xyzfile,record,string;
+    std::string record,string;
     std::istringstream iss;
     const char axis[] = {'X', 'Y', 'Z'};
 
@@ -135,23 +133,6 @@ void testgrad(int argc, char** argv)
         if (answer == "Y") dofull = true;
     }
 
-    // reopen the coordinates file and read the first structure
-    frame = 0;
-    ffile.close();
-    xyzfile = filename;
-    if (archive) {
-        suffix(xyzfile,"xyz","old");
-        ffile.open(xyzfile);
-        readxyz(ffile);
-    }
-    else if (binary) {
-        // call suffix (xyzfile,'dcd','old')
-        // open (unit=ixyz,file=xyzfile,form='unformatted',status ='old')
-        // rewind (unit=ixyz)
-        // first = true
-        // call readdcd (ixyz,first)
-    }
-
     // perform dynamic allocation of some local arrays
     denorm.resize(n);
     if (donumer) {
@@ -160,6 +141,7 @@ void testgrad(int argc, char** argv)
     }
 
     // perform analysis for each successive coordinate structure
+    frame = 0;
     while (!informAbort) {
         frame++;
         if (frame > 1) {

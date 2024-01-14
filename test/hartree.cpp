@@ -1,7 +1,7 @@
+#include "hartree.h"
 #include "kinetic.h"
 #include "nuclear.h"
 #include "overlap.h"
-#include "readjson.h"
 #include "testrt.h"
 #include "tinkerqm.h"
 
@@ -15,20 +15,9 @@ TEST_CASE("tinkerqm-1", "[HartreeFock][water_3-21g]") {
 
     tinkerqm(argc, argv);
 
-    std::string overlapJson = "../../test/testFiles/water_3-21g/overlap.json";
-    std::string kineticJson = "../../test/testFiles/water_3-21g/kinetic.json";
-    std::string nuclearJson = "../../test/testFiles/water_3-21g/nuclear.json";
-
-    std::vector<std::vector<double>> refcartS = readMatrixFromJson(overlapJson);
-    std::vector<std::vector<double>> refcartKE = readMatrixFromJson(kineticJson);
-    std::vector<std::vector<double>> refcartNE = readMatrixFromJson(nuclearJson);
-
-    double epsS = 1e-15;
-    double epsKE = 1e-14;
-    double epsNE = 1e-13;
-    COMPARE_MATRIX(refcartS, overlap::cartS, epsS);
-    COMPARE_MATRIX(refcartKE, kinetic::cartKE, epsKE);
-    COMPARE_MATRIX(refcartNE, nuclear::cartNE, epsNE);
+    COMPARE_MATRIX(overlap::cartS, hartree1::cartS, hartree1::epsS);
+    COMPARE_MATRIX(kinetic::cartKE, hartree1::cartKE, hartree1::epsKE);
+    COMPARE_MATRIX(nuclear::cartNE, hartree1::cartNE, hartree1::epsNE);
 }
 
 TEST_CASE("tinkerqm-2", "[HartreeFock][water_aug-cc-pvtz]") {
@@ -41,18 +30,7 @@ TEST_CASE("tinkerqm-2", "[HartreeFock][water_aug-cc-pvtz]") {
 
     tinkerqm(argc, argv);
 
-    std::string overlapJson = "../../test/testFiles/water_aug-cc-pvtz/overlap.json";
-    std::string kineticJson = "../../test/testFiles/water_aug-cc-pvtz/kinetic.json";
-    std::string nuclearJson = "../../test/testFiles/water_aug-cc-pvtz/nuclear.json";
-
-    std::vector<std::vector<double>> refsphS = readMatrixFromJson(overlapJson);
-    std::vector<std::vector<double>> refsphKE = readMatrixFromJson(kineticJson);
-    std::vector<std::vector<double>> refsphNE = readMatrixFromJson(nuclearJson);
-
-    double epsS = 1e-14;
-    double epsKE = 1e-13;
-    double epsNE = 1e-13;
-    COMPARE_MATRIX(refsphS, overlap::sphS, epsS);
-    COMPARE_MATRIX(refsphKE, kinetic::sphKE, epsKE);
-    COMPARE_MATRIX(refsphNE, nuclear::sphNE, epsNE);
+    COMPARE_MATRIX(overlap::sphS, hartree2::sphS, hartree2::epsS);
+    COMPARE_MATRIX(kinetic::sphKE, hartree2::sphKE, hartree2::epsKE);
+    COMPARE_MATRIX(nuclear::sphNE, hartree2::sphNE, hartree2::epsNE);
 }

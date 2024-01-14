@@ -14,8 +14,6 @@
 #include "output.h"
 #include "partyze.h"
 #include "readcart.h"
-#include "readxyz.h"
-#include "suffix.h"
 #include "trimtext.h"
 #include "upcase.h"
 #include <iostream>
@@ -55,9 +53,7 @@ void analyze(int argc, char** argv)
     bool exist,first;
     std::vector<bool> active;
     char letter;
-    std::string record;
-    std::string string;
-    std::string xyzfile;
+    std::string record,string;
 
     // set up the structure and mechanics calculation
     initial(argc, argv);
@@ -181,22 +177,6 @@ void analyze(int argc, char** argv)
         debug = false;
     }
 
-    // reopen the coordinates file and read the first structure
-    frame = 0;
-    ffile.close();
-    xyzfile = filename;
-    if (archive) {
-        suffix(xyzfile,"xyz","old");
-        ffile.open(xyzfile);
-        readxyz(ffile);
-    }
-    else if (binary) {
-        // call suffix (xyzfile,'dcd','old')
-        // open (unit=ixyz,file=xyzfile,form='unformatted',status ='old')
-        // rewind (unit=ixyz)
-        // first = true
-        // call readdcd (ixyz,first)
-    }
 // c
 // c     get parameters used for molecular mechanics potentials
 // c
@@ -215,6 +195,7 @@ void analyze(int argc, char** argv)
     if (dosystem or doenergy or doatom or dolarge or domoment or dovirial or dosave) informAbort = false;
 
     // perform analysis for each successive coordinate structure
+    frame = 0;
     while (!informAbort) {
         frame++;
         if (frame > 1) {
