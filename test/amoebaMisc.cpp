@@ -12,6 +12,7 @@
 namespace polmdqc
 {
 TEST_CASE("amoebaMisc-1", "[analyze][AMOEBA][water09]") {
+    // tests ability to find water09.xyz_2 if input is just water09
     int argc = 3;
     const char* strings[] = {
         "analyze",
@@ -22,9 +23,13 @@ TEST_CASE("amoebaMisc-1", "[analyze][AMOEBA][water09]") {
 
     analyze(argc, argv);
 
-    COMPARE_REALS(einter, amoebaMisc1::einter, amoebaMisc1::eps);
-    COMPARE_REALS(em, amoebaMisc1::em, amoebaMisc1::eps);
     REQUIRE(nem == amoebaMisc1::nem);
+
+    COMPARE_REALS(einter, amoebaMisc1::einter, amoebaMisc1::eps);
+    COMPARE_REALS(esum, amoebaMisc1::esum, amoebaMisc1::eps);
+    COMPARE_REALS(em, amoebaMisc1::em, amoebaMisc1::eps);
+
+    COMPARE_VECTOR(aesum, amoebaMisc1::aesum, amoebaMisc1::eps);
     COMPARE_VECTOR(aem, amoebaMisc1::aem, amoebaMisc1::eps);
 }
 
@@ -40,9 +45,13 @@ TEST_CASE("amoebaMisc-2", "[analyze][AMOEBA][alatet_water09]") {
 
     analyze(argc, argv);
 
-    COMPARE_REALS(einter, amoebaMisc2::einter, amoebaMisc2::eps);
-    COMPARE_REALS(em, amoebaMisc2::em, amoebaMisc2::eps);
     REQUIRE(nem == amoebaMisc2::nem);
+
+    COMPARE_REALS(einter, amoebaMisc2::einter, amoebaMisc2::eps);
+    COMPARE_REALS(esum, amoebaMisc2::esum, amoebaMisc2::eps);
+    COMPARE_REALS(em, amoebaMisc2::em, amoebaMisc2::eps);
+
+    COMPARE_VECTOR(aesum, amoebaMisc2::aesum, amoebaMisc2::eps);
     COMPARE_VECTOR(aem, amoebaMisc2::aem, amoebaMisc2::eps);
 }
 

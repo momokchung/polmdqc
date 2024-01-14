@@ -22,9 +22,13 @@ TEST_CASE("amoebap-1", "[analyze][AMOEBAPLUS][waterap]") {
 
     analyze(argc, argv);
 
-    COMPARE_REALS(einter, amoebap1::einter, amoebap1::eps);
-    COMPARE_REALS(em, amoebap1::em, amoebap1::eps);
     REQUIRE(nem == amoebap1::nem);
+
+    COMPARE_REALS(einter, amoebap1::einter, amoebap1::eps);
+    COMPARE_REALS(esum, amoebap1::esum, amoebap1::eps);
+    COMPARE_REALS(em, amoebap1::em, amoebap1::eps);
+
+    COMPARE_VECTOR(aesum, amoebap1::aesum, amoebap1::eps);
     COMPARE_VECTOR(aem, amoebap1::aem, amoebap1::eps);
 }
 

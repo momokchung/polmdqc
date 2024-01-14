@@ -22,9 +22,13 @@ TEST_CASE("amoeba-1", "[analyze][AMOEBA][water09]") {
 
     analyze(argc, argv);
 
-    COMPARE_REALS(einter, amoeba1::einter, amoeba1::eps);
-    COMPARE_REALS(em, amoeba1::em, amoeba1::eps);
     REQUIRE(nem == amoeba1::nem);
+
+    COMPARE_REALS(einter, amoeba1::einter, amoeba1::eps);
+    COMPARE_REALS(esum, amoeba1::esum, amoeba1::eps);
+    COMPARE_REALS(em, amoeba1::em, amoeba1::eps);
+
+    COMPARE_VECTOR(aesum, amoeba1::aesum, amoeba1::eps);
     COMPARE_VECTOR(aem, amoeba1::aem, amoeba1::eps);
 }
 

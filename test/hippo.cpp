@@ -22,9 +22,13 @@ TEST_CASE("hippo-1", "[analyze][HIPPO][water21]") {
 
     analyze(argc, argv);
 
-    COMPARE_REALS(einter, hippo1::einter, hippo1::eps);
-    COMPARE_REALS(em, hippo1::em, hippo1::eps);
     REQUIRE(nem == hippo1::nem);
+
+    COMPARE_REALS(einter, hippo1::einter, hippo1::eps);
+    COMPARE_REALS(esum, hippo1::esum, hippo1::eps);
+    COMPARE_REALS(em, hippo1::em, hippo1::eps);
+
+    COMPARE_VECTOR(aesum, hippo1::aesum, hippo1::eps);
     COMPARE_VECTOR(aem, hippo1::aem, hippo1::eps);
 }
 
