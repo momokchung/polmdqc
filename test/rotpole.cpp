@@ -11,7 +11,7 @@
 
 namespace polmdqc
 {
-TEST_CASE("rotpole-1", "[AMOEBA][axetyp]") {
+TEST_CASE("rotpole-1", "[analyze][AMOEBA][axetyp]") {
     // Tests None, Bisector, and Z-then-X
     int argc = 3;
     const char* strings[] = {
@@ -35,7 +35,7 @@ TEST_CASE("rotpole-1", "[AMOEBA][axetyp]") {
     COMPARE_MATRIX(rpole, rotpole1::rpole, rotpole1::epsR);
 }
 
-TEST_CASE("rotpole-2", "[HIPPO][benzene_ethyne_water]") {
+TEST_CASE("rotpole-2", "[analyze][HIPPO][benzene_ethyne_water]") {
     // Tests Z-Only
     int argc = 3;
     const char* strings[] = {
@@ -59,7 +59,7 @@ TEST_CASE("rotpole-2", "[HIPPO][benzene_ethyne_water]") {
     COMPARE_MATRIX(rpole, rotpole2::rpole, rotpole2::epsR);
 }
 
-TEST_CASE("rotpole-3", "[HIPPO][ammonia]") {
+TEST_CASE("rotpole-3", "[analyze][HIPPO][ammonia]") {
     // Tests Z-Bisect and 3-Fold
     int argc = 3;
     const char* strings[] = {
@@ -81,5 +81,68 @@ TEST_CASE("rotpole-3", "[HIPPO][ammonia]") {
     COMPARE_VECTOR(aem, rotpole3::aem, rotpole3::eps);
 
     COMPARE_MATRIX(rpole, rotpole3::rpole, rotpole3::epsR);
+}
+
+TEST_CASE("rotpole-4", "[testgrad][AMOEBA][axetyp]") {
+    // Tests None, Bisector, and Z-then-X
+    int argc = 5;
+    const char* strings[] = {
+        "testgrad",
+        "../../test/testFiles/rotpole/water09_Na.xyz",
+        "Y",
+        "Y",
+        "1e-5",
+    };
+    char** argv = const_cast<char**>(strings);
+
+    testgrad(argc, argv);
+
+    COMPARE_MATRIX(desum, rotpole4::desum, rotpole4::eps1);
+    COMPARE_MATRIX(dem, rotpole4::dem, rotpole4::eps1);
+
+    COMPARE_MATRIX(ndesum, rotpole4::desum, rotpole4::eps2);
+    COMPARE_MATRIX(ndem, rotpole4::dem, rotpole4::eps2);
+}
+
+TEST_CASE("rotpole-5", "[testgrad][HIPPO][benzene_ethyne_water]") {
+    // Tests Z-Only
+    int argc = 5;
+    const char* strings[] = {
+        "testgrad",
+        "../../test/testFiles/rotpole/benzene_ethyne_water.xyz",
+        "Y",
+        "Y",
+        "1e-5",
+    };
+    char** argv = const_cast<char**>(strings);
+
+    testgrad(argc, argv);
+
+    COMPARE_MATRIX(desum, rotpole5::desum, rotpole5::eps1);
+    COMPARE_MATRIX(dem, rotpole5::dem, rotpole5::eps1);
+
+    COMPARE_MATRIX(ndesum, rotpole5::desum, rotpole5::eps2);
+    COMPARE_MATRIX(ndem, rotpole5::dem, rotpole5::eps2);
+}
+
+TEST_CASE("rotpole-6", "[analyze][HIPPO][ammonia]") {
+    // Tests Z-Bisect and 3-Fold
+    int argc = 5;
+    const char* strings[] = {
+        "testgrad",
+        "../../test/testFiles/rotpole/ammonia.xyz",
+        "Y",
+        "Y",
+        "1e-5",
+    };
+    char** argv = const_cast<char**>(strings);
+
+    testgrad(argc, argv);
+
+    COMPARE_MATRIX(desum, rotpole6::desum, rotpole6::eps1);
+    COMPARE_MATRIX(dem, rotpole6::dem, rotpole6::eps1);
+
+    COMPARE_MATRIX(ndesum, rotpole6::desum, rotpole6::eps2);
+    COMPARE_MATRIX(ndem, rotpole6::dem, rotpole6::eps2);
 }
 }
