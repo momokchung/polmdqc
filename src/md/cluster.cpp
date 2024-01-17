@@ -132,7 +132,7 @@ void cluster()
             iss.clear();
             iss.str(string);
             iss >> ga >> gb >> wg;
-            if (wg < 0.)  wg = 1.;
+            if (wg < 0.) wg = 1.;
             wgrp[gb][ga] = wg;
             wgrp[ga][gb] = wg;
             use_inter = false;

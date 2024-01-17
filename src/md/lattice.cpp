@@ -29,12 +29,12 @@ void lattice()
 
     // set unspecified periodic boundary box lengths and angles
     if (use_bounds) {
-        if (xbox == 0.)  xbox = boxmax;
-        if (ybox == 0.)  ybox = boxmax;
-        if (zbox == 0.)  zbox = boxmax;
-        if (alphaA == 0.)  alphaA = 90.;
-        if (betaA == 0.)  betaA = 90.;
-        if (gammaA == 0.)  gammaA = 90.;
+        if (xbox == 0.) xbox = boxmax;
+        if (ybox == 0.) ybox = boxmax;
+        if (zbox == 0.) zbox = boxmax;
+        if (alphaA == 0.) alphaA = 90.;
+        if (betaA == 0.) betaA = 90.;
+        if (gammaA == 0.) gammaA = 90.;
 
         // determine the general periodic boundary lattice type
         orthogonal = false;
@@ -66,7 +66,7 @@ void lattice()
     xbox2 = 0.5 * xbox;
     ybox2 = 0.5 * ybox;
     zbox2 = 0.5 * zbox;
-    if (octahedron)  box34 = 0.75 * xbox;
+    if (octahedron) box34 = 0.75 * xbox;
 
     // set replicated cell dimensions equal to the unit cell
     xcell = xbox;
@@ -154,6 +154,6 @@ void lattice()
     }
 
     // correct volume of non-parallelepiped periodic cells
-    if (nonprism)  volbox = 0.5 * volbox;
+    if (nonprism) volbox = 0.5 * volbox;
 }
 }

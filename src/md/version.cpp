@@ -29,8 +29,8 @@ void version(std::string& string, std::string status)
 
     // no change is needed if the file doesn't exist
     bool exist = false;
-    if (leng != 0)  exist = inquireFile(string);
-    if (!exist)  return;
+    if (leng != 0) exist = inquireFile(string);
+    if (!exist) return;
 
     // set initial values for the current and next versions
     std::string newfile = string;

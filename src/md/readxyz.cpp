@@ -203,7 +203,7 @@ void readxyz(std::ifstream& ffile)
     reorder = false;
     for (int i = 0; i < n; i++) {
         list[tag[i]] = i;
-        if (tag[i] != i)  reorder = true;
+        if (tag[i] != i) reorder = true;
     }
     if (reorder) {
         printf("\n READXYZ  --  Atom Labels not Sequential, Attempting to Renumber\n");
@@ -225,7 +225,7 @@ void readxyz(std::ifstream& ffile)
         for (int j = 0; j < n12[i]; j++) {
             int k = i12[i][j];
             for (int m = 0; m < n12[k]; m++) {
-                if (i12[k][m] == i)  goto label_130;
+                if (i12[k][m] == i) goto label_130;
             }
             printf("\n READXYZ  --  Check Connection of Atoms%9d and%9d\n", k+1, i+1);
             fatal();

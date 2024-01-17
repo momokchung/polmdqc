@@ -193,7 +193,7 @@ void readprm()
             getnumb(record,cls,next);
             ia--;
             cls--;
-            if (cls == -1)  cls = ia;
+            if (cls == -1) cls = ia;
             atmcls[ia] = cls;
             if (ia >= maxtyp) {
                 printf("\n READPRM  --  Too many Atom Types; Increase MAXTYP\n");
@@ -1062,7 +1062,7 @@ void readprm()
             cg = 0.;
             iss >> ia >> cg;
             ia--;
-            if (ia != -1)  chg[ia] = cg;
+            if (ia != -1) chg[ia] = cg;
         }
 
         // bond dipole moment parameters
@@ -1534,7 +1534,7 @@ void readprm()
                 printf("\n READPRM  --  Too many Biopolymer Types; Increase MAXBIO\n");
                 fatal();
             }
-            if (ia > -1)  biotyp[ia] = ib;
+            if (ia > -1) biotyp[ia] = ib;
         }
 
         // MMFF atom class equivalency parameters
@@ -1649,7 +1649,7 @@ void readprm()
 //             an1 = 0.0d0
 //             at = 3
 //             string = record(next:240)
-//             read (string,*,err=680,end=680)  ia,ib,ic,fc,an1,at
+//             read (string,*,err=680,end=680) ia,ib,ic,fc,an1,at
 //   680       continue
 //             na = na + 1
 //             if (an1 .ne. 0.0d0) then
@@ -1711,69 +1711,69 @@ void readprm()
 //             cba = 0.0d0
 //             sbt = 4
 //             string = record(next:240)
-//             read (string,*,err=690,end=690)  ia,ib,ic,abc,cba,sbt
+//             read (string,*,err=690,end=690) ia,ib,ic,abc,cba,sbt
 //   690       continue
 //             if (ia .ne. 0) then
 //                if (sbt .eq. 0) then
 //                   stbn_abc(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc(ic,ib,ia) = cba
 //                   stbn_cba(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba(ic,ib,ia) = abc
 //                else if (sbt .eq. 1) then
 //                   stbn_abc1(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc1(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc1(ic,ib,ia) = cba
 //                   stbn_cba1(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba1(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba1(ic,ib,ia) = abc
 //                else if (sbt .eq. 2) then
 //                   stbn_abc2(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc2(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc2(ic,ib,ia) = cba
 //                   stbn_cba2(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba2(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba2(ic,ib,ia) = abc
 //                else if (sbt .eq. 3) then
 //                   stbn_abc3(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc3(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc3(ic,ib,ia) = cba
 //                   stbn_cba3(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba3(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba3(ic,ib,ia) = abc
 //                else if (sbt .eq. 4) then
 //                   stbn_abc4(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc4(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc4(ic,ib,ia) = cba
 //                   stbn_cba4(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba4(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba4(ic,ib,ia) = abc
 //                else if (sbt .eq. 5) then
 //                   stbn_abc5(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc5(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc5(ic,ib,ia) = cba
 //                   stbn_cba5(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba5(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba5(ic,ib,ia) = abc
 //                else if (sbt .eq. 6) then
 //                   stbn_abc6(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc6(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc6(ic,ib,ia) = cba
 //                   stbn_cba6(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba6(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba6(ic,ib,ia) = abc
 //                else if (sbt .eq. 7) then
 //                   stbn_abc7(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc7(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc7(ic,ib,ia) = cba
 //                   stbn_cba7(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba7(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba7(ic,ib,ia) = abc
 //                else if (sbt .eq. 8) then
 //                   stbn_abc8(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc8(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc8(ic,ib,ia) = cba
 //                   stbn_cba8(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba8(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba8(ic,ib,ia) = abc
 //                else if (sbt .eq. 9) then
 //                   stbn_abc9(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc9(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc9(ic,ib,ia) = cba
 //                   stbn_cba9(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba9(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba9(ic,ib,ia) = abc
 //                else if (sbt .eq. 10) then
 //                   stbn_abc10(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc10(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc10(ic,ib,ia) = cba
 //                   stbn_cba10(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba10(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba10(ic,ib,ia) = abc
 //                else if (sbt .eq. 11) then
 //                   stbn_abc11(ia,ib,ic) = abc
-//                   if (ic .ne. ia)  stbn_abc11(ic,ib,ia) = cba
+//                   if (ic .ne. ia) stbn_abc11(ic,ib,ia) = cba
 //                   stbn_cba11(ia,ib,ic) = cba
-//                   if (ic .ne. ia)  stbn_cba11(ic,ib,ia) = abc
+//                   if (ic .ne. ia) stbn_cba11(ic,ib,ia) = abc
 //                end if
 //             end if
 // c
@@ -1786,7 +1786,7 @@ void readprm()
 //             ic = 1000
 //             abc = 0.0d0
 //             cba = 0.0d0
-//             read (string,*,err=700,end=700)  ia,ib,ic,abc,cba
+//             read (string,*,err=700,end=700) ia,ib,ic,abc,cba
 //   700       continue
 //             defstbn_abc(ia,ib,ic) = abc
 //             defstbn_cba(ia,ib,ic) = cba
@@ -1802,7 +1802,7 @@ void readprm()
 //             id = 0
 //             fc = 0.0d0
 //             string = record(next:240)
-//             read (string,*,err=710,end=710)  ia,ib,ic,id,fc
+//             read (string,*,err=710,end=710) ia,ib,ic,id,fc
 //   710       continue
 //             call numeral (ia,pa,size)
 //             call numeral (ib,pb,size)
@@ -1846,7 +1846,7 @@ void readprm()
 //             end do
 //             tt = 3
 //             string = record(next:240)
-//             read (string,*,err=720,end=720)  ia,ib,ic,id,(vt(j),
+//             read (string,*,err=720,end=720) ia,ib,ic,id,(vt(j),
 //      &                                       st(j),ft(j),j=1,3),tt
 //   720       continue
 //             call numeral (ia,pa,size)
@@ -1952,7 +1952,7 @@ void readprm()
 //             rdn = 0.0d0
 //             da1 = 'C'
 //             string = record(next:240)
-//             read (string,*,err=730,end=730)  ia,rd,alphi,nni,gi,da1
+//             read (string,*,err=730,end=730) ia,rd,alphi,nni,gi,da1
 //   730       continue
 //             if (ia .ne. 0) then
 //                rad(ia) = rd
@@ -1970,7 +1970,7 @@ void readprm()
 //             cg = 1000.0d0
 //             bt = 2
 //             string = record(next:240)
-//             read (string,*,err=740,end=740)  ia,ib,cg,bt
+//             read (string,*,err=740,end=740) ia,ib,cg,bt
 //   740       continue
 //             if (ia .ne. 0) then
 //                if (bt .eq. 0) then
@@ -1987,7 +1987,7 @@ void readprm()
 //         else if (keyword == "MMFFPBCI") then
 //             ia = 0
 //             string = record(next:240)
-//             read (string,*,err=750,end=750)  ia,cg,factor
+//             read (string,*,err=750,end=750) ia,cg,factor
 //   750       continue
 //             if (ia .ne. 0) then
 //                pbci(ia) = cg
@@ -1998,7 +1998,7 @@ void readprm()
 // c
 //         else if (keyword == "MMFFAROM") then
 //             string = record(next:240)
-//             read (string,*,err=760,end=760)  ia,ib,ic,id,ie,if
+//             read (string,*,err=760,end=760) ia,ib,ic,id,ie,if
 //   760       continue
 //             if (ie.eq.0 .and. id.eq.0) then
 //                mmffarom(ia,if) = ic

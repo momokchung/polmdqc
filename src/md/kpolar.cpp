@@ -53,7 +53,7 @@ namespace polmdqc
 // Conjugate Gradient (TCG), a Non-Iterative/Fixed-Cost Strategy for
 // Computing Polarization in Molecular Dynamics: Fast Evaluation of
 // Analytical Forces", Journal of Chemical Physics, 147, 161724
-// (2018)  [TCG method]
+// (2018) [TCG method]
 
 void kpolar()
 {
@@ -89,7 +89,7 @@ void kpolar()
     tcgorder = 0;
     tcgguess = true;
     tcgpeek = 1.;
-    if (poltyp == "TCG")  poltyp = "TCG2";
+    if (poltyp == "TCG") poltyp = "TCG2";
     if (poltyp == "TCG0") {
         poltyp = "DIRECT";
     }
@@ -110,7 +110,7 @@ void kpolar()
 
     // set defaults for OPT induced dipole coefficients
     optorder = 0;
-    if (poltyp == "OPT")  poltyp = "OPT4";
+    if (poltyp == "OPT") poltyp = "OPT4";
     if (poltyp == "OPT1") {
         copt[0] = 0.530;
         copt[1] = 0.604;
@@ -505,7 +505,7 @@ void kpolar()
         j = jpolar[i];
         if (rlist[j] == -1) {
             for (int k = 0; k < nlist; k++) {
-                if (list[k] == j)  rlist[j] = k;
+                if (list[k] == j) rlist[j] = k;
             }
         }
     }
@@ -655,7 +655,7 @@ void polargrp()
                 jt = type[jj];
                 for (int k = 0; k < maxval; k++) {
                     kk = pgrp[it][k];
-                    if (kk == -1)  goto label_20;
+                    if (kk == -1) goto label_20;
                     if (pgrp[it][k] == jt) {
                         if (np11[i] < maxp11) {
                             ip11[i][np11[i]] = jj;
@@ -680,7 +680,7 @@ void polargrp()
         for (int j = 0; j < np11[i]; j++) {
             k = ip11[i][j];
             for (int m = 0; m < np11[k]; m++) {
-                if (ip11[k][m] == i)  goto label_50;
+                if (ip11[k][m] == i) goto label_50;
             }
             printf("\n POLARGRP  --  Check Polarization Groups for Atoms%9d and%9d\n", std::min(i,k)+1, std::max(i,k)+1);
             qcmdAbort = true;

@@ -67,11 +67,11 @@ void kewald()
     };
 
     // return if Ewald summation is not being used
-    if (!use_ewald and !use_dewald)  return;
+    if (!use_ewald and !use_dewald) return;
 
     // set default values for Ewald options and parameters
     ffttyp = "FFTPACK";
-    if (nthread > 1)  ffttyp = "FFTW";
+    if (nthread > 1) ffttyp = "FFTW";
     boundary = "TINFOIL";
     bseorder = 5;
     bsporder = 5;

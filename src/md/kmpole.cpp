@@ -68,7 +68,7 @@ void kmpole()
     blank = "";
     nmp = maxnmp;
     for (int i = maxnmp-1; i >=0; i--) {
-        if (kmp[i] == blank)  nmp = i;
+        if (kmp[i] == blank) nmp = i;
     }
 
     // find and count new multipole parameters in the keyfile
@@ -482,7 +482,7 @@ void kmpole()
             }
             if (k<0 and k>=-n) {
                 k = -k;
-                if (kz == 0)  axt = "None";
+                if (kz == 0) axt = "None";
                 if (kz!=0 and kx==0) axt = "Z-Only";
                 if (kz<0 or kx<0) axt = "Bisector";
                 if (kx<0 and ky<0) axt = "Z-Bisect";
@@ -557,7 +557,7 @@ void kmpole()
     for (int i = 0; i < n; i++) {
         size = 0;
         for (int k = 0; k < maxpole; k++) {
-            if (pole[i][k] != 0.)  size = std::max(k+1,size);
+            if (pole[i][k] != 0.) size = std::max(k+1,size);
         }
         if (size > 4) size = 13;
         else if (size > 1) size = 4;
@@ -697,7 +697,7 @@ void kmpole()
                 pollist[i] = npole;
                 npole++;
                 mono0[i] = pole[i][0];
-                if (palpha[i] != 0.)  ncp++;
+                if (palpha[i] != 0.) ncp++;
             }
         }
     }
@@ -706,8 +706,8 @@ void kmpole()
     if (use_mpole and !use_polar and !use_chgtrn) chkpole();
 
     // turn off atomic multipole potentials if not used
-    if (npole == 0)  use_mpole = false;
-    if (ncp != 0)  use_chgpen = true;
+    if (npole == 0) use_mpole = false;
+    if (ncp != 0) use_chgpen = true;
 
     // set penetration type
     if (!use_chgpen) {

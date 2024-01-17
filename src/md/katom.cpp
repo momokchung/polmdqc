@@ -67,7 +67,7 @@ void katom()
             getnumb(record,k,next);
             if (k>0 and k<=maxtyp) {
                 getnumb(record,cls,next);
-                if (cls == 0)  cls = k;
+                if (cls == 0) cls = k;
                 int km = k-1;
                 int clsm = cls-1;
                 atmcls[km] = clsm;
@@ -110,7 +110,7 @@ void katom()
             story[i] = "Undefined Atom Type";
         }
         else {
-            if (symbol[k] != "")  name[i] = symbol[k];
+            if (symbol[k] != "") name[i] = symbol[k];
             atomClass[i] = atmcls[k];
             atomic[i] = atmnum[k];
             mass[i] = weight[k];
@@ -212,7 +212,7 @@ void katom()
                     printf("               Atomic    Mass   Valence\n\n");
                 }
                 k = -k;
-                if (cls == 0)  cls = k;
+                if (cls == 0) cls = k;
                 int km = k-1;
                 int clsm = cls-1;
                 atomClass[k] = clsm;

@@ -109,7 +109,7 @@
 //             (igc==gmin or igc==gmax) and
 //             (igd==gmin or igd==gmax) and
 //             (ige==gmin or ige==gmax) and
-//             (igg==gmin or igg==gmax))  weigh = wgrp[gmax][gmin];
+//             (igg==gmin or igg==gmax)) weigh = wgrp[gmax][gmin];
 //     }
 
 //     // interaction will be used if its group has nonzero weight

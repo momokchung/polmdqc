@@ -169,7 +169,7 @@ void ksolv()
         }
         else if (keyword == "DIELECTRIC-OFFSET") {
             if (!(iss >> doffset)) break;
-            if (doffset < 0.)  doffset = -doffset;
+            if (doffset < 0.) doffset = -doffset;
         }
     }
 
@@ -259,11 +259,11 @@ void ksolv()
 // 
 // L. Wesson and D. Eisenberg, "Atomic Solvation Parameters
 // Applied to Molecular Dynamics of Proteins in Solution",
-// Protein Science, 1, 227-235 (1992)  (Eisenberg-McLachlan ASP)
+// Protein Science, 1, 227-235 (1992) (Eisenberg-McLachlan ASP)
 // 
 // T. Ooi, M. Oobatake, G. Nemethy and H. A. Scheraga, "Accessible
 // Surface Areas as a Measure of the Thermodynamic Parameters of
-// Hydration of Peptides", PNAS, 84, 3086-3090 (1987)  (SASA)
+// Hydration of Peptides", PNAS, 84, 3086-3090 (1987) (SASA)
 
 void ksa()
 {
@@ -282,7 +282,7 @@ void ksa()
 // c
 // c     perform dynamic allocation of some global arrays
 // c
-//       if (allocated(asolv))  deallocate (asolv)
+//       if (allocated(asolv)) deallocate (asolv)
 //       allocate (asolv(n))
 // c
 // c     assign the Eisenberg-McLachlan ASP solvation parameters;
@@ -313,7 +313,7 @@ void ksa()
 //                }
 //                do j = 1, n12[i]
 //                   k = i12(j,i)
-//                   if (atomic[k] == 15)  asolv[i] = -0.14
+//                   if (atomic[k] == 15) asolv[i] = -0.14
 //                }
 //             else if (atmnum == 15) {
 //                rsolv[i] = 1.9
@@ -351,7 +351,7 @@ void ksa()
 //             else if (atmnum == 7) {
 //                rsolv[i] = 1.55
 //                asolv[i] = -0.132
-//                if (n12[i] == 4)  asolv[i] = -1.212
+//                if (n12[i] == 4) asolv[i] = -1.212
 //             else if (atmnum == 8) {
 //                rsolv[i] = 1.4
 //                if (n12[i] == 1) {
@@ -369,7 +369,7 @@ void ksa()
 //                }
 //                do j = 1, n12[i]
 //                   k = i12(j,i)
-//                   if (atomic[k] == 15)  asolv[i] = -0.717
+//                   if (atomic[k] == 15) asolv[i] = -0.717
 //                }
 //             else if (atmnum == 15) {
 //                rsolv[i] = 2.1
@@ -401,7 +401,7 @@ void ksa()
 // M. Schaefer, C. Bartels, F. Leclerc and M. Karplus, "Effective
 // Atom Volumes for Implicit Solvent Models: Comparison between
 // Voronoi Volumes and Minimum Fluctuations Volumes", Journal of
-// Computational Chemistry, 22, 1857-1879 (2001)  (ACE)
+// Computational Chemistry, 22, 1857-1879 (2001) (ACE)
 
 
 void kgb()
@@ -440,19 +440,19 @@ void kgb()
 // c
 // c     perform dynamic allocation of some global arrays
 // c
-//       if (.not. allocated(wace))  allocate (wace(maxclass,maxclass))
-//       if (.not. allocated(s2ace))  allocate (s2ace(maxclass,maxclass))
-//       if (.not. allocated(uace))  allocate (uace(maxclass,maxclass))
-//       if (allocated(asolv))  deallocate (asolv)
-//       if (allocated(rborn))  deallocate (rborn)
-//       if (allocated(drb))  deallocate (drb)
-//       if (allocated(drobc))  deallocate (drobc)
-//       if (allocated(gpol))  deallocate (gpol)
-//       if (allocated(shct))  deallocate (shct)
-//       if (allocated(aobc))  deallocate (aobc)
-//       if (allocated(bobc))  deallocate (bobc)
-//       if (allocated(gobc))  deallocate (gobc)
-//       if (allocated(vsolv))  deallocate (vsolv)
+//       if (.not. allocated(wace)) allocate (wace(maxclass,maxclass))
+//       if (.not. allocated(s2ace)) allocate (s2ace(maxclass,maxclass))
+//       if (.not. allocated(uace)) allocate (uace(maxclass,maxclass))
+//       if (allocated(asolv)) deallocate (asolv)
+//       if (allocated(rborn)) deallocate (rborn)
+//       if (allocated(drb)) deallocate (drb)
+//       if (allocated(drobc)) deallocate (drobc)
+//       if (allocated(gpol)) deallocate (gpol)
+//       if (allocated(shct)) deallocate (shct)
+//       if (allocated(aobc)) deallocate (aobc)
+//       if (allocated(bobc)) deallocate (bobc)
+//       if (allocated(gobc)) deallocate (gobc)
+//       if (allocated(vsolv)) deallocate (vsolv)
 //       allocate (asolv(n))
 //       allocate (rborn(n))
 //       allocate (drb(n))
@@ -472,8 +472,8 @@ void kgb()
 //          p3 = 6.211
 //          p4 = 15.236
 //          p5 = 1.254
-//          if (!use_bond)  call kbond
-//          if (!use_angle)  call kangle
+//          if (!use_bond) call kbond
+//          if (!use_angle) call kangle
 //       }
 // c
 // c     set overlap scale factors for HCT and OBC methods
@@ -482,14 +482,14 @@ void kgb()
 //          do i = 1, n
 //             shct[i] = 0.8
 //             atmnum = atomic[i]
-//             if (atmnum == 1)  shct[i] = 0.85
-//             if (atmnum == 6)  shct[i] = 0.72
-//             if (atmnum == 7)  shct[i] = 0.79
-//             if (atmnum == 8)  shct[i] = 0.85
-//             if (atmnum == 9)  shct[i] = 0.88
-//             if (atmnum == 15)  shct[i] = 0.86
-//             if (atmnum == 16)  shct[i] = 0.96
-//             if (atmnum == 26)  shct[i] = 0.88
+//             if (atmnum == 1) shct[i] = 0.85
+//             if (atmnum == 6) shct[i] = 0.72
+//             if (atmnum == 7) shct[i] = 0.79
+//             if (atmnum == 8) shct[i] = 0.85
+//             if (atmnum == 9) shct[i] = 0.88
+//             if (atmnum == 15) shct[i] = 0.86
+//             if (atmnum == 16) shct[i] = 0.96
+//             if (atmnum == 26) shct[i] = 0.88
 //          }
 //       }
 // c
@@ -542,21 +542,21 @@ void kgb()
 //             if (atmnum == 1) {
 //                rsolv[i] = 1.25
 //                k = i12(1,i)
-//                if (atomic[k] == 7)  rsolv[i] = 1.15
-//                if (atomic[k] == 8)  rsolv[i] = 1.05
+//                if (atomic[k] == 7) rsolv[i] = 1.15
+//                if (atomic[k] == 8) rsolv[i] = 1.05
 //             else if (atmnum == 3) {
 //                rsolv[i] = 1.432
 //             else if (atmnum == 6) {
 //                rsolv[i] = 1.9
-//                if (n12[i] == 3)  rsolv[i] = 1.875
-//                if (n12[i] == 2)  rsolv[i] = 1.825
+//                if (n12[i] == 3) rsolv[i] = 1.875
+//                if (n12[i] == 2) rsolv[i] = 1.825
 //             else if (atmnum == 7) {
 //                rsolv[i] = 1.7063
-//                if (n12[i] == 4)  rsolv[i] = 1.625
-//                if (n12[i] == 1)  rsolv[i] = 1.6
+//                if (n12[i] == 4) rsolv[i] = 1.625
+//                if (n12[i] == 1) rsolv[i] = 1.6
 //             else if (atmnum == 8) {
 //                rsolv[i] = 1.535
-//                if (n12[i] == 1)  rsolv[i] = 1.48
+//                if (n12[i] == 1) rsolv[i] = 1.48
 //             else if (atmnum == 9) {
 //                rsolv[i] = 1.47
 //             else if (atmnum == 10) {
@@ -693,7 +693,7 @@ void kgb()
 //                nh = 0
 //                do j = 1, n12[i]
 //                   k = i12(j,i)
-//                   if (atomic[k] == 1)  nh = nh + 1
+//                   if (atomic[k] == 1) nh = nh + 1
 //                }
 //                if (n12[i] == 4) {
 //                   if (nh == 3) {
@@ -738,7 +738,7 @@ void kgb()
 //                nh = 0
 //                do j = 1, n12[i]
 //                   k = i12(j,i)
-//                   if (atomic[k] == 1)  nh = nh + 1
+//                   if (atomic[k] == 1) nh = nh + 1
 //                }
 //                if (n12[i] == 4) {
 //                   if (nh == 3) {
@@ -795,7 +795,7 @@ void kgb()
 //                   vsolv[i] = 10.642
 //                   do j = 1, n12[i]
 //                      k = i12(j,i)
-//                      if (atomic[k] == 15)  vsolv[i] = 11.416
+//                      if (atomic[k] == 15) vsolv[i] = 11.416
 //                   }
 //                }
 //             else if (atmnum == 12) {
@@ -809,7 +809,7 @@ void kgb()
 //                vsolv[i] = 17.232
 //                do j = 1, n12[i]
 //                   k = i12(j,i)
-//                   if (atomic[k] == 16)  vsolv[i] = 18.465
+//                   if (atomic[k] == 16) vsolv[i] = 18.465
 //                }
 //             else if (atmnum == 26) {
 //                rsolv[i] = 0.65
@@ -1064,13 +1064,13 @@ void kpb()
 // c
 // c     perform dynamic allocation of some global arrays
 // c
-//       if (allocated(shct))  deallocate (shct)
-//       if (allocated(udirs))  deallocate (udirs)
-//       if (allocated(udirps))  deallocate (udirps)
-//       if (allocated(uinds))  deallocate (uinds)
-//       if (allocated(uinps))  deallocate (uinps)
-//       if (allocated(uopts))  deallocate (uopts)
-//       if (allocated(uoptps))  deallocate (uoptps)
+//       if (allocated(shct)) deallocate (shct)
+//       if (allocated(udirs)) deallocate (udirs)
+//       if (allocated(udirps)) deallocate (udirps)
+//       if (allocated(uinds)) deallocate (uinds)
+//       if (allocated(uinps)) deallocate (uinps)
+//       if (allocated(uopts)) deallocate (uopts)
+//       if (allocated(uoptps)) deallocate (uoptps)
 //       allocate (shct(n))
 //       allocate (udirs(3,n))
 //       allocate (udirps(3,n))
@@ -1165,11 +1165,11 @@ void kpb()
 //             nx = dime(1)
 //             ny = dime(2)
 //             nz = dime(3)
-//             read (string,*,err=10,end=10)  nx, ny, nz
+//             read (string,*,err=10,end=10) nx, ny, nz
 //    10       continue
-//             if (nx >= 33)  dime(1) = nx
-//             if (ny >= 33)  dime(2) = ny
-//             if (nz >= 33)  dime(3) = nz
+//             if (nx >= 33) dime(1) = nx
+//             if (ny >= 33) dime(2) = ny
+//             if (nz >= 33) dime(3) = nz
 //          else if (keyword(1:11) == "APBS-RADII") {
 //             call getword (record,value,next)
 //             call upcase (value)
@@ -1185,22 +1185,22 @@ void kpb()
 //                radtyp = "SOLUTE"
 //             }
 //          else if (keyword(1:11) == "APBS-SDENS") {
-//             read (string,*,err=20,end=20)  sdens
+//             read (string,*,err=20,end=20) sdens
 //    20       continue
 //          else if (keyword(1:10) == "APBS-PDIE") {
-//             read (string,*,err=30,end=30)  pdie
+//             read (string,*,err=30,end=30) pdie
 //    30       continue
 //          else if (keyword(1:10) == "APBS-SDIE") {
-//             read (string,*,err=40,end=40)  sdie
+//             read (string,*,err=40,end=40) sdie
 //    40       continue
 //          else if (keyword(1:10) == "APBS-SRAD") {
-//             read (string,*,err=50,end=50)  srad
+//             read (string,*,err=50,end=50) srad
 //    50       continue
 //          else if (keyword(1:10) == "APBS-SWIN") {
-//             read (string,*,err=60,end=60)  swin
+//             read (string,*,err=60,end=60) swin
 //    60       continue
 //          else if (keyword(1:10) == "APBS-SMIN") {
-//             read (string,*,err=70,end=70)  smin
+//             read (string,*,err=70,end=70) smin
 //    70       continue
 //          else if (keyword(1:7) == "PBTYPE") {
 //             call getword (record,value,next)
@@ -1246,7 +1246,7 @@ void kpb()
 //             pbionc = 0.
 //             pbionq = 1
 //             pbionr = 2.
-//             read (string,*,err=80,end=80)  pbionq,pbionc,pbionr
+//             read (string,*,err=80,end=80) pbionq,pbionc,pbionr
 //    80       continue
 //             if (pbionq!=0 and pbionc>=0.
 //      &             and pbionr>=0.) {
@@ -1333,7 +1333,7 @@ void kpb()
 //          call upcase (keyword)
 //          string = record(next:240)
 //          if (keyword(1:10) == "APBS-DIME") {
-//             read (string,*,err=90,end=90)  nx,ny,nz
+//             read (string,*,err=90,end=90) nx,ny,nz
 //             dime(1) = nx
 //             dime(2) = ny
 //             dime(3) = nz
@@ -1344,37 +1344,37 @@ void kpb()
 //                }
 //             }
 //          else if (keyword(1:11) == "APBS-AGRID") {
-//             read (string,*,err=100,end=100)  gx,gy,gz
+//             read (string,*,err=100,end=100) gx,gy,gz
 //             grid(1) = gx
 //             grid(2) = gy
 //             grid(3) = gz
 //   100       continue
 //          else if (keyword(1:11) == "APBS-CGRID") {
-//             read (string,*,err=110,end=110)  gx,gy,gz
+//             read (string,*,err=110,end=110) gx,gy,gz
 //             cgrid(1) = gx
 //             cgrid(2) = gy
 //             cgrid(3) = gz
 //   110       continue
 //          else if (keyword(1:11) == "APBS-FGRID") {
-//             read (string,*,err=120,end=120)  gx,gy,gz
+//             read (string,*,err=120,end=120) gx,gy,gz
 //             fgrid(1) = gx
 //             fgrid(2) = gy
 //             fgrid(3) = gz
 //   120       continue
 //          else if (keyword(1:11) == "APBS-GCENT") {
-//             read (string,*,err=130,end=130)  gx,gy,gz
+//             read (string,*,err=130,end=130) gx,gy,gz
 //             gcent(1) = gx
 //             gcent(2) = gy
 //             gcent(3) = gz
 //   130       continue
 //          else if (keyword(1:12) == "APBS-CGCENT") {
-//             read (string,*,err=140,end=140)  gx,gy,gz
+//             read (string,*,err=140,end=140) gx,gy,gz
 //             cgcent(1) = gx
 //             cgcent(2) = gy
 //             cgcent(3) = gz
 //   140       continue
 //          else if (keyword(1:12) == "APBS-FGCENT") {
-//             read (string,*,err=150,end=150)  gx,gy,gz
+//             read (string,*,err=150,end=150) gx,gy,gz
 //             fgcent(1) = gx
 //             fgcent(2) = gy
 //             fgcent(3) = gz
@@ -1410,7 +1410,7 @@ void kpb()
 // c     print out the APBS grid dimensions and spacing
 // c
 //       if (verbose) {
-//          write (iout,160)  (dime[i],i=1,3),grid(1)
+//          write (iout,160) (dime[i],i=1,3),grid(1)
 //   160    format (/," APBS Grid Dimensions and Spacing :",
 //      &           //,10x,3i8,10x,f10.4)
 //       }
@@ -1579,9 +1579,9 @@ void khpmf()
 // c
 // c     perform dynamic allocation of some global arrays
 // c
-//       if (allocated(ipmf))  deallocate (ipmf)
-//       if (allocated(rpmf))  deallocate (rpmf)
-//       if (allocated(acsa))  deallocate (acsa)
+//       if (allocated(ipmf)) deallocate (ipmf)
+//       if (allocated(rpmf)) deallocate (rpmf)
+//       if (allocated(acsa)) deallocate (acsa)
 //       allocate (ipmf(n))
 //       allocate (rpmf(n))
 //       allocate (acsa(n))
@@ -1593,21 +1593,21 @@ void khpmf()
 //          if (atomic[i] == 6) {
 //             keep = true
 //             nh = 0
-//             if (n12[i] <= 2)  keep = false
+//             if (n12[i] <= 2) keep = false
 //             do j = 1, n12[i]
 //                k = i12(j,i)
-//                if (atomic[k] == 1)  nh = nh + 1
-//                if (n12[i]==3 and atomic[k]==8)  keep = false
+//                if (atomic[k] == 1) nh = nh + 1
+//                if (n12[i]==3 and atomic[k]==8) keep = false
 //             }
 //             if (keep) {
 //                npmf = npmf + 1
 //                ipmf(npmf) = i
 //                acsa[i] = 1.
-//                if (n12[i]==3 and nh==0)  acsa[i] = 1.554
-//                if (n12[i]==3 and nh==1)  acsa[i] = 1.073
-//                if (n12[i]==4 and nh==1)  acsa[i] = 1.276
-//                if (n12[i]==4 and nh==2)  acsa[i] = 1.045
-//                if (n12[i]==4 and nh==3)  acsa[i] = 0.88
+//                if (n12[i]==3 and nh==0) acsa[i] = 1.554
+//                if (n12[i]==3 and nh==1) acsa[i] = 1.073
+//                if (n12[i]==4 and nh==1) acsa[i] = 1.276
+//                if (n12[i]==4 and nh==2) acsa[i] = 1.045
+//                if (n12[i]==4 and nh==3) acsa[i] = 0.88
 //                acsa[i] = acsa[i] * safact/acsurf
 //             }
 //          }
@@ -1623,9 +1623,9 @@ void khpmf()
 //          else
 //             rpmf[i] = vdwrad(atn)
 //          }
-//          if (atn == 5)  rpmf[i] = 1.8
-//          if (atn == 8)  rpmf[i] = 1.5
-//          if (atn == 35)  rpmf[i] = 1.85
+//          if (atn == 5) rpmf[i] = 1.8
+//          if (atn == 8) rpmf[i] = 1.5
+//          if (atn == 35) rpmf[i] = 1.85
 //       }
 
 /////////////////////////////////////////////////////
@@ -1648,7 +1648,7 @@ void setrad(std::string radtyp)
     // assign default solute radii from consensus vdw values
     for (int i = 0; i < n; i++) {
         atmnum = atomic[i];
-        if (atmnum == 0)  rsolv[i] = 0.;
+        if (atmnum == 0) rsolv[i] = 0.;
         rsolv[i] = vdwrad[atmnum-1];
     }
 

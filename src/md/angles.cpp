@@ -69,8 +69,8 @@ void angles()
         int ib = iang[i][1];
         int ic = iang[i][2];
         for (int k = 0; k < n12[ib]; k++) {
-            if (i12[ib][k] == ia)  balist[i][0] = bndlist[ib][k];
-            if (i12[ib][k] == ic)  balist[i][1] = bndlist[ib][k];
+            if (i12[ib][k] == ia) balist[i][0] = bndlist[ib][k];
+            if (i12[ib][k] == ic) balist[i][1] = bndlist[ib][k];
         }
     }
 }

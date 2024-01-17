@@ -53,42 +53,42 @@ void unitcell()
             }
         }
         else if (keyword == "Y-AXIS") {
-            if (ybox == 0.)  {
+            if (ybox == 0.) {
                 if (iss >> nextDouble) ybox = nextDouble;
             }
         }
         else if (keyword == "Z-AXIS") {
-            if (zbox == 0.)  {
+            if (zbox == 0.) {
                 if (iss >> nextDouble) zbox = nextDouble;
             }
         }
         else if (keyword == "A-AXIS") {
-            if (xbox == 0.)  {
+            if (xbox == 0.) {
                 if (iss >> nextDouble) xbox = nextDouble;
             }
         }
         else if (keyword == "B-AXIS") {
-            if (ybox == 0.)  {
+            if (ybox == 0.) {
                 if (iss >> nextDouble) ybox = nextDouble;
             }
         }
         else if (keyword == "C-AXIS") {
-            if (zbox == 0.)  {
+            if (zbox == 0.) {
                 if (iss >> nextDouble) zbox = nextDouble;
             }
         }
         else if (keyword == "ALPHA") {
-            if (alphaA == 0.)  {
+            if (alphaA == 0.) {
                 if (iss >> nextDouble) alphaA = nextDouble;
             }
         }
         else if (keyword == "BETA") {
-            if (betaA == 0.)  {
+            if (betaA == 0.) {
                 if (iss >> nextDouble) betaA = nextDouble;
             }
         }
         else if (keyword == "GAMMA") {
-            if (gammaA == 0.)  {
+            if (gammaA == 0.) {
                 if (iss >> nextDouble) gammaA = nextDouble;
             }
         }
@@ -111,16 +111,16 @@ void unitcell()
 
     // use periodic boundary conditions if a cell was defined
     real boxmax = std::max({xbox,ybox,zbox});
-    if (boxmax != 0.)  use_bounds = true;
+    if (boxmax != 0.) use_bounds = true;
 
     // set unspecified periodic boundary box lengths and angles
     if (use_bounds) {
-        if (xbox ==  0.)  xbox = boxmax;
-        if (ybox ==  0.)  ybox = boxmax;
-        if (zbox ==  0.)  zbox = boxmax;
-        if (alphaA ==  0.)  alphaA = 90.;
-        if (betaA ==  0.)  betaA = 90.;
-        if (gammaA == 0.)  gammaA = 90.;
+        if (xbox ==  0.) xbox = boxmax;
+        if (ybox ==  0.) ybox = boxmax;
+        if (zbox ==  0.) zbox = boxmax;
+        if (alphaA ==  0.) alphaA = 90.;
+        if (betaA ==  0.) betaA = 90.;
+        if (gammaA == 0.) gammaA = 90.;
 
         // determine the general periodic boundary lattice type
         if (nosymm) {

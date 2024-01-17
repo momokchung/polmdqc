@@ -55,7 +55,7 @@ void kchgtrn()
 //             actrn = 0.0d0
 //             call getnumb (record,k,next)
 //             string = record(next:240)
-//             read (string,*,err=10,end=10)  chtrn,actrn
+//             read (string,*,err=10,end=10) chtrn,actrn
 //    10       continue
 //             if (k .gt. 0) then
 //                if (header .and. .not.silent) then
@@ -69,7 +69,7 @@ void kchgtrn()
 //                   ctchg(k) = chtrn
 //                   ctdmp(k) = actrn
 //                   if (.not. silent) then
-//                      write (iout,30)  k,chtrn,actrn
+//                      write (iout,30) k,chtrn,actrn
 //    30                format (6x,i6,7x,f15.4,f15.4)
 //                   end if
 //                else
@@ -110,7 +110,7 @@ void kchgtrn()
 //             chtrn = 0.0d0
 //             actrn = 0.0d0
 //             string = record(next:240)
-//             read (string,*,err=70,end=70)  ia,chtrn,actrn
+//             read (string,*,err=70,end=70) ia,chtrn,actrn
 //             if (ia.lt.0 .and. ia.ge.-n) then
 //                ia = -ia
 //                if (header .and. .not.silent) then
@@ -121,7 +121,7 @@ void kchgtrn()
 //      &                    //,8x,'Atom',16x,'Charge',11x,'Damp',/)
 //                end if
 //                if (.not. silent) then
-//                   write (iout,60)  ia,chtrn,actrn
+//                   write (iout,60) ia,chtrn,actrn
 //    60             format (6x,i6,7x,f15.4,f15.4)
 //                end if
 //                chgct(ia) = chtrn
@@ -144,7 +144,7 @@ void kchgtrn()
                 ipole[npole] = i;
                 pollist[i] = npole;
                 mono0[i] = pole[i][0];
-                if (palpha[i] != 0.)  ncp++;
+                if (palpha[i] != 0.) ncp++;
                 if (polarity[i] != 0.) {
                     ipolar[npolar] = npole;
                     npolar++;

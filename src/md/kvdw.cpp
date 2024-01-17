@@ -105,7 +105,7 @@ void kvdw()
 
     // process keywords containing 1-4 van der Waals parameters
     maxdim = maxclass;
-    if (vdwindex == "TYPE")  maxdim = maxtyp;
+    if (vdwindex == "TYPE") maxdim = maxtyp;
     header = true;
     for (int i = 0; i < nkey; i++) {
         next = 0;
@@ -301,7 +301,7 @@ void kvdw()
         j = jvdw[i];
         if (mvdw[j] == -1) {
             for (int k = 0; k < nlist; k++) {
-                if (list[k] == j)  mvdw[j] = k;
+                if (list[k] == j) mvdw[j] = k;
             }
         }
     }
@@ -318,7 +318,7 @@ void kvdw()
 
     // get the vdw radii and well depths for each atom type
     maxdim = maxclass;
-    if (vdwindex == "TYPE")  maxdim = maxtyp;
+    if (vdwindex == "TYPE") maxdim = maxtyp;
     for (int i = 0; i < maxdim; i++) {
         if (rad4[i] == 0.) rad4[i] = rad[i];
         if (eps4[i] == 0.) eps4[i] = eps[i];
@@ -525,7 +525,7 @@ void kvdw()
         ia = mvdw[ia];
         ib = mvdw[ib];
         if (ia!=-1 and ib!=-1) {
-            if (radtyp == "SIGMA")  radpr[i] = twosix * radpr[i];
+            if (radtyp == "SIGMA") radpr[i] = twosix * radpr[i];
             radmin[ib][ia] = radpr[i];
             radmin[ia][ib] = radpr[i];
             epsilon[ib][ia] = std::abs(epspr[i]);

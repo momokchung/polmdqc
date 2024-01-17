@@ -90,139 +90,139 @@ void prmkey(std::string record)
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_opdist = true;
-        if (value == "NONE")  use_opdist = false;
+        if (value == "NONE") use_opdist = false;
     }
     else if (keyword == "IMPROPTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_improp = true;
-        if (value == "NONE")  use_improp = false;
+        if (value == "NONE") use_improp = false;
     }
     else if (keyword == "IMPTORTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_imptor = true;
-        if (value == "NONE")  use_imptor = false;
+        if (value == "NONE") use_imptor = false;
     }
     else if (keyword == "TORSIONTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_tors = true;
-        if (value == "NONE")  use_tors = false;
+        if (value == "NONE") use_tors = false;
     }
     else if (keyword == "PITORSTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_pitors = true;
-        if (value == "NONE")  use_pitors = false;
+        if (value == "NONE") use_pitors = false;
     }
     else if (keyword == "STRTORTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_strtor = true;
-        if (value == "NONE")  use_strtor = false;
+        if (value == "NONE") use_strtor = false;
     }
     else if (keyword == "ANGTORTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_angtor = true;
-        if (value == "NONE")  use_angtor = false;
+        if (value == "NONE") use_angtor = false;
     }
     else if (keyword == "TORTORTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_tortor = true;
-        if (value == "NONE")  use_tortor = false;
+        if (value == "NONE") use_tortor = false;
     }
     else if (keyword == "VDWTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_vdw = true;
-        if (value == "NONE")  use_vdw = false;
+        if (value == "NONE") use_vdw = false;
     }
     else if (keyword == "REPULSIONTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_repel = true;
-        if (value == "NONE")  use_repel = false;
+        if (value == "NONE") use_repel = false;
     }
     else if (keyword == "DISPERSIONTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_disp = true;
-        if (value == "NONE")  use_disp = false;
+        if (value == "NONE") use_disp = false;
     }
     else if (keyword == "CHARGETERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_charge = true;
-        if (value == "NONE")  use_charge = false;
+        if (value == "NONE") use_charge = false;
     }
     else if (keyword == "CHGDPLTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_chgdpl = true;
-        if (value == "NONE")  use_chgdpl = false;
+        if (value == "NONE") use_chgdpl = false;
     }
     else if (keyword == "DIPOLETERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_dipole = true;
-        if (value == "NONE")  use_dipole = false;
+        if (value == "NONE") use_dipole = false;
     }
     else if (keyword == "MULTIPOLETERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_mpole = true;
-        if (value == "NONE")  use_mpole = false;
+        if (value == "NONE") use_mpole = false;
     }
     else if (keyword == "POLARIZETERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_polar = true;
-        if (value == "NONE")  use_polar = false;
+        if (value == "NONE") use_polar = false;
     }
     else if (keyword == "CHGTRNTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_chgtrn = true;
-        if (value == "NONE")  use_chgtrn = false;
+        if (value == "NONE") use_chgtrn = false;
     }
     else if (keyword == "CHGFLXTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_chgflx = true;
-        if (value == "NONE")  use_chgflx = false;
+        if (value == "NONE") use_chgflx = false;
     }
     else if (keyword == "RXNFIELDTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_rxnfld = true;
-        if (value == "NONE")  use_rxnfld = false;
+        if (value == "NONE") use_rxnfld = false;
     }
     else if (keyword == "SOLVATETERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_solv = true;
-        if (value == "NONE")  use_solv = false;
+        if (value == "NONE") use_solv = false;
     }
     else if (keyword == "METALTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_metal = true;
-        if (value == "NONE")  use_metal = false;
+        if (value == "NONE") use_metal = false;
     }
     else if (keyword == "RESTRAINTERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_geom = true;
-        if (value == "NONE")  use_geom = false;
+        if (value == "NONE") use_geom = false;
     }
     else if (keyword == "EXTRATERM") {
         getword(record,value,next);
         if (value == "ONLY") potoff();
         use_extra = true;
-        if (value == "NONE")  use_extra = false;
+        if (value == "NONE") use_extra = false;
     }
     else if (keyword == "VALENCETERM") {
         getword(record,value,next);

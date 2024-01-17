@@ -48,7 +48,7 @@ void attach()
                 int kk = i12[jj][k];
                 if (kk == i) goto label_10;
                 for (int m = 0; m < n12[i]; m++){
-                    if (kk == i12[i][m])  goto label_10;
+                    if (kk == i12[i][m]) goto label_10;
                 }
                 i13tmp.push_back(kk);
                 label_10:
@@ -76,10 +76,10 @@ void attach()
                 int kk = i12[jj][k];
                 if (kk == i) goto label_30;
                 for (int m = 0; m < n12[i]; m++){
-                    if (kk == i12[i][m])  goto label_30;
+                    if (kk == i12[i][m]) goto label_30;
                 }
                 for (int m = 0; m < n13[i]; m++){
-                    if (kk == i13[i][m])  goto label_30;
+                    if (kk == i13[i][m]) goto label_30;
                 }
                 i14tmp.push_back(kk);
                 label_30:
@@ -107,13 +107,13 @@ void attach()
                 int kk = i12[jj][k];
                 if (kk == i) goto label_50;
                 for (int m = 0; m < n12[i]; m++){
-                    if (kk == i12[i][m])  goto label_50;
+                    if (kk == i12[i][m]) goto label_50;
                 }
                 for (int m = 0; m < n13[i]; m++){
-                    if (kk == i13[i][m])  goto label_50;
+                    if (kk == i13[i][m]) goto label_50;
                 }
                 for (int m = 0; m < n14[i]; m++){
-                    if (kk == i14[i][m])  goto label_50;
+                    if (kk == i14[i][m]) goto label_50;
                 }
                 i15tmp.push_back(kk);
                 label_50:
