@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.16.0)
 
 set(POLMDQC_TEST
+active.cpp
 amoeba.cpp
 amoebaMisc.cpp
 amoebap.cpp

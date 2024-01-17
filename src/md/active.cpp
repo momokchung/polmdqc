@@ -39,7 +39,7 @@ void active()
     // allocation and initialization of some global arrays
     if (iuse.size() != 0) iuse.resize(0);
     if (use.size() != 0) use.resize(0);
-    iuse.resize(n);
+    iuse.resize(n, -1);
     use.resize(n, true);
 
     // allocation and initialization of some local arrays
@@ -73,7 +73,7 @@ void active()
                 counter++;
             }
             while (mobile[nmobile] != 0) {
-                nmobile ++;
+                nmobile++;
             }
         }
 
@@ -86,13 +86,13 @@ void active()
                 counter++;
             }
             while (fixed[nfixed] != 0) {
-                nfixed ++;
+                nfixed++;
             }
         }
 
         // get the center and radius of the sphere of active atoms
         else if (keyword == "ACTIVE-SPHERE") {
-            center = 0;
+            center = -1;
             xcenter = 0.;
             ycenter = 0.;
             zcenter = 0.;
