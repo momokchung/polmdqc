@@ -44,7 +44,7 @@ void command(int argc, char** argv)
         if (letter == '-') {
             letter = arg[i][1];
             letter = std::toupper(static_cast<unsigned char>(letter));
-            if (letter >= 'A' && letter <= 'Z') {
+            if (letter >= 'A' and letter <= 'Z') {
                 listarg[i] = false;
                 listarg[i+1] = false;
             }

@@ -135,7 +135,7 @@ void overlapOS()
                     int lzj = partj[2];
                     int basisNj = prim::primToBasis[jPrim];
                     real sIntermediate = xS[lxi][lxj] * yS[lyi][lyj] * zS[lzi][lzj];
-                    if ((i != j) && (iShell == jShell))
+                    if ((i != j) and (iShell == jShell))
                         sIntermediate *= 2.;
                     cartS[basisNi][basisNj] += pre * prim::primNorm[iPrim] * prim::primNorm[jPrim] * sIntermediate;
                     jPrim += 1;

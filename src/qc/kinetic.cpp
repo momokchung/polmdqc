@@ -186,7 +186,7 @@ void kineticOS()
                     real keIntermediatez = xS[lxi][lxj] * yS[lyi][lyj] * zKE[lzi][lzj];
                     real keIntermediate = keIntermediatex + keIntermediatey + keIntermediatez;
 
-                    if ((i != j) && (iShell == jShell))
+                    if ((i != j) and (iShell == jShell))
                         keIntermediate *= 2.;
                     cartKE[basisNi][basisNj] += pre * prim::primNorm[iPrim] * prim::primNorm[jPrim] * keIntermediate;
                     jPrim += 1;

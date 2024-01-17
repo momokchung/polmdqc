@@ -187,7 +187,7 @@ void nuclearOS()
                         // contract polynomials
                         real neIntermediate = mathUtils::contract(iL + jL + 1, poly, boysPoly);
 
-                        if ((i != j) && (iShell == jShell))
+                        if ((i != j) and (iShell == jShell))
                             neIntermediate *= 2.;
                         cartNE[basisNi][basisNj] += prefactor * prim::primNorm[iPrim] * prim::primNorm[jPrim] * neIntermediate;
                         jPrim += 1;

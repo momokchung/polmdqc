@@ -367,7 +367,7 @@ void scf()
             "\n\n Iter        E(elec)              E(tot)               Delta(E)             RMS(D)\n";
         }
         printf(" %02d %20.12f %20.12f %20.12f %20.12f\n", iter, ehf, ehf + nuclearRepulsion::nr, ediff, rmsd);
-    } while (((fabs(ediff) > conv) || (fabs(rmsd) > conv)) && (iter < maxiter));
+    } while (((fabs(ediff) > conv) || (fabs(rmsd) > conv)) and (iter < maxiter));
 
     printf("** Hartree-Fock energy = %20.12f\n", ehf + nuclearRepulsion::nr);
     print::printVMatrix(E, 1, N, "Orbital energies");

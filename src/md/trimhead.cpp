@@ -18,7 +18,7 @@ void trimhead(std::string& string)
 {
     size_t firstNonBlank = string.find_first_not_of(' ');
 
-    if (firstNonBlank != std::string::npos && firstNonBlank > 0) {
+    if (firstNonBlank != std::string::npos and firstNonBlank > 0) {
         string = string.substr(firstNonBlank);
     }
 }

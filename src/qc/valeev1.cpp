@@ -184,7 +184,7 @@ int main(int argc, char *argv[]) {
       printf(" %02d %20.12f %20.12f %20.12f %20.12f %10.5lf\n", iter, ehf, ehf + enuc,
              ediff, rmsd, time_elapsed.count());
 
-    } while (((fabs(ediff) > conv) || (fabs(rmsd) > conv)) && (iter < maxiter));
+    } while (((fabs(ediff) > conv) || (fabs(rmsd) > conv)) and (iter < maxiter));
 
     printf("** Hartree-Fock energy = %20.12f\n", ehf + enuc);
 

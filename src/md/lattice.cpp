@@ -43,10 +43,10 @@ void lattice()
         if (nosymm) {
             triclinic = true;
         }
-        else if (alphaA == 90. && betaA == 90. && gammaA == 90.) {
+        else if (alphaA == 90. and betaA == 90. and gammaA == 90.) {
             orthogonal = true;
         }
-        else if (alphaA == 90.0 && gammaA == 90.0) {
+        else if (alphaA == 90.0 and gammaA == 90.0) {
             monoclinic = true;
         }
         else {

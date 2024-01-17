@@ -83,7 +83,7 @@ public:
     }
 
     void allocate(size_t numRows, size_t numCols) {
-        if (numRows == rows && numCols == cols) return;
+        if (numRows == rows and numCols == cols) return;
 
         deallocate();
 
@@ -150,7 +150,7 @@ public:
     }
 
     void allocate(size_t sizeX, size_t sizeY, size_t sizeZ) {
-        if (sizeX == xSize && sizeY == ySize && sizeZ == zSize) return;
+        if (sizeX == xSize and sizeY == ySize and sizeZ == zSize) return;
 
         deallocate();
 
@@ -230,7 +230,7 @@ public:
     }
 
     void allocate(size_t sizeW, size_t sizeX, size_t sizeY, size_t sizeZ) {
-        if (sizeW == wSize && sizeX == xSize && sizeY == ySize && sizeZ == zSize) return;
+        if (sizeW == wSize and sizeX == xSize and sizeY == ySize and sizeZ == zSize) return;
 
         deallocate();
 
