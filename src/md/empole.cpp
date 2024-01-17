@@ -16,8 +16,6 @@
 #include "deriv.h"
 #include "empole.h"
 #include "energi.h"
-#include "group.h"
-#include "groups.h"
 #include "image.h"
 #include "inform.h"
 #include "inter.h"
@@ -88,7 +86,7 @@ void empole_a()
     int ix,iy,iz;
     int kx,ky,kz;
     real mk;
-    real e,f,fgrp;
+    real e,f;
     real xi,yi,zi;
     real xr,yr,zr;
     real r2;
@@ -189,10 +187,7 @@ void empole_a()
             kx = xaxis[k] - 1;
             ky = std::abs(yaxis[k]) - 1;
             usek = (use[k] or use[kz] or use[kx] or use[ky]);
-            proceed = true;
-            if (use_group) groups(proceed,fgrp,i,k,-1,-1,-1,-1);
-            if (!use_intra) proceed = true;
-            if (proceed) proceed = (usei or usek);
+            proceed = (usei or usek);
             if (proceed) {
                 xr = x[k] - xi;
                 yr = y[k] - yi;
@@ -234,18 +229,6 @@ void empole_a()
                     }
 
                     // increment the overall multipoles
-                    if (use_group) {
-                        if constexpr (do_e) e *= fgrp;
-                        if constexpr (do_g) {
-                            frcx *= fgrp;
-                            frcy *= fgrp;
-                            frcz *= fgrp;
-                        }
-                        if constexpr (do_v) {
-                            ttmxi *= fgrp; ttmyi *= fgrp; ttmzi *= fgrp;
-                            ttmxk *= fgrp; ttmyk *= fgrp; ttmzk *= fgrp;
-                        }
-                    }
                     if constexpr (do_a) {
                         if (e != 0.) nem++;
                         aem[i] = aem[i] + 0.5*e;
