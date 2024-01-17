@@ -37,7 +37,6 @@ src/md/getstring.cpp
 src/md/gettext.cpp
 src/md/getword.cpp
 src/md/getxyz.cpp
-src/md/groups.cpp
 src/md/image.cpp
 src/md/initatom.cpp
 src/md/initial.cpp
