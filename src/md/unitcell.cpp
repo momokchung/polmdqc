@@ -110,26 +110,26 @@ void unitcell()
     }
 
     // use periodic boundary conditions if a cell was defined
-    real boxmax = std::max({xbox,ybox,zbox});
+    real boxmax = std::max({xbox, ybox, zbox});
     if (boxmax != 0.) use_bounds = true;
 
     // set unspecified periodic boundary box lengths and angles
     if (use_bounds) {
-        if (xbox ==  0.) xbox = boxmax;
-        if (ybox ==  0.) ybox = boxmax;
-        if (zbox ==  0.) zbox = boxmax;
-        if (alphaA ==  0.) alphaA = 90.;
-        if (betaA ==  0.) betaA = 90.;
+        if (xbox == 0.) xbox = boxmax;
+        if (ybox == 0.) ybox = boxmax;
+        if (zbox == 0.) zbox = boxmax;
+        if (alphaA == 0.) alphaA = 90.;
+        if (betaA == 0.) betaA = 90.;
         if (gammaA == 0.) gammaA = 90.;
 
         // determine the general periodic boundary lattice type
         if (nosymm) {
             triclinic = true;
         }
-        else if (alphaA==90. and betaA==90. and gammaA==90.) {
+        else if (alphaA == 90. and betaA == 90. and gammaA == 90.) {
             orthogonal = true;
         }
-        else if (alphaA==90. and gammaA==90.) {
+        else if (alphaA == 90. and gammaA == 90.) {
             monoclinic = true;
         }
         else {

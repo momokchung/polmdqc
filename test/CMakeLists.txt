@@ -5,6 +5,7 @@ active.cpp
 amoeba.cpp
 amoebaMisc.cpp
 amoebap.cpp
+bounds.cpp
 getline.cpp
 getnumb.cpp
 getstring.cpp

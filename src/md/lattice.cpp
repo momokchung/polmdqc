@@ -25,7 +25,7 @@ void lattice()
 {
     // use periodic boundary conditions if a cell was defined
     real boxmax = std::max({xbox, ybox, zbox});
-    if (boxmax != 0.0) use_bounds = true;
+    if (boxmax != 0.) use_bounds = true;
 
     // set unspecified periodic boundary box lengths and angles
     if (use_bounds) {
@@ -46,7 +46,7 @@ void lattice()
         else if (alphaA == 90. and betaA == 90. and gammaA == 90.) {
             orthogonal = true;
         }
-        else if (alphaA == 90.0 and gammaA == 90.0) {
+        else if (alphaA == 90. and gammaA == 90.) {
             monoclinic = true;
         }
         else {
