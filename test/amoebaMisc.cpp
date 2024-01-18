@@ -75,4 +75,26 @@ TEST_CASE("amoebaMisc-3", "[testgrad][AMOEBA][alatet_water09]") {
     COMPARE_MATRIX(ndesum, amoebaMisc3::desum, amoebaMisc3::eps2);
     COMPARE_MATRIX(ndem, amoebaMisc3::dem, amoebaMisc3::eps2);
 }
+
+TEST_CASE("amoebaMisc-5", "[analyze][AMOEBA][water09NSeq]") {
+    // tests ability to read non-sequential xyz file
+    int argc = 3;
+    const char* strings[] = {
+        "analyze",
+        "../../test/testFiles/amoebaMisc/water09NSeq.xyz",
+        "e",
+    };
+    char** argv = const_cast<char**>(strings);
+
+    analyze(argc, argv);
+
+    REQUIRE(nem == amoebaMisc5::nem);
+
+    COMPARE_REALS(einter, amoebaMisc5::einter, amoebaMisc5::eps);
+    COMPARE_REALS(esum, amoebaMisc5::esum, amoebaMisc5::eps);
+    COMPARE_REALS(em, amoebaMisc5::em, amoebaMisc5::eps);
+
+    COMPARE_VECTOR(aesum, amoebaMisc5::aesum, amoebaMisc5::eps);
+    COMPARE_VECTOR(aem, amoebaMisc5::aem, amoebaMisc5::eps);
+}
 }
