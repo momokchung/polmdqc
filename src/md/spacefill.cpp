@@ -95,7 +95,7 @@ void spacefill(int argc, char** argv)
     upcase(string);
     if (string!= "Y") {
         for (int i = 0; i < n; i++) {
-            if (atomic[i] == 1) use[i] = false;
+            if (atomic[i] == 1) use[i+1] = false;
         }
     }
 

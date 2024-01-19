@@ -165,7 +165,7 @@ void empole_a()
             vali = pval[i];
             alphai = palpha[i];
         }
-        usei = (use[i] or use[iz] or use[ix] or use[iy]);
+        usei = (use[i+1] or use[iz+1] or use[ix+1] or use[iy+1]);
 
         // set exclusion coefficients for connected atoms
         for (int j = 0; j < n12[i]; j++) {
@@ -186,7 +186,7 @@ void empole_a()
             kz = zaxis[k] - 1;
             kx = xaxis[k] - 1;
             ky = std::abs(yaxis[k]) - 1;
-            usek = (use[k] or use[kz] or use[kx] or use[ky]);
+            usek = (use[k+1] or use[kz+1] or use[kx+1] or use[ky+1]);
             proceed = (usei or usek);
             if (proceed) {
                 xr = x[k] - xi;

@@ -7,6 +7,7 @@
 #include "energi.h"
 #include "energy.h"
 #include "files.h"
+#include "final.h"
 #include "getcart.h"
 #include "gettext.h"
 #include "inform.h"
@@ -264,7 +265,7 @@ void testgrad(int argc, char** argv)
 
         // get the Cartesian component two-sided numerical gradients
         for (int i = 0; i < n; i++) {
-            if (donumer and use[i]) {
+            if (donumer and use[i+1]) {
                 for (int j = 0; j < 3; j++) {
                     if (j == 0) {
                         old = x[i];
@@ -361,7 +362,7 @@ void testgrad(int argc, char** argv)
             }
 
             // print analytical gradients of each energy term for each atom
-            if (dofull and use[i]) {
+            if (dofull and use[i+1]) {
                 for (int j = 0; j < 3; j++) {
                     if (doanalyt) {
                         if (digits >= 8) {
@@ -475,7 +476,7 @@ void testgrad(int argc, char** argv)
         totnorm = 0.;
         ntotnorm = 0.;
         for (int i = 0; i < n; i++) {
-            if (doanalyt and use[i]) {
+            if (doanalyt and use[i+1]) {
                 denorm[i] = REAL_POW(desum[i][0],2) + REAL_POW(desum[i][1],2) + REAL_POW(desum[i][2],2);
                 totnorm = totnorm + denorm[i];
                 denorm[i] = REAL_SQRT(denorm[i]);
@@ -489,7 +490,7 @@ void testgrad(int argc, char** argv)
                     printf(" Anlyt  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,desum[i][0],desum[i][1],desum[i][2],denorm[i]);
                 }
             }
-            if (donumer and use[i]) {
+            if (donumer and use[i+1]) {
                 ndenorm[i] = REAL_POW(ndesum[i][0],2) + REAL_POW(ndesum[i][1],2) + REAL_POW(ndesum[i][2],2);
                 ntotnorm = ntotnorm + ndenorm[i];
                 ndenorm[i] = REAL_SQRT(ndenorm[i]);
@@ -578,6 +579,7 @@ void testgrad(int argc, char** argv)
 
     // perform any final tasks before program exit
     ffile.close();
+    final();
 }
 
 void resizeNumDer() {

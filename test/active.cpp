@@ -39,7 +39,7 @@ TEST_CASE("active-1", "[analyze][AMOEBA][water09_Na_Cls]") {
     REQUIRE(nuse == active1::nuse);
     for (int i = 0; i < n; i++) {
         REQUIRE(iuse[i] == active1::iuse[i]);
-        REQUIRE(use[i] == active1::use[i]);
+        REQUIRE(use[i+1] == active1::use[i+1]);
     }
 }
 
@@ -69,7 +69,7 @@ TEST_CASE("active-2", "[analyze][AMOEBA][water09_Na_Cls]") {
     REQUIRE(nuse == active2::nuse);
     for (int i = 0; i < n; i++) {
         REQUIRE(iuse[i] == active2::iuse[i]);
-        REQUIRE(use[i] == active2::use[i]);
+        REQUIRE(use[i+1] == active2::use[i+1]);
     }
 }
 

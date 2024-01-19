@@ -77,6 +77,7 @@ namespace active1
         false,
         false,
         false,
+        false,
         true,
         true,
         true,
@@ -161,6 +162,7 @@ namespace active2
     };
 
     std::vector<int> use = {
+        false,
         true,
         true,
         true,

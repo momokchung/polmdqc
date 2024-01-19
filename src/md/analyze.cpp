@@ -5,6 +5,7 @@
 #include "boxes.h"
 #include "enrgyze.h"
 #include "files.h"
+#include "final.h"
 #include "getcart.h"
 #include "inform.h"
 #include "initial.h"
@@ -270,6 +271,7 @@ void analyze(int argc, char** argv)
     // perform any final tasks before program exit
     ffile.close();
     if (dodetail) debug = false;
+    final();
 }
 }
 // c

@@ -40,11 +40,14 @@ void active()
     if (iuse.size() != 0) iuse.resize(0);
     if (use.size() != 0) use.resize(0);
     iuse.resize(n, -1);
-    use.resize(n, true);
+    use.resize(n+1, true);
+    use[0] = false;
 
     // allocation and initialization of some local arrays
     std::vector<int> mobile;
     std::vector<int> fixed;
+    if (mobile.size() != 0) mobile.resize(0);
+    if (fixed.size() != 0) fixed.resize(0);
     mobile.resize(n, 0);
     fixed.resize(n, 0);
 
@@ -110,7 +113,7 @@ void active()
             if (nsphere == 1) {
                 nuse = 0;
                 for (int i = 0; i < n; i++) {
-                    use[i] = false;
+                    use[i+1] = false;
                 }
                 if (verbose) {
                     std::string blank6(6, ' ');
@@ -122,14 +125,14 @@ void active()
             }
             radius2 = radius * radius;
             for (int i = 0; i < n; i++) {
-                if (!use[i]) {
+                if (!use[i+1]) {
                     xr = x[i] - xcenter;
                     yr = y[i] - ycenter;
                     zr = z[i] - zcenter;
                     dist2 = xr*xr + yr*yr + zr*zr;
                     if (dist2 <= radius2) {
                         nuse++;
-                        use[i] = true;
+                        use[i+1] = true;
                     }
                 }
             }
@@ -168,16 +171,16 @@ void active()
     while (fixed[i] != 0) {
         if (fixed[i] > 0) {
             int j = fixed[i]-1;
-            if (use[j]) {
-                use[j] = false;
+            if (use[j+1]) {
+                use[j+1] = false;
                 nuse--;
             }
             i++;
         }
         else {
             for (int j = abs(fixed[i])-1; j < abs(fixed[i+1]); j++) {
-                if (use[j]) {
-                    use[j] = false;
+                if (use[j+1]) {
+                    use[j+1] = false;
                     nuse--;
                 }
             }
@@ -191,21 +194,21 @@ void active()
         if (i == 0) {
             nuse = 0;
             for (int j = 0; j < n; j++) {
-                use[j] = false;
+                use[j+1] = false;
             }
         }
         if (mobile[i] > 0) {
             int j = mobile[i]-1;
-            if (!use[j]) {
-                use[j] = true;
+            if (!use[j+1]) {
+                use[j+1] = true;
                 nuse += 1;
             }
             i += 1;
         }
         else {
             for (int j = abs(mobile[i])-1; j < abs(mobile[i+1]); j++) {
-                if (!use[j]) {
-                    use[j] = true;
+                if (!use[j+1]) {
+                    use[j+1] = true;
                     nuse += 1;
                 }
             }
@@ -216,7 +219,7 @@ void active()
     // use logical array to set the list of active atoms
     int j = 0;
     for (int i = 0; i < n; i++) {
-        if (use[i]) {
+        if (use[i+1]) {
             iuse[j] = i;
             j += 1;
         }

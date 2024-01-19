@@ -15,7 +15,7 @@ namespace polmdqc
 
 // nuse   total number of active atoms in energy calculation
 // iuse   numbers of the atoms active in energy calculation
-// use    true if an atom is active, false if inactive
+// use    true if an atom is active, false if inactive (starting index=1)
 
 MDQC_EXTERN int nuse;
 MDQC_EXTERN std::vector<int> iuse;
