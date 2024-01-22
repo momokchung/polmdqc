@@ -31,6 +31,10 @@ public:
     {
         return array[index];
     }
+    const T& operator[](int index) const
+    {
+        return array[index];
+    }
 
     // return len
     int size() {
@@ -80,6 +84,10 @@ private:
 public:
     // overload [] operator for array access
     T* operator[](int index)
+    {
+        return array[index];
+    }
+    const T* operator[](int index) const
     {
         return array[index];
     }
@@ -139,6 +147,10 @@ private:
 public:
     // overload [] operator for array access
     T* operator[](int index)
+    {
+        return array[index];
+    }
+    const T* operator[](int index) const
     {
         return array[index];
     }

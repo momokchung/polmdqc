@@ -257,9 +257,11 @@ void kmpole()
     zaxis.allocate(n);
     xaxis.allocate(n);
     yaxis.allocate(n);
+    mono0.allocate(n);
+    mscale.allocate(n);
     pole.allocate(n);
     rpole.allocate(n);
-    mono0.allocate(n);
+    tem.allocate(n);
     polaxe.allocate(n);
     np11.allocate(n);
     np12.allocate(n);

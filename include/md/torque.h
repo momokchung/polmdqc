@@ -3,7 +3,6 @@
 
 #pragma once
 #include "calcMode.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -14,5 +13,5 @@ namespace polmdqc
 ///////////////////////////////////////////////////////
 
 template <CalcMode CalculationMode>
-void torque(const std::vector<std::vector<real>>* trqPtr, MDQCArray2D<real,3>& de);
+void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de);
 }

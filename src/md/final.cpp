@@ -444,9 +444,11 @@ void final()
     zaxis.deallocate();
     xaxis.deallocate();
     yaxis.deallocate();
+    mono0.deallocate();
+    mscale.deallocate();
     pole.deallocate();
     rpole.deallocate();
-    mono0.deallocate();
+    tem.deallocate();
     polaxe.deallocate();
 
     // deallocation of global arrays from module mutant

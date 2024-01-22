@@ -103,10 +103,8 @@ void empole_a()
     real ttmxk,ttmyk,ttmzk;
     real vxx,vyy,vzz;
     real vxy,vxz,vyz;
-    std::vector<real> mscale;
     bool proceed;
     bool usei,usek;
-    MAYBE_UNUSED std::vector<std::vector<real>> tem;
 
     if (npole == 0) return;
 
@@ -133,10 +131,18 @@ void empole_a()
     rotpole(RotMode::Mpole);
 
     // allocate and initialize connected atom exclusion coefficients
-    mscale.resize(n, 1.);
+    for (int i = 0; i < n; i++) {
+        mscale[i] = 1.;
+    }
 
     // allocate and initialize torque array
-    if constexpr (do_g) tem.resize(n, std::vector<real>(3,0.));
+    if constexpr (do_g) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 3; j++) {
+                tem[i][j] = 0.;
+            }
+        }
+    }
 
     // set conversion factor, cutoff and switching coefficients
     f = electric / dielec;
@@ -285,7 +291,7 @@ void empole_a()
 
     // resolve site torques then increment forces and virial
     if constexpr (do_g or do_v) {
-        torque<CalculationMode>(&tem, dem);
+        torque<CalculationMode>(tem, dem);
     }
 }
 

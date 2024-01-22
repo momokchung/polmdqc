@@ -22,9 +22,11 @@ namespace polmdqc
 // zaxis     number of the z-axis defining atom for each atom (starting index=1)
 // xaxis     number of the x-axis defining atom for each atom (starting index=1)
 // yaxis     number of the y-axis defining atom for each atom (starting index=1)
+// mono0     original atomic monopole values for charge flux
+// mscale    multipole exclusion coefficient scale
 // pole      local frame Cartesian multipoles for each atom
 // rpole     global frame Cartesian multipoles for each atom
-// mono0     original atomic monopole values for charge flux
+// tem       multipole torque for each atom
 // polaxe    local coordinate frame type for each atom
 
 constexpr int maxpole = 13;
@@ -35,8 +37,10 @@ MDQC_EXTERN MDQCArray<int> pollist;
 MDQC_EXTERN MDQCArray<int> zaxis;
 MDQC_EXTERN MDQCArray<int> xaxis;
 MDQC_EXTERN MDQCArray<int> yaxis;
+MDQC_EXTERN MDQCArray<real> mono0;
+MDQC_EXTERN MDQCArray<real> mscale;
 MDQC_EXTERN MDQCArray2D<real,maxpole> pole;
 MDQC_EXTERN MDQCArray2D<real,maxpole> rpole;
-MDQC_EXTERN MDQCArray<real> mono0;
+MDQC_EXTERN MDQCArray2D<real,3> tem;
 MDQC_EXTERN MDQCArray<LocalFrame> polaxe;
 }
