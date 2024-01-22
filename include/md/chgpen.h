@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -20,8 +19,8 @@ namespace polmdqc
 // palpha    charge penetration damping value at each atom
 
 MDQC_EXTERN int ncp;
-MDQC_EXTERN std::vector<real> pcore;
-MDQC_EXTERN std::vector<real> pval;
-MDQC_EXTERN std::vector<real> pval0;
-MDQC_EXTERN std::vector<real> palpha;
+MDQC_EXTERN MDQCArray<real> pcore;
+MDQC_EXTERN MDQCArray<real> pval;
+MDQC_EXTERN MDQCArray<real> pval0;
+MDQC_EXTERN MDQCArray<real> palpha;
 }

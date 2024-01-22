@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -21,9 +20,9 @@ namespace polmdqc
 // molmass   molecular weight for each molecule in the system
 
 MDQC_EXTERN int nmol;
-MDQC_EXTERN std::vector<std::vector<int>> imol;
-MDQC_EXTERN std::vector<int> kmol;
-MDQC_EXTERN std::vector<int> molcule;
+MDQC_EXTERN MDQCArray2D<int,2> imol;
+MDQC_EXTERN MDQCArray<int> kmol;
+MDQC_EXTERN MDQCArray<int> molcule;
 MDQC_EXTERN real totmass;
-MDQC_EXTERN std::vector<real> molmass;
+MDQC_EXTERN MDQCArray<real> molmass;
 }

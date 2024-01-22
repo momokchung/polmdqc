@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -34,22 +33,22 @@ namespace polmdqc
 // douind    flag to allow induced dipoles at each atom site
 
 MDQC_EXTERN int npolar;
-MDQC_EXTERN std::vector<int> ipolar;
-MDQC_EXTERN std::vector<int> jpolar;
-MDQC_EXTERN std::vector<real> polarity;
-MDQC_EXTERN std::vector<real> thole;
-MDQC_EXTERN std::vector<real> tholed;
-MDQC_EXTERN std::vector<real> pdamp;
-MDQC_EXTERN std::vector<std::vector<real>> thlval;
-MDQC_EXTERN std::vector<std::vector<real>> thdval;
-MDQC_EXTERN std::vector<std::vector<real>> udir;
-MDQC_EXTERN std::vector<std::vector<real>> udirp;
-MDQC_EXTERN std::vector<std::vector<real>> udirs;
-MDQC_EXTERN std::vector<std::vector<real>> udirps;
-MDQC_EXTERN std::vector<std::vector<real>> uind;
-MDQC_EXTERN std::vector<std::vector<real>> uinp;
-MDQC_EXTERN std::vector<std::vector<real>> uinds;
-MDQC_EXTERN std::vector<std::vector<real>> uinps;
-MDQC_EXTERN std::vector<std::vector<real>> uexact;
-MDQC_EXTERN std::vector<bool> douind;
+MDQC_EXTERN MDQCArray<int> ipolar;
+MDQC_EXTERN MDQCArray<int> jpolar;
+MDQC_EXTERN MDQCArray<real> polarity;
+MDQC_EXTERN MDQCArray<real> thole;
+MDQC_EXTERN MDQCArray<real> tholed;
+MDQC_EXTERN MDQCArray<real> pdamp;
+MDQC_EXTERN MDQCArray<real> thlval;
+MDQC_EXTERN MDQCArray<real> thdval;
+MDQC_EXTERN MDQCArray2D<real,3> udir;
+MDQC_EXTERN MDQCArray2D<real,3> udirp;
+MDQC_EXTERN MDQCArray2D<real,3> udirs;
+MDQC_EXTERN MDQCArray2D<real,3> udirps;
+MDQC_EXTERN MDQCArray2D<real,3> uind;
+MDQC_EXTERN MDQCArray2D<real,3> uinp;
+MDQC_EXTERN MDQCArray2D<real,3> uinds;
+MDQC_EXTERN MDQCArray2D<real,3> uinps;
+MDQC_EXTERN MDQCArray2D<real,3> uexact;
+MDQC_EXTERN MDQCArray<bool> douind;
 }

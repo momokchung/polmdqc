@@ -3,7 +3,7 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
+#include "sizes.h"
 
 namespace polmdqc
 {
@@ -24,11 +24,11 @@ namespace polmdqc
 // use_inter   flag to include only intergroup interactions
 
 MDQC_EXTERN int ngrp;
-MDQC_EXTERN std::vector<int> kgrp;
-MDQC_EXTERN std::vector<int> grplist;
-MDQC_EXTERN std::vector<std::vector<int>> igrp;
-MDQC_EXTERN std::vector<real> grpmass;
-MDQC_EXTERN std::vector<std::vector<real>> wgrp;
+MDQC_EXTERN MDQCArray<int> kgrp;
+MDQC_EXTERN MDQCArray<int> grplist;
+MDQC_EXTERN MDQCArray2D<int,2> igrp;
+MDQC_EXTERN MDQCArray<real> grpmass;
+MDQC_EXTERN MDQCArray2D<real,maxgrp+1> wgrp;
 MDQC_EXTERN bool use_group;
 MDQC_EXTERN bool use_intra;
 MDQC_EXTERN bool use_inter;

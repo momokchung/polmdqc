@@ -9,7 +9,7 @@
 #include "upcase.h"
 #include "usage.h"
 #include <sstream>
-#include <iostream>
+#include <vector>
 
 namespace polmdqc
 {
@@ -37,22 +37,22 @@ void active()
     bool header;
 
     // allocation and initialization of some global arrays
-    if (iuse.size() != 0) iuse.resize(0);
-    if (use.size() != 0) use.resize(0);
-    iuse.resize(n, -1);
-    use.resize(n+1, true);
-    use[0] = false;
+    iuse.allocate(n);
+    use.allocate(n+1);
 
     // allocation and initialization of some local arrays
     std::vector<int> mobile;
     std::vector<int> fixed;
-    if (mobile.size() != 0) mobile.resize(0);
-    if (fixed.size() != 0) fixed.resize(0);
     mobile.resize(n, 0);
     fixed.resize(n, 0);
 
     // set defaults for the numbers and lists of active atoms
     nuse = n;
+    use[0] = false;
+    for (int i = 0; i < n; i++) {
+        iuse[i] = -1;
+        use[i+1] = true;
+    }
     nmobile = 0;
     nfixed = 0;
     nsphere = 0;

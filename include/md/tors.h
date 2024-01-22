@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -23,11 +22,11 @@ namespace polmdqc
 // tors6   6-fold amplitude and phase for each torsional angle
 
 MDQC_EXTERN int ntors;
-MDQC_EXTERN std::vector<std::vector<int>>  itors;
-MDQC_EXTERN std::vector<std::vector<real>> tors1;
-MDQC_EXTERN std::vector<std::vector<real>> tors2;
-MDQC_EXTERN std::vector<std::vector<real>> tors3;
-MDQC_EXTERN std::vector<std::vector<real>> tors4;
-MDQC_EXTERN std::vector<std::vector<real>> tors5;
-MDQC_EXTERN std::vector<std::vector<real>> tors6;
+MDQC_EXTERN MDQCArray2D<int,4> itors;
+MDQC_EXTERN MDQCArray2D<real,4> tors1;
+MDQC_EXTERN MDQCArray2D<real,4> tors2;
+MDQC_EXTERN MDQCArray2D<real,4> tors3;
+MDQC_EXTERN MDQCArray2D<real,4> tors4;
+MDQC_EXTERN MDQCArray2D<real,4> tors5;
+MDQC_EXTERN MDQCArray2D<real,4> tors6;
 }

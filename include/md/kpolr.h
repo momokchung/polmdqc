@@ -3,7 +3,7 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
+#include "sizes.h"
 
 namespace polmdqc
 {
@@ -18,8 +18,8 @@ namespace polmdqc
 // athl   Thole polarization damping value for each atom type
 // dthl   alternate Thole direct polarization damping values
 
-MDQC_EXTERN std::vector<std::vector<int>> pgrp;
-MDQC_EXTERN std::vector<real> polr;
-MDQC_EXTERN std::vector<real> athl;
-MDQC_EXTERN std::vector<real> dthl;
+MDQC_EXTERN MDQCArray2D<int,maxval> pgrp;
+MDQC_EXTERN MDQCArray<real> polr;
+MDQC_EXTERN MDQCArray<real> athl;
+MDQC_EXTERN MDQCArray<real> dthl;
 }

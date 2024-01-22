@@ -3,6 +3,7 @@
 #include "analyze.h"
 #include "deriv.h"
 #include "energi.h"
+#include "final.h"
 #include "inter.h"
 #include "mpole.h"
 #include "rotpole.h"
@@ -21,7 +22,7 @@ TEST_CASE("rotpole-1", "[analyze][AMOEBA][axetyp]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == rotpole1::nem);
 
@@ -32,7 +33,9 @@ TEST_CASE("rotpole-1", "[analyze][AMOEBA][axetyp]") {
     COMPARE_VECTOR(aesum, rotpole1::aesum, rotpole1::eps);
     COMPARE_VECTOR(aem, rotpole1::aem, rotpole1::eps);
 
-    COMPARE_MATRIX(rpole, rotpole1::rpole, rotpole1::epsR);
+    COMPARE_ARRAY2D(rpole, rotpole1::rpole, rotpole1::epsR);
+
+    final();
 }
 
 TEST_CASE("rotpole-2", "[analyze][HIPPO][benzene_ethyne_water]") {
@@ -45,7 +48,7 @@ TEST_CASE("rotpole-2", "[analyze][HIPPO][benzene_ethyne_water]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == rotpole2::nem);
 
@@ -56,7 +59,9 @@ TEST_CASE("rotpole-2", "[analyze][HIPPO][benzene_ethyne_water]") {
     COMPARE_VECTOR(aesum, rotpole2::aesum, rotpole2::eps);
     COMPARE_VECTOR(aem, rotpole2::aem, rotpole2::eps);
 
-    COMPARE_MATRIX(rpole, rotpole2::rpole, rotpole2::epsR);
+    COMPARE_ARRAY2D(rpole, rotpole2::rpole, rotpole2::epsR);
+
+    final();
 }
 
 TEST_CASE("rotpole-3", "[analyze][HIPPO][ammonia]") {
@@ -69,7 +74,7 @@ TEST_CASE("rotpole-3", "[analyze][HIPPO][ammonia]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == rotpole3::nem);
 
@@ -80,7 +85,9 @@ TEST_CASE("rotpole-3", "[analyze][HIPPO][ammonia]") {
     COMPARE_VECTOR(aesum, rotpole3::aesum, rotpole3::eps);
     COMPARE_VECTOR(aem, rotpole3::aem, rotpole3::eps);
 
-    COMPARE_MATRIX(rpole, rotpole3::rpole, rotpole3::epsR);
+    COMPARE_ARRAY2D(rpole, rotpole3::rpole, rotpole3::epsR);
+
+    final();
 }
 
 TEST_CASE("rotpole-4", "[testgrad][AMOEBA][axetyp]") {
@@ -95,13 +102,15 @@ TEST_CASE("rotpole-4", "[testgrad][AMOEBA][axetyp]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv);
+    testgrad(argc, argv, true);
 
-    COMPARE_MATRIX(desum, rotpole4::desum, rotpole4::eps1);
-    COMPARE_MATRIX(dem, rotpole4::dem, rotpole4::eps1);
+    COMPARE_ARRAY2D(desum, rotpole4::desum, rotpole4::eps1);
+    COMPARE_ARRAY2D(dem, rotpole4::dem, rotpole4::eps1);
 
-    COMPARE_MATRIX(ndesum, rotpole4::desum, rotpole4::eps2);
-    COMPARE_MATRIX(ndem, rotpole4::dem, rotpole4::eps2);
+    COMPARE_ARRAY2D(ndesum, rotpole4::desum, rotpole4::eps2);
+    COMPARE_ARRAY2D(ndem, rotpole4::dem, rotpole4::eps2);
+
+    final();
 }
 
 TEST_CASE("rotpole-5", "[testgrad][HIPPO][benzene_ethyne_water]") {
@@ -116,13 +125,15 @@ TEST_CASE("rotpole-5", "[testgrad][HIPPO][benzene_ethyne_water]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv);
+    testgrad(argc, argv, true);
 
-    COMPARE_MATRIX(desum, rotpole5::desum, rotpole5::eps1);
-    COMPARE_MATRIX(dem, rotpole5::dem, rotpole5::eps1);
+    COMPARE_ARRAY2D(desum, rotpole5::desum, rotpole5::eps1);
+    COMPARE_ARRAY2D(dem, rotpole5::dem, rotpole5::eps1);
 
-    COMPARE_MATRIX(ndesum, rotpole5::desum, rotpole5::eps2);
-    COMPARE_MATRIX(ndem, rotpole5::dem, rotpole5::eps2);
+    COMPARE_ARRAY2D(ndesum, rotpole5::desum, rotpole5::eps2);
+    COMPARE_ARRAY2D(ndem, rotpole5::dem, rotpole5::eps2);
+
+    final();
 }
 
 TEST_CASE("rotpole-6", "[analyze][HIPPO][ammonia]") {
@@ -137,12 +148,14 @@ TEST_CASE("rotpole-6", "[analyze][HIPPO][ammonia]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv);
+    testgrad(argc, argv, true);
 
-    COMPARE_MATRIX(desum, rotpole6::desum, rotpole6::eps1);
-    COMPARE_MATRIX(dem, rotpole6::dem, rotpole6::eps1);
+    COMPARE_ARRAY2D(desum, rotpole6::desum, rotpole6::eps1);
+    COMPARE_ARRAY2D(dem, rotpole6::dem, rotpole6::eps1);
 
-    COMPARE_MATRIX(ndesum, rotpole6::desum, rotpole6::eps2);
-    COMPARE_MATRIX(ndem, rotpole6::dem, rotpole6::eps2);
+    COMPARE_ARRAY2D(ndesum, rotpole6::desum, rotpole6::eps2);
+    COMPARE_ARRAY2D(ndem, rotpole6::dem, rotpole6::eps2);
+
+    final();
 }
 }

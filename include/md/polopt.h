@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -28,12 +27,12 @@ namespace polmdqc
 constexpr int maxopt = 6;
 MDQC_EXTERN int optorder;
 MDQC_EXTERN int optlevel;
-MDQC_EXTERN std::vector<real> copt;
-MDQC_EXTERN std::vector<real> copm;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uopt;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uoptp;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uopts;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uoptps;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> fopt;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> foptp;
+MDQC_EXTERN MDQCArray<real> copt;
+MDQC_EXTERN MDQCArray<real> copm;
+MDQC_EXTERN MDQCArray2D<real,3> uopt;
+MDQC_EXTERN MDQCArray2D<real,3> uoptp;
+MDQC_EXTERN MDQCArray2D<real,3> uopts;
+MDQC_EXTERN MDQCArray2D<real,3> uoptps;
+MDQC_EXTERN MDQCArray2D<real,10> fopt;
+MDQC_EXTERN MDQCArray2D<real,10> foptp;
 }

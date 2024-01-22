@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -21,10 +20,10 @@ namespace polmdqc
 // symbol     modified atomic symbol for each atom type
 // describe   string identifying each of the atom types
 
-MDQC_EXTERN std::vector<int> atmcls;
-MDQC_EXTERN std::vector<int> atmnum;
-MDQC_EXTERN std::vector<int> ligand;
-MDQC_EXTERN std::vector<real> weight;
-MDQC_EXTERN std::vector<std::string> symbol;
-MDQC_EXTERN std::vector<std::string> describe;
+MDQC_EXTERN MDQCArray<int> atmcls;
+MDQC_EXTERN MDQCArray<int> atmnum;
+MDQC_EXTERN MDQCArray<int> ligand;
+MDQC_EXTERN MDQCArray<real> weight;
+MDQC_EXTERN MDQCArray<std::string> symbol;
+MDQC_EXTERN MDQCArray<std::string> describe;
 }

@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -18,6 +17,6 @@ namespace polmdqc
 // use    true if an atom is active, false if inactive (starting index=1)
 
 MDQC_EXTERN int nuse;
-MDQC_EXTERN std::vector<int> iuse;
-MDQC_EXTERN std::vector<bool> use;
+MDQC_EXTERN MDQCArray<int> iuse;
+MDQC_EXTERN MDQCArray<bool> use;
 }

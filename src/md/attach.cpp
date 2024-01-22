@@ -25,22 +25,17 @@ void attach()
     int maxn13 = 3 * maxval;
     int maxn14 = 9 * maxval;
     int maxn15 = 27 * maxval;
-    if (n13.size() != 0) n13.resize(0);
-    if (n14.size() != 0) n14.resize(0);
-    if (n15.size() != 0) n15.resize(0);
-    if (i13.size() != 0) i13.resize(0);
-    if (i14.size() != 0) i14.resize(0);
-    if (i15.size() != 0) i15.resize(0);
-    n13.resize(n, 0);
-    n14.resize(n, 0);
-    n15.resize(n, 0);
-    i13.resize(n, std::vector<int>(maxn13));
-    i14.resize(n, std::vector<int>(maxn14));
-    i15.resize(n, std::vector<int>(maxn15));
+    n13.allocate(n);
+    n14.allocate(n);
+    n15.allocate(n);
+    i13.allocate(n);
+    i14.allocate(n);
+    i15.allocate(n);
 
     // loop over all atoms finding all the 1-3 relationships;
     // note "n12" and "i12" have already been setup elsewhere
     for (int i = 0; i < n; i++) {
+        n13[i] = 0;
         std::vector<int> i13tmp;
         for (int j = 0; j < n12[i]; j++) {
             int jj = i12[i][j];
@@ -69,6 +64,7 @@ void attach()
 
     // loop over all atoms finding all the 1-4 relationships
     for (int i = 0; i < n; i++) {
+        n14[i] = 0;
         std::vector<int> i14tmp;
         for (int j = 0; j < n13[i]; j++) {
             int jj = i13[i][j];
@@ -100,6 +96,7 @@ void attach()
 
     // loop over all atoms finding all the 1-5 relationships
     for (int i = 0; i < n; i++) {
+        n15[i] = 0;
         std::vector<int> i15tmp;
         for (int j = 0; j < n14[i]; j++) {
             int jj = i14[i][j];

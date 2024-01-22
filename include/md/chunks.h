@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -29,5 +28,5 @@ MDQC_EXTERN int nchunk;
 MDQC_EXTERN int nchk1,nchk2,nchk3;
 MDQC_EXTERN int ngrd1,ngrd2,ngrd3;
 MDQC_EXTERN int nlpts,nrpts,grdoff;
-MDQC_EXTERN std::vector<std::vector<int>> pmetable;
+MDQC_EXTERN MDQCArray<int> pmetable;
 }

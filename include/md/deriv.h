@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include "precision.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -44,35 +43,35 @@ namespace polmdqc
 // deg     geometric restraint Cartesian coordinate derivatives
 // dex     extra energy term Cartesian coordinate derivatives
 
-MDQC_EXTERN std::vector<std::vector<real>> desum;
-MDQC_EXTERN std::vector<std::vector<real>> deb;
-MDQC_EXTERN std::vector<std::vector<real>> dea;
-MDQC_EXTERN std::vector<std::vector<real>> deba;
-MDQC_EXTERN std::vector<std::vector<real>> deub;
-MDQC_EXTERN std::vector<std::vector<real>> deaa;
-MDQC_EXTERN std::vector<std::vector<real>> deopb;
-MDQC_EXTERN std::vector<std::vector<real>> deopd;
-MDQC_EXTERN std::vector<std::vector<real>> deid;
-MDQC_EXTERN std::vector<std::vector<real>> deit;
-MDQC_EXTERN std::vector<std::vector<real>> det;
-MDQC_EXTERN std::vector<std::vector<real>> dept;
-MDQC_EXTERN std::vector<std::vector<real>> debt;
-MDQC_EXTERN std::vector<std::vector<real>> deat;
-MDQC_EXTERN std::vector<std::vector<real>> dett;
-MDQC_EXTERN std::vector<std::vector<real>> dev;
-MDQC_EXTERN std::vector<std::vector<real>> der;
-MDQC_EXTERN std::vector<std::vector<real>> dedsp;
-MDQC_EXTERN std::vector<std::vector<real>> dec;
-MDQC_EXTERN std::vector<std::vector<real>> decd;
-MDQC_EXTERN std::vector<std::vector<real>> ded;
-MDQC_EXTERN std::vector<std::vector<real>> dem;
-MDQC_EXTERN std::vector<std::vector<real>> dep;
-MDQC_EXTERN std::vector<std::vector<real>> dect;
-MDQC_EXTERN std::vector<std::vector<real>> derxf;
-MDQC_EXTERN std::vector<std::vector<real>> des;
-MDQC_EXTERN std::vector<std::vector<real>> delf;
-MDQC_EXTERN std::vector<std::vector<real>> deg;
-MDQC_EXTERN std::vector<std::vector<real>> dex;
+MDQC_EXTERN MDQCArray2D<real,3> desum;
+MDQC_EXTERN MDQCArray2D<real,3> deb;
+MDQC_EXTERN MDQCArray2D<real,3> dea;
+MDQC_EXTERN MDQCArray2D<real,3> deba;
+MDQC_EXTERN MDQCArray2D<real,3> deub;
+MDQC_EXTERN MDQCArray2D<real,3> deaa;
+MDQC_EXTERN MDQCArray2D<real,3> deopb;
+MDQC_EXTERN MDQCArray2D<real,3> deopd;
+MDQC_EXTERN MDQCArray2D<real,3> deid;
+MDQC_EXTERN MDQCArray2D<real,3> deit;
+MDQC_EXTERN MDQCArray2D<real,3> det;
+MDQC_EXTERN MDQCArray2D<real,3> dept;
+MDQC_EXTERN MDQCArray2D<real,3> debt;
+MDQC_EXTERN MDQCArray2D<real,3> deat;
+MDQC_EXTERN MDQCArray2D<real,3> dett;
+MDQC_EXTERN MDQCArray2D<real,3> dev;
+MDQC_EXTERN MDQCArray2D<real,3> der;
+MDQC_EXTERN MDQCArray2D<real,3> dedsp;
+MDQC_EXTERN MDQCArray2D<real,3> dec;
+MDQC_EXTERN MDQCArray2D<real,3> decd;
+MDQC_EXTERN MDQCArray2D<real,3> ded;
+MDQC_EXTERN MDQCArray2D<real,3> dem;
+MDQC_EXTERN MDQCArray2D<real,3> dep;
+MDQC_EXTERN MDQCArray2D<real,3> dect;
+MDQC_EXTERN MDQCArray2D<real,3> derxf;
+MDQC_EXTERN MDQCArray2D<real,3> des;
+MDQC_EXTERN MDQCArray2D<real,3> delf;
+MDQC_EXTERN MDQCArray2D<real,3> deg;
+MDQC_EXTERN MDQCArray2D<real,3> dex;
 
 // ndesum   total energy Cartesian coordinate numerical derivatives
 // ndeb     bond stretch Cartesian coordinate numerical derivatives
@@ -104,33 +103,33 @@ MDQC_EXTERN std::vector<std::vector<real>> dex;
 // ndeg     geometric restraint Cartesian coordinate numerical derivatives
 // ndex     extra energy term Cartesian coordinate numerical derivatives
 
-MDQC_EXTERN std::vector<std::vector<real>> ndesum;
-MDQC_EXTERN std::vector<std::vector<real>> ndeb;
-MDQC_EXTERN std::vector<std::vector<real>> ndea;
-MDQC_EXTERN std::vector<std::vector<real>> ndeba;
-MDQC_EXTERN std::vector<std::vector<real>> ndeub;
-MDQC_EXTERN std::vector<std::vector<real>> ndeaa;
-MDQC_EXTERN std::vector<std::vector<real>> ndeopb;
-MDQC_EXTERN std::vector<std::vector<real>> ndeopd;
-MDQC_EXTERN std::vector<std::vector<real>> ndeid;
-MDQC_EXTERN std::vector<std::vector<real>> ndeit;
-MDQC_EXTERN std::vector<std::vector<real>> ndet;
-MDQC_EXTERN std::vector<std::vector<real>> ndept;
-MDQC_EXTERN std::vector<std::vector<real>> ndebt;
-MDQC_EXTERN std::vector<std::vector<real>> ndeat;
-MDQC_EXTERN std::vector<std::vector<real>> ndett;
-MDQC_EXTERN std::vector<std::vector<real>> ndev;
-MDQC_EXTERN std::vector<std::vector<real>> nder;
-MDQC_EXTERN std::vector<std::vector<real>> ndedsp;
-MDQC_EXTERN std::vector<std::vector<real>> ndec;
-MDQC_EXTERN std::vector<std::vector<real>> ndecd;
-MDQC_EXTERN std::vector<std::vector<real>> nded;
-MDQC_EXTERN std::vector<std::vector<real>> ndem;
-MDQC_EXTERN std::vector<std::vector<real>> ndep;
-MDQC_EXTERN std::vector<std::vector<real>> ndect;
-MDQC_EXTERN std::vector<std::vector<real>> nderxf;
-MDQC_EXTERN std::vector<std::vector<real>> ndes;
-MDQC_EXTERN std::vector<std::vector<real>> ndelf;
-MDQC_EXTERN std::vector<std::vector<real>> ndeg;
-MDQC_EXTERN std::vector<std::vector<real>> ndex;
+MDQC_EXTERN MDQCArray2D<real,3> ndesum;
+MDQC_EXTERN MDQCArray2D<real,3> ndeb;
+MDQC_EXTERN MDQCArray2D<real,3> ndea;
+MDQC_EXTERN MDQCArray2D<real,3> ndeba;
+MDQC_EXTERN MDQCArray2D<real,3> ndeub;
+MDQC_EXTERN MDQCArray2D<real,3> ndeaa;
+MDQC_EXTERN MDQCArray2D<real,3> ndeopb;
+MDQC_EXTERN MDQCArray2D<real,3> ndeopd;
+MDQC_EXTERN MDQCArray2D<real,3> ndeid;
+MDQC_EXTERN MDQCArray2D<real,3> ndeit;
+MDQC_EXTERN MDQCArray2D<real,3> ndet;
+MDQC_EXTERN MDQCArray2D<real,3> ndept;
+MDQC_EXTERN MDQCArray2D<real,3> ndebt;
+MDQC_EXTERN MDQCArray2D<real,3> ndeat;
+MDQC_EXTERN MDQCArray2D<real,3> ndett;
+MDQC_EXTERN MDQCArray2D<real,3> ndev;
+MDQC_EXTERN MDQCArray2D<real,3> nder;
+MDQC_EXTERN MDQCArray2D<real,3> ndedsp;
+MDQC_EXTERN MDQCArray2D<real,3> ndec;
+MDQC_EXTERN MDQCArray2D<real,3> ndecd;
+MDQC_EXTERN MDQCArray2D<real,3> nded;
+MDQC_EXTERN MDQCArray2D<real,3> ndem;
+MDQC_EXTERN MDQCArray2D<real,3> ndep;
+MDQC_EXTERN MDQCArray2D<real,3> ndect;
+MDQC_EXTERN MDQCArray2D<real,3> nderxf;
+MDQC_EXTERN MDQCArray2D<real,3> ndes;
+MDQC_EXTERN MDQCArray2D<real,3> ndelf;
+MDQC_EXTERN MDQCArray2D<real,3> ndeg;
+MDQC_EXTERN MDQCArray2D<real,3> ndex;
 }

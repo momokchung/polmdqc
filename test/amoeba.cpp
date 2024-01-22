@@ -4,6 +4,7 @@
 #include "analyze.h"
 #include "deriv.h"
 #include "energi.h"
+#include "final.h"
 #include "inter.h"
 #include "testgrad.h"
 #include "testrt.h"
@@ -20,7 +21,7 @@ TEST_CASE("amoeba-1", "[analyze][AMOEBA][water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == amoeba1::nem);
 
@@ -30,6 +31,8 @@ TEST_CASE("amoeba-1", "[analyze][AMOEBA][water09]") {
 
     COMPARE_VECTOR(aesum, amoeba1::aesum, amoeba1::eps);
     COMPARE_VECTOR(aem, amoeba1::aem, amoeba1::eps);
+
+    final();
 }
 
 TEST_CASE("amoeba-2", "[testgrad][AMOEBA][water09]") {
@@ -43,12 +46,14 @@ TEST_CASE("amoeba-2", "[testgrad][AMOEBA][water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv);
+    testgrad(argc, argv, true);
 
-    COMPARE_MATRIX(desum, amoeba2::desum, amoeba2::eps1);
-    COMPARE_MATRIX(dem, amoeba2::dem, amoeba2::eps1);
+    COMPARE_ARRAY2D(desum, amoeba2::desum, amoeba2::eps1);
+    COMPARE_ARRAY2D(dem, amoeba2::dem, amoeba2::eps1);
 
-    COMPARE_MATRIX(ndesum, amoeba2::desum, amoeba2::eps2);
-    COMPARE_MATRIX(ndem, amoeba2::dem, amoeba2::eps2);
+    COMPARE_ARRAY2D(ndesum, amoeba2::desum, amoeba2::eps2);
+    COMPARE_ARRAY2D(ndem, amoeba2::dem, amoeba2::eps2);
+
+    final();
 }
 }

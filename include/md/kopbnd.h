@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -19,6 +18,6 @@ namespace polmdqc
 // kopb      string of atom classes for out-of-plane bending
 
 MDQC_EXTERN int maxnopb;
-MDQC_EXTERN std::vector<real> opbn;
-MDQC_EXTERN std::vector<std::string> kopb;
+MDQC_EXTERN MDQCArray<real> opbn;
+MDQC_EXTERN MDQCArray<std::string> kopb;
 }

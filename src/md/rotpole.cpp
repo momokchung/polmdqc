@@ -354,7 +354,7 @@ void rotmat(int i, Eigen::Matrix<real, 3, 3>& a, bool& planar)
 // "rotsite" rotates atomic multipoles from the input to final
 // frame at a specified atom by applying a rotation matrix
 
-void rotsite(int ii, Eigen::Matrix<real, 3, 3>& a, bool& planar, std::vector<std::vector<real>>& inpole, std::vector<std::vector<real>>& outpole)
+void rotsite(int ii, Eigen::Matrix<real, 3, 3>& a, bool& planar, MDQCArray2D<real,maxpole>& inpole, MDQCArray2D<real,maxpole>& outpole)
 {
     int i,j,k,m;
     real spole[maxpole];

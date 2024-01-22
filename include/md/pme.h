@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -42,14 +41,14 @@ MDQC_EXTERN int nefft1,nefft2,nefft3;
 MDQC_EXTERN int ndfft1,ndfft2,ndfft3;
 MDQC_EXTERN int bsorder,bseorder;
 MDQC_EXTERN int bsporder,bsdorder;
-MDQC_EXTERN std::vector<std::vector<int>> igrid;
-MDQC_EXTERN std::vector<real> bsmod1;
-MDQC_EXTERN std::vector<real> bsmod2;
-MDQC_EXTERN std::vector<real> bsmod3;
-MDQC_EXTERN std::vector<std::vector<real>> bsbuild;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> thetai1;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> thetai2;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> thetai3;
-MDQC_EXTERN std::vector<std::vector<std::vector<std::vector<real>>>> qgrid;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> qfac;
+MDQC_EXTERN MDQCArray2D<int,3> igrid;
+MDQC_EXTERN MDQCArray<real> bsmod1;
+MDQC_EXTERN MDQCArray<real> bsmod2;
+MDQC_EXTERN MDQCArray<real> bsmod3;
+MDQC_EXTERN MDQCArray<real> bsbuild;
+MDQC_EXTERN MDQCArray<real> thetai1;
+MDQC_EXTERN MDQCArray<real> thetai2;
+MDQC_EXTERN MDQCArray<real> thetai3;
+MDQC_EXTERN MDQCArray2D<real,2> qgrid;
+MDQC_EXTERN MDQCArray<real> qfac;
 }

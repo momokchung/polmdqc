@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -39,10 +38,10 @@ MDQC_EXTERN real bpred[maxpred];
 MDQC_EXTERN real bpredp[maxpred];
 MDQC_EXTERN real bpreds[maxpred];
 MDQC_EXTERN real bpredps[maxpred];
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> udalt;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> upalt;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> usalt;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> upsalt;
+MDQC_EXTERN MDQCArray2D<real,3> udalt;
+MDQC_EXTERN MDQCArray2D<real,3> upalt;
+MDQC_EXTERN MDQCArray2D<real,3> usalt;
+MDQC_EXTERN MDQCArray2D<real,3> upsalt;
 MDQC_EXTERN bool use_pred;
 MDQC_EXTERN std::string polpred;
 }

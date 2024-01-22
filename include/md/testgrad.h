@@ -11,5 +11,5 @@ namespace polmdqc
 //                                 //
 /////////////////////////////////////
 
-void testgrad(int argc, char** argv);
+void testgrad(int argc, char** argv, bool test=false);
 }

@@ -4,6 +4,7 @@
 #include "analyze.h"
 #include "deriv.h"
 #include "energi.h"
+#include "final.h"
 #include "inter.h"
 #include "testgrad.h"
 #include "testrt.h"
@@ -21,7 +22,7 @@ TEST_CASE("amoebaMisc-1", "[analyze][AMOEBA][water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == amoebaMisc1::nem);
 
@@ -31,6 +32,8 @@ TEST_CASE("amoebaMisc-1", "[analyze][AMOEBA][water09]") {
 
     COMPARE_VECTOR(aesum, amoebaMisc1::aesum, amoebaMisc1::eps);
     COMPARE_VECTOR(aem, amoebaMisc1::aem, amoebaMisc1::eps);
+
+    final();
 }
 
 TEST_CASE("amoebaMisc-2", "[analyze][AMOEBA][alatet_water09]") {
@@ -43,7 +46,7 @@ TEST_CASE("amoebaMisc-2", "[analyze][AMOEBA][alatet_water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == amoebaMisc2::nem);
 
@@ -53,6 +56,8 @@ TEST_CASE("amoebaMisc-2", "[analyze][AMOEBA][alatet_water09]") {
 
     COMPARE_VECTOR(aesum, amoebaMisc2::aesum, amoebaMisc2::eps);
     COMPARE_VECTOR(aem, amoebaMisc2::aem, amoebaMisc2::eps);
+
+    final();
 }
 
 TEST_CASE("amoebaMisc-3", "[testgrad][AMOEBA][alatet_water09]") {
@@ -67,13 +72,15 @@ TEST_CASE("amoebaMisc-3", "[testgrad][AMOEBA][alatet_water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv);
+    testgrad(argc, argv, true);
 
-    COMPARE_MATRIX(desum, amoebaMisc3::desum, amoebaMisc3::eps1);
-    COMPARE_MATRIX(dem, amoebaMisc3::dem, amoebaMisc3::eps1);
+    COMPARE_ARRAY2D(desum, amoebaMisc3::desum, amoebaMisc3::eps1);
+    COMPARE_ARRAY2D(dem, amoebaMisc3::dem, amoebaMisc3::eps1);
 
-    COMPARE_MATRIX(ndesum, amoebaMisc3::desum, amoebaMisc3::eps2);
-    COMPARE_MATRIX(ndem, amoebaMisc3::dem, amoebaMisc3::eps2);
+    COMPARE_ARRAY2D(ndesum, amoebaMisc3::desum, amoebaMisc3::eps2);
+    COMPARE_ARRAY2D(ndem, amoebaMisc3::dem, amoebaMisc3::eps2);
+
+    final();
 }
 
 TEST_CASE("amoebaMisc-5", "[analyze][AMOEBA][water09NSeq]") {
@@ -86,7 +93,7 @@ TEST_CASE("amoebaMisc-5", "[analyze][AMOEBA][water09NSeq]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == amoebaMisc5::nem);
 
@@ -96,5 +103,7 @@ TEST_CASE("amoebaMisc-5", "[analyze][AMOEBA][water09NSeq]") {
 
     COMPARE_VECTOR(aesum, amoebaMisc5::aesum, amoebaMisc5::eps);
     COMPARE_VECTOR(aem, amoebaMisc5::aem, amoebaMisc5::eps);
+
+    final();
 }
 }

@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -16,6 +15,6 @@ namespace polmdqc
 // dspsix   C6 dispersion coefficient for each atom class
 // dspdmp   alpha dispersion parameter for each atom class
 
-MDQC_EXTERN std::vector<real> dspsix;
-MDQC_EXTERN std::vector<real> dspdmp;
+MDQC_EXTERN MDQCArray<real> dspsix;
+MDQC_EXTERN MDQCArray<real> dspdmp;
 }

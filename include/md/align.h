@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -18,6 +17,6 @@ namespace polmdqc
 // wfit    weights assigned to atom pairs during superposition
 
 MDQC_EXTERN int nfit;
-MDQC_EXTERN std::vector<std::vector<int>> ifit;
-MDQC_EXTERN std::vector<real> wfit;
+MDQC_EXTERN MDQCArray2D<int,2> ifit;
+MDQC_EXTERN MDQCArray<real> wfit;
 }

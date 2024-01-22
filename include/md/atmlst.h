@@ -3,7 +3,7 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
+#include "sizes.h"
 
 namespace polmdqc
 {
@@ -17,7 +17,7 @@ namespace polmdqc
 // anglist   numbers of the angles centered on each atom
 // balist    numbers of the bonds comprising each angle
 
-MDQC_EXTERN std::vector<std::vector<int>> bndlist;
-MDQC_EXTERN std::vector<std::vector<int>> anglist;
-MDQC_EXTERN std::vector<std::vector<int>> balist;
+MDQC_EXTERN MDQCArray2D<int,maxval> bndlist;
+MDQC_EXTERN MDQCArray2D<int,maxval*(maxval-1)/2> anglist;
+MDQC_EXTERN MDQCArray2D<int,2> balist;
 }

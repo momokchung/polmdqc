@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -17,7 +16,7 @@ namespace polmdqc
 // csr      ddCOSMO solvation radius value for each atom type
 // gkr      Generalized Kirkwood radius value for each atom type
 
-MDQC_EXTERN std::vector<real> pbr;
-MDQC_EXTERN std::vector<real> csr;
-MDQC_EXTERN std::vector<real> gkr;
+MDQC_EXTERN MDQCArray<real> pbr;
+MDQC_EXTERN MDQCArray<real> csr;
+MDQC_EXTERN MDQCArray<real> gkr;
 }

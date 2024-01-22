@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -15,5 +14,5 @@ namespace polmdqc
 
 // anan   angle-angle cross term parameters for each atom class
 
-MDQC_EXTERN std::vector<std::vector<real>> anan;
+MDQC_EXTERN MDQCArray2D<real,3> anan;
 }

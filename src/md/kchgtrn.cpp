@@ -83,10 +83,8 @@ void kchgtrn()
 //       end do
 
     // perform dynamic allocation of some global arrays
-    if (chgct.size() != 0) chgct.resize(0);
-    if (dmpct.size() != 0) dmpct.resize(0);
-    chgct.resize(n);
-    dmpct.resize(n);
+    chgct.allocate(n);
+    dmpct.allocate(n);
 // c
 // c     assign the charge transfer charge and alpha parameters 
 // c

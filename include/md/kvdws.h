@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -19,9 +18,9 @@ namespace polmdqc
 // eps4     van der Waals well depth parameter in 1-4 interactions
 // reduct   van der Waals reduction factor for each atom class
 
-MDQC_EXTERN std::vector<real> rad;
-MDQC_EXTERN std::vector<real> eps;
-MDQC_EXTERN std::vector<real> rad4;
-MDQC_EXTERN std::vector<real> eps4;
-MDQC_EXTERN std::vector<real> reduct;
+MDQC_EXTERN MDQCArray<real> rad;
+MDQC_EXTERN MDQCArray<real> eps;
+MDQC_EXTERN MDQCArray<real> rad4;
+MDQC_EXTERN MDQCArray<real> eps4;
+MDQC_EXTERN MDQCArray<real> reduct;
 }

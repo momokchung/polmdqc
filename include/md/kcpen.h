@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -16,6 +15,6 @@ namespace polmdqc
 // cpele     valence electron magnitude for each atom class
 // cpalp     alpha charge penetration parameter for each atom class
 
-MDQC_EXTERN std::vector<real> cpele;
-MDQC_EXTERN std::vector<real> cpalp;
+MDQC_EXTERN MDQCArray<real> cpele;
+MDQC_EXTERN MDQCArray<real> cpalp;
 }

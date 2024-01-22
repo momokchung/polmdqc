@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -19,7 +18,7 @@ namespace polmdqc
 // bl      ideal bond length values in Angstroms
 
 MDQC_EXTERN int nbond;
-MDQC_EXTERN std::vector<std::vector<int>> ibnd;
-MDQC_EXTERN std::vector<real> bk;
-MDQC_EXTERN std::vector<real> bl;
+MDQC_EXTERN MDQCArray2D<int,2> ibnd;
+MDQC_EXTERN MDQCArray<real> bk;
+MDQC_EXTERN MDQCArray<real> bl;
 }

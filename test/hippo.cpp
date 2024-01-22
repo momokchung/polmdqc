@@ -3,6 +3,7 @@
 #include "analyze.h"
 #include "deriv.h"
 #include "energi.h"
+#include "final.h"
 #include "hippo.h"
 #include "inter.h"
 #include "testgrad.h"
@@ -20,7 +21,7 @@ TEST_CASE("hippo-1", "[analyze][HIPPO][water21]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == hippo1::nem);
 
@@ -30,6 +31,8 @@ TEST_CASE("hippo-1", "[analyze][HIPPO][water21]") {
 
     COMPARE_VECTOR(aesum, hippo1::aesum, hippo1::eps);
     COMPARE_VECTOR(aem, hippo1::aem, hippo1::eps);
+
+    final();
 }
 
 TEST_CASE("hippo-2", "[testgrad][HIPPO][water21]") {
@@ -43,12 +46,14 @@ TEST_CASE("hippo-2", "[testgrad][HIPPO][water21]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv);
+    testgrad(argc, argv, true);
 
-    COMPARE_MATRIX(desum, hippo2::desum, hippo2::eps1);
-    COMPARE_MATRIX(dem, hippo2::dem, hippo2::eps1);
+    COMPARE_ARRAY2D(desum, hippo2::desum, hippo2::eps1);
+    COMPARE_ARRAY2D(dem, hippo2::dem, hippo2::eps1);
 
-    COMPARE_MATRIX(ndesum, hippo2::desum, hippo2::eps2);
-    COMPARE_MATRIX(ndem, hippo2::dem, hippo2::eps2);
+    COMPARE_ARRAY2D(ndesum, hippo2::desum, hippo2::eps2);
+    COMPARE_ARRAY2D(ndem, hippo2::dem, hippo2::eps2);
+
+    final();
 }
 }

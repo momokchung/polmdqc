@@ -24,9 +24,9 @@ namespace polmdqc
 MDQC_EXTERN int tcgorder;
 MDQC_EXTERN int tcgnab;
 MDQC_EXTERN real tcgpeek;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uad;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> uap;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> ubd;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> ubp;
+MDQC_EXTERN MDQCArray2D<real,3> uad;
+MDQC_EXTERN MDQCArray2D<real,3> uap;
+MDQC_EXTERN MDQCArray2D<real,3> ubd;
+MDQC_EXTERN MDQCArray2D<real,3> ubp;
 MDQC_EXTERN bool tcgguess;
 }

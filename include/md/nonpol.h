@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -45,8 +44,8 @@ constexpr real dspoff = 1.056;
 MDQC_EXTERN real solvprs,surften;
 MDQC_EXTERN real spcut,spoff;
 MDQC_EXTERN real stcut,stoff;
-MDQC_EXTERN std::vector<real> radcav;
-MDQC_EXTERN std::vector<real> raddsp;
-MDQC_EXTERN std::vector<real> epsdsp;
-MDQC_EXTERN std::vector<real> cdsp;
+MDQC_EXTERN MDQCArray<real> radcav;
+MDQC_EXTERN MDQCArray<real> raddsp;
+MDQC_EXTERN MDQCArray<real> epsdsp;
+MDQC_EXTERN MDQCArray<real> cdsp;
 }

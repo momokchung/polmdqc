@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -33,16 +32,16 @@ namespace polmdqc
 MDQC_EXTERN int maxnpi;
 MDQC_EXTERN int maxnpi5;
 MDQC_EXTERN int maxnpi4;
-MDQC_EXTERN std::vector<real> electron;
-MDQC_EXTERN std::vector<real> ionize;
-MDQC_EXTERN std::vector<real> repulse;
-MDQC_EXTERN std::vector<real> sslope;
-MDQC_EXTERN std::vector<real> sslope5;
-MDQC_EXTERN std::vector<real> sslope4;
-MDQC_EXTERN std::vector<real> tslope;
-MDQC_EXTERN std::vector<real> tslope5;
-MDQC_EXTERN std::vector<real> tslope4;
-MDQC_EXTERN std::vector<std::string> kpi;
-MDQC_EXTERN std::vector<std::string> kpi5;
-MDQC_EXTERN std::vector<std::string> kpi4;
+MDQC_EXTERN MDQCArray<real> electron;
+MDQC_EXTERN MDQCArray<real> ionize;
+MDQC_EXTERN MDQCArray<real> repulse;
+MDQC_EXTERN MDQCArray<real> sslope;
+MDQC_EXTERN MDQCArray<real> sslope5;
+MDQC_EXTERN MDQCArray<real> sslope4;
+MDQC_EXTERN MDQCArray<real> tslope;
+MDQC_EXTERN MDQCArray<real> tslope5;
+MDQC_EXTERN MDQCArray<real> tslope4;
+MDQC_EXTERN MDQCArray<std::string> kpi;
+MDQC_EXTERN MDQCArray<std::string> kpi5;
+MDQC_EXTERN MDQCArray<std::string> kpi4;
 }

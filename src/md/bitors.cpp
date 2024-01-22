@@ -26,8 +26,7 @@ void bitors()
 
     // perform dynamic allocation of some global arrays
     maxbitor = 54 * n;
-    if (ibitor.size() != 0) ibitor.resize(0);
-    ibitor.resize(maxbitor,std::vector<int>(5));
+    ibitor.allocate(maxbitor);
 
     // loop over all angles, storing the atoms in each bitorsion
     nbitor = 0;

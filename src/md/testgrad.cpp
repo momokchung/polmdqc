@@ -37,7 +37,7 @@ namespace polmdqc
 
 void resizeNumDer();
 
-void testgrad(int argc, char** argv)
+void testgrad(int argc, char** argv, bool test)
 {
     constexpr CalcMode EnergyMode = CalcMode::Energy;
     constexpr CalcMode GradientMode = CalcMode::Gradient;
@@ -579,38 +579,38 @@ void testgrad(int argc, char** argv)
 
     // perform any final tasks before program exit
     ffile.close();
-    final();
+    if (not test) final();
 }
 
 void resizeNumDer() {
-    ndesum.resize(n, std::vector<real>(3));
-    ndeb.resize(n, std::vector<real>(3));
-    ndea.resize(n, std::vector<real>(3));
-    ndeba.resize(n, std::vector<real>(3));
-    ndeub.resize(n, std::vector<real>(3));
-    ndeaa.resize(n, std::vector<real>(3));
-    ndeopb.resize(n, std::vector<real>(3));
-    ndeopd.resize(n, std::vector<real>(3));
-    ndeid.resize(n, std::vector<real>(3));
-    ndeit.resize(n, std::vector<real>(3));
-    ndet.resize(n, std::vector<real>(3));
-    ndept.resize(n, std::vector<real>(3));
-    ndebt.resize(n, std::vector<real>(3));
-    ndeat.resize(n, std::vector<real>(3));
-    ndett.resize(n, std::vector<real>(3));
-    ndev.resize(n, std::vector<real>(3));
-    nder.resize(n, std::vector<real>(3));
-    ndedsp.resize(n, std::vector<real>(3));
-    ndec.resize(n, std::vector<real>(3));
-    ndecd.resize(n, std::vector<real>(3));
-    nded.resize(n, std::vector<real>(3));
-    ndem.resize(n, std::vector<real>(3));
-    ndep.resize(n, std::vector<real>(3));
-    ndect.resize(n, std::vector<real>(3));
-    nderxf.resize(n, std::vector<real>(3));
-    ndes.resize(n, std::vector<real>(3));
-    ndelf.resize(n, std::vector<real>(3));
-    ndeg.resize(n, std::vector<real>(3));
-    ndex.resize(n, std::vector<real>(3));
+    ndesum.allocate(n);
+    ndeb.allocate(n);
+    ndea.allocate(n);
+    ndeba.allocate(n);
+    ndeub.allocate(n);
+    ndeaa.allocate(n);
+    ndeopb.allocate(n);
+    ndeopd.allocate(n);
+    ndeid.allocate(n);
+    ndeit.allocate(n);
+    ndet.allocate(n);
+    ndept.allocate(n);
+    ndebt.allocate(n);
+    ndeat.allocate(n);
+    ndett.allocate(n);
+    ndev.allocate(n);
+    nder.allocate(n);
+    ndedsp.allocate(n);
+    ndec.allocate(n);
+    ndecd.allocate(n);
+    nded.allocate(n);
+    ndem.allocate(n);
+    ndep.allocate(n);
+    ndect.allocate(n);
+    nderxf.allocate(n);
+    ndes.allocate(n);
+    ndelf.allocate(n);
+    ndeg.allocate(n);
+    ndex.allocate(n);
 }
 }

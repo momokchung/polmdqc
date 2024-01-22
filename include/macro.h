@@ -2,6 +2,7 @@
 // Year:   2023
 
 #pragma once
+#include "darray.h"
 #include "precision.h"
 
 #ifndef MDQC_EXTERN_DEFINITION_FILE

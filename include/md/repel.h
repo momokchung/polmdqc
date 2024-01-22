@@ -3,7 +3,7 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
+#include "mpole.h"
 
 namespace polmdqc
 {
@@ -23,11 +23,11 @@ namespace polmdqc
 // rrepole   repulsion Cartesian multipoles in the global frame
 
 MDQC_EXTERN int nrep;
-MDQC_EXTERN std::vector<int> irep;
-MDQC_EXTERN std::vector<int> replist;
-MDQC_EXTERN std::vector<real> sizpr;
-MDQC_EXTERN std::vector<real> dmppr;
-MDQC_EXTERN std::vector<real> elepr;
-MDQC_EXTERN std::vector<std::vector<real>> repole;
-MDQC_EXTERN std::vector<std::vector<real>> rrepole;
+MDQC_EXTERN MDQCArray<int> irep;
+MDQC_EXTERN MDQCArray<int> replist;
+MDQC_EXTERN MDQCArray<real> sizpr;
+MDQC_EXTERN MDQCArray<real> dmppr;
+MDQC_EXTERN MDQCArray<real> elepr;
+MDQC_EXTERN MDQCArray2D<real,maxpole> repole;
+MDQC_EXTERN MDQCArray2D<real,maxpole> rrepole;
 }

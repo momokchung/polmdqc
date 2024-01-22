@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -48,23 +47,23 @@ MDQC_EXTERN int maxfix;
 MDQC_EXTERN int npfix,ndfix;
 MDQC_EXTERN int nafix,ntfix;
 MDQC_EXTERN int ngfix,nchir;
-MDQC_EXTERN std::vector<int> ipfix;
-MDQC_EXTERN std::vector<std::vector<int>> kpfix;
-MDQC_EXTERN std::vector<std::vector<int>> idfix;
-MDQC_EXTERN std::vector<std::vector<int>> iafix;
-MDQC_EXTERN std::vector<std::vector<int>> itfix;
-MDQC_EXTERN std::vector<std::vector<int>> igfix;
-MDQC_EXTERN std::vector<std::vector<int>> ichir;
+MDQC_EXTERN MDQCArray<int> ipfix;
+MDQC_EXTERN MDQCArray2D<int,3> kpfix;
+MDQC_EXTERN MDQCArray2D<int,2> idfix;
+MDQC_EXTERN MDQCArray2D<int,3> iafix;
+MDQC_EXTERN MDQCArray2D<int,4> itfix;
+MDQC_EXTERN MDQCArray2D<int,2> igfix;
+MDQC_EXTERN MDQCArray2D<int,4> ichir;
 MDQC_EXTERN real depth,width;
 MDQC_EXTERN real rflat,rwall;
-MDQC_EXTERN std::vector<real> xpfix;
-MDQC_EXTERN std::vector<real> ypfix;
-MDQC_EXTERN std::vector<real> zpfix;
-MDQC_EXTERN std::vector<std::vector<real>> pfix;
-MDQC_EXTERN std::vector<std::vector<real>> dfix;
-MDQC_EXTERN std::vector<std::vector<real>> afix;
-MDQC_EXTERN std::vector<std::vector<real>> tfix;
-MDQC_EXTERN std::vector<std::vector<real>> gfix;
-MDQC_EXTERN std::vector<std::vector<real>> chir;
+MDQC_EXTERN MDQCArray<real> xpfix;
+MDQC_EXTERN MDQCArray<real> ypfix;
+MDQC_EXTERN MDQCArray<real> zpfix;
+MDQC_EXTERN MDQCArray2D<real,2> pfix;
+MDQC_EXTERN MDQCArray2D<real,3> dfix;
+MDQC_EXTERN MDQCArray2D<real,3> afix;
+MDQC_EXTERN MDQCArray2D<real,3> tfix;
+MDQC_EXTERN MDQCArray2D<real,3> gfix;
+MDQC_EXTERN MDQCArray2D<real,3> chir;
 MDQC_EXTERN bool use_basin,use_wall;
 }

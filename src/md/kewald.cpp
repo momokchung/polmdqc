@@ -247,22 +247,14 @@ void kewald()
     bsorder = std::max({bseorder,bsporder,bsdorder});
 
     // perform dynamic allocation of some global arrays
-    if (bsmod1.size() != 0) bsmod1.resize(0);
-    if (bsmod2.size() != 0) bsmod2.resize(0);
-    if (bsmod3.size() != 0) bsmod3.resize(0);
-    if (bsbuild.size() != 0) bsbuild.resize(0);
-    if (thetai1.size() != 0) thetai1.resize(0);
-    if (thetai2.size() != 0) thetai2.resize(0);
-    if (thetai3.size() != 0) thetai3.resize(0);
-    if (pmetable.size() != 0) pmetable.resize(0);
-    bsmod1.resize(nfft1);
-    bsmod2.resize(nfft2);
-    bsmod3.resize(nfft3);
-    bsbuild.resize(bsorder, std::vector<real>(bsorder));
-    thetai1.resize(n, std::vector<std::vector<real>>(bsorder, std::vector<real>(4)));
-    thetai2.resize(n, std::vector<std::vector<real>>(bsorder, std::vector<real>(4)));
-    thetai3.resize(n, std::vector<std::vector<real>>(bsorder, std::vector<real>(4)));
-    pmetable.resize(6*nthread, std::vector<int>(n));
+    bsmod1.allocate(nfft1);
+    bsmod2.allocate(nfft2);
+    bsmod3.allocate(nfft3);
+    bsbuild.allocate(bsorder*bsorder);
+    thetai1.allocate(n*bsorder*4);
+    thetai2.allocate(n*bsorder*4);
+    thetai3.allocate(n*bsorder*4);
+    pmetable.allocate(n*nthread*6);
 
     // print a message listing some of the Ewald parameters
     if (verbose) {

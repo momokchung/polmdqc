@@ -28,12 +28,9 @@ void angles()
 
     // perform dynamic allocation of some global arrays
     maxang = 6 * n;
-    if (iang.size() != 0) iang.resize(0);
-    if (anglist.size() != 0) anglist.resize(0);
-    if (balist.size() != 0) balist.resize(0);
-    iang.resize(maxang, std::vector<int>(4));
-    anglist.resize(n, std::vector<int>(maxval*(maxval-1)/2));
-    balist.resize(maxang, std::vector<int>(2));
+    iang.allocate(maxang);
+    anglist.allocate(n);
+    balist.allocate(maxang);
 
     // loop over all atoms, storing the atoms in each bond angle
     nangle = 0;

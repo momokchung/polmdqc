@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -19,6 +18,6 @@ namespace polmdqc
 // kbt      string of atom classes for stretch-torsion terms
 
 MDQC_EXTERN int maxnbt;
-MDQC_EXTERN std::vector<std::vector<real>> btcon;
-MDQC_EXTERN std::vector<std::string> kbt;
+MDQC_EXTERN MDQCArray2D<real,9> btcon;
+MDQC_EXTERN MDQCArray<std::string> kbt;
 }

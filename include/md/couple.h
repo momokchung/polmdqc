@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include "sizes.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -23,12 +22,12 @@ namespace polmdqc
 // i14      atom numbers of atoms 1-4 connected to each atom
 // i15      atom numbers of atoms 1-5 connected to each atom
 
-MDQC_EXTERN int n12[maxatm];
-MDQC_EXTERN std::vector<int> n13;
-MDQC_EXTERN std::vector<int> n14;
-MDQC_EXTERN std::vector<int> n15;
-MDQC_EXTERN int i12[maxatm][maxval];
-MDQC_EXTERN std::vector<std::vector<int>> i13;
-MDQC_EXTERN std::vector<std::vector<int>> i14;
-MDQC_EXTERN std::vector<std::vector<int>> i15;
+MDQC_EXTERN MDQCArray<int> n12;
+MDQC_EXTERN MDQCArray<int> n13;
+MDQC_EXTERN MDQCArray<int> n14;
+MDQC_EXTERN MDQCArray<int> n15;
+MDQC_EXTERN MDQCArray2D<int,maxval> i12;
+MDQC_EXTERN MDQCArray2D<int,3*maxval> i13;
+MDQC_EXTERN MDQCArray2D<int,9*maxval> i14;
+MDQC_EXTERN MDQCArray2D<int,27*maxval> i15;
 }

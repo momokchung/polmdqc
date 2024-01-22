@@ -6,6 +6,7 @@
 #include "boxes.h"
 #include "chkxyz.h"
 #include "couple.h"
+#include "darray.h"
 #include "fatal.h"
 #include "files.h"
 #include "getline.h"
@@ -21,6 +22,7 @@
 #include "version.h"
 #include <algorithm>
 #include <sstream>
+#include <vector>
 
 namespace polmdqc
 {
@@ -107,6 +109,20 @@ void readxyz(std::ifstream& ffile)
         printf("\n READXYZ  --  The Maximum of%9d Atoms has been Exceeded\n", maxatm);
         fatal();
     }
+
+    // allocate global arrays from module atomid
+    tag.allocate(n);
+    name.allocate(n);
+
+    // allocate global arrays from module atoms
+    type.allocate(n);
+    x.allocate(n);
+    y.allocate(n);
+    z.allocate(n);
+
+    // allocate global arrays from module couple
+    n12.allocate(n);
+    i12.allocate(n);
 
     // initialize coordinates and connectivities for each atom
     for (int i = 0; i < n; i++) {

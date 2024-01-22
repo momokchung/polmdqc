@@ -40,7 +40,7 @@ inline void crossp(real ans[3], const real u[3], const real v[3]);
 // 73-87 (2004)
 
 template <CalcMode CalculationMode>
-void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vector<real>>* dePtr)
+void torque(const std::vector<std::vector<real>>* trqPtr, MDQCArray2D<real,3>& de)
 {
     // integer i,j
     int ia,ib,ic,id;
@@ -79,7 +79,6 @@ void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vecto
 
     // dereference pointers
     const std::vector<std::vector<real>>& trq = *trqPtr;
-    std::vector<std::vector<real>>& de = *dePtr;
 
     // resolve site torques then increment forces and virial
     for (int i = 0; i < n; i++) {
@@ -411,6 +410,6 @@ inline void crossp(real ans[3], const real u[3], const real v[3])
 }
 
 // explicit instatiation
-template void torque<CalcMode::Gradient>(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vector<real>>* dePtr);
-template void torque<CalcMode::Virial>(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vector<real>>* dePtr);
+template void torque<CalcMode::Gradient>(const std::vector<std::vector<real>>* trqPtr, MDQCArray2D<real,3>& de);
+template void torque<CalcMode::Virial>(const std::vector<std::vector<real>>* trqPtr, MDQCArray2D<real,3>& de);
 }

@@ -14,5 +14,5 @@ namespace polmdqc
 ///////////////////////////////////////////////////////
 
 template <CalcMode CalculationMode>
-void torque(const std::vector<std::vector<real>>* trqPtr, std::vector<std::vector<real>>* dePtr);
+void torque(const std::vector<std::vector<real>>* trqPtr, MDQCArray2D<real,3>& de);
 }

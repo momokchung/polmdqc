@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -20,7 +19,7 @@ namespace polmdqc
 // kppr     string of atom types for special polarization pairs
 
 MDQC_EXTERN int maxnpp;
-MDQC_EXTERN std::vector<real> thlpr;
-MDQC_EXTERN std::vector<real> thdpr;
-MDQC_EXTERN std::vector<std::string> kppr;
+MDQC_EXTERN MDQCArray<real> thlpr;
+MDQC_EXTERN MDQCArray<real> thdpr;
+MDQC_EXTERN MDQCArray<std::string> kppr;
 }

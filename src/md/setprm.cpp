@@ -273,287 +273,165 @@ void setprm()
     maxfix = std::max(500,maxfix+100);
 
     // allocate bond stretching forcefield parameters
-    if (bcon.size() != 0) bcon.resize(0);
-    bcon.resize(maxnb);
-    if (bcon5.size() != 0) bcon5.resize(0);
-    bcon5.resize(maxnb5);
-    if (bcon4.size() != 0) bcon4.resize(0);
-    bcon4.resize(maxnb4);
-    if (bcon3.size() != 0) bcon3.resize(0);
-    bcon3.resize(maxnb3);
-    if (blen.size() != 0) blen.resize(0);
-    blen.resize(maxnb);
-    if (blen5.size() != 0) blen5.resize(0);
-    blen5.resize(maxnb5);
-    if (blen4.size() != 0) blen4.resize(0);
-    blen4.resize(maxnb4);
-    if (blen3.size() != 0) blen3.resize(0);
-    blen3.resize(maxnb3);
-    if (dlen.size() != 0) dlen.resize(0);
-    dlen.resize(maxnel);
-    if (kb.size() != 0) kb.resize(0);
-    kb.resize(maxnb);
-    if (kb5.size() != 0) kb5.resize(0);
-    kb5.resize(maxnb5);
-    if (kb4.size() != 0) kb4.resize(0);
-    kb4.resize(maxnb4);
-    if (kb3.size() != 0) kb3.resize(0);
-    kb3.resize(maxnb3);
-    if (kel.size() != 0) kel.resize(0);
-    kel.resize(maxnel);
+    bcon.allocate(maxnb);
+    bcon5.allocate(maxnb5);
+    bcon4.allocate(maxnb4);
+    bcon3.allocate(maxnb3);
+    blen.allocate(maxnb);
+    blen5.allocate(maxnb5);
+    blen4.allocate(maxnb4);
+    blen3.allocate(maxnb3);
+    dlen.allocate(maxnel);
+    kb.allocate(maxnb);
+    kb5.allocate(maxnb5);
+    kb4.allocate(maxnb4);
+    kb3.allocate(maxnb3);
+    kel.allocate(maxnel);
 
     // allocate bond angle bend forcefield parameters
-    if (acon.size() != 0) acon.resize(0);
-    acon.resize(maxna);
-    if (acon5.size() != 0) acon5.resize(0);
-    acon5.resize(maxna5);
-    if (acon4.size() != 0) acon4.resize(0);
-    acon4.resize(maxna4);
-    if (acon3.size() != 0) acon3.resize(0);
-    acon3.resize(maxna3);
-    if (aconp.size() != 0) aconp.resize(0);
-    aconp.resize(maxnap);
-    if (aconf.size() != 0) aconf.resize(0);
-    aconf.resize(maxnaf);
-    if (ang.size() != 0) ang.resize(0);
-    ang.resize(maxna, std::vector<real>(3));
-    if (ang5.size() != 0) ang5.resize(0);
-    ang5.resize(maxna5, std::vector<real>(3));
-    if (ang4.size() != 0) ang4.resize(0);
-    ang4.resize(maxna4, std::vector<real>(3));
-    if (ang3.size() != 0) ang3.resize(0);
-    ang3.resize(maxna3, std::vector<real>(3));
-    if (angp.size() != 0) angp.resize(0);
-    angp.resize(maxnap, std::vector<real>(2));
-    if (angf.size() != 0) angf.resize(0);
-    angf.resize(maxnaf, std::vector<real>(2));
-    if (ka.size() != 0) ka.resize(0);
-    ka.resize(maxna);
-    if (ka5.size() != 0) ka5.resize(0);
-    ka5.resize(maxna5);
-    if (ka4.size() != 0) ka4.resize(0);
-    ka4.resize(maxna4);
-    if (ka3.size() != 0) ka3.resize(0);
-    ka3.resize(maxna3);
-    if (kap.size() != 0) kap.resize(0);
-    kap.resize(maxnap);
-    if (kaf.size() != 0) kaf.resize(0);
-    kaf.resize(maxnaf);
+    acon.allocate(maxna);
+    acon5.allocate(maxna5);
+    acon4.allocate(maxna4);
+    acon3.allocate(maxna3);
+    aconp.allocate(maxnap);
+    aconf.allocate(maxnaf);
+    ang.allocate(maxna);
+    ang5.allocate(maxna5);
+    ang4.allocate(maxna4);
+    ang3.allocate(maxna3);
+    angp.allocate(maxnap);
+    angf.allocate(maxnaf);
+    ka.allocate(maxna);
+    ka5.allocate(maxna5);
+    ka4.allocate(maxna4);
+    ka3.allocate(maxna3);
+    kap.allocate(maxnap);
+    kaf.allocate(maxnaf);
 
     // allocate stretch-bend forcefield parameters
-    if (stbn.size() != 0) stbn.resize(0);
-    stbn.resize(maxnsb, std::vector<real>(2));
-    if (ksb.size() != 0) ksb.resize(0);
-    ksb.resize(maxnsb);
+    stbn.allocate(maxnsb);
+    ksb.allocate(maxnsb);
 
     // allocate Urey-Bradley term forcefield parameters
-    if (ucon.size() != 0) ucon.resize(0);
-    ucon.resize(maxnu);
-    if (dst13.size() != 0) dst13.resize(0);
-    dst13.resize(maxnu);
-    if (ku.size() != 0) ku.resize(0);
-    ku.resize(maxnu);
+    ucon.allocate(maxnu);
+    dst13.allocate(maxnu);
+    ku.allocate(maxnu);
 
     // allocate out-of-plane bend forcefield parameters
-    if (opbn.size() != 0) opbn.resize(0);
-    opbn.resize(maxnopb);
-    if (kopb.size() != 0) kopb.resize(0);
-    kopb.resize(maxnopb);
+    opbn.allocate(maxnopb);
+    kopb.allocate(maxnopb);
 
     // allocate out-of-plane distance forcefield parameters
-    if (opds.size() != 0) opds.resize(0);
-    opds.resize(maxnopd);
-    if (kopd.size() != 0) kopd.resize(0);
-    kopd.resize(maxnopd);
+    opds.allocate(maxnopd);
+    kopd.allocate(maxnopd);
 
     // allocate improper dihedral forcefield parameters
-    if (dcon.size() != 0) dcon.resize(0);
-    dcon.resize(maxndi);
-    if (tdi.size() != 0) tdi.resize(0);
-    tdi.resize(maxndi);
-    if (kdi.size() != 0) kdi.resize(0);
-    kdi.resize(maxndi);
+    dcon.allocate(maxndi);
+    tdi.allocate(maxndi);
+    kdi.allocate(maxndi);
 
     // allocate improper torsion forcefield parameters
-    if (ti1.size() != 0) ti1.resize(0);
-    ti1.resize(maxnti, std::vector<real>(2));
-    if (ti2.size() != 0) ti2.resize(0);
-    ti2.resize(maxnti, std::vector<real>(2));
-    if (ti3.size() != 0) ti3.resize(0);
-    ti3.resize(maxnti, std::vector<real>(2));
-    if (kti.size() != 0) kti.resize(0);
-    kti.resize(maxnti);
+    ti1.allocate(maxnti);
+    ti2.allocate(maxnti);
+    ti3.allocate(maxnti);
+    kti.allocate(maxnti);
 
     // allocate torsion angle forcefield parameters
-    if (t1.size() != 0) t1.resize(0);
-    t1.resize(maxnt, std::vector<real>(2));
-    if (t2.size() != 0) t2.resize(0);
-    t2.resize(maxnt, std::vector<real>(2));
-    if (t3.size() != 0) t3.resize(0);
-    t3.resize(maxnt, std::vector<real>(2));
-    if (t4.size() != 0) t4.resize(0);
-    t4.resize(maxnt, std::vector<real>(2));
-    if (t5.size() != 0) t5.resize(0);
-    t5.resize(maxnt, std::vector<real>(2));
-    if (t6.size() != 0) t6.resize(0);
-    t6.resize(maxnt, std::vector<real>(2));
-    if (t15.size() != 0) t15.resize(0);
-    t15.resize(maxnt5, std::vector<real>(2));
-    if (t25.size() != 0) t25.resize(0);
-    t25.resize(maxnt5, std::vector<real>(2));
-    if (t35.size() != 0) t35.resize(0);
-    t35.resize(maxnt5, std::vector<real>(2));
-    if (t45.size() != 0) t45.resize(0);
-    t45.resize(maxnt5, std::vector<real>(2));
-    if (t55.size() != 0) t55.resize(0);
-    t55.resize(maxnt5, std::vector<real>(2));
-    if (t65.size() != 0) t65.resize(0);
-    t65.resize(maxnt5, std::vector<real>(2));
-    if (t14.size() != 0) t14.resize(0);
-    t14.resize(maxnt4, std::vector<real>(2));
-    if (t24.size() != 0) t24.resize(0);
-    t24.resize(maxnt4, std::vector<real>(2));
-    if (t34.size() != 0) t34.resize(0);
-    t34.resize(maxnt4, std::vector<real>(2));
-    if (t44.size() != 0) t44.resize(0);
-    t44.resize(maxnt4, std::vector<real>(2));
-    if (t54.size() != 0) t54.resize(0);
-    t54.resize(maxnt4, std::vector<real>(2));
-    if (t64.size() != 0) t64.resize(0);
-    t64.resize(maxnt4, std::vector<real>(2));
-    if (kt.size() != 0) kt.resize(0);
-    kt.resize(maxnt);
-    if (kt5.size() != 0) kt5.resize(0);
-    kt5.resize(maxnt5);
-    if (kt4.size() != 0) kt4.resize(0);
-    kt4.resize(maxnt4);
+    t1.allocate(maxnt);
+    t2.allocate(maxnt);
+    t3.allocate(maxnt);
+    t4.allocate(maxnt);
+    t5.allocate(maxnt);
+    t6.allocate(maxnt);
+    t15.allocate(maxnt5);
+    t25.allocate(maxnt5);
+    t35.allocate(maxnt5);
+    t45.allocate(maxnt5);
+    t55.allocate(maxnt5);
+    t65.allocate(maxnt5);
+    t14.allocate(maxnt4);
+    t24.allocate(maxnt4);
+    t34.allocate(maxnt4);
+    t44.allocate(maxnt4);
+    t54.allocate(maxnt4);
+    t64.allocate(maxnt4);
+    kt.allocate(maxnt);
+    kt5.allocate(maxnt5);
+    kt4.allocate(maxnt4);
 
     // allocate pi-system torsion forcefield parameters
-    if (ptcon.size() != 0) ptcon.resize(0);
-    ptcon.resize(maxnpt);
-    if (kpt.size() != 0) kpt.resize(0);
-    kpt.resize(maxnpt);
+    ptcon.allocate(maxnpt);
+    kpt.allocate(maxnpt);
 
     // allocate stretch-torsion forcefield parameters
-    if (btcon.size() != 0) btcon.resize(0);
-    btcon.resize(maxnbt, std::vector<real>(9));
-    if (kbt.size() != 0) kbt.resize(0);
-    kbt.resize(maxnbt);
+    btcon.allocate(maxnbt);
+    kbt.allocate(maxnbt);
 
     // allocate angle-torsion forcefield parameters
-    if (atcon.size() != 0) atcon.resize(0);
-    atcon.resize(maxnat, std::vector<real>(6));
-    if (kat.size() != 0) kat.resize(0);
-    kat.resize(maxnat);
+    atcon.allocate(maxnat);
+    kat.allocate(maxnat);
 
     // allocate torsion-torsion forcefield parameters
-    if (tnx.size() != 0) tnx.resize(0);
-    tnx.resize(maxntt);
-    if (tny.size() != 0) tny.resize(0);
-    tny.resize(maxntt);
-    if (ttx.size() != 0) ttx.resize(0);
-    ttx.resize(maxntt, std::vector<real>(maxtgrd));
-    if (tty.size() != 0) tty.resize(0);
-    tty.resize(maxntt, std::vector<real>(maxtgrd));
-    if (tbf.size() != 0) tbf.resize(0);
-    tbf.resize(maxntt, std::vector<real>(maxtgrd2));
-    if (tbx.size() != 0) tbx.resize(0);
-    tbx.resize(maxntt, std::vector<real>(maxtgrd2));
-    if (tby.size() != 0) tby.resize(0);
-    tby.resize(maxntt, std::vector<real>(maxtgrd2));
-    if (tbxy.size() != 0) tbxy.resize(0);
-    tbxy.resize(maxntt, std::vector<real>(maxtgrd2));
-    if (ktt.size() != 0) ktt.resize(0);
-    ktt.resize(maxntt);
+    tnx.allocate(maxntt);
+    tny.allocate(maxntt);
+    ttx.allocate(maxntt);
+    tty.allocate(maxntt);
+    tbf.allocate(maxntt);
+    tbx.allocate(maxntt);
+    tby.allocate(maxntt);
+    tbxy.allocate(maxntt);
+    ktt.allocate(maxntt);
 
     // allocate special vdw term forcefield parameters
-    if (radpr.size() != 0) radpr.resize(0);
-    radpr.resize(maxnvp);
-    if (epspr.size() != 0) epspr.resize(0);
-    epspr.resize(maxnvp);
-    if (kvpr.size() != 0) kvpr.resize(0);
-    kvpr.resize(maxnvp);
+    radpr.allocate(maxnvp);
+    epspr.allocate(maxnvp);
+    kvpr.allocate(maxnvp);
 
     // allocate H-bonding term forcefield parameters
-    if (radhb.size() != 0) radhb.resize(0);
-    radhb.resize(maxnhb);
-    if (epshb.size() != 0) epshb.resize(0);
-    epshb.resize(maxnhb);
-    if (khb.size() != 0) khb.resize(0);
-    khb.resize(maxnhb);
+    radhb.allocate(maxnhb);
+    epshb.allocate(maxnhb);
+    khb.allocate(maxnhb);
 
     // allocate bond dipole forcefield parameters
-    if (dpl.size() != 0) dpl.resize(0);
-    dpl.resize(maxnd);
-    if (dpl5.size() != 0) dpl5.resize(0);
-    dpl5.resize(maxnd5);
-    if (dpl4.size() != 0) dpl4.resize(0);
-    dpl4.resize(maxnd4);
-    if (dpl3.size() != 0) dpl3.resize(0);
-    dpl3.resize(maxnd3);
-    if (pos.size() != 0) pos.resize(0);
-    pos.resize(maxnd);
-    if (pos5.size() != 0) pos5.resize(0);
-    pos5.resize(maxnd5);
-    if (pos4.size() != 0) pos4.resize(0);
-    pos4.resize(maxnd4);
-    if (pos3.size() != 0) pos3.resize(0);
-    pos3.resize(maxnd3);
-    if (kd.size() != 0) kd.resize(0);
-    kd.resize(maxnd);
-    if (kd5.size() != 0) kd5.resize(0);
-    kd5.resize(maxnd5);
-    if (kd4.size() != 0) kd4.resize(0);
-    kd4.resize(maxnd4);
-    if (kd3.size() != 0) kd3.resize(0);
-    kd3.resize(maxnd3);
+    dpl.allocate(maxnd);
+    dpl5.allocate(maxnd5);
+    dpl4.allocate(maxnd4);
+    dpl3.allocate(maxnd3);
+    pos.allocate(maxnd);
+    pos5.allocate(maxnd5);
+    pos4.allocate(maxnd4);
+    pos3.allocate(maxnd3);
+    kd.allocate(maxnd);
+    kd5.allocate(maxnd5);
+    kd4.allocate(maxnd4);
+    kd3.allocate(maxnd3);
 
     // allocate atomic multipole forcefield parameters
-    if (multip.size() != 0) multip.resize(0);
-    multip.resize(maxnmp, std::vector<real>(13));
-    if (mpaxis.size() != 0) mpaxis.resize(0);
-    mpaxis.resize(maxnmp);
-    if (kmp.size() != 0) kmp.resize(0);
-    kmp.resize(maxnmp);
+    multip.allocate(maxnmp);
+    mpaxis.allocate(maxnmp);
+    kmp.allocate(maxnmp);
 
     // allocate special Thole forcefield parameters
-    if (thlpr.size() != 0) thlpr.resize(0);
-    thlpr.resize(maxnpp);
-    if (thdpr.size() != 0) thdpr.resize(0);
-    thdpr.resize(maxnpp);
-    if (kppr.size() != 0) kppr.resize(0);
-    kppr.resize(maxnpp);
+    thlpr.allocate(maxnpp);
+    thdpr.allocate(maxnpp);
+    kppr.allocate(maxnpp);
 
     // allocate charge flux term forcefield parameters
-    if (cflb.size() != 0) cflb.resize(0);
-    cflb.resize(maxncfb);
-    if (cfla.size() != 0) cfla.resize(0);
-    cfla.resize(maxncfa, std::vector<real>(2));
-    if (cflab.size() != 0) cflab.resize(0);
-    cflab.resize(maxncfa, std::vector<real>(2));
-    if (kcfb.size() != 0) kcfb.resize(0);
-    kcfb.resize(maxncfb);
-    if (kcfa.size() != 0) kcfa.resize(0);
-    kcfa.resize(maxncfa);
+    cflb.allocate(maxncfb);
+    cfla.allocate(maxncfa);
+    cflab.allocate(maxncfa);
+    kcfb.allocate(maxncfb);
+    kcfa.allocate(maxncfa);
 
     // allocate pisystem orbital forcefield parameters
-    if (sslope.size() != 0) sslope.resize(0);
-    sslope.resize(maxnpi);
-    if (sslope5.size() != 0) sslope5.resize(0);
-    sslope5.resize(maxnpi5);
-    if (sslope4.size() != 0) sslope4.resize(0);
-    sslope4.resize(maxnpi4);
-    if (tslope.size() != 0) tslope.resize(0);
-    tslope.resize(maxnpi);
-    if (tslope5.size() != 0) tslope5.resize(0);
-    tslope5.resize(maxnpi5);
-    if (tslope4.size() != 0) tslope4.resize(0);
-    tslope4.resize(maxnpi4);
-    if (kpi.size() != 0) kpi.resize(0);
-    kpi.resize(maxnpi);
-    if (kpi5.size() != 0) kpi5.resize(0);
-    kpi5.resize(maxnpi5);
-    if (kpi4.size() != 0) kpi4.resize(0);
-    kpi4.resize(maxnpi4);
+    sslope.allocate(maxnpi);
+    sslope5.allocate(maxnpi5);
+    sslope4.allocate(maxnpi4);
+    tslope.allocate(maxnpi);
+    tslope5.allocate(maxnpi5);
+    tslope4.allocate(maxnpi4);
+    kpi.allocate(maxnpi);
+    kpi5.allocate(maxnpi5);
+    kpi4.allocate(maxnpi4);
 }
 }

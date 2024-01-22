@@ -285,7 +285,7 @@ void empole_a()
 
     // resolve site torques then increment forces and virial
     if constexpr (do_g or do_v) {
-        torque<CalculationMode>(&tem, &dem);
+        torque<CalculationMode>(&tem, dem);
     }
 }
 

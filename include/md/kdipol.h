@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -35,16 +34,16 @@ MDQC_EXTERN int maxnd;
 MDQC_EXTERN int maxnd5;
 MDQC_EXTERN int maxnd4;
 MDQC_EXTERN int maxnd3;
-MDQC_EXTERN std::vector<real> dpl;
-MDQC_EXTERN std::vector<real> dpl5;
-MDQC_EXTERN std::vector<real> dpl4;
-MDQC_EXTERN std::vector<real> dpl3;
-MDQC_EXTERN std::vector<real> pos;
-MDQC_EXTERN std::vector<real> pos5;
-MDQC_EXTERN std::vector<real> pos4;
-MDQC_EXTERN std::vector<real> pos3;
-MDQC_EXTERN std::vector<std::string> kd;
-MDQC_EXTERN std::vector<std::string> kd5;
-MDQC_EXTERN std::vector<std::string> kd4;
-MDQC_EXTERN std::vector<std::string> kd3;
+MDQC_EXTERN MDQCArray<real> dpl;
+MDQC_EXTERN MDQCArray<real> dpl5;
+MDQC_EXTERN MDQCArray<real> dpl4;
+MDQC_EXTERN MDQCArray<real> dpl3;
+MDQC_EXTERN MDQCArray<real> pos;
+MDQC_EXTERN MDQCArray<real> pos5;
+MDQC_EXTERN MDQCArray<real> pos4;
+MDQC_EXTERN MDQCArray<real> pos3;
+MDQC_EXTERN MDQCArray<std::string> kd;
+MDQC_EXTERN MDQCArray<std::string> kd5;
+MDQC_EXTERN MDQCArray<std::string> kd4;
+MDQC_EXTERN MDQCArray<std::string> kd3;
 }

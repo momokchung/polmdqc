@@ -186,47 +186,49 @@ void initprm()
     }
 
     // perform dynamic allocation of some global arrays
-    if (atmcls.size() == 0) atmcls.resize(maxtyp, -1);
-    if (atmnum.size() == 0) atmnum.resize(maxtyp, 0);
-    if (ligand.size() == 0) ligand.resize(maxtyp);
-    if (weight.size() == 0) weight.resize(maxtyp);
-    if (symbol.size() == 0) symbol.resize(maxtyp);
-    if (describe.size() == 0) describe.resize(maxtyp);
-    if (anan.size() == 0) anan.resize(maxclass, std::vector<real>(3));
-    if (rad.size() == 0) rad.resize(maxtyp);
-    if (eps.size() == 0) eps.resize(maxtyp);
-    if (rad4.size() == 0) rad4.resize(maxtyp);
-    if (eps4.size() == 0) eps4.resize(maxtyp);
-    if (reduct.size() == 0) reduct.resize(maxtyp);
-    if (prsiz.size() == 0) prsiz.resize(maxclass);
-    if (prdmp.size() == 0) prdmp.resize(maxclass);
-    if (prele.size() == 0) prele.resize(maxclass);
-    if (dspsix.size() == 0) dspsix.resize(maxclass);
-    if (dspdmp.size() == 0) dspdmp.resize(maxclass);
-    if (chg.size() == 0) chg.resize(maxtyp);
-    if (cpele.size() == 0) cpele.resize(maxclass);
-    if (cpalp.size() == 0) cpalp.resize(maxclass);
-    if (polr.size() == 0) polr.resize(maxtyp);
-    if (athl.size() == 0) athl.resize(maxtyp);
-    if (dthl.size() == 0) dthl.resize(maxtyp);
-    if (pgrp.size() == 0) pgrp.resize(maxtyp, std::vector<int>(maxval));
-    if (pepk.size() == 0) pepk.resize(maxclass);
-    if (peppre.size() == 0) peppre.resize(maxclass);
-    if (pepdmp.size() == 0) pepdmp.resize(maxclass);
-    if (pepl.size() == 0) pepl.resize(maxclass);
-    if (ctchg.size() == 0) ctchg.resize(maxclass);
-    if (ctdmp.size() == 0) ctdmp.resize(maxclass);
-    if (pbr.size() == 0) pbr.resize(maxtyp);
-    if (csr.size() == 0) csr.resize(maxtyp);
-    if (gkr.size() == 0) gkr.resize(maxtyp);
-    if (electron.size() == 0) electron.resize(maxclass);
-    if (ionize.size() == 0) ionize.resize(maxclass);
-    if (repulse.size() == 0) repulse.resize(maxclass);
-    if (biotyp.size() == 0) biotyp.resize(maxbio);
+    atmcls.allocate(maxtyp);
+    atmnum.allocate(maxtyp);
+    ligand.allocate(maxtyp);
+    weight.allocate(maxtyp);
+    symbol.allocate(maxtyp);
+    describe.allocate(maxtyp);
+    anan.allocate(maxclass);
+    rad.allocate(maxtyp);
+    eps.allocate(maxtyp);
+    rad4.allocate(maxtyp);
+    eps4.allocate(maxtyp);
+    reduct.allocate(maxtyp);
+    prsiz.allocate(maxclass);
+    prdmp.allocate(maxclass);
+    prele.allocate(maxclass);
+    dspsix.allocate(maxclass);
+    dspdmp.allocate(maxclass);
+    chg.allocate(maxtyp);
+    cpele.allocate(maxclass);
+    cpalp.allocate(maxclass);
+    polr.allocate(maxtyp);
+    athl.allocate(maxtyp);
+    dthl.allocate(maxtyp);
+    pgrp.allocate(maxtyp);
+    pepk.allocate(maxclass);
+    peppre.allocate(maxclass);
+    pepdmp.allocate(maxclass);
+    pepl.allocate(maxclass);
+    ctchg.allocate(maxclass);
+    ctdmp.allocate(maxclass);
+    pbr.allocate(maxtyp);
+    csr.allocate(maxtyp);
+    gkr.allocate(maxtyp);
+    electron.allocate(maxclass);
+    ionize.allocate(maxclass);
+    repulse.allocate(maxclass);
+    biotyp.allocate(maxbio);
 
     // initialize values of force field model parameters
     forcefield = "";
     for (int i = 0; i < maxtyp; i++) {
+        atmcls[i] = -1;
+        atmnum[i] = 0;
         ligand[i] = 0;
         weight[i] = 0.;
         symbol[i] = "";
@@ -423,165 +425,165 @@ void initprm()
 
 void initmmff()
 {
-    // perform dynamic allocation of some global arrays
-    if (mmff_ka.size() == 0) mmff_ka.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ka1.size() == 0) mmff_ka1.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ka2.size() == 0) mmff_ka2.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ka3.size() == 0) mmff_ka3.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ka4.size() == 0) mmff_ka4.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ka5.size() == 0) mmff_ka5.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ka6.size() == 0) mmff_ka6.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ka7.size() == 0) mmff_ka7.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ka8.size() == 0) mmff_ka8.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ang0.size() == 0) mmff_ang0.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ang1.size() == 0) mmff_ang1.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ang2.size() == 0) mmff_ang2.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ang3.size() == 0) mmff_ang3.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ang4.size() == 0) mmff_ang4.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ang5.size() == 0) mmff_ang5.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ang6.size() == 0) mmff_ang6.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ang7.size() == 0) mmff_ang7.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (mmff_ang8.size() == 0) mmff_ang8.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
-    if (stbn_abc.size() == 0) stbn_abc.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba.size() == 0) stbn_cba.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc1.size() == 0) stbn_abc1.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba1.size() == 0) stbn_cba1.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc2.size() == 0) stbn_abc2.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba2.size() == 0) stbn_cba2.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc3.size() == 0) stbn_abc3.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba3.size() == 0) stbn_cba3.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc4.size() == 0) stbn_abc4.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba4.size() == 0) stbn_cba4.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc5.size() == 0) stbn_abc5.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba5.size() == 0) stbn_cba5.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc6.size() == 0) stbn_abc6.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba6.size() == 0) stbn_cba6.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc7.size() == 0) stbn_abc7.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba7.size() == 0) stbn_cba7.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc8.size() == 0) stbn_abc8.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba8.size() == 0) stbn_cba8.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc9.size() == 0) stbn_abc9.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba9.size() == 0) stbn_cba9.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc10.size() == 0) stbn_abc10.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba10.size() == 0) stbn_cba10.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_abc11.size() == 0) stbn_abc11.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
-    if (stbn_cba11.size() == 0) stbn_cba11.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // // perform dynamic allocation of some global arrays
+    // if (mmff_ka.size() == 0) mmff_ka.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ka1.size() == 0) mmff_ka1.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ka2.size() == 0) mmff_ka2.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ka3.size() == 0) mmff_ka3.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ka4.size() == 0) mmff_ka4.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ka5.size() == 0) mmff_ka5.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ka6.size() == 0) mmff_ka6.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ka7.size() == 0) mmff_ka7.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ka8.size() == 0) mmff_ka8.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ang0.size() == 0) mmff_ang0.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ang1.size() == 0) mmff_ang1.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ang2.size() == 0) mmff_ang2.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ang3.size() == 0) mmff_ang3.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ang4.size() == 0) mmff_ang4.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ang5.size() == 0) mmff_ang5.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ang6.size() == 0) mmff_ang6.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ang7.size() == 0) mmff_ang7.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (mmff_ang8.size() == 0) mmff_ang8.resize(101, std::vector<std::vector<real>>(100, std::vector<real>(101,1000.)));
+    // if (stbn_abc.size() == 0) stbn_abc.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba.size() == 0) stbn_cba.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc1.size() == 0) stbn_abc1.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba1.size() == 0) stbn_cba1.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc2.size() == 0) stbn_abc2.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba2.size() == 0) stbn_cba2.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc3.size() == 0) stbn_abc3.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba3.size() == 0) stbn_cba3.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc4.size() == 0) stbn_abc4.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba4.size() == 0) stbn_cba4.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc5.size() == 0) stbn_abc5.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba5.size() == 0) stbn_cba5.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc6.size() == 0) stbn_abc6.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba6.size() == 0) stbn_cba6.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc7.size() == 0) stbn_abc7.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba7.size() == 0) stbn_cba7.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc8.size() == 0) stbn_abc8.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba8.size() == 0) stbn_cba8.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc9.size() == 0) stbn_abc9.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba9.size() == 0) stbn_cba9.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc10.size() == 0) stbn_abc10.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba10.size() == 0) stbn_cba10.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_abc11.size() == 0) stbn_abc11.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
+    // if (stbn_cba11.size() == 0) stbn_cba11.resize(100, std::vector<std::vector<real>>(100, std::vector<real>(100,1000.)));
 
-    // initialize values for MMFF atom class equivalencies
-    for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 500; j++) {
-            eqclass[i][j] = 1000;
-        }
-    }
-
-    // initialize values for MMFF aromatic ring parameters
-    for (int i = 0; i < 6; i++) {
-        for (int j = 0; j < maxtyp; j++) {
-            mmffarom[i][j] = 0;
-            mmffaromc[i][j] = 0;
-            mmffaroma[i][j] = 0;
-        }
-    }
-
-    // initialize values for MMFF bond stretching parameters
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            mmff_kb[i][j] = 1000.;
-            mmff_kb1[i][j] = 1000.;
-            mmff_b0[i][j] = 1000.;
-            mmff_b1[i][j] = 1000.;
-        }
-    }
-
-    // // initialize values for MMFF angle bending parameters
-    // for (int i = 0; i < 101; i++) {
-    //     for (int j = 0; j < 100; j++) {
-    //         for (int k = 0; k < 101; k++) {
-    //             mmff_ka[i][j][k] = 1000.;
-    //             mmff_ka1[i][j][k] = 1000.;
-    //             mmff_ka2[i][j][k] = 1000.;
-    //             mmff_ka3[i][j][k] = 1000.;
-    //             mmff_ka4[i][j][k] = 1000.;
-    //             mmff_ka5[i][j][k] = 1000.;
-    //             mmff_ka6[i][j][k] = 1000.;
-    //             mmff_ka7[i][j][k] = 1000.;
-    //             mmff_ka8[i][j][k] = 1000.;
-    //             mmff_ang0[i][j][k] = 1000.;
-    //             mmff_ang1[i][j][k] = 1000.;
-    //             mmff_ang2[i][j][k] = 1000.;
-    //             mmff_ang3[i][j][k] = 1000.;
-    //             mmff_ang4[i][j][k] = 1000.;
-    //             mmff_ang5[i][j][k] = 1000.;
-    //             mmff_ang6[i][j][k] = 1000.;
-    //             mmff_ang7[i][j][k] = 1000.;
-    //             mmff_ang8[i][j][k] = 1000.;
-    //         }
+    // // initialize values for MMFF atom class equivalencies
+    // for (int i = 0; i < 5; i++) {
+    //     for (int j = 0; j < 500; j++) {
+    //         eqclass[i][j] = 1000;
     //     }
     // }
 
-    // // initialize values for MMFF stretch-bend parameters
+    // // initialize values for MMFF aromatic ring parameters
+    // for (int i = 0; i < 6; i++) {
+    //     for (int j = 0; j < maxtyp; j++) {
+    //         mmffarom[i][j] = 0;
+    //         mmffaromc[i][j] = 0;
+    //         mmffaroma[i][j] = 0;
+    //     }
+    // }
+
+    // // initialize values for MMFF bond stretching parameters
     // for (int i = 0; i < 100; i++) {
     //     for (int j = 0; j < 100; j++) {
-    //         for (int k = 0; k < 100; k++) {
-    //             stbn_abc[i][j][k] = 1000.;
-    //             stbn_cba[i][j][k] = 1000.;
-    //             stbn_abc1[i][j][k] = 1000.;
-    //             stbn_cba1[i][j][k] = 1000.;
-    //             stbn_abc2[i][j][k] = 1000.;
-    //             stbn_cba2[i][j][k] = 1000.;
-    //             stbn_abc3[i][j][k] = 1000.;
-    //             stbn_cba3[i][j][k] = 1000.;
-    //             stbn_abc4[i][j][k] = 1000.;
-    //             stbn_cba4[i][j][k] = 1000.;
-    //             stbn_abc5[i][j][k] = 1000.;
-    //             stbn_cba5[i][j][k] = 1000.;
-    //             stbn_abc6[i][j][k] = 1000.;
-    //             stbn_cba6[i][j][k] = 1000.;
-    //             stbn_abc7[i][j][k] = 1000.;
-    //             stbn_cba7[i][j][k] = 1000.;
-    //             stbn_abc8[i][j][k] = 1000.;
-    //             stbn_cba8[i][j][k] = 1000.;
-    //             stbn_abc9[i][j][k] = 1000.;
-    //             stbn_cba9[i][j][k] = 1000.;
-    //             stbn_abc10[i][j][k] = 1000.;
-    //             stbn_cba10[i][j][k] = 1000.;
-    //             stbn_abc11[i][j][k] = 1000.;
-    //             stbn_cba11[i][j][k] = 1000.;
-    //         }
+    //         mmff_kb[i][j] = 1000.;
+    //         mmff_kb1[i][j] = 1000.;
+    //         mmff_b0[i][j] = 1000.;
+    //         mmff_b1[i][j] = 1000.;
     //     }
     // }
 
-    // initialize values for MMFF torsional parameters
-    for (int i = 0; i < maxnt; i++) {
-        kt[i] = "";
-        kt_1[i] = "";
-        kt_2[i] = "";
-        t1[i][0] = 1000.;
-        t1[i][1] = 1000.;
-        t2[i][0] = 1000.;
-        t2[i][1] = 1000.;
-        t3[i][0] = 1000.;
-        t3[i][1] = 1000.;
-        t1_1[i][0] = 1000.;
-        t1_1[i][1] = 1000.;
-        t2_1[i][0] = 1000.;
-        t2_1[i][1] = 1000.;
-        t3_1[i][0] = 1000.;
-        t3_1[i][1] = 1000.;
-        t1_2[i][0] = 1000.;
-        t1_2[i][1] = 1000.;
-        t2_2[i][0] = 1000.;
-        t2_2[i][1] = 1000.;
-        t3_2[i][0] = 1000.;
-        t3_2[i][1] = 1000.;
-    }
+    // // // initialize values for MMFF angle bending parameters
+    // // for (int i = 0; i < 101; i++) {
+    // //     for (int j = 0; j < 100; j++) {
+    // //         for (int k = 0; k < 101; k++) {
+    // //             mmff_ka[i][j][k] = 1000.;
+    // //             mmff_ka1[i][j][k] = 1000.;
+    // //             mmff_ka2[i][j][k] = 1000.;
+    // //             mmff_ka3[i][j][k] = 1000.;
+    // //             mmff_ka4[i][j][k] = 1000.;
+    // //             mmff_ka5[i][j][k] = 1000.;
+    // //             mmff_ka6[i][j][k] = 1000.;
+    // //             mmff_ka7[i][j][k] = 1000.;
+    // //             mmff_ka8[i][j][k] = 1000.;
+    // //             mmff_ang0[i][j][k] = 1000.;
+    // //             mmff_ang1[i][j][k] = 1000.;
+    // //             mmff_ang2[i][j][k] = 1000.;
+    // //             mmff_ang3[i][j][k] = 1000.;
+    // //             mmff_ang4[i][j][k] = 1000.;
+    // //             mmff_ang5[i][j][k] = 1000.;
+    // //             mmff_ang6[i][j][k] = 1000.;
+    // //             mmff_ang7[i][j][k] = 1000.;
+    // //             mmff_ang8[i][j][k] = 1000.;
+    // //         }
+    // //     }
+    // // }
 
-    // initialize values for MMFF bond charge increment parameters
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100; j++) {
-            bci[i][j] = 1000.;
-            bci_1[i][j] = 1000.;
-        }
-    }
+    // // // initialize values for MMFF stretch-bend parameters
+    // // for (int i = 0; i < 100; i++) {
+    // //     for (int j = 0; j < 100; j++) {
+    // //         for (int k = 0; k < 100; k++) {
+    // //             stbn_abc[i][j][k] = 1000.;
+    // //             stbn_cba[i][j][k] = 1000.;
+    // //             stbn_abc1[i][j][k] = 1000.;
+    // //             stbn_cba1[i][j][k] = 1000.;
+    // //             stbn_abc2[i][j][k] = 1000.;
+    // //             stbn_cba2[i][j][k] = 1000.;
+    // //             stbn_abc3[i][j][k] = 1000.;
+    // //             stbn_cba3[i][j][k] = 1000.;
+    // //             stbn_abc4[i][j][k] = 1000.;
+    // //             stbn_cba4[i][j][k] = 1000.;
+    // //             stbn_abc5[i][j][k] = 1000.;
+    // //             stbn_cba5[i][j][k] = 1000.;
+    // //             stbn_abc6[i][j][k] = 1000.;
+    // //             stbn_cba6[i][j][k] = 1000.;
+    // //             stbn_abc7[i][j][k] = 1000.;
+    // //             stbn_cba7[i][j][k] = 1000.;
+    // //             stbn_abc8[i][j][k] = 1000.;
+    // //             stbn_cba8[i][j][k] = 1000.;
+    // //             stbn_abc9[i][j][k] = 1000.;
+    // //             stbn_cba9[i][j][k] = 1000.;
+    // //             stbn_abc10[i][j][k] = 1000.;
+    // //             stbn_cba10[i][j][k] = 1000.;
+    // //             stbn_abc11[i][j][k] = 1000.;
+    // //             stbn_cba11[i][j][k] = 1000.;
+    // //         }
+    // //     }
+    // // }
+
+    // // initialize values for MMFF torsional parameters
+    // for (int i = 0; i < maxnt; i++) {
+    //     kt[i] = "";
+    //     kt_1[i] = "";
+    //     kt_2[i] = "";
+    //     t1[i][0] = 1000.;
+    //     t1[i][1] = 1000.;
+    //     t2[i][0] = 1000.;
+    //     t2[i][1] = 1000.;
+    //     t3[i][0] = 1000.;
+    //     t3[i][1] = 1000.;
+    //     t1_1[i][0] = 1000.;
+    //     t1_1[i][1] = 1000.;
+    //     t2_1[i][0] = 1000.;
+    //     t2_1[i][1] = 1000.;
+    //     t3_1[i][0] = 1000.;
+    //     t3_1[i][1] = 1000.;
+    //     t1_2[i][0] = 1000.;
+    //     t1_2[i][1] = 1000.;
+    //     t2_2[i][0] = 1000.;
+    //     t2_2[i][1] = 1000.;
+    //     t3_2[i][0] = 1000.;
+    //     t3_2[i][1] = 1000.;
+    // }
+
+    // // initialize values for MMFF bond charge increment parameters
+    // for (int i = 0; i < 100; i++) {
+    //     for (int j = 0; j < 100; j++) {
+            // bci[i][j] = 1000.;
+    //         bci_1[i][j] = 1000.;
+    //     }
+    // }
 }
 }

@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -39,18 +38,18 @@ MDQC_EXTERN int maxnb5;
 MDQC_EXTERN int maxnb4;
 MDQC_EXTERN int maxnb3;
 MDQC_EXTERN int maxnel;
-MDQC_EXTERN std::vector<real> bcon;
-MDQC_EXTERN std::vector<real> bcon5;
-MDQC_EXTERN std::vector<real> bcon4;
-MDQC_EXTERN std::vector<real> bcon3;
-MDQC_EXTERN std::vector<real> blen;
-MDQC_EXTERN std::vector<real> blen5;
-MDQC_EXTERN std::vector<real> blen4;
-MDQC_EXTERN std::vector<real> blen3;
-MDQC_EXTERN std::vector<real> dlen;
-MDQC_EXTERN std::vector<std::string> kb;
-MDQC_EXTERN std::vector<std::string> kb5;
-MDQC_EXTERN std::vector<std::string> kb4;
-MDQC_EXTERN std::vector<std::string> kb3;
-MDQC_EXTERN std::vector<std::string> kel;
+MDQC_EXTERN MDQCArray<real> bcon;
+MDQC_EXTERN MDQCArray<real> bcon5;
+MDQC_EXTERN MDQCArray<real> bcon4;
+MDQC_EXTERN MDQCArray<real> bcon3;
+MDQC_EXTERN MDQCArray<real> blen;
+MDQC_EXTERN MDQCArray<real> blen5;
+MDQC_EXTERN MDQCArray<real> blen4;
+MDQC_EXTERN MDQCArray<real> blen3;
+MDQC_EXTERN MDQCArray<real> dlen;
+MDQC_EXTERN MDQCArray<std::string> kb;
+MDQC_EXTERN MDQCArray<std::string> kb5;
+MDQC_EXTERN MDQCArray<std::string> kb4;
+MDQC_EXTERN MDQCArray<std::string> kb3;
+MDQC_EXTERN MDQCArray<std::string> kel;
 }

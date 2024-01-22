@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -18,6 +17,6 @@ namespace polmdqc
 // dmpct     charge transfer damping factor at each multipole site
 
 MDQC_EXTERN int nct;
-MDQC_EXTERN std::vector<real> chgct;
-MDQC_EXTERN std::vector<real> dmpct;
+MDQC_EXTERN MDQCArray<real> chgct;
+MDQC_EXTERN MDQCArray<real> dmpct;
 }

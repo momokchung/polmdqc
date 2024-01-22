@@ -26,6 +26,7 @@
 #include <cmath>
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 namespace polmdqc
 {
@@ -250,34 +251,37 @@ void kmpole()
     }
 
     // perform dynamic allocation of some global arrays
-    if (ipole.size() != 0) ipole.resize(0);
-    if (polsiz.size() != 0) polsiz.resize(0);
-    if (pollist.size() != 0) pollist.resize(0);
-    if (zaxis.size() != 0) zaxis.resize(0);
-    if (xaxis.size() != 0) xaxis.resize(0);
-    if (yaxis.size() != 0) yaxis.resize(0);
-    if (pole.size() != 0) pole.resize(0);
-    if (rpole.size() != 0) rpole.resize(0);
-    if (mono0.size() != 0) mono0.resize(0);
-    if (polaxe.size() != 0) polaxe.resize(0);
-    if (np11.size() != 0) np11.resize(0);
-    if (np12.size() != 0) np12.resize(0);
-    if (np13.size() != 0) np13.resize(0);
-    if (np14.size() != 0) np14.resize(0);
-    ipole.resize(n, -1);
-    polsiz.resize(n, 0);
-    pollist.resize(n, -1);
-    zaxis.resize(n, 0);
-    xaxis.resize(n, 0);
-    yaxis.resize(n, 0);
-    pole.resize(n, std::vector<real>(maxpole, 0.));
-    rpole.resize(n, std::vector<real>(maxpole));
-    mono0.resize(n, 0.);
-    polaxe.resize(n, LocalFrame::None);
-    np11.resize(n, 0);
-    np12.resize(n, 0);
-    np13.resize(n, 0);
-    np14.resize(n, 0);
+    ipole.allocate(n);
+    polsiz.allocate(n);
+    pollist.allocate(n);
+    zaxis.allocate(n);
+    xaxis.allocate(n);
+    yaxis.allocate(n);
+    pole.allocate(n);
+    rpole.allocate(n);
+    mono0.allocate(n);
+    polaxe.allocate(n);
+    np11.allocate(n);
+    np12.allocate(n);
+    np13.allocate(n);
+    np14.allocate(n);
+
+    // zero out local axes, multipoles and polarization attachments
+    for (int i = 0; i < n; i++) {
+        ipole[i] = -1;
+        polsiz[i] = 0;
+        pollist[i] = -1;
+        zaxis[i] = 0;
+        xaxis[i] = 0;
+        yaxis[i] = 0;
+        polaxe[i] = LocalFrame::None;
+        for (int j = 0; j < 13; j++) pole[i][j] = 0.;
+        mono0[i] = 0.;
+        np11[i] = 0;
+        np12[i] = 0;
+        np13[i] = 0;
+        np14[i] = 0;
+    }
 
     // perform dynamic allocation of some local arrays
     mpt.resize(maxnmp);
@@ -581,27 +585,28 @@ void kmpole()
     }
 
     // perform dynamic allocation of some global arrays
-    // if polarization not used, zero out induced dipoles
     if (!use_polar) {
-        if (uind.size() != 0) uind.resize(0);
-        if (uinp.size() != 0) uinp.resize(0);
-        if (uinds.size() != 0) uinds.resize(0);
-        if (uinps.size() != 0) uinps.resize(0);
-        uind.resize(n, std::vector<real>(3, 0.));
-        uinp.resize(n, std::vector<real>(3, 0.));
-        uinds.resize(n, std::vector<real>(3, 0.));
-        uinps.resize(n, std::vector<real>(3, 0.));
+        uind.allocate(n);
+        uinp.allocate(n);
+        uinds.allocate(n);
+        uinps.allocate(n);
+
+        // if polarization not used, zero out induced dipoles
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 3; j++) {
+               uind[i][j] = 0.;
+               uinp[i][j] = 0.;
+               uinds[i][j] = 0.;
+               uinps[i][j] = 0.;
+            }
+        }
     }
 
     // perform dynamic allocation of some global arrays
-    if (pcore.size() != 0) pcore.resize(0);
-    if (pval.size() != 0) pval.resize(0);
-    if (pval0.size() != 0) pval0.resize(0);
-    if (palpha.size() != 0) palpha.resize(0);
-    pcore.resize(n);
-    pval.resize(n);
-    pval0.resize(n);
-    palpha.resize(n);
+    pcore.allocate(n);
+    pval.allocate(n);
+    pval0.allocate(n);
+    palpha.allocate(n);
 
     // find new charge penetration parameters in the keyfile
     header = true;

@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -16,6 +15,6 @@ namespace polmdqc
 // scale      multiplicative factor for each optimization parameter
 // set_scale  logical flag to show if scale factors have been set
 
-MDQC_EXTERN std::vector<real> scale;
+MDQC_EXTERN MDQCArray<real> scale;
 MDQC_EXTERN bool set_scale;
 }

@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -19,6 +18,6 @@ namespace polmdqc
 // ksb      string of atom classes for stretch-bend terms
 
 MDQC_EXTERN int maxnsb;
-MDQC_EXTERN std::vector<std::vector<real>> stbn;
-MDQC_EXTERN std::vector<std::string> ksb;
+MDQC_EXTERN MDQCArray2D<real,2> stbn;
+MDQC_EXTERN MDQCArray<std::string> ksb;
 }

@@ -29,14 +29,14 @@ namespace polmdqc
 
 constexpr int maxpole = 13;
 MDQC_EXTERN int npole;
-MDQC_EXTERN std::vector<int> ipole;
-MDQC_EXTERN std::vector<int> polsiz;
-MDQC_EXTERN std::vector<int> pollist;
-MDQC_EXTERN std::vector<int> zaxis;
-MDQC_EXTERN std::vector<int> xaxis;
-MDQC_EXTERN std::vector<int> yaxis;
-MDQC_EXTERN std::vector<std::vector<real>> pole;
-MDQC_EXTERN std::vector<std::vector<real>> rpole;
-MDQC_EXTERN std::vector<real>  mono0;
-MDQC_EXTERN std::vector<LocalFrame> polaxe;
+MDQC_EXTERN MDQCArray<int> ipole;
+MDQC_EXTERN MDQCArray<int> polsiz;
+MDQC_EXTERN MDQCArray<int> pollist;
+MDQC_EXTERN MDQCArray<int> zaxis;
+MDQC_EXTERN MDQCArray<int> xaxis;
+MDQC_EXTERN MDQCArray<int> yaxis;
+MDQC_EXTERN MDQCArray2D<real,maxpole> pole;
+MDQC_EXTERN MDQCArray2D<real,maxpole> rpole;
+MDQC_EXTERN MDQCArray<real> mono0;
+MDQC_EXTERN MDQCArray<LocalFrame> polaxe;
 }

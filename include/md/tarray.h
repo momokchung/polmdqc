@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -18,6 +17,6 @@ namespace polmdqc
 // tdipdip    stored dipole-dipole matrix element values
 
 MDQC_EXTERN int ntpair;
-MDQC_EXTERN std::vector<std::vector<int>> tindex;
-MDQC_EXTERN std::vector<std::vector<real>> tdipdip;
+MDQC_EXTERN MDQCArray2D<int,2> tindex;
+MDQC_EXTERN MDQCArray2D<real,6> tdipdip;
 }

@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -20,7 +19,7 @@ namespace polmdqc
 // ku      string of atom classes for Urey-Bradley terms
 
 MDQC_EXTERN int maxnu;
-MDQC_EXTERN std::vector<real> ucon;
-MDQC_EXTERN std::vector<real> dst13;
-MDQC_EXTERN std::vector<std::string> ku;
+MDQC_EXTERN MDQCArray<real> ucon;
+MDQC_EXTERN MDQCArray<real> dst13;
+MDQC_EXTERN MDQCArray<std::string> ku;
 }

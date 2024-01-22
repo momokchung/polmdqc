@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -19,9 +18,9 @@ namespace polmdqc
 // pcgprec   flag to allow use of preconditioner with PCG solver
 // pcgguess  flag to use initial PCG based on direct field
 
-MDQC_EXTERN std::vector<int> mindex;
+MDQC_EXTERN MDQCArray<int> mindex;
 MDQC_EXTERN real pcgpeek;
-MDQC_EXTERN std::vector<real> minv;
+MDQC_EXTERN MDQCArray<real> minv;
 MDQC_EXTERN bool pcgprec;
 MDQC_EXTERN bool pcgguess;
 }

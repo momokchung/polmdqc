@@ -21,8 +21,8 @@ namespace polmdqc
 // z       current z-coordinate for each atom in the system
 
 MDQC_EXTERN int n;
-MDQC_EXTERN int type[maxatm];
-MDQC_EXTERN real x[maxatm];
-MDQC_EXTERN real y[maxatm];
-MDQC_EXTERN real z[maxatm];
+MDQC_EXTERN MDQCArray<int> type;
+MDQC_EXTERN MDQCArray<real> x;
+MDQC_EXTERN MDQCArray<real> y;
+MDQC_EXTERN MDQCArray<real> z;
 }

@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -24,9 +23,9 @@ namespace polmdqc
 
 MDQC_EXTERN int maxncfb;
 MDQC_EXTERN int maxncfa;
-MDQC_EXTERN std::vector<real> cflb;
-MDQC_EXTERN std::vector<std::vector<real>> cfla;
-MDQC_EXTERN std::vector<std::vector<real>> cflab;
-MDQC_EXTERN std::vector<std::string> kcfb;
-MDQC_EXTERN std::vector<std::string> kcfa;
+MDQC_EXTERN MDQCArray<real> cflb;
+MDQC_EXTERN MDQCArray2D<real,2> cfla;
+MDQC_EXTERN MDQCArray2D<real,2> cflab;
+MDQC_EXTERN MDQCArray<std::string> kcfb;
+MDQC_EXTERN MDQCArray<std::string> kcfa;
 }

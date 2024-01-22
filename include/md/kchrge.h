@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -15,5 +14,5 @@ namespace polmdqc
 
 // chg   partial charge parameters for each atom type
 
-MDQC_EXTERN std::vector<real> chg;
+MDQC_EXTERN MDQCArray<real> chg;
 }

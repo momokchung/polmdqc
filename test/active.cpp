@@ -5,6 +5,7 @@
 #include "atoms.h"
 #include "deriv.h"
 #include "energi.h"
+#include "final.h"
 #include "inter.h"
 #include "testgrad.h"
 #include "testrt.h"
@@ -25,7 +26,7 @@ TEST_CASE("active-1", "[analyze][AMOEBA][water09_Na_Cls]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == active1::nem);
 
@@ -41,6 +42,8 @@ TEST_CASE("active-1", "[analyze][AMOEBA][water09_Na_Cls]") {
         REQUIRE(iuse[i] == active1::iuse[i]);
         REQUIRE(use[i+1] == active1::use[i+1]);
     }
+
+    final();
 }
 
 TEST_CASE("active-2", "[analyze][AMOEBA][water09_Na_Cls]") {
@@ -55,7 +58,7 @@ TEST_CASE("active-2", "[analyze][AMOEBA][water09_Na_Cls]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == active2::nem);
 
@@ -71,6 +74,8 @@ TEST_CASE("active-2", "[analyze][AMOEBA][water09_Na_Cls]") {
         REQUIRE(iuse[i] == active2::iuse[i]);
         REQUIRE(use[i+1] == active2::use[i+1]);
     }
+
+    final();
 }
 
 TEST_CASE("active-3", "[analyze][AMOEBA][waterbox30]") {
@@ -83,7 +88,7 @@ TEST_CASE("active-3", "[analyze][AMOEBA][waterbox30]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == active3::nem);
 
@@ -92,5 +97,7 @@ TEST_CASE("active-3", "[analyze][AMOEBA][waterbox30]") {
     COMPARE_REALS(em, active3::em, active3::eps);
 
     REQUIRE(nuse == active3::nuse);
+
+    final();
 }
 }

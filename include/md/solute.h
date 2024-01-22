@@ -3,7 +3,7 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
+#include "sizes.h"
 
 namespace polmdqc
 {
@@ -39,20 +39,20 @@ namespace polmdqc
 
 MDQC_EXTERN real doffset,onipr;
 MDQC_EXTERN real p1,p2,p3,p4,p5;
-MDQC_EXTERN std::vector<real> rsolv;
-MDQC_EXTERN std::vector<real> rdescr;
-MDQC_EXTERN std::vector<real> asolv;
-MDQC_EXTERN std::vector<real> rborn;
-MDQC_EXTERN std::vector<real> drb;
-MDQC_EXTERN std::vector<real> drbp;
-MDQC_EXTERN std::vector<real> drobc;
-MDQC_EXTERN std::vector<real> gpol;
-MDQC_EXTERN std::vector<real> shct;
-MDQC_EXTERN std::vector<real> aobc;
-MDQC_EXTERN std::vector<real> bobc;
-MDQC_EXTERN std::vector<real> gobc;
-MDQC_EXTERN std::vector<real> vsolv;
-MDQC_EXTERN std::vector<std::vector<real>> wace;
-MDQC_EXTERN std::vector<std::vector<real>> s2ace;
-MDQC_EXTERN std::vector<std::vector<real>> uace;
+MDQC_EXTERN MDQCArray<real> rsolv;
+MDQC_EXTERN MDQCArray<real> rdescr;
+MDQC_EXTERN MDQCArray<real> asolv;
+MDQC_EXTERN MDQCArray<real> rborn;
+MDQC_EXTERN MDQCArray<real> drb;
+MDQC_EXTERN MDQCArray<real> drbp;
+MDQC_EXTERN MDQCArray<real> drobc;
+MDQC_EXTERN MDQCArray<real> gpol;
+MDQC_EXTERN MDQCArray<real> shct;
+MDQC_EXTERN MDQCArray<real> aobc;
+MDQC_EXTERN MDQCArray<real> bobc;
+MDQC_EXTERN MDQCArray<real> gobc;
+MDQC_EXTERN MDQCArray<real> vsolv;
+MDQC_EXTERN MDQCArray2D<real,maxclass> wace;
+MDQC_EXTERN MDQCArray2D<real,maxclass> s2ace;
+MDQC_EXTERN MDQCArray2D<real,maxclass> uace;
 }

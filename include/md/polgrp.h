@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -30,12 +29,12 @@ constexpr int maxp11 = 200;
 constexpr int maxp12 = 200;
 constexpr int maxp13 = 200;
 constexpr int maxp14 = 200;
-MDQC_EXTERN std::vector<int> np11;
-MDQC_EXTERN std::vector<int> np12;
-MDQC_EXTERN std::vector<int> np13;
-MDQC_EXTERN std::vector<int> np14;
-MDQC_EXTERN std::vector<std::vector<int>> ip11;
-MDQC_EXTERN std::vector<std::vector<int>> ip12;
-MDQC_EXTERN std::vector<std::vector<int>> ip13;
-MDQC_EXTERN std::vector<std::vector<int>> ip14;
+MDQC_EXTERN MDQCArray<int> np11;
+MDQC_EXTERN MDQCArray<int> np12;
+MDQC_EXTERN MDQCArray<int> np13;
+MDQC_EXTERN MDQCArray<int> np14;
+MDQC_EXTERN MDQCArray2D<int,maxp11> ip11;
+MDQC_EXTERN MDQCArray2D<int,maxp12> ip12;
+MDQC_EXTERN MDQCArray2D<int,maxp13> ip13;
+MDQC_EXTERN MDQCArray2D<int,maxp14> ip14;
 }

@@ -257,22 +257,14 @@ void kvdw()
     }
 
     // perform dynamic allocation of some global arrays
-    if (ivdw.size() != 0) ivdw.resize(0);
-    if (jvdw.size() != 0) jvdw.resize(0);
-    if (mvdw.size() != 0) mvdw.resize(0);
-    if (ired.size() != 0) ired.resize(0);
-    if (kred.size() != 0) kred.resize(0);
-    if (xred.size() != 0) xred.resize(0);
-    if (yred.size() != 0) yred.resize(0);
-    if (zred.size() != 0) zred.resize(0);
-    ivdw.resize(n);
-    jvdw.resize(n);
-    mvdw.resize(maxtyp);
-    ired.resize(n);
-    kred.resize(n);
-    xred.resize(n);
-    yred.resize(n);
-    zred.resize(n);
+    ivdw.allocate(n);
+    jvdw.allocate(n);
+    mvdw.allocate(maxtyp);
+    ired.allocate(n);
+    kred.allocate(n);
+    xred.allocate(n);
+    yred.allocate(n);
+    zred.allocate(n);
 
     // perform dynamic allocation of some local arrays
     list.resize(n);
@@ -339,18 +331,12 @@ void kvdw()
     }
 
     // perform dynamic allocation of some global arrays
-    if (radmin.size() != 0) radmin.resize(0);
-    if (epsilon.size() != 0) epsilon.resize(0);
-    if (radmin4.size() != 0) radmin4.resize(0);
-    if (epsilon4.size() != 0) epsilon4.resize(0);
-    if (radhbnd.size() != 0) radhbnd.resize(0);
-    if (epshbnd.size() != 0) epshbnd.resize(0);
-    radmin.resize(nlist, std::vector<real>(nlist));
-    epsilon.resize(nlist, std::vector<real>(nlist));
-    radmin4.resize(nlist, std::vector<real>(nlist));
-    epsilon4.resize(nlist, std::vector<real>(nlist));
-    radhbnd.resize(nlist, std::vector<real>(nlist));
-    epshbnd.resize(nlist, std::vector<real>(nlist));
+    radmin.allocate(nlist*nlist);
+    epsilon.allocate(nlist*nlist);
+    radmin4.allocate(nlist*nlist);
+    epsilon4.allocate(nlist*nlist);
+    radhbnd.allocate(nlist*nlist);
+    epshbnd.allocate(nlist*nlist);
 
     // use combination rules to set pairwise vdw radii sums
     for (int ii = 0; ii < nlist; ii++) {
@@ -383,8 +369,8 @@ void kvdw()
             }
             else rd = rad[i] + rad[k];
             
-            radmin[kk][ii] = rd;
-            radmin[ii][kk] = rd;
+            radmin[kk*nlist+ii] = rd;
+            radmin[ii*nlist+kk] = rd;
         }
     }
 
@@ -395,8 +381,8 @@ void kvdw()
             k = list[kk];
             if (epsrule == "MMFF94") {
                 ep = 0.;
-                if (nn[i]!=0. and nn[k]!=0. and radmin[kk][ii]!=0.) {
-                    ep = 181.16*g[i]*g[k]*alph[i]*alph[k] / ((std::sqrt(alph[i]/nn[i])+std::sqrt(alph[k]/nn[k]))*std::pow(radmin[kk][ii],6));
+                if (nn[i]!=0. and nn[k]!=0. and radmin[kk*nlist+ii]!=0.) {
+                    ep = 181.16*g[i]*g[k]*alph[i]*alph[k] / ((std::sqrt(alph[i]/nn[i])+std::sqrt(alph[k]/nn[k]))*std::pow(radmin[kk*nlist+ii],6));
                 }
                 if (i == k) eps[i] = ep;
             }
@@ -416,8 +402,8 @@ void kvdw()
                 ep = 2. * (seps[i]*seps[k]) * radik3 / radik6;
             }
             else ep = seps[i] * seps[k];
-            epsilon[kk][ii] = ep;
-            epsilon[ii][kk] = ep;
+            epsilon[kk*nlist+ii] = ep;
+            epsilon[ii*nlist+kk] = ep;
         }
     }
 
@@ -449,8 +435,8 @@ void kvdw()
                 rd = 2. * (rad4i3+rad4k3) / (rad4i2+rad4k2);
             }
             else rd = rad4[i] + rad4[k];
-            radmin4[kk][ii] = rd;
-            radmin4[ii][kk] = rd;
+            radmin4[kk*nlist+ii] = rd;
+            radmin4[ii*nlist+kk] = rd;
         }
     }
 
@@ -461,8 +447,8 @@ void kvdw()
             k = list[kk];
             if (epsrule == "MMFF94") {
                 ep = 0.;
-                if (nn[i]!=0. and nn[k]!=0. and radmin4[kk][ii]!=0.) {
-                    ep = 181.16*g[i]*g[k]*alph[i]*alph[k] / ((std::sqrt(alph[i]/nn[i])+std::sqrt(alph[k]/nn[k]))*std::pow(radmin4[kk][ii],6));
+                if (nn[i]!=0. and nn[k]!=0. and radmin4[kk*nlist+ii]!=0.) {
+                    ep = 181.16*g[i]*g[k]*alph[i]*alph[k] / ((std::sqrt(alph[i]/nn[i])+std::sqrt(alph[k]/nn[k]))*std::pow(radmin4[kk*nlist+ii],6));
                 }
                 if (i == k) eps4[i] = ep;
             }
@@ -473,8 +459,8 @@ void kvdw()
             else if (epsrule == "HHG") ep = 4. * (eps4[i]*eps4[k]) / std::pow((seps4[i]+seps4[k]),2);
             else if (epsrule == "W-H") ep = 2. * (seps4[i]*seps4[k]) * std::pow((rad4[i]*rad4[k]),3) / (std::pow(rad4[i],6)+std::pow(rad4[k],6));
             else ep = seps4[i] * seps4[k];
-            epsilon4[kk][ii] = ep;
-            epsilon4[ii][kk] = ep;
+            epsilon4[kk*nlist+ii] = ep;
+            epsilon4[ii*nlist+kk] = ep;
         }
     }
 
@@ -485,14 +471,14 @@ void kvdw()
             for (int kk = ii; kk < nlist; kk++) {
                 k = list[kk];
                 if ((da[i]=='D' and da[k]=='A') or (da[i]=='A' and da[k]=='D')) {
-                    epsilon[kk][ii] = epsilon[kk][ii] * 0.5;
-                    epsilon[ii][kk] = epsilon[ii][kk] * 0.5;
-                    radmin[kk][ii] = radmin[kk][ii] * 0.8;
-                    radmin[ii][kk] = radmin[ii][kk] * 0.8;
-                    epsilon4[kk][ii] = epsilon4[kk][ii] * 0.5;
-                    epsilon4[ii][kk] = epsilon4[ii][kk] * 0.5;
-                    radmin4[kk][ii] = radmin4[kk][ii] * 0.8;
-                    radmin4[ii][kk] = radmin4[ii][kk] * 0.8;
+                    epsilon[kk*nlist+ii] = epsilon[kk*nlist+ii] * 0.5;
+                    epsilon[ii*nlist+kk] = epsilon[ii*nlist+kk] * 0.5;
+                    radmin[kk*nlist+ii] = radmin[kk*nlist+ii] * 0.8;
+                    radmin[ii*nlist+kk] = radmin[ii*nlist+kk] * 0.8;
+                    epsilon4[kk*nlist+ii] = epsilon4[kk*nlist+ii] * 0.5;
+                    epsilon4[ii*nlist+kk] = epsilon4[ii*nlist+kk] * 0.5;
+                    radmin4[kk*nlist+ii] = radmin4[kk*nlist+ii] * 0.8;
+                    radmin4[ii*nlist+kk] = radmin4[ii*nlist+kk] * 0.8;
                 }
             }
         }
@@ -526,14 +512,14 @@ void kvdw()
         ib = mvdw[ib];
         if (ia!=-1 and ib!=-1) {
             if (radtyp == "SIGMA") radpr[i] = twosix * radpr[i];
-            radmin[ib][ia] = radpr[i];
-            radmin[ia][ib] = radpr[i];
-            epsilon[ib][ia] = std::abs(epspr[i]);
-            epsilon[ia][ib] = std::abs(epspr[i]);
-            radmin4[ib][ia] = radpr[i];
-            radmin4[ia][ib] = radpr[i];
-            epsilon4[ib][ia] = std::abs(epspr[i]);
-            epsilon4[ia][ib] = std::abs(epspr[i]);
+            radmin[ib*nlist+ia] = radpr[i];
+            radmin[ia*nlist+ib] = radpr[i];
+            epsilon[ib*nlist+ia] = std::abs(epspr[i]);
+            epsilon[ia*nlist+ib] = std::abs(epspr[i]);
+            radmin4[ib*nlist+ia] = radpr[i];
+            radmin4[ia*nlist+ib] = radpr[i];
+            epsilon4[ib*nlist+ia] = std::abs(epspr[i]);
+            epsilon4[ia*nlist+ib] = std::abs(epspr[i]);
         }
     }
 
@@ -541,8 +527,8 @@ void kvdw()
     if (vdwtyp == "MM3-HBOND") {
         for (int i = 0; i < nlist; i++) {
             for (int k = 0; k < nlist; k++) {
-                radhbnd[i][k] = 0.;
-                epshbnd[i][k] = 0.;
+                radhbnd[i*nlist+k] = 0.;
+                epshbnd[i*nlist+k] = 0.;
             }
         }
         for (int i = 0; i < maxnhb; i++) {
@@ -557,10 +543,10 @@ void kvdw()
             ib = mvdw[ib];
             if (ia!=-1 and ib!=-1) {
                 if (radtyp == "SIGMA") radhb[i] = twosix * radhb[i];
-                radhbnd[ib][ia] = radhb[i];
-                radhbnd[ia][ib] = radhb[i];
-                epshbnd[ib][ia] = std::abs(epshb[i]);
-                epshbnd[ia][ib] = std::abs(epshb[i]);
+                radhbnd[ib*nlist+ia] = radhb[i];
+                radhbnd[ia*nlist+ib] = radhb[i];
+                epshbnd[ib*nlist+ia] = std::abs(epshb[i]);
+                epshbnd[ia*nlist+ib] = std::abs(epshb[i]);
             }
         }
     }

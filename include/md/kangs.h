@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -45,22 +44,22 @@ MDQC_EXTERN int maxna4;
 MDQC_EXTERN int maxna3;
 MDQC_EXTERN int maxnap;
 MDQC_EXTERN int maxnaf;
-MDQC_EXTERN std::vector<real> acon;
-MDQC_EXTERN std::vector<real> acon5;
-MDQC_EXTERN std::vector<real> acon4;
-MDQC_EXTERN std::vector<real> acon3;
-MDQC_EXTERN std::vector<real> aconp;
-MDQC_EXTERN std::vector<real> aconf;
-MDQC_EXTERN std::vector<std::vector<real>> ang;
-MDQC_EXTERN std::vector<std::vector<real>> ang5;
-MDQC_EXTERN std::vector<std::vector<real>> ang4;
-MDQC_EXTERN std::vector<std::vector<real>> ang3;
-MDQC_EXTERN std::vector<std::vector<real>> angp;
-MDQC_EXTERN std::vector<std::vector<real>> angf;
-MDQC_EXTERN std::vector<std::string> ka;
-MDQC_EXTERN std::vector<std::string> ka5;
-MDQC_EXTERN std::vector<std::string> ka4;
-MDQC_EXTERN std::vector<std::string> ka3;
-MDQC_EXTERN std::vector<std::string> kap;
-MDQC_EXTERN std::vector<std::string> kaf;
+MDQC_EXTERN MDQCArray<real> acon;
+MDQC_EXTERN MDQCArray<real> acon5;
+MDQC_EXTERN MDQCArray<real> acon4;
+MDQC_EXTERN MDQCArray<real> acon3;
+MDQC_EXTERN MDQCArray<real> aconp;
+MDQC_EXTERN MDQCArray<real> aconf;
+MDQC_EXTERN MDQCArray2D<real,3> ang;
+MDQC_EXTERN MDQCArray2D<real,3> ang5;
+MDQC_EXTERN MDQCArray2D<real,3> ang4;
+MDQC_EXTERN MDQCArray2D<real,3> ang3;
+MDQC_EXTERN MDQCArray2D<real,2> angp;
+MDQC_EXTERN MDQCArray2D<real,2> angf;
+MDQC_EXTERN MDQCArray<std::string> ka;
+MDQC_EXTERN MDQCArray<std::string> ka5;
+MDQC_EXTERN MDQCArray<std::string> ka4;
+MDQC_EXTERN MDQCArray<std::string> ka3;
+MDQC_EXTERN MDQCArray<std::string> kap;
+MDQC_EXTERN MDQCArray<std::string> kaf;
 }

@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -18,8 +17,8 @@ namespace polmdqc
 // pepdmp   exchange-polarization damping alpha for atom classes
 // pepl     exchange-polarization logical flag for atom classes
 
-MDQC_EXTERN std::vector<real> pepk;
-MDQC_EXTERN std::vector<real> peppre;
-MDQC_EXTERN std::vector<real> pepdmp;
-MDQC_EXTERN std::vector<bool> pepl;
+MDQC_EXTERN MDQCArray<real> pepk;
+MDQC_EXTERN MDQCArray<real> peppre;
+MDQC_EXTERN MDQCArray<real> pepdmp;
+MDQC_EXTERN MDQCArray<bool> pepl;
 }

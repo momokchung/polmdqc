@@ -24,15 +24,16 @@ void molecule()
     std::vector<int> list;
 
     // perform dynamic allocation of some global arrays
-    if (imol.size() != 0) imol.resize(0);
-    if (kmol.size() != 0) kmol.resize(0);
-    if (molcule.size() != 0) molcule.resize(0);
-    if (molmass.size() != 0) molmass.resize(0);
-    imol.resize(n, std::vector<int>(2,-1));
-    kmol.resize(n);
-    molcule.resize(n, -1);
-    molmass.resize(n);
+    imol.allocate(n);
+    kmol.allocate(n);
+    molcule.allocate(n);
+    molmass.allocate(n);
+
+    // zero number of molecules and molecule membership list
     nmol = 0;
+    for (int i = 0; i < n; i++) {
+        molcule[i] = -1;
+    }
 
     // assign each atom to its respective molecule
     for (int i = 0; i < n; i++) {
@@ -82,7 +83,7 @@ void molecule()
     for (int i = 0; i < n; i++) {
         list[i] = molcule[i];
     }
-    sortKey(n, list,kmol);
+    sortKey(n, list, kmol.ptr());
 
     // find the first and last atom in each molecule
     int k = 0;
@@ -100,7 +101,7 @@ void molecule()
     // sort the list of atoms in each molecule by atom number
     for (int i = 0; i < nmol; i++) {
         k = imol[i][1] - imol[i][0] + 1;
-        std::sort(kmol.begin() + imol[i][0], kmol.begin() + imol[i][0] + k);
+        std::sort(kmol.ptr() + imol[i][0], kmol.ptr() + imol[i][0] + k);
     }
 
     // if all atomic masses are zero, set them all to unity

@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -21,8 +20,8 @@ namespace polmdqc
 // kti      string of atom classes for improper torsional parameters
 
 MDQC_EXTERN int maxnti;
-MDQC_EXTERN std::vector<std::vector<real>> ti1;
-MDQC_EXTERN std::vector<std::vector<real>> ti2;
-MDQC_EXTERN std::vector<std::vector<real>> ti3;
-MDQC_EXTERN std::vector<std::string> kti;
+MDQC_EXTERN MDQCArray2D<real,2> ti1;
+MDQC_EXTERN MDQCArray2D<real,2> ti2;
+MDQC_EXTERN MDQCArray2D<real,2> ti3;
+MDQC_EXTERN MDQCArray<std::string> kti;
 }

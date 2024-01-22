@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -32,9 +31,9 @@ enum class LocalFrame
 };
 
 MDQC_EXTERN int maxnmp;
-MDQC_EXTERN std::vector<std::vector<real>> multip;
-MDQC_EXTERN std::vector<LocalFrame> mpaxis;
-MDQC_EXTERN std::vector<std::string> kmp;
+MDQC_EXTERN MDQCArray2D<real,13> multip;
+MDQC_EXTERN MDQCArray<LocalFrame> mpaxis;
+MDQC_EXTERN MDQCArray<std::string> kmp;
 
 inline LocalFrame retLFRM(std::string axt)
 {

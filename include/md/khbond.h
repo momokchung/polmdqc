@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -20,7 +19,7 @@ namespace polmdqc
 // khb      string of atom types for hydrogen bonding pairs
 
 MDQC_EXTERN int maxnhb;
-MDQC_EXTERN std::vector<real> radhb;
-MDQC_EXTERN std::vector<real> epshb;
-MDQC_EXTERN std::vector<std::string> khb;
+MDQC_EXTERN MDQCArray<real> radhb;
+MDQC_EXTERN MDQCArray<real> epshb;
+MDQC_EXTERN MDQCArray<std::string> khb;
 }

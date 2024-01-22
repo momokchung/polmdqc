@@ -36,7 +36,7 @@ namespace polmdqc
 // show force field parameters by atom; output the large energy
 // interactions and find electrostatic and inertial properties
 
-void analyze(int argc, char** argv)
+void analyze(int argc, char** argv, bool test)
 {
     int i,j,ixyz;
     int frame;
@@ -271,7 +271,7 @@ void analyze(int argc, char** argv)
     // perform any final tasks before program exit
     ffile.close();
     if (dodetail) debug = false;
-    final();
+    if (not test) final();
 }
 }
 // c

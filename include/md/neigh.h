@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -18,11 +17,11 @@ namespace polmdqc
 // maxelst     maximum size of electrostatic pair neighbor lists
 // maxulst     maximum size of dipole preconditioner pair lists
 // nvlst       number of sites in list for each vdw site
-// vlst        site numbers in neighbor list of each vdw site
+// vlst        site numbers in neighbor list of each vdw site ((i,j) index = i * n + j)
 // nelst       number of sites in list for each electrostatic site
-// elst        site numbers in list of each electrostatic site
+// elst        site numbers in list of each electrostatic site ((i,j) index = i * n + j)
 // nulst       number of sites in list for each preconditioner site
-// ulst        site numbers in list of each preconditioner site
+// ulst        site numbers in list of each preconditioner site ((i,j) index = i * n + j)
 // lbuffer     width of the neighbor list buffer region
 // pbuffer     width of the preconditioner list buffer region
 // lbuf2       square of half the neighbor list buffer width
@@ -55,12 +54,12 @@ namespace polmdqc
 MDQC_EXTERN int maxvlst;
 MDQC_EXTERN int maxelst;
 MDQC_EXTERN int maxulst;
-MDQC_EXTERN std::vector<int> nvlst;
-MDQC_EXTERN std::vector<std::vector<int>>vlst;
-MDQC_EXTERN std::vector<int> nelst;
-MDQC_EXTERN std::vector<std::vector<int>>elst;
-MDQC_EXTERN std::vector<int> nulst;
-MDQC_EXTERN std::vector<std::vector<int>>ulst;
+MDQC_EXTERN MDQCArray<int> nvlst;
+MDQC_EXTERN MDQCArray<int> vlst;
+MDQC_EXTERN MDQCArray<int> nelst;
+MDQC_EXTERN MDQCArray<int> elst;
+MDQC_EXTERN MDQCArray<int> nulst;
+MDQC_EXTERN MDQCArray<int> ulst;
 MDQC_EXTERN real lbuffer,pbuffer;
 MDQC_EXTERN real lbuf2,pbuf2;
 MDQC_EXTERN real vbuf2,vbufx;
@@ -68,15 +67,15 @@ MDQC_EXTERN real dbuf2,dbufx;
 MDQC_EXTERN real cbuf2,cbufx;
 MDQC_EXTERN real mbuf2,mbufx;
 MDQC_EXTERN real ubuf2,ubufx;
-MDQC_EXTERN std::vector<real> xvold;
-MDQC_EXTERN std::vector<real> yvold;
-MDQC_EXTERN std::vector<real> zvold;
-MDQC_EXTERN std::vector<real> xeold;
-MDQC_EXTERN std::vector<real> yeold;
-MDQC_EXTERN std::vector<real> zeold;
-MDQC_EXTERN std::vector<real> xuold;
-MDQC_EXTERN std::vector<real> yuold;
-MDQC_EXTERN std::vector<real> zuold;
+MDQC_EXTERN MDQCArray<real> xvold;
+MDQC_EXTERN MDQCArray<real> yvold;
+MDQC_EXTERN MDQCArray<real> zvold;
+MDQC_EXTERN MDQCArray<real> xeold;
+MDQC_EXTERN MDQCArray<real> yeold;
+MDQC_EXTERN MDQCArray<real> zeold;
+MDQC_EXTERN MDQCArray<real> xuold;
+MDQC_EXTERN MDQCArray<real> yuold;
+MDQC_EXTERN MDQCArray<real> zuold;
 MDQC_EXTERN bool dovlst,dodlst;
 MDQC_EXTERN bool doclst,domlst;
 MDQC_EXTERN bool doulst;

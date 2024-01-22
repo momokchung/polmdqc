@@ -99,6 +99,13 @@ void katom()
         }
     }
 
+    // allocate global arrays from module atomid
+    atomClass.allocate(n);
+    atomic.allocate(n);
+    valence.allocate(n);
+    mass.allocate(n);
+    story.allocate(n);
+
     // transfer atom type values to individual atoms
     for (int i = 0; i < n; i++) {
         int k = type[i];

@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -23,7 +22,7 @@ namespace polmdqc
 // zcell2   half the length of the c-axis of the replicated cell
 
 MDQC_EXTERN int ncell;
-MDQC_EXTERN std::vector<std::vector<int>> icell;
+MDQC_EXTERN MDQCArray2D<int,3> icell;
 MDQC_EXTERN real xcell;
 MDQC_EXTERN real ycell;
 MDQC_EXTERN real zcell;

@@ -3,6 +3,7 @@
 #include "analyze.h"
 #include "bounds.h"
 #include "energi.h"
+#include "final.h"
 #include "inter.h"
 #include "testrt.h"
 
@@ -20,13 +21,15 @@ TEST_CASE("bounds-1", "[analyze][AMOEBA][orthogonal]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == bounds1::nem);
 
     COMPARE_REALS(einter, bounds1::einter, bounds1::eps);
     COMPARE_REALS(esum, bounds1::esum, bounds1::eps);
     COMPARE_REALS(em, bounds1::em, bounds1::eps);
+
+    final();
 }
 
 TEST_CASE("bounds-2", "[analyze][AMOEBA][monoclinic]") {
@@ -41,13 +44,15 @@ TEST_CASE("bounds-2", "[analyze][AMOEBA][monoclinic]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == bounds2::nem);
 
     COMPARE_REALS(einter, bounds2::einter, bounds2::eps);
     COMPARE_REALS(esum, bounds2::esum, bounds2::eps);
     COMPARE_REALS(em, bounds2::em, bounds2::eps);
+
+    final();
 }
 
 TEST_CASE("bounds-3", "[analyze][AMOEBA][triclinic]") {
@@ -62,13 +67,15 @@ TEST_CASE("bounds-3", "[analyze][AMOEBA][triclinic]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == bounds3::nem);
 
     COMPARE_REALS(einter, bounds3::einter, bounds3::eps);
     COMPARE_REALS(esum, bounds3::esum, bounds3::eps);
     COMPARE_REALS(em, bounds3::em, bounds3::eps);
+
+    final();
 }
 
 TEST_CASE("bounds-4", "[analyze][AMOEBA][octahedron]") {
@@ -83,13 +90,15 @@ TEST_CASE("bounds-4", "[analyze][AMOEBA][octahedron]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == bounds4::nem);
 
     COMPARE_REALS(einter, bounds4::einter, bounds4::eps);
     COMPARE_REALS(esum, bounds4::esum, bounds4::eps);
     COMPARE_REALS(em, bounds4::em, bounds4::eps);
+
+    final();
 }
 
 TEST_CASE("bounds-5", "[analyze][AMOEBA][dodecahedron]") {
@@ -104,12 +113,14 @@ TEST_CASE("bounds-5", "[analyze][AMOEBA][dodecahedron]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv);
+    analyze(argc, argv, true);
 
     REQUIRE(nem == bounds5::nem);
 
     COMPARE_REALS(einter, bounds5::einter, bounds5::eps);
     COMPARE_REALS(esum, bounds5::esum, bounds5::eps);
     COMPARE_REALS(em, bounds5::em, bounds5::eps);
+
+    final();
 }
 }

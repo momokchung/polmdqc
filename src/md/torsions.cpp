@@ -25,8 +25,7 @@ void torsions()
 
     // perform dynamic allocation of some global arrays
     maxtors = 18 * n;
-    if (itors.size() != 0) itors.resize(0);
-    itors.resize(maxtors,std::vector<int>(4));
+    itors.allocate(maxtors);
 
     // loop over all bonds, storing the atoms in each torsion
     ntors = 0;

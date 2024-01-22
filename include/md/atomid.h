@@ -22,11 +22,11 @@ namespace polmdqc
 // name      atom name for each atom in the system
 // story     descriptive type for each atom in system
 
-MDQC_EXTERN int tag[maxatm];
-MDQC_EXTERN int atomClass[maxatm];
-MDQC_EXTERN int atomic[maxatm];
-MDQC_EXTERN int valence[maxatm];
-MDQC_EXTERN real mass[maxatm];
-MDQC_EXTERN std::string name[maxatm];
-MDQC_EXTERN std::string story[maxatm];
+MDQC_EXTERN MDQCArray<int> tag;
+MDQC_EXTERN MDQCArray<int> atomClass;
+MDQC_EXTERN MDQCArray<int> atomic;
+MDQC_EXTERN MDQCArray<int> valence;
+MDQC_EXTERN MDQCArray<real> mass;
+MDQC_EXTERN MDQCArray<std::string> name;
+MDQC_EXTERN MDQCArray<std::string> story;
 }

@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -19,6 +18,6 @@ namespace polmdqc
 // kpt      string of atom classes for pi-system torsion terms
 
 MDQC_EXTERN int maxnpt;
-MDQC_EXTERN std::vector<real> ptcon;
-MDQC_EXTERN std::vector<std::string> kpt;
+MDQC_EXTERN MDQCArray<real> ptcon;
+MDQC_EXTERN MDQCArray<std::string> kpt;
 }

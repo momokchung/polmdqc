@@ -44,22 +44,29 @@ void cluster()
     std::istringstream iss;
 
     // perform dynamic allocation of some global arrays
-    if (igrp.size() == 0) igrp.resize(maxgrp+1, std::vector<int>(2)); // same
-    if (grpmass.size() == 0) grpmass.resize(maxgrp+1);
-    if (wgrp.size() == 0) wgrp.resize(maxgrp+1, std::vector<real>(maxgrp+1, 1.)); // same
-    if (kgrp.size() != 0) (kgrp.resize(0)); // same
-    if (grplist.size() != 0) (grplist.resize(0)); // same
-    kgrp.resize(n, -1);
-    grplist.resize(n, -1);
+    igrp.allocate(maxgrp+1);
+    grpmass.allocate(maxgrp+1);
+    wgrp.allocate(maxgrp+1);
+    kgrp.allocate(n);
+    grplist.allocate(n);
 
     // set defaults for the group atom list and weight options
     use_group = false;
     use_intra = false;
     use_inter = false;
     ngrp = 0;
+    for (int i = 0; i < n; i++) {
+        kgrp[i] = -1;
+        grplist[i] = -1;
+    }
     for (int i = 0; i <= maxgrp; i++) {
         igrp[i][0] = 0;
         igrp[i][1] = -1;
+    }
+    for (int i = 0; i <= maxgrp; i++) {
+        for (int j = 0; j <= maxgrp; j++) {
+            wgrp[i][j] = 1.;
+        }
     }
 
     // perform dynamic allocation of some local arrays
@@ -154,7 +161,7 @@ void cluster()
         for (int i = 0; i < n; i++) {
             list[i] = grplist[i];
         }
-        sortKey(n, list, kgrp);
+        sortKey(n, list, kgrp.ptr());
 
         // find the first and last atom in each of the groups
         int k = list[0]+1;
@@ -174,7 +181,7 @@ void cluster()
         // sort the list of atoms in each group by atom number
         for (int i = 0; i <= ngrp; i++) {
             int size = igrp[i][1] - igrp[i][0] + 1;
-            if (igrp[i][0] != -1) std::sort(kgrp.begin() + igrp[i][0], kgrp.begin() + igrp[i][0] + size);
+            if (igrp[i][0] != -1) std::sort(kgrp.ptr() + igrp[i][0], kgrp.ptr() + igrp[i][0] + size);
         }
     }
 

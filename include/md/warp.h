@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -28,7 +27,7 @@ MDQC_EXTERN real deform;
 MDQC_EXTERN real difft;
 MDQC_EXTERN real diffv;
 MDQC_EXTERN real diffc;
-MDQC_EXTERN std::vector<real> m2;
+MDQC_EXTERN MDQCArray<real> m2;
 MDQC_EXTERN bool use_smooth;
 MDQC_EXTERN bool use_dem;
 MDQC_EXTERN bool use_gda;

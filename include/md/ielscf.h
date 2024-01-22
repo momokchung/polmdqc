@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -27,11 +26,11 @@ namespace polmdqc
 MDQC_EXTERN int nfree_aux;
 MDQC_EXTERN real tautemp_aux;
 MDQC_EXTERN real kelvin_aux;
-MDQC_EXTERN std::vector<std::vector<real>> uaux;
-MDQC_EXTERN std::vector<std::vector<real>> upaux;
-MDQC_EXTERN std::vector<std::vector<real>> vaux;
-MDQC_EXTERN std::vector<std::vector<real>> vpaux;
-MDQC_EXTERN std::vector<std::vector<real>> aaux;
-MDQC_EXTERN std::vector<std::vector<real>> apaux;
+MDQC_EXTERN MDQCArray2D<real,3> uaux;
+MDQC_EXTERN MDQCArray2D<real,3> upaux;
+MDQC_EXTERN MDQCArray2D<real,3> vaux;
+MDQC_EXTERN MDQCArray2D<real,3> vpaux;
+MDQC_EXTERN MDQCArray2D<real,3> aaux;
+MDQC_EXTERN MDQCArray2D<real,3> apaux;
 MDQC_EXTERN bool use_ielscf;
 }

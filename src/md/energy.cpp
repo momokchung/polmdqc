@@ -73,71 +73,35 @@ void energy()
 
     if constexpr (do_a) {
         // perform dynamic allocation of some global arrays
-        if (aesum.size() != 0) {
-            if (aesum.size() != n) {
-                aesum.resize(0);
-                aeb.resize(0);
-                aea.resize(0);
-                aeba.resize(0);
-                aeub.resize(0);
-                aeaa.resize(0);
-                aeopb.resize(0);
-                aeopd.resize(0);
-                aeid.resize(0);
-                aeit.resize(0);
-                aet.resize(0);
-                aept.resize(0);
-                aebt.resize(0);
-                aeat.resize(0);
-                aett.resize(0);
-                aev.resize(0);
-                aer.resize(0);
-                aedsp.resize(0);
-                aec.resize(0);
-                aecd.resize(0);
-                aed.resize(0);
-                aem.resize(0);
-                aep.resize(0);
-                aect.resize(0);
-                aerxf.resize(0);
-                aes.resize(0);
-                aelf.resize(0);
-                aeg.resize(0);
-                aex.resize(0);
-            }
-        }
-
-        if (aesum.size() == 0) {
-            aesum.resize(n);
-            aeb.resize(n);
-            aea.resize(n);
-            aeba.resize(n);
-            aeub.resize(n);
-            aeaa.resize(n);
-            aeopb.resize(n);
-            aeopd.resize(n);
-            aeid.resize(n);
-            aeit.resize(n);
-            aet.resize(n);
-            aept.resize(n);
-            aebt.resize(n);
-            aeat.resize(n);
-            aett.resize(n);
-            aev.resize(n);
-            aer.resize(n);
-            aedsp.resize(n);
-            aec.resize(n);
-            aecd.resize(n);
-            aed.resize(n);
-            aem.resize(n);
-            aep.resize(n);
-            aect.resize(n);
-            aerxf.resize(n);
-            aes.resize(n);
-            aelf.resize(n);
-            aeg.resize(n);
-            aex.resize(n);
-        }
+        aesum.allocate(n);
+        aeb.allocate(n);
+        aea.allocate(n);
+        aeba.allocate(n);
+        aeub.allocate(n);
+        aeaa.allocate(n);
+        aeopb.allocate(n);
+        aeopd.allocate(n);
+        aeid.allocate(n);
+        aeit.allocate(n);
+        aet.allocate(n);
+        aept.allocate(n);
+        aebt.allocate(n);
+        aeat.allocate(n);
+        aett.allocate(n);
+        aev.allocate(n);
+        aer.allocate(n);
+        aedsp.allocate(n);
+        aec.allocate(n);
+        aecd.allocate(n);
+        aed.allocate(n);
+        aem.allocate(n);
+        aep.allocate(n);
+        aect.allocate(n);
+        aerxf.allocate(n);
+        aes.allocate(n);
+        aelf.allocate(n);
+        aeg.allocate(n);
+        aex.allocate(n);
 
         // zero out energy partitioning components for each atom
         for (int i = 0; i < n; i++) {
@@ -175,70 +139,35 @@ void energy()
 
     if constexpr (do_g) {
         // perform dynamic allocation of some global arrays
-        if (desum.size() != 0) {
-            if (desum.size() != n) {
-                desum.resize(0);
-                deb.resize(0);
-                dea.resize(0);
-                deba.resize(0);
-                deub.resize(0);
-                deaa.resize(0);
-                deopb.resize(0);
-                deopd.resize(0);
-                deid.resize(0);
-                deit.resize(0);
-                det.resize(0);
-                dept.resize(0);
-                debt.resize(0);
-                deat.resize(0);
-                dett.resize(0);
-                dev.resize(0);
-                der.resize(0);
-                dedsp.resize(0);
-                dec.resize(0);
-                decd.resize(0);
-                ded.resize(0);
-                dem.resize(0);
-                dep.resize(0);
-                dect.resize(0);
-                derxf.resize(0);
-                des.resize(0);
-                delf.resize(0);
-                deg.resize(0);
-                dex.resize(0);
-            }
-        }
-        if (desum.size() == 0) {
-            desum.resize(n, std::vector<real>(3));
-            deb.resize(n, std::vector<real>(3));
-            dea.resize(n, std::vector<real>(3));
-            deba.resize(n, std::vector<real>(3));
-            deub.resize(n, std::vector<real>(3));
-            deaa.resize(n, std::vector<real>(3));
-            deopb.resize(n, std::vector<real>(3));
-            deopd.resize(n, std::vector<real>(3));
-            deid.resize(n, std::vector<real>(3));
-            deit.resize(n, std::vector<real>(3));
-            det.resize(n, std::vector<real>(3));
-            dept.resize(n, std::vector<real>(3));
-            debt.resize(n, std::vector<real>(3));
-            deat.resize(n, std::vector<real>(3));
-            dett.resize(n, std::vector<real>(3));
-            dev.resize(n, std::vector<real>(3));
-            der.resize(n, std::vector<real>(3));
-            dedsp.resize(n, std::vector<real>(3));
-            dec.resize(n, std::vector<real>(3));
-            decd.resize(n, std::vector<real>(3));
-            ded.resize(n, std::vector<real>(3));
-            dem.resize(n, std::vector<real>(3));
-            dep.resize(n, std::vector<real>(3));
-            dect.resize(n, std::vector<real>(3));
-            derxf.resize(n, std::vector<real>(3));
-            des.resize(n, std::vector<real>(3));
-            delf.resize(n, std::vector<real>(3));
-            deg.resize(n, std::vector<real>(3));
-            dex.resize(n, std::vector<real>(3));
-        }
+        desum.allocate(n);
+        deb.allocate(n);
+        dea.allocate(n);
+        deba.allocate(n);
+        deub.allocate(n);
+        deaa.allocate(n);
+        deopb.allocate(n);
+        deopd.allocate(n);
+        deid.allocate(n);
+        deit.allocate(n);
+        det.allocate(n);
+        dept.allocate(n);
+        debt.allocate(n);
+        deat.allocate(n);
+        dett.allocate(n);
+        dev.allocate(n);
+        der.allocate(n);
+        dedsp.allocate(n);
+        dec.allocate(n);
+        decd.allocate(n);
+        ded.allocate(n);
+        dem.allocate(n);
+        dep.allocate(n);
+        dect.allocate(n);
+        derxf.allocate(n);
+        des.allocate(n);
+        delf.allocate(n);
+        deg.allocate(n);
+        dex.allocate(n);
 
         // zero out each of the first derivative components
         for (int i = 0; i < n; i++) {

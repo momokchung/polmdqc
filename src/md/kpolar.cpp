@@ -103,13 +103,15 @@ void kpolar()
     }
 
     // perform dynamic allocation of some global arrays
-    if (copt.size() != 0) copt.resize(0);
-    if (copm.size() != 0) copm.resize(0);
-    copt.resize(maxopt+1, 0.);
-    copm.resize(maxopt+1, 0.);
+    copt.allocate(maxopt+1);
+    copm.allocate(maxopt+1);
 
     // set defaults for OPT induced dipole coefficients
     optorder = 0;
+    for (int i = 0; i < maxopt; i++) {
+        copt[i] = 0.;
+        copm[i] = 0.;
+    }
     if (poltyp == "OPT") poltyp = "OPT4";
     if (poltyp == "OPT1") {
         copt[0] = 0.530;
@@ -233,38 +235,27 @@ void kpolar()
     }
 
     // perform dynamic allocation of some global arrays
-    if (ipolar.size() != 0) ipolar.resize(0);
-    if (polarity.size() != 0) polarity.resize(0);
-    if (thole.size() != 0) thole.resize(0);
-    if (tholed.size() != 0) tholed.resize(0);
-    if (pdamp.size() != 0) pdamp.resize(0);
-    if (udir.size() != 0) udir.resize(0);
-    if (udirp.size() != 0) udirp.resize(0);
-    if (uind.size() != 0) uind.resize(0);
-    if (uinp.size() != 0) uinp.resize(0);
-    if (douind.size() != 0) douind.resize(0);
-    ipolar.resize(n);
-    polarity.resize(n);
-    thole.resize(n);
-    tholed.resize(n);
-    pdamp.resize(n);
-    udir.resize(n, std::vector<real>(3));
-    udirp.resize(n, std::vector<real>(3));
-    uind.resize(n, std::vector<real>(3));
-    uinp.resize(n, std::vector<real>(3));
-    douind.resize(n, true);
-    if (uopt.size() != 0) uopt.resize(0);
-    if (uoptp.size() != 0) uoptp.resize(0);
-    if (fopt.size() != 0) fopt.resize(0);
-    if (foptp.size() != 0) foptp.resize(0);
+    ipolar.allocate(n);
+    polarity.allocate(n);
+    thole.allocate(n);
+    tholed.allocate(n);
+    pdamp.allocate(n);
+    udir.allocate(n);
+    udirp.allocate(n);
+    uind.allocate(n);
+    uinp.allocate(n);
+    douind.allocate(n);
     if (poltyp == "OPT") {
-        uopt.resize(n, std::vector<std::vector<real>>(3, std::vector<real>(optorder+1)));
-        uoptp.resize(n, std::vector<std::vector<real>>(3, std::vector<real>(optorder+1)));
-        fopt.resize(n, std::vector<std::vector<real>>(10, std::vector<real>(optorder+1)));
-        foptp.resize(n, std::vector<std::vector<real>>(10, std::vector<real>(optorder+1)));
+        uopt.allocate(n*(optorder+1));
+        uoptp.allocate(n*(optorder+1));
+        fopt.allocate(n*(optorder+1));
+        foptp.allocate(n*(optorder+1));
     }
 
     // set the atoms allowed to have nonzero induced dipoles
+    for (int i = 0; i < n; i++) {
+        douind[i] = true;
+    }
     i = 0;
     while ((list[i] != 0) and (i<n)) {
         if (i == 0) {
@@ -487,8 +478,7 @@ void kpolar()
     }
 
     // perform dynamic allocation of some global arrays
-    if (jpolar.size() != 0) jpolar.resize(0);
-    jpolar.resize(n);
+    jpolar.allocate(n);
 
     // perform dynamic allocation of some local arrays
     list.resize(n);
@@ -511,10 +501,8 @@ void kpolar()
     }
 
     // perform dynamic allocation of some global arrays
-    if (thlval.size() != 0) thlval.resize(0);
-    if (thdval.size() != 0) thdval.resize(0);
-    thlval.resize(nlist, std::vector<real>(nlist));
-    thdval.resize(nlist, std::vector<real>(nlist));
+    thlval.allocate(nlist*nlist);
+    thdval.allocate(nlist*nlist);
 
     // use combination rules for pairwise Thole damping values
     for (int ii = 0; ii < nlist; ii++) {
@@ -525,10 +513,10 @@ void kpolar()
             if (thl == 0.) thl = std::max(athl[i],athl[k]);
             thd = std::min(dthl[i],dthl[k]);
             if (thd == 0.) thd = std::max(dthl[i],dthl[k]);
-            thlval[kk][ii] = thl;
-            thlval[ii][kk] = thl;
-            thdval[kk][ii] = thd;
-            thdval[ii][kk] = thd;
+            thlval[kk*nlist+ii] = thl;
+            thlval[ii*nlist+kk] = thl;
+            thdval[kk*nlist+ii] = thd;
+            thdval[ii*nlist+kk] = thd;
         }
     }
 
@@ -538,10 +526,10 @@ void kpolar()
         ia = rlist[std::stoi(kppr[i].substr(0,4))-1];
         ib = rlist[std::stoi(kppr[i].substr(4,4))-1];
         if (ia!=-1 and ib!=-1) {}
-            thlval[ib][ia] = thlpr[i];
-            thlval[ia][ib] = thlpr[i];
-            thdval[ib][ia] = thdpr[i];
-            thdval[ia][ib] = thdpr[i];
+            thlval[ib*nlist+ia] = thlpr[i];
+            thlval[ia*nlist+ib] = thlpr[i];
+            thdval[ib*nlist+ia] = thdpr[i];
+            thdval[ia*nlist+ib] = thdpr[i];
     }
 
     // perform deallocation of some local arrays
@@ -571,7 +559,7 @@ void kpolar()
                     douind[i] = true;
                 }
                 if (tholed[i] != 0.) use_tholed = true;
-                if (kpep[i] != 0.) nexpol++;
+                // if (kpep[i] != 0.) nexpol++;
             }
         }
     }
@@ -615,22 +603,14 @@ void polargrp()
     bool done,qcmdAbort;
 
     // perform dynamic allocation of some global arrays
-    if (np11.size() != 0) np11.resize(0);
-    if (np12.size() != 0) np12.resize(0);
-    if (np13.size() != 0) np13.resize(0);
-    if (np14.size() != 0) np14.resize(0);
-    if (ip11.size() != 0) ip11.resize(0);
-    if (ip12.size() != 0) ip12.resize(0);
-    if (ip13.size() != 0) ip13.resize(0);
-    if (ip14.size() != 0) ip14.resize(0);
-    np11.resize(n);
-    np12.resize(n);
-    np13.resize(n);
-    np14.resize(n);
-    ip11.resize(n, std::vector<int>(maxp11));
-    ip12.resize(n, std::vector<int>(maxp12));
-    ip13.resize(n, std::vector<int>(maxp13));
-    ip14.resize(n, std::vector<int>(maxp14));
+    np11.allocate(n);
+    np12.allocate(n);
+    np13.allocate(n);
+    np14.allocate(n);
+    ip11.allocate(n);
+    ip12.allocate(n);
+    ip13.allocate(n);
+    ip14.allocate(n);
 
     // initialize size and connectivity of polarization groups
     for (int i = 0; i < n; i++) {
@@ -741,7 +721,7 @@ void polargrp()
                 stop = np11[i];
             }
         }
-        std::sort(ip11[i].begin(), ip11[i].begin() + np11[i]);
+        std::sort(ip11[i], ip11[i] + np11[i]);
     }
     label_70:
     if (qcmdAbort) fatal();

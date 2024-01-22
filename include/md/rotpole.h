@@ -25,5 +25,5 @@ void rotrpole(RotMode rotMode);
 
 void rotmat(int i, Eigen::Matrix<real, 3, 3>& a, bool& planar);
 
-void rotsite(int ii, Eigen::Matrix<real, 3, 3>& a, bool& planar, std::vector<std::vector<real>>& pole, std::vector<std::vector<real>>& rpole);
+void rotsite(int ii, Eigen::Matrix<real, 3, 3>& a, bool& planar, MDQCArray2D<real,maxpole>& pole, MDQCArray2D<real,maxpole>& rpole);
 }

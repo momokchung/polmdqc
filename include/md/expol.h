@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -22,10 +21,10 @@ namespace polmdqc
 // lpep       flag to use exchange polarization at each site
 
 MDQC_EXTERN int nexpol;
-MDQC_EXTERN std::vector<real> kpep;
-MDQC_EXTERN std::vector<real> prepep;
-MDQC_EXTERN std::vector<real> dmppep;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> polscale;
-MDQC_EXTERN std::vector<std::vector<std::vector<real>>> polinv;
-MDQC_EXTERN std::vector<bool> lpep;
+MDQC_EXTERN MDQCArray<real> kpep;
+MDQC_EXTERN MDQCArray<real> prepep;
+MDQC_EXTERN MDQCArray<real> dmppep;
+MDQC_EXTERN MDQCArray3D<real,3,3> polscale;
+MDQC_EXTERN MDQCArray3D<real,3,3> polinv;
+MDQC_EXTERN MDQCArray<bool> lpep;
 }

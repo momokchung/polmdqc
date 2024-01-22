@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -20,8 +19,8 @@ namespace polmdqc
 // afld     periodicity for Fourier angle bending term
 
 MDQC_EXTERN int nangle;
-MDQC_EXTERN std::vector<std::vector<int>> iang;
-MDQC_EXTERN std::vector<real> ak;
-MDQC_EXTERN std::vector<real> anat;
-MDQC_EXTERN std::vector<real> afld;
+MDQC_EXTERN MDQCArray2D<int,4> iang;
+MDQC_EXTERN MDQCArray<real> ak;
+MDQC_EXTERN MDQCArray<real> anat;
+MDQC_EXTERN MDQCArray<real> afld;
 }

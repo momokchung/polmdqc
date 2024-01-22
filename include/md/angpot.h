@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -44,5 +43,5 @@ MDQC_EXTERN real popb,sopb;
 MDQC_EXTERN real copd,qopd;
 MDQC_EXTERN real popd,sopd;
 MDQC_EXTERN std::string opbtyp;
-MDQC_EXTERN std::vector<std::string> angtyp;
+MDQC_EXTERN MDQCArray<std::string> angtyp;
 }

@@ -4,6 +4,7 @@
 #pragma once
 #include "macro.h"
 #include "sizes.h"
+#include <vector>
 
 namespace polmdqc
 {

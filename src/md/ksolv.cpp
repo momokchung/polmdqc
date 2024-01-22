@@ -211,8 +211,7 @@ void ksolv()
     }
 
     // perform dynamic allocation of some global arrays
-    if (rsolv.size() != 0) rsolv.resize(0);
-    rsolv.resize(n);
+    rsolv.allocate(n);
 
     // invoke the setup needed for perfect Born radius model
     if (borntyp == "PERFECT") kpb();
@@ -886,33 +885,20 @@ void kgk()
     std::istringstream iss;
 
     // perform dynamic allocation of some global arrays
-    if (rsolv.size() != 0) rsolv.resize(0);
-    if (rdescr.size() != 0) rdescr.resize(0);
-    if (rborn.size() != 0) rborn.resize(0);
-    if (drb.size() != 0) drb.resize(0);
-    if (drbp.size() != 0) drbp.resize(0);
-    if (drobc.size() != 0) drobc.resize(0);
-    if (shct.size() != 0) shct.resize(0);
-    if (udirs.size() != 0) udirs.resize(0);
-    if (udirps.size() != 0) udirps.resize(0);
-    if (uinds.size() != 0) uinds.resize(0);
-    if (uinps.size() != 0) uinps.resize(0);
-    if (uopts.size() != 0) uopts.resize(0);
-    if (uoptps.size() != 0) uoptps.resize(0);
-    rsolv.resize(n);
-    rdescr.resize(n);
-    rborn.resize(n);
-    drb.resize(n);
-    drbp.resize(n);
-    drobc.resize(n);
-    shct.resize(n);
-    udirs.resize(n, std::vector<real>(3));
-    udirps.resize(n, std::vector<real>(3));
-    uinds.resize(n, std::vector<real>(3));
-    uinps.resize(n, std::vector<real>(3));
+    rsolv.allocate(n);
+    rdescr.allocate(n);
+    rborn.allocate(n);
+    drb.allocate(n);
+    drbp.allocate(n);
+    drobc.allocate(n);
+    shct.allocate(n);
+    udirs.allocate(n);
+    udirps.allocate(n);
+    uinds.allocate(n);
+    uinps.allocate(n);
     if (poltyp == "OPT") {
-        uopts.resize(n, std::vector<std::vector<real>>(3, std::vector<real>(optorder+1)));
-        uoptps.resize(n, std::vector<std::vector<real>>(3, std::vector<real>(optorder+1)));
+        uopts.allocate(n*(optorder+1));
+        uoptps.allocate(n*(optorder+1));
     }
 
     // set default value for exponent in the GB/GK function
@@ -984,7 +970,7 @@ void kgk()
         rdescr[i] = rsolv[i];
         if (descreenVDW) {
             it = jvdw[i];
-            rdescr[i] = 0.5 * radmin[it][it];
+            rdescr[i] = 0.5 * radmin[it*n+it];
         }
         if (!descreenHydrogen) {
             atmnum = atomic[i];
@@ -1472,16 +1458,11 @@ void knp()
     stoff = cross - 3.5 + 0.2;
 
     // perform dynamic allocation of some global arrays
-    if (asolv.size() != 0) asolv.resize(0);
-    if (radcav.size() != 0) radcav.resize(0);
-    if (raddsp.size() != 0) raddsp.resize(0);
-    if (epsdsp.size() != 0) epsdsp.resize(0);
-    if (cdsp.size() != 0) cdsp.resize(0);
-    asolv.resize(n);
-    radcav.resize(n);
-    raddsp.resize(n);
-    epsdsp.resize(n);
-    cdsp.resize(n);
+    asolv.allocate(n);
+    radcav.allocate(n);
+    raddsp.allocate(n);
+    epsdsp.allocate(n);
+    cdsp.allocate(n);
 
     // assign surface area factors for nonpolar solvation
     for (int i = 0; i < n; i++) {
@@ -1658,7 +1639,7 @@ void setrad(std::string radtyp)
             k = jvdw[i];
             rsolv[i] = 2.;
             if (k != -1) {
-                rsolv[i] = 0.5 * radmin[k][k];
+                rsolv[i] = 0.5 * radmin[k*n+k];
             }
         }
     }    

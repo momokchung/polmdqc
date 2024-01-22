@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -19,6 +18,6 @@ namespace polmdqc
 // kopd      string of atom classes for out-of-plane distance
 
 MDQC_EXTERN int maxnopd;
-MDQC_EXTERN std::vector<real> opds;
-MDQC_EXTERN std::vector<std::string> kopd;
+MDQC_EXTERN MDQCArray<real> opds;
+MDQC_EXTERN MDQCArray<std::string> kopd;
 }

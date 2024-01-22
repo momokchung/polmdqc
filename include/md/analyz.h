@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -43,33 +42,33 @@ namespace polmdqc
 // aeg     geometric restraint energy partitioned over atoms
 // aex     extra energy term partitioned over atoms
 
-MDQC_EXTERN std::vector<real> aesum;
-MDQC_EXTERN std::vector<real> aeb;
-MDQC_EXTERN std::vector<real> aea;
-MDQC_EXTERN std::vector<real> aeba;
-MDQC_EXTERN std::vector<real> aeub;
-MDQC_EXTERN std::vector<real> aeaa;
-MDQC_EXTERN std::vector<real> aeopb;
-MDQC_EXTERN std::vector<real> aeopd;
-MDQC_EXTERN std::vector<real> aeid;
-MDQC_EXTERN std::vector<real> aeit;
-MDQC_EXTERN std::vector<real> aet;
-MDQC_EXTERN std::vector<real> aept;
-MDQC_EXTERN std::vector<real> aebt;
-MDQC_EXTERN std::vector<real> aeat;
-MDQC_EXTERN std::vector<real> aett;
-MDQC_EXTERN std::vector<real> aev;
-MDQC_EXTERN std::vector<real> aer;
-MDQC_EXTERN std::vector<real> aedsp;
-MDQC_EXTERN std::vector<real> aec;
-MDQC_EXTERN std::vector<real> aecd;
-MDQC_EXTERN std::vector<real> aed;
-MDQC_EXTERN std::vector<real> aem;
-MDQC_EXTERN std::vector<real> aep;
-MDQC_EXTERN std::vector<real> aect;
-MDQC_EXTERN std::vector<real> aerxf;
-MDQC_EXTERN std::vector<real> aes;
-MDQC_EXTERN std::vector<real> aelf;
-MDQC_EXTERN std::vector<real> aeg;
-MDQC_EXTERN std::vector<real> aex;
+MDQC_EXTERN MDQCArray<real> aesum;
+MDQC_EXTERN MDQCArray<real> aeb;
+MDQC_EXTERN MDQCArray<real> aea;
+MDQC_EXTERN MDQCArray<real> aeba;
+MDQC_EXTERN MDQCArray<real> aeub;
+MDQC_EXTERN MDQCArray<real> aeaa;
+MDQC_EXTERN MDQCArray<real> aeopb;
+MDQC_EXTERN MDQCArray<real> aeopd;
+MDQC_EXTERN MDQCArray<real> aeid;
+MDQC_EXTERN MDQCArray<real> aeit;
+MDQC_EXTERN MDQCArray<real> aet;
+MDQC_EXTERN MDQCArray<real> aept;
+MDQC_EXTERN MDQCArray<real> aebt;
+MDQC_EXTERN MDQCArray<real> aeat;
+MDQC_EXTERN MDQCArray<real> aett;
+MDQC_EXTERN MDQCArray<real> aev;
+MDQC_EXTERN MDQCArray<real> aer;
+MDQC_EXTERN MDQCArray<real> aedsp;
+MDQC_EXTERN MDQCArray<real> aec;
+MDQC_EXTERN MDQCArray<real> aecd;
+MDQC_EXTERN MDQCArray<real> aed;
+MDQC_EXTERN MDQCArray<real> aem;
+MDQC_EXTERN MDQCArray<real> aep;
+MDQC_EXTERN MDQCArray<real> aect;
+MDQC_EXTERN MDQCArray<real> aerxf;
+MDQC_EXTERN MDQCArray<real> aes;
+MDQC_EXTERN MDQCArray<real> aelf;
+MDQC_EXTERN MDQCArray<real> aeg;
+MDQC_EXTERN MDQCArray<real> aex;
 }

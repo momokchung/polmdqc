@@ -3,8 +3,6 @@
 
 #pragma once
 #include "calcMode.h"
-#include "precision.h"
-#include <vector>
 
 namespace polmdqc
 {

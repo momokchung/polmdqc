@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -25,6 +24,6 @@ constexpr int maxprime = 15;
 MDQC_EXTERN int iprime[3][maxprime];
 MDQC_EXTERN int64_t planf;
 MDQC_EXTERN int64_t planb;
-MDQC_EXTERN std::vector<std::vector<real>> ffttable;
+MDQC_EXTERN MDQCArray2D<real,3> ffttable;
 MDQC_EXTERN std::string ffttyp;
 }

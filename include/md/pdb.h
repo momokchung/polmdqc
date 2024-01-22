@@ -3,8 +3,8 @@
 
 #pragma once
 #include "macro.h"
+#include "sizes.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -33,19 +33,19 @@ namespace polmdqc
 // instyp    string with PDB insertion records to be included
 
 MDQC_EXTERN int npdb,nres;
-MDQC_EXTERN std::vector<int> resnum;
-MDQC_EXTERN std::vector<std::vector<int>> resatm;
-MDQC_EXTERN std::vector<int> npdb12;
-MDQC_EXTERN std::vector<std::vector<int>> ipdb12;
-MDQC_EXTERN std::vector<int> pdblist;
-MDQC_EXTERN std::vector<real> xpdb;
-MDQC_EXTERN std::vector<real> ypdb;
-MDQC_EXTERN std::vector<real> zpdb;
+MDQC_EXTERN MDQCArray<int> resnum;
+MDQC_EXTERN MDQCArray2D<int,2> resatm;
+MDQC_EXTERN MDQCArray<int> npdb12;
+MDQC_EXTERN MDQCArray2D<int,maxval> ipdb12;
+MDQC_EXTERN MDQCArray<int> pdblist;
+MDQC_EXTERN MDQCArray<real> xpdb;
+MDQC_EXTERN MDQCArray<real> ypdb;
+MDQC_EXTERN MDQCArray<real> zpdb;
 MDQC_EXTERN std::string altsym;
-MDQC_EXTERN std::vector<std::string> pdbres;
-MDQC_EXTERN std::vector<std::string> pdbsym;
-MDQC_EXTERN std::vector<std::string> pdbatm;
-MDQC_EXTERN std::vector<std::string> pdbtyp;
+MDQC_EXTERN MDQCArray<std::string> pdbres;
+MDQC_EXTERN MDQCArray<std::string> pdbsym;
+MDQC_EXTERN MDQCArray<std::string> pdbatm;
+MDQC_EXTERN MDQCArray<std::string> pdbtyp;
 MDQC_EXTERN std::string chnsym;
 MDQC_EXTERN std::string instyp;
 }

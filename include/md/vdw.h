@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -30,18 +29,18 @@ namespace polmdqc
 // epshbnd    well depth parameter for hydrogen bonding pairs
 
 MDQC_EXTERN int nvdw;
-MDQC_EXTERN std::vector<int> ivdw;
-MDQC_EXTERN std::vector<int> jvdw;
-MDQC_EXTERN std::vector<int> mvdw;
-MDQC_EXTERN std::vector<int> ired;
-MDQC_EXTERN std::vector<real> kred;
-MDQC_EXTERN std::vector<real> xred;
-MDQC_EXTERN std::vector<real> yred;
-MDQC_EXTERN std::vector<real> zred;
-MDQC_EXTERN std::vector<std::vector<real>> radmin;
-MDQC_EXTERN std::vector<std::vector<real>> epsilon;
-MDQC_EXTERN std::vector<std::vector<real>> radmin4;
-MDQC_EXTERN std::vector<std::vector<real>> epsilon4;
-MDQC_EXTERN std::vector<std::vector<real>> radhbnd;
-MDQC_EXTERN std::vector<std::vector<real>> epshbnd;
+MDQC_EXTERN MDQCArray<int> ivdw;
+MDQC_EXTERN MDQCArray<int> jvdw;
+MDQC_EXTERN MDQCArray<int> mvdw;
+MDQC_EXTERN MDQCArray<int> ired;
+MDQC_EXTERN MDQCArray<real> kred;
+MDQC_EXTERN MDQCArray<real> xred;
+MDQC_EXTERN MDQCArray<real> yred;
+MDQC_EXTERN MDQCArray<real> zred;
+MDQC_EXTERN MDQCArray<real> radmin;
+MDQC_EXTERN MDQCArray<real> epsilon;
+MDQC_EXTERN MDQCArray<real> radmin4;
+MDQC_EXTERN MDQCArray<real> epsilon4;
+MDQC_EXTERN MDQCArray<real> radhbnd;
+MDQC_EXTERN MDQCArray<real> epshbnd;
 }

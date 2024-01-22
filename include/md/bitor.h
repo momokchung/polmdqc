@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -17,5 +16,5 @@ namespace polmdqc
 // ibitor  numbers of the atoms in each bitorsion
 
 MDQC_EXTERN int nbitor;
-MDQC_EXTERN std::vector<std::vector<int>> ibitor;
+MDQC_EXTERN MDQCArray2D<int,5> ibitor;
 }

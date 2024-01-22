@@ -3,7 +3,6 @@
 
 #pragma once
 #include "macro.h"
-#include <vector>
 
 namespace polmdqc
 {
@@ -30,16 +29,16 @@ namespace polmdqc
 
 MDQC_EXTERN int nmut;
 MDQC_EXTERN int vcouple;
-MDQC_EXTERN std::vector<int> imut;
-MDQC_EXTERN std::vector<int> type0;
-MDQC_EXTERN std::vector<int> class0;
-MDQC_EXTERN std::vector<int> type1;
-MDQC_EXTERN std::vector<int> class1;
+MDQC_EXTERN MDQCArray<int> imut;
+MDQC_EXTERN MDQCArray<int> type0;
+MDQC_EXTERN MDQCArray<int> class0;
+MDQC_EXTERN MDQCArray<int> type1;
+MDQC_EXTERN MDQCArray<int> class1;
 MDQC_EXTERN real lambda;
 MDQC_EXTERN real vlambda;
 MDQC_EXTERN real elambda;
 MDQC_EXTERN real tlambda;
 MDQC_EXTERN real scexp;
 MDQC_EXTERN real scalpha;
-MDQC_EXTERN std::vector<bool> mut;
+MDQC_EXTERN MDQCArray<bool> mut;
 }

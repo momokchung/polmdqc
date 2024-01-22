@@ -4,7 +4,6 @@
 #pragma once
 #include "macro.h"
 #include <string>
-#include <vector>
 
 namespace polmdqc
 {
@@ -42,25 +41,25 @@ namespace polmdqc
 MDQC_EXTERN int maxnt;
 MDQC_EXTERN int maxnt5;
 MDQC_EXTERN int maxnt4;
-MDQC_EXTERN std::vector<std::vector<real>> t1;
-MDQC_EXTERN std::vector<std::vector<real>> t2;
-MDQC_EXTERN std::vector<std::vector<real>> t3;
-MDQC_EXTERN std::vector<std::vector<real>> t4;
-MDQC_EXTERN std::vector<std::vector<real>> t5;
-MDQC_EXTERN std::vector<std::vector<real>> t6;
-MDQC_EXTERN std::vector<std::vector<real>> t15;
-MDQC_EXTERN std::vector<std::vector<real>> t25;
-MDQC_EXTERN std::vector<std::vector<real>> t35;
-MDQC_EXTERN std::vector<std::vector<real>> t45;
-MDQC_EXTERN std::vector<std::vector<real>> t55;
-MDQC_EXTERN std::vector<std::vector<real>> t65;
-MDQC_EXTERN std::vector<std::vector<real>> t14;
-MDQC_EXTERN std::vector<std::vector<real>> t24;
-MDQC_EXTERN std::vector<std::vector<real>> t34;
-MDQC_EXTERN std::vector<std::vector<real>> t44;
-MDQC_EXTERN std::vector<std::vector<real>> t54;
-MDQC_EXTERN std::vector<std::vector<real>> t64;
-MDQC_EXTERN std::vector<std::string> kt;
-MDQC_EXTERN std::vector<std::string> kt5;
-MDQC_EXTERN std::vector<std::string> kt4;
+MDQC_EXTERN MDQCArray2D<real,2> t1;
+MDQC_EXTERN MDQCArray2D<real,2> t2;
+MDQC_EXTERN MDQCArray2D<real,2> t3;
+MDQC_EXTERN MDQCArray2D<real,2> t4;
+MDQC_EXTERN MDQCArray2D<real,2> t5;
+MDQC_EXTERN MDQCArray2D<real,2> t6;
+MDQC_EXTERN MDQCArray2D<real,2> t15;
+MDQC_EXTERN MDQCArray2D<real,2> t25;
+MDQC_EXTERN MDQCArray2D<real,2> t35;
+MDQC_EXTERN MDQCArray2D<real,2> t45;
+MDQC_EXTERN MDQCArray2D<real,2> t55;
+MDQC_EXTERN MDQCArray2D<real,2> t65;
+MDQC_EXTERN MDQCArray2D<real,2> t14;
+MDQC_EXTERN MDQCArray2D<real,2> t24;
+MDQC_EXTERN MDQCArray2D<real,2> t34;
+MDQC_EXTERN MDQCArray2D<real,2> t44;
+MDQC_EXTERN MDQCArray2D<real,2> t54;
+MDQC_EXTERN MDQCArray2D<real,2> t64;
+MDQC_EXTERN MDQCArray<std::string> kt;
+MDQC_EXTERN MDQCArray<std::string> kt5;
+MDQC_EXTERN MDQCArray<std::string> kt4;
 }
