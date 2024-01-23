@@ -103,6 +103,7 @@ void empole_a()
     real ttmxk,ttmyk,ttmzk;
     real vxx,vyy,vzz;
     real vxy,vxz,vyz;
+    real* mscale;
     bool proceed;
     bool usei,usek;
 
@@ -115,12 +116,28 @@ void empole_a()
     constexpr bool do_g = flags.do_gradient;
     constexpr bool do_v = flags.do_virial;
 
+    // set pointers for OpenMP
+    real* aemP = aem.ptr();
+    real* demP = dem.ptr();
+    real* temP = tem.ptr();
+
     // zero out total atomic multipole energy and partitioning
     em = 0.;
     if constexpr (do_a) {
         nem = 0;
+        #pragma omp parallel for
         for (int i = 0; i < n; i++) {
-            aem[i] = 0.;
+            aemP[i] = 0.;
+        }
+    }
+
+    // zero out torque array
+    if constexpr (do_g) {
+        #pragma omp parallel for
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 3; j++) {
+                temP[3*i+j] = 0.;
+            }
         }
     }
 
@@ -130,25 +147,24 @@ void empole_a()
     // rotate the multipole components into the global frame
     rotpole(RotMode::Mpole);
 
-    // allocate and initialize connected atom exclusion coefficients
-    for (int i = 0; i < n; i++) {
-        mscale[i] = 1.;
-    }
-
-    // allocate and initialize torque array
-    if constexpr (do_g) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < 3; j++) {
-                tem[i][j] = 0.;
-            }
-        }
-    }
-
     // set conversion factor, cutoff and switching coefficients
     f = electric / dielec;
     cutoffSwitch(CutoffMode::Mpole);
 
+    // OpenMP setup
+    #pragma omp parallel default(private) private(mscale)                            \
+    shared(n,xaxis,yaxis,zaxis,x,y,z,rpole,pcore,pval,palpha,use,use_bounds,off2,    \
+        f,n12,i12,n13,i13,n14,i14,n15,i15,m2scale,m3scale,m4scale,m5scale,molcule)   \
+    reduction(+:em,einter,nem,vir,aemP[:n],demP[:3*n],temP[:3*n])
+    {
+    // allocate and initialize connected atom exclusion coefficients
+    mscale = new real[n];
+    for (int i = 0; i < n; i++) {
+        mscale[i] = 1.;
+    }
+
     // calculate the multipole interaction energy term
+    #pragma omp for schedule(guided)
     for (int i = 0; i < n-1; i++) {
         iz = zaxis[i] - 1;
         ix = xaxis[i] - 1;
@@ -237,8 +253,8 @@ void empole_a()
                     // increment the overall multipoles
                     if constexpr (do_a) {
                         if (e != 0.) nem++;
-                        aem[i] = aem[i] + 0.5*e;
-                        aem[k] = aem[k] + 0.5*e;
+                        aemP[i] += 0.5*e;
+                        aemP[k] += 0.5*e;
                         if (molcule[i] != molcule[k]) {
                             einter += e;
                         }
@@ -247,18 +263,18 @@ void empole_a()
                         em += e;
                     }
                     if constexpr (do_g) {
-                        dem[i][0] += frcx;
-                        dem[i][1] += frcy;
-                        dem[i][2] += frcz;
-                        tem[i][0] += ttmxi;
-                        tem[i][1] += ttmyi;
-                        tem[i][2] += ttmzi;
-                        dem[k][0] -= frcx;
-                        dem[k][1] -= frcy;
-                        dem[k][2] -= frcz;
-                        tem[k][0] += ttmxk;
-                        tem[k][1] += ttmyk;
-                        tem[k][2] += ttmzk;
+                        demP[3*i+0] += frcx;
+                        demP[3*i+1] += frcy;
+                        demP[3*i+2] += frcz;
+                        temP[3*i+0] += ttmxi;
+                        temP[3*i+1] += ttmyi;
+                        temP[3*i+2] += ttmzi;
+                        demP[3*k+0] -= frcx;
+                        demP[3*k+1] -= frcy;
+                        demP[3*k+2] -= frcz;
+                        temP[3*k+0] += ttmxk;
+                        temP[3*k+1] += ttmyk;
+                        temP[3*k+2] += ttmzk;
                     }
                     if constexpr (do_v) {
                         vir[0][0] += vxx;
@@ -274,6 +290,7 @@ void empole_a()
                 }
             }
         }
+
         // reset exclusion coefficients for connected atoms
         for (int j = 0; j < n12[i]; j++) {
             mscale[i12[i][j]] = 1.;
@@ -287,11 +304,15 @@ void empole_a()
         for (int j = 0; j < n15[i]; j++) {
             mscale[i15[i][j]] = 1.;
         }
+
+    }
+
+    delete[] mscale;
     }
 
     // resolve site torques then increment forces and virial
     if constexpr (do_g or do_v) {
-        torque<CalculationMode>(tem, dem);
+        torque<CalculationMode>(temP, demP);
     }
 }
 

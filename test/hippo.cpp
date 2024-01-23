@@ -1,6 +1,7 @@
 #include "action.h"
 #include "analyz.h"
 #include "analyze.h"
+#include "atoms.h"
 #include "deriv.h"
 #include "energi.h"
 #include "final.h"
@@ -48,11 +49,11 @@ TEST_CASE("hippo-2", "[testgrad][HIPPO][water21]") {
 
     testgrad(argc, argv, true);
 
-    COMPARE_ARRAY2D(desum, hippo2::desum, hippo2::eps1);
-    COMPARE_ARRAY2D(dem, hippo2::dem, hippo2::eps1);
+    COMPARE_VECTOR(desum, hippo2::desum, hippo2::eps1);
+    COMPARE_VECTOR(dem, hippo2::dem, hippo2::eps1);
 
-    COMPARE_ARRAY2D(ndesum, hippo2::desum, hippo2::eps2);
-    COMPARE_ARRAY2D(ndem, hippo2::dem, hippo2::eps2);
+    COMPARE_VECTOR(ndesum, hippo2::desum, hippo2::eps2);
+    COMPARE_VECTOR(ndem, hippo2::dem, hippo2::eps2);
 
     final();
 }

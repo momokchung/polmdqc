@@ -6,7 +6,7 @@ namespace polmdqc
 {
 namespace bounds1
 {
-    real eps = 1e-10;
+    real eps = 1e-8;
 
     real nem = 408231;
 
@@ -17,7 +17,7 @@ namespace bounds1
 
 namespace bounds2
 {
-    real eps = 1e-10;
+    real eps = 1e-8;
 
     real nem = 415145;
 
@@ -28,7 +28,7 @@ namespace bounds2
 
 namespace bounds3
 {
-    real eps = 1e-10;
+    real eps = 1e-8;
 
     real nem = 425465;
 
@@ -39,7 +39,7 @@ namespace bounds3
 
 namespace bounds4
 {
-    real eps = 1e-10;
+    real eps = 1e-8;
 
     real nem = 820409;
 
@@ -50,7 +50,7 @@ namespace bounds4
 
 namespace bounds5
 {
-    real eps = 1e-10;
+    real eps = 1e-8;
 
     real nem = 605203;
 

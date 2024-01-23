@@ -19,7 +19,7 @@ namespace polmdqc
 // and/or gradient due to atomic multipole interactions
 
 template <bool do_e, bool do_g, bool do_v>
-void pairMpole_a(
+inline void pairMpole_a(
     real r2, real xr, real yr, real zr, real mscale,
     real ci, real dix, real diy, real diz, real qixx, real qixy, real qixz,
     real qiyy, real qiyz, real qizz,
@@ -184,7 +184,7 @@ void pairMpole_a(
 // energy and/or gradient due to atomic multipole interactions
 
 template <bool do_e, bool do_g, bool do_v, PenTyp PenType>
-void pairMpoleCP_a(
+inline void pairMpoleCP_a(
     real r2, real xr, real yr, real zr, real mscale,
     real corei, real vali, real alphai,
     real dix, real diy, real diz, real qixx, real qixy, real qixz,

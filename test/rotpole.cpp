@@ -1,6 +1,7 @@
 #include "action.h"
 #include "analyz.h"
 #include "analyze.h"
+#include "atoms.h"
 #include "deriv.h"
 #include "energi.h"
 #include "final.h"
@@ -104,11 +105,11 @@ TEST_CASE("rotpole-4", "[testgrad][AMOEBA][axetyp]") {
 
     testgrad(argc, argv, true);
 
-    COMPARE_ARRAY2D(desum, rotpole4::desum, rotpole4::eps1);
-    COMPARE_ARRAY2D(dem, rotpole4::dem, rotpole4::eps1);
+    COMPARE_VECTOR(desum, rotpole4::desum, rotpole4::eps1);
+    COMPARE_VECTOR(dem, rotpole4::dem, rotpole4::eps1);
 
-    COMPARE_ARRAY2D(ndesum, rotpole4::desum, rotpole4::eps2);
-    COMPARE_ARRAY2D(ndem, rotpole4::dem, rotpole4::eps2);
+    COMPARE_VECTOR(ndesum, rotpole4::desum, rotpole4::eps2);
+    COMPARE_VECTOR(ndem, rotpole4::dem, rotpole4::eps2);
 
     final();
 }
@@ -127,11 +128,11 @@ TEST_CASE("rotpole-5", "[testgrad][HIPPO][benzene_ethyne_water]") {
 
     testgrad(argc, argv, true);
 
-    COMPARE_ARRAY2D(desum, rotpole5::desum, rotpole5::eps1);
-    COMPARE_ARRAY2D(dem, rotpole5::dem, rotpole5::eps1);
+    COMPARE_VECTOR(desum, rotpole5::desum, rotpole5::eps1);
+    COMPARE_VECTOR(dem, rotpole5::dem, rotpole5::eps1);
 
-    COMPARE_ARRAY2D(ndesum, rotpole5::desum, rotpole5::eps2);
-    COMPARE_ARRAY2D(ndem, rotpole5::dem, rotpole5::eps2);
+    COMPARE_VECTOR(ndesum, rotpole5::desum, rotpole5::eps2);
+    COMPARE_VECTOR(ndem, rotpole5::dem, rotpole5::eps2);
 
     final();
 }
@@ -150,11 +151,11 @@ TEST_CASE("rotpole-6", "[analyze][HIPPO][ammonia]") {
 
     testgrad(argc, argv, true);
 
-    COMPARE_ARRAY2D(desum, rotpole6::desum, rotpole6::eps1);
-    COMPARE_ARRAY2D(dem, rotpole6::dem, rotpole6::eps1);
+    COMPARE_VECTOR(desum, rotpole6::desum, rotpole6::eps1);
+    COMPARE_VECTOR(dem, rotpole6::dem, rotpole6::eps1);
 
-    COMPARE_ARRAY2D(ndesum, rotpole6::desum, rotpole6::eps2);
-    COMPARE_ARRAY2D(ndem, rotpole6::dem, rotpole6::eps2);
+    COMPARE_VECTOR(ndesum, rotpole6::desum, rotpole6::eps2);
+    COMPARE_VECTOR(ndem, rotpole6::dem, rotpole6::eps2);
 
     final();
 }

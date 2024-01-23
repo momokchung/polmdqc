@@ -101,7 +101,7 @@ public:
     }
 
     // Return pointer to the underlying array
-    T* ptr() {
+    T (*ptr())[n] {
         return array;
     }
 
@@ -167,7 +167,7 @@ public:
     }
 
     // Return pointer to the underlying array
-    T* ptr() {
+    T (*ptr())[n][o] {
         return array;
     }
 

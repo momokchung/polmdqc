@@ -329,35 +329,35 @@ void testgrad(int argc, char** argv, bool test)
                     else if (j == 2) {
                         z[i] = old;
                     }
-                    ndesum[i][j] = (f - f0) / eps;
-                    ndeb[i][j] = (eb - eb0) / eps;
-                    ndea[i][j] = (ea - ea0) / eps;
-                    ndeba[i][j] = (eba - eba0) / eps;
-                    ndeub[i][j] = (eub - eub0) / eps;
-                    ndeaa[i][j] = (eaa - eaa0) / eps;
-                    ndeopb[i][j] = (eopb - eopb0) / eps;
-                    ndeopd[i][j] = (eopd - eopd0) / eps;
-                    ndeid[i][j] = (eid - eid0) / eps;
-                    ndeit[i][j] = (eit - eit0) / eps;
-                    ndet[i][j] = (et - et0) / eps;
-                    ndept[i][j] = (ept - ept0) / eps;
-                    ndebt[i][j] = (ebt - ebt0) / eps;
-                    ndeat[i][j] = (eat - eat0) / eps;
-                    ndett[i][j] = (ett - ett0) / eps;
-                    ndev[i][j] = (ev - ev0) / eps;
-                    nder[i][j] = (er - er0) / eps;
-                    ndedsp[i][j] = (edsp - edsp0) / eps;
-                    ndec[i][j] = (ec - ec0) / eps;
-                    ndecd[i][j] = (ecd - ecd0) / eps;
-                    nded[i][j] = (ed - ed0) / eps;
-                    ndem[i][j] = (em - em0) / eps;
-                    ndep[i][j] = (ep - ep0) / eps;
-                    ndect[i][j] = (ect - ect0) / eps;
-                    nderxf[i][j] = (erxf - erxf0) / eps;
-                    ndes[i][j] = (es - es0) / eps;
-                    ndelf[i][j] = (elf - elf0) / eps;
-                    ndeg[i][j] = (eg - eg0) / eps;
-                    ndex[i][j] = (ex - ex0) / eps;
+                    ndesum[3*i+j] = (f - f0) / eps;
+                    ndeb[3*i+j] = (eb - eb0) / eps;
+                    ndea[3*i+j] = (ea - ea0) / eps;
+                    ndeba[3*i+j] = (eba - eba0) / eps;
+                    ndeub[3*i+j] = (eub - eub0) / eps;
+                    ndeaa[3*i+j] = (eaa - eaa0) / eps;
+                    ndeopb[3*i+j] = (eopb - eopb0) / eps;
+                    ndeopd[3*i+j] = (eopd - eopd0) / eps;
+                    ndeid[3*i+j] = (eid - eid0) / eps;
+                    ndeit[3*i+j] = (eit - eit0) / eps;
+                    ndet[3*i+j] = (et - et0) / eps;
+                    ndept[3*i+j] = (ept - ept0) / eps;
+                    ndebt[3*i+j] = (ebt - ebt0) / eps;
+                    ndeat[3*i+j] = (eat - eat0) / eps;
+                    ndett[3*i+j] = (ett - ett0) / eps;
+                    ndev[3*i+j] = (ev - ev0) / eps;
+                    nder[3*i+j] = (er - er0) / eps;
+                    ndedsp[3*i+j] = (edsp - edsp0) / eps;
+                    ndec[3*i+j] = (ec - ec0) / eps;
+                    ndecd[3*i+j] = (ecd - ecd0) / eps;
+                    nded[3*i+j] = (ed - ed0) / eps;
+                    ndem[3*i+j] = (em - em0) / eps;
+                    ndep[3*i+j] = (ep - ep0) / eps;
+                    ndect[3*i+j] = (ect - ect0) / eps;
+                    nderxf[3*i+j] = (erxf - erxf0) / eps;
+                    ndes[3*i+j] = (es - es0) / eps;
+                    ndelf[3*i+j] = (elf - elf0) / eps;
+                    ndeg[3*i+j] = (eg - eg0) / eps;
+                    ndex[3*i+j] = (ex - ex0) / eps;
                 }
             }
 
@@ -373,13 +373,13 @@ void testgrad(int argc, char** argv, bool test)
                                 "\n      %16.8f%16.8f%16.8f%16.8f"
                                 "\n      %16.8f%16.8f%16.8f%16.8f"
                                 "\n      %16.8f%16.8f%16.8f%16.8f\n",
-                                i+1,deb[i][j],dea[i][j],deba[i][j],deub[i][j],
-                                axis[j],deaa[i][j],deopb[i][j],deopd[i][j],deid[i][j],
-                                deit[i][j],det[i][j],dept[i][j],debt[i][j],
-                                deat[i][j],dett[i][j],dev[i][j],der[i][j],
-                                dedsp[i][j],dec[i][j],decd[i][j],ded[i][j],
-                                dem[i][j],dep[i][j],dect[i][j],derxf[i][j],
-                                des[i][j],delf[i][j],deg[i][j],dex[i][j]);
+                                i+1,deb[3*i+j],dea[3*i+j],deba[3*i+j],deub[3*i+j],
+                                axis[j],deaa[3*i+j],deopb[3*i+j],deopd[3*i+j],deid[3*i+j],
+                                deit[3*i+j],det[3*i+j],dept[3*i+j],debt[3*i+j],
+                                deat[3*i+j],dett[3*i+j],dev[3*i+j],der[3*i+j],
+                                dedsp[3*i+j],dec[3*i+j],decd[3*i+j],ded[3*i+j],
+                                dem[3*i+j],dep[3*i+j],dect[3*i+j],derxf[3*i+j],
+                                des[3*i+j],delf[3*i+j],deg[3*i+j],dex[3*i+j]);
                         }
                         else if (digits >= 6) {
                             printf("\n%6d%14.6f%14.6f%14.6f%14.6f%14.6f"
@@ -388,12 +388,12 @@ void testgrad(int argc, char** argv, bool test)
                                 "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
                                 "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
                                 "\n      %14.6f%14.6f%14.6f\n",
-                                i+1,deb[i][j],dea[i][j],deba[i][j],deub[i][j],deaa[i][j],
-                                axis[j],deopb[i][j],deopd[i][j],deid[i][j],deit[i][j],det[i][j],
-                                dept[i][j],debt[i][j],deat[i][j],dett[i][j],dev[i][j],
-                                der[i][j],dedsp[i][j],dec[i][j],decd[i][j],ded[i][j],
-                                dem[i][j],dep[i][j],dect[i][j],derxf[i][j],des[i][j],
-                                delf[i][j],deg[i][j],dex[i][j]);
+                                i+1,deb[3*i+j],dea[3*i+j],deba[3*i+j],deub[3*i+j],deaa[3*i+j],
+                                axis[j],deopb[3*i+j],deopd[3*i+j],deid[3*i+j],deit[3*i+j],det[3*i+j],
+                                dept[3*i+j],debt[3*i+j],deat[3*i+j],dett[3*i+j],dev[3*i+j],
+                                der[3*i+j],dedsp[3*i+j],dec[3*i+j],decd[3*i+j],ded[3*i+j],
+                                dem[3*i+j],dep[3*i+j],dect[3*i+j],derxf[3*i+j],des[3*i+j],
+                                delf[3*i+j],deg[3*i+j],dex[3*i+j]);
                         }
                         else {
                             printf("\n%6d%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
@@ -401,11 +401,11 @@ void testgrad(int argc, char** argv, bool test)
                                 "\n Anlyt%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
                                 "\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
                                 "\n      %12.4f%12.4f%12.4f%12.4f\n",
-                                i+1,deb[i][j],dea[i][j],deba[i][j],deub[i][j],deaa[i][j],deopb[i][j],
-                                axis[j],deopd[i][j],deid[i][j],deit[i][j],det[i][j],dept[i][j],debt[i][j],
-                                deat[i][j],dett[i][j],dev[i][j],der[i][j],dedsp[i][j],dec[i][j],
-                                decd[i][j],ded[i][j],dem[i][j],dep[i][j],dect[i][j],derxf[i][j],
-                                des[i][j],delf[i][j],deg[i][j],dex[i][j]);
+                                i+1,deb[3*i+j],dea[3*i+j],deba[3*i+j],deub[3*i+j],deaa[3*i+j],deopb[3*i+j],
+                                axis[j],deopd[3*i+j],deid[3*i+j],deit[3*i+j],det[3*i+j],dept[3*i+j],debt[3*i+j],
+                                deat[3*i+j],dett[3*i+j],dev[3*i+j],der[3*i+j],dedsp[3*i+j],dec[3*i+j],
+                                decd[3*i+j],ded[3*i+j],dem[3*i+j],dep[3*i+j],dect[3*i+j],derxf[3*i+j],
+                                des[3*i+j],delf[3*i+j],deg[3*i+j],dex[3*i+j]);
                         }
                     }
 
@@ -419,13 +419,13 @@ void testgrad(int argc, char** argv, bool test)
                                 "\n      %16.8f%16.8f%16.8f%16.8f"
                                 "\n      %16.8f%16.8f%16.8f%16.8f"
                                 "\n      %16.8f%16.8f%16.8f%16.8f\n",
-                                i+1,ndeb[i][j],ndea[i][j],ndeba[i][j],ndeub[i][j],
-                                axis[j],ndeaa[i][j],ndeopb[i][j],ndeopd[i][j],ndeid[i][j],
-                                ndeit[i][j],ndet[i][j],ndept[i][j],ndebt[i][j],
-                                ndeat[i][j],ndett[i][j],ndev[i][j],nder[i][j],
-                                ndedsp[i][j],ndec[i][j],ndecd[i][j],nded[i][j],
-                                ndem[i][j],ndep[i][j],ndect[i][j],nderxf[i][j],
-                                ndes[i][j],ndelf[i][j],ndeg[i][j],ndex[i][j]);
+                                i+1,ndeb[3*i+j],ndea[3*i+j],ndeba[3*i+j],ndeub[3*i+j],
+                                axis[j],ndeaa[3*i+j],ndeopb[3*i+j],ndeopd[3*i+j],ndeid[3*i+j],
+                                ndeit[3*i+j],ndet[3*i+j],ndept[3*i+j],ndebt[3*i+j],
+                                ndeat[3*i+j],ndett[3*i+j],ndev[3*i+j],nder[3*i+j],
+                                ndedsp[3*i+j],ndec[3*i+j],ndecd[3*i+j],nded[3*i+j],
+                                ndem[3*i+j],ndep[3*i+j],ndect[3*i+j],nderxf[3*i+j],
+                                ndes[3*i+j],ndelf[3*i+j],ndeg[3*i+j],ndex[3*i+j]);
                         }
                         else if (digits >= 6) {
                             printf("\n%6d%14.6f%14.6f%14.6f%14.6f%14.6f"
@@ -434,12 +434,12 @@ void testgrad(int argc, char** argv, bool test)
                                 "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
                                 "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
                                 "\n      %14.6f%14.6f%14.6f\n",
-                                i+1,ndeb[i][j],ndea[i][j],ndeba[i][j],ndeub[i][j],ndeaa[i][j],
-                                axis[j],ndeopb[i][j],ndeopd[i][j],ndeid[i][j],ndeit[i][j],ndet[i][j],
-                                ndept[i][j],ndebt[i][j],ndeat[i][j],ndett[i][j],ndev[i][j],
-                                nder[i][j],ndedsp[i][j],ndec[i][j],ndecd[i][j],nded[i][j],
-                                ndem[i][j],ndep[i][j],ndect[i][j],nderxf[i][j],ndes[i][j],
-                                ndelf[i][j],ndeg[i][j],ndex[i][j]);
+                                i+1,ndeb[3*i+j],ndea[3*i+j],ndeba[3*i+j],ndeub[3*i+j],ndeaa[3*i+j],
+                                axis[j],ndeopb[3*i+j],ndeopd[3*i+j],ndeid[3*i+j],ndeit[3*i+j],ndet[3*i+j],
+                                ndept[3*i+j],ndebt[3*i+j],ndeat[3*i+j],ndett[3*i+j],ndev[3*i+j],
+                                nder[3*i+j],ndedsp[3*i+j],ndec[3*i+j],ndecd[3*i+j],nded[3*i+j],
+                                ndem[3*i+j],ndep[3*i+j],ndect[3*i+j],nderxf[3*i+j],ndes[3*i+j],
+                                ndelf[3*i+j],ndeg[3*i+j],ndex[3*i+j]);
                         }
                         else {
                             printf("\n%6d%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
@@ -447,11 +447,11 @@ void testgrad(int argc, char** argv, bool test)
                                 "\n Numer%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
                                 "\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
                                 "\n      %12.4f%12.4f%12.4f%12.4f\n",
-                                i+1,ndeb[i][j],ndea[i][j],ndeba[i][j],ndeub[i][j],ndeaa[i][j],ndeopb[i][j],
-                                axis[j],ndeopd[i][j],ndeid[i][j],ndeit[i][j],ndet[i][j],ndept[i][j],ndebt[i][j],
-                                ndeat[i][j],ndett[i][j],ndev[i][j],nder[i][j],ndedsp[i][j],ndec[i][j],
-                                ndecd[i][j],nded[i][j],ndem[i][j],ndep[i][j],ndect[i][j],nderxf[i][j],
-                                ndes[i][j],ndelf[i][j],ndeg[i][j],ndex[i][j]);
+                                i+1,ndeb[3*i+j],ndea[3*i+j],ndeba[3*i+j],ndeub[3*i+j],ndeaa[3*i+j],ndeopb[3*i+j],
+                                axis[j],ndeopd[3*i+j],ndeid[3*i+j],ndeit[3*i+j],ndet[3*i+j],ndept[3*i+j],ndebt[3*i+j],
+                                ndeat[3*i+j],ndett[3*i+j],ndev[3*i+j],nder[3*i+j],ndedsp[3*i+j],ndec[3*i+j],
+                                ndecd[3*i+j],nded[3*i+j],ndem[3*i+j],ndep[3*i+j],ndect[3*i+j],nderxf[3*i+j],
+                                ndes[3*i+j],ndelf[3*i+j],ndeg[3*i+j],ndex[3*i+j]);
                         }
                     }
                 }
@@ -477,31 +477,31 @@ void testgrad(int argc, char** argv, bool test)
         ntotnorm = 0.;
         for (int i = 0; i < n; i++) {
             if (doanalyt and use[i+1]) {
-                denorm[i] = REAL_POW(desum[i][0],2) + REAL_POW(desum[i][1],2) + REAL_POW(desum[i][2],2);
+                denorm[i] = REAL_POW(desum[i+0],2) + REAL_POW(desum[i+1],2) + REAL_POW(desum[i+2],2);
                 totnorm = totnorm + denorm[i];
                 denorm[i] = REAL_SQRT(denorm[i]);
                 if (digits >= 8) {
-                    printf(" Anlyt%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,desum[i][0],desum[i][1],desum[i][2],denorm[i]);
+                    printf(" Anlyt%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,desum[i+0],desum[i+1],desum[i+2],denorm[i]);
                 }
                 else if (digits >= 6) {
-                    printf(" Anlyt  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,desum[i][0],desum[i][1],desum[i][2],denorm[i]);
+                    printf(" Anlyt  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,desum[i+0],desum[i+1],desum[i+2],denorm[i]);
                 }
                 else {
-                    printf(" Anlyt  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,desum[i][0],desum[i][1],desum[i][2],denorm[i]);
+                    printf(" Anlyt  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,desum[i+0],desum[i+1],desum[i+2],denorm[i]);
                 }
             }
             if (donumer and use[i+1]) {
-                ndenorm[i] = REAL_POW(ndesum[i][0],2) + REAL_POW(ndesum[i][1],2) + REAL_POW(ndesum[i][2],2);
+                ndenorm[i] = REAL_POW(ndesum[i+0],2) + REAL_POW(ndesum[i+1],2) + REAL_POW(ndesum[i+2],2);
                 ntotnorm = ntotnorm + ndenorm[i];
                 ndenorm[i] = REAL_SQRT(ndenorm[i]);
                 if (digits >= 8) {
-                    printf(" Numer%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,ndesum[i][0],ndesum[i][1],ndesum[i][2],ndenorm[i]);
+                    printf(" Numer%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,ndesum[i+0],ndesum[i+1],ndesum[i+2],ndenorm[i]);
                 }
                 else if (digits >= 6) {
-                    printf(" Numer  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,ndesum[i][0],ndesum[i][1],ndesum[i][2],ndenorm[i]);
+                    printf(" Numer  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,ndesum[i+0],ndesum[i+1],ndesum[i+2],ndenorm[i]);
                 }
                 else {
-                    printf(" Numer  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,ndesum[i][0],ndesum[i][1],ndesum[i][2],ndenorm[i]);
+                    printf(" Numer  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,ndesum[i+0],ndesum[i+1],ndesum[i+2],ndenorm[i]);
                 }
             }
         }
@@ -583,34 +583,34 @@ void testgrad(int argc, char** argv, bool test)
 }
 
 void resizeNumDer() {
-    ndesum.allocate(n);
-    ndeb.allocate(n);
-    ndea.allocate(n);
-    ndeba.allocate(n);
-    ndeub.allocate(n);
-    ndeaa.allocate(n);
-    ndeopb.allocate(n);
-    ndeopd.allocate(n);
-    ndeid.allocate(n);
-    ndeit.allocate(n);
-    ndet.allocate(n);
-    ndept.allocate(n);
-    ndebt.allocate(n);
-    ndeat.allocate(n);
-    ndett.allocate(n);
-    ndev.allocate(n);
-    nder.allocate(n);
-    ndedsp.allocate(n);
-    ndec.allocate(n);
-    ndecd.allocate(n);
-    nded.allocate(n);
-    ndem.allocate(n);
-    ndep.allocate(n);
-    ndect.allocate(n);
-    nderxf.allocate(n);
-    ndes.allocate(n);
-    ndelf.allocate(n);
-    ndeg.allocate(n);
-    ndex.allocate(n);
+    ndesum.allocate(3*n);
+    ndeb.allocate(3*n);
+    ndea.allocate(3*n);
+    ndeba.allocate(3*n);
+    ndeub.allocate(3*n);
+    ndeaa.allocate(3*n);
+    ndeopb.allocate(3*n);
+    ndeopd.allocate(3*n);
+    ndeid.allocate(3*n);
+    ndeit.allocate(3*n);
+    ndet.allocate(3*n);
+    ndept.allocate(3*n);
+    ndebt.allocate(3*n);
+    ndeat.allocate(3*n);
+    ndett.allocate(3*n);
+    ndev.allocate(3*n);
+    nder.allocate(3*n);
+    ndedsp.allocate(3*n);
+    ndec.allocate(3*n);
+    ndecd.allocate(3*n);
+    nded.allocate(3*n);
+    ndem.allocate(3*n);
+    ndep.allocate(3*n);
+    ndect.allocate(3*n);
+    nderxf.allocate(3*n);
+    ndes.allocate(3*n);
+    ndelf.allocate(3*n);
+    ndeg.allocate(3*n);
+    ndex.allocate(3*n);
 }
 }

@@ -1,4 +1,5 @@
 #include "volumes.h"
+#include <cstring>
 
 TETRAGEOM tetrageom;
 GAUSSCORNER gauss;

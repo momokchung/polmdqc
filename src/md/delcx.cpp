@@ -1,4 +1,6 @@
 #include "delcx.h"
+#include <cstring>
+#include <cassert>
 
 SOS sos;
 SortingTools mysort;

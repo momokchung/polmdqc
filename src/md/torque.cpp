@@ -40,7 +40,7 @@ inline void crossp(real ans[3], const real u[3], const real v[3]);
 // 73-87 (2004)
 
 template <CalcMode CalculationMode>
-void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de)
+void torque(const real* trq, real* de)
 {
     // integer i,j
     int ia,ib,ic,id;
@@ -80,7 +80,7 @@ void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de)
     // resolve site torques then increment forces and virial
     for (int i = 0; i < n; i++) {
         // copy trq value
-        const real trqi[3] = {trq[i][0],trq[i][1],trq[i][2]};
+        const real trqi[3] = {trq[3*i+0],trq[3*i+1],trq[3*i+2]};
 
         // initialize forces
         real frcx[3] = {0,0,0};
@@ -222,8 +222,8 @@ void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de)
         if (axetyp == LocalFrame::ZOnly) {
             for (int j = 0; j < 3; j++) {
                 du = uv[j]*dphidv/(usiz*uvsin) + uw[j]*dphidw/usiz;
-                de[ia][j] = de[ia][j] + du;
-                de[ib][j] = de[ib][j] - du;
+                de[3*ia+j] = de[3*ia+j] + du;
+                de[3*ib+j] = de[3*ib+j] - du;
                 if constexpr (do_v) frcz[j] += du;
             }
         }
@@ -232,9 +232,9 @@ void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de)
             for (int j = 0; j < 3; j++) {
                 du = uv[j]*dphidv/(usiz*uvsin) + uw[j]*dphidw/usiz;
                 dv = -uv[j]*dphidu/(vsiz*uvsin);
-                de[ia][j] = de[ia][j] + du;
-                de[ic][j] = de[ic][j] + dv;
-                de[ib][j] = de[ib][j] - du - dv;
+                de[3*ia+j] = de[3*ia+j] + du;
+                de[3*ic+j] = de[3*ic+j] + dv;
+                de[3*ib+j] = de[3*ib+j] - du - dv;
                 if constexpr (do_v) {
                     frcz[j] += du;
                     frcx[j] += dv;
@@ -246,9 +246,9 @@ void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de)
             for (int j = 0; j < 3; j++) {
                 du = uv[j]*dphidv/(usiz*uvsin) + (real)0.5*uw[j]*dphidw/usiz;
                 dv = -uv[j]*dphidu/(vsiz*uvsin) + (real)0.5*vw[j]*dphidw/vsiz;
-                de[ia][j] = de[ia][j] + du;
-                de[ic][j] = de[ic][j] + dv;
-                de[ib][j] = de[ib][j] - du - dv;
+                de[3*ia+j] = de[3*ia+j] + du;
+                de[3*ic+j] = de[3*ic+j] + dv;
+                de[3*ib+j] = de[3*ib+j] - du - dv;
                 if constexpr (do_v) {
                     frcz[j] += du;
                     frcx[j] += dv;
@@ -261,10 +261,10 @@ void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de)
                 du = ur[j]*dphidr/(usiz*ursin) + us[j]*dphids/usiz;
                 dv = (vssin*s[j]-vscos*t1[j])*dphidu / (vsiz*(ut1sin+ut2sin));
                 dw = (wssin*s[j]-wscos*t2[j])*dphidu / (wsiz*(ut1sin+ut2sin));
-                de[ia][j] = de[ia][j] + du;
-                de[ic][j] = de[ic][j] + dv;
-                de[id][j] = de[id][j] + dw;
-                de[ib][j] = de[ib][j] - du - dv - dw;
+                de[3*ia+j] = de[3*ia+j] + du;
+                de[3*ic+j] = de[3*ic+j] + dv;
+                de[3*id+j] = de[3*id+j] + dw;
+                de[3*ib+j] = de[3*ib+j] - du - dv - dw;
                 if constexpr (do_v) {
                     frcz[j] += du;
                     frcx[j] += dv;
@@ -303,8 +303,8 @@ void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de)
             crossp(eps,del,w);
             for (int j = 0; j < 3; j++) {
                 dw = del[j]*dphidr/(wsiz*rwsin) + eps[j]*dphiddel*wpcos/(wsiz*psiz) ;
-                de[id][j] = de[id][j] + dw;
-                de[ib][j] = de[ib][j] - dw;
+                de[3*id+j] = de[3*id+j] + dw;
+                de[3*ib+j] = de[3*ib+j] - dw;
                 if constexpr (do_v) frcy[j] += dw;
             }
             r[0] = v[0] + w[0];
@@ -326,8 +326,8 @@ void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de)
             crossp(eps,del,u);
             for (int j = 0; j < 3; j++) {
                 du = del[j]*dphidr/(usiz*rusin) + eps[j]*dphiddel*upcos/(usiz*psiz);
-                de[ia][j] = de[ia][j] + du;
-                de[ib][j] = de[ib][j] - du;
+                de[3*ia+j] = de[3*ia+j] + du;
+                de[3*ib+j] = de[3*ib+j] - du;
                 if constexpr (do_v) frcz[j] += du;
             }
             r[0] = u[0] + w[0];
@@ -349,8 +349,8 @@ void torque(const MDQCArray2D<real,3>& trq, MDQCArray2D<real,3>& de)
             crossp(eps,del,v);
             for (int j = 0; j < 3; j++) {
                 dv = del[j]*dphidr/(vsiz*rvsin) + eps[j]*dphiddel*vpcos/(vsiz*psiz);
-                de[ic][j] = de[ic][j] + dv;
-                de[ib][j] = de[ib][j] - dv;
+                de[3*ic+j] = de[3*ic+j] + dv;
+                de[3*ib+j] = de[3*ib+j] - dv;
                 if constexpr (do_v) frcx[j] += dv;
             }
         }
@@ -407,6 +407,6 @@ inline void crossp(real ans[3], const real u[3], const real v[3])
 }
 
 // explicit instatiation
-template void torque<CalcMode::Gradient>(const MDQCArray2D<real,3>& trqPtr, MDQCArray2D<real,3>& de);
-template void torque<CalcMode::Virial>(const MDQCArray2D<real,3>& trqPtr, MDQCArray2D<real,3>& de);
+template void torque<CalcMode::Gradient>(const real* trqPtr, real* de);
+template void torque<CalcMode::Virial>(const real* trqPtr, real* de);
 }

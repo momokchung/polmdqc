@@ -445,7 +445,6 @@ void final()
     xaxis.deallocate();
     yaxis.deallocate();
     mono0.deallocate();
-    mscale.deallocate();
     pole.deallocate();
     rpole.deallocate();
     tem.deallocate();

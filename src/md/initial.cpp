@@ -55,6 +55,15 @@ void initial(int argc, char** argv)
     // cores, thread count and options for OpenMP
     nproc = 1;
     nthread = 1;
+    nproc = omp_get_num_procs();
+    nthread = nproc;
+    omp_set_num_threads(nthread);
+    omp_set_nested(true);
+#ifdef TINKER_ICPC
+    // Intel compiler extensions to OpenMP standard, 268435456 bytes is 2**28 bytes, or 256 MB
+    kmp_set_stacksize_s(268435456);
+    kmp_set_blocktime(0);
+#endif
 
     // atomic symbols, weights and radii
     initatom();

@@ -48,11 +48,11 @@ TEST_CASE("amoeba-2", "[testgrad][AMOEBA][water09]") {
 
     testgrad(argc, argv, true);
 
-    COMPARE_ARRAY2D(desum, amoeba2::desum, amoeba2::eps1);
-    COMPARE_ARRAY2D(dem, amoeba2::dem, amoeba2::eps1);
+    COMPARE_VECTOR(desum, amoeba2::desum, amoeba2::eps1);
+    COMPARE_VECTOR(dem, amoeba2::dem, amoeba2::eps1);
 
-    COMPARE_ARRAY2D(ndesum, amoeba2::desum, amoeba2::eps2);
-    COMPARE_ARRAY2D(ndem, amoeba2::dem, amoeba2::eps2);
+    COMPARE_VECTOR(ndesum, amoeba2::desum, amoeba2::eps2);
+    COMPARE_VECTOR(ndem, amoeba2::dem, amoeba2::eps2);
 
     final();
 }

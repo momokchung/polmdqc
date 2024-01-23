@@ -71,39 +71,40 @@ void energy()
         einter = 0.;
     }
 
-    if constexpr (do_a) {
-        // perform dynamic allocation of some global arrays
-        aesum.allocate(n);
-        aeb.allocate(n);
-        aea.allocate(n);
-        aeba.allocate(n);
-        aeub.allocate(n);
-        aeaa.allocate(n);
-        aeopb.allocate(n);
-        aeopd.allocate(n);
-        aeid.allocate(n);
-        aeit.allocate(n);
-        aet.allocate(n);
-        aept.allocate(n);
-        aebt.allocate(n);
-        aeat.allocate(n);
-        aett.allocate(n);
-        aev.allocate(n);
-        aer.allocate(n);
-        aedsp.allocate(n);
-        aec.allocate(n);
-        aecd.allocate(n);
-        aed.allocate(n);
-        aem.allocate(n);
-        aep.allocate(n);
-        aect.allocate(n);
-        aerxf.allocate(n);
-        aes.allocate(n);
-        aelf.allocate(n);
-        aeg.allocate(n);
-        aex.allocate(n);
+    // perform dynamic allocation of some global arrays
+    aesum.allocate(n);
+    aeb.allocate(n);
+    aea.allocate(n);
+    aeba.allocate(n);
+    aeub.allocate(n);
+    aeaa.allocate(n);
+    aeopb.allocate(n);
+    aeopd.allocate(n);
+    aeid.allocate(n);
+    aeit.allocate(n);
+    aet.allocate(n);
+    aept.allocate(n);
+    aebt.allocate(n);
+    aeat.allocate(n);
+    aett.allocate(n);
+    aev.allocate(n);
+    aer.allocate(n);
+    aedsp.allocate(n);
+    aec.allocate(n);
+    aecd.allocate(n);
+    aed.allocate(n);
+    aem.allocate(n);
+    aep.allocate(n);
+    aect.allocate(n);
+    aerxf.allocate(n);
+    aes.allocate(n);
+    aelf.allocate(n);
+    aeg.allocate(n);
+    aex.allocate(n);
 
-        // zero out energy partitioning components for each atom
+    // zero out energy partitioning components for each atom
+    if constexpr (do_a) {
+        #pragma omp parallel for
         for (int i = 0; i < n; i++) {
             aesum[i] = 0.;
             aeb[i] = 0.;
@@ -137,70 +138,71 @@ void energy()
         }
     }
 
-    if constexpr (do_g) {
-        // perform dynamic allocation of some global arrays
-        desum.allocate(n);
-        deb.allocate(n);
-        dea.allocate(n);
-        deba.allocate(n);
-        deub.allocate(n);
-        deaa.allocate(n);
-        deopb.allocate(n);
-        deopd.allocate(n);
-        deid.allocate(n);
-        deit.allocate(n);
-        det.allocate(n);
-        dept.allocate(n);
-        debt.allocate(n);
-        deat.allocate(n);
-        dett.allocate(n);
-        dev.allocate(n);
-        der.allocate(n);
-        dedsp.allocate(n);
-        dec.allocate(n);
-        decd.allocate(n);
-        ded.allocate(n);
-        dem.allocate(n);
-        dep.allocate(n);
-        dect.allocate(n);
-        derxf.allocate(n);
-        des.allocate(n);
-        delf.allocate(n);
-        deg.allocate(n);
-        dex.allocate(n);
+    // perform dynamic allocation of some global arrays
+    desum.allocate(3*n);
+    deb.allocate(3*n);
+    dea.allocate(3*n);
+    deba.allocate(3*n);
+    deub.allocate(3*n);
+    deaa.allocate(3*n);
+    deopb.allocate(3*n);
+    deopd.allocate(3*n);
+    deid.allocate(3*n);
+    deit.allocate(3*n);
+    det.allocate(3*n);
+    dept.allocate(3*n);
+    debt.allocate(3*n);
+    deat.allocate(3*n);
+    dett.allocate(3*n);
+    dev.allocate(3*n);
+    der.allocate(3*n);
+    dedsp.allocate(3*n);
+    dec.allocate(3*n);
+    decd.allocate(3*n);
+    ded.allocate(3*n);
+    dem.allocate(3*n);
+    dep.allocate(3*n);
+    dect.allocate(3*n);
+    derxf.allocate(3*n);
+    des.allocate(3*n);
+    delf.allocate(3*n);
+    deg.allocate(3*n);
+    dex.allocate(3*n);
 
-        // zero out each of the first derivative components
+    // zero out each of the first derivative components
+    if constexpr (do_g) {
+        #pragma omp parallel for
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < 3; j++) {
-                desum[i][j] = 0.;
-                deb[i][j] = 0.;
-                dea[i][j] = 0.;
-                deba[i][j] = 0.;
-                deub[i][j] = 0.;
-                deaa[i][j] = 0.;
-                deopb[i][j] = 0.;
-                deopd[i][j] = 0.;
-                deid[i][j] = 0.;
-                deit[i][j] = 0.;
-                det[i][j] = 0.;
-                dept[i][j] = 0.;
-                debt[i][j] = 0.;
-                deat[i][j] = 0.;
-                dett[i][j] = 0.;
-                dev[i][j] = 0.;
-                der[i][j] = 0.;
-                dedsp[i][j] = 0.;
-                dec[i][j] = 0.;
-                decd[i][j] = 0.;
-                ded[i][j] = 0.;
-                dem[i][j] = 0.;
-                dep[i][j] = 0.;
-                dect[i][j] = 0.;
-                derxf[i][j] = 0.;
-                des[i][j] = 0.;
-                delf[i][j] = 0.;
-                deg[i][j] = 0.;
-                dex[i][j] = 0.;
+                desum[3*i+j] = 0.;
+                deb[3*i+j] = 0.;
+                dea[3*i+j] = 0.;
+                deba[3*i+j] = 0.;
+                deub[3*i+j] = 0.;
+                deaa[3*i+j] = 0.;
+                deopb[3*i+j] = 0.;
+                deopd[3*i+j] = 0.;
+                deid[3*i+j] = 0.;
+                deit[3*i+j] = 0.;
+                det[3*i+j] = 0.;
+                dept[3*i+j] = 0.;
+                debt[3*i+j] = 0.;
+                deat[3*i+j] = 0.;
+                dett[3*i+j] = 0.;
+                dev[3*i+j] = 0.;
+                der[3*i+j] = 0.;
+                dedsp[3*i+j] = 0.;
+                dec[3*i+j] = 0.;
+                decd[3*i+j] = 0.;
+                ded[3*i+j] = 0.;
+                dem[3*i+j] = 0.;
+                dep[3*i+j] = 0.;
+                dect[3*i+j] = 0.;
+                derxf[3*i+j] = 0.;
+                des[3*i+j] = 0.;
+                delf[3*i+j] = 0.;
+                deg[3*i+j] = 0.;
+                dex[3*i+j] = 0.;
             }
         }
     }
@@ -286,6 +288,7 @@ void energy()
 
     // sum up to give the total potential energy per atom
     if constexpr (do_a) {
+        #pragma omp parallel for
         for (int i = 0; i < n; i++) {
             aesum[i] = aeb[i] + aea[i] + aeba[i] + aeub[i] + aeaa[i]
                 + aeopb[i] + aeopd[i] + aeid[i] + aeit[i]
@@ -298,18 +301,19 @@ void energy()
 
     // sum up to give the total derivative per atom
     if constexpr (do_g) {
+        #pragma omp parallel for
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < 3; j++) {
-                desum[i][j] = deb[i][j] + dea[i][j] + deba[i][j]
-                    + deub[i][j] + deaa[i][j] + deopb[i][j]
-                    + deopd[i][j] + deid[i][j] + deit[i][j]
-                    + det[i][j] + dept[i][j] + debt[i][j]
-                    + deat[i][j] + dett[i][j] + dev[i][j]
-                    + der[i][j] + dedsp[i][j] + dec[i][j]
-                    + decd[i][j] + ded[i][j] + dem[i][j]
-                    + dep[i][j] + dect[i][j] + derxf[i][j]
-                    + des[i][j] + delf[i][j]
-                    + deg[i][j] + dex[i][j];
+                desum[3*i+j] = deb[3*i+j] + dea[3*i+j] + deba[3*i+j]
+                    + deub[3*i+j] + deaa[3*i+j] + deopb[3*i+j]
+                    + deopd[3*i+j] + deid[3*i+j] + deit[3*i+j]
+                    + det[3*i+j] + dept[3*i+j] + debt[3*i+j]
+                    + deat[3*i+j] + dett[3*i+j] + dev[3*i+j]
+                    + der[3*i+j] + dedsp[3*i+j] + dec[3*i+j]
+                    + decd[3*i+j] + ded[3*i+j] + dem[3*i+j]
+                    + dep[3*i+j] + dect[3*i+j] + derxf[3*i+j]
+                    + des[3*i+j] + delf[3*i+j]
+                    + deg[3*i+j] + dex[3*i+j];
             }
         }
     }

@@ -2,6 +2,7 @@
 #include "amoebaMisc.h"
 #include "analyz.h"
 #include "analyze.h"
+#include "atoms.h"
 #include "deriv.h"
 #include "energi.h"
 #include "final.h"
@@ -74,11 +75,11 @@ TEST_CASE("amoebaMisc-3", "[testgrad][AMOEBA][alatet_water09]") {
 
     testgrad(argc, argv, true);
 
-    COMPARE_ARRAY2D(desum, amoebaMisc3::desum, amoebaMisc3::eps1);
-    COMPARE_ARRAY2D(dem, amoebaMisc3::dem, amoebaMisc3::eps1);
+    COMPARE_VECTOR(desum, amoebaMisc3::desum, amoebaMisc3::eps1);
+    COMPARE_VECTOR(dem, amoebaMisc3::dem, amoebaMisc3::eps1);
 
-    COMPARE_ARRAY2D(ndesum, amoebaMisc3::desum, amoebaMisc3::eps2);
-    COMPARE_ARRAY2D(ndem, amoebaMisc3::dem, amoebaMisc3::eps2);
+    COMPARE_VECTOR(ndesum, amoebaMisc3::desum, amoebaMisc3::eps2);
+    COMPARE_VECTOR(ndem, amoebaMisc3::dem, amoebaMisc3::eps2);
 
     final();
 }
