@@ -27,6 +27,8 @@ void rotpole(RotMode rotMode)
 
     // rotate local multipoles to global frame at each site
     if (rotMode == RotMode::Mpole) {
+        #pragma omp parallel for default(private)   \
+        shared(n,pollist,pole,rpole)
         for (int i = 0; i < n; i++) {
             if (pollist[i] != -1) {
                 rotmat(i,a,planar);
@@ -35,6 +37,8 @@ void rotpole(RotMode rotMode)
         }
     }
     else if (rotMode == RotMode::Repel) {
+        #pragma omp parallel for default(private)   \
+        shared(n,replist,repole,rrepole)
         for (int i = 0; i < n; i++) {
             if (replist[i] != -1) {
                 rotmat(i,a,planar);
@@ -42,15 +46,6 @@ void rotpole(RotMode rotMode)
             }
         }
     }
-    a(0,0) = -1;
-    a(0,1) = -1;
-    a(0,2) = 1;
-    a(1,0) = 3;
-    a(1,1) = -2;
-    a(1,2) = 1;
-    a(2,0) = 1;
-    a(2,1) = 0.5;
-    a(2,2) = 2;
 }
 
 //////////////////////////////////////////////////////
@@ -70,6 +65,8 @@ void rotrpole(RotMode rotMode)
 
     // rotate global multipoles to local frame at each site
     if (rotMode == RotMode::Mpole) {
+        #pragma omp parallel for default(private)   \
+        shared(n,pollist,pole,rpole)
         for (int i = 0; i < n; i++) {
             if (pollist[i] != -1) {
                 rotmat(i,a,planar);
@@ -80,6 +77,8 @@ void rotrpole(RotMode rotMode)
         }
     }
     else if (rotMode == RotMode::Repel) {
+        #pragma omp parallel for default(private)   \
+        shared(n,replist,repole,rrepole)
         for (int i = 0; i < n; i++) {
             if (replist[i] != -1) {
                 rotmat(i,a,planar);

@@ -77,6 +77,10 @@ void torque(const real* trq, real* de)
     constexpr bool do_g = flags.do_gradient;
     constexpr bool do_v = flags.do_virial;
 
+    // OpenMP setup
+    #pragma omp parallel for default(private)      \
+    shared(n,xaxis,yaxis,zaxis,x,y,z,trq,polaxe)   \
+    reduction(+:vir,de[:3*n])
     // resolve site torques then increment forces and virial
     for (int i = 0; i < n; i++) {
         // copy trq value
@@ -89,7 +93,7 @@ void torque(const real* trq, real* de)
 
         // get the local frame type and the frame-defining atoms
         axetyp = polaxe[i];
-        if (axetyp == LocalFrame::None) return;
+        if (axetyp == LocalFrame::None) continue;
         ia = zaxis[i] - 1;
         ib = i;
         ic = xaxis[i] - 1;
@@ -222,8 +226,8 @@ void torque(const real* trq, real* de)
         if (axetyp == LocalFrame::ZOnly) {
             for (int j = 0; j < 3; j++) {
                 du = uv[j]*dphidv/(usiz*uvsin) + uw[j]*dphidw/usiz;
-                de[3*ia+j] = de[3*ia+j] + du;
-                de[3*ib+j] = de[3*ib+j] - du;
+                de[3*ia+j] += du;
+                de[3*ib+j] -= du;
                 if constexpr (do_v) frcz[j] += du;
             }
         }
@@ -232,9 +236,9 @@ void torque(const real* trq, real* de)
             for (int j = 0; j < 3; j++) {
                 du = uv[j]*dphidv/(usiz*uvsin) + uw[j]*dphidw/usiz;
                 dv = -uv[j]*dphidu/(vsiz*uvsin);
-                de[3*ia+j] = de[3*ia+j] + du;
-                de[3*ic+j] = de[3*ic+j] + dv;
-                de[3*ib+j] = de[3*ib+j] - du - dv;
+                de[3*ia+j] += du;
+                de[3*ic+j] += dv;
+                de[3*ib+j] -= du + dv;
                 if constexpr (do_v) {
                     frcz[j] += du;
                     frcx[j] += dv;
@@ -246,9 +250,9 @@ void torque(const real* trq, real* de)
             for (int j = 0; j < 3; j++) {
                 du = uv[j]*dphidv/(usiz*uvsin) + (real)0.5*uw[j]*dphidw/usiz;
                 dv = -uv[j]*dphidu/(vsiz*uvsin) + (real)0.5*vw[j]*dphidw/vsiz;
-                de[3*ia+j] = de[3*ia+j] + du;
-                de[3*ic+j] = de[3*ic+j] + dv;
-                de[3*ib+j] = de[3*ib+j] - du - dv;
+                de[3*ia+j] += du;
+                de[3*ic+j] += dv;
+                de[3*ib+j] -= du + dv;
                 if constexpr (do_v) {
                     frcz[j] += du;
                     frcx[j] += dv;
@@ -261,10 +265,10 @@ void torque(const real* trq, real* de)
                 du = ur[j]*dphidr/(usiz*ursin) + us[j]*dphids/usiz;
                 dv = (vssin*s[j]-vscos*t1[j])*dphidu / (vsiz*(ut1sin+ut2sin));
                 dw = (wssin*s[j]-wscos*t2[j])*dphidu / (wsiz*(ut1sin+ut2sin));
-                de[3*ia+j] = de[3*ia+j] + du;
-                de[3*ic+j] = de[3*ic+j] + dv;
-                de[3*id+j] = de[3*id+j] + dw;
-                de[3*ib+j] = de[3*ib+j] - du - dv - dw;
+                de[3*ia+j] += du;
+                de[3*ic+j] += dv;
+                de[3*id+j] += dw;
+                de[3*ib+j] -= du + dv + dw;
                 if constexpr (do_v) {
                     frcz[j] += du;
                     frcx[j] += dv;
@@ -303,8 +307,8 @@ void torque(const real* trq, real* de)
             crossp(eps,del,w);
             for (int j = 0; j < 3; j++) {
                 dw = del[j]*dphidr/(wsiz*rwsin) + eps[j]*dphiddel*wpcos/(wsiz*psiz) ;
-                de[3*id+j] = de[3*id+j] + dw;
-                de[3*ib+j] = de[3*ib+j] - dw;
+                de[3*id+j] += dw;
+                de[3*ib+j] -= dw;
                 if constexpr (do_v) frcy[j] += dw;
             }
             r[0] = v[0] + w[0];
@@ -326,8 +330,8 @@ void torque(const real* trq, real* de)
             crossp(eps,del,u);
             for (int j = 0; j < 3; j++) {
                 du = del[j]*dphidr/(usiz*rusin) + eps[j]*dphiddel*upcos/(usiz*psiz);
-                de[3*ia+j] = de[3*ia+j] + du;
-                de[3*ib+j] = de[3*ib+j] - du;
+                de[3*ia+j] += du;
+                de[3*ib+j] -= du;
                 if constexpr (do_v) frcz[j] += du;
             }
             r[0] = u[0] + w[0];
@@ -349,8 +353,8 @@ void torque(const real* trq, real* de)
             crossp(eps,del,v);
             for (int j = 0; j < 3; j++) {
                 dv = del[j]*dphidr/(vsiz*rvsin) + eps[j]*dphiddel*vpcos/(vsiz*psiz);
-                de[3*ic+j] = de[3*ic+j] + dv;
-                de[3*ib+j] = de[3*ib+j] - dv;
+                de[3*ic+j] += dv;
+                de[3*ib+j] -= dv;
                 if constexpr (do_v) frcx[j] += dv;
             }
         }
