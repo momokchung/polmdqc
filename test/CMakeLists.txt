@@ -6,6 +6,7 @@ amoeba.cpp
 amoebaMisc.cpp
 amoebap.cpp
 bounds.cpp
+chkpole.cpp
 getline.cpp
 getnumb.cpp
 getstring.cpp

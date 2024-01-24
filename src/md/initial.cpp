@@ -47,7 +47,7 @@ namespace polmdqc
 void initial(int argc, char** argv)
 {
     // display program banner and copyright notice
-    promo();
+    if (!test) promo();
 
     // command line arguments to the program
     command(argc, argv);

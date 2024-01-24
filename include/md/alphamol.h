@@ -40,5 +40,5 @@ namespace polmdqc
 //                                                 //
 /////////////////////////////////////////////////////
 
-void alphamol(real r_h2o, int flag_deriv);
+void alphamol(real r_h2o, bool computeDeriv);
 }

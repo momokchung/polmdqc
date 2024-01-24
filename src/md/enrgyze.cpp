@@ -23,7 +23,7 @@ namespace polmdqc
 // that performs the energy analysis and prints the total and
 // intermolecular energies
 
-void enrgyze()
+void enrgyze(bool test)
 {
     constexpr CalcMode CalculationMode = CalcMode::Analysis;
 
@@ -47,7 +47,7 @@ void enrgyze()
     }
     if (std::abs(einter) >= 1.e10) useScientific = true;
 
-    if (nmol>1 and nmol<n and !use_ewald) {
+    if (nmol>1 and nmol<n and !use_ewald and !test) {
         if (!useScientific) {
             printf("\n Intermolecular Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, einter);
         }
@@ -72,11 +72,13 @@ void enrgyze()
         precision = 8;
     }
     if (std::abs(esum) >= 1.e10) useScientific = true;
-    if (!useScientific) {
-        printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, esum);
-    }
-    else {
-        printf("\n Total Potential Energy :%*s%*.*e Kcal/mole\n", numSpaces, "", width, precision, esum);
+    if (!test) {
+        if (!useScientific) {
+            printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, esum);
+        }
+        else {
+            printf("\n Total Potential Energy :%*s%*.*e Kcal/mole\n", numSpaces, "", width, precision, esum);
+        }
     }
 }
 }

@@ -3,6 +3,7 @@
 
 #include "action.h"
 #include "align.h"
+#include "alphmol.h"
 #include "analyz.h"
 #include "angbnd.h"
 #include "angpot.h"

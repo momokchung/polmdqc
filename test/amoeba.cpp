@@ -5,6 +5,7 @@
 #include "deriv.h"
 #include "energi.h"
 #include "final.h"
+#include "inform.h"
 #include "inter.h"
 #include "testgrad.h"
 #include "testrt.h"
@@ -21,7 +22,8 @@ TEST_CASE("amoeba-1", "[analyze][AMOEBA][water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == amoeba1::nem);
 
@@ -46,7 +48,8 @@ TEST_CASE("amoeba-2", "[testgrad][AMOEBA][water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv, true);
+    test = true;
+    testgrad(argc, argv);
 
     COMPARE_VECTOR(desum, amoeba2::desum, amoeba2::eps1);
     COMPARE_VECTOR(dem, amoeba2::dem, amoeba2::eps1);

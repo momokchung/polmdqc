@@ -2,6 +2,7 @@
 // Year:   2023
 
 #include "alphamol.h"
+#include "alphmol.h"
 #include "atomid.h"
 #include "atoms.h"
 #include "files.h"
@@ -29,18 +30,21 @@ namespace polmdqc
 // 
 // https://github.com/pkoehl/AlphaMol
 
-void alphamol(double r_h2o, int flag_deriv)
+void alphamol(double r_h2o, bool computeDeriv)
 {
     DELCX delcx;
     ALFCX alfcx;
     VOLUMES volumes;
 
-    // print information about system
-    std::cout << "" << std::endl;
-	std::cout << " Input file                : " << filename << std::endl;
-	std::cout << " Number of atoms (balls)   : " << n << std::endl;
-	std::cout << " Probe radius              : " << r_h2o << std::endl;
-	std::cout << "" << std::endl;
+    int flag_deriv = 0;
+    if (computeDeriv) flag_deriv = 1;
+
+    // // print information about system
+    // std::cout << "" << std::endl;
+	// std::cout << " Input file                : " << filename << std::endl;
+	// std::cout << " Number of atoms (balls)   : " << n << std::endl;
+	// std::cout << " Probe radius              : " << r_h2o << std::endl;
+	// std::cout << "" << std::endl;
 
     // Compute Delaunay triangulation
 	clock_t start_s, stop_s;
@@ -73,14 +77,14 @@ void alphamol(double r_h2o, int flag_deriv)
 	start_s = clock();
 	delcx.regular3D(vertices, tetra);
 	stop_s = clock();
-	std::cout << "Delaunay compute time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC) << " seconds" << std::endl;
+	// std::cout << "Delaunay compute time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC) << " seconds" << std::endl;
 
     // Generate alpha complex (with alpha=0.0)
 	start_s = clock();
 	double alpha = 0;
 	alfcx.alfcx(alpha, vertices, tetra);
 	stop_s = clock();
-	std::cout << "AlphaCx compute time : " << (stop_s-start_s)/double(CLOCKS_PER_SEC) << " seconds" << std::endl;
+	// std::cout << "AlphaCx compute time : " << (stop_s-start_s)/double(CLOCKS_PER_SEC) << " seconds" << std::endl;
 
     // Compute surface area and, optionally volume of the union of balls.
     // If requested, compute also their derivatives
@@ -89,49 +93,43 @@ void alphamol(double r_h2o, int flag_deriv)
 	alfcx.alphacxEdges(tetra, edges);
 	alfcx.alphacxFaces(tetra, faces);
 
-	double Surf, WSurf, Vol, WVol, Mean, WMean, Gauss, WGauss;
-
 	int nfudge = 8;
-	double *ballwsurf = new double[natoms+nfudge];
-	double *dsurf = new double[3*(natoms+nfudge)];
-	memset(dsurf, 0, 3*(natoms+nfudge)*sizeof(double));
+    surf.allocate(natoms+nfudge);
+	dsurf.allocate(3*(natoms+nfudge));
+	memset(dsurf.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
 
-	double *ballwvol, *dvol;
-	ballwvol = new double[natoms+nfudge];
-	dvol = new double[3*(natoms+nfudge)];
-	memset(dvol, 0, 3*(natoms+nfudge)*sizeof(double));
+	vol.allocate(natoms+nfudge);
+	dvol.allocate(3*(natoms+nfudge));
+	memset(dvol.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
 
-	double *ballwmean, *dmean;
-	ballwmean = new double[natoms+nfudge];
-	dmean = new double[3*(natoms+nfudge)];
-	memset(dmean, 0, 3*(natoms+nfudge)*sizeof(double));
+	mean.allocate(natoms+nfudge);
+	dmean.allocate(3*(natoms+nfudge));
+	memset(dmean.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
 
-	double *ballwgauss, *dgauss;
-	ballwgauss = new double[natoms+nfudge];
-	dgauss = new double[3*(natoms+nfudge)];
-	memset(dgauss, 0, 3*(natoms+nfudge)*sizeof(double));
+	gauss.allocate(natoms+nfudge);
+	dgauss.allocate(3*(natoms+nfudge));
+	memset(dgauss.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
 
 	start_s = clock();
-	volumes.ball_dvolumes(vertices, tetra, edges, faces, &WSurf, &WVol,
-	&WMean, &WGauss, &Surf, &Vol, &Mean, &Gauss, ballwsurf, ballwvol,
-	ballwmean, ballwgauss, dsurf, dvol, dmean, dgauss, flag_deriv);
+	volumes.ball_dvolumes(vertices, tetra, edges, faces, &wsurf, &wvol, &wmean, &wgauss, &tsurf, &tvol, &tmean, &tgauss,
+	    surf.ptr(), vol.ptr(), mean.ptr(), gauss.ptr(), dsurf.ptr(), dvol.ptr(), dmean.ptr(), dgauss.ptr(), flag_deriv);
 	stop_s = clock();
 
-	std::cout << "Volumes compute time : " << (stop_s-start_s)/double(CLOCKS_PER_SEC) << " seconds" << std::endl;
+	// std::cout << "Volumes compute time : " << (stop_s-start_s)/double(CLOCKS_PER_SEC) << " seconds" << std::endl;
 
-	std::cout << " " << std::endl;
-	std::cout << "Biomolecule from file      : " << filename << std::endl;
-	std::cout << "Number of atoms (balls)    : " << natoms << std::endl;
-	std::cout << "Probe radius               : " << r_h2o << std::endl;
-	std::cout << "Unweighted surface area    : " << std::setw(16) << std::fixed << std::setprecision(8) << Surf << std::endl;
-	std::cout << "Weighted surface area      : " << std::setw(16) << std::fixed << std::setprecision(8) << WSurf << std::endl;
-	std::cout << "Unweighted volume          : " << std::setw(16) << std::fixed << std::setprecision(8) << Vol << std::endl;
-	std::cout << "Weighted volume            : " << std::setw(16) << std::fixed << std::setprecision(8) << WVol << std::endl;
-	std::cout << "Unweighted mean curvature  : " << std::setw(16) << std::fixed << std::setprecision(8) << Mean << std::endl;
-	std::cout << "Weighted mean curvature    : " << std::setw(16) << std::fixed << std::setprecision(8) << WMean << std::endl;
-	std::cout << "Unweighted Gauss curvature : " << std::setw(16) << std::fixed << std::setprecision(8) << Gauss << std::endl;
-	std::cout << "Weighted Gauss curvature   : " << std::setw(16) << std::fixed << std::setprecision(8) << WGauss << std::endl;
-	std::cout << " " << std::endl;
+	// std::cout << " " << std::endl;
+	// std::cout << "Biomolecule from file      : " << filename << std::endl;
+	// std::cout << "Number of atoms (balls)    : " << natoms << std::endl;
+	// std::cout << "Probe radius               : " << r_h2o << std::endl;
+	// std::cout << "Unweighted surface area    : " << std::setw(16) << std::fixed << std::setprecision(8) << tsurf << std::endl;
+	// std::cout << "Weighted surface area      : " << std::setw(16) << std::fixed << std::setprecision(8) << wsurf << std::endl;
+	// std::cout << "Unweighted volume          : " << std::setw(16) << std::fixed << std::setprecision(8) << tvol << std::endl;
+	// std::cout << "Weighted volume            : " << std::setw(16) << std::fixed << std::setprecision(8) << wvol << std::endl;
+	// std::cout << "Unweighted mean curvature  : " << std::setw(16) << std::fixed << std::setprecision(8) << tmean << std::endl;
+	// std::cout << "Weighted mean curvature    : " << std::setw(16) << std::fixed << std::setprecision(8) << wmean << std::endl;
+	// std::cout << "Unweighted Gauss curvature : " << std::setw(16) << std::fixed << std::setprecision(8) << tgauss << std::endl;
+	// std::cout << "Weighted Gauss curvature   : " << std::setw(16) << std::fixed << std::setprecision(8) << wgauss << std::endl;
+	// std::cout << " " << std::endl;
 
     // std::cout << "Surface derivatives: " << std::endl;
 	// for(int i = 0; i < natoms; i++) {
@@ -157,8 +155,11 @@ void alphamol(double r_h2o, int flag_deriv)
 	// }
 	// std::cout << " " << std::endl;
 
-	delete [] coord; delete [] radii; delete [] coefS; delete [] coefV; delete [] coefM; delete [] coefG;
-	delete [] ballwsurf; delete [] dsurf; delete [] ballwvol; delete [] dvol;
-	delete [] ballwmean; delete [] dmean; delete [] ballwgauss; delete [] dgauss;
+	delete [] coord;
+    delete [] radii;
+    delete [] coefS;
+    delete [] coefV;
+    delete [] coefM;
+    delete [] coefG;
 }
 }

@@ -36,7 +36,7 @@ namespace polmdqc
 // show force field parameters by atom; output the large energy
 // interactions and find electrostatic and inertial properties
 
-void analyze(int argc, char** argv, bool test)
+void analyze(int argc, char** argv)
 {
     int i,j,ixyz;
     int frame;
@@ -63,7 +63,7 @@ void analyze(int argc, char** argv, bool test)
 
     // get the desired types of analysis to be performed
     nextarg(string,exist);
-    if (!exist) {
+    if (!exist and !test) {
         printf("\n The PolQCM Energy Analysis Utility Can :\n");
         // printf("\n General System and Force Field Information [G]");
         // printf("\n Force Field Parameters for Interactions [P]");
@@ -200,7 +200,7 @@ void analyze(int argc, char** argv, bool test)
     while (!informAbort) {
         frame++;
         if (frame > 1) {
-            printf("\n Analysis for Archive Structure :        %8d\n", frame);
+            if (!test) printf("\n Analysis for Archive Structure :        %8d\n", frame);
             if (nold != n) {
                 mechanic();
             }
@@ -219,10 +219,10 @@ void analyze(int argc, char** argv, bool test)
 //          if (dosystem) call systyze
 
         // make the call to compute the potential energy
-        if (doenergy or doatom or dolarge) enrgyze();
+        if (doenergy or doatom or dolarge) enrgyze(test);
 // c
         // energy partitioning by potential energy components
-        if (doenergy) partyze();
+        if (doenergy and !test) partyze();
 // c
 // c     get the various electrostatic and inertial moments
 // c

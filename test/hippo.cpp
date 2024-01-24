@@ -6,6 +6,7 @@
 #include "energi.h"
 #include "final.h"
 #include "hippo.h"
+#include "inform.h"
 #include "inter.h"
 #include "testgrad.h"
 #include "testrt.h"
@@ -22,7 +23,8 @@ TEST_CASE("hippo-1", "[analyze][HIPPO][water21]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == hippo1::nem);
 
@@ -47,7 +49,8 @@ TEST_CASE("hippo-2", "[testgrad][HIPPO][water21]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv, true);
+    test = true;
+    testgrad(argc, argv);
 
     COMPARE_VECTOR(desum, hippo2::desum, hippo2::eps1);
     COMPARE_VECTOR(dem, hippo2::dem, hippo2::eps1);

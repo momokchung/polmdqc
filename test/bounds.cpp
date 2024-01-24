@@ -4,6 +4,7 @@
 #include "bounds.h"
 #include "energi.h"
 #include "final.h"
+#include "inform.h"
 #include "inter.h"
 #include "testrt.h"
 
@@ -21,7 +22,8 @@ TEST_CASE("bounds-1", "[analyze][AMOEBA][orthogonal]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == bounds1::nem);
 
@@ -44,7 +46,8 @@ TEST_CASE("bounds-2", "[analyze][AMOEBA][monoclinic]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == bounds2::nem);
 
@@ -67,7 +70,8 @@ TEST_CASE("bounds-3", "[analyze][AMOEBA][triclinic]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == bounds3::nem);
 
@@ -90,7 +94,8 @@ TEST_CASE("bounds-4", "[analyze][AMOEBA][octahedron]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == bounds4::nem);
 
@@ -113,7 +118,8 @@ TEST_CASE("bounds-5", "[analyze][AMOEBA][dodecahedron]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == bounds5::nem);
 

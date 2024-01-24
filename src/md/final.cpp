@@ -28,6 +28,20 @@ void final()
     ifit.deallocate();
     wfit.deallocate();
 
+    // deallocation of global arrays from module alphmol
+    surf.deallocate();
+    vol.deallocate();
+    mean.deallocate();
+    gauss.deallocate();
+    dsurf.deallocate();
+    dvol.deallocate();
+    dmean.deallocate();
+    dgauss.deallocate();
+    ndsurf.deallocate();
+    ndvol.deallocate();
+    ndmean.deallocate();
+    ndgauss.deallocate();
+
     // deallocation of global arrays from module analyz
     aesum.deallocate();
     aeb.deallocate();

@@ -6,6 +6,7 @@
 #include "deriv.h"
 #include "energi.h"
 #include "final.h"
+#include "inform.h"
 #include "inter.h"
 #include "testgrad.h"
 #include "testrt.h"
@@ -22,7 +23,8 @@ TEST_CASE("amoebap-1", "[analyze][AMOEBAPLUS][waterap]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == amoebap1::nem);
 
@@ -47,7 +49,8 @@ TEST_CASE("amoebap-2", "[testgrad][AMOEBAPLUS][waterap]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv, true);
+    test = true;
+    testgrad(argc, argv);
 
     COMPARE_VECTOR(desum, amoebap2::desum, amoebap2::eps1);
     COMPARE_VECTOR(dem, amoebap2::dem, amoebap2::eps1);

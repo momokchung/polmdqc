@@ -6,6 +6,7 @@
 #include "deriv.h"
 #include "energi.h"
 #include "final.h"
+#include "inform.h"
 #include "inter.h"
 #include "testgrad.h"
 #include "testrt.h"
@@ -26,7 +27,8 @@ TEST_CASE("active-1", "[analyze][AMOEBA][water09_Na_Cls]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == active1::nem);
 
@@ -58,7 +60,8 @@ TEST_CASE("active-2", "[analyze][AMOEBA][water09_Na_Cls]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == active2::nem);
 
@@ -88,7 +91,8 @@ TEST_CASE("active-3", "[analyze][AMOEBA][waterbox30]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == active3::nem);
 

@@ -2,6 +2,7 @@
 // Year:   2023
 
 #include "analyze.h"
+#include "inform.h"
 
 //////////////////
 //              //
@@ -11,5 +12,6 @@
 
 int main(int argc, char** argv)
 {
+    polmdqc::test = false;
     polmdqc::analyze(argc, argv);
 }

@@ -16,7 +16,7 @@
 #include "mechanic.h"
 #include "nextarg.h"
 #include "output.h"
-#include "readcart.cpp"
+#include "readcart.h"
 #include "upcase.h"
 #include "usage.h"
 #include <iostream>
@@ -37,7 +37,7 @@ namespace polmdqc
 
 void resizeNumDer();
 
-void testgrad(int argc, char** argv, bool test)
+void testgrad(int argc, char** argv)
 {
     constexpr CalcMode EnergyMode = CalcMode::Energy;
     constexpr CalcMode GradientMode = CalcMode::Gradient;
@@ -146,7 +146,7 @@ void testgrad(int argc, char** argv, bool test)
     while (!informAbort) {
         frame++;
         if (frame > 1) {
-            printf("\n Analysis for Archive Structure :        %8d\n", frame);
+            if (!test) printf("\n Analysis for Archive Structure :        %8d\n", frame);
             if (nold != n) {
                 mechanic();
                 denorm.resize(n);
@@ -185,57 +185,62 @@ void testgrad(int argc, char** argv, bool test)
                 width = 16;
                 precision = 4;
             }
-            printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, esum);
-
-            // print the energy breakdown over individual components
-            printf("\n Potential Energy Breakdown by Individual Components :\n");
-
-            if (digits >= 8) {
-                printf("\n  Energy       EB              EA              EBA             EUB");
-                printf("\n  Terms        EAA             EOPB            EOPD            EID");
-                printf("\n               EIT             ET              EPT             EBT");
-                printf("\n               EAT             ETT             EV              ER");
-                printf("\n               EDSP            EC              ECD             ED");
-                printf("\n               EM              EP              ECT             ERXF");
-                printf("\n               ES              ELF             EG              EX\n");
-                printf("\n      %16.8f%16.8f%16.8f%16.8f", eb, ea, eba, eub);
-                printf("\n      %16.8f%16.8f%16.8f%16.8f", eaa, eopb, eopd, eid);
-                printf("\n      %16.8f%16.8f%16.8f%16.8f", eit, et, ept, ebt);
-                printf("\n      %16.8f%16.8f%16.8f%16.8f", eat, ett, ev, er);
-                printf("\n      %16.8f%16.8f%16.8f%16.8f", edsp, ec, ecd, ed);
-                printf("\n      %16.8f%16.8f%16.8f%16.8f", em, ep, ect, erxf);
-                printf("\n      %16.8f%16.8f%16.8f%16.8f\n", es, elf, eg, ex);
+            if (!test) {
+                printf("\n Total Potential Energy :%*s%*.*f Kcal/mole\n", numSpaces, "", width, precision, esum);
             }
-            else if (digits >= 6) {
-                printf("\n  Energy      EB            EA            EBA           EUB           EAA");
-                printf("\n  Terms       EOPB          EOPD          EID           EIT           ET");
-                printf("\n              EPT           EBT           EAT           ETT           EV");
-                printf("\n              ER            EDSP          EC            ECD           ED");
-                printf("\n              EM            EP            ECT           ERXF          ES");
-                printf("\n              ELF           EG            EX\n");
-                printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", eb, ea, eba, eub, eaa);
-                printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", eopb, eopd, eid, eit, et);
-                printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", ept, ebt, eat, ett, ev);
-                printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", er, edsp, ec, ecd, ed);
-                printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", em, ep, ect, erxf, es);
-                printf("\n      %14.6f%14.6f%14.6f\n", elf, eg, ex);
-            }
-            else {
-                printf("\n  Energy      EB          EA          EBA         EUB         EAA         EOPB");
-                printf("\n  Terms       EOPD        EID         EIT         ET          EPT         EBT");
-                printf("\n              EAT         ETT         EV          ER          EDSP        EC");
-                printf("\n              ECD         ED          EM          EP          ECT         ERXF");
-                printf("\n              ES          ELF         EG          EX\n");
-                printf("\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f", eb, ea, eba, eub, eaa, eopb);
-                printf("\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f", eopd, eid, eit, et, ept, ebt);
-                printf("\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f", eat, ett, ev, er, edsp, ec);
-                printf("\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f", ecd, ed, em, ep, ect, erxf);
-                printf("\n      %12.4f%12.4f%12.4f%12.4f\n", es, elf, eg, ex);
+
+            
+            if (!test) {
+                // print the energy breakdown over individual components
+                printf("\n Potential Energy Breakdown by Individual Components :\n");
+
+                if (digits >= 8) {
+                    printf("\n  Energy       EB              EA              EBA             EUB");
+                    printf("\n  Terms        EAA             EOPB            EOPD            EID");
+                    printf("\n               EIT             ET              EPT             EBT");
+                    printf("\n               EAT             ETT             EV              ER");
+                    printf("\n               EDSP            EC              ECD             ED");
+                    printf("\n               EM              EP              ECT             ERXF");
+                    printf("\n               ES              ELF             EG              EX\n");
+                    printf("\n      %16.8f%16.8f%16.8f%16.8f", eb, ea, eba, eub);
+                    printf("\n      %16.8f%16.8f%16.8f%16.8f", eaa, eopb, eopd, eid);
+                    printf("\n      %16.8f%16.8f%16.8f%16.8f", eit, et, ept, ebt);
+                    printf("\n      %16.8f%16.8f%16.8f%16.8f", eat, ett, ev, er);
+                    printf("\n      %16.8f%16.8f%16.8f%16.8f", edsp, ec, ecd, ed);
+                    printf("\n      %16.8f%16.8f%16.8f%16.8f", em, ep, ect, erxf);
+                    printf("\n      %16.8f%16.8f%16.8f%16.8f\n", es, elf, eg, ex);
+                }
+                else if (digits >= 6) {
+                    printf("\n  Energy      EB            EA            EBA           EUB           EAA");
+                    printf("\n  Terms       EOPB          EOPD          EID           EIT           ET");
+                    printf("\n              EPT           EBT           EAT           ETT           EV");
+                    printf("\n              ER            EDSP          EC            ECD           ED");
+                    printf("\n              EM            EP            ECT           ERXF          ES");
+                    printf("\n              ELF           EG            EX\n");
+                    printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", eb, ea, eba, eub, eaa);
+                    printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", eopb, eopd, eid, eit, et);
+                    printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", ept, ebt, eat, ett, ev);
+                    printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", er, edsp, ec, ecd, ed);
+                    printf("\n      %14.6f%14.6f%14.6f%14.6f%14.6f", em, ep, ect, erxf, es);
+                    printf("\n      %14.6f%14.6f%14.6f\n", elf, eg, ex);
+                }
+                else {
+                    printf("\n  Energy      EB          EA          EBA         EUB         EAA         EOPB");
+                    printf("\n  Terms       EOPD        EID         EIT         ET          EPT         EBT");
+                    printf("\n              EAT         ETT         EV          ER          EDSP        EC");
+                    printf("\n              ECD         ED          EM          EP          ECT         ERXF");
+                    printf("\n              ES          ELF         EG          EX\n");
+                    printf("\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f", eb, ea, eba, eub, eaa, eopb);
+                    printf("\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f", eopd, eid, eit, et, ept, ebt);
+                    printf("\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f", eat, ett, ev, er, edsp, ec);
+                    printf("\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f", ecd, ed, em, ep, ect, erxf);
+                    printf("\n      %12.4f%12.4f%12.4f%12.4f\n", es, elf, eg, ex);
+                }
             }
         }
 
         // print a header for the gradients of individual potentials
-        if (dofull) {
+        if (dofull and !test) {
             printf("\n Cartesian Gradient Breakdown by Individual Components :\n");
             if (digits >= 8) {
                 printf("\n  Atom         d EB            d EA            d EBA           d EUB");
@@ -365,93 +370,97 @@ void testgrad(int argc, char** argv, bool test)
             if (dofull and use[i+1]) {
                 for (int j = 0; j < 3; j++) {
                     if (doanalyt) {
-                        if (digits >= 8) {
-                            printf("\n%6d%16.8f%16.8f%16.8f%16.8f"
-                               "\n     %c%16.8f%16.8f%16.8f%16.8f"
-                                "\n Anlyt%16.8f%16.8f%16.8f%16.8f"
-                                "\n      %16.8f%16.8f%16.8f%16.8f"
-                                "\n      %16.8f%16.8f%16.8f%16.8f"
-                                "\n      %16.8f%16.8f%16.8f%16.8f"
-                                "\n      %16.8f%16.8f%16.8f%16.8f\n",
-                                i+1,deb[3*i+j],dea[3*i+j],deba[3*i+j],deub[3*i+j],
-                                axis[j],deaa[3*i+j],deopb[3*i+j],deopd[3*i+j],deid[3*i+j],
-                                deit[3*i+j],det[3*i+j],dept[3*i+j],debt[3*i+j],
-                                deat[3*i+j],dett[3*i+j],dev[3*i+j],der[3*i+j],
-                                dedsp[3*i+j],dec[3*i+j],decd[3*i+j],ded[3*i+j],
-                                dem[3*i+j],dep[3*i+j],dect[3*i+j],derxf[3*i+j],
-                                des[3*i+j],delf[3*i+j],deg[3*i+j],dex[3*i+j]);
-                        }
-                        else if (digits >= 6) {
-                            printf("\n%6d%14.6f%14.6f%14.6f%14.6f%14.6f"
-                               "\n     %c%14.6f%14.6f%14.6f%14.6f%14.6f"
-                                "\n Anlyt%14.6f%14.6f%14.6f%14.6f%14.6f"
-                                "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
-                                "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
-                                "\n      %14.6f%14.6f%14.6f\n",
-                                i+1,deb[3*i+j],dea[3*i+j],deba[3*i+j],deub[3*i+j],deaa[3*i+j],
-                                axis[j],deopb[3*i+j],deopd[3*i+j],deid[3*i+j],deit[3*i+j],det[3*i+j],
-                                dept[3*i+j],debt[3*i+j],deat[3*i+j],dett[3*i+j],dev[3*i+j],
-                                der[3*i+j],dedsp[3*i+j],dec[3*i+j],decd[3*i+j],ded[3*i+j],
-                                dem[3*i+j],dep[3*i+j],dect[3*i+j],derxf[3*i+j],des[3*i+j],
-                                delf[3*i+j],deg[3*i+j],dex[3*i+j]);
-                        }
-                        else {
-                            printf("\n%6d%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
-                               "\n     %c%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
-                                "\n Anlyt%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
-                                "\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
-                                "\n      %12.4f%12.4f%12.4f%12.4f\n",
-                                i+1,deb[3*i+j],dea[3*i+j],deba[3*i+j],deub[3*i+j],deaa[3*i+j],deopb[3*i+j],
-                                axis[j],deopd[3*i+j],deid[3*i+j],deit[3*i+j],det[3*i+j],dept[3*i+j],debt[3*i+j],
-                                deat[3*i+j],dett[3*i+j],dev[3*i+j],der[3*i+j],dedsp[3*i+j],dec[3*i+j],
-                                decd[3*i+j],ded[3*i+j],dem[3*i+j],dep[3*i+j],dect[3*i+j],derxf[3*i+j],
-                                des[3*i+j],delf[3*i+j],deg[3*i+j],dex[3*i+j]);
+                        if (!test) {
+                            if (digits >= 8) {
+                                printf("\n%6d%16.8f%16.8f%16.8f%16.8f"
+                                "\n     %c%16.8f%16.8f%16.8f%16.8f"
+                                    "\n Anlyt%16.8f%16.8f%16.8f%16.8f"
+                                    "\n      %16.8f%16.8f%16.8f%16.8f"
+                                    "\n      %16.8f%16.8f%16.8f%16.8f"
+                                    "\n      %16.8f%16.8f%16.8f%16.8f"
+                                    "\n      %16.8f%16.8f%16.8f%16.8f\n",
+                                    i+1,deb[3*i+j],dea[3*i+j],deba[3*i+j],deub[3*i+j],
+                                    axis[j],deaa[3*i+j],deopb[3*i+j],deopd[3*i+j],deid[3*i+j],
+                                    deit[3*i+j],det[3*i+j],dept[3*i+j],debt[3*i+j],
+                                    deat[3*i+j],dett[3*i+j],dev[3*i+j],der[3*i+j],
+                                    dedsp[3*i+j],dec[3*i+j],decd[3*i+j],ded[3*i+j],
+                                    dem[3*i+j],dep[3*i+j],dect[3*i+j],derxf[3*i+j],
+                                    des[3*i+j],delf[3*i+j],deg[3*i+j],dex[3*i+j]);
+                            }
+                            else if (digits >= 6) {
+                                printf("\n%6d%14.6f%14.6f%14.6f%14.6f%14.6f"
+                                "\n     %c%14.6f%14.6f%14.6f%14.6f%14.6f"
+                                    "\n Anlyt%14.6f%14.6f%14.6f%14.6f%14.6f"
+                                    "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
+                                    "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
+                                    "\n      %14.6f%14.6f%14.6f\n",
+                                    i+1,deb[3*i+j],dea[3*i+j],deba[3*i+j],deub[3*i+j],deaa[3*i+j],
+                                    axis[j],deopb[3*i+j],deopd[3*i+j],deid[3*i+j],deit[3*i+j],det[3*i+j],
+                                    dept[3*i+j],debt[3*i+j],deat[3*i+j],dett[3*i+j],dev[3*i+j],
+                                    der[3*i+j],dedsp[3*i+j],dec[3*i+j],decd[3*i+j],ded[3*i+j],
+                                    dem[3*i+j],dep[3*i+j],dect[3*i+j],derxf[3*i+j],des[3*i+j],
+                                    delf[3*i+j],deg[3*i+j],dex[3*i+j]);
+                            }
+                            else {
+                                printf("\n%6d%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
+                                "\n     %c%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
+                                    "\n Anlyt%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
+                                    "\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
+                                    "\n      %12.4f%12.4f%12.4f%12.4f\n",
+                                    i+1,deb[3*i+j],dea[3*i+j],deba[3*i+j],deub[3*i+j],deaa[3*i+j],deopb[3*i+j],
+                                    axis[j],deopd[3*i+j],deid[3*i+j],deit[3*i+j],det[3*i+j],dept[3*i+j],debt[3*i+j],
+                                    deat[3*i+j],dett[3*i+j],dev[3*i+j],der[3*i+j],dedsp[3*i+j],dec[3*i+j],
+                                    decd[3*i+j],ded[3*i+j],dem[3*i+j],dep[3*i+j],dect[3*i+j],derxf[3*i+j],
+                                    des[3*i+j],delf[3*i+j],deg[3*i+j],dex[3*i+j]);
+                            }
                         }
                     }
 
                     // print numerical gradients of each energy term for each atom
                     if (donumer) {
-                        if (digits >= 8) {
-                            printf("\n%6d%16.8f%16.8f%16.8f%16.8f"
-                               "\n     %c%16.8f%16.8f%16.8f%16.8f"
-                                "\n Numer%16.8f%16.8f%16.8f%16.8f"
-                                "\n      %16.8f%16.8f%16.8f%16.8f"
-                                "\n      %16.8f%16.8f%16.8f%16.8f"
-                                "\n      %16.8f%16.8f%16.8f%16.8f"
-                                "\n      %16.8f%16.8f%16.8f%16.8f\n",
-                                i+1,ndeb[3*i+j],ndea[3*i+j],ndeba[3*i+j],ndeub[3*i+j],
-                                axis[j],ndeaa[3*i+j],ndeopb[3*i+j],ndeopd[3*i+j],ndeid[3*i+j],
-                                ndeit[3*i+j],ndet[3*i+j],ndept[3*i+j],ndebt[3*i+j],
-                                ndeat[3*i+j],ndett[3*i+j],ndev[3*i+j],nder[3*i+j],
-                                ndedsp[3*i+j],ndec[3*i+j],ndecd[3*i+j],nded[3*i+j],
-                                ndem[3*i+j],ndep[3*i+j],ndect[3*i+j],nderxf[3*i+j],
-                                ndes[3*i+j],ndelf[3*i+j],ndeg[3*i+j],ndex[3*i+j]);
-                        }
-                        else if (digits >= 6) {
-                            printf("\n%6d%14.6f%14.6f%14.6f%14.6f%14.6f"
-                               "\n     %c%14.6f%14.6f%14.6f%14.6f%14.6f"
-                                "\n Numer%14.6f%14.6f%14.6f%14.6f%14.6f"
-                                "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
-                                "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
-                                "\n      %14.6f%14.6f%14.6f\n",
-                                i+1,ndeb[3*i+j],ndea[3*i+j],ndeba[3*i+j],ndeub[3*i+j],ndeaa[3*i+j],
-                                axis[j],ndeopb[3*i+j],ndeopd[3*i+j],ndeid[3*i+j],ndeit[3*i+j],ndet[3*i+j],
-                                ndept[3*i+j],ndebt[3*i+j],ndeat[3*i+j],ndett[3*i+j],ndev[3*i+j],
-                                nder[3*i+j],ndedsp[3*i+j],ndec[3*i+j],ndecd[3*i+j],nded[3*i+j],
-                                ndem[3*i+j],ndep[3*i+j],ndect[3*i+j],nderxf[3*i+j],ndes[3*i+j],
-                                ndelf[3*i+j],ndeg[3*i+j],ndex[3*i+j]);
-                        }
-                        else {
-                            printf("\n%6d%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
-                               "\n     %c%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
-                                "\n Numer%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
-                                "\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
-                                "\n      %12.4f%12.4f%12.4f%12.4f\n",
-                                i+1,ndeb[3*i+j],ndea[3*i+j],ndeba[3*i+j],ndeub[3*i+j],ndeaa[3*i+j],ndeopb[3*i+j],
-                                axis[j],ndeopd[3*i+j],ndeid[3*i+j],ndeit[3*i+j],ndet[3*i+j],ndept[3*i+j],ndebt[3*i+j],
-                                ndeat[3*i+j],ndett[3*i+j],ndev[3*i+j],nder[3*i+j],ndedsp[3*i+j],ndec[3*i+j],
-                                ndecd[3*i+j],nded[3*i+j],ndem[3*i+j],ndep[3*i+j],ndect[3*i+j],nderxf[3*i+j],
-                                ndes[3*i+j],ndelf[3*i+j],ndeg[3*i+j],ndex[3*i+j]);
+                        if (!test) {
+                            if (digits >= 8) {
+                                printf("\n%6d%16.8f%16.8f%16.8f%16.8f"
+                                "\n     %c%16.8f%16.8f%16.8f%16.8f"
+                                    "\n Numer%16.8f%16.8f%16.8f%16.8f"
+                                    "\n      %16.8f%16.8f%16.8f%16.8f"
+                                    "\n      %16.8f%16.8f%16.8f%16.8f"
+                                    "\n      %16.8f%16.8f%16.8f%16.8f"
+                                    "\n      %16.8f%16.8f%16.8f%16.8f\n",
+                                    i+1,ndeb[3*i+j],ndea[3*i+j],ndeba[3*i+j],ndeub[3*i+j],
+                                    axis[j],ndeaa[3*i+j],ndeopb[3*i+j],ndeopd[3*i+j],ndeid[3*i+j],
+                                    ndeit[3*i+j],ndet[3*i+j],ndept[3*i+j],ndebt[3*i+j],
+                                    ndeat[3*i+j],ndett[3*i+j],ndev[3*i+j],nder[3*i+j],
+                                    ndedsp[3*i+j],ndec[3*i+j],ndecd[3*i+j],nded[3*i+j],
+                                    ndem[3*i+j],ndep[3*i+j],ndect[3*i+j],nderxf[3*i+j],
+                                    ndes[3*i+j],ndelf[3*i+j],ndeg[3*i+j],ndex[3*i+j]);
+                            }
+                            else if (digits >= 6) {
+                                printf("\n%6d%14.6f%14.6f%14.6f%14.6f%14.6f"
+                                "\n     %c%14.6f%14.6f%14.6f%14.6f%14.6f"
+                                    "\n Numer%14.6f%14.6f%14.6f%14.6f%14.6f"
+                                    "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
+                                    "\n      %14.6f%14.6f%14.6f%14.6f%14.6f"
+                                    "\n      %14.6f%14.6f%14.6f\n",
+                                    i+1,ndeb[3*i+j],ndea[3*i+j],ndeba[3*i+j],ndeub[3*i+j],ndeaa[3*i+j],
+                                    axis[j],ndeopb[3*i+j],ndeopd[3*i+j],ndeid[3*i+j],ndeit[3*i+j],ndet[3*i+j],
+                                    ndept[3*i+j],ndebt[3*i+j],ndeat[3*i+j],ndett[3*i+j],ndev[3*i+j],
+                                    nder[3*i+j],ndedsp[3*i+j],ndec[3*i+j],ndecd[3*i+j],nded[3*i+j],
+                                    ndem[3*i+j],ndep[3*i+j],ndect[3*i+j],nderxf[3*i+j],ndes[3*i+j],
+                                    ndelf[3*i+j],ndeg[3*i+j],ndex[3*i+j]);
+                            }
+                            else {
+                                printf("\n%6d%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
+                                "\n     %c%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
+                                    "\n Numer%12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
+                                    "\n      %12.4f%12.4f%12.4f%12.4f%12.4f%12.4f"
+                                    "\n      %12.4f%12.4f%12.4f%12.4f\n",
+                                    i+1,ndeb[3*i+j],ndea[3*i+j],ndeba[3*i+j],ndeub[3*i+j],ndeaa[3*i+j],ndeopb[3*i+j],
+                                    axis[j],ndeopd[3*i+j],ndeid[3*i+j],ndeit[3*i+j],ndet[3*i+j],ndept[3*i+j],ndebt[3*i+j],
+                                    ndeat[3*i+j],ndett[3*i+j],ndev[3*i+j],nder[3*i+j],ndedsp[3*i+j],ndec[3*i+j],
+                                    ndecd[3*i+j],nded[3*i+j],ndem[3*i+j],ndep[3*i+j],ndect[3*i+j],nderxf[3*i+j],
+                                    ndes[3*i+j],ndelf[3*i+j],ndeg[3*i+j],ndex[3*i+j]);
+                            }
                         }
                     }
                 }
@@ -459,7 +468,7 @@ void testgrad(int argc, char** argv, bool test)
         }
 
         // print the total gradient components for each atom
-        if (doanalyt or donumer) {
+        if ((doanalyt or donumer) and !test) {
             printf("\n Cartesian Gradient Breakdown over Individual Atoms :\n");
             int s1,s2,s3,s4,s5;
             if (digits >= 8) {
@@ -473,95 +482,97 @@ void testgrad(int argc, char** argv, bool test)
             }
             printf("\n  Type%*sAtom%*sdE/dX%*sdE/dY%*sdE/dZ%*sNorm\n\n", s1,"",s2,"",s3,"",s4,"",s5,"");
         }
-        totnorm = 0.;
-        ntotnorm = 0.;
-        for (int i = 0; i < n; i++) {
-            if (doanalyt and use[i+1]) {
-                denorm[i] = REAL_POW(desum[i+0],2) + REAL_POW(desum[i+1],2) + REAL_POW(desum[i+2],2);
-                totnorm = totnorm + denorm[i];
-                denorm[i] = REAL_SQRT(denorm[i]);
+        if (!test) {
+            totnorm = 0.;
+            ntotnorm = 0.;
+            for (int i = 0; i < n; i++) {
+                if (doanalyt and use[i+1]) {
+                    denorm[i] = REAL_POW(desum[3*i+0],2) + REAL_POW(desum[3*i+1],2) + REAL_POW(desum[3*i+2],2);
+                    totnorm = totnorm + denorm[i];
+                    denorm[i] = REAL_SQRT(denorm[i]);
+                    if (digits >= 8) {
+                        printf(" Anlyt%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,desum[3*i+0],desum[3*i+1],desum[3*i+2],denorm[i]);
+                    }
+                    else if (digits >= 6) {
+                        printf(" Anlyt  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,desum[3*i+0],desum[3*i+1],desum[3*i+2],denorm[i]);
+                    }
+                    else {
+                        printf(" Anlyt  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,desum[3*i+0],desum[3*i+1],desum[3*i+2],denorm[i]);
+                    }
+                }
+                if (donumer and use[i+1]) {
+                    ndenorm[i] = REAL_POW(ndesum[3*i+0],2) + REAL_POW(ndesum[3*i+1],2) + REAL_POW(ndesum[3*i+2],2);
+                    ntotnorm = ntotnorm + ndenorm[i];
+                    ndenorm[i] = REAL_SQRT(ndenorm[i]);
+                    if (digits >= 8) {
+                        printf(" Numer%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,ndesum[3*i+0],ndesum[3*i+1],ndesum[3*i+2],ndenorm[i]);
+                    }
+                    else if (digits >= 6) {
+                        printf(" Numer  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,ndesum[3*i+0],ndesum[3*i+1],ndesum[3*i+2],ndenorm[i]);
+                    }
+                    else {
+                        printf(" Numer  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,ndesum[3*i+0],ndesum[3*i+1],ndesum[3*i+2],ndenorm[i]);
+                    }
+                }
+            }
+
+            // print the total norm for the analytical gradient
+            if (doanalyt or donumer) {
+                printf("\n Total Gradient Norm and RMS Gradient per Atom :\n");
+            }
+            if (doanalyt) {
+                totnorm = REAL_SQRT(totnorm);
                 if (digits >= 8) {
-                    printf(" Anlyt%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,desum[i+0],desum[i+1],desum[i+2],denorm[i]);
+                    printf("\n Anlyt      Total Gradient Norm Value      %20.8f\n", totnorm);
                 }
                 else if (digits >= 6) {
-                    printf(" Anlyt  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,desum[i+0],desum[i+1],desum[i+2],denorm[i]);
+                    printf("\n Anlyt      Total Gradient Norm Value      %18.6f\n", totnorm);
                 }
                 else {
-                    printf(" Anlyt  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,desum[i+0],desum[i+1],desum[i+2],denorm[i]);
+                    printf("\n Anlyt      Total Gradient Norm Value      %16.4f\n", totnorm);
                 }
             }
-            if (donumer and use[i+1]) {
-                ndenorm[i] = REAL_POW(ndesum[i+0],2) + REAL_POW(ndesum[i+1],2) + REAL_POW(ndesum[i+2],2);
-                ntotnorm = ntotnorm + ndenorm[i];
-                ndenorm[i] = REAL_SQRT(ndenorm[i]);
+
+            // print the total norm for the numerical gradient
+            if (donumer) {
+                ntotnorm = REAL_SQRT(ntotnorm);
                 if (digits >= 8) {
-                    printf(" Numer%8d %16.8f%16.8f%16.8f%16.8f\n", i+1,ndesum[i+0],ndesum[i+1],ndesum[i+2],ndenorm[i]);
+                    printf(" Numer      Total Gradient Norm Value      %20.8f\n", ntotnorm);
                 }
                 else if (digits >= 6) {
-                    printf(" Numer  %8d   %14.6f%14.6f%14.6f  %14.6f\n", i+1,ndesum[i+0],ndesum[i+1],ndesum[i+2],ndenorm[i]);
+                    printf(" Numer      Total Gradient Norm Value      %18.6f\n", ntotnorm);
                 }
                 else {
-                    printf(" Numer  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,ndesum[i+0],ndesum[i+1],ndesum[i+2],ndenorm[i]);
+                    printf(" Numer      Total Gradient Norm Value      %16.4f\n", ntotnorm);
                 }
             }
-        }
 
-        // print the total norm for the analytical gradient
-        if (doanalyt or donumer) {
-            printf("\n Total Gradient Norm and RMS Gradient per Atom :\n");
-        }
-        if (doanalyt) {
-            totnorm = REAL_SQRT(totnorm);
-            if (digits >= 8) {
-                printf("\n Anlyt      Total Gradient Norm Value      %20.8f\n", totnorm);
+            // print the rms per atom norm for the analytical gradient
+            if (doanalyt) {
+                rms = totnorm / REAL_SQRT(static_cast<real>(nuse));
+                if (digits >= 8) {
+                    printf("\n Anlyt      RMS Gradient over All Atoms    %20.8f\n", rms);
+                }
+                else if (digits >= 6) {
+                    printf("\n Anlyt      RMS Gradient over All Atoms    %18.6f\n", rms);
+                }
+                else {
+                    printf("\n Anlyt      RMS Gradient over All Atoms    %16.4f\n", rms);
+                }
             }
-            else if (digits >= 6) {
-                printf("\n Anlyt      Total Gradient Norm Value      %18.6f\n", totnorm);
-            }
-            else {
-                printf("\n Anlyt      Total Gradient Norm Value      %16.4f\n", totnorm);
-            }
-        }
 
-        // print the total norm for the numerical gradient
-        if (donumer) {
-            ntotnorm = REAL_SQRT(ntotnorm);
-            if (digits >= 8) {
-                printf(" Numer      Total Gradient Norm Value      %20.8f\n", ntotnorm);
-            }
-            else if (digits >= 6) {
-                printf(" Numer      Total Gradient Norm Value      %18.6f\n", ntotnorm);
-            }
-            else {
-                printf(" Numer      Total Gradient Norm Value      %16.4f\n", ntotnorm);
-            }
-        }
-
-        // print the rms per atom norm for the analytical gradient
-        if (doanalyt) {
-            rms = totnorm / REAL_SQRT(static_cast<real>(nuse));
-            if (digits >= 8) {
-                printf("\n Anlyt      RMS Gradient over All Atoms    %20.8f\n", rms);
-            }
-            else if (digits >= 6) {
-                printf("\n Anlyt      RMS Gradient over All Atoms    %18.6f\n", rms);
-            }
-            else {
-                printf("\n Anlyt      RMS Gradient over All Atoms    %16.4f\n", rms);
-            }
-        }
-
-        // print the rms per atom norm for the numerical gradient
-        if (donumer) {
-            nrms = ntotnorm / REAL_SQRT(static_cast<real>(nuse));
-            if (digits >= 8) {
-                printf(" Numer      RMS Gradient over All Atoms    %20.8f\n", nrms);
-            }
-            else if (digits >= 6) {
-                printf(" Numer      RMS Gradient over All Atoms    %18.6f\n", nrms);
-            }
-            else {
-                printf(" Numer      RMS Gradient over All Atoms    %16.4f\n", nrms);
+            // print the rms per atom norm for the numerical gradient
+            if (donumer) {
+                nrms = ntotnorm / REAL_SQRT(static_cast<real>(nuse));
+                if (digits >= 8) {
+                    printf(" Numer      RMS Gradient over All Atoms    %20.8f\n", nrms);
+                }
+                else if (digits >= 6) {
+                    printf(" Numer      RMS Gradient over All Atoms    %18.6f\n", nrms);
+                }
+                else {
+                    printf(" Numer      RMS Gradient over All Atoms    %16.4f\n", nrms);
+                }
             }
         }
 

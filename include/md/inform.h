@@ -24,6 +24,7 @@ namespace polmdqc
 // silent        logical flag to turn off all information printing
 // holdup        logical flag to wait for carriage return on exit
 // informAbort   logical flag to stop execution at next chance
+// test          logical flag to turn on testing mode
 
 constexpr int maxask = 5;
 MDQC_EXTERN int gpucard,digits;
@@ -32,4 +33,5 @@ MDQC_EXTERN int isend;
 MDQC_EXTERN bool verbose,debug;
 MDQC_EXTERN bool silent,holdup;
 MDQC_EXTERN bool informAbort;
+MDQC_EXTERN bool test;
 }

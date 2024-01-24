@@ -6,6 +6,7 @@
 #include "deriv.h"
 #include "energi.h"
 #include "final.h"
+#include "inform.h"
 #include "inter.h"
 #include "testgrad.h"
 #include "testrt.h"
@@ -23,7 +24,8 @@ TEST_CASE("amoebaMisc-1", "[analyze][AMOEBA][water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == amoebaMisc1::nem);
 
@@ -47,7 +49,8 @@ TEST_CASE("amoebaMisc-2", "[analyze][AMOEBA][alatet_water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == amoebaMisc2::nem);
 
@@ -73,7 +76,8 @@ TEST_CASE("amoebaMisc-3", "[testgrad][AMOEBA][alatet_water09]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    testgrad(argc, argv, true);
+    test = true;
+    testgrad(argc, argv);
 
     COMPARE_VECTOR(desum, amoebaMisc3::desum, amoebaMisc3::eps1);
     COMPARE_VECTOR(dem, amoebaMisc3::dem, amoebaMisc3::eps1);
@@ -94,7 +98,8 @@ TEST_CASE("amoebaMisc-5", "[analyze][AMOEBA][water09NSeq]") {
     };
     char** argv = const_cast<char**>(strings);
 
-    analyze(argc, argv, true);
+    test = true;
+    analyze(argc, argv);
 
     REQUIRE(nem == amoebaMisc5::nem);
 

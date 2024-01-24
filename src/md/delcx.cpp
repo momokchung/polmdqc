@@ -88,6 +88,8 @@ void DELCX::setup(int npoints, double *coord, double *radii, double *coefS, doub
 			vert.status = 0;
 			vertices.push_back(vert);
 		}
+        delete [] bcoord;
+        delete [] brad;
 	}
 
 /* ====================================================================
