@@ -10,6 +10,7 @@
 #include "energy.h"
 #include "fatal.h"
 #include "inter.h"
+#include "openmp.h"
 #include "potent.h"
 #include "virial.h"
 #include <cmath>
@@ -70,6 +71,9 @@ void energy()
 
     // zero out the total intermolecular energy
     if constexpr (do_a) einter = 0.;
+
+    // perform dynamic allocation of escale
+    escale.allocate(nthread,n);
 
     if constexpr (do_a) {
         // perform dynamic allocation of some global arrays

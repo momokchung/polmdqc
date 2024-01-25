@@ -197,6 +197,9 @@ void final()
     ndeg.deallocate();
     ndex.deallocate();
 
+    // deallocation of global arrays from module energi
+    escale.deallocate();
+
     // deallocation of global arrays from module expol
     kpep.deallocate();
     prepep.deallocate();

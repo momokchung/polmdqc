@@ -14,9 +14,10 @@ namespace polmdqc
 // "darray" defines functions that allocates and
 // deallocates device dynamic array
 
-// MDQCArray     array of dimension m
-// MDQCArray2D   array of dimention m x n, const n
-// MDQCArray3D   array of dimention m x n x o, const n and o
+// MDQCArray      array of dimension m
+// MDQCArray2D    array of dimention m x n, const n
+// MDQCArray3D    array of dimention m x n x o, const n and o
+// MDQCVector2D   array of dimention m x n, variable n
 
 template <typename T>
 struct MDQCArray
@@ -200,6 +201,80 @@ public:
             len = 0;
             len2 = 0;
             len3 = 0;
+        }
+    }
+};
+
+template <typename T>
+struct MDQCVector2D
+{
+private:
+    int len;
+    int len2;
+    T** array;
+
+public:
+    // overload [] operator for array access
+    T* operator[](int index)
+    {
+        return array[index];
+    }
+    const T* operator[](int index) const
+    {
+        return array[index];
+    }
+
+    // return len
+    int size() {
+        return len;
+    }
+    int size2() {
+        return len2;
+    }
+
+    // Return pointer to the underlying array
+    T** ptr() {
+        return array;
+    }
+
+    // allocate array
+    void allocate(int m, int n)
+    {
+        if (array) {
+            if (len != m or len2 != n) {
+                for (int i = 0; i < len; i++) {
+                    delete[] array[i];
+                }
+                delete[] array;
+                len = m;
+                len2 = n;
+                array = new T*[m];
+                for (int i = 0; i < len; i++) {
+                    array[i] = new T[n];
+                }
+            }
+        }
+        else {
+            len = m;
+            len2 = n;
+            array = new T*[m];
+            for (int i = 0; i < len; i++) {
+                array[i] = new T[n];
+            }
+        }
+    }
+
+    // deallocate array
+    void deallocate()
+    {
+        if (array) {
+            for (int i = 0; i < len; i++) {
+                delete[] array[i];
+            }
+            delete[] array;
+            array = nullptr;
+            len = 0;
+            len2 = 0;
         }
     }
 };
