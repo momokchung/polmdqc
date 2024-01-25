@@ -30,6 +30,8 @@ void chkpole()
     bool check;
 
     // loop over multipoles and test for chirality inversion
+    #pragma omp parallel for default(private)   \
+        shared(n,x,y,z,pollist,replist,polaxe,xaxis,yaxis,zaxis,pole,repole)
     for (int i = 0; i < n; i++) {
         dopol = false;
         dorep = false;
