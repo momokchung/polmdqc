@@ -222,7 +222,7 @@ void readxyz(std::ifstream& ffile)
         if (tag[i] != i) reorder = true;
     }
     if (reorder) {
-        printf("\n READXYZ  --  Atom Labels not Sequential, Attempting to Renumber\n");
+        if (!test) printf("\n READXYZ  --  Atom Labels not Sequential, Attempting to Renumber\n");
         for (int i = 0; i < n; i++) {
             tag[i] = i;
             for (int j = 0; j < n12[i]; j++) {

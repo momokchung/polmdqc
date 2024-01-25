@@ -66,44 +66,44 @@ void energy()
         elf = 0.;
         eg = 0.;
         ex = 0.;
-
-        // zero out the total intermolecular energy
-        einter = 0.;
     }
 
-    // perform dynamic allocation of some global arrays
-    aesum.allocate(n);
-    aeb.allocate(n);
-    aea.allocate(n);
-    aeba.allocate(n);
-    aeub.allocate(n);
-    aeaa.allocate(n);
-    aeopb.allocate(n);
-    aeopd.allocate(n);
-    aeid.allocate(n);
-    aeit.allocate(n);
-    aet.allocate(n);
-    aept.allocate(n);
-    aebt.allocate(n);
-    aeat.allocate(n);
-    aett.allocate(n);
-    aev.allocate(n);
-    aer.allocate(n);
-    aedsp.allocate(n);
-    aec.allocate(n);
-    aecd.allocate(n);
-    aed.allocate(n);
-    aem.allocate(n);
-    aep.allocate(n);
-    aect.allocate(n);
-    aerxf.allocate(n);
-    aes.allocate(n);
-    aelf.allocate(n);
-    aeg.allocate(n);
-    aex.allocate(n);
+    // zero out the total intermolecular energy
+    if constexpr (do_a) einter = 0.;
 
-    // zero out energy partitioning components for each atom
     if constexpr (do_a) {
+        // perform dynamic allocation of some global arrays
+        aesum.allocate(n);
+        aeb.allocate(n);
+        aea.allocate(n);
+        aeba.allocate(n);
+        aeub.allocate(n);
+        aeaa.allocate(n);
+        aeopb.allocate(n);
+        aeopd.allocate(n);
+        aeid.allocate(n);
+        aeit.allocate(n);
+        aet.allocate(n);
+        aept.allocate(n);
+        aebt.allocate(n);
+        aeat.allocate(n);
+        aett.allocate(n);
+        aev.allocate(n);
+        aer.allocate(n);
+        aedsp.allocate(n);
+        aec.allocate(n);
+        aecd.allocate(n);
+        aed.allocate(n);
+        aem.allocate(n);
+        aep.allocate(n);
+        aect.allocate(n);
+        aerxf.allocate(n);
+        aes.allocate(n);
+        aelf.allocate(n);
+        aeg.allocate(n);
+        aex.allocate(n);
+
+        // zero out energy partitioning components for each atom
         #pragma omp parallel for
         for (int i = 0; i < n; i++) {
             aesum[i] = 0.;
@@ -138,39 +138,40 @@ void energy()
         }
     }
 
-    // perform dynamic allocation of some global arrays
-    desum.allocate(3*n);
-    deb.allocate(3*n);
-    dea.allocate(3*n);
-    deba.allocate(3*n);
-    deub.allocate(3*n);
-    deaa.allocate(3*n);
-    deopb.allocate(3*n);
-    deopd.allocate(3*n);
-    deid.allocate(3*n);
-    deit.allocate(3*n);
-    det.allocate(3*n);
-    dept.allocate(3*n);
-    debt.allocate(3*n);
-    deat.allocate(3*n);
-    dett.allocate(3*n);
-    dev.allocate(3*n);
-    der.allocate(3*n);
-    dedsp.allocate(3*n);
-    dec.allocate(3*n);
-    decd.allocate(3*n);
-    ded.allocate(3*n);
-    dem.allocate(3*n);
-    dep.allocate(3*n);
-    dect.allocate(3*n);
-    derxf.allocate(3*n);
-    des.allocate(3*n);
-    delf.allocate(3*n);
-    deg.allocate(3*n);
-    dex.allocate(3*n);
-
-    // zero out each of the first derivative components
     if constexpr (do_g) {
+        // perform dynamic allocation of some global arrays
+        desum.allocate(3*n);
+        deb.allocate(3*n);
+        dea.allocate(3*n);
+        deba.allocate(3*n);
+        deub.allocate(3*n);
+        deaa.allocate(3*n);
+        deopb.allocate(3*n);
+        deopd.allocate(3*n);
+        deid.allocate(3*n);
+        deit.allocate(3*n);
+        det.allocate(3*n);
+        dept.allocate(3*n);
+        debt.allocate(3*n);
+        deat.allocate(3*n);
+        dett.allocate(3*n);
+        dev.allocate(3*n);
+        der.allocate(3*n);
+        dedsp.allocate(3*n);
+        dec.allocate(3*n);
+        decd.allocate(3*n);
+        ded.allocate(3*n);
+        dem.allocate(3*n);
+        dep.allocate(3*n);
+        dect.allocate(3*n);
+        derxf.allocate(3*n);
+        des.allocate(3*n);
+        delf.allocate(3*n);
+        deg.allocate(3*n);
+        dex.allocate(3*n);
+        te.allocate(3*n);
+
+        // zero out each of the first derivative components
         #pragma omp parallel for
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < 3; j++) {
@@ -330,4 +331,68 @@ template void energy<CalcMode::Energy>();
 template void energy<CalcMode::Analysis>();
 template void energy<CalcMode::Gradient>();
 template void energy<CalcMode::Virial>();
+
+void initEnergy()
+{
+    // initial dynamic allocation of some global arrays
+    aesum.allocate(1);
+    aeb.allocate(1);
+    aea.allocate(1);
+    aeba.allocate(1);
+    aeub.allocate(1);
+    aeaa.allocate(1);
+    aeopb.allocate(1);
+    aeopd.allocate(1);
+    aeid.allocate(1);
+    aeit.allocate(1);
+    aet.allocate(1);
+    aept.allocate(1);
+    aebt.allocate(1);
+    aeat.allocate(1);
+    aett.allocate(1);
+    aev.allocate(1);
+    aer.allocate(1);
+    aedsp.allocate(1);
+    aec.allocate(1);
+    aecd.allocate(1);
+    aed.allocate(1);
+    aem.allocate(1);
+    aep.allocate(1);
+    aect.allocate(1);
+    aerxf.allocate(1);
+    aes.allocate(1);
+    aelf.allocate(1);
+    aeg.allocate(1);
+    aex.allocate(1);
+    desum.allocate(1);
+    deb.allocate(1);
+    dea.allocate(1);
+    deba.allocate(1);
+    deub.allocate(1);
+    deaa.allocate(1);
+    deopb.allocate(1);
+    deopd.allocate(1);
+    deid.allocate(1);
+    deit.allocate(1);
+    det.allocate(1);
+    dept.allocate(1);
+    debt.allocate(1);
+    deat.allocate(1);
+    dett.allocate(1);
+    dev.allocate(1);
+    der.allocate(1);
+    dedsp.allocate(1);
+    dec.allocate(1);
+    decd.allocate(1);
+    ded.allocate(1);
+    dem.allocate(1);
+    dep.allocate(1);
+    dect.allocate(1);
+    derxf.allocate(1);
+    des.allocate(1);
+    delf.allocate(1);
+    deg.allocate(1);
+    dex.allocate(1);
+    te.allocate(1);
+}
 }

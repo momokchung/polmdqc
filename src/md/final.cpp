@@ -166,6 +166,7 @@ void final()
     delf.deallocate();
     deg.deallocate();
     dex.deallocate();
+    te.deallocate();
     ndesum.deallocate();
     ndeb.deallocate();
     ndea.deallocate();
@@ -461,7 +462,6 @@ void final()
     mono0.deallocate();
     pole.deallocate();
     rpole.deallocate();
-    tem.deallocate();
     polaxe.deallocate();
 
     // deallocation of global arrays from module mutant

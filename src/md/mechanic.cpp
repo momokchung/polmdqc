@@ -8,6 +8,7 @@
 #include "bonds.h"
 #include "cluster.h"
 #include "cutoffs.h"
+#include "energy.h"
 #include "fatal.h"
 #include "field.h"
 #include "inform.h"
@@ -118,6 +119,9 @@ void mechanic()
 
     // set hybrid parameter values for free energy perturbation
     // mutate();
+
+    // initial allocation of energy dynamic arrays
+    initEnergy();
 
     // quit if essential parameter information is missing
     if (informAbort) {

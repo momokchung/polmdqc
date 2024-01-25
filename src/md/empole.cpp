@@ -119,7 +119,7 @@ void empole_a()
     // set pointers for OpenMP
     real* aemP = aem.ptr();
     real* demP = dem.ptr();
-    real* temP = tem.ptr();
+    real* temP = te.ptr();
 
     // zero out total atomic multipole energy and partitioning
     em = 0.;
@@ -152,10 +152,14 @@ void empole_a()
     cutoffSwitch(CutoffMode::Mpole);
 
     // OpenMP setup
+    int Ndo_a = 1;
+    int Ndo_g = 1;
+    if (do_a) Ndo_a = n;
+    if (do_g or do_v) Ndo_g = 3*n;
     #pragma omp parallel default(private) private(mscale)                            \
     shared(n,xaxis,yaxis,zaxis,x,y,z,rpole,pcore,pval,palpha,use,use_bounds,off2,    \
         f,n12,i12,n13,i13,n14,i14,n15,i15,m2scale,m3scale,m4scale,m5scale,molcule)   \
-    reduction(+:em,einter,nem,vir,aemP[:n],demP[:3*n],temP[:3*n])
+    reduction(+:em,einter,nem,vir,aemP[:Ndo_a],demP[:Ndo_g],temP[:Ndo_g])
     {
     // allocate and initialize connected atom exclusion coefficients
     mscale = new real[n];

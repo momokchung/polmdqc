@@ -260,7 +260,6 @@ void kmpole()
     mono0.allocate(n);
     pole.allocate(n);
     rpole.allocate(n);
-    tem.allocate(3*n);
     polaxe.allocate(n);
     np11.allocate(n);
     np12.allocate(n);

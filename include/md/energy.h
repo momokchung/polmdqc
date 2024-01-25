@@ -14,4 +14,6 @@ namespace polmdqc
 
 template <CalcMode CalculationMode>
 void energy();
+
+void initEnergy();
 }

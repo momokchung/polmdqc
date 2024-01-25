@@ -25,7 +25,6 @@ namespace polmdqc
 // mono0     original atomic monopole values for charge flux
 // pole      local frame Cartesian multipoles for each atom
 // rpole     global frame Cartesian multipoles for each atom
-// tem       multipole torque for each atom
 // polaxe    local coordinate frame type for each atom
 
 constexpr int maxpole = 13;
@@ -39,6 +38,5 @@ MDQC_EXTERN MDQCArray<int> yaxis;
 MDQC_EXTERN MDQCArray<real> mono0;
 MDQC_EXTERN MDQCArray2D<real,maxpole> pole;
 MDQC_EXTERN MDQCArray2D<real,maxpole> rpole;
-MDQC_EXTERN MDQCArray<real> tem;
 MDQC_EXTERN MDQCArray<LocalFrame> polaxe;
 }

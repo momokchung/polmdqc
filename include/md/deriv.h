@@ -42,6 +42,7 @@ namespace polmdqc
 // delf    metal ligand field Cartesian coordinate derivatives
 // deg     geometric restraint Cartesian coordinate derivatives
 // dex     extra energy term Cartesian coordinate derivatives
+// te      torque on each atom (resolves gradient due to torque)
 
 MDQC_EXTERN MDQCArray<real> desum;
 MDQC_EXTERN MDQCArray<real> deb;
@@ -72,6 +73,7 @@ MDQC_EXTERN MDQCArray<real> des;
 MDQC_EXTERN MDQCArray<real> delf;
 MDQC_EXTERN MDQCArray<real> deg;
 MDQC_EXTERN MDQCArray<real> dex;
+MDQC_EXTERN MDQCArray<real> te;
 
 // ndesum   total energy Cartesian coordinate numerical derivatives
 // ndeb     bond stretch Cartesian coordinate numerical derivatives
