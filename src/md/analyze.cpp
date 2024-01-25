@@ -271,7 +271,7 @@ void analyze(int argc, char** argv)
     // perform any final tasks before program exit
     ffile.close();
     if (dodetail) debug = false;
-    if (not test) final();
+    if (!test) final();
 }
 }
 // c

@@ -95,20 +95,28 @@ void alphamol(double r_h2o, bool computeDeriv)
 
 	int nfudge = 8;
     surf.allocate(natoms+nfudge);
-	dsurf.allocate(3*(natoms+nfudge));
-	memset(dsurf.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+    if (computeDeriv) {
+        dsurf.allocate(3*(natoms+nfudge));
+        memset(dsurf.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+    }
 
 	vol.allocate(natoms+nfudge);
-	dvol.allocate(3*(natoms+nfudge));
-	memset(dvol.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+    if (computeDeriv) {
+        dvol.allocate(3*(natoms+nfudge));
+        memset(dvol.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+    }
 
 	mean.allocate(natoms+nfudge);
-	dmean.allocate(3*(natoms+nfudge));
-	memset(dmean.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+    if (computeDeriv) {
+        dmean.allocate(3*(natoms+nfudge));
+        memset(dmean.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+    }
 
 	gauss.allocate(natoms+nfudge);
-	dgauss.allocate(3*(natoms+nfudge));
-	memset(dgauss.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+    if (computeDeriv) {
+        dgauss.allocate(3*(natoms+nfudge));
+        memset(dgauss.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+    }
 
 	start_s = clock();
 	volumes.ball_dvolumes(vertices, tetra, edges, faces, &wsurf, &wvol, &wmean, &wgauss, &tsurf, &tvol, &tmean, &tgauss,
