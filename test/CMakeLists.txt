@@ -7,6 +7,7 @@ amoebaMisc.cpp
 amoebap.cpp
 bounds.cpp
 chkpole.cpp
+darray.cpp
 getline.cpp
 getnumb.cpp
 getstring.cpp
@@ -18,7 +19,6 @@ justify.cpp
 lowcase.cpp
 main.cpp
 numeral.cpp
-mdqcvector.cpp
 rotpole.cpp
 sort.cpp
 torphase.cpp
