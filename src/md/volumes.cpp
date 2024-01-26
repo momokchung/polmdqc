@@ -457,8 +457,10 @@ void VOLUMES::ball_dvolumes(std::vector<Vertex>& vertices, std::vector<Tetrahedr
 		vola  = surfa*ra/3;
 		ballwsurf[i]  += coefval*surfa;
 		ballwvol[i]   += coefval*vola;
-		ballwmean[i]  += ballwsurf[i]/ra;
-		ballwgauss[i] += ballwsurf[i]/ra2;
+        if (ra2 > 0) {
+            ballwmean[i]  += ballwsurf[i]/ra;
+            ballwgauss[i] += ballwsurf[i]/ra2;
+        }
 	}
 
 /* ====================================================================

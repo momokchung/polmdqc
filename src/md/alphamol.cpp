@@ -7,6 +7,7 @@
 #include "atoms.h"
 #include "files.h"
 #include "kvdws.h"
+#include "usage.h"
 #include <iostream>
 
 namespace polmdqc
@@ -30,7 +31,7 @@ namespace polmdqc
 // 
 // https://github.com/pkoehl/AlphaMol
 
-void alphamol(double r_h2o, bool computeDeriv)
+void alphamol(real r_h2o, bool computeDeriv)
 {
     DELCX delcx;
     ALFCX alfcx;
@@ -53,26 +54,30 @@ void alphamol(double r_h2o, bool computeDeriv)
 	std::vector<Tetrahedron> tetra;
 
 	int natoms = n;
-	double *coord = new double[3*natoms];
-	double *radii = new double[natoms];
-	double *coefS = new double[natoms];
-	double *coefV = new double[natoms];
-	double *coefM = new double[natoms];
-	double *coefG = new double[natoms];
+	coord.allocate(3*natoms);
+    radii.allocate(natoms);
+	coefS.allocate(natoms);
+	coefV.allocate(natoms);
+	coefM.allocate(natoms);
+	coefG.allocate(natoms);
 
 	for(int i = 0; i < natoms; i++) {
         coord[3*i] = x[i];
         coord[3*i+1] = y[i];
         coord[3*i+2] = z[i];
-        radii[i] = rad[atomClass[i]] + r_h2o;
-
+        if (use[i+1]) {
+            radii[i] = rad[atomClass[i]] + r_h2o;
+        }
+        else {
+            radii[i] = 0.;
+        }
 		coefS[i] = 1.0;
 		coefV[i] = 1.0;
 		coefM[i] = 1.0;
 		coefG[i] = 1.0;
 	}
 	
-	delcx.setup(natoms, coord, radii, coefS, coefV, coefM, coefG, vertices, tetra);
+	delcx.setup(natoms, coord.ptr(), radii.ptr(), coefS.ptr(), coefV.ptr(), coefM.ptr(), coefG.ptr(), vertices, tetra);
 
 	start_s = clock();
 	delcx.regular3D(vertices, tetra);
@@ -81,7 +86,7 @@ void alphamol(double r_h2o, bool computeDeriv)
 
     // Generate alpha complex (with alpha=0.0)
 	start_s = clock();
-	double alpha = 0;
+	real alpha = 0;
 	alfcx.alfcx(alpha, vertices, tetra);
 	stop_s = clock();
 	// std::cout << "AlphaCx compute time : " << (stop_s-start_s)/double(CLOCKS_PER_SEC) << " seconds" << std::endl;
@@ -97,25 +102,25 @@ void alphamol(double r_h2o, bool computeDeriv)
     surf.allocate(natoms+nfudge);
     if (computeDeriv) {
         dsurf.allocate(3*(natoms+nfudge));
-        memset(dsurf.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+        memset(dsurf.ptr(), 0, 3*(natoms+nfudge)*sizeof(real));
     }
 
 	vol.allocate(natoms+nfudge);
     if (computeDeriv) {
         dvol.allocate(3*(natoms+nfudge));
-        memset(dvol.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+        memset(dvol.ptr(), 0, 3*(natoms+nfudge)*sizeof(real));
     }
 
 	mean.allocate(natoms+nfudge);
     if (computeDeriv) {
         dmean.allocate(3*(natoms+nfudge));
-        memset(dmean.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+        memset(dmean.ptr(), 0, 3*(natoms+nfudge)*sizeof(real));
     }
 
 	gauss.allocate(natoms+nfudge);
     if (computeDeriv) {
         dgauss.allocate(3*(natoms+nfudge));
-        memset(dgauss.ptr(), 0, 3*(natoms+nfudge)*sizeof(double));
+        memset(dgauss.ptr(), 0, 3*(natoms+nfudge)*sizeof(real));
     }
 
 	start_s = clock();
@@ -162,12 +167,5 @@ void alphamol(double r_h2o, bool computeDeriv)
     //     printf("%24.16e%24.16e%24.16e\n", dgauss[3*i], dgauss[3*i+1], dgauss[3*i+2]);
 	// }
 	// std::cout << " " << std::endl;
-
-	delete [] coord;
-    delete [] radii;
-    delete [] coefS;
-    delete [] coefV;
-    delete [] coefM;
-    delete [] coefG;
 }
 }

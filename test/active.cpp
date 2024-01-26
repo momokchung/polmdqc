@@ -2,7 +2,6 @@
 #include "active.h"
 #include "analyz.h"
 #include "analyze.h"
-#include "atoms.h"
 #include "deriv.h"
 #include "energi.h"
 #include "final.h"
@@ -40,6 +39,7 @@ TEST_CASE("active-1", "[analyze][AMOEBA][water09_Na_Cls]") {
     COMPARE_VECTOR(aem, active1::aem, active1::eps);
 
     REQUIRE(nuse == active1::nuse);
+    int n = 16;
     for (int i = 0; i < n; i++) {
         REQUIRE(iuse[i] == active1::iuse[i]);
         REQUIRE(use[i+1] == active1::use[i+1]);
@@ -73,6 +73,7 @@ TEST_CASE("active-2", "[analyze][AMOEBA][water09_Na_Cls]") {
     COMPARE_VECTOR(aem, active2::aem, active2::eps);
 
     REQUIRE(nuse == active2::nuse);
+    int n = 16;
     for (int i = 0; i < n; i++) {
         REQUIRE(iuse[i] == active2::iuse[i]);
         REQUIRE(use[i+1] == active2::use[i+1]);

@@ -35,7 +35,7 @@ namespace polmdqc
 // gradient vectors of the potential energy function with respect
 // to Cartesian coordinates
 
-void resizeNumDer();
+static void resizeNumDer();
 
 void testgrad(int argc, char** argv)
 {
@@ -587,7 +587,7 @@ void testgrad(int argc, char** argv)
     if (!test) final();
 }
 
-void resizeNumDer() {
+static void resizeNumDer() {
     ndesum.allocate(3*n);
     ndeb.allocate(3*n);
     ndea.allocate(3*n);

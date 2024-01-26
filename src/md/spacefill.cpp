@@ -34,11 +34,11 @@ namespace polmdqc
 // "spacefill" computes the surface area, volume, mean curvature
 // gaussian curvature and their respective gradients
 
-void resizeNumDer();
+static void resizeNumDer();
 
-void printAtomic();
+static void printAtomic();
 
-void printGrad(bool doanalyt, bool donumer, std::vector<real>& denorm, std::vector<real>& ndenorm,
+static void printGrad(bool doanalyt, bool donumer, std::vector<real>& denorm, std::vector<real>& ndenorm,
     MDQCArray<real>& der, MDQCArray<real>& nder, std::string& gradstr1, std::string& gradstr2);
 
 void spacefill(int argc, char** argv)
@@ -48,7 +48,7 @@ void spacefill(int argc, char** argv)
     int numSpaces;
     int width;
     int precision;
-    real value,exclude;
+    real exclude;
     real eps,eps0;
     real old;
     real tsurf0,tvol0,tmean0,tgauss0;
@@ -91,7 +91,6 @@ void spacefill(int argc, char** argv)
     if (mode!=2) mode = 1;
 
     // set the excluded/accessible probes
-    value = 0.;
     exclude = 0.;
     if (mode == 2) {
         query = true;
@@ -99,18 +98,17 @@ void spacefill(int argc, char** argv)
         if (exist) {
             iss.clear();
             iss.str(string);
-            if (iss >> value) query = false;
+            if (iss >> exclude) query = false;
         }
         if (query) {
             printf("\n Enter a Value for the Probe Radius [1.4 Ang] :  ");
             std::getline(std::cin, string);
             iss.clear();
             iss.str(string);
-            iss >> value;
+            iss >> exclude;
         }
-        if (value < 0.) value = -value;
-        if (value == 0.) value = 1.4;
-        if (mode == 2) exclude = value;
+        if (exclude < 0.) exclude = -exclude;
+        if (exclude == 0.) exclude = 1.4;
     }
 
     // decide whether to include hydrogens in the calculation
@@ -314,9 +312,9 @@ void spacefill(int argc, char** argv)
             gradstr2 = "MC";
             printGrad(doanalyt, donumer, denorm, ndenorm, dmean, ndmean, gradstr1, gradstr2);
 
-            // gradstr1 = "Gaussian Curvature";
-            // gradstr2 = "GC";
-            // printGrad(doanalyt, donumer, denorm, ndenorm, dgauss, ndgauss, gradstr1, gradstr2);
+            gradstr1 = "Gaussian Curvature";
+            gradstr2 = "GC";
+            printGrad(doanalyt, donumer, denorm, ndenorm, dgauss, ndgauss, gradstr1, gradstr2);
         }
 
         // attempt to read next structure from the coordinate file
@@ -333,17 +331,17 @@ void spacefill(int argc, char** argv)
 
     // perform any final tasks before program exit
     ffile.close();
-    if (not test) final();
+    if (!test) final();
 }
 
-void resizeNumDer() {
+static void resizeNumDer() {
     ndsurf.allocate(3*n);
     ndvol.allocate(3*n);
     ndmean.allocate(3*n);
     ndgauss.allocate(3*n);
 }
 
-void printAtomic()
+static void printAtomic()
 {
     printf("\n Surface Area, Volume, and Mean/Guassian Curvature of Individual Atoms :\n");
     int s1;
@@ -370,7 +368,7 @@ void printAtomic()
     }
 }
 
-void printGrad(bool doanalyt, bool donumer, std::vector<real>& denorm, std::vector<real>& ndenorm,
+static void printGrad(bool doanalyt, bool donumer, std::vector<real>& denorm, std::vector<real>& ndenorm,
     MDQCArray<real>& der, MDQCArray<real>& nder, std::string& gradstr1, std::string& gradstr2)
 {
     real totnorm,ntotnorm,rms,nrms;
@@ -400,7 +398,7 @@ void printGrad(bool doanalyt, bool donumer, std::vector<real>& denorm, std::vect
     totnorm = 0.;
     ntotnorm = 0.;
     for (int i = 0; i < n; i++) {
-        if (doanalyt and use[i+1]) {
+        if (doanalyt) {
             denorm[i] = REAL_POW(der[3*i+0],2) + REAL_POW(der[3*i+1],2) + REAL_POW(der[3*i+2],2);
             totnorm = totnorm + denorm[i];
             denorm[i] = REAL_SQRT(denorm[i]);
@@ -414,7 +412,7 @@ void printGrad(bool doanalyt, bool donumer, std::vector<real>& denorm, std::vect
                 printf(" Anlyt  %8d       %12.4f%12.4f%12.4f  %12.4f\n", i+1,der[3*i+0],der[3*i+1],der[3*i+2],denorm[i]);
             }
         }
-        if (donumer and use[i+1]) {
+        if (donumer) {
             ndenorm[i] = REAL_POW(nder[3*i+0],2) + REAL_POW(nder[3*i+1],2) + REAL_POW(nder[3*i+2],2);
             ntotnorm = ntotnorm + ndenorm[i];
             ndenorm[i] = REAL_SQRT(ndenorm[i]);
