@@ -821,4 +821,29 @@ namespace spacefill10
         0.0000000000000000e+00,  0.0000000000000000e+00,  0.0000000000000000e+00,
     };
 }
+
+namespace spacefill11
+{
+    real eps = 1e-11;
+
+    real tsurf1 = 7.6966579211897511e+01;
+    real tvol1 = 4.8886755622637324e+01;
+    real tmean1 = 2.1222759650620212e+01;
+    real tgauss1 = 1.2566370614359174e+01;
+
+    real tsurf2 = 3.9106376754519977e+02;
+    real tvol2 = 3.5654330077451897e+02;
+    real tmean2 = -3.3784536350820197e+01;
+    real tgauss2 = 1.2566370614359840e+01;
+}
+
+namespace spacefill12
+{
+    real eps = 1e-12;
+
+    real tsurf = 3.3364781088174334e+02;
+    real tvol = 4.6193387403690645e+02;
+    real tmean = -2.4910700481608494e+01;
+    real tgauss = 1.2566370614359146e+01;
+}
 }

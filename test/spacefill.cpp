@@ -438,4 +438,59 @@ TEST_CASE("spacefill-10", "[spacefill][AMOEBA][alatet]") {
 
     final();
 }
+
+TEST_CASE("spacefill-11", "[spacefill][AMOEBA][concat]") {
+    // ability to read concatenated files
+    int argc = 7;
+    const char* strings1[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/alatetwater.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv1 = const_cast<char**>(strings1);
+    const char* strings2[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/wateralatet.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv2 = const_cast<char**>(strings2);
+
+    test = true;
+
+    spacefill(argc, argv1);
+    COMPARE_REALS(tsurf, spacefill11::tsurf1, spacefill11::eps);
+    COMPARE_REALS(tvol, spacefill11::tvol1, spacefill11::eps);
+    COMPARE_REALS(tmean, spacefill11::tmean1, spacefill11::eps);
+    COMPARE_REALS(tgauss, spacefill11::tgauss1, spacefill11::eps);
+    final();
+
+    spacefill(argc, argv2);
+    COMPARE_REALS(tsurf, spacefill11::tsurf2, spacefill11::eps);
+    COMPARE_REALS(tvol, spacefill11::tvol2, spacefill11::eps);
+    COMPARE_REALS(tmean, spacefill11::tmean2, spacefill11::eps);
+    COMPARE_REALS(tgauss, spacefill11::tgauss2, spacefill11::eps);
+    final();
+}
+
+TEST_CASE("spacefill-12", "[spacefill][AMOEBA][crystal]") {
+    // symmetric object
+    int argc = 7;
+    const char* strings[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/chloride27.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv = const_cast<char**>(strings);
+
+    test = true;
+
+    spacefill(argc, argv);
+
+    COMPARE_REALS(tsurf, spacefill12::tsurf, spacefill12::eps);
+    COMPARE_REALS(tvol, spacefill12::tvol, spacefill12::eps);
+    COMPARE_REALS(tmean, spacefill12::tmean, spacefill12::eps);
+    COMPARE_REALS(tgauss, spacefill12::tgauss, spacefill12::eps);
+
+    final();
+}
 }
