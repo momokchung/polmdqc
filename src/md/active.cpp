@@ -43,8 +43,8 @@ void active()
     // allocation and initialization of some local arrays
     std::vector<int> mobile;
     std::vector<int> fixed;
-    mobile.resize(n, 0);
-    fixed.resize(n, 0);
+    mobile.resize(n);
+    fixed.resize(n);
 
     // set defaults for the numbers and lists of active atoms
     nuse = n;
@@ -55,6 +55,10 @@ void active()
     }
     nmobile = 0;
     nfixed = 0;
+    for (int i = 0; i < n; i++) {
+        mobile[i] = 0;
+        fixed[i] = 0;
+    }
     nsphere = 0;
 
     // get any keywords containing active atom parameters

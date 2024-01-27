@@ -22,6 +22,7 @@
 #include "lattice.h"
 #include "mechanic.h"
 #include "molecule.h"
+#include "rings.h"
 #include "torsions.h"
 #include "unitcell.h"
 
@@ -47,7 +48,7 @@ void mechanic()
     angles();
     torsions();
     bitors();
-    // rings();
+    rings();
 
     // get the base force field from parameter file and keyfile
     field();

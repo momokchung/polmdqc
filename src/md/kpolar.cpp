@@ -154,10 +154,13 @@ void kpolar()
     }
 
     // perform dynamic allocation of some local arrays
-    list.resize(n,0);
+    list.resize(n);
 
     // set defaults for numbers and lists of polarizable atoms
     nlist = 0;
+    for (int i = 0; i < n; i++) {
+        list[i] = 0;
+    }
 
     // get keywords containing polarization-related options
     for (int i = 0; i < nkey; i++) {
@@ -279,9 +282,6 @@ void kpolar()
         }
         i++;
     }
-
-    // perform dynamic allocation of some local arrays
-    list.resize(0);
 
     // process keywords containing polarizability parameters
     header = true;
@@ -482,7 +482,7 @@ void kpolar()
 
     // perform dynamic allocation of some local arrays
     list.resize(n);
-    rlist.resize(maxtyp, -1);
+    rlist.resize(maxtyp);
 
     // set atom type index into condensed pair Thole matrices
     nlist = n;
@@ -491,6 +491,9 @@ void kpolar()
         jpolar[i] = list[i];
     }
     sortUnique(nlist, list, 0);
+    for (int i = 0; i < maxtyp; i++) {
+        rlist[i] = -1;
+    }
     for (int i = 0; i < n; i++) {
         j = jpolar[i];
         if (rlist[j] == -1) {
@@ -498,6 +501,9 @@ void kpolar()
                 if (list[k] == j) rlist[j] = k;
             }
         }
+    }
+    for (int i = 0; i < n; i++) {
+        jpolar[i] = rlist[type[i]];
     }
 
     // perform dynamic allocation of some global arrays
@@ -531,10 +537,6 @@ void kpolar()
             thdval[ib*nlist+ia] = thdpr[i];
             thdval[ia*nlist+ib] = thdpr[i];
     }
-
-    // perform deallocation of some local arrays
-    list.resize(0);
-    rlist.resize(0);
 
     // setup exchange polarization via variable polarizability
     // kexpol(); // TODO
@@ -672,7 +674,7 @@ void polargrp()
     // perform dynamic allocation of some local arrays
     keep.resize(maxkeep);
     list.resize(maxlist);
-    mask.resize(n, -1);
+    mask.resize(n);
 
     // find any other group members for each atom in turn
     for (int i = 0; i < n; i++) {
@@ -852,10 +854,5 @@ void polargrp()
     }
     label_130:
     if (qcmdAbort) fatal();
-
-    // perform deallocation of some local arrays
-    keep.resize(0);
-    list.resize(0);
-    mask.resize(0);
 }
 }

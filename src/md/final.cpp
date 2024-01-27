@@ -119,6 +119,13 @@ void final()
     // deallocation of global arrays from module cell
     icell.deallocate();
 
+    // deallocation of global arrays from module cflux
+    bflx.deallocate();
+    pdelta.deallocate();
+    pot.deallocate();
+    aflx.deallocate();
+    abflx.deallocate();
+
     // deallocation of global arrays from module chgpen
     pcore.deallocate();
     pval.deallocate();
@@ -612,6 +619,13 @@ void final()
     yrb.deallocate();
     zrb.deallocate();
     rbc.deallocate();
+
+    // deallocation of global arrays from module ring
+    iring3.deallocate();
+    iring4.deallocate();
+    iring5.deallocate();
+    iring6.deallocate();
+    iring7.deallocate();
 
     // deallocation of global arrays from module scales
     scale.deallocate();

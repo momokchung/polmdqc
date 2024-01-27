@@ -551,13 +551,6 @@ void kvdw()
         }
     }
 
-    // perform deallocation of some local arrays
-    list.resize(0);
-    srad.resize(0);
-    srad4.resize(0);
-    seps.resize(0);
-    seps4.resize(0);
-
     // set coefficients for Gaussian fit to eps=1 and radmin=1
     if (vdwtyp == "GAUSSIAN") {
         real twosix2 = twosix * twosix;
