@@ -14,6 +14,7 @@
 #include "inform.h"
 #include "katom.h"
 #include "kchgtrn.h"
+#include "kbond.h"
 #include "kewald.h"
 #include "kmpole.h"
 #include "kpolar.h"
@@ -73,7 +74,7 @@ void mechanic()
     // orbital();
 
     // assign bond, angle and cross term potential parameters
-    // kbond();
+    kbond();
     // kangle();
     // kstrbnd();
     // kurey();
