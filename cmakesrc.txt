@@ -12,6 +12,7 @@ src/md/basefile.cpp
 src/md/bitors.cpp
 src/md/bonds.cpp
 src/md/chkpole.cpp
+src/md/chkring.cpp
 src/md/chkxyz.cpp
 src/md/cluster.cpp
 src/md/command.cpp
@@ -45,6 +46,7 @@ src/md/initres.cpp
 src/md/inquire.cpp
 src/md/justify.cpp
 src/md/katom.cpp
+src/md/kbond.cpp
 src/md/kchgtrn.cpp
 src/md/kewald.cpp
 src/md/kmpole.cpp
@@ -63,6 +65,7 @@ src/md/prmkey.cpp
 src/md/readcart.cpp
 src/md/readprm.cpp
 src/md/readxyz.cpp
+src/md/rings.cpp
 src/md/rotpole.cpp
 src/md/setprm.cpp
 src/md/sorttools.cpp
