@@ -14,6 +14,7 @@
 #include "inform.h"
 #include "kangle.h"
 #include "katom.h"
+#include "kchgflx.h"
 #include "kchgtrn.h"
 #include "kbond.h"
 #include "kewald.h"
@@ -100,7 +101,7 @@ void mechanic()
     kmpole();
     kpolar();
     kchgtrn();
-    // kchgflx();
+    kchgflx();
 
     // assign van der Waals, repulsion and dispersion parameters
     kvdw();
