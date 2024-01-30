@@ -45,6 +45,7 @@ src/md/initprm.cpp
 src/md/initres.cpp
 src/md/inquire.cpp
 src/md/justify.cpp
+src/md/kangle.cpp
 src/md/katom.cpp
 src/md/kbond.cpp
 src/md/kchgtrn.cpp

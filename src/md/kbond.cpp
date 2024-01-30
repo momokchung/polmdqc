@@ -6,6 +6,7 @@
 #include "atomid.h"
 #include "atoms.h"
 #include "bndstr.h"
+#include "chkring.h"
 #include "couple.h"
 #include "fields.h"
 #include "gettext.h"
@@ -51,7 +52,7 @@ void kbond()
     std::istringstream iss;
 
     // process keywords containing bond stretch parameters
-    blank = "        ";
+    blank = "";
     header = true;
     for (int i = 0; i < nkey; i++) {
         next = 0;
@@ -59,10 +60,10 @@ void kbond()
         gettext(record,keyword,next);
         upcase(keyword);
         iring = -1;
-        if (keyword == "BOND ") iring = 0;
-        if (keyword == "BOND5 ") iring = 5;
-        if (keyword == "BOND4 ") iring = 4;
-        if (keyword == "BOND3 ") iring = 3;
+        if (keyword == "BOND") iring = 0;
+        if (keyword == "BOND5") iring = 5;
+        if (keyword == "BOND4") iring = 4;
+        if (keyword == "BOND3") iring = 3;
         if (iring >= 0) {
             ia = 0;
             ib = 0;
@@ -72,7 +73,7 @@ void kbond()
             iss.clear();
             iss.str(string);
             iss >> ia >> ib >> fc >> bd;
-            if (std::min(ia,ib) <= 0) goto label_130;
+            if (std::min(ia,ib) <= 0) goto label1_end;
             if (!silent) {
                 if (header) {
                     header = false;
@@ -104,13 +105,11 @@ void kbond()
                         kb[j] = pt;
                         bcon[j] = fc;
                         blen[j] = bd;
-                        goto label_60;
+                        goto label1_end;
                     }
                 }
                 printf("\n KBOND  --  Too many Bond Stretching Parameters\n");
                 informAbort = true;
-                label_60:
-                continue;
             }
             else if (iring == 5) {
                 for (int j = 0; j < maxnb5; j++) {
@@ -118,13 +117,11 @@ void kbond()
                         kb5[j] = pt;
                         bcon5[j] = fc;
                         blen5[j] = bd;
-                        goto label_80;
+                        goto label1_end;
                     }
                 }
                 printf("\n KBOND  --  Too many 5-Ring Stretching Parameters\n");
                 informAbort = true;
-                label_80:
-                continue;
             }
             else if (iring == 4) {
                 for (int j = 0; j < maxnb4; j++) {
@@ -132,13 +129,11 @@ void kbond()
                         kb4[j] = pt;
                         bcon4[j] = fc;
                         blen4[j] = bd;
-                        goto label_100;
+                        goto label1_end;
                     }
                 }
                 printf("\n KBOND  --  Too many 4-Ring Stretching Parameters\n");
                 informAbort = true;
-                label_100:
-                continue;
             }
             else if (iring == 3) {
                 for (int j = 0; j < maxnb3; j++) {
@@ -146,15 +141,13 @@ void kbond()
                         kb3[j] = pt;
                         bcon3[j] = fc;
                         blen3[j] = bd;
-                        goto label_120;
+                        goto label1_end;
                     }
                 }
                 printf("\n KBOND  --  Too many 3-Ring Stretching Parameters\n");
                 informAbort = true;
-                label_120:
-                continue;
             }
-            label_130:
+            label1_end:
             continue;
         }
     }
@@ -206,8 +199,7 @@ void kbond()
         // make a check for bonds contained inside small rings
         iring = 0;
         if (use_ring) {
-            // TODO
-            // chkring(iring,ia,ib,0,0);
+            chkring(iring,ia,ib,-1,-1);
             if (iring == 6) iring = 0;
             if (iring==5 and nb5==0) iring = 0;
             if (iring==4 and nb4==0) iring = 0;
@@ -221,7 +213,7 @@ void kbond()
                     bk[i] = bcon[j];
                     bl[i] = blen[j];
                     done = true;
-                    goto label_140;
+                    goto label2_end;
                 }
             }
         }
@@ -233,7 +225,7 @@ void kbond()
                     bk[i] = bcon5[j];
                     bl[i] = blen5[j];
                     done = true;
-                    goto label_140;
+                    goto label2_end;
                 }
             }
         }
@@ -245,7 +237,7 @@ void kbond()
                     bk[i] = bcon4[j];
                     bl[i] = blen4[j];
                     done = true;
-                    goto label_140;
+                    goto label2_end;
                 }
             }
         }
@@ -257,14 +249,13 @@ void kbond()
                     bk[i] = bcon3[j];
                     bl[i] = blen3[j];
                     done = true;
-                    goto label_140;
+                    goto label2_end;
                 }
             }
         }
 
         // warning if suitable bond stretching parameter not found
-        label_140:
-        continue;
+        label2_end:;
         minat = std::min(atomic[ia],atomic[ib]);
         if (minat == 0) done = true;
         if (use_bond and !done) {
@@ -278,7 +269,7 @@ void kbond()
             if (iring == 5) label = "5-Ring";
             if (iring == 4) label = "4-Ring";
             if (iring == 3) label = "3-Ring";
-            printf(" %6s     %6d-%3s%6d-%3s       %5d%5d\n", label.c_str(),ia+1,name[ia].c_str(),ib+1,name[ib].c_str(),ita+1,itb+1);
+            printf(" %6s     %6d-%-3s%6d-%-3s       %5d%5d\n", label.c_str(),ia+1,name[ia].c_str(),ib+1,name[ib].c_str(),ita+1,itb+1);
         }
     }
 
@@ -319,8 +310,7 @@ void kbond()
                     }
                 }
             }
-            label_200:
-            continue;
+            label_200:;
         }
     }
 
@@ -359,7 +349,7 @@ void keneg()
 	std::istringstream iss;
 
 	// process keywords containing electronegativity parameters
-    blank = "            ";
+    blank = "";
     header = true;
     for (int i = 0; i < nkey; i++) {
         next = 0;
@@ -397,8 +387,7 @@ void keneg()
             }
             printf("\n KENEG  --  Too many Electronegativity Parameters\n");
             informAbort = true;
-            label_50:
-            continue;
+            label_50:;
         }
     }
 
@@ -448,8 +437,7 @@ void keneg()
                     goto label_70;
                 }
             }
-            label_70:
-            continue;
+            label_70:;
         }
 
         // check torsions for secondary electronegativity corrections
@@ -496,8 +484,7 @@ void keneg()
                     goto label_80;
                 }
             }
-            label_80:
-            continue;
+            label_80:;
         }
     }
 }

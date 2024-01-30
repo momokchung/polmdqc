@@ -108,7 +108,7 @@ void active()
             if (radius == 0.) {
                 iss.clear();
                 iss.str(string);
-                if (!(iss >> center >> radius)) goto label_60;
+                if (!(iss >> center >> radius)) continue;
                 xcenter = x[center-1];
                 ycenter = y[center-1];
                 zcenter = z[center-1];
@@ -143,8 +143,6 @@ void active()
             if (verbose) {
                 printf("  %8d      %9.2f%9.2f%9.2f  %9.2f       %8d\n", center, xcenter, ycenter, zcenter, radius, nuse);
             }
-            label_60:
-            continue;
         }
     }
 

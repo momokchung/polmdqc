@@ -183,8 +183,7 @@ void katom()
                         goto label_60;
                     }
                 }
-                label_60:
-                continue;
+                label_60:;
             }
         }
     }

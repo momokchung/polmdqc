@@ -125,8 +125,7 @@ void kmpole()
                 if (!(iss >> mpl[10] >> mpl[11] >> mpl[12])) goto label_50;
                 imp++;
             }
-        label_50:
-        continue;
+        label_50:;
         }
     }
 
@@ -245,8 +244,7 @@ void kmpole()
                 }
                 imp++;
             }
-            label_130:
-            continue;
+            label_130:;
         }
     }
 
@@ -439,8 +437,7 @@ void kmpole()
                 }
             }
         }
-        label_140:
-        continue;
+        label_140:;
     }
 
     // process keywords with multipole parameters for specific atoms
@@ -539,8 +536,7 @@ void kmpole()
                     pole[k][j] = mpl[j];
                 }
             }
-            label_210:
-            continue;
+            label_210:;
         }
     }
 
@@ -636,8 +632,7 @@ void kmpole()
                     printf("      %6d       %15.3f%15.4f\n", k+1, pel, pal);
                 }
             }
-            label_260:
-            continue;
+            label_260:;
         }
     }
 
@@ -687,8 +682,7 @@ void kmpole()
                     printf("      %6d       %15.3f%15.4f\n", k+1, pel, pal);
                 }
             }
-            label_290:
-            continue;
+            label_290:;
         }
     }
 

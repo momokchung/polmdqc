@@ -46,8 +46,7 @@ void attach()
                     if (kk == i12[i][m]) goto label_10;
                 }
                 i13tmp.push_back(kk);
-                label_10:
-                continue;
+                label_10:;
             }
         }
         int n13tmp = i13tmp.size();
@@ -78,8 +77,7 @@ void attach()
                     if (kk == i13[i][m]) goto label_30;
                 }
                 i14tmp.push_back(kk);
-                label_30:
-                continue;
+                label_30:;
             }
         }
         int n14tmp = i14tmp.size();
@@ -113,8 +111,7 @@ void attach()
                     if (kk == i14[i][m]) goto label_50;
                 }
                 i15tmp.push_back(kk);
-                label_50:
-                continue;
+                label_50:;
             }
         }
         int n15tmp = i15tmp.size();

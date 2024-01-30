@@ -220,8 +220,7 @@ void kpolar()
                 j++;
             }
         }
-        label_20:
-        continue;
+        label_20:;
     }
 
     // get maximum coefficient order for OPT induced dipoles
@@ -455,8 +454,7 @@ void kpolar()
             }
             printf("\n KPOLAR  --  Too many Special Pair Thole Parameters\n");
             informAbort = true;
-            label_200:
-            continue;
+            label_200:;
         }
     }
 
@@ -650,8 +648,7 @@ void polargrp()
                         }
                     }
                 }
-                label_20:
-                continue;
+                label_20:;
             }
         }
     }
@@ -666,8 +663,7 @@ void polargrp()
             }
             printf("\n POLARGRP  --  Check Polarization Groups for Atoms%9d and%9d\n", std::min(i,k)+1, std::max(i,k)+1);
             qcmdAbort = true;
-            label_50:
-            continue;
+            label_50:;
         }
     }
 

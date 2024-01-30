@@ -12,6 +12,7 @@
 #include "fatal.h"
 #include "field.h"
 #include "inform.h"
+#include "kangle.h"
 #include "katom.h"
 #include "kchgtrn.h"
 #include "kbond.h"
@@ -75,7 +76,7 @@ void mechanic()
 
     // assign bond, angle and cross term potential parameters
     kbond();
-    // kangle();
+    kangle();
     // kstrbnd();
     // kurey();
     // kangang();

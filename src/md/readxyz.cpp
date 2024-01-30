@@ -245,8 +245,7 @@ void readxyz(std::ifstream& ffile)
             }
             printf("\n READXYZ  --  Check Connection of Atoms%9d and%9d\n", k+1, i+1);
             fatal();
-            label_130:
-            continue;
+            label_130:;
         }
     }
 }

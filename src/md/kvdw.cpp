@@ -196,8 +196,7 @@ void kvdw()
             }
             printf("\n KVDW  --  Too many Special Pair VDW Parameters\n");
             informAbort = true;
-            label_150:
-            continue;
+            label_150:;
         }
     }
 
@@ -251,8 +250,7 @@ void kvdw()
             }
             printf("\n KVDW  --  Too many Hydrogen Bonding Pair VDW Parameters\n");
             informAbort = true;
-            label_200:
-            continue;
+            label_200:;
         }
     }
 

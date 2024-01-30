@@ -134,8 +134,7 @@ void rings()
                     goto label_40;
                 }
             }
-            label_40:
-            continue;
+            label_40:;
         }
     }
 
@@ -188,8 +187,7 @@ void rings()
                     goto label_60;
                 }
             }
-            label_60:
-            continue;
+            label_60:;
         }
     }
 
@@ -261,8 +259,7 @@ void rings()
                                 }
                             }
                         }
-                        label_80:
-                        continue;
+                        label_80:;
                     }
                 }
             }
@@ -343,8 +340,7 @@ void rings()
                                     }
                                 }
                             }
-                            label_100:
-                            continue;
+                            label_100:;
                         }
                     }
                 }

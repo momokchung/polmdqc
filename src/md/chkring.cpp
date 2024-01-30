@@ -62,7 +62,7 @@ void chkring(int& iring, int ia, int ib, int ic, int id)
         }
         nset = 0;
     }
-    label_10:
+    label_10:;
 
     // check for an atom contained inside a small ring
     if (nset == 1) {
@@ -244,7 +244,6 @@ void chkring(int& iring, int ia, int ib, int ic, int id)
             }
         }
     }
-    label_end:
-    return;
+    label_end:;
 }
 }
