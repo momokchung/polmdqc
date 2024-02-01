@@ -123,6 +123,9 @@ void final()
     bflx.deallocate();
     pdelta.deallocate();
     pot.deallocate();
+    decfx.deallocate();
+    decfy.deallocate();
+    decfz.deallocate();
     aflx.deallocate();
     abflx.deallocate();
 

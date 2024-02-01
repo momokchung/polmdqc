@@ -40,7 +40,7 @@ inline void crossp(real ans[3], const real u[3], const real v[3]);
 // 73-87 (2004)
 
 template <CalcMode CalculationMode>
-void torque(const real* trq, real* de)
+void torque(const real* trq, real* de, real (&virial)[3][3])
 {
     // integer i,j
     int ia,ib,ic,id;
@@ -74,13 +74,12 @@ void torque(const real* trq, real* de)
 
     // choose calculation mode
     constexpr CalcFlag flags = getCalculationFlags<CalculationMode>();
-    constexpr bool do_g = flags.do_gradient;
     constexpr bool do_v = flags.do_virial;
 
     // OpenMP setup
     #pragma omp parallel for default(private)      \
     shared(n,xaxis,yaxis,zaxis,x,y,z,trq,polaxe)   \
-    reduction(+:vir,de[:3*n])
+    reduction(+:virial,de[:3*n])
     // resolve site torques then increment forces and virial
     for (int i = 0; i < n; i++) {
         // copy trq value
@@ -384,15 +383,15 @@ void torque(const real* trq, real* de)
             real vyz = (real)0.5 * (zix*frcx[1] + ziy*frcy[1] + ziz*frcz[1]
                                   + yix*frcx[2] + yiy*frcy[2] + yiz*frcz[2]);
             real vzz = zix*frcx[2] + ziy*frcy[2] + ziz*frcz[2];
-            vir[0][0] += vxx;
-            vir[0][1] += vxy;
-            vir[0][2] += vxz;
-            vir[1][0] += vxy;
-            vir[1][1] += vyy;
-            vir[1][2] += vyz;
-            vir[2][0] += vxz;
-            vir[2][1] += vyz;
-            vir[2][2] += vzz;
+            virial[0][0] += vxx;
+            virial[0][1] += vxy;
+            virial[0][2] += vxz;
+            virial[1][0] += vxy;
+            virial[1][1] += vyy;
+            virial[1][2] += vyz;
+            virial[2][0] += vxz;
+            virial[2][1] += vyz;
+            virial[2][2] += vzz;
         }
     }
 }
@@ -411,6 +410,6 @@ inline void crossp(real ans[3], const real u[3], const real v[3])
 }
 
 // explicit instatiation
-template void torque<CalcMode::Gradient>(const real* trqPtr, real* de);
-template void torque<CalcMode::Virial>(const real* trqPtr, real* de);
+template void torque<CalcMode::Gradient>(const real* trqPtr, real* de, real (&virial)[3][3]);
+template void torque<CalcMode::Virial>(const real* trqPtr, real* de, real (&virial)[3][3]);
 }

@@ -1,6 +1,7 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
+#include "alterchg.h"
 #include "analyz.h"
 #include "atoms.h"
 #include "calcMode.h"
@@ -212,7 +213,7 @@ void energy()
         }
     }
 
-    if constexpr (do_v) {
+    if constexpr (do_g and do_v) {
         // zero out the virial and the intermolecular energy
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -236,7 +237,7 @@ void energy()
     // if (use_born) born();
 
     // alter partial charges and multipoles for charge flux
-    // if (use_chgflx) alterchg();
+    if (use_chgflx) alterchg();
 
     // modify bond and torsion constants for pisystem
     // if (use_orbit) picalc;

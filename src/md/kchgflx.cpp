@@ -179,6 +179,11 @@ void kchgflx()
     bflx.allocate(nbond);
     aflx.allocate(nangle);
     abflx.allocate(nangle);
+    pot.allocate(n);
+    pdelta.allocate(n);
+    decfx.allocate(n);
+    decfy.allocate(n);
+    decfz.allocate(n);
 
     // assign bond charge flux parameters for each bond
     nbflx = 0;

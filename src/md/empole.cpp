@@ -8,11 +8,13 @@
 #include "bound.h"
 #include "calcMode.h"
 #include "cell.h"
+#include "cflux.h"
 #include "chgpen.h"
 #include "chgpot.h"
 #include "chkpole.h"
 #include "couple.h"
 #include "cutoffSwitch.h"
+#include "dcflux.h"
 #include "deriv.h"
 #include "empole.h"
 #include "energi.h"
@@ -60,12 +62,21 @@ void empole()
             // empole_b<CalculationMode>();
         }
         else {
-            if (pentype == PenTyp::None)
-                empole_a<CalculationMode, PenTyp::None>();
-            else if (pentype == PenTyp::Gordon1)
-                empole_a<CalculationMode, PenTyp::Gordon1>();
-            else if (pentype == PenTyp::Gordon2)
-                empole_a<CalculationMode, PenTyp::Gordon2>();
+            if (pentype == PenTyp::None) {
+                empole_a<CalculationMode, PenTyp::None, false>();
+            }
+            else if (pentype == PenTyp::Gordon1) {
+                if (use_chgflx)
+                    empole_a<CalculationMode, PenTyp::Gordon1, true>();
+                else
+                    empole_a<CalculationMode, PenTyp::Gordon1, false>();
+            }
+            else if (pentype == PenTyp::Gordon2) {
+                if (use_chgflx)
+                    empole_a<CalculationMode, PenTyp::Gordon2, true>();
+                else
+                    empole_a<CalculationMode, PenTyp::Gordon2, false>();
+            }
         }
     }
 }
@@ -79,7 +90,7 @@ void empole()
 // "empole_a" calculates the atomic multipole interactions
 // using a double loop
 
-template <CalcMode CalculationMode, PenTyp PenType>
+template <CalcMode CalculationMode, PenTyp PenType, bool use_cf>
 void empole_a()
 {
     int i,k;
@@ -104,6 +115,7 @@ void empole_a()
     real ttmxk,ttmyk,ttmzk;
     real vxx,vyy,vzz;
     real vxy,vxz,vyz;
+    real poti,potk;
     real* mscale;
     bool proceed;
     bool usei,usek;
@@ -121,6 +133,7 @@ void empole_a()
     real* aemP = aem.ptr();
     real* demP = dem.ptr();
     real* temP = te.ptr();
+    real* potP = pot.ptr();
 
     // zero out total atomic multipole energy and partitioning
     em = 0.;
@@ -129,6 +142,14 @@ void empole_a()
         #pragma omp parallel for
         for (int i = 0; i < n; i++) {
             aemP[i] = 0.;
+        }
+    }
+
+    // zero out charge flux potential array
+    if constexpr (do_g and use_cf) {
+        #pragma omp parallel for
+        for (int i = 0; i < n; i++) {
+            potP[i] = 0.;
         }
     }
 
@@ -155,12 +176,14 @@ void empole_a()
     // OpenMP setup
     int Ndo_a = 1;
     int Ndo_g = 1;
+    int Ndo_3g = 1;
     if (do_a) Ndo_a = n;
-    if (do_g or do_v) Ndo_g = 3*n;
+    if (do_g and use_cf) Ndo_g = n;
+    if (do_g) Ndo_3g = 3*n;
     #pragma omp parallel default(private)                                                 \
     shared(n,xaxis,yaxis,zaxis,x,y,z,rpole,pcore,pval,palpha,use,use_bounds,off2,f,       \
         n12,i12,n13,i13,n14,i14,n15,i15,m2scale,m3scale,m4scale,m5scale,molcule,escale)   \
-    reduction(+:em,einter,nem,vir,aemP[:Ndo_a],demP[:Ndo_g],temP[:Ndo_g])
+    reduction(+:em,einter,nem,vir,aemP[:Ndo_a],potP[:n],demP[:Ndo_3g],temP[:Ndo_3g])
     {
     // initialize connected atom exclusion coefficients
     tid = omp_get_thread_num();
@@ -238,13 +261,13 @@ void empole_a()
                         corek = pcore[k];
                         valk = pval[k];
                         alphak = palpha[k];
-                        pairMpoleCP_a<do_e, do_g, do_v, PenType>(
+                        pairMpoleCP_a<do_e, do_g, do_v, PenType, use_cf>(
                             r2, xr, yr, zr, mk,
                             corei, vali, alphai, dix, diy, diz, qixx, qixy, qixz, qiyy, qiyz, qizz,
                             corek, valk, alphak, dkx, dky, dkz, qkxx, qkxy, qkxz, qkyy, qkyz, qkzz,
                             f, frcx, frcy, frcz,
                             ttmxi, ttmyi, ttmzi, ttmxk, ttmyk, ttmzk,
-                            e, vxx, vxy, vxz, vyy, vyz, vzz);
+                            e, vxx, vxy, vxz, vyy, vyz, vzz, poti, potk);
                     }
                     else {
                         pairMpole_a<do_e, do_g, do_v>(
@@ -281,17 +304,23 @@ void empole_a()
                         temP[3*k+0] += ttmxk;
                         temP[3*k+1] += ttmyk;
                         temP[3*k+2] += ttmzk;
-                    }
-                    if constexpr (do_v) {
-                        vir[0][0] += vxx;
-                        vir[0][1] += vxy;
-                        vir[0][2] += vxz;
-                        vir[1][0] += vxy;
-                        vir[1][1] += vyy;
-                        vir[1][2] += vyz;
-                        vir[2][0] += vxz;
-                        vir[2][1] += vyz;
-                        vir[2][2] += vzz;
+
+                        if constexpr (do_v) {
+                            vir[0][0] += vxx;
+                            vir[0][1] += vxy;
+                            vir[0][2] += vxz;
+                            vir[1][0] += vxy;
+                            vir[1][1] += vyy;
+                            vir[1][2] += vyz;
+                            vir[2][0] += vxz;
+                            vir[2][1] += vyz;
+                            vir[2][2] += vzz;
+                        }
+
+                        if constexpr (use_cf) {
+                            potP[i] += poti;
+                            potP[k] += potk;
+                        }
                     }
                 }
             }
@@ -315,8 +344,13 @@ void empole_a()
     }
 
     // resolve site torques then increment forces and virial
-    if constexpr (do_g or do_v) {
-        torque<CalculationMode>(temP, demP);
+    if constexpr (do_g) {
+        torque<CalculationMode>(temP, demP, vir);
+    }
+
+    // modify the gradient and virial for charge flux
+    if constexpr (do_g and use_cf) {
+        dcflux<CalculationMode>(potP, demP, vir);
     }
 }
 

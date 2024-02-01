@@ -162,15 +162,15 @@ inline void pairMpole_a(
             - term5 * qkry - term6 * (qkiry - qiky);
         ttmzk = rr3 * dikz + term2 * dkrz - term3 * (dqikz + diqkrz)
             - term5 * qkrz - term6 * (qkirz - qikz);
-    }
 
-    if constexpr (do_v) {
-        vxx = -xr * frcx;
-        vxy = -0.5 * (yr * frcx + xr * frcy);
-        vxz = -0.5 * (zr * frcx + xr * frcz);
-        vyy = -yr * frcy;
-        vyz = -0.5 * (zr * frcy + yr * frcz);
-        vzz = -zr * frcz;
+        if constexpr (do_v) {
+            vxx = -xr * frcx;
+            vxy = -0.5 * (yr * frcx + xr * frcy);
+            vxz = -0.5 * (zr * frcx + xr * frcz);
+            vyy = -yr * frcy;
+            vyz = -0.5 * (zr * frcy + yr * frcz);
+            vzz = -zr * frcz;
+        }
     }
 }
 
@@ -183,7 +183,7 @@ inline void pairMpole_a(
 // "pairMpoleCP_a" calculates the pairwise electrostatic charge penetration
 // energy and/or gradient due to atomic multipole interactions
 
-template <bool do_e, bool do_g, bool do_v, PenTyp PenType>
+template <bool do_e, bool do_g, bool do_v, PenTyp PenType, bool use_cf>
 inline void pairMpoleCP_a(
     real r2, real xr, real yr, real zr, real mscale,
     real corei, real vali, real alphai,
@@ -198,7 +198,8 @@ inline void pairMpoleCP_a(
     real& ttmxk, real& ttmyk, real& ttmzk,
     real& e,
     real& vxx, real& vxy, real& vxz,
-    real& vyy, real& vyz, real& vzz)
+    real& vyy, real& vyz, real& vzz,
+    real& poti, real& potk)
 {
     real r = REAL_SQRT(r2);
     real invr1 = 1/r;
@@ -300,6 +301,17 @@ inline void pairMpoleCP_a(
         real term5 = -2 * (corei * rr5k + vali * rr5ik + dir * rr7ik + qir * rr9ik);
         real term6 = 4 * rr7ik;
 
+        if constexpr (use_cf) {
+            real t1i = corek * rr1i + valk * rr1ik;
+            real t1k = corei * rr1k + vali * rr1ik;
+            real t2i = -dkr * rr3ik;
+            real t2k = dir * rr3ik;
+            real t3i = qkr * rr5ik;
+            real t3k = qir * rr5ik;
+            poti = t1i + t2i + t3i;
+            potk = t1k + t2k + t3k;
+        }
+
         frcx = de * xr + term1 * dix + term2 * dkx + term3 * (diqkx - dkqix)
             + term4 * qix + term5 * qkx + term6 * (qixk + qkxi);
         frcy = de * yr + term1 * diy + term2 * dky + term3 * (diqky - dkqiy)
@@ -364,15 +376,15 @@ inline void pairMpoleCP_a(
             - term5 * qkry - term6 * (qkiry - qiky);
         ttmzk = rr3ik * dikz + term2 * dkrz - term3 * (dqikz + diqkrz)
             - term5 * qkrz - term6 * (qkirz - qikz);
-    }
 
-    if constexpr (do_v) {
-        vxx = -xr * frcx;
-        vxy = -0.5 * (yr * frcx + xr * frcy);
-        vxz = -0.5 * (zr * frcx + xr * frcz);
-        vyy = -yr * frcy;
-        vyz = -0.5 * (zr * frcy + yr * frcz);
-        vzz = -zr * frcz;
+        if constexpr (do_v) {
+            vxx = -xr * frcx;
+            vxy = -0.5 * (yr * frcx + xr * frcy);
+            vxz = -0.5 * (zr * frcx + xr * frcz);
+            vyy = -yr * frcy;
+            vyz = -0.5 * (zr * frcy + yr * frcz);
+            vzz = -zr * frcz;
+        }
     }
 }
 }

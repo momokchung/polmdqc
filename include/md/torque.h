@@ -13,5 +13,5 @@ namespace polmdqc
 ///////////////////////////////////////////////////////
 
 template <CalcMode CalculationMode>
-void torque(const real* trq, real* de);
+void torque(const real* trq, real* de, real (&virial)[3][3]);
 }

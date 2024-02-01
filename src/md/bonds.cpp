@@ -34,13 +34,12 @@ void bonds()
         for (int j = 0; j < n12[i]; j++) {
             int k = i12[i][j];
             if (i < k) {
-                nbond++;
-                if (nbond > maxbnd) {
+                if (nbond >= maxbnd) {
                     printf("\n BONDS  --  Too many Bonds; Increase MAXBND\n");
                     fatal();
                 }
-                ibnd[nbond-1][0] = i;
-                ibnd[nbond-1][1] = k;
+                ibnd[nbond][0] = i;
+                ibnd[nbond][1] = k;
                 bndlist[i][j] = nbond;
                 for (int m = 0; m < n12[k]; m++) {
                     if (i == i12[k][m]) {
@@ -48,6 +47,7 @@ void bonds()
                         break;
                     }
                 }
+                nbond++;
             }
         }
     }
