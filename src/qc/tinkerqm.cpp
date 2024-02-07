@@ -6,6 +6,8 @@
 #include "mechanicqm.h"
 #include <string>
 
+namespace polmdqc
+{
 ///////////////////////////////////////////////////////////////
 //                                                           //
 //  tinkerqm  --  main function to run TinkerQM calculation  //
@@ -29,4 +31,5 @@ void tinkerqm(int argc, char** argv)
 
     // clean up quantum mechanics
     mechanicqm::cleanup();
+}
 }

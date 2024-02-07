@@ -11,5 +11,5 @@
 
 int main(int argc, char** argv)
 {
-    tinkerqm(argc, argv);
+    polmdqc::tinkerqm(argc, argv);
 }

@@ -5,6 +5,8 @@
 #include "testrt.h"
 #include "tinkerqm.h"
 
+namespace polmdqc
+{
 TEST_CASE("tinkerqm-1", "[HartreeFock][water_3-21g]") {
     int argc = 3;
     const char* strings[] = {
@@ -33,4 +35,5 @@ TEST_CASE("tinkerqm-2", "[HartreeFock][water_aug-cc-pvtz]") {
     COMPARE_MATRIX(overlap::sphS, hartree2::sphS, hartree2::epsS);
     COMPARE_MATRIX(kinetic::sphKE, hartree2::sphKE, hartree2::epsKE);
     COMPARE_MATRIX(nuclear::sphNE, hartree2::sphNE, hartree2::epsNE);
+}
 }
