@@ -110,4 +110,6 @@ src/oqc/overlap.cpp
 src/oqc/print.cpp
 src/oqc/stringUtils.cpp
 src/oqc/tinkerqm.cpp
+src/qc/initialqm.cpp
+src/qc/polmdqcqm.cpp
 )

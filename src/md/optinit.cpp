@@ -30,8 +30,8 @@ void optinit()
     std::istringstream iss;
 
     // set default values for optimization parameters
-    iprint = -1;
-    iwrite = -1;
+    iprint = 0;
+    iwrite = 0;
     frcsave = false;
     uindsave = false;
 

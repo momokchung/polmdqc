@@ -15,4 +15,9 @@ namespace polmdqc
 #define POLMDQC_MIXED_SIZE 8
 using real = double;
 using mixed = double;
+
+#define POLMDQC_REALQ_SIZE 8
+#define POLMDQC_MIXEDQ_SIZE 8
+using realq = double;
+using mixedq = double;
 }

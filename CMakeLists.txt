@@ -24,6 +24,7 @@ include_directories(/usr/local/include)
 include_directories(include)
 include_directories(include/md)
 include_directories(include/oqc)
+include_directories(include/qc)
 # boost
 include_directories(/opt/homebrew/Cellar/boost/1.83.0/include)
 # gmp
@@ -44,6 +45,8 @@ add_executable(testgrad src/md/testgradExe.cpp)
 add_executable(spacefill src/md/spacefillExe.cpp)
 # tinkerqm
 add_executable(tinkerqm src/oqc/tinkerqmExe.cpp)
+# polmdqcqm
+add_executable(polmdqcqm src/qc/polmdqcqmExe.cpp)
 # valeev
 add_executable(valeev1 src/oqc/valeev1.cpp)
 
@@ -56,6 +59,8 @@ target_link_libraries(testgrad polmdqc)
 target_link_libraries(spacefill polmdqc gmp)
 # tinkerqm
 target_link_libraries(tinkerqm polmdqc openblas int2)
+# polmdqcqm
+target_link_libraries(polmdqcqm polmdqc openblas)
 # valeev
 target_link_libraries(valeev1 polmdqc int2)
 

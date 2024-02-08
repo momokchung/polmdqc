@@ -59,7 +59,7 @@ void initial(int argc, char** argv)
     nthread = nproc;
     omp_set_num_threads(nthread);
     omp_set_nested(true);
-#ifdef TINKER_ICPC
+#ifdef PolMDQC_ICPC
     // Intel compiler extensions to OpenMP standard, 268435456 bytes is 2**28 bytes, or 256 MB
     kmp_set_stacksize_s(268435456);
     kmp_set_blocktime(0);
@@ -175,8 +175,8 @@ void initial(int argc, char** argv)
     fctmin = 0.;
     maxiter = 0;
     nextiter = 0;
-    iprint = -1;
-    iwrite = -1;
+    iprint = 0;
+    iwrite = 0;
     stpmax = 0.;
 }
 }

@@ -18,5 +18,5 @@
 #define MAYBE_UNUSED [[maybe_unused]]
 
 #if defined(__INTEL_COMPILER)
-#define TINKER_ICPC
+#define PolMDQC_ICPC
 #endif

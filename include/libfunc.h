@@ -32,4 +32,23 @@ namespace polmdqc
 #   define REAL_SIGN     copysign
 #   define REAL_ABS      std::fabs
 #endif
+
+#if POLMDQC_REALQ_SIZE == 8
+#   define REALQ_SQRT     sqrt
+#   define REALQ_EXP      exp
+#   define REALQ_FLOOR    floor
+#   define REALQ_POW      pow
+#   define REALQ_COS      cos
+#   define REALQ_SIN      sin
+#   define REALQ_ACOS     acos
+#   define REALQ_ASIN     asin
+#   define REALQ_SINH     sinh
+#   define REALQ_COSH     cosh
+#   define REALQ_ERF      erf
+#   define REALQ_ERFC(x)  (1 - erf(x))
+#   define REALQ_MIN      fmin
+#   define REALQ_MAX      fmax
+#   define REALQ_SIGN     copysign
+#   define REALQ_ABS      std::fabs
+#endif
 }
