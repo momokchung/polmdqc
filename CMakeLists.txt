@@ -43,9 +43,9 @@ add_executable(testgrad src/md/testgradExe.cpp)
 # spacefill
 add_executable(spacefill src/md/spacefillExe.cpp)
 # tinkerqm
-add_executable(tinkerqm src/qc/tinkerqmExe.cpp)
+add_executable(tinkerqm src/oqc/tinkerqmExe.cpp)
 # valeev
-add_executable(valeev1 src/qc/valeev1.cpp)
+add_executable(valeev1 src/oqc/valeev1.cpp)
 
 # Target link libraries
 # analyze
