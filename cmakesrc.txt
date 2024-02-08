@@ -110,4 +110,4 @@ src/oqc/overlap.cpp
 src/oqc/print.cpp
 src/oqc/stringUtils.cpp
 src/oqc/tinkerqm.cpp
-)o
+)

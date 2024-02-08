@@ -23,7 +23,7 @@ link_directories(/Users/moseschung/OpenBLAS)
 include_directories(/usr/local/include)
 include_directories(include)
 include_directories(include/md)
-include_directories(include/qc)
+include_directories(include/oqc)
 # boost
 include_directories(/opt/homebrew/Cellar/boost/1.83.0/include)
 # gmp
