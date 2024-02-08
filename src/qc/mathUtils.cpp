@@ -15,9 +15,9 @@ namespace mathUtils{
 void symmetrize(std::vector<std::vector<real>>& matrix)
 {
     int N = matrix.size();
-    for (int i = 0; i < N; ++i)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             matrix[j][i] = matrix[i][j];
         }
@@ -99,11 +99,11 @@ void triDiagSym(std::vector<std::vector<real>>& A)
     std::vector<real> z(N, 0.);
 
     // Step 1
-    for (int k = 0; k < N - 2; ++k)
+    for (int k = 0; k < N - 2; k++)
     {
         // Step 2
         real q = 0;
-        for (int j = k + 1; j < N; ++j){
+        for (int j = k + 1; j < N; j++){
             q += A[j][k] * A[j][k];
         }
 
@@ -124,16 +124,16 @@ void triDiagSym(std::vector<std::vector<real>>& A)
         // Step 5
         v[k] = 0.;
         v[k + 1] = A[k + 1][k] - alpha;
-        for (int j = k + 2; j < N; ++j)
+        for (int j = k + 2; j < N; j++)
         {
             v[j] = A[j][k];
         }
 
         // Step 6
-        for (int j = k; j < N; ++j)
+        for (int j = k; j < N; j++)
         {
             real utmp = 0;
-            for (int i = k + 1; i < N; ++i)
+            for (int i = k + 1; i < N; i++)
             {
                 utmp += A[j][i] * v[i];
             }
@@ -142,22 +142,22 @@ void triDiagSym(std::vector<std::vector<real>>& A)
 
         // Step 7
         real prod = 0.;
-        for (int i = k + 1; i < N; ++i)
+        for (int i = k + 1; i < N; i++)
         {
             prod += v[i] * u[i];
         }
 
         // Step 8
-        for (int j = k; j < N; ++j)
+        for (int j = k; j < N; j++)
         {
             z[j] = u[j] - prod / (2. * rsq) * v[j];
         }
 
         // Step 9
-        for (int l = k + 1; l < N - 1; ++l)
+        for (int l = k + 1; l < N - 1; l++)
         {
             // Step 10
-            for (int j = l + 1; j < N; ++j)
+            for (int j = l + 1; j < N; j++)
             {
                 A[j][l] = A[j][l] - v[l] * z[j] - v[j] * z[l];
                 A[l][j] = A[j][l];
@@ -171,7 +171,7 @@ void triDiagSym(std::vector<std::vector<real>>& A)
         A[Nm][Nm] = A[Nm][Nm] - 2. * v[Nm] * z[Nm];
 
         // Step 13
-        for (int j = k + 2; j < N; ++j)
+        for (int j = k + 2; j < N; j++)
         {
             A[k][j] = 0;
             A[j][k] = 0;

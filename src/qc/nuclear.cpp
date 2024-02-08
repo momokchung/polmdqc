@@ -60,7 +60,7 @@ void nuclearOS()
     cartNE.resize(basisN, std::vector<real>(basisN, 0.));
 
     // outer loop over primitive shell
-    for (int i = 0; i < shellN; ++i)
+    for (int i = 0; i < shellN; i++)
     {
         int iL = prim::primShellL[i];
         int iIndex = prim::primShellIndex[i];
@@ -72,7 +72,7 @@ void nuclearOS()
         real coordzi = prim::primShellZ[i];
 
         // inner loop over primitive shell
-        for (int j = 0; j <= i; ++j)
+        for (int j = 0; j <= i; j++)
         {
             int jL = prim::primShellL[j];
             int jIndex = prim::primShellIndex[j];
@@ -104,7 +104,7 @@ void nuclearOS()
             real pre = kp * coeffi * coeffj * 2. * unitsqm::pi / aP;
 
             // loop over nuclei
-            for (int k = 0; k < atomN; ++k)
+            for (int k = 0; k < atomN; k++)
             {
                 int charge = atoms::core[k];
                 real prefactor = -charge * pre;
@@ -117,12 +117,12 @@ void nuclearOS()
                 real zPK = zP - coordzk;
 
                 // initialize xNe, yNe, zNe matrix
-                for (int l = 0; l <= iL; ++l)
+                for (int l = 0; l <= iL; l++)
                 {
-                    for (int m = 0; m <= jL; ++m)
+                    for (int m = 0; m <= jL; m++)
                     {
                         int torder = l + m;
-                        for (int n = 0; n <= torder; ++n)
+                        for (int n = 0; n <= torder; n++)
                         {
                             xNe[l][m][n] = 0.;
                             yNe[l][m][n] = 0.;
@@ -135,12 +135,12 @@ void nuclearOS()
                 zNe[0][0][0] = 1.;
 
                 // build xNe, yNe, zNe matrix
-                for (int l = 0; l <= iL; ++l)
+                for (int l = 0; l <= iL; l++)
                 {
                     recursionNeA(l, 0, xPI, xPK, aP2, xNe);
                     recursionNeA(l, 0, yPI, yPK, aP2, yNe);
                     recursionNeA(l, 0, zPI, zPK, aP2, zNe);
-                    for (int m = 0; m <= jL; ++m)
+                    for (int m = 0; m <= jL; m++)
                     {
                         recursionNeB(l, m, xPJ, xPK, aP2, xNe);
                         recursionNeB(l, m, yPJ, yPK, aP2, yNe);
@@ -199,10 +199,10 @@ void nuclearOS()
     }
 
     // loop over basis for normalization
-    for (int i = 0; i < basisN; ++i)
+    for (int i = 0; i < basisN; i++)
     {
         real normi = basis::basisNorm[i];
-        for (int j = 0; j <= i; ++j)
+        for (int j = 0; j <= i; j++)
         {
             cartNE[i][j] *= normi * basis::basisNorm[j];
         }
@@ -219,13 +219,13 @@ void nuclearOS()
         sphNE.resize(sphBasisN, std::vector<real>(sphBasisN, 0.));
 
         // loop over cartesian basis, add to appropriate spherical basis
-        for (int i = 0; i < basisN; ++i)
+        for (int i = 0; i < basisN; i++)
         {
             auto& iContraction = basis::cartSphContraction[i];
             auto& iCoeff = basis::cartSphCoeff[i];
             int iN = iContraction.size();
 
-            for (int j = 0; j < basisN; ++j)
+            for (int j = 0; j < basisN; j++)
             {
                 auto& jContraction = basis::cartSphContraction[j];
                 auto& jCoeff = basis::cartSphCoeff[j];
@@ -233,12 +233,12 @@ void nuclearOS()
 
                 real ne = cartNE[i][j];
 
-                for (int ii = 0; ii < iN; ++ii)
+                for (int ii = 0; ii < iN; ii++)
                 {
                     int cii = iContraction[ii];
                     real coefii = iCoeff[ii];
 
-                    for (int jj = 0; jj < jN; ++jj)
+                    for (int jj = 0; jj < jN; jj++)
                     {
                         int cjj = jContraction[jj];
                         real coefjj = jCoeff[jj];

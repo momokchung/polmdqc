@@ -27,9 +27,9 @@ void sortUnique(int& n, std::vector<T>& vector, int startIndex=0)
     int setSize = s.size();
 
     size_t start = startIndex;
-    for (auto it = s.begin(); it != s.end(); ++it) {
+    for (auto it = s.begin(); it != s.end(); it++) {
         vector[start] = *it;
-        ++start;
+        start++;
     }
 
     std::sort(vector.begin()+startIndex, vector.begin()+startIndex+setSize);
@@ -46,9 +46,9 @@ void sortUnique(int& n, T* vector, int startIndex=0)
     int setSize = s.size();
 
     size_t start = startIndex;
-    for (auto it = s.begin(); it != s.end(); ++it) {
+    for (auto it = s.begin(); it != s.end(); it++) {
         vector[start] = *it;
-        ++start;
+        start++;
     }
 
     std::sort(vector+startIndex, vector+startIndex+setSize);
@@ -65,7 +65,7 @@ void sortKey(size_t n, std::vector<T>& vector, std::vector<int>& key)
 
     // Create a temporary vector with pairs of (value, index)
     std::vector<std::pair<T,int>> temp;
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
         temp.push_back({vector[i], i});
     }
 
@@ -81,7 +81,7 @@ void sortKey(size_t n, std::vector<T>& vector, std::vector<int>& key)
     }
 
     // Update the original vector with the sorted values
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
         vector[i] = temp[i].first;
     }
 }
@@ -94,7 +94,7 @@ void sortKey(size_t n, std::vector<T>& vector, int* key)
 
     // Create a temporary vector with pairs of (value, index)
     std::vector<std::pair<T,int>> temp;
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
         temp.push_back({vector[i], i});
     }
 
@@ -109,7 +109,7 @@ void sortKey(size_t n, std::vector<T>& vector, int* key)
     }
 
     // Update the original vector with the sorted values
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
         vector[i] = temp[i].first;
     }
 }

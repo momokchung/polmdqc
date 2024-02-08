@@ -48,9 +48,9 @@ inline int doubleFactorial(int n)
 
 inline void multpoly(int iL, int jL, std::vector<real>& iPoly, std::vector<real>& jPoly, std::vector<real>& poly)
 {
-    for (int i = 0; i < iL; ++i)
+    for (int i = 0; i < iL; i++)
     {
-        for (int j = 0; j < jL; ++j)
+        for (int j = 0; j < jL; j++)
         {
             poly[i + j] += iPoly[i] * jPoly[j];
         }
@@ -67,7 +67,7 @@ inline void multpoly(int iL, int jL, std::vector<real>& iPoly, std::vector<real>
 template <typename T>
 inline void zero(int l, std::vector<T>& poly)
 {
-    for (int i = 0; i < l; ++i)
+    for (int i = 0; i < l; i++)
     {
         poly[i] = 0;
     }
@@ -82,7 +82,7 @@ inline void zero(int l, std::vector<T>& poly)
 inline real contract(int l, std::vector<real>& poly1, std::vector<real>& poly2)
 {
     real r = 0.;
-    for (int i = 0; i < l; ++i)
+    for (int i = 0; i < l; i++)
     {
         r += poly1[i] * poly2[i];
     }
@@ -97,9 +97,9 @@ inline real contract(int l, std::vector<real>& poly1, std::vector<real>& poly2)
 
 inline void flatten(int m, int n, std::vector<std::vector<real>>& inputA, std::vector<real>& outputA)
 {
-    for (int i = 0; i < m; ++i)
+    for (int i = 0; i < m; i++)
     {
-        for (int j = 0; j < n; ++j)
+        for (int j = 0; j < n; j++)
         {
             outputA[n * i + j] = inputA[i][j];
         }

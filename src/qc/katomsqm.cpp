@@ -304,7 +304,7 @@ void readxyz(std::string fileName)
     ioUtils::readlines(fileName, lines);
 
     // parse file
-    for (int i = 0; i < lineN; ++i)
+    for (int i = 0; i < lineN; i++)
     {
         std::vector<std::string> words = stringUtils::split(lines[i]);
 
@@ -413,7 +413,7 @@ void readxyz(std::string fileName)
     // get total number of atoms and electrons
     n = atom.size();
     nElec = 0;
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < n; i++)
     {
         nElec += core[i];
     }
@@ -421,7 +421,7 @@ void readxyz(std::string fileName)
     // convert to bohrs
     if (lengthUnit == LengthUnit::angstrom)
     {
-        for (int i = 0; i < n; ++i)
+        for (int i = 0; i < n; i++)
         {
             coordx[i] = coordx[i] * unitsqm::bohr;
             coordy[i] = coordy[i] * unitsqm::bohr;
@@ -430,7 +430,7 @@ void readxyz(std::string fileName)
     }
     // // uncomment below to check readxyz
     // std::cout << name << std::endl;
-    // for (int i = 0; i < n; ++i)
+    // for (int i = 0; i < n; i++)
     // {
     //     std::cout << atom[i] << std::endl;
     //     printf("core: %2i\n", core[i]);

@@ -24,22 +24,22 @@ void command(int argc, char** argv)
 {
     // initialize command line arguments as blank strings
     std::string blank = "                    ";
-    for (int i = 0; i < maxarg; ++i) {
+    for (int i = 0; i < maxarg; i++) {
         arg[i] = blank + blank + blank;
     }
 
     // get the number of arguments and store each in a string
     narg = std::min(argc, maxarg);
-    for (int i = 0; i < narg; ++i) {
+    for (int i = 0; i < narg; i++) {
         arg[i] = argv[i];
     }
 
     // mark the command line options as unuseable for input
     listarg[0] = false;
-    for (int i = 1; i < narg; ++i) {
+    for (int i = 1; i < narg; i++) {
         listarg[i] = true;
     }
-    for (int i = 1; i <= narg; ++i) {
+    for (int i = 1; i <= narg; i++) {
         char letter = arg[i][0];
         if (letter == '-') {
             letter = arg[i][1];

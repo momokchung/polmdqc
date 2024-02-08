@@ -59,7 +59,7 @@ void boysIntegralPoly(real t, int m, std::vector<real>& boysPoly)
     if (t >= 0. and t < 34)
     {
         int j = int(x);
-        for (int i = 0; i <= m; ++i)
+        for (int i = 0; i <= m; i++)
         {
             int index = intervalLength * 4 * i + j * 4;
             boysPoly[i] = coefficients[index] + x * (coefficients[index + 1] + x * (coefficients[index + 2] + x * coefficients[index + 3]));
@@ -69,7 +69,7 @@ void boysIntegralPoly(real t, int m, std::vector<real>& boysPoly)
     {
         real t2 = t * 2.;
         boysPoly[0] = sqrt(unitsqm::pi / 2. / t2);
-        for (int i = 1; i <= m; ++i)
+        for (int i = 1; i <= m; i++)
         {
             // boysPoly[i] = boysPoly[i] * (2 * i - 1) / t2; // less accurate, fast
             boysPoly[i] = (boysPoly[i-1] * (2 * i - 1) - exp(-t))/ t2; // more accurate, slow

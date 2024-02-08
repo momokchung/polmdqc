@@ -54,7 +54,7 @@ void kineticOS()
     cartKE.resize(basisN, std::vector<real>(basisN, 0.));
 
     // outer loop over primitive shell
-    for (int i = 0; i < shellN; ++i)
+    for (int i = 0; i < shellN; i++)
     {
         int iL = prim::primShellL[i];
         int iIndex = prim::primShellIndex[i];
@@ -66,7 +66,7 @@ void kineticOS()
         real coordzi = prim::primShellZ[i];
 
         // inner loop over primitive shell
-        for (int j = 0; j <= i; ++j)
+        for (int j = 0; j <= i; j++)
         {
             int jL = prim::primShellL[j];
             int jIndex = prim::primShellIndex[j];
@@ -98,9 +98,9 @@ void kineticOS()
             real pre = kp * coeffi * coeffj * pow(unitsqm::pi/aP,1.5);
 
             // initialize xS, yS, zS matrix
-            for (int k = 0; k <= (iL + 1); ++k)
+            for (int k = 0; k <= (iL + 1); k++)
             {
-                for (int l = 0; l <= (jL +1); ++l)
+                for (int l = 0; l <= (jL +1); l++)
                 {
                     xS[k][l] = 0.;
                     yS[k][l] = 0.;
@@ -112,12 +112,12 @@ void kineticOS()
             zS[0][0] = 1.;
 
             // build xS, yS, zS matrix
-            for (int k = 0; k <= (iL + 1); ++k)
+            for (int k = 0; k <= (iL + 1); k++)
             {
                 overlap::recursionOA(k, 0, xPI, aP2, xS);
                 overlap::recursionOA(k, 0, yPI, aP2, yS);
                 overlap::recursionOA(k, 0, zPI, aP2, zS);
-                for (int l = 0; l <= (jL + 1); ++l)
+                for (int l = 0; l <= (jL + 1); l++)
                 {
                     overlap::recursionOB(k, l, xPJ, aP2, xS);
                     overlap::recursionOB(k, l, yPJ, aP2, yS);
@@ -126,9 +126,9 @@ void kineticOS()
             }
             
             // initialize xKE, yKE, zKE matrix
-            for (int k = 0; k <= iL; ++k)
+            for (int k = 0; k <= iL; k++)
             {
-                for (int l = 0; l <= jL; ++l)
+                for (int l = 0; l <= jL; l++)
                 {
                     xKE[k][l] = 0.;
                     yKE[k][l] = 0.;
@@ -137,10 +137,10 @@ void kineticOS()
             }
 
             // build xKE, yKE, zKE matrix
-            for (int k = 0; k <= iL; ++k)
+            for (int k = 0; k <= iL; k++)
             {
                 
-                for (int l = 0; l <= jL; ++l)
+                for (int l = 0; l <= jL; l++)
                 {
                     xKE[k][l] += 2. * ai * aj * xS[k + 1][l + 1];
                     yKE[k][l] += 2. * ai * aj * yS[k + 1][l + 1];
@@ -196,10 +196,10 @@ void kineticOS()
         }
     }
     // loop over basis for normalization
-    for (int i = 0; i < basisN; ++i)
+    for (int i = 0; i < basisN; i++)
     {
         real normi = basis::basisNorm[i];
-        for (int j = 0; j <= i; ++j)
+        for (int j = 0; j <= i; j++)
         {
             cartKE[i][j] *= normi * basis::basisNorm[j];
         }
@@ -216,13 +216,13 @@ void kineticOS()
         sphKE.resize(sphBasisN, std::vector<real>(sphBasisN, 0.));
 
         // loop over cartesian basis, add to appropriate spherical basis
-        for (int i = 0; i < basisN; ++i)
+        for (int i = 0; i < basisN; i++)
         {
             auto& iContraction = basis::cartSphContraction[i];
             auto& iCoeff = basis::cartSphCoeff[i];
             int iN = iContraction.size();
 
-            for (int j = 0; j < basisN; ++j)
+            for (int j = 0; j < basisN; j++)
             {
                 auto& jContraction = basis::cartSphContraction[j];
                 auto& jCoeff = basis::cartSphCoeff[j];
@@ -230,12 +230,12 @@ void kineticOS()
 
                 real ke = cartKE[i][j];
 
-                for (int ii = 0; ii < iN; ++ii)
+                for (int ii = 0; ii < iN; ii++)
                 {
                     int cii = iContraction[ii];
                     real coefii = iCoeff[ii];
 
-                    for (int jj = 0; jj < jN; ++jj)
+                    for (int jj = 0; jj < jN; jj++)
                     {
                         int cjj = jContraction[jj];
                         real coefjj = jCoeff[jj];

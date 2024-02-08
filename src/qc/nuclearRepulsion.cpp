@@ -30,7 +30,7 @@ void nuclearRepulsion()
     int atomN = atoms::n;
 
     // outer loop over nucleus
-    for (int i = 0; i < atomN; ++i)
+    for (int i = 0; i < atomN; i++)
     {
         int chargei = atoms::core[i];
         real coordxi = atoms::coordx[i];
@@ -38,7 +38,7 @@ void nuclearRepulsion()
         real coordzi = atoms::coordz[i];
 
         //inner loop over nucleus
-        for (int j = 0; j < i; ++j)
+        for (int j = 0; j < i; j++)
         {
             int chargej = atoms::core[j];
             real coordxj = atoms::coordx[j];

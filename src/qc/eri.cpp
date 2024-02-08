@@ -70,7 +70,7 @@ void inCoreEriOS()
     cartERI.resize(uniqueM, 0.);
 
     // outer loop over primitive shells
-    for (int i = 0; i < shellN; ++i)
+    for (int i = 0; i < shellN; i++)
     {
         real ai = prim::primShellExp[i];
         real coordxi = prim::primShellX[i];
@@ -78,7 +78,7 @@ void inCoreEriOS()
         real coordzi = prim::primShellZ[i];
 
         // inner loop over primitive shell
-        for (int j = 0; j <= i; ++j)
+        for (int j = 0; j <= i; j++)
         {
             real aj = prim::primShellExp[j];
             real coordxj = prim::primShellX[j];
@@ -112,7 +112,7 @@ void inCoreEriOS()
     int i = 0;
     int j = 0;
     // outer loop over pair of primitive shells
-    for (int ipps = 0; ipps < primPairN; ++ipps)
+    for (int ipps = 0; ipps < primPairN; ipps++)
     {
         real xP1 = pairPrimPx[i][j];
         real yP1 = pairPrimPy[i][j];
@@ -123,7 +123,7 @@ void inCoreEriOS()
         // inner loop over pair of primitive shells
         int k = 0;
         int l = 0;
-        for (int jpps = 0; jpps <= ipps; ++jpps)
+        for (int jpps = 0; jpps <= ipps; jpps++)
         {
             real xP2 = pairPrimPx[k][l];
             real yP2 = pairPrimPy[k][l];

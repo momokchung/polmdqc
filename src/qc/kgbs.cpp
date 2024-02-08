@@ -113,7 +113,7 @@ void readgbs(std::string basisName)
     ioUtils::readlines(fileName, lines);
 
     // parse file
-    for (int i = 0; i < lineN; ++i)
+    for (int i = 0; i < lineN; i++)
     {
         std::vector<std::string> words = stringUtils::split(lines[i]);
         if (words[0] == "CARTESIAN")
@@ -173,7 +173,7 @@ void readgbs(std::string basisName)
                     std::vector<real> contractionCoeffSubVec1;
                     std::vector<real> primExpSubVec2;
                     std::vector<real> contractionCoeffSubVec2;
-                    for (int j = 0; j < contractions; ++j)
+                    for (int j = 0; j < contractions; j++)
                     {
                         words = stringUtils::split(lines[i]);
                         std::replace_if(words[0].begin(), words[0].end(), [](char ch) {return (ch == 'D');}, 'E');
@@ -219,20 +219,20 @@ void readgbs(std::string basisName)
     // std::vector<std::vector<real>>& contractionCoeff = H.getContractionCoeff();
 
     // std::cout << "element Name: " << elementName << std::endl;
-    // for (int i = 0; i < shell.size(); ++i)
+    // for (int i = 0; i < shell.size(); i++)
     // {
     //     std::cout << i << std::endl;
     //     std::cout << "shell " << shell[i] << std::endl;
     //     std::cout << "contraction " << contraction[i] << std::endl;
     //     std::cout << "scale " << scale[i] << std::endl;
     //     std::cout << "primExp" << std::endl;
-    //     for (int j = 0; j < contraction[i]; ++j)
+    //     for (int j = 0; j < contraction[i]; j++)
     //     {
     //         printf("%15.6f", primExp[i][j]);
     //     }
     //     std::cout << std::endl;
     //     std::cout << "contractionCoeff" << std::endl;
-    //     for (int j = 0; j < contraction[i]; ++j)
+    //     for (int j = 0; j < contraction[i]; j++)
     //     {
     //         printf("%15.6f", contractionCoeff[i][j]);
     //     }

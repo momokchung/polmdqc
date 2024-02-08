@@ -28,7 +28,7 @@ void fock_1body_libint(libint2::Operator obtype, std::vector<std::vector<real>>&
     std::string xyzfilename = "/Users/moseschung/polmdqc/example/QCexample/tmp.xyz";
     std::ifstream input_file(xyzfilename);
     std::vector<libint2::Atom> atoms;
-    for (int i = 0; i < atoms::n; ++i)
+    for (int i = 0; i < atoms::n; i++)
     {
         int an = atoms::core[i];
         real xi = atoms::coordx[i];
@@ -47,12 +47,12 @@ void fock_1body_libint(libint2::Operator obtype, std::vector<std::vector<real>>&
     auto shell2bf = obs.shell2bf();
     const auto& buf = engine.results();
 
-    for(auto s1=0; s1!=obs.size(); ++s1) {
+    for(auto s1=0; s1!=obs.size(); s1++) {
 
         auto bf1 = shell2bf[s1]; // first basis function in this shell
         auto n1 = obs[s1].size();
 
-        for(auto s2=0; s2<=s1; ++s2) {
+        for(auto s2=0; s2<=s1; s2++) {
 
             auto bf2 = shell2bf[s2];
             auto n2 = obs[s2].size();
@@ -102,7 +102,7 @@ void fock_2body_lib()
     std::string xyzfilename = "/Users/moseschung/polmdqc/example/QCexample/tmp.xyz";
     std::ifstream input_file(xyzfilename);
     std::vector<libint2::Atom> atoms;
-    for (int i = 0; i < atoms::n; ++i)
+    for (int i = 0; i < atoms::n; i++)
     {
         int an = atoms::core[i];
         real xi = atoms::coordx[i];
@@ -121,23 +121,23 @@ void fock_2body_lib()
     const auto& buf = engine.results();
 
     // loop over permutationally-unique set of shells
-    for(auto s1=0; s1!=obs.size(); ++s1) {
+    for(auto s1=0; s1!=obs.size(); s1++) {
 
         auto bf1_first = shell2bf[s1]; // first basis function in this shell
         auto n1 = obs[s1].size();   // number of basis functions in this shell
 
-        for(auto s2=0; s2<=s1; ++s2) {
+        for(auto s2=0; s2<=s1; s2++) {
 
             auto bf2_first = shell2bf[s2];
             auto n2 = obs[s2].size();
 
-            for(auto s3=0; s3<=s1; ++s3) {
+            for(auto s3=0; s3<=s1; s3++) {
 
                 auto bf3_first = shell2bf[s3];
                 auto n3 = obs[s3].size();
 
                 const auto s4_max = (s1 == s3) ? s2 : s3;
-                for(auto s4=0; s4<=s4_max; ++s4) {
+                for(auto s4=0; s4<=s4_max; s4++) {
 
                     auto bf4_first = shell2bf[s4];
                     auto n4 = obs[s4].size();
@@ -164,13 +164,13 @@ void fock_2body_lib()
                     // 2) each permutationally-unique integral (shell set) must be scaled by its degeneracy,
                     //    i.e. the number of the integrals/sets equivalent to it
                     // 3) the end result must be symmetrized
-                    for(auto f1=0, f1234=0; f1!=n1; ++f1) {
+                    for(auto f1=0, f1234=0; f1!=n1; f1++) {
                         const auto bf1 = f1 + bf1_first;
-                        for(auto f2=0; f2!=n2; ++f2) {
+                        for(auto f2=0; f2!=n2; f2++) {
                             const auto bf2 = f2 + bf2_first;
-                            for(auto f3=0; f3!=n3; ++f3) {
+                            for(auto f3=0; f3!=n3; f3++) {
                                 const auto bf3 = f3 + bf3_first;
-                                for(auto f4=0; f4!=n4; ++f4, ++f1234) {
+                                for(auto f4=0; f4!=n4; f4++, f1234++) {
                                     const auto bf4 = f4 + bf4_first;
 
                                     const auto value = buf_1234[f1234];

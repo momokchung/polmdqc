@@ -30,7 +30,7 @@ inline void recursionNeA(int i, int j, real xPA, real xPC, real aP2, std::vector
     
     int maxt = i + j;
 
-    for (int t = 0; t < maxt; ++t)
+    for (int t = 0; t < maxt; t++)
     {
         real tmp = xNe[i - 1][j][t];
         xNe[i][j][t] += xPA * tmp;
@@ -38,7 +38,7 @@ inline void recursionNeA(int i, int j, real xPA, real xPC, real aP2, std::vector
     }
     if (i > 1)
     {
-        for (int t = 0; t < maxt; ++t)
+        for (int t = 0; t < maxt; t++)
         {
             real tmp = (i - 1) / aP2 * xNe[i - 2][j][t];
             xNe[i][j][t] += tmp;
@@ -59,7 +59,7 @@ inline void recursionNeB(int i, int j, real xPB, real xPC, real aP2, std::vector
 
     int maxt = i + j;
 
-    for (int t = 0; t < maxt; ++t)
+    for (int t = 0; t < maxt; t++)
     {
         real tmp = xNe[i][j - 1][t];
         xNe[i][j][t] += xPB * tmp;
@@ -67,7 +67,7 @@ inline void recursionNeB(int i, int j, real xPB, real xPC, real aP2, std::vector
     }
     if (j > 1)
     {
-        for (int t = 0; t < maxt; ++t)
+        for (int t = 0; t < maxt; t++)
         {
             real tmp = (j - 1) / aP2 * xNe[i][j - 2][t];
             xNe[i][j][t] += tmp;
@@ -76,7 +76,7 @@ inline void recursionNeB(int i, int j, real xPB, real xPC, real aP2, std::vector
     }
     if (i > 0)
     {
-        for (int t = 0; t < maxt; ++t)
+        for (int t = 0; t < maxt; t++)
         {
             real tmp = i / aP2 * xNe[i - 1][j - 1][t];
             xNe[i][j][t] += tmp;

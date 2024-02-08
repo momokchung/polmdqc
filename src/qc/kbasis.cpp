@@ -505,7 +505,7 @@ void kbasis()
     cShellPrimExp.resize(0);
     cShellContractionCoeff.resize(0);
 
-    for (int i = 0; i < atoms::n; ++i)
+    for (int i = 0; i < atoms::n; i++)
     {
         std::string atomName = atoms::atom[i];
         real coordx = atoms::coordx[i];
@@ -519,7 +519,7 @@ void kbasis()
         std::vector<real>& scale = basis.getScale();
         std::vector<std::vector<real>>& primExp = basis.getPrimExp();
         std::vector<std::vector<real>>& contractionCoeff = basis.getContractionCoeff();
-        for (int j = 0; j < shellN; ++j)
+        for (int j = 0; j < shellN; j++)
         {
             int l = sToL(shell[j]);
             basisN += lToN(l);
@@ -542,7 +542,7 @@ void kbasis()
     normalizeContraction();
     // // print to debug
     // std::cout << "Contraction normalization: " << std::endl;
-    // for (int i = 0; i < basisN; ++i)
+    // for (int i = 0; i < basisN; i++)
     // {
     //     printf("%20.16f", basisNorm[i]);
     // }
@@ -569,7 +569,7 @@ void normalizeContraction()
     basisNorm.resize(0);
     auto& partitionL = partitionAngularMomentum;
     // loop over shell
-    for (int i = 0; i < cShellN; ++i)
+    for (int i = 0; i < cShellN; i++)
     {
         int l = cShellL[i];
         auto& primExp = cShellPrimExp[i];
@@ -581,11 +581,11 @@ void normalizeContraction()
             int ly = part[1];
             int lz = part[2];
             real s = 0.;
-            for (int j = 0; j < coeffN; ++j)
+            for (int j = 0; j < coeffN; j++)
             {
                 real aj = primExp[j];
                 real cj = coeff[j];
-                for (int k = 0; k < coeffN; ++k)
+                for (int k = 0; k < coeffN; k++)
                 {
                     real ak = primExp[k];
                     real ck = coeff[k];
@@ -614,16 +614,16 @@ void buildSphContractionCoeff()
     int counter = 0;
 
     // loop over shell
-    for (int i = 0; i < cShellN; ++i)
+    for (int i = 0; i < cShellN; i++)
     {
         int l = cShellL[i];
         auto& partSphCont = partitionSphContraction[l];
         auto& partSphCoeff = partitionSphCoeff[l];
         int sphN = lToSphN(l);
-        for (int j = 0; j < sphN; ++j)
+        for (int j = 0; j < sphN; j++)
         {
             auto contraction = partSphCont[j];
-            for (int k = 0; k < contraction.size(); ++k)
+            for (int k = 0; k < contraction.size(); k++)
             {
                 contraction[k] += counter;
             }
@@ -634,18 +634,18 @@ void buildSphContractionCoeff()
     }
 
     // // print to debug
-    // for (int i = 0; i < sphBasisN; ++i)
+    // for (int i = 0; i < sphBasisN; i++)
     // {
-    //     for (int j = 0; j < sphContraction[i].size(); ++j)
+    //     for (int j = 0; j < sphContraction[i].size(); j++)
     //     {
     //         printf("%4i,", sphContraction[i][j]);
     //     }
     //     std::cout << std::endl;
     // }
     // std::cout << std::endl;
-    // for (int i = 0; i < sphBasisN; ++i)
+    // for (int i = 0; i < sphBasisN; i++)
     // {
-    //     for (int j = 0; j < sphCoeff[i].size(); ++j)
+    //     for (int j = 0; j < sphCoeff[i].size(); j++)
     //     {
     //         printf("%10.5f,", sphCoeff[i][j]);
     //     }
@@ -668,16 +668,16 @@ void buildCartSphContractionCoeff()
     int counter = 0;
 
     // loop over shell
-    for (int i = 0; i < cShellN; ++i)
+    for (int i = 0; i < cShellN; i++)
     {
         int l = cShellL[i];
         auto& partCont = partitionCartSphContraction[l];
         auto& partCoeff = partitionCartSphCoeff[l];
         int N = lToN(l);
-        for (int j = 0; j < N; ++j)
+        for (int j = 0; j < N; j++)
         {
             auto contraction = partCont[j];
-            for (int k = 0; k < contraction.size(); ++k)
+            for (int k = 0; k < contraction.size(); k++)
             {
                 contraction[k] += counter;
             }
@@ -688,18 +688,18 @@ void buildCartSphContractionCoeff()
     }
 
     // // print to debug
-    // for (int i = 0; i < basisN; ++i)
+    // for (int i = 0; i < basisN; i++)
     // {
-    //     for (int j = 0; j < cartSphContraction[i].size(); ++j)
+    //     for (int j = 0; j < cartSphContraction[i].size(); j++)
     //     {
     //         printf("%4i,", cartSphContraction[i][j]);
     //     }
     //     std::cout << std::endl;
     // }
     // std::cout << std::endl;
-    // for (int i = 0; i < basisN; ++i)
+    // for (int i = 0; i < basisN; i++)
     // {
-    //     for (int j = 0; j < cartSphCoeff[i].size(); ++j)
+    //     for (int j = 0; j < cartSphCoeff[i].size(); j++)
     //     {
     //         printf("%10.5f,", cartSphCoeff[i][j]);
     //     }

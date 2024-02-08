@@ -131,9 +131,9 @@ void rhf()
     nuclearRepulsion::nuclearRepulsion();
 
     // core Hamiltonian = T + V
-    for (int i = 0; i < N; ++i)
+    for (int i = 0; i < N; i++)
     {
-        for (int j = 0; j < N; ++j)
+        for (int j = 0; j < N; j++)
         {
             real h = KE[i][j] + NE[i][j];
             H[N * i + j] = h;
@@ -189,7 +189,7 @@ void eigenS(std::vector<std::vector<real>>& S)
         X.resize(N * N, 0.);
 
         // assign diagonal elements of X
-        for (int i = 0; i < N; ++i)
+        for (int i = 0; i < N; i++)
         {
             X[N * i + i] = 1/sqrt(wS[i]);
         }
@@ -208,10 +208,10 @@ void eigenS(std::vector<std::vector<real>>& S)
         // allocate and initialize X
         int Nmsi = N - s_i;
         X.resize(Nmsi * N, 0.);
-        for (int i = 0; i < Nmsi; ++i)
+        for (int i = 0; i < Nmsi; i++)
         {
             real s12 = sqrt(wS[i + s_i]);
-            for (int j = 0; j < N; ++j)
+            for (int j = 0; j < N; j++)
             {
                 X[N * i + j] = vS[N * (i + s_i) + j] / s12;
             }
@@ -220,15 +220,15 @@ void eigenS(std::vector<std::vector<real>>& S)
 
     // print to debug
     // printf("[");
-    // for (int i = 0; i < N; ++i)
+    // for (int i = 0; i < N; i++)
     // {
     //     printf("%10.5f,", wS[i]);
     // }
     // printf("]\n");
-    // for (int i = 0; i < N; ++i)
+    // for (int i = 0; i < N; i++)
     // {
     //     printf("[");
-    //     for (int j = 0; j < (N - s_i); ++j)
+    //     for (int j = 0; j < (N - s_i); j++)
     //     {
     //         printf("%20.16f,", X[i + j * N]);
     //     }
@@ -274,7 +274,7 @@ void guess()
 
     // mathUtils::dgemm(N, N, N, D.data(), H.data(), workerN2.data(), 'N', 'N');
     // real energy = 0;
-    // for (int i = 0; i < N; ++i)
+    // for (int i = 0; i < N; i++)
     // {
     //     energy += workerN2[N * i + i];
     // }
@@ -311,7 +311,7 @@ void scf()
 
     do
     {
-        ++iter;
+        iter++;
 
         // copy last energy and density
         real ehf_last = ehf;

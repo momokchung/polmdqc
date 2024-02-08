@@ -87,7 +87,7 @@ void kprim()
     primShellScale.resize(0);
 
     // loop over shell
-    for (int i = 0; i < basis::cShellN; ++i)
+    for (int i = 0; i < basis::cShellN; i++)
     {
         int l = basis::cShellL[i];
         real coordx = basis::cShellX[i];
@@ -97,7 +97,7 @@ void kprim()
         auto& coeff = basis::cShellContractionCoeff[i];
         auto& exp = basis::cShellPrimExp[i];
         real scale = basis::cShellScale[i];
-        for (int j = 0; j < contractionN; ++j)
+        for (int j = 0; j < contractionN; j++)
         {
             primShellIndex.push_back(primN);
             primN += basis::lToN(l);
@@ -112,7 +112,7 @@ void kprim()
         }
     }
     // // print to debug
-    // for (int i = 0; i < primShellN; ++i)
+    // for (int i = 0; i < primShellN; i++)
     // {
     //     printf("%4i", primShellIndex[i]);
     // }
@@ -120,7 +120,7 @@ void kprim()
 
     normalizePrimitive();
     // // print to debug
-    // for (int i = 0; i < primNorm.size(); ++i)
+    // for (int i = 0; i < primNorm.size(); i++)
     // {
     //     printf("%10.5f", primNorm[i]);
     // }
@@ -128,12 +128,12 @@ void kprim()
 
     buildPrimMaps();
     // // print to debug
-    // for (int i = 0; i < primToBasis.size(); ++i)
+    // for (int i = 0; i < primToBasis.size(); i++)
     // {
     //     printf("%3i", primToBasis[i]);
     // }
     // std::cout << std::endl;
-    // for (int i = 0; i < primToShell.size(); ++i)
+    // for (int i = 0; i < primToShell.size(); i++)
     // {
     //     printf("%3i", primToShell[i]);
     // }
@@ -156,7 +156,7 @@ void normalizePrimitive()
     real pre1 = pow(2. / unitsqm::pi, 0.75);
 
     // loop over primitive shell
-    for (int i = 0; i < primShellN; ++i)
+    for (int i = 0; i < primShellN; i++)
     {
         int l = primShellL[i];
         real exp = primShellExp[i];
@@ -189,12 +189,12 @@ void buildPrimMaps()
     auto& partitionL = basis::partitionAngularMomentum;
 
     // loop over shell
-    for (int i = 0; i < basis::cShellN; ++i)
+    for (int i = 0; i < basis::cShellN; i++)
     {
         int l = basis::cShellL[i];
         int contractionN = basis::cShellContraction[i];
         // loop over primitive shell
-        for (int j = 0; j < contractionN; ++j)
+        for (int j = 0; j < contractionN; j++)
         {
             int counter = 0;
             // loop over angular momenutum
