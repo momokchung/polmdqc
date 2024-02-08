@@ -1,6 +1,10 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
+#include "files.h"
+#include "final.h"
+#include "getcartqm.h"
+#include "inform.h"
 #include "initialqm.h"
 #include "polmdqcqm.h"
 
@@ -18,7 +22,11 @@ void polmdqcqm(int argc, char** argv)
 {
     // set up the structure and mechanics calculation
     initialqm(argc, argv);
-    // getcartqm(ffile);
+    getcartqm(ffile);
     // mechanicqm();
+
+    // perform any final tasks before program exit
+    ffile.close();
+    if (!test) final();
 }
 }

@@ -469,6 +469,8 @@ void final()
     imol.deallocate();
     kmol.deallocate();
     molcule.deallocate();
+    molchg.deallocate();
+    molmult.deallocate();
     molmass.deallocate();
 
     // deallocation of global arrays from module mpole

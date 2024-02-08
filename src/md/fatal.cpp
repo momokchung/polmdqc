@@ -3,6 +3,7 @@
 
 #include "fatal.h"
 #include "final.h"
+#include "finalqm.h"
 #include <cstdlib>
 #include <stdio.h>
 
@@ -22,6 +23,7 @@ void fatal()
     // print a final warning message, then do final cleanup
     printf("\n PolMDQC is Unable to Continue; Terminating the Current Calculation\n");
     final();
+    finalqm();
     exit(1);
 }
 }
