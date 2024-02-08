@@ -3,7 +3,7 @@
 
 #include "energyqm.h"
 #include "init.h"
-#include "mechanicqm.h"
+#include "omechanicqm.h"
 #include <string>
 
 namespace polmdqc

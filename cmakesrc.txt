@@ -103,7 +103,7 @@ src/oqc/kinetic.cpp
 src/oqc/kprim.cpp
 src/oqc/kworker.cpp
 src/oqc/mathUtils.cpp
-src/oqc/mechanicqm.cpp
+src/oqc/omechanicqm.cpp
 src/oqc/nuclear.cpp
 src/oqc/nuclearRepulsion.cpp
 src/oqc/overlap.cpp
