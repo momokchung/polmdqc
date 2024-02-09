@@ -3,7 +3,7 @@
 
 #include "kbasis.h"
 #include "katomsqm.h"
-#include "kgbs.h"
+#include "okgbs.h"
 #include "mathUtils.h"
 #include "unitsqm.h"
 #include <algorithm>

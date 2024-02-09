@@ -5,7 +5,7 @@
 #include "fock.h"
 #include "hartree.h"
 #include "kbasis.h"
-#include "kgbs.h"
+#include "okgbs.h"
 #include "print.h"
 #include <Eigen/Dense>
 #include <string>

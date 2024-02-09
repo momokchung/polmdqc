@@ -3,7 +3,7 @@
 
 #include "init.h"
 #include "ioUtils.h"
-#include "kgbs.h"
+#include "okgbs.h"
 #include "stringUtils.h"
 #include <algorithm>
 #include <iostream>

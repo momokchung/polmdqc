@@ -5,7 +5,7 @@
 #include "ioUtils.h"
 #include "katomsqm.h"
 #include "kbasis.h"
-#include "kgbs.h"
+#include "okgbs.h"
 #include "stringUtils.h"
 #include "unitsqm.h"
 #include <iostream>

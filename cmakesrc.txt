@@ -113,6 +113,7 @@ src/oqc/tinkerqm.cpp
 src/qc/finalqm.cpp
 src/qc/getcartqm.cpp
 src/qc/initialqm.cpp
+src/qc/mechanicqm.cpp
 src/qc/polmdqcqm.cpp
 src/qc/readxyzqm.cpp
 )

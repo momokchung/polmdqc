@@ -4,7 +4,7 @@
 #include "hartree.h"
 #include "katomsqm.h"
 #include "kbasis.h"
-#include "kgbs.h"
+#include "okgbs.h"
 #include "kinetic.h"
 #include "kworker.h"
 #include "nuclear.h"

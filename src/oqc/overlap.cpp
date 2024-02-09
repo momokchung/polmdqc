@@ -2,7 +2,7 @@
 // Year:   2023
 
 #include "kbasis.h"
-#include "kgbs.h"
+#include "okgbs.h"
 #include "kprim.h"
 #include "mathUtils.h"
 #include "overlap.h"

@@ -6,6 +6,7 @@
 #include "getcartqm.h"
 #include "inform.h"
 #include "initialqm.h"
+#include "mechanicqm.h"
 #include "polmdqcqm.h"
 
 namespace polmdqc
@@ -23,7 +24,7 @@ void polmdqcqm(int argc, char** argv)
     // set up the structure and mechanics calculation
     initialqm(argc, argv);
     getcartqm(ffile);
-    // mechanicqm();
+    mechanicqm();
 
     // perform any final tasks before program exit
     ffile.close();
