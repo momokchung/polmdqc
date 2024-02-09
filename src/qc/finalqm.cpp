@@ -23,5 +23,15 @@ void finalqm()
     if (debug) {
         printf("\n PolMDQC is Exiting following Normal Termination\n");
     }
+
+    // deallocation of global arrays from module kgbs
+    nprimgbs.deallocate();
+    ngbs.deallocate();
+    scalegbs.deallocate();
+    namegbs.deallocate();
+    amgbs.deallocate();
+    typgbs.deallocate();
+    coeffgbs.deallocate();
+    expgbs.deallocate();
 }
 }

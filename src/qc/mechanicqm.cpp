@@ -1,7 +1,7 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
-// #include "getbasis.h"
+#include "getbasis.h"
 #include "mechanicqm.h"
 
 namespace polmdqc
@@ -18,7 +18,7 @@ namespace polmdqc
 
 void mechanicqm()
 {
-    // 
-    // getbasis();
+    // get the default basis set parameters
+    getbasis();
 }
 }

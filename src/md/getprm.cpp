@@ -34,12 +34,12 @@ void getprm()
 {
     int nask,next;
     bool exist,useprm;
-    std::string  none;
-    std::string  keyword;
-    std::string  prmfile;
-    std::string  prefix;
-    std::string  record;
-    std::string  string;
+    std::string none;
+    std::string keyword;
+    std::string prmfile;
+    std::string prefix;
+    std::string record;
+    std::string string;
     std::istringstream iss;
 
     // set the default name for the parameter file
@@ -59,6 +59,7 @@ void getprm()
             iss >> prmfile;
         }
     }
+
     // account for home directory abbreviation in filename
     if (prmfile.substr(0,2) == "~/") {
         char* homeDir = getenv("HOME");

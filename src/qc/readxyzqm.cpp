@@ -153,7 +153,6 @@ void readxyzqm(std::ifstream& ffile)
     for (int i = 0; i < nmol; i++) {
         molchg[i] = chgvec[i];
         molmult[i] = multvec[i];
-        std::cout << "nmol " << i+1 << "  " << molchg[i] << "  " << molmult[i] << "  " << std::endl;
     }
 
     // assign symbol and coordinates for each atom
@@ -163,7 +162,6 @@ void readxyzqm(std::ifstream& ffile)
         y[i] = yvec[i];
         z[i] = zvec[i];
         molcule[i] = molculevec[i];
-        std::cout << "n " << i+1 << "  " << symbol[i] << "  " << x[i] << "  " << y[i] << "  " << z[i] << "  " << molcule[i] << std::endl;
     }
 }
 }

@@ -112,8 +112,11 @@ src/oqc/stringUtils.cpp
 src/oqc/tinkerqm.cpp
 src/qc/finalqm.cpp
 src/qc/getcartqm.cpp
+src/qc/getbasis.cpp
 src/qc/initialqm.cpp
 src/qc/mechanicqm.cpp
 src/qc/polmdqcqm.cpp
+src/qc/readbasis.cpp
 src/qc/readxyzqm.cpp
+src/qc/setbasis.cpp
 )
