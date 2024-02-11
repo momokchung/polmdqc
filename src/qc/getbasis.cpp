@@ -8,11 +8,10 @@
 #include "keys.h"
 #include "lowcase.h"
 #include "readbasis.h"
+#include "rootdir.h"
 #include "setbasis.h"
 #include "suffix.h"
 #include "upcase.h"
-#include <iostream>
-#include <filesystem>
 #include <fstream>
 #include <sstream>
 
@@ -50,15 +49,17 @@ void getbasis()
             iss >> gbsname;
         }
     }
+
+    // set default basis set name
+    upcase(gbsname);
+    bssname = gbsname;
+
+    // add .gbs extension
     lowcase(gbsname);
     gbsname.append(".gbs");
 
-    // get head directory
-    std::filesystem::path filePath = __FILE__;
-    std::filesystem::path directoryPath = filePath.parent_path().parent_path().parent_path();
-
     // append gbsname to gbsfile and see if file exists
-    gbsfile = directoryPath;
+    gbsfile = rootdir();
     gbsfile.append("/basis/");
     gbsfile.append(gbsname);
     exist = inquireFile(gbsfile);

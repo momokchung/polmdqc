@@ -263,5 +263,10 @@ void initatom()
         { "RG", 111 },
         { "CN", 112 },
     };
+
+    // iterate original map and build the inverse map
+    for (const auto& pair : symtoatmn) {
+        atmntosym[pair.second] = pair.first;
+    }
 }
 }

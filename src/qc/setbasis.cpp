@@ -17,13 +17,13 @@ namespace polmdqc
 
 void setbasis()
 {
-    // allocate basis set parameters 
-    nprimgbs.allocate(maxele);
+    // allocate basis set parameters
     ngbs.allocate(maxele);
-    scalegbs.allocate(maxele);
     namegbs.allocate(maxele);
-    amgbs.allocate(maxele);
     typgbs.allocate(maxele);
+    amgbs.allocate(maxele);
+    nprimgbs.allocate(maxele);
+    scalegbs.allocate(maxele);
     coeffgbs.allocate(maxele);
     expgbs.allocate(maxele);
 }

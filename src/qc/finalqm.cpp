@@ -25,12 +25,12 @@ void finalqm()
     }
 
     // deallocation of global arrays from module kgbs
-    nprimgbs.deallocate();
     ngbs.deallocate();
-    scalegbs.deallocate();
     namegbs.deallocate();
-    amgbs.deallocate();
     typgbs.deallocate();
+    amgbs.deallocate();
+    nprimgbs.deallocate();
+    scalegbs.deallocate();
     coeffgbs.deallocate();
     expgbs.deallocate();
 }

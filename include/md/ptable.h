@@ -20,6 +20,7 @@ namespace polmdqc
 // covrad      covalent radius for each chemical element
 // elemnt      atomic symbol for each chemical element
 // symtoatmn   map from atomic symbol to atomic number
+// atmntosym   map from atomic number to atomic symbol
 
 constexpr int maxele = 112;
 MDQC_EXTERN real atmass[maxele];
@@ -27,4 +28,5 @@ MDQC_EXTERN real vdwrad[maxele];
 MDQC_EXTERN real covrad[maxele];
 MDQC_EXTERN std::string elemnt[maxele];
 MDQC_EXTERN std::map<std::string, int> symtoatmn;
+MDQC_EXTERN std::map<int, std::string> atmntosym;
 }

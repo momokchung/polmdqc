@@ -19,5 +19,6 @@ namespace polmdqc
 
 constexpr int maxbss = 25000;
 MDQC_EXTERN int nbss;
+MDQC_EXTERN std::string bssname;
 MDQC_EXTERN std::string bssline[maxbss];
 }

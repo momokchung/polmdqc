@@ -1,6 +1,7 @@
 set (POLMDQC_SRC
 src/mod.cpp
 src/promo.cpp
+src/rootdir.cpp
 src/md/active.cpp
 src/md/alfcx.cpp
 src/md/alfcxgmp.cpp
