@@ -1,17 +1,17 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
-#include "polmdqcqm.h"
+#include "analyzeqm.h"
 #include "inform.h"
 
 ////////////////////
 //                //
-//  polmdqcqmExe  //
+//  analyzeqmExe  //
 //                //
 ////////////////////
 
 int main(int argc, char** argv)
 {
     polmdqc::test = false;
-    polmdqc::polmdqcqm(argc, argv);
+    polmdqc::analyzeqm(argc, argv);
 }

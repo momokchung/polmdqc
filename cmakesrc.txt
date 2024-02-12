@@ -111,6 +111,7 @@ src/oqc/overlap.cpp
 src/oqc/print.cpp
 src/oqc/stringUtils.cpp
 src/oqc/tinkerqm.cpp
+src/qc/analyzeqm.cpp
 src/qc/clusterqm.cpp
 src/qc/finalqm.cpp
 src/qc/getcartqm.cpp
@@ -123,7 +124,6 @@ src/qc/kmeth.cpp
 src/qc/kscf.cpp
 src/qc/ksym.cpp
 src/qc/mechanicqm.cpp
-src/qc/polmdqcqm.cpp
 src/qc/readbasis.cpp
 src/qc/readxyzqm.cpp
 src/qc/setbasis.cpp

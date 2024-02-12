@@ -7,9 +7,9 @@ namespace polmdqc
 {
 ///////////////////////////////////////////////////////
 //                                                   //
-//  polmdqcqm  --  energy partitioning and analysis  //
+//  analyzeqm  --  energy partitioning and analysis  //
 //                                                   //
 ///////////////////////////////////////////////////////
 
-void polmdqcqm(int argc, char** argv);
+void analyzeqm(int argc, char** argv);
 }

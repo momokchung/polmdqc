@@ -45,8 +45,8 @@ add_executable(testgrad src/md/testgradExe.cpp)
 add_executable(spacefill src/md/spacefillExe.cpp)
 # tinkerqm
 add_executable(tinkerqm src/oqc/tinkerqmExe.cpp)
-# polmdqcqm
-add_executable(polmdqcqm src/qc/polmdqcqmExe.cpp)
+# analyzeqm
+add_executable(analyzeqm src/qc/analyzeqmExe.cpp)
 # valeev
 add_executable(valeev1 src/oqc/valeev1.cpp)
 
@@ -59,8 +59,8 @@ target_link_libraries(testgrad polmdqc)
 target_link_libraries(spacefill polmdqc gmp)
 # tinkerqm
 target_link_libraries(tinkerqm polmdqc openblas int2)
-# polmdqcqm
-target_link_libraries(polmdqcqm polmdqc openblas)
+# analyzeqm
+target_link_libraries(analyzeqm polmdqc openblas)
 # valeev
 target_link_libraries(valeev1 polmdqc int2)
 
