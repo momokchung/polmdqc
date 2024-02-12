@@ -6,11 +6,11 @@
 
 namespace polmdqc
 {
-//////////////////////////////////////////////////////
-//                                                  //
-//  methodqm  --  theory/method for QM calculation  //
-//                                                  //
-//////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+//                                                //
+//  methqm  --  theory/method for QM calculation  //
+//                                                //
+////////////////////////////////////////////////////
 
 // QMMethodType   enum class for QM method
 // qmmethod       QM method to use for calculation

@@ -12,7 +12,7 @@ namespace polmdqc
 //                          //
 //////////////////////////////
 
-// mem   amount of memory present (default 1024MB/1GB)
+// memory   amount of memory present (default 1024MB/1GB)
 
-MDQC_EXTERN int mem;
+MDQC_EXTERN int memory;
 }

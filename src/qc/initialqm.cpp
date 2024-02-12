@@ -12,7 +12,7 @@
 #include "initialqm.h"
 #include "keys.h"
 #include "mem.h"
-#include "methodqm.h"
+#include "methqm.h"
 #include "minima.h"
 #include "molcul.h"
 #include "openmp.h"
@@ -54,7 +54,7 @@ void initialqm(int argc, char** argv)
 #endif
 
     // set default memory (MB)
-    mem = 1024;
+    memory = 1024;
 
     // atomic symbols, weights and radii
     initatom();
@@ -104,7 +104,7 @@ void initialqm(int argc, char** argv)
     iwrite = 0;
 
     // set default symmetry
-    sym = Symmetry::C1;
+    symmetry = Symmetry::C1;
 
     // set default guess parameters
     bssguess = false;

@@ -26,5 +26,5 @@ enum class Symmetry
     C2h,
     D2h,
 };
-MDQC_EXTERN Symmetry sym;
+MDQC_EXTERN Symmetry symmetry;
 }

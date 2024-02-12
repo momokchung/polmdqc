@@ -132,6 +132,6 @@
 #include "gss.h"
 #include "kgbs.h"
 #include "mem.h"
-#include "methodqm.h"
+#include "methqm.h"
 #include "scft.h"
 #include "sym.h"
