@@ -1,6 +1,7 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
+#include "atomid.h"
 #include "atoms.h"
 #include "chkxyz.h"
 #include "fatal.h"
@@ -9,7 +10,6 @@
 #include "groupqm.h"
 #include "inform.h"
 #include "inquire.h"
-#include "katoms.h"
 #include "ptable.h"
 #include "readxyzqm.h"
 #include "upcase.h"
@@ -155,8 +155,8 @@ void readxyzqm(std::ifstream& ffile)
     grpqchg.allocate(ngrpq);
     grpqmult.allocate(ngrpq);
 
-    // allocate global arrays from module katoms
-    symbol.allocate(n);
+    // allocate global arrays from module atomid
+    name.allocate(n);
 
     // initialize ghost atoms
     for (int i = 0; i < n; i++) {
@@ -200,7 +200,7 @@ void readxyzqm(std::ifstream& ffile)
         }
 
         // assign atom symbol
-        symbol[i] = sym;
+        name[i] = sym;
     }
 
     // check for atom pairs with identical coordinates

@@ -2,7 +2,9 @@
 // Year:   2024
 
 #include "clusterqm.h"
+#include "fatal.h"
 #include "getbasis.h"
+#include "inform.h"
 #include "katomqm.h"
 #include "mechanicqm.h"
 
@@ -28,5 +30,11 @@ void mechanicqm()
 
     // set the atom groups
     clusterqm();
+
+    // quit if essential parameter information is missing
+    if (informAbort) {
+        printf("\n MECHANICQM  --  Some Required Potential Energy Parameters are Undefined\n");
+        fatal();
+    }
 }
 }

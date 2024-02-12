@@ -4,7 +4,6 @@
 #include "atomid.h"
 #include "atoms.h"
 #include "ghost.h"
-#include "katoms.h"
 #include "ptable.h"
 
 namespace polmdqc
@@ -34,7 +33,7 @@ void katomqm()
 
     // assign atomic parameters
     for (int i = 0; i < n; i++) {
-        sym = symbol[i];
+        sym = name[i];
         atmn = symtoatmn[sym];
         atomic[i] = atmn;
         if (!ghst[i]) {

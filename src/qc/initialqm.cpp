@@ -6,15 +6,20 @@
 #include "boxes.h"
 #include "command.h"
 #include "files.h"
+#include "gss.h"
 #include "inform.h"
 #include "initatom.h"
 #include "initialqm.h"
 #include "keys.h"
+#include "mem.h"
+#include "methodqm.h"
 #include "minima.h"
 #include "molcul.h"
 #include "openmp.h"
 #include "output.h"
 #include "promo.h"
+#include "scft.h"
+#include "sym.h"
 
 namespace polmdqc
 {
@@ -47,6 +52,9 @@ void initialqm(int argc, char** argv)
     kmp_set_stacksize_s(268435456);
     kmp_set_blocktime(0);
 #endif
+
+    // set default memory (MB)
+    mem = 1024;
 
     // atomic symbols, weights and radii
     initatom();
@@ -94,5 +102,18 @@ void initialqm(int argc, char** argv)
     nextiter = 0;
     iprint = 0;
     iwrite = 0;
+
+    // set default symmetry
+    sym = Symmetry::C1;
+
+    // set default guess parameters
+    bssguess = false;
+    denguess = DenGuess::SAD;
+
+    // set default scf type
+    scftyp = SCFType::PK;
+
+    // set default method
+    qmmethod = QMMethodType::HF;
 }
 }

@@ -4,13 +4,16 @@
 #include "argue.h"
 #include "fatal.h"
 #include "files.h"
+#include "getnumb.h"
 #include "gettext.h"
 #include "inquire.h"
 #include "keys.h"
+#include "openmp.h"
 #include "suffix.h"
 #include "upcase.h"
 #include "version.h"
 #include <fstream>
+#include <sstream>
 
 namespace polmdqc
 {
@@ -25,11 +28,13 @@ namespace polmdqc
 
 void getkey()
 {
+    int next;
     bool exist,header;
     std::string keyword;
     std::string keyfile;
     std::string record;
     std::string string;
+    std::istringstream iss;
 
     // check for a keyfile specified on command line
     exist = false;
@@ -83,7 +88,7 @@ void getkey()
 
     // convert underbar characters to dashes in all keywords
     for (int i = 0; i < nkey; i++) {
-        int next = 0;
+        next = 0;
         record = keyline[i];
         gettext(record, keyword, next);
         for (int j = 0; j < next; j++)
@@ -96,7 +101,7 @@ void getkey()
     // check for comment lines to be echoed to the output
     header = true;
     for (int i = 0; i < nkey; i++) {
-        int next = 0;
+        next = 0;
         record = keyline[i];
         gettext(record,keyword,next);
         upcase(keyword);
@@ -107,6 +112,34 @@ void getkey()
                printf("\n");
             }
             printf("%s\n", string.c_str());
+        }
+    }
+
+    // set number of OpenMP threads for parallelization
+    for (int i = 0; i < nkey; i++) {
+        next = 0;
+        record = keyline[i];
+        upcase(record);
+        gettext(record,keyword,next);
+        string = record.substr(next);
+        if (keyword == "OPENMP-THREADS") {
+            iss.clear();
+            iss.str(string);
+            if (!(iss >> nthread)) break;
+            omp_set_num_threads(nthread);
+        }
+    }
+
+    // check for number of OpenMP threads on command line
+    for (int i = 0; i < narg - 1; i++) {
+        string = arg[i];
+        upcase (string);
+        if (string.substr(0, 2) == "-T") {
+            next = 0;
+            string = arg[i + 1];
+            getnumb(string,nthread,next);
+            if (nthread == 0) nthread = 1;
+            omp_set_num_threads(nthread);
         }
     }
 }
