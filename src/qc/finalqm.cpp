@@ -24,6 +24,9 @@ void finalqm()
         printf("\n PolMDQC is Exiting following Normal Termination\n");
     }
 
+    // deallocation of global arrays from module ghost
+    ghst.deallocate();
+
     // deallocation of global arrays from module groupqm
     grpqlist.deallocate();
     igrpq.deallocate();

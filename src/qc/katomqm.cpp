@@ -3,6 +3,7 @@
 
 #include "atomid.h"
 #include "atoms.h"
+#include "ghost.h"
 #include "katoms.h"
 #include "ptable.h"
 
@@ -25,11 +26,20 @@ void katomqm()
     atomic.allocate(n);
     mass.allocate(n);
 
+    // initialize atomic parameters
+    for (int i = 0; i < n; i++) {
+        atomic[i] = 0;
+        mass[i] = 0.;
+    }
+
+    // assign atomic parameters
     for (int i = 0; i < n; i++) {
         sym = symbol[i];
         atmn = symtoatmn[sym];
         atomic[i] = atmn;
-        mass[i] = atmass[atmn-1];
+        if (!ghst[i]) {
+            mass[i] = atmass[atmn-1];
+        }
     }
 }
 }

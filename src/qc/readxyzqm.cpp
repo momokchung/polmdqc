@@ -5,10 +5,12 @@
 #include "chkxyz.h"
 #include "fatal.h"
 #include "files.h"
+#include "ghost.h"
 #include "groupqm.h"
 #include "inform.h"
 #include "inquire.h"
 #include "katoms.h"
+#include "ptable.h"
 #include "readxyzqm.h"
 #include "upcase.h"
 #include "version.h"
@@ -47,6 +49,9 @@ void readxyzqm(std::ifstream& ffile)
     // initialize the total number of groups in the system
     ngrpq = 0;
 
+    // initialize the total number of ghost atoms in the system
+    nghst = 0;
+
     // open the input file if it has not already been done
     opened = inquireUnit(ffile);
     if (!opened) {
@@ -78,7 +83,7 @@ void readxyzqm(std::ifstream& ffile)
     iss.clear();
     iss.str(record);
     if (!(iss >> chg >> mult)) {
-        printf("\n READXYZQM  --  Error in Cartesian Coordinates File Format\n");
+        printf("\n READXYZQM  --  Error in Reading Charge and Multiplicity\n");
         ffile.close();
         fatal();
     }
@@ -142,13 +147,21 @@ void readxyzqm(std::ifstream& ffile)
     y.allocate(n);
     z.allocate(n);
 
-    // allocate global arrays from module katoms
-    symbol.allocate(n);
+    // allocate global arrays from module ghost
+    ghst.allocate(n);
 
     // allocate global arrays from module groupqm
     grpqlist.allocate(n);
     grpqchg.allocate(ngrpq);
     grpqmult.allocate(ngrpq);
+
+    // allocate global arrays from module katoms
+    symbol.allocate(n);
+
+    // initialize ghost atoms
+    for (int i = 0; i < n; i++) {
+        ghst[i] = false;
+    }
 
     // assign charge and multiplicity for each group
     for (int i = 0; i < ngrpq; i++) {
@@ -158,11 +171,36 @@ void readxyzqm(std::ifstream& ffile)
 
     // assign symbol and coordinates for each atom
     for (int i = 0; i < n; i++) {
-        symbol[i] = symvec[i];
         x[i] = xvec[i];
         y[i] = yvec[i];
         z[i] = zvec[i];
         grpqlist[i] = grpqvec[i];
+
+        // assign ghost atoms
+        sym = symvec[i];
+        int symlen = sym.length();
+        if (sym.substr(0,3)=="GH(" and sym.substr(symlen-1)==")"){
+            ghst[i] = true;
+            nghst++;
+            sym = sym.substr(3,symlen-4);
+        }
+
+        // check if atom symbol exists
+        bool found = false;
+        for (int j = 0; j < maxele; j++) {
+            if (sym == elemnt[j]) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            printf("\n READXYZQM  --  Error in Coordinate File at Atom%9d\n", i+1);
+            ffile.close();
+            fatal();
+        }
+
+        // assign atom symbol
+        symbol[i] = sym;
     }
 
     // check for atom pairs with identical coordinates
