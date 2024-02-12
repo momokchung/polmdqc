@@ -11,5 +11,5 @@ namespace polmdqc
 //                                                 //
 /////////////////////////////////////////////////////
 
-void enrgyze(bool test);
+void enrgyze();
 }

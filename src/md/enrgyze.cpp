@@ -23,7 +23,7 @@ namespace polmdqc
 // that performs the energy analysis and prints the total and
 // intermolecular energies
 
-void enrgyze(bool test)
+void enrgyze()
 {
     constexpr CalcMode CalculationMode = CalcMode::Analysis;
 

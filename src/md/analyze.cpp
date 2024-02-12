@@ -42,19 +42,19 @@ void analyze(int argc, char** argv)
     int frame;
     int nlist,nold;
     int freeunit;
-    std::vector<int> list;
     real energy;
-    std::vector<real> told;
-    std::vector<std::vector<real>> derivs;
     bool dosystem,doparam;
     bool doenergy,doatom;
     bool dolarge,dodetail;
     bool domoment,dovirial;
     bool doconect,dosave;
     bool exist,first;
-    std::vector<bool> active;
     char letter;
     std::string record,string;
+    std::vector<int> list;
+    std::vector<real> told;
+    std::vector<bool> active;
+    std::vector<std::vector<real>> derivs;
 
     // set up the structure and mechanics calculation
     initial(argc, argv);
@@ -64,7 +64,7 @@ void analyze(int argc, char** argv)
     // get the desired types of analysis to be performed
     nextarg(string,exist);
     if (!exist and !test) {
-        printf("\n The PolQCM Energy Analysis Utility Can :\n");
+        printf("\n The PolMDQC Energy Analysis Utility Can :\n");
         // printf("\n General System and Force Field Information [G]");
         // printf("\n Force Field Parameters for Interactions [P]");
         printf("\n Total Potential Energy and its Components [E]");
@@ -74,7 +74,7 @@ void analyze(int argc, char** argv)
         // printf("\n Electrostatic Moments and Principle Axes [M]");
         // printf("\n Internal Virial & Instantaneous Pressure [V]");
         // printf("\n Connectivity Lists for Each of the Atoms [C]");
-        printf("\n\n Enter the Desired Analysis Types [G,P,E,A,L,D,M,V,C] :  ");
+        printf("\n\n Enter the Desired Analysis Types [E] :  ");
         std::getline(std::cin, string);
     }
 
@@ -219,7 +219,7 @@ void analyze(int argc, char** argv)
 //          if (dosystem) call systyze
 
         // make the call to compute the potential energy
-        if (doenergy or doatom or dolarge) enrgyze(test);
+        if (doenergy or doatom or dolarge) enrgyze();
 // c
         // energy partitioning by potential energy components
         if (doenergy and !test) partyze();
