@@ -139,8 +139,9 @@ void readxyz(std::ifstream& ffile)
     }
 
     // read the coordinates and connectivities for each atom
-    failAtom = -1;
+    failAtom = 0;
     for (int i = 0; i < n; i++) {
+        failAtom = i+1;
         size = -1;
         while (size == -1) {
             unitcell();
@@ -160,13 +161,7 @@ void readxyz(std::ifstream& ffile)
         iss.clear();
         iss.str(record);
         int tagInt;
-        if (iss >> tagInt) {
-            tag[i] = tagInt - 1;
-        }
-        else {
-            failAtom = i + 1;
-            goto label_80;
-        }
+        if (iss >> tagInt) tag[i] = tagInt - 1;
         next = 0;
         getword(record, name[i], next);
         string = record.substr(next);

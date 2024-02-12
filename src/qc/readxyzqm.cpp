@@ -2,12 +2,13 @@
 // Year:   2024
 
 #include "atoms.h"
+#include "chkxyz.h"
 #include "fatal.h"
 #include "files.h"
+#include "groupqm.h"
 #include "inform.h"
 #include "inquire.h"
 #include "katoms.h"
-#include "molcul.h"
 #include "readxyzqm.h"
 #include "upcase.h"
 #include "version.h"
@@ -37,14 +38,14 @@ void readxyzqm(std::ifstream& ffile)
     std::istringstream iss;
     std::vector<realq> xvec,yvec,zvec;
     std::vector<std::string> symvec;
-    std::vector<int> molculevec;
+    std::vector<int> grpqvec;
     std::vector<int> chgvec,multvec;
 
     // initialize the total number of atoms in the system
     n = 0;
 
-    // initialize the total number of molecules in the system
-    nmol = 0;
+    // initialize the total number of groups in the system
+    ngrpq = 0;
 
     // open the input file if it has not already been done
     opened = inquireUnit(ffile);
@@ -88,11 +89,11 @@ void readxyzqm(std::ifstream& ffile)
         // skip empty line
         if (record.empty()) continue;
 
-        // record molecule information at "--"
+        // record group information at "--"
         if (record == "--") {
             chgvec.push_back(chg);
             multvec.push_back(mult);
-            nmol++;
+            ngrpq++;
             continue;
         }
 
@@ -105,7 +106,7 @@ void readxyzqm(std::ifstream& ffile)
             xvec.push_back(xi);
             yvec.push_back(yi);
             zvec.push_back(zi);
-            molculevec.push_back(nmol);
+            grpqvec.push_back(ngrpq);
             n++;
             continue;
         }
@@ -116,10 +117,10 @@ void readxyzqm(std::ifstream& ffile)
         iss >> chg >> mult;
     }
 
-    // record molecule information
+    // record group information
     chgvec.push_back(chg);
     multvec.push_back(mult);
-    nmol++;
+    ngrpq++;
 
     // quit if vector sizes don't match
     quit = false;
@@ -127,9 +128,9 @@ void readxyzqm(std::ifstream& ffile)
     if (n != xvec.size()) quit = true;
     if (n != yvec.size()) quit = true;
     if (n != zvec.size()) quit = true;
-    if (n != molculevec.size()) quit = true;
-    if (nmol != chgvec.size()) quit = true;
-    if (nmol != multvec.size()) quit = true;
+    if (n != grpqvec.size()) quit = true;
+    if (ngrpq != chgvec.size()) quit = true;
+    if (ngrpq != multvec.size()) quit = true;
     if (quit) {
         printf("\n READXYZQM  --  Error in Cartesian Coordinates File Format\n");
         ffile.close();
@@ -144,15 +145,15 @@ void readxyzqm(std::ifstream& ffile)
     // allocate global arrays from module katoms
     symbol.allocate(n);
 
-    // allocate global arrays from module molcul
-    molcule.allocate(n);
-    molchg.allocate(nmol);
-    molmult.allocate(nmol);
+    // allocate global arrays from module groupqm
+    grpqlist.allocate(n);
+    grpqchg.allocate(ngrpq);
+    grpqmult.allocate(ngrpq);
 
-    // assign charge and multiplicity for each molecule
-    for (int i = 0; i < nmol; i++) {
-        molchg[i] = chgvec[i];
-        molmult[i] = multvec[i];
+    // assign charge and multiplicity for each group
+    for (int i = 0; i < ngrpq; i++) {
+        grpqchg[i] = chgvec[i];
+        grpqmult[i] = multvec[i];
     }
 
     // assign symbol and coordinates for each atom
@@ -161,7 +162,11 @@ void readxyzqm(std::ifstream& ffile)
         x[i] = xvec[i];
         y[i] = yvec[i];
         z[i] = zvec[i];
-        molcule[i] = molculevec[i];
+        grpqlist[i] = grpqvec[i];
     }
+
+    // check for atom pairs with identical coordinates
+    bool clash = false;
+    if (n < 10000) chkxyz(clash);
 }
 }
