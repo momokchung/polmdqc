@@ -50,13 +50,5 @@ void ksym()
             else if (sym == "D2H") symmetry = Symmetry::D2h;
         }
     }
-    if (symmetry == Symmetry::C1) printf("C1\n");
-    else if (symmetry == Symmetry::Ci) printf("Ci\n");
-    else if (symmetry == Symmetry::C2) printf("C2\n");
-    else if (symmetry == Symmetry::Cs) printf("Cs\n");
-    else if (symmetry == Symmetry::D2) printf("D2\n");
-    else if (symmetry == Symmetry::C2v) printf("C2v\n");
-    else if (symmetry == Symmetry::C2h) printf("C2h\n");
-    else if (symmetry == Symmetry::D2h) printf("D2h\n");
 }
 }

@@ -9,8 +9,6 @@
 #include "upcase.h"
 #include <sstream>
 
-#include <iostream>
-
 namespace polmdqc
 {
 ////////////////////////////////////////////////////

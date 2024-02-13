@@ -13,6 +13,7 @@
 #include "group.h"
 #include "inform.h"
 #include "initatom.h"
+#include "initial.h"
 #include "initres.h"
 #include "keys.h"
 #include "linmin.h"
