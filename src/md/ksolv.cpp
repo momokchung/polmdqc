@@ -253,13 +253,13 @@ void ksolv()
 
 // "ksa" initializes parameters needed for surface area-based
 // implicit solvation models including ASP and SASA
-// 
+//
 // literature references:
-// 
+//
 // L. Wesson and D. Eisenberg, "Atomic Solvation Parameters
 // Applied to Molecular Dynamics of Proteins in Solution",
 // Protein Science, 1, 227-235 (1992) (Eisenberg-McLachlan ASP)
-// 
+//
 // T. Ooi, M. Oobatake, G. Nemethy and H. A. Scheraga, "Accessible
 // Surface Areas as a Measure of the Thermodynamic Parameters of
 // Hydration of Peptides", PNAS, 84, 3086-3090 (1987) (SASA)
@@ -394,9 +394,9 @@ void ksa()
 
 // "kgb" initializes parameters needed for the generalized
 // Born implicit solvation models
-// 
+//
 // literature references:
-// 
+//
 // M. Schaefer, C. Bartels, F. Leclerc and M. Karplus, "Effective
 // Atom Volumes for Implicit Solvent Models: Comparison between
 // Voronoi Volumes and Minimum Fluctuations Volumes", Journal of

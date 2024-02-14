@@ -16,14 +16,14 @@ namespace polmdqc
 
 // "damppole" finds coefficients for two alternative Gordon charge
 // penetration damping function
-// 
+//
 // literature references:
-// 
+//
 // L. V. Slipchenko and M. S. Gordon, "Electrostatic Energy in the
 // Effective Fragment Potential Method: Theory and Application to
 // the Benzene Dimer", Journal of Computational Chemistry, 28,
 // 276-291 (2007)  [Gordon f1 and f2 models]
-// 
+//
 // J. A. Rackers, Q. Wang, C. Liu, J.-P. Piquemal, P. Ren and
 // J. W. Ponder, "An Optimized Charge Penetration Model for Use with
 // the AMOEBA Force Field", Physical Chemistry Chemical Physics, 19,

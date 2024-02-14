@@ -24,14 +24,14 @@ namespace polmdqc
 
 // "katom" assigns an atom type definitions to each atom in
 // the structure and processes any new or changed values
-// 
+//
 // literature reference:
-// 
+//
 // K. A. Feenstra, B. Hess and H. J. C. Berendsen, "Improving
 // Efficiency of Large Time-Scale Molecular Dynamics Simulations
 // of Hydrogen-Rich Systems", Journal of Computational Chemistry,
 // 8, 786-798 (1999)
-// 
+//
 // C. W. Hopkins, S. Le Grand, R. C. Walker and A. E. Roitberg,
 // "Long-Time-Step Molecular Dynamics through Hydrogen Mass
 // Repartitioning", Journal of Chemical Theory and Computation,

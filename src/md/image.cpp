@@ -18,19 +18,19 @@ namespace polmdqc
 // "image" takes the components of pairwise distance between
 // two points in a periodic box and converts to the components
 // of the minimum image distance
-// 
+//
 // literature reference:
-// 
+//
 // U. K. Deiters, "Efficient Coding of the Minimum Image Convention",
 // Zeitschrift fur Physikalische Chemie, 227, 345-352 (2013)
-// 
+//
 // note the "do while" clause below can be written using the "nint"
 // intrinsic, and the two forms give equivalent values:
-// 
+//
 // do while (abs(xr) .gt. xbox2)
 //    xr = xr - sign(xbox,xr)    vs.  xr = xr - xbox*nint(xr/xbox)
 // end do
-// 
+//
 // which one is faster depends upon specific machine and compiler
 // combinations, and other implementations are also possible
 

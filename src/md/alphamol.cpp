@@ -19,16 +19,16 @@ namespace polmdqc
 /////////////////////////////////////////////////////
 
 // "alphamol" computes volume, surface area, mean, and gaussian curvature
-// 
+//
 // literature reference:
-// 
+//
 // P. Koehl, A. Akopyan, and H. Edelsbrunner, "Computing the Volume,
 // Surface Area, Mean, and Gaussian Curvatures of Molecules and Their
 // Derivatives", Journal of Chemical Information and Modeling,
 // 63, 973-985, (2023).
-// 
+//
 // github reference:
-// 
+//
 // https://github.com/pkoehl/AlphaMol
 
 void alphamol(real r_h2o, bool computeDeriv)

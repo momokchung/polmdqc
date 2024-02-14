@@ -26,9 +26,9 @@ namespace polmdqc
 
 // "alterchg" calculates the change in atomic partial charge or
 // monopole values due to bond and angle charge flux coupling
-
+//
 // literature reference:
-
+//
 // C. Liu, J.-P. Piquemal and P. Ren, "Implementation of Geometry-
 // Dependent Charge Flux into the Polarizable AMOEBA+ Potential",
 // Journal of Physical Chemistry Letters, 11, 419-426 (2020)

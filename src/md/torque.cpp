@@ -23,16 +23,16 @@ inline void crossp(real ans[3], const real u[3], const real v[3]);
 // a local coordinate frame and converts to Cartesian forces on
 // the original site and sites specifying the local frame, also
 // gives the x,y,z-force components needed for virial computation
-// 
+//
 // force distribution for the 3-fold local frame by Chao Lu,
 // Ponder Lab, Washington University, July 2016
-// 
+//
 // literature reference:
-// 
+//
 // P. L. Popelier and A. J. Stone, "Formulae for the First and
 // Second Derivatives of Anisotropic Potentials with Respect to
 // Geometrical Parameters", Molecular Physics, 82, 411-425 (1994)
-// 
+//
 // C. Segui, L. G. Pedersen and T. A. Darden, "Towards an Accurate
 // Representation of Electrostatics in Classical Force Fields:
 // Efficient Implementation of Multipolar Interactions in

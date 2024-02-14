@@ -21,9 +21,9 @@ namespace polmdqc
 // "dcflux" takes as input the electrostatic potential at each
 // atomic site and calculates gradient chain rule terms due to
 // charge flux coupling with bond stretching and angle bending
-
+//
 // literature reference:
-
+//
 // C. Liu, J.-P. Piquemal and P. Ren, "Implementation of Geometry-
 // Dependent Charge Flux into the Polarizable AMOEBA+ Potential",
 // Journal of Physical Chemistry Letters, 11, 419-426 (2020)

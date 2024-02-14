@@ -41,14 +41,14 @@ namespace polmdqc
 
 // "kpolar" assigns atomic dipole polarizabilities to the atoms
 // within the structure and processes any new or changed values
-// 
+//
 // literature references:
-// 
+//
 // A. C. Simmonett, F. C. Pickard IV, J. W. Ponder and B. R. Brooks,
 // "An Empirical Extrapolation Scheme for Efficient Treatment of
 // Induced Dipoles", Journal of Chemical Physics, 145, 164101 (2016)
 // [OPT method]
-// 
+//
 // F. Aviat, L. Lagardere and J.-P. Piquemal, "The Truncated
 // Conjugate Gradient (TCG), a Non-Iterative/Fixed-Cost Strategy for
 // Computing Polarization in Molecular Dynamics: Fast Evaluation of
