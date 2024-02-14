@@ -90,7 +90,7 @@ src/md/upcase.cpp
 src/md/version.cpp
 src/md/vertex.cpp
 src/md/volumes.cpp
-src/oqc/boys.cpp
+src/oqc/oboys.cpp
 src/oqc/config.cpp
 src/oqc/energyqm.cpp
 src/oqc/fock.cpp
