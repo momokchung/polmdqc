@@ -6,6 +6,7 @@ amoeba.cpp
 amoebaMisc.cpp
 amoebap.cpp
 bounds.cpp
+boyscheb.cpp
 chkpole.cpp
 darray.cpp
 getline.cpp

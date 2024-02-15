@@ -9,6 +9,7 @@
 #include "gss.h"
 #include "inform.h"
 #include "initatom.h"
+#include "initcheb.h"
 #include "initialqm.h"
 #include "keys.h"
 #include "mem.h"
@@ -102,6 +103,9 @@ void initialqm(int argc, char** argv)
     nextiter = 0;
     iprint = 0;
     iwrite = 0;
+
+    // initialize Chebyshev table
+    initcheb();
 
     // set default symmetry
     symmetry = Symmetry::C1;

@@ -127,6 +127,7 @@
 
 // QC
 #include "basis.h"
+#include "cheb.h"
 #include "ghost.h"
 #include "groupqm.h"
 #include "gss.h"

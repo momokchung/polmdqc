@@ -116,6 +116,7 @@ src/qc/clusterqm.cpp
 src/qc/finalqm.cpp
 src/qc/getcartqm.cpp
 src/qc/getbasis.cpp
+src/qc/initcheb.cpp
 src/qc/initialqm.cpp
 src/qc/katomqm.cpp
 src/qc/kgss.cpp
