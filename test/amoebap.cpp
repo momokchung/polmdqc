@@ -60,4 +60,26 @@ TEST_CASE("amoebap-2", "[testgrad][AMOEBAPLUS][waterap]") {
 
     final();
 }
+
+TEST_CASE("amoebap-3", "[testgrad][AMOEBAPLUS][waterap]") {
+    int argc = 4;
+    const char* strings[] = {
+        "testgrad",
+        "../../test/testFiles/amoebap/waterap.xyz",
+        "Y",
+        "N",
+    };
+    char** argv = const_cast<char**>(strings);
+
+    test = true;
+    testgrad(argc, argv);
+
+    COMPARE_REALS(esum, amoebap1::esum, amoebap1::eps);
+    COMPARE_REALS(em, amoebap1::em, amoebap1::eps);
+
+    COMPARE_VECTOR(desum, amoebap2::desum, amoebap2::eps1);
+    COMPARE_VECTOR(dem, amoebap2::dem, amoebap2::eps1);
+
+    final();
+}
 }

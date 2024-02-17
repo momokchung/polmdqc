@@ -60,4 +60,26 @@ TEST_CASE("hippo-2", "[testgrad][HIPPO][water21]") {
 
     final();
 }
+
+TEST_CASE("hippo-3", "[testgrad][HIPPO][water21]") {
+    int argc = 4;
+    const char* strings[] = {
+        "testgrad",
+        "../../test/testFiles/hippo/water21.xyz",
+        "Y",
+        "N",
+    };
+    char** argv = const_cast<char**>(strings);
+
+    test = true;
+    testgrad(argc, argv);
+
+    COMPARE_REALS(esum, hippo1::esum, hippo1::eps);
+    COMPARE_REALS(em, hippo1::em, hippo1::eps);
+
+    COMPARE_VECTOR(desum, hippo2::desum, hippo2::eps1);
+    COMPARE_VECTOR(dem, hippo2::dem, hippo2::eps1);
+
+    final();
+}
 }

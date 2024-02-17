@@ -59,4 +59,26 @@ TEST_CASE("amoeba-2", "[testgrad][AMOEBA][water09]") {
 
     final();
 }
+
+TEST_CASE("amoeba-3", "[testgrad][AMOEBA][water09]") {
+    int argc = 4;
+    const char* strings[] = {
+        "testgrad",
+        "../../test/testFiles/amoeba/water09.xyz",
+        "Y",
+        "N",
+    };
+    char** argv = const_cast<char**>(strings);
+
+    test = true;
+    testgrad(argc, argv);
+
+    COMPARE_REALS(esum, amoeba1::esum, amoeba1::eps);
+    COMPARE_REALS(em, amoeba1::em, amoeba1::eps);
+
+    COMPARE_VECTOR(desum, amoeba2::desum, amoeba2::eps1);
+    COMPARE_VECTOR(dem, amoeba2::dem, amoeba2::eps1);
+
+    final();
+}
 }
