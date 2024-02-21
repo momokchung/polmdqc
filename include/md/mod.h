@@ -27,6 +27,7 @@
 #include "chunks.h"
 #include "couple.h"
 #include "ctrpot.h"
+#include "delaunay.h"
 #include "deriv.h"
 #include "dsppot.h"
 #include "energi.h"

@@ -6,9 +6,13 @@
 #include "atomid.h"
 #include "atoms.h"
 #include "files.h"
+#include "initdelcx.h"
 #include "kvdws.h"
+#include "tetrahedron.h"
 #include "usage.h"
+#include "vertex.h"
 #include <iostream>
+#include <vector>
 
 namespace polmdqc
 {
@@ -33,15 +37,15 @@ namespace polmdqc
 
 void alphamol(real r_h2o, bool computeDeriv)
 {
-    // set timer
+    // Compute Delaunay triangulation
     clock_t start_s, stop_s;
 
     // perform dynamic allocation of some global arrays
     radii.allocate(n);
-	coefS.allocate(n);
-	coefV.allocate(n);
-	coefM.allocate(n);
-	coefG.allocate(n);
+    coefS.allocate(n);
+    coefV.allocate(n);
+    coefM.allocate(n);
+    coefG.allocate(n);
 
     // set radii and initialize coefficients
     for(int i = 0; i < n; i++) {
@@ -51,11 +55,12 @@ void alphamol(real r_h2o, bool computeDeriv)
         else {
             radii[i] = 0.;
         }
-		coefS[i] = 1.0;
-		coefV[i] = 1.0;
-		coefM[i] = 1.0;
-		coefG[i] = 1.0;
-	}
+        coefS[i] = 1.0;
+        coefV[i] = 1.0;
+        coefM[i] = 1.0;
+        coefG[i] = 1.0;
+    }
 
+    initdelcx();
 }
 }

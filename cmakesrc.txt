@@ -27,7 +27,6 @@ src/md/erepel.cpp
 src/md/fatal.cpp
 src/md/field.cpp
 src/md/final.cpp
-src/md/gausscorners.cpp
 src/md/getcart.cpp
 src/md/getkey.cpp
 src/md/getline.cpp
@@ -39,6 +38,7 @@ src/md/getword.cpp
 src/md/getxyz.cpp
 src/md/image.cpp
 src/md/initatom.cpp
+src/md/initdelcx.cpp
 src/md/initial.cpp
 src/md/initprm.cpp
 src/md/initres.cpp
@@ -74,6 +74,7 @@ src/md/setprm.cpp
 src/md/spacefill.cpp
 src/md/suffix.cpp
 src/md/testgrad.cpp
+src/md/tetrahedron.cpp
 src/md/torphase.cpp
 src/md/torque.cpp
 src/md/torsions.cpp
@@ -82,6 +83,7 @@ src/md/trimtext.cpp
 src/md/unitcell.cpp
 src/md/upcase.cpp
 src/md/version.cpp
+src/md/vertex.cpp
 src/oqc/oboys.cpp
 src/oqc/config.cpp
 src/oqc/energyqm.cpp
