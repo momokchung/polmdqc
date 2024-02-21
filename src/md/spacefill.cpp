@@ -15,7 +15,6 @@
 #include "libfunc.h"
 #include "katom.h"
 #include "kvdw.h"
-#include "mechanic.h"
 #include "nextarg.h"
 #include "readcart.h"
 #include "upcase.h"
@@ -66,8 +65,8 @@ void spacefill(int argc, char** argv)
 
     // determine the atoms to be used in computation;
     // radii can be changed via the keyword mechanism
-    field();
     active();
+    field();
     katom();
     kvdw();
 
@@ -196,7 +195,10 @@ void spacefill(int argc, char** argv)
         if (frame > 1) {
             if (!test) printf("\n Analysis for Archive Structure :        %8d\n", frame);
             if (nold != n) {
-                mechanic();
+                active();
+                field();
+                katom();
+                kvdw();
                 denorm.resize(n);
                 if (donumer) {
                     ndenorm.resize(n);
@@ -206,7 +208,10 @@ void spacefill(int argc, char** argv)
             else {
                 for (int i = 0; i < n; i++) {
                     if (type[i] != told[i]) {
-                        mechanic();
+                        active();
+                        field();
+                        katom();
+                        kvdw();
                         break;                        
                     }
                 }
