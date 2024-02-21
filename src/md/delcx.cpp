@@ -32,7 +32,7 @@ void DELCX::setup(int npoints, double *coord, double *radii, double *coefS, doub
 
 	while (!link_index.empty())
 	{
-		link_facet.pop();
+		link_index.pop();
 	}
 
 	while (!free.empty())
