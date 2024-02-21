@@ -3,8 +3,6 @@ src/mod.cpp
 src/promo.cpp
 src/rootdir.cpp
 src/md/active.cpp
-src/md/alfcx.cpp
-src/md/alfcxgmp.cpp
 src/md/alphamol.cpp
 src/md/alterchg.cpp
 src/md/analyze.cpp
@@ -22,13 +20,10 @@ src/md/control.cpp
 src/md/cutoffs.cpp
 src/md/cutoffSwitch.cpp
 src/md/dcflux.cpp
-src/md/delcx.cpp
-src/md/edge.cpp
 src/md/empole.cpp
 src/md/energy.cpp
 src/md/enrgyze.cpp
 src/md/erepel.cpp
-src/md/face.cpp
 src/md/fatal.cpp
 src/md/field.cpp
 src/md/final.cpp
@@ -76,13 +71,9 @@ src/md/readxyz.cpp
 src/md/rings.cpp
 src/md/rotpole.cpp
 src/md/setprm.cpp
-src/md/sorttools.cpp
-src/md/sosgmp.cpp
 src/md/spacefill.cpp
 src/md/suffix.cpp
 src/md/testgrad.cpp
-src/md/tetra.cpp
-src/md/tetrahedron.cpp
 src/md/torphase.cpp
 src/md/torque.cpp
 src/md/torsions.cpp
@@ -91,8 +82,6 @@ src/md/trimtext.cpp
 src/md/unitcell.cpp
 src/md/upcase.cpp
 src/md/version.cpp
-src/md/vertex.cpp
-src/md/volumes.cpp
 src/oqc/oboys.cpp
 src/oqc/config.cpp
 src/oqc/energyqm.cpp

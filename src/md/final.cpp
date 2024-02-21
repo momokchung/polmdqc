@@ -29,7 +29,6 @@ void final()
     wfit.deallocate();
 
     // deallocation of global arrays from module alphmol
-    coord.deallocate();
     radii.deallocate();
     coefS.deallocate();
     coefV.deallocate();
