@@ -14,7 +14,6 @@ with respect to the coordinates of the centers of the ball.
 #include "gausscorners.h"
 #include "tetra.h"
 #include "tetrahedron.h"
-#include "vector.h"
 #include <vector>
  
 /* ====================================================================
