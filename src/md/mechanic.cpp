@@ -20,11 +20,13 @@
 #include "kewald.h"
 #include "kmpole.h"
 #include "kpolar.h"
+#include "krepel.h"
 #include "ksolv.h"
 #include "kvdw.h"
 #include "lattice.h"
 #include "mechanic.h"
 #include "molecule.h"
+#include "mutate.h"
 #include "rings.h"
 #include "torsions.h"
 #include "unitcell.h"
@@ -105,7 +107,7 @@ void mechanic()
 
     // assign van der Waals, repulsion and dispersion parameters
     kvdw();
-    // krepel();
+    krepel();
     // kdisp();
 
     // assign solvation, metal, pisystem and restraint parameters
@@ -122,7 +124,7 @@ void mechanic()
     // shakeup();
 
     // set hybrid parameter values for free energy perturbation
-    // mutate();
+    mutate();
 
     // initial allocation of energy dynamic arrays
     initEnergy();

@@ -9,6 +9,7 @@
 #include "empole.h"
 #include "energi.h"
 #include "energy.h"
+#include "erepel.h"
 #include "fatal.h"
 #include "inter.h"
 #include "openmp.h"
@@ -275,7 +276,7 @@ void energy()
     //     if (vdwtyp == "BUFFERED-14-7") ehal;
     //     if (vdwtyp == "GAUSSIAN") egauss;
     // }
-    // if (use_repel) erepel();
+    if (use_repel) erepel<CalculationMode>();
     // if (use_disp) edisp();
 
     // call any miscellaneous energy component routines

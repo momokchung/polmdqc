@@ -15,7 +15,7 @@ namespace polmdqc
 
 // nrep      total number of repulsion sites in the system
 // irep      number of the atom for each repulsion site
-// replist   repulsion multipole site for each atom (0=none)
+// replist   repulsion multipole site for each atom (-1=none)
 // sizpr     Pauli repulsion size parameter value for each atom
 // dmppr     Pauli repulsion alpha damping value for each atom
 // elepr     Pauli repulsion valence electrons for each atom

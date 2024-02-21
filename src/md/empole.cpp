@@ -93,7 +93,6 @@ void empole()
 template <CalcMode CalculationMode, PenTyp PenType, bool use_cf>
 void empole_a()
 {
-    int i,k;
     int ix,iy,iz;
     int kx,ky,kz;
     int tid;
@@ -192,7 +191,7 @@ void empole_a()
         mscale[i] = 1.;
     }
 
-    // calculate the multipole interaction energy term
+    // calculate the multipole interaction term
     #pragma omp for schedule(guided)
     for (int i = 0; i < n-1; i++) {
         iz = zaxis[i] - 1;

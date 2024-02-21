@@ -27,6 +27,7 @@ src/md/edge.cpp
 src/md/empole.cpp
 src/md/energy.cpp
 src/md/enrgyze.cpp
+src/md/erepel.cpp
 src/md/face.cpp
 src/md/fatal.cpp
 src/md/field.cpp
@@ -56,12 +57,14 @@ src/md/kchgtrn.cpp
 src/md/kewald.cpp
 src/md/kmpole.cpp
 src/md/kpolar.cpp
+src/md/krepel.cpp
 src/md/ksolv.cpp
 src/md/kvdw.cpp
 src/md/lattice.cpp
 src/md/lowcase.cpp
 src/md/mechanic.cpp
 src/md/molecule.cpp
+src/md/mutate.cpp
 src/md/nextarg.cpp
 src/md/numeral.cpp
 src/md/optinit.cpp

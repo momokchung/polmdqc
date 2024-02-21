@@ -12,4 +12,6 @@ namespace polmdqc
 /////////////////////////////////////////////////////
 
 void chkpole();
+
+void chkrepole();
 }
