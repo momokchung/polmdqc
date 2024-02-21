@@ -79,8 +79,8 @@ void spacefill(int argc, char** argv)
         if (iss >> mode) query = false;
     }
     if (query) {
-        printf("\n Two Types of Area and Volume can be Computed :");
-        printf("\n\n    (1) Van der Waals Area and Volume");
+        printf("\n Two Types of Area and Volume can be Computed :\n");
+        printf("\n    (1) Van der Waals Area and Volume");
         printf("\n    (2) Accessible Area and Excluded Volume");
         printf("\n\n Enter the Number of your Choice [1] :  ");
         std::getline(std::cin, string);
