@@ -1,33 +1,47 @@
-/*********************************************************************************
- *	The Vertex class
- *********************************************************************************/
+// Author: Moses KJ Chung
+// Year:   2024
+
 #pragma once
+#include "precision.h"
 #include <bitset>
-#include <cmath> 
 #include <vector>
 
-/*********************************************************************************
-  Class that characterizes each vertex of the Delaunay/Alpha complex
- *********************************************************************************/
+namespace polmdqc
+{
+/////////////////////////////////////////////////////////
+//                                                     //
+//  vertex  --  vertex used in Delaunay/Alpha complex  //
+//                                                     //
+/////////////////////////////////////////////////////////
+
+// r        radius of vertex
+// x        x Cartesian coordinate
+// y        y Cartesian coordinate
+// z        z Cartesian coordinate
+// w        weight of vertex
+// coefs    coefficient for surface
+// coefv    coefficient for volume
+// coefm    coefficient for mean curvature
+// coefg    coefficient for gaussian curvature
+// gamma    fraction of angle
+// info     
+// status   status of vertex (true if true vertex, false if bogus or infinite)
 
 class Vertex {
-	public:
-		double Radius;
-		double Coordinates[3];
-		double Weight;
-		double CoefS, CoefV, CoefM, CoefG;
-		double gamma;
+    public:
+        real r;
+        real coord[3];
+        real w;
+        real coefs,coefv,coefm,coefg;
+        real gamma;
 
-		std::bitset<8> info;
-		bool status;
+        std::bitset<8> info;
+        bool status;
 
-		Vertex() {
-		}
+        Vertex() {}
 
-		Vertex(double x, double y, double z, double radius, double aspS,
-			double aspV, double aspM, double aspG);
-		~Vertex();
+        Vertex(real x, real y, real z, real r, real coefs, real coefv, real coefm, real coefg);
 
-	private:
-		double truncate_real(double x, int ndigit);
+        ~Vertex();
 };
+}

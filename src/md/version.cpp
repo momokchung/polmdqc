@@ -53,14 +53,17 @@ void version(std::string& string, std::string status)
                        + std::to_string(hundred)
                        + std::to_string(tens)
                        + std::to_string(ones);
-            } else if (hundred != 0) {
+            }
+            else if (hundred != 0) {
                 number = std::to_string(hundred)
                        + std::to_string(tens)
                        + std::to_string(ones);
-            } else if (tens != 0) {
+            }
+            else if (tens != 0) {
                 number = std::to_string(tens)
                        + std::to_string(ones);
-            } else {
+            }
+            else {
                 number = std::to_string(ones);
             }
             newfile = string + "_" + number;
@@ -71,14 +74,16 @@ void version(std::string& string, std::string status)
     // set the file name based on the requested status
     if (status == "old") {
         string = oldfile;
-    } else if (status == "new") {
+    }
+    else if (status == "new") {
         string = newfile;
         exist = inquireFile(string);
         if (exist) {
             nextarg(string, exist);
             if (exist) {
                 exist = inquireFile(string);
-            } else {
+            }
+            else {
                 exist = true;
             }
             while (exist) {

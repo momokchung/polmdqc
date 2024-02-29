@@ -335,20 +335,20 @@ void kbond()
 
 void keneg()
 {
-	int ia,ib,ic,id,m,nel;
-	int ita,itb,itc,itd;
-	int size,next;
-	real dl,factor;
-	bool header;
-	std::string pa,pb,pc,pd;
-	std::string blank;
-	std::string pt,pt1,pt2;
-	std::string keyword;
-	std::string record;
-	std::string string;
-	std::istringstream iss;
+    int ia,ib,ic,id,m,nel;
+    int ita,itb,itc,itd;
+    int size,next;
+    real dl,factor;
+    bool header;
+    std::string pa,pb,pc,pd;
+    std::string blank;
+    std::string pt,pt1,pt2;
+    std::string keyword;
+    std::string record;
+    std::string string;
+    std::istringstream iss;
 
-	// process keywords containing electronegativity parameters
+    // process keywords containing electronegativity parameters
     blank = "";
     header = true;
     for (int i = 0; i < nkey; i++) {

@@ -47,7 +47,6 @@ MDQC_EXTERN real wsurf;
 MDQC_EXTERN real wvol;
 MDQC_EXTERN real wmean;
 MDQC_EXTERN real wgauss;
-MDQC_EXTERN MDQCArray<real> coord;
 MDQC_EXTERN MDQCArray<real> radii;
 MDQC_EXTERN MDQCArray<real> coefS;
 MDQC_EXTERN MDQCArray<real> coefV;

@@ -33,7 +33,8 @@ void getstring(std::string& string, std::string& text, int& next)
     if (firstQuotePos != std::string::npos and secondQuotePos != std::string::npos) {
         text = newString.substr(firstQuotePos + 1, secondQuotePos - firstQuotePos - 1);
         next += secondQuotePos + 1;
-    } else {
+    }
+    else {
         text = "";
     }
     

@@ -30,5 +30,5 @@ upcase.cpp
 )
 
 add_executable(alltests ${POLMDQC_TEST})
-target_link_libraries(alltests polmdqc openblas int2 gmp)
+target_link_libraries(alltests polmdqc openblas int2)
 add_custom_target(test COMMAND alltests)

@@ -1,23 +1,28 @@
-/*********************************************************************************
- *	The Face class
- *********************************************************************************/
+// Author: Moses KJ Chung
+// Year:   2024
 
 #pragma once
+#include "precision.h"
+#include <bitset>
 
-/*********************************************************************************
-  Edge class
- *********************************************************************************/
+namespace polmdqc
+{
+////////////////////////////////////////////
+//                                        //
+//  face  --  face used in Alpha complex  //
+//                                        //
+////////////////////////////////////////////
 
 class Face {
 public:
-    int Vertices[3];
-    int Edges[3];
+    int vertices[3];
+    int edges[3];
     double gamma;
 
-    Face() {
-    }
+    Face() {}
 
     Face(int i, int j, int k, int e1, int e2, int e3, double S);
 
     ~Face();
 };
+}

@@ -21,6 +21,7 @@
 #include "usage.h"
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 namespace polmdqc
 {

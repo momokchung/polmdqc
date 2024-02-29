@@ -1,26 +1,30 @@
-/*********************************************************************************
- *	The Edge class
- *********************************************************************************/
+// Author: Moses KJ Chung
+// Year:   2024
 
 #pragma once
+#include "precision.h"
 
-/*********************************************************************************
-  Edge class
- *********************************************************************************/
+namespace polmdqc
+{
+////////////////////////////////////////////
+//                                        //
+//  edge  --  edge used in Alpha complex  //
+//                                        //
+////////////////////////////////////////////
 
 class Edge {
 public:
-    int Vertices[2];
-    double gamma;
-    double sigma;
-    double Length, Surf, Vol; 
-    double CoefM1, CoefM2, CoefG1, CoefG2;
-    double dsurf, dvol, dmean, dgauss;
+    int vertices[2];
+    real gamma;
+    real sigma;
+    real len,surf,vol; 
+    real coefm1,coefm2,coefg1,coefg2;
+    real dsurf,dvol,dmean,dgauss;
 
-    Edge() {
-    }
+    Edge() {}
 
     Edge(int i, int j);
 
     ~Edge();
 };
+}
