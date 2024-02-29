@@ -3,6 +3,7 @@
 #include "cheb.h"
 #include "inform.h"
 #include "initialqm.h"
+#include "libfunc.h"
 #include "testrt.h"
 
 namespace polmdqc
@@ -40,7 +41,7 @@ TEST_CASE("boyscheb-1", "[Chebyshev]") {
         for (int m = 0; m <= chebmmax; m++) {
             double fc = FmCheb[m];
             double fr = FmRef[m];
-            double absdiff = fabs(fc - fr);
+            double absdiff = REAL_ABS(fc - fr);
             double reldiff = absdiff / fr;
             // printf("i m %d %d\n", i, m);
             // printf("absdiff reldiff %25.16e%25.16e\n", absdiff,reldiff);

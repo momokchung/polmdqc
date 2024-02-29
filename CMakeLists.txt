@@ -12,8 +12,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -finline-functions -ffast-math -fope
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wunused-parameter -Wunused-variable -Wunused-function")
 
 # Link directories
-# gmp
-link_directories(/opt/homebrew/Cellar/gmp/6.3.0/lib)
 # libint2
 link_directories(/Users/moseschung/libint-2.7.2)
 # OpenBLAS
@@ -27,8 +25,6 @@ include_directories(include/oqc)
 include_directories(include/qc)
 # boost
 include_directories(/opt/homebrew/Cellar/boost/1.83.0/include)
-# gmp
-include_directories(/opt/homebrew/Cellar/gmp/6.3.0/include)
 
 # Include
 include(cmakesrc.txt)
@@ -56,7 +52,7 @@ target_link_libraries(analyze polmdqc)
 # testgrad
 target_link_libraries(testgrad polmdqc)
 # spacefill
-target_link_libraries(spacefill polmdqc gmp)
+target_link_libraries(spacefill polmdqc)
 # tinkerqm
 target_link_libraries(tinkerqm polmdqc openblas int2)
 # analyzeqm

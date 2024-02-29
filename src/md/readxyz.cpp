@@ -79,7 +79,8 @@ void readxyz(std::ifstream& ffile)
             std::string firstWord = "";
             iss >> firstWord;
             size = firstWord.length();
-        } else {
+        }
+        else {
             goto label_80;
         }
     }

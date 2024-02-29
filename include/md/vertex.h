@@ -30,9 +30,9 @@ namespace polmdqc
 class Vertex {
     public:
         real r;
-        real x,y,z;
+        real coord[3];
         real w;
-        real coefs, coefv, coefm, coefg;
+        real coefs,coefv,coefm,coefg;
         real gamma;
 
         std::bitset<8> info;

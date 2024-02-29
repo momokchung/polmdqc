@@ -3,11 +3,10 @@
 
 #include "alphmol.h"
 #include "atoms.h"
-#include "delaunay.h"
+#include "dlauny.h"
 #include "initdelcx.h"
 #include <algorithm>
 #include <cmath>
-#include <cstring>
 
 namespace polmdqc
 {
@@ -43,7 +42,7 @@ void initdelcx()
 
     // set four "infinite" points
     real zero=0.;
-    for(int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++) {
         Vertex vert(zero, zero, zero, zero, zero, zero, zero, zero);
         vert.info[0] = 1;
         vert.status = 0;
@@ -52,7 +51,7 @@ void initdelcx()
 
     // copy atoms into vertex list
     real xi, yi, zi, ri, cs, cv, cm, cg;
-    for(int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
         xi = x[i];
         yi = y[i];
         zi = z[i];
@@ -68,12 +67,12 @@ void initdelcx()
     }
 
     // if n < 4, add "bogus" points
-    if(n < 4) {
+    if (n < 4) {
         int new_points = 4-n;
         real *bcoord = new real[3*new_points];
         real *brad   = new real[new_points];
         addBogus(n, x.ptr(), y.ptr(), z.ptr(), radii.ptr(), bcoord, brad); 
-        for(int i = 0; i < new_points; i++) {
+        for (int i = 0; i < new_points; i++) {
             xi = bcoord[3*i];
             yi = bcoord[3*i+1];
             zi = bcoord[3*i+2];
@@ -118,10 +117,9 @@ void initdelcx()
 
 void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord, real* brad)
 {
-    if(npoints > 3) return;
+    if (npoints > 3) return;
 
     int np = 4 - npoints;
-    memset(bcoord, 0, 3*np*sizeof(real));
     real cx,cy,cz;
     real c1x,c1y,c1z;
     real c2x,c2y,c2z;
@@ -132,20 +130,18 @@ void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord,
     real c32x,c32y,c32z;
     real Rmax, d, d1, d2, d3;
 
-    if(npoints==1) {
-        printf("test1\n");
+    for (int i = 0; i < 3 * np; ++i) bcoord[i] = 0;
+
+    if (npoints==1) {
         Rmax = radii[0];
         bcoord[0] = x[0] + 3*Rmax;
         bcoord[3*1+1] = y[0] + 3*Rmax;
         bcoord[3*2+2] = z[0] + 3*Rmax;
-        for(int i = 0; i < np; i++) {
+        for (int i = 0; i < np; i++) {
             brad[i] = Rmax/20;
         }
-        printf("bogus1 %20.8f%20.8f%20.8f%20.8f\n", bcoord[3*0+0], bcoord[3*0+1], bcoord[3*0+2], brad[0]);
-        printf("bogus2 %20.8f%20.8f%20.8f%20.8f\n", bcoord[3*1+0], bcoord[3*1+1], bcoord[3*1+2], brad[1]);
-        printf("bogus3 %20.8f%20.8f%20.8f%20.8f\n", bcoord[3*2+0], bcoord[3*2+1], bcoord[3*2+2], brad[2]);
-    } else if(npoints==2) {
-        printf("test2\n");
+    }
+    else if (npoints==2) {
         Rmax = std::max(radii[0], radii[1]);
         c1x = x[0];
         c1y = y[0];
@@ -159,11 +155,12 @@ void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord,
         u1x = c2x-c1x; 
         u1y = c2y-c1y; 
         u1z = c2z-c1z; 
-        if((u1z!=0) || (u1x!=-u1y)) {
+        if ((u1z!=0) || (u1x!=-u1y)) {
             v1x = u1z;
             v1y = u1z;
             v1z = -u1x-u1z;
-        } else {
+        }
+        else {
             v1x = -u1y-u1z;
             v1y = u1x;
             v1z = u1x;
@@ -180,10 +177,8 @@ void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord,
         bcoord[2+3] = cz + (2*d+3*Rmax)*w1z;
 
         brad[0] = Rmax/20; brad[1] = Rmax/20;
-        printf("bogus1 %20.8f%20.8f%20.8f%20.8f\n", bcoord[3*0+0], bcoord[3*0+1], bcoord[3*0+2], brad[0]);
-        printf("bogus2 %20.8f%20.8f%20.8f%20.8f\n", bcoord[3*1+0], bcoord[3*1+1], bcoord[3*1+2], brad[1]);
-    } else {
-        printf("test3\n");
+    }
+    else {
         Rmax = std::max(std::max(radii[0], radii[1]), radii[2]);
         c1x = x[0];
         c1y = y[0];
@@ -217,7 +212,6 @@ void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord,
         bcoord[1] = cy + (2*d+3*Rmax)*w1y;
         bcoord[2] = cz + (2*d+3*Rmax)*w1z;
         brad[0] = Rmax/20;
-        printf("bogus1 %20.8f%20.8f%20.8f%20.8f\n", bcoord[3*0+0], bcoord[3*0+1], bcoord[3*0+2], brad[0]);
     }
 }
 }

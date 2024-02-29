@@ -173,10 +173,10 @@ void kewald()
             fft1 = 0.;
             fft2 = 0.;
             fft3 = 0.;
-            iss >> fft1 >> fft2 >> fft3;;
-            idfft1 = static_cast<int>(std::round(fft1));;
-            idfft2 = static_cast<int>(std::round(fft2));;
-            idfft3 = static_cast<int>(std::round(fft3));;
+            iss >> fft1 >> fft2 >> fft3;
+            idfft1 = static_cast<int>(std::round(fft1));
+            idfft2 = static_cast<int>(std::round(fft2));
+            idfft3 = static_cast<int>(std::round(fft3));
             if (idfft2 == 0) idfft2 = idfft1;
             if (idfft3 == 0) idfft3 = idfft1;
         }

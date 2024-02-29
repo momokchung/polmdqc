@@ -241,7 +241,7 @@ void kangle()
                     aconp[j] = fc;
                     angp[j][0] = an1;
                     angp[j][1] = an2;
-                    goto label_260;;
+                    goto label_260;
                 }
             }
             printf("\n KANGLE  --  Too many In-Plane Angle Bending Parameters\n");

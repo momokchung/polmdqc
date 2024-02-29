@@ -53,7 +53,7 @@ inline void boyscheb(double* Fm, int mmax, double x)
     // set up Chebyshev interpolation
     const int mmin = 0;
     int iv = int(x/chebdlta);
-    double t = x/chebdlta2 - 2*iv - 1;;
+    double t = x/chebdlta2 - 2*iv - 1;
 
     // compute Chebyshev interpolation
     for (int m = mmin; m <= mmax; m++) {

@@ -2,32 +2,40 @@
 // Year:   2024
 
 #pragma once
-#include "macro.h"
-#include "tetrahedron.h"
-#include "vertex.h"
-#include <queue>
-#include <stack>
-#include <vector>
 
 namespace polmdqc
 {
-//////////////////////////////////////////////////
-//                                              //
-//  delaunay  --  Alpha shape theory variables  //
-//                                              //
-//////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+//                                                 //
+//  delaunay  --  weighted Delaunay triangulation  //
+//                                                 //
+/////////////////////////////////////////////////////
 
-// vertices     vertices
-// tetra        tetrahedrons
-// link_facet   
-// link_index   
-// free         
-// kill         
+void delaunay();
 
-MDQC_EXTERN std::vector<Vertex> vertices;
-MDQC_EXTERN std::vector<Tetrahedron> tetra;
-MDQC_EXTERN std::queue<std::pair<int,int>> link_facet;
-MDQC_EXTERN std::queue<std::pair<int,int>> link_index;
-MDQC_EXTERN std::stack<int> free;
-MDQC_EXTERN std::vector<int> kill;
+// sign associated with the missing infinite point
+inline void missinf_sign(int i, int j, int k, int& l, int& sign)
+{
+    int a, b, c, d;
+    l = 6 - i - j - k;
+    a = i;
+    b = j;
+    c = k;
+    sign = 1;
+    if (a > b) {
+        d = a;
+        a = b;
+        b = d;
+        sign = -sign;
+    }
+    if (a > c) {
+        d = a;
+        a = c;
+        c = d;
+        sign = -sign;
+    }
+    if (b > c) {
+        sign = -sign;
+    }
+}
 }

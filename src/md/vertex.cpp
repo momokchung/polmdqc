@@ -16,9 +16,9 @@ namespace polmdqc
 
 Vertex::Vertex(real x, real y, real z, real r, real coefs, real coefv, real coefm, real coefg)
 {
-    this->x = x;
-    this->y = y;
-    this->z = z;
+    this->coord[0] = x;
+    this->coord[1] = y;
+    this->coord[2] = z;
     this->r = r;
     this->coefs = coefs;
     this->coefv = coefv;

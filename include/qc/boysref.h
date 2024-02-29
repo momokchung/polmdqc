@@ -29,7 +29,7 @@ inline void boysref(double* Fm, int mmax, double t)
 {
     if (t < chebtmax) {
         double et = std::exp(-t);
-        for(int m = 0; m <= mmax; m++) {
+        for (int m = 0; m <= mmax; m++) {
             constexpr double half = double(1)/2;
             double denom = (m + half);
             double term = et / (2 * denom);
