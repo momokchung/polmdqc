@@ -937,5 +937,3 @@ void flip()
     kill.clear();
 }
 }
-
-// regularconvex
