@@ -14,7 +14,7 @@ namespace polmdqc
 // "face" class characterizes the face used in Alpha
 // complex theory
 
-Face::Face(int i, int j, int k, int e1, int e2, int e3, double S) {
+Face::Face(int i, int j, int k, int e1, int e2, int e3, real S) {
     vertices[0] = i;
     vertices[1] = j;
     vertices[2] = k;

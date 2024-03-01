@@ -4,7 +4,6 @@
 #include "alffunc.h"
 #include "deldet.h"
 #include "libfunc.h"
-#include <stdio.h>
 
 namespace polmdqc
 {
@@ -24,7 +23,6 @@ inline void deter2(real& deter, real b11, real b21, real eps)
     deter = psub(b11,b21);
 
     if (REAL_ABS(deter) < eps) deter = 0.;
-    // printf("deter2 %25.17e\n", deter);
 }
 
 // deter3 evaluates the determinant:
@@ -47,7 +45,6 @@ inline void deter3(real& deter, real b11, real b12, real b21,
     deter = psub(val1,val2);
 
     if (REAL_ABS(deter) < eps) deter = 0.;
-    // printf("deter3 %25.17e\n", deter);
 }
 
 // deter4 evaluates the determinant:

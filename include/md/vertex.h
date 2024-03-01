@@ -4,7 +4,6 @@
 #pragma once
 #include "precision.h"
 #include <bitset>
-#include <vector>
 
 namespace polmdqc
 {

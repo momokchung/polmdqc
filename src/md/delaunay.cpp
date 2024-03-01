@@ -1,6 +1,7 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
+#include "alffunc.h"
 #include "delaunay.h"
 #include "deldet.h"
 #include "delflip.h"

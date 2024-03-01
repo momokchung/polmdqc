@@ -41,7 +41,7 @@ void initdelcx()
     kill.clear();
 
     // set four "infinite" points
-    real zero=0.;
+    real zero = 0.;
     for (int i = 0; i < 4; i++) {
         Vertex vert(zero, zero, zero, zero, zero, zero, zero, zero);
         vert.info[0] = 1;

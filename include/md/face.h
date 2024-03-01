@@ -17,11 +17,11 @@ class Face {
 public:
     int vertices[3];
     int edges[3];
-    double gamma;
+    real gamma;
 
     Face() {}
 
-    Face(int i, int j, int k, int e1, int e2, int e3, double S);
+    Face(int i, int j, int k, int e1, int e2, int e3, real S);
 
     ~Face();
 };

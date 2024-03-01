@@ -1,6 +1,7 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
+#include "alffunc.h"
 #include "delaunay.h"
 #include "deldet.h"
 #include "delsort.h"
@@ -218,7 +219,6 @@ void regular_convex(int a, int b, int c, int p, int o, int itest_abcp,
         if ((itest_abcp * det_bcpo) > 0) return;
         if ((itest_abcp * det_capo) > 0) return;
         convex = true;
-
     }
     else if (ninf == 1) { 
         // Define X as infinite point, and (i,j) the pair of finite points.
@@ -324,7 +324,6 @@ void regular_convex(int a, int b, int c, int p, int o, int itest_abcp,
             icol5 = inf5_2[infp][info];
             sign5 = sign5_2[infp][info];
 
-
             det_abpo = -i_p[icol1] * sign1;
             if (REAL_ABS(det_abpo) < deleps) {
                 valsort2(i, p, ia, ib, iswap);
@@ -392,7 +391,6 @@ void regular_convex(int a, int b, int c, int p, int o, int itest_abcp,
         if ((itest_abcp * det_bcpo) > 0) return;
         if ((itest_abcp * det_capo) > 0) return;
         convex = true;
-
     }
     else if (ninf == 2) {
         // define(k,l) as the two infinite points, and i be finite
@@ -554,7 +552,6 @@ void regular_convex(int a, int b, int c, int p, int o, int itest_abcp,
         if ((itest_abcp * det_bcpo) > 0) return;
         if ((itest_abcp * det_capo) > 0) return;
         convex = true;
-
     }
     else if (ninf == 3) {
         assert(true);
