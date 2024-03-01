@@ -10,6 +10,7 @@
 #include "files.h"
 #include "final.h"
 #include "getcart.h"
+#include "initalf.h"
 #include "inform.h"
 #include "initial.h"
 #include "libfunc.h"
@@ -182,6 +183,9 @@ void spacefill(int argc, char** argv)
         if (eps < 0.) eps = eps0;
     }
 
+    // initialize AlphaMol
+    initalf(exclude, doanalyt);
+
     // perform dynamic allocation of some local arrays
     denorm.resize(n);
     if (donumer) {
@@ -200,6 +204,7 @@ void spacefill(int argc, char** argv)
                 field();
                 katom();
                 kvdw();
+                initalf(exclude, doanalyt);
                 denorm.resize(n);
                 if (donumer) {
                     ndenorm.resize(n);
@@ -213,6 +218,7 @@ void spacefill(int argc, char** argv)
                         field();
                         katom();
                         kvdw();
+                        initalf(exclude, doanalyt);
                         break;                        
                     }
                 }

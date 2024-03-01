@@ -1,7 +1,6 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
-#include "atoms.h"
 #include "delaunay.h"
 #include "deldet.h"
 #include "delflip.h"

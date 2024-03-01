@@ -48,6 +48,7 @@ src/md/gettext.cpp
 src/md/getword.cpp
 src/md/getxyz.cpp
 src/md/image.cpp
+src/md/initalf.cpp
 src/md/initatom.cpp
 src/md/initdelcx.cpp
 src/md/initial.cpp
