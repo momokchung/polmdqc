@@ -53,10 +53,10 @@ void alphamol(real r_h2o, bool deriv)
     }
 
     // generate alpha complex (with alpha=0.0)
-	start_s = clock();
-	real alpha = 0;
-	alfcx(alpha);
-	stop_s = clock();
+    start_s = clock();
+    real alpha = 0;
+    alfcx(alpha);
+    stop_s = clock();
     if (verbose) {
         printf("\n AlphaCx compute time : %10.6e seconds\n", (stop_s-start_s)/double(CLOCKS_PER_SEC));
     }

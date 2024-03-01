@@ -268,7 +268,7 @@ void flip_4_1( int itetra, int jtetra, int ktetra, int ltetra, int* ivertices,
     }
 
     // Now add one link facet:
-    // link_facet:	aco	tetrahedra:	acop and neighbour of (abco) on aco
+    // link_facet: aco tetrahedra: acop and neighbour of (abco) on aco
 
     link_facet.push(std::make_pair(newtetra, jshare));
     link_index.push(std::make_pair(3, jdx));

@@ -18,14 +18,14 @@ namespace polmdqc
 
 inline real dist2(int n1, int n2)
 {
-	real x;
-	real dist = 0;
-	for(int i = 0; i < 3; i++) {
-		x = vertices[n1].coord[i] - vertices[n2].coord[i];
-		dist += x*x;
-	}
+    real x;
+    real dist = 0;
+    for(int i = 0; i < 3; i++) {
+        x = vertices[n1].coord[i] - vertices[n2].coord[i];
+        dist += x*x;
+    }
 
-	return dist;
+    return dist;
 }
 
 /////////////////////////////////////////////////////////

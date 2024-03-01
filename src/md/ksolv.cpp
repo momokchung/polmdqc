@@ -233,7 +233,7 @@ void ksolv()
     }
     else if (solvtyp == "GK") {
         kgk();
-        // knp();
+        knp();
     }
     else if (solvtyp == "PB-HPMF") {
         kpb();
