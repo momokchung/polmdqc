@@ -226,7 +226,7 @@ void spacefill(int argc, char** argv)
         }
 
         // compute surface area, volume, mean, and gaussian curvature
-        alphamol(exclude, doanalyt);
+        alphamol(doanalyt);
 
         // print atomic surface area, volume, mean, and gaussian curvature
         if (dofull and !test) {
@@ -277,7 +277,7 @@ void spacefill(int argc, char** argv)
                         old = z[i];
                         z[i] -= (real)0.5 * eps;
                     }
-                    alphamol(exclude, false);
+                    alphamol(false);
                     tsurf0 = tsurf;
                     tvol0 = tvol;
                     tmean0 = tmean;
@@ -291,7 +291,7 @@ void spacefill(int argc, char** argv)
                     else if (j == 2) {
                         z[i] += eps;
                     }
-                    alphamol(exclude, false);
+                    alphamol(false);
                     if (j == 0) {
                         x[i] = old;
                     }

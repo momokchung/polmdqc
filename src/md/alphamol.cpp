@@ -37,7 +37,7 @@ namespace polmdqc
 //
 // https://github.com/pkoehl/AlphaMol
 
-void alphamol(real r_h2o, bool deriv)
+void alphamol(bool deriv)
 {
     clock_t start_s, stop_s;
 
