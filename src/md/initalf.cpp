@@ -18,7 +18,7 @@ namespace polmdqc
 
 // "initalf" initialize variables used in AlphaMol
 
-void initalf(real exclude, bool deriv)
+void initalf(real scoef, real vcoef, real exclude, bool deriv)
 {
     // perform dynamic allocation of some global arrays
     radii.allocate(n);
@@ -48,8 +48,8 @@ void initalf(real exclude, bool deriv)
         else {
             radii[i] = 0.;
         }
-        coefS[i] = 1.0;
-        coefV[i] = 1.0;
+        coefS[i] = scoef;
+        coefV[i] = vcoef;
         coefM[i] = 1.0;
         coefG[i] = 1.0;
     }

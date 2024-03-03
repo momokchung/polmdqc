@@ -16,12 +16,15 @@ namespace polmdqc
 // maxvlst     maximum size of van der Waals pair neighbor lists
 // maxelst     maximum size of electrostatic pair neighbor lists
 // maxulst     maximum size of dipole preconditioner pair lists
+// maxslst     maximum size of surface area pair neighbor lists
 // nvlst       number of sites in list for each vdw site
-// vlst        site numbers in neighbor list of each vdw site ((i,j) index = i * n + j)
+// vlst        site numbers in neighbor list of each vdw site ((i,j) index = i * maxvlst + j)
 // nelst       number of sites in list for each electrostatic site
-// elst        site numbers in list of each electrostatic site ((i,j) index = i * n + j)
+// elst        site numbers in list of each electrostatic site ((i,j) index = i * maxelst + j)
 // nulst       number of sites in list for each preconditioner site
-// ulst        site numbers in list of each preconditioner site ((i,j) index = i * n + j)
+// ulst        site numbers in list of each preconditioner site ((i,j) index = i * maxulst + j)
+// nslst       number of sites in list for each surface area site
+// slst        site numbers in neighbor list of each surface area site ((i,j) index = i * maxslst + j)
 // lbuffer     width of the neighbor list buffer region
 // pbuffer     width of the preconditioner list buffer region
 // lbuf2       square of half the neighbor list buffer width
@@ -54,12 +57,15 @@ namespace polmdqc
 MDQC_EXTERN int maxvlst;
 MDQC_EXTERN int maxelst;
 MDQC_EXTERN int maxulst;
+MDQC_EXTERN int maxslst;
 MDQC_EXTERN MDQCArray<int> nvlst;
 MDQC_EXTERN MDQCArray<int> vlst;
 MDQC_EXTERN MDQCArray<int> nelst;
 MDQC_EXTERN MDQCArray<int> elst;
 MDQC_EXTERN MDQCArray<int> nulst;
 MDQC_EXTERN MDQCArray<int> ulst;
+MDQC_EXTERN MDQCArray<int> nslst;
+MDQC_EXTERN MDQCArray<int> slst;
 MDQC_EXTERN real lbuffer,pbuffer;
 MDQC_EXTERN real lbuf2,pbuf2;
 MDQC_EXTERN real vbuf2,vbufx;

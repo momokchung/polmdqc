@@ -85,6 +85,7 @@ src/md/rotpole.cpp
 src/md/setprm.cpp
 src/md/spacefill.cpp
 src/md/suffix.cpp
+src/md/surfvol.cpp
 src/md/testgrad.cpp
 src/md/tetrahedron.cpp
 src/md/torphase.cpp

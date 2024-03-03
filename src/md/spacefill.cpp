@@ -18,6 +18,7 @@
 #include "kvdw.h"
 #include "nextarg.h"
 #include "readcart.h"
+#include "surfvol.h"
 #include "upcase.h"
 #include "usage.h"
 #include <iostream>
@@ -184,7 +185,7 @@ void spacefill(int argc, char** argv)
     }
 
     // initialize AlphaMol
-    initalf(exclude, doanalyt);
+    initalf(1, 1, exclude, doanalyt);
 
     // perform dynamic allocation of some local arrays
     denorm.resize(n);
@@ -204,7 +205,7 @@ void spacefill(int argc, char** argv)
                 field();
                 katom();
                 kvdw();
-                initalf(exclude, doanalyt);
+                initalf(1, 1, exclude, doanalyt);
                 denorm.resize(n);
                 if (donumer) {
                     ndenorm.resize(n);
@@ -218,7 +219,7 @@ void spacefill(int argc, char** argv)
                         field();
                         katom();
                         kvdw();
-                        initalf(exclude, doanalyt);
+                        initalf(1, 1, exclude, doanalyt);
                         break;                        
                     }
                 }
@@ -227,6 +228,7 @@ void spacefill(int argc, char** argv)
 
         // compute surface area, volume, mean, and gaussian curvature
         alphamol(doanalyt);
+        // surfvol(doanalyt);
 
         // print atomic surface area, volume, mean, and gaussian curvature
         if (dofull and !test) {
@@ -278,6 +280,7 @@ void spacefill(int argc, char** argv)
                         z[i] -= (real)0.5 * eps;
                     }
                     alphamol(false);
+                    // surfvol(doanalyt);
                     tsurf0 = tsurf;
                     tvol0 = tvol;
                     tmean0 = tmean;
@@ -292,6 +295,7 @@ void spacefill(int argc, char** argv)
                         z[i] += eps;
                     }
                     alphamol(false);
+                    // surfvol(doanalyt);
                     if (j == 0) {
                         x[i] = old;
                     }

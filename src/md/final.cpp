@@ -497,6 +497,8 @@ void final()
     elst.deallocate();
     nulst.deallocate();
     ulst.deallocate();
+    nslst.deallocate();
+    slst.deallocate();
     xvold.deallocate();
     yvold.deallocate();
     zvold.deallocate();

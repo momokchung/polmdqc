@@ -12,5 +12,5 @@ namespace polmdqc
 //                                    //
 ////////////////////////////////////////
 
-void initalf(real exclude, bool deriv);
+void initalf(real scoef, real vcoef, real exclude, bool deriv);
 }
