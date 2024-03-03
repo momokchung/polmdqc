@@ -66,10 +66,14 @@ void delaunay()
     removeinf();
 
     // peel off flat tetrahedra at the boundary of the DT
-    int flag;
-    do {
-        peel(flag);
-    } while (flag!=0);
+    int nt = 0;
+    for (int i = 0; i < tetra.size(); i++) if (tetra[i].info[1]!=0) nt++;
+    if (nt > 1) {
+        int flag;
+        do {
+            peel(flag);
+        } while (flag != 0); 
+    }
 }
 
 /////////////////////////////////////////////////////////
