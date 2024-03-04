@@ -156,7 +156,7 @@ void alfcx(real alpha)
 
         if (tetra[idx].info[1]==0) continue;
 
-        for (int iedge=0; iedge < 6; iedge++) {
+        for (int iedge = 0; iedge < 6; iedge++) {
             if (tetra_mask[idx][iedge]==1) continue;
             test_edge = false;
 
