@@ -472,7 +472,7 @@ TEST_CASE("spacefill-11", "[spacefill][AMOEBA][concat]") {
     final();
 }
 
-TEST_CASE("spacefill-12", "[spacefill][AMOEBA][crystal]") {
+TEST_CASE("spacefill-12", "[spacefill][AMOEBA][chloride27]") {
     // symmetric object
     int argc = 7;
     const char* strings[] = {
@@ -493,4 +493,240 @@ TEST_CASE("spacefill-12", "[spacefill][AMOEBA][crystal]") {
 
     final();
 }
+
+TEST_CASE("spacefill-13", "[spacefill][AMOEBA][3ibk]") {
+    int argc = 7;
+    const char* strings[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/3ibk.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv = const_cast<char**>(strings);
+
+    test = true;
+
+    spacefill(argc, argv);
+
+    COMPARE_REALS(tsurf, spacefill13::tsurf, spacefill13::eps);
+    COMPARE_REALS(tvol, spacefill13::tvol, spacefill13::eps);
+    COMPARE_REALS(tmean, spacefill13::tmean, spacefill13::eps);
+    COMPARE_REALS(tgauss, spacefill13::tgauss, spacefill13::eps);
+
+    final();
+}
+
+TEST_CASE("spacefill-14", "[spacefill][AMOEBA][3cln]") {
+    int argc = 8;
+    const char* strings[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/3cln.xyz",
+        "2","1.4","Y","N","N","N"
+    };
+    char** argv = const_cast<char**>(strings);
+
+    test = true;
+
+    spacefill(argc, argv);
+
+    COMPARE_REALS(tsurf, spacefill14::tsurf, spacefill14::eps);
+    COMPARE_REALS(tvol, spacefill14::tvol, spacefill14::eps);
+
+    final();
+}
+
+TEST_CASE("spacefill-15", "[spacefill][AMOEBA][waterbox30]") {
+    int argc = 7;
+    const char* strings[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/waterbox30.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv = const_cast<char**>(strings);
+
+    test = true;
+
+    spacefill(argc, argv);
+
+    COMPARE_REALS(tsurf, spacefill15::tsurf, spacefill15::eps);
+    COMPARE_REALS(tvol, spacefill15::tvol, spacefill15::eps);
+    COMPARE_REALS(tmean, spacefill15::tmean, spacefill15::eps);
+    COMPARE_REALS(tgauss, spacefill15::tgauss, spacefill15::eps);
+
+    final();
+}
+
+TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
+    int argc = 7;
+    const char* strings1[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/lchloride2.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv1 = const_cast<char**>(strings1);
+    const char* strings2[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/lchloride3.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv2 = const_cast<char**>(strings2);
+    const char* strings3[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/lchloride4.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv3 = const_cast<char**>(strings3);
+    const char* strings4[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/lchloride5.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv4 = const_cast<char**>(strings4);
+    const char* strings5[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/lchloride6.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv5 = const_cast<char**>(strings5);
+
+    test = true;
+
+    spacefill(argc, argv1);
+    COMPARE_REALS(tsurf, spacefill16::tsurf1, spacefill16::eps);
+    COMPARE_REALS(tvol, spacefill16::tvol1, spacefill16::eps);
+    COMPARE_REALS(tmean, spacefill16::tmean1, spacefill16::eps);
+    COMPARE_REALS(tgauss, spacefill16::tgauss1, spacefill16::eps);
+    final();
+
+    spacefill(argc, argv2);
+    // COMPARE_REALS(tsurf, spacefill16::tsurf2, spacefill16::eps);
+    // COMPARE_REALS(tvol, spacefill16::tvol2, spacefill16::eps);
+    // COMPARE_REALS(tmean, spacefill16::tmean2, spacefill16::eps);
+    // COMPARE_REALS(tgauss, spacefill16::tgauss2, spacefill16::eps);
+    final();
+
+    spacefill(argc, argv3);
+    // COMPARE_REALS(tsurf, spacefill16::tsurf3, spacefill16::eps);
+    // COMPARE_REALS(tvol, spacefill16::tvol3, spacefill16::eps);
+    // COMPARE_REALS(tmean, spacefill16::tmean3, spacefill16::eps);
+    // COMPARE_REALS(tgauss, spacefill16::tgauss3, spacefill16::eps);
+    final();
+
+    spacefill(argc, argv4);
+    // COMPARE_REALS(tsurf, spacefill16::tsurf4, spacefill16::eps);
+    // COMPARE_REALS(tvol, spacefill16::tvol4, spacefill16::eps);
+    // COMPARE_REALS(tmean, spacefill16::tmean4, spacefill16::eps);
+    // COMPARE_REALS(tgauss, spacefill16::tgauss4, spacefill16::eps);
+    final();
+
+    spacefill(argc, argv5);
+    // COMPARE_REALS(tsurf, spacefill16::tsurf5, spacefill16::eps);
+    // COMPARE_REALS(tvol, spacefill16::tvol5, spacefill16::eps);
+    // COMPARE_REALS(tmean, spacefill16::tmean5, spacefill16::eps);
+    // COMPARE_REALS(tgauss, spacefill16::tgauss5, spacefill16::eps);
+    final();
+}
+
+TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
+    int argc = 7;
+    const char* strings1[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/pchloride3.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv1 = const_cast<char**>(strings1);
+    const char* strings2[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/pchloride4.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv2 = const_cast<char**>(strings2);
+    const char* strings3[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/pchloride5.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv3 = const_cast<char**>(strings3);
+
+    test = true;
+
+    spacefill(argc, argv1);
+    COMPARE_REALS(tsurf, spacefill17::tsurf1, spacefill17::eps);
+    COMPARE_REALS(tvol, spacefill17::tvol1, spacefill17::eps);
+    COMPARE_REALS(tmean, spacefill17::tmean1, spacefill17::eps);
+    COMPARE_REALS(tgauss, spacefill17::tgauss1, spacefill17::eps);
+    final();
+
+    spacefill(argc, argv2);
+    // COMPARE_REALS(tsurf, spacefill17::tsurf2, spacefill17::eps);
+    // COMPARE_REALS(tvol, spacefill17::tvol2, spacefill17::eps);
+    // COMPARE_REALS(tmean, spacefill17::tmean2, spacefill17::eps);
+    // COMPARE_REALS(tgauss, spacefill17::tgauss2, spacefill17::eps);
+    final();
+
+    spacefill(argc, argv3);
+    // COMPARE_REALS(tsurf, spacefill17::tsurf3, spacefill17::eps);
+    // COMPARE_REALS(tvol, spacefill17::tvol3, spacefill17::eps);
+    // COMPARE_REALS(tmean, spacefill17::tmean3, spacefill17::eps);
+    // COMPARE_REALS(tgauss, spacefill17::tgauss3, spacefill17::eps);
+    final();
+}
+
+// TEST_CASE("spacefill-18", "[spacefill][AMOEBA][crystal8k]") {
+//     // symmetric object; optional
+//     int argc = 7;
+//     const char* strings1[] = {
+//         "analyze",
+//         "../../test/testFiles/spacefill/crystal8k_1.xyz",
+//         "1","Y","N","N","N"
+//     };
+//     char** argv1 = const_cast<char**>(strings1);
+//     const char* strings2[] = {
+//         "analyze",
+//         "../../test/testFiles/spacefill/crystal8k_2.xyz",
+//         "1","Y","N","N","N"
+//     };
+//     char** argv2 = const_cast<char**>(strings2);
+//     const char* strings3[] = {
+//         "analyze",
+//         "../../test/testFiles/spacefill/crystal8k_3.xyz",
+//         "1","Y","N","N","N"
+//     };
+//     char** argv3 = const_cast<char**>(strings3);
+//     const char* strings4[] = {
+//         "analyze",
+//         "../../test/testFiles/spacefill/crystal8k_4.xyz",
+//         "1","Y","N","N","N"
+//     };
+//     char** argv4 = const_cast<char**>(strings4);
+
+//     test = true;
+
+//     spacefill(argc, argv1);
+//     COMPARE_REALS(tsurf, spacefill18::tsurf1, spacefill18::eps);
+//     COMPARE_REALS(tvol, spacefill18::tvol1, spacefill18::eps);
+//     COMPARE_REALS(tmean, spacefill18::tmean1, spacefill18::eps);
+//     COMPARE_REALS(tgauss, spacefill18::tgauss1, spacefill18::eps);
+//     final();
+
+//     spacefill(argc, argv2);
+//     COMPARE_REALS(tsurf, spacefill18::tsurf2, spacefill18::eps);
+//     COMPARE_REALS(tvol, spacefill18::tvol2, spacefill18::eps);
+//     COMPARE_REALS(tmean, spacefill18::tmean2, spacefill18::eps);
+//     COMPARE_REALS(tgauss, spacefill18::tgauss2, spacefill18::eps);
+//     final();
+
+//     spacefill(argc, argv3);
+//     COMPARE_REALS(tsurf, spacefill18::tsurf3, spacefill18::eps);
+//     COMPARE_REALS(tvol, spacefill18::tvol3, spacefill18::eps);
+//     COMPARE_REALS(tmean, spacefill18::tmean3, spacefill18::eps);
+//     COMPARE_REALS(tgauss, spacefill18::tgauss3, spacefill18::eps);
+//     final();
+
+//     spacefill(argc, argv4);
+//     // COMPARE_REALS(tsurf, spacefill18::tsurf4, spacefill18::eps);
+//     // COMPARE_REALS(tvol, spacefill18::tvol4, spacefill18::eps);
+//     // COMPARE_REALS(tmean, spacefill18::tmean4, spacefill18::eps);
+//     // COMPARE_REALS(tgauss, spacefill18::tgauss4, spacefill18::eps);
+//     final();
+// }
 }

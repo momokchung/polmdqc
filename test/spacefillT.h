@@ -846,4 +846,114 @@ namespace spacefill12
     real tmean = -2.4910700481608494e+01;
     real tgauss = 1.2566370614359146e+01;
 }
+
+namespace spacefill13
+{
+    real eps = 1e-12;
+
+    real tsurf = 5.9510048668678610e+03;
+    real tvol = 7.0007608943143759e+03;
+    real tmean = -3.4280614420923152e+03;
+    real tgauss = -1.2692034320502939e+03;
+}
+
+namespace spacefill14
+{
+    real eps = 1e-12;
+
+    real tsurf = 9.8406624043027623e+03;
+    real tvol = 3.3096194011455969e+04;
+}
+
+namespace spacefill15
+{
+    real eps = 1e-12;
+
+    real tsurf = 2.2418822970919769e+04;
+    real tvol = 1.9498064882365394e+04;
+    real tmean = -1.3219711935951129e+04;
+    real tgauss = -1.1121237993707919e+04;
+}
+
+namespace spacefill16
+{
+    real eps = 1e-12;
+
+    real tsurf1 = 8.0507709977953482e+01;
+    real tvol1 = 6.2189600530461675e+01;
+    real tmean1 = 2.7169550074279524e+01;
+    real tgauss1 = 1.2566370614359172e+01;
+
+    // // current AlphaMol can't handle linear structure
+    // real tsurf2 = 1.0768876961681238e+02;
+    // real tvol2 = 8.7761567828078398e+01;
+    // real tmean2 = 2.8452376682979153e+01;
+    // real tgauss2 = 1.2566370614359172e+01;
+
+    // // current AlphaMol can't handle linear structure
+    // real tsurf3 = 1.3486982925567125e+02;
+    // real tvol3 = 1.1333353512569514e+02;
+    // real tmean3 = 2.9735203291678783e+01;
+    // real tgauss3 = 1.2566370614359172e+01;
+
+    // // current AlphaMol can't handle linear structure
+    // real tsurf4 = 1.6205088889453015e+02;
+    // real tvol4 = 1.3890550242331187e+02;
+    // real tmean4 = 3.1018029900378412e+01;
+    // real tgauss4 = 1.2566370614359172e+01;
+
+    // // current AlphaMol can't handle linear structure
+    // real tsurf5 = 1.8923194853338904e+02;
+    // real tvol5 = 1.6447746972092861e+02;
+    // real tmean5 = 3.2300856509078045e+01;
+    // real tgauss5 = 1.2566370614359176e+01;
+}
+
+namespace spacefill17
+{
+    real eps = 1e-12;
+
+    real tsurf1 = 1.0461240501465556e+02;
+    real tvol1 = 8.6798832770223640e+01;
+    real tmean1 = 2.6840517349409460e+01;
+    real tgauss1 = 1.2566370614359174e+01;
+
+    // // current AlphaMol can't handle planar cases
+    // real tsurf2 = 0;
+    // real tvol2 = 0;
+    // real tmean2 = 0;
+    // real tgauss2 = 0;
+
+    // // current AlphaMol can't handle planar cases
+    // real tsurf3 = 0;
+    // real tvol3 = 0;
+    // real tmean3 = 0;
+    // real tgauss3 = 0;
+}
+
+namespace spacefill18
+{
+    real eps = 1e-12;
+
+    real tsurf1 = 1.3432061739107870e+04;
+    real tvol1 = 9.3962899509222407e+04;
+    real tmean1 = -5.8034107548983657e+03;
+    real tgauss1 = 1.2566370614337638e+01;
+
+    real tsurf2 = 1.7530586224051065e+04;
+    real tvol2 = 9.0589476801628611e+04;
+    real tmean2 = -2.9362704657856179e+04;
+    real tgauss2 = 9.6886717436708277e+03;
+
+    real tsurf3 = 1.3446000964486200e+04;
+    real tvol3 = 9.3975936859299472e+04;
+    real tmean3 = -5.7609279765661158e+03;
+    real tgauss3 = 1.2566370618132733e+01;
+
+    // // current AlphaMol can't near symmetric cases
+    // real tsurf4 = 0;
+    // real tvol4 = 0;
+    // real tmean4 = 0;
+    // real tgauss4 = 0;
+}
 }
