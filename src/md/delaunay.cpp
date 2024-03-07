@@ -72,12 +72,12 @@ void delaunay()
     //     int flag;
     //     do {
     //         peel(flag);
-    //     } while (flag != 0); 
+    //     } while (flag != 0);
     // }
     int flag;
     do {
         peel(flag);
-    } while (flag != 0); 
+    } while (flag != 0);
 }
 
 /////////////////////////////////////////////////////////
