@@ -18,7 +18,7 @@ namespace polmdqc
 
 // "initdelcx" initializes and sets up Delaunay triangulation
 
-void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord, real* brad);
+inline void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord, real* brad);
 
 void initdelcx()
 {
@@ -115,7 +115,7 @@ void initdelcx()
     tetra.push_back(t);
 }
 
-void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord, real* brad)
+inline void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord, real* brad)
 {
     if (npoints > 3) return;
 
