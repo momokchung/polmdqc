@@ -165,10 +165,10 @@ inline void pairMpole(
 
         if constexpr (do_v) {
             vxx = -xr * frcx;
-            vxy = -0.5 * (yr * frcx + xr * frcy);
-            vxz = -0.5 * (zr * frcx + xr * frcz);
+            vxy = (real)-0.5 * (yr * frcx + xr * frcy);
+            vxz = (real)-0.5 * (zr * frcx + xr * frcz);
             vyy = -yr * frcy;
-            vyz = -0.5 * (zr * frcy + yr * frcz);
+            vyz = (real)-0.5 * (zr * frcy + yr * frcz);
             vzz = -zr * frcz;
         }
     }
@@ -379,10 +379,10 @@ inline void pairMpoleCP(
 
         if constexpr (do_v) {
             vxx = -xr * frcx;
-            vxy = -0.5 * (yr * frcx + xr * frcy);
-            vxz = -0.5 * (zr * frcx + xr * frcz);
+            vxy = (real)-0.5 * (yr * frcx + xr * frcy);
+            vxz = (real)-0.5 * (zr * frcx + xr * frcz);
             vyy = -yr * frcy;
-            vyz = -0.5 * (zr * frcy + yr * frcz);
+            vyz = (real)-0.5 * (zr * frcy + yr * frcz);
             vzz = -zr * frcz;
         }
     }

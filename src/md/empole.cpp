@@ -25,6 +25,7 @@
 #include "molcul.h"
 #include "mpole.h"
 #include "pairMpole.h"
+#include "pairMpoleQI.h"
 #include "potent.h"
 #include "mdqclimits.h"
 #include "rotpole.h"
@@ -80,6 +81,8 @@ void empole()
         }
     }
 }
+
+#define pair_empole pairMpole
 
 ///////////////////////////////////////////////////////
 //                                                   //
@@ -269,7 +272,7 @@ void empole_a()
                             e, vxx, vxy, vxz, vyy, vyz, vzz, poti, potk);
                     }
                     else {
-                        pairMpole<do_e, do_g, do_v>(
+                        pair_empole<do_e, do_g, do_v>(
                             r2, xr, yr, zr, mk,
                             ci, dix, diy, diz, qixx, qixy, qixz, qiyy, qiyz, qizz,
                             ck, dkx, dky, dkz, qkxx, qkxy, qkxz, qkyy, qkyz, qkzz,

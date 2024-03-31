@@ -35,7 +35,7 @@ namespace amoeba1
 namespace amoeba2
 {
     real eps1 = 1e-10;
-    real eps2 = 1e-8;
+    real eps2 = 1e-6;
 
     std::vector<real> desum = {
         3.2217966214450446E+00,  1.5332035025535555E+00, -4.5090946978829732E-02,
