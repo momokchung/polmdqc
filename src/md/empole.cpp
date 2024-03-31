@@ -110,8 +110,8 @@ void empole_a()
     real qkxx,qkxy,qkxz;
     real qkyy,qkyz,qkzz;
     real frcx,frcy,frcz;
-    real ttmxi,ttmyi,ttmzi;
-    real ttmxk,ttmyk,ttmzk;
+    real trqxi,trqyi,trqzi;
+    real trqxk,trqyk,trqzk;
     real vxx,vyy,vzz;
     real vxy,vxz,vyz;
     real poti,potk;
@@ -260,21 +260,21 @@ void empole_a()
                         corek = pcore[k];
                         valk = pval[k];
                         alphak = palpha[k];
-                        pairMpoleCP_a<do_e, do_g, do_v, PenType, use_cf>(
+                        pairMpoleCP<do_e, do_g, do_v, PenType, use_cf>(
                             r2, xr, yr, zr, mk,
                             corei, vali, alphai, dix, diy, diz, qixx, qixy, qixz, qiyy, qiyz, qizz,
                             corek, valk, alphak, dkx, dky, dkz, qkxx, qkxy, qkxz, qkyy, qkyz, qkzz,
                             f, frcx, frcy, frcz,
-                            ttmxi, ttmyi, ttmzi, ttmxk, ttmyk, ttmzk,
+                            trqxi, trqyi, trqzi, trqxk, trqyk, trqzk,
                             e, vxx, vxy, vxz, vyy, vyz, vzz, poti, potk);
                     }
                     else {
-                        pairMpole_a<do_e, do_g, do_v>(
+                        pairMpole<do_e, do_g, do_v>(
                             r2, xr, yr, zr, mk,
                             ci, dix, diy, diz, qixx, qixy, qixz, qiyy, qiyz, qizz,
                             ck, dkx, dky, dkz, qkxx, qkxy, qkxz, qkyy, qkyz, qkzz,
                             f, frcx, frcy, frcz,
-                            ttmxi, ttmyi, ttmzi, ttmxk, ttmyk, ttmzk,
+                            trqxi, trqyi, trqzi, trqxk, trqyk, trqzk,
                             e, vxx, vxy, vxz, vyy, vyz, vzz);
                     }
 
@@ -294,15 +294,15 @@ void empole_a()
                         demP[3*i+0] += frcx;
                         demP[3*i+1] += frcy;
                         demP[3*i+2] += frcz;
-                        temP[3*i+0] += ttmxi;
-                        temP[3*i+1] += ttmyi;
-                        temP[3*i+2] += ttmzi;
+                        temP[3*i+0] += trqxi;
+                        temP[3*i+1] += trqyi;
+                        temP[3*i+2] += trqzi;
                         demP[3*k+0] -= frcx;
                         demP[3*k+1] -= frcy;
                         demP[3*k+2] -= frcz;
-                        temP[3*k+0] += ttmxk;
-                        temP[3*k+1] += ttmyk;
-                        temP[3*k+2] += ttmzk;
+                        temP[3*k+0] += trqxk;
+                        temP[3*k+1] += trqyk;
+                        temP[3*k+2] += trqzk;
 
                         if constexpr (do_v) {
                             vir[0][0] += vxx;

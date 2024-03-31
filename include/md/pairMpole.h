@@ -9,17 +9,17 @@
 
 namespace polmdqc
 {
-///////////////////////////////////////////////////////////
-//                                                       //
-//  pairMpole_a  --  pairwise electrostatic calculation  //
-//                                                       //
-///////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+//                                                     //
+//  pairMpole  --  pairwise electrostatic calculation  //
+//                                                     //
+/////////////////////////////////////////////////////////
 
-// "pairMpole_a" calculates the pairwise electrostatic energy 
+// "pairMpole" calculates the pairwise electrostatic energy 
 // and/or gradient due to atomic multipole interactions
 
 template <bool do_e, bool do_g, bool do_v>
-inline void pairMpole_a(
+inline void pairMpole(
     real r2, real xr, real yr, real zr, real mscale,
     real ci, real dix, real diy, real diz, real qixx, real qixy, real qixz,
     real qiyy, real qiyz, real qizz,
@@ -27,8 +27,8 @@ inline void pairMpole_a(
     real qkyy, real qkyz, real qkzz,
     real f,
     real& frcx, real& frcy, real& frcz,
-    real& ttmxi, real& ttmyi, real& ttmzi,
-    real& ttmxk, real& ttmyk, real& ttmzk,
+    real& trqxi, real& trqyi, real& trqzi,
+    real& trqxk, real& trqyk, real& trqzk,
     real& e,
     real& vxx, real& vxy, real& vxz,
     real& vyy, real& vyz, real& vzz)
@@ -150,17 +150,17 @@ inline void pairMpole_a(
             - 2 * (qixx * qkxy + qixy * qkyy + qixz * qkyz - qixy * qkxx
             - qiyy * qkxy - qiyz * qkxz);
 
-        ttmxi = -rr3 * dikx + term1 * dirx + term3 * (dqikx + dkqirx)
+        trqxi = -rr3 * dikx + term1 * dirx + term3 * (dqikx + dkqirx)
             - term4 * qirx - term6 * (qikrx + qikx);
-        ttmyi = -rr3 * diky + term1 * diry + term3 * (dqiky + dkqiry)
+        trqyi = -rr3 * diky + term1 * diry + term3 * (dqiky + dkqiry)
             - term4 * qiry - term6 * (qikry + qiky);
-        ttmzi = -rr3 * dikz + term1 * dirz + term3 * (dqikz + dkqirz)
+        trqzi = -rr3 * dikz + term1 * dirz + term3 * (dqikz + dkqirz)
             - term4 * qirz - term6 * (qikrz + qikz);
-        ttmxk = rr3 * dikx + term2 * dkrx - term3 * (dqikx + diqkrx)
+        trqxk = rr3 * dikx + term2 * dkrx - term3 * (dqikx + diqkrx)
             - term5 * qkrx - term6 * (qkirx - qikx);
-        ttmyk = rr3 * diky + term2 * dkry - term3 * (dqiky + diqkry)
+        trqyk = rr3 * diky + term2 * dkry - term3 * (dqiky + diqkry)
             - term5 * qkry - term6 * (qkiry - qiky);
-        ttmzk = rr3 * dikz + term2 * dkrz - term3 * (dqikz + diqkrz)
+        trqzk = rr3 * dikz + term2 * dkrz - term3 * (dqikz + diqkrz)
             - term5 * qkrz - term6 * (qkirz - qikz);
 
         if constexpr (do_v) {
@@ -174,17 +174,17 @@ inline void pairMpole_a(
     }
 }
 
-///////////////////////////////////////////////////////////////////////
-//                                                                   //
-//  pairMpoleCP_a  --  pairwise electrostatic chargepen calculation  //
-//                                                                   //
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//                                                                //
+//  pairMpoleC  --  pairwise electrostatic chargepen calculation  //
+//                                                                //
+////////////////////////////////////////////////////////////////////
 
-// "pairMpoleCP_a" calculates the pairwise electrostatic charge penetration
+// "pairMpoleCP" calculates the pairwise electrostatic charge penetration
 // energy and/or gradient due to atomic multipole interactions
 
 template <bool do_e, bool do_g, bool do_v, PenTyp PenType, bool use_cf>
-inline void pairMpoleCP_a(
+inline void pairMpoleCP(
     real r2, real xr, real yr, real zr, real mscale,
     real corei, real vali, real alphai,
     real dix, real diy, real diz, real qixx, real qixy, real qixz,
@@ -194,8 +194,8 @@ inline void pairMpoleCP_a(
     real qkyy, real qkyz, real qkzz,
     real f,
     real& frcx, real& frcy, real& frcz,
-    real& ttmxi, real& ttmyi, real& ttmzi,
-    real& ttmxk, real& ttmyk, real& ttmzk,
+    real& trqxi, real& trqyi, real& trqzi,
+    real& trqxk, real& trqyk, real& trqzk,
     real& e,
     real& vxx, real& vxy, real& vxz,
     real& vyy, real& vyz, real& vzz,
@@ -364,17 +364,17 @@ inline void pairMpoleCP_a(
             - 2 * (qixx * qkxy + qixy * qkyy + qixz * qkyz - qixy * qkxx
             - qiyy * qkxy - qiyz * qkxz);
 
-        ttmxi = -rr3ik * dikx + term1 * dirx + term3 * (dqikx + dkqirx)
+        trqxi = -rr3ik * dikx + term1 * dirx + term3 * (dqikx + dkqirx)
             - term4 * qirx - term6 * (qikrx + qikx);
-        ttmyi = -rr3ik * diky + term1 * diry + term3 * (dqiky + dkqiry)
+        trqyi = -rr3ik * diky + term1 * diry + term3 * (dqiky + dkqiry)
             - term4 * qiry - term6 * (qikry + qiky);
-        ttmzi = -rr3ik * dikz + term1 * dirz + term3 * (dqikz + dkqirz)
+        trqzi = -rr3ik * dikz + term1 * dirz + term3 * (dqikz + dkqirz)
             - term4 * qirz - term6 * (qikrz + qikz);
-        ttmxk = rr3ik * dikx + term2 * dkrx - term3 * (dqikx + diqkrx)
+        trqxk = rr3ik * dikx + term2 * dkrx - term3 * (dqikx + diqkrx)
             - term5 * qkrx - term6 * (qkirx - qikx);
-        ttmyk = rr3ik * diky + term2 * dkry - term3 * (dqiky + diqkry)
+        trqyk = rr3ik * diky + term2 * dkry - term3 * (dqiky + diqkry)
             - term5 * qkry - term6 * (qkiry - qiky);
-        ttmzk = rr3ik * dikz + term2 * dkrz - term3 * (dqikz + diqkrz)
+        trqzk = rr3ik * dikz + term2 * dkrz - term3 * (dqikz + diqkrz)
             - term5 * qkrz - term6 * (qkirz - qikz);
 
         if constexpr (do_v) {
