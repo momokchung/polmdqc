@@ -260,7 +260,7 @@ void empole_a()
                         corek = pcore[k];
                         valk = pval[k];
                         alphak = palpha[k];
-                        pairMpoleCP_a<do_e, do_g, do_v, PenType, use_cf>(
+                        pairMpoleCP<do_e, do_g, do_v, PenType, use_cf>(
                             r2, xr, yr, zr, mk,
                             corei, vali, alphai, dix, diy, diz, qixx, qixy, qixz, qiyy, qiyz, qizz,
                             corek, valk, alphak, dkx, dky, dkz, qkxx, qkxy, qkxz, qkyy, qkyz, qkzz,
@@ -269,7 +269,7 @@ void empole_a()
                             e, vxx, vxy, vxz, vyy, vyz, vzz, poti, potk);
                     }
                     else {
-                        pairMpole_a<do_e, do_g, do_v>(
+                        pairMpole<do_e, do_g, do_v>(
                             r2, xr, yr, zr, mk,
                             ci, dix, diy, diz, qixx, qixy, qixz, qiyy, qiyz, qizz,
                             ck, dkx, dky, dkz, qkxx, qkxy, qkxz, qkyy, qkyz, qkzz,

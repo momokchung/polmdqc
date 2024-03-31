@@ -9,17 +9,17 @@
 
 namespace polmdqc
 {
-///////////////////////////////////////////////////////////
-//                                                       //
-//  pairMpole_a  --  pairwise electrostatic calculation  //
-//                                                       //
-///////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////
+//                                                     //
+//  pairMpole  --  pairwise electrostatic calculation  //
+//                                                     //
+/////////////////////////////////////////////////////////
 
-// "pairMpole_a" calculates the pairwise electrostatic energy 
+// "pairMpole" calculates the pairwise electrostatic energy 
 // and/or gradient due to atomic multipole interactions
 
 template <bool do_e, bool do_g, bool do_v>
-inline void pairMpole_a(
+inline void pairMpole(
     real r2, real xr, real yr, real zr, real mscale,
     real ci, real dix, real diy, real diz, real qixx, real qixy, real qixz,
     real qiyy, real qiyz, real qizz,
@@ -174,17 +174,17 @@ inline void pairMpole_a(
     }
 }
 
-///////////////////////////////////////////////////////////////////////
-//                                                                   //
-//  pairMpoleCP_a  --  pairwise electrostatic chargepen calculation  //
-//                                                                   //
-///////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//                                                                //
+//  pairMpoleC  --  pairwise electrostatic chargepen calculation  //
+//                                                                //
+////////////////////////////////////////////////////////////////////
 
-// "pairMpoleCP_a" calculates the pairwise electrostatic charge penetration
+// "pairMpoleCP" calculates the pairwise electrostatic charge penetration
 // energy and/or gradient due to atomic multipole interactions
 
 template <bool do_e, bool do_g, bool do_v, PenTyp PenType, bool use_cf>
-inline void pairMpoleCP_a(
+inline void pairMpoleCP(
     real r2, real xr, real yr, real zr, real mscale,
     real corei, real vali, real alphai,
     real dix, real diy, real diz, real qixx, real qixy, real qixz,
