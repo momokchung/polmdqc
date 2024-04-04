@@ -24,7 +24,8 @@ namespace polmdqc
 //                                                 //
 /////////////////////////////////////////////////////
 
-// "alphamol" computes volume, surface area, mean, and gaussian curvature
+// "alphamol" computes volume, surface area, mean, and
+// gaussian curvature
 //
 // literature reference:
 //

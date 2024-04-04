@@ -41,6 +41,7 @@
 #include "gkstuf.h"
 #include "group.h"
 #include "hescut.h"
+#include "hilbrt.h"
 #include "ielscf.h"
 #include "inform.h"
 #include "inter.h"
