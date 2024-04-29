@@ -40,17 +40,25 @@ namespace polmdqc
 
 void alphamol(bool deriv)
 {
-    clock_t start_s, stop_s;
+    clock_t start_s,stop_s;
+    double total = 0;
 
     // initialize Delaunay procedure
+    start_s = clock();
     initdelcx();
+    stop_s = clock();
+    if (verbose) {
+        printf("\n Initdelcx compute time : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
+        total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
+    }
 
     // compute Delaunay triangulation
     start_s = clock();
     delaunay();
     stop_s = clock();
     if (verbose) {
-        printf("\n Delaunay compute time : %10.6e seconds\n", (stop_s-start_s)/double(CLOCKS_PER_SEC));
+        printf("\n Delaunay compute time : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
+        total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
     }
 
     // generate alpha complex (with alpha=0.0)
@@ -59,13 +67,20 @@ void alphamol(bool deriv)
     alfcx(alpha);
     stop_s = clock();
     if (verbose) {
-        printf("\n AlphaCx compute time : %10.6e seconds\n", (stop_s-start_s)/double(CLOCKS_PER_SEC));
+        printf("\n AlphaCx compute time : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
+        total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
     }
 
     // Compute surface area and, optionally volume of the union of balls.
     // If requested, compute also their derivatives
+    start_s = clock();
     alfcxedges();
     alfcxfaces();
+    stop_s = clock();
+    if (verbose) {
+        printf("\n AlphaCxEdges compute time : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
+        total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
+    }
 
     start_s = clock();
     alphavol(wsurf, wvol, wmean, wgauss, tsurf, tvol, tmean, tgauss,
@@ -74,7 +89,11 @@ void alphamol(bool deriv)
     stop_s = clock();
 
     if (verbose) {
-        printf("\n Volumes compute time : %10.6e seconds\n", (stop_s-start_s)/double(CLOCKS_PER_SEC));
+        printf("\n Volumes compute time : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
+        total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
+    }
+    if (verbose) {
+        printf("\n AlphaMol compute time : %10.6f ms\n", total*1000);
     }
 }
 }

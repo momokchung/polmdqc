@@ -8,7 +8,6 @@ src/md/alfcxedges.cpp
 src/md/alfcxfaces.cpp
 src/md/alfedge.cpp
 src/md/alphamol.cpp
-src/md/alphamol2.cpp
 src/md/alphavol.cpp
 src/md/alterchg.cpp
 src/md/analyze.cpp
@@ -48,7 +47,6 @@ src/md/getstring.cpp
 src/md/gettext.cpp
 src/md/getword.cpp
 src/md/getxyz.cpp
-src/md/hilbert.cpp
 src/md/image.cpp
 src/md/initalf.cpp
 src/md/initatom.cpp
@@ -82,8 +80,6 @@ src/md/prmkey.cpp
 src/md/readcart.cpp
 src/md/readprm.cpp
 src/md/readxyz.cpp
-src/md/retmax.cpp
-src/md/retmin.cpp
 src/md/rings.cpp
 src/md/rotpole.cpp
 src/md/setprm.cpp

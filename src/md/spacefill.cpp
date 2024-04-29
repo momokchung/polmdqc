@@ -3,7 +3,6 @@
 
 #include "active.h"
 #include "alphamol.h"
-#include "alphamol2.h"
 #include "alphmol.h"
 #include "atomid.h"
 #include "atoms.h"
