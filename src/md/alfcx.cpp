@@ -37,7 +37,7 @@ void alfcx(real alpha)
     int ntetra = tetra.size();
     std::bitset<6> *tetra_mask = new std::bitset<6>[ntetra];
     std::bitset<6> zero(std::string("000000"));
-        
+
     for (int i = 0; i < ntetra; i++) tetra_mask[i] = zero;
 
     for (int i = 0; i < ntetra; i++) {
