@@ -4,6 +4,7 @@
 #include "active.h"
 #include "alphamol.h"
 #include "alphmol.h"
+#include "alphamol2.h"
 #include "atomid.h"
 #include "atoms.h"
 #include "field.h"
@@ -11,6 +12,7 @@
 #include "final.h"
 #include "getcart.h"
 #include "initalf.h"
+#include "initalf2.h"
 #include "inform.h"
 #include "initial.h"
 #include "libfunc.h"
@@ -60,6 +62,9 @@ void spacefill(int argc, char** argv)
     bool dofull,doanalyt,donumer;
     std::string xyzfile,record,string;
     std::istringstream iss;
+
+    // set default to use AlphaMol2
+    bool use_alf2 = true;
 
     // get the Cartesian coordinates for the system
     initial(argc, argv);
@@ -185,6 +190,11 @@ void spacefill(int argc, char** argv)
 
     // initialize AlphaMol
     initalf(1, 1, exclude, doanalyt);
+
+    // initialize AlphaMol2
+    if (use_alf2) {
+        initalf2();
+    }
 
     // perform dynamic allocation of some local arrays
     denorm.resize(n);

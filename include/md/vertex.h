@@ -27,20 +27,20 @@ namespace polmdqc
 // status   status of vertex (true if true vertex, false if bogus or infinite)
 
 class Vertex {
-    public:
-        real r;
-        real coord[3];
-        real w;
-        real coefs,coefv,coefm,coefg;
-        real gamma;
+public:
+    real r;
+    real coord[3];
+    real w;
+    real coefs,coefv,coefm,coefg;
+    real gamma;
 
-        std::bitset<8> info;
-        bool status;
+    std::bitset<8> info;
+    bool status;
 
-        Vertex() {}
+    Vertex() {}
 
-        Vertex(real x, real y, real z, real r, real coefs, real coefv, real coefm, real coefg);
+    Vertex(real x, real y, real z, real r, real coefs, real coefv, real coefm, real coefg);
 
-        ~Vertex();
+    ~Vertex();
 };
 }
