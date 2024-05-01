@@ -1,16 +1,19 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
+#include "alforder.h"
+#include "alfp.h"
 #include "alphamol2.h"
 #include "alphmol.h"
 #include "atoms.h"
 #include "dlauny2.h"
 #include "hilbert.h"
+#include "inform.h"
 #include "initalfatm.h"
-#include "openmp.h"
 #include "retmax.h"
 #include "retmin.h"
 #include <algorithm>
+#include <sys/time.h>
 #include <vector>
 
 namespace polmdqc
@@ -35,18 +38,40 @@ namespace polmdqc
 //
 // https://github.com/pkoehl/AlphaMol
 
+inline void gettime(real& t1, real& u1)
+{
+    timeval tim;
+    gettimeofday(&tim,NULL);
+    t1 = tim.tv_sec;
+    u1 = tim.tv_usec;
+}
+
+inline real gettimediff(real t1, real u1, real t2, real u2)
+{
+    return (t2-t1) + (u2-u1)*1.e-6;;
+}
+
 void alphamol2(bool deriv)
 {
-    clock_t start_s, stop_s;
+    real t1,t2,u1,u2,diff;
+    real total = 0;
 
     // initialize the alfatoms vector
+    gettime(t1, u1);
     initalfatm();
+    gettime(t2, u2);
+    diff = gettimediff(t1, u1, t2, u2);
+    if (verbose) {
+        printf("\n Initalfatm compute time : %10.6f ms\n", diff*1000);
+        total += diff;
+    }
 
     // if needed, reorder  atoms
+    gettime(t1, u1);
     real xmin,ymin,zmin;
     real xmax,ymax,zmax;
     real rmax;
-
+    std::vector<int> Nval(nthdDlny + 1, 0);
     xmin = retmin(x);
     ymin = retmin(y);
     zmin = retmin(z);
@@ -54,10 +79,17 @@ void alphamol2(bool deriv)
     ymax = retmax(y);
     zmax = retmax(z);
     rmax = retmax(radii);
+    alforder(xmin,ymin,zmin,xmax,ymax,zmax,rmax,nthdDlny,Nval);
+    gettime(t2, u2);
+    diff = gettimediff(t1, u1, t2, u2);
+    if (verbose) {
+        printf("\n Alforder compute time : %10.6f ms\n", diff*1000);
+        total += diff;
+    }
 
-    real t1,t2,u1,u2,diff;
-    std::vector<int> Nval(nthread + 1, 0);
-
-    printf("nthread %d\n", nthread);
+    printf("nthdDlny %d\n", nthdDlny);
+    if (verbose) {
+        printf("\n AlphaMol2 compute time : %10.6f ms\n", total*1000);
+    }
 }
 }

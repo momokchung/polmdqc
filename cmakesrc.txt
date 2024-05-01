@@ -8,6 +8,8 @@ src/md/alfcx.cpp
 src/md/alfcxedges.cpp
 src/md/alfcxfaces.cpp
 src/md/alfedge.cpp
+src/md/alfmol.cpp
+src/md/alforder.cpp
 src/md/alphamol.cpp
 src/md/alphamol2.cpp
 src/md/alphavol.cpp
@@ -49,6 +51,7 @@ src/md/getstring.cpp
 src/md/gettext.cpp
 src/md/getword.cpp
 src/md/getxyz.cpp
+src/md/grid.cpp
 src/md/hilbert.cpp
 src/md/image.cpp
 src/md/initalf.cpp
@@ -61,11 +64,13 @@ src/md/initprm.cpp
 src/md/initres.cpp
 src/md/inquire.cpp
 src/md/justify.cpp
+src/md/kalf.cpp
 src/md/kangle.cpp
 src/md/katom.cpp
 src/md/kbond.cpp
 src/md/kchgflx.cpp
 src/md/kchgtrn.cpp
+src/md/kdtree.cpp
 src/md/kewald.cpp
 src/md/kmpole.cpp
 src/md/kpolar.cpp

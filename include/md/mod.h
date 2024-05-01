@@ -4,6 +4,7 @@
 // MD
 #include "action.h"
 #include "alfc.h"
+#include "alfp.h"
 #include "align.h"
 #include "alphmol.h"
 #include "analyz.h"

@@ -41,7 +41,7 @@ namespace polmdqc
 void alphamol(bool deriv)
 {
     clock_t start_s,stop_s;
-    double total = 0;
+    real total = 0;
 
     // initialize Delaunay procedure
     start_s = clock();

@@ -2,9 +2,9 @@
 // Year:   2023
 
 #include "active.h"
-#include "alphamol.h"
+#include "alfmol.h"
+#include "alfp.h"
 #include "alphmol.h"
-#include "alphamol2.h"
 #include "atomid.h"
 #include "atoms.h"
 #include "field.h"
@@ -16,6 +16,7 @@
 #include "inform.h"
 #include "initial.h"
 #include "libfunc.h"
+#include "kalf.h"
 #include "katom.h"
 #include "kvdw.h"
 #include "nextarg.h"
@@ -63,9 +64,6 @@ void spacefill(int argc, char** argv)
     std::string xyzfile,record,string;
     std::istringstream iss;
 
-    // set default to use AlphaMol2
-    bool use_alf2 = true;
-
     // get the Cartesian coordinates for the system
     initial(argc, argv);
     getcart(ffile);
@@ -76,6 +74,7 @@ void spacefill(int argc, char** argv)
     field();
     katom();
     kvdw();
+    kalf();
 
     query = true;
     nextarg(string,exist);
@@ -192,7 +191,7 @@ void spacefill(int argc, char** argv)
     initalf(1, 1, exclude, doanalyt);
 
     // initialize AlphaMol2
-    if (use_alf2) {
+    if (alfmeth == AlfMethod::AlphaMol2) {
         initalf2();
     }
 
@@ -214,6 +213,7 @@ void spacefill(int argc, char** argv)
                 field();
                 katom();
                 kvdw();
+                kalf();
                 initalf(1, 1, exclude, doanalyt);
                 denorm.resize(n);
                 if (donumer) {
@@ -228,6 +228,7 @@ void spacefill(int argc, char** argv)
                         field();
                         katom();
                         kvdw();
+                        kalf();
                         initalf(1, 1, exclude, doanalyt);
                         break;                        
                     }
@@ -236,7 +237,7 @@ void spacefill(int argc, char** argv)
         }
 
         // compute surface area, volume, mean, and gaussian curvature
-        alphamol(doanalyt);
+        alfmol(doanalyt);
 
         // print atomic surface area, volume, mean, and gaussian curvature
         if (dofull and !test) {
@@ -287,7 +288,7 @@ void spacefill(int argc, char** argv)
                         old = z[i];
                         z[i] -= (real)0.5 * eps;
                     }
-                    alphamol(false);
+                    alfmol(false);
                     tsurf0 = tsurf;
                     tvol0 = tvol;
                     tmean0 = tmean;
@@ -301,7 +302,7 @@ void spacefill(int argc, char** argv)
                     else if (j == 2) {
                         z[i] += eps;
                     }
-                    alphamol(false);
+                    alfmol(false);
                     if (j == 0) {
                         x[i] = old;
                     }
