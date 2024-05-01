@@ -7,6 +7,7 @@
 #include "alphamol.h"
 #include "alphavol.h"
 #include "alphmol.h"
+#include "atoms.h"
 #include "delaunay.h"
 #include "files.h"
 #include "inform.h"
@@ -83,7 +84,7 @@ void alphamol(bool deriv)
     }
 
     start_s = clock();
-    alphavol(wsurf, wvol, wmean, wgauss, tsurf, tvol, tmean, tgauss,
+    alphavol(wsurf, wvol, wmean, wgauss,
         surf.ptr(), vol.ptr(), mean.ptr(), gauss.ptr(),
         dsurf.ptr(), dvol.ptr(), dmean.ptr(), dgauss.ptr(), deriv);
     stop_s = clock();

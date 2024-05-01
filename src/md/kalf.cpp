@@ -32,7 +32,7 @@ void kalf()
     // set default parameters
     alfmeth = AlfMethod::AlphaMol2;
     alfsort = AlfSort::KDTree;
-    nthdDlny = nthread;
+    alfnthd = nthread;
 
     // process keywords containing AlphaMol parameters
     for (int i = 0; i < nkey; i++) {
@@ -79,8 +79,8 @@ void kalf()
             string = record.substr(next);
             iss.clear();
             iss.str(string);
-            if (!(iss >> nthdDlny)) continue;
-            if (nthdDlny < 1) nthdDlny = 1;
+            if (!(iss >> alfnthd)) continue;
+            if (alfnthd < 1) alfnthd = 1;
         }
     }
 }

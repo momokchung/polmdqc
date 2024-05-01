@@ -14,7 +14,6 @@ namespace polmdqc
 ///////////////////////////////////////////////////////////////
 
 void alphavol(real& WSurf, real& WVol, real& WMean, real& WGauss,
-    real& Surf, real& Vol, real& Mean, real& Gauss,
     real* ballwsurf, real* ballwvol, real* ballwmean, real* ballwgauss,
     real* dsurf_coord, real* dvol_coord, real* dmean_coord, real* dgauss_coord, bool compder);
 }

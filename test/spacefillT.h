@@ -8,10 +8,10 @@ namespace spacefill1
 {
     real eps = 1e-13;
 
-    real tsurf = 7.6966579211897511e+01;
-    real tvol = 4.8886755622637324e+01;
-    real tmean = 2.1222759650620212e+01;
-    real tgauss = 1.2566370614359174e+01;
+    real wsurf = 7.6966579211897511e+01;
+    real wvol = 4.8886755622637324e+01;
+    real wmean = 2.1222759650620212e+01;
+    real wgauss = 1.2566370614359174e+01;
 
     std::vector<real> surf = {
         2.2926919714338201e+01,
@@ -90,10 +90,10 @@ namespace spacefill2
 {
     real eps = 1e-13;
 
-    real tsurf = 6.8218060633139501e+01;
-    real tvol = 4.0861267340412198e+01;
-    real tmean = 2.8993234664604799e+01;
-    real tgauss = 1.2566370614359169e+01;
+    real wsurf = 6.8218060633139501e+01;
+    real wvol = 4.0861267340412198e+01;
+    real wmean = 2.8993234664604799e+01;
+    real wgauss = 1.2566370614359169e+01;
 
     std::vector<real> surf = {
         3.4109030316569751e+01,
@@ -173,10 +173,10 @@ namespace spacefill3
     real eps = 1e-12;
     real eps2 = 1e-10;
 
-    real tsurf = 1.9765741364451054e+02;
-    real tvol = 2.3588273065992291e+02;
-    real tmean = 3.6310569990556772e+01;
-    real tgauss = 1.2566370614359203e+01;
+    real wsurf = 1.9765741364451054e+02;
+    real wvol = 2.3588273065992291e+02;
+    real wmean = 3.6310569990556772e+01;
+    real wgauss = 1.2566370614359203e+01;
 
     std::vector<real> surf = {
         6.1516679401951791e+01,
@@ -256,10 +256,10 @@ namespace spacefill4
     real eps = 1e-12;
     real eps2 = 1e-10;
 
-    real tsurf = 1.7889717503032097e+02;
-    real tvol = 2.0809491214386765e+02;
-    real tmean = 4.0566919880962075e+01;
-    real tgauss = 1.2566370614359172e+01;
+    real wsurf = 1.7889717503032097e+02;
+    real wvol = 2.0809491214386765e+02;
+    real wmean = 4.0566919880962075e+01;
+    real wgauss = 1.2566370614359172e+01;
 
     std::vector<real> surf = {
         8.9448587515160483e+01,
@@ -379,75 +379,75 @@ namespace spacefill6
 {
     real eps = 1e-11;
 
-    real tsurf1 = 3.9106376754519977e+02;
-    real tvol1 = 3.5654330077451897e+02;
-    real tmean1 = -3.3784536350820197e+01;
-    real tgauss1 = 1.2566370614359840e+01;
+    real wsurf1 = 3.9106376754519977e+02;
+    real wvol1 = 3.5654330077451897e+02;
+    real wmean1 = -3.3784536350820197e+01;
+    real wgauss1 = 1.2566370614359840e+01;
 
-    real tsurf2 = 3.2214678000891473e+02;
-    real tvol2 = 2.8774801702900584e+02;
-    real tmean2 = 1.6451589303009584e+01;
-    real tgauss2 = 1.2566370614359215e+01;
+    real wsurf2 = 3.2214678000891473e+02;
+    real wvol2 = 2.8774801702900584e+02;
+    real wmean2 = 1.6451589303009584e+01;
+    real wgauss2 = 1.2566370614359215e+01;
 
-    real tsurf3 = 6.3299945159082836e+02;
-    real tvol3 = 1.0647329604836914e+03;
-    real tmean3 = -3.0419457550623585e+00;
-    real tgauss3 = 1.2566370614364693e+01;
+    real wsurf3 = 6.3299945159082836e+02;
+    real wvol3 = 1.0647329604836914e+03;
+    real wmean3 = -3.0419457550623585e+00;
+    real wgauss3 = 1.2566370614364693e+01;
 
-    real tsurf4 = 5.6112377810769226e+02;
-    real tvol4 = 9.0052115672718389e+02;
-    real tmean4 = 2.7282287971809726e+01;
-    real tgauss4 = 1.2566370614358856e+01;
+    real wsurf4 = 5.6112377810769226e+02;
+    real wvol4 = 9.0052115672718389e+02;
+    real wmean4 = 2.7282287971809726e+01;
+    real wgauss4 = 1.2566370614358856e+01;
 }
 
 namespace spacefill7
 {
     real eps = 1e-11;
 
-    real tsurf1 = 3.7438627956288832e+02;
-    real tvol1 = 3.3746153037235064e+02;
-    real tmean1 = -2.2515401701535765e+01;
-    real tgauss1 = 1.2566370614359442e+01;
+    real wsurf1 = 3.7438627956288832e+02;
+    real wvol1 = 3.3746153037235064e+02;
+    real wmean1 = -2.2515401701535765e+01;
+    real wgauss1 = 1.2566370614359442e+01;
 
-    real tsurf2 = 3.2232756191620882e+02;
-    real tvol2 = 2.8295737440814815e+02;
-    real tmean2 = 2.0214477382582196e+01;
-    real tgauss2 = 1.2566370614359229e+01;
+    real wsurf2 = 3.2232756191620882e+02;
+    real wvol2 = 2.8295737440814815e+02;
+    real wmean2 = 2.0214477382582196e+01;
+    real wgauss2 = 1.2566370614359229e+01;
 
-    real tsurf3 = 6.1305029920627942e+02;
-    real tvol3 = 1.0201089796207290e+03;
-    real tmean3 = 4.5453053868581250e+00;
-    real tgauss3 = 1.2566370614364446e+01;
+    real wsurf3 = 6.1305029920627942e+02;
+    real wvol3 = 1.0201089796207290e+03;
+    real wmean3 = 4.5453053868581250e+00;
+    real wgauss3 = 1.2566370614364446e+01;
 
-    real tsurf4 = 5.6294482223164118e+02;
-    real tvol4 = 8.9831826598968121e+02;
-    real tmean4 = 2.7919979791835988e+01;
-    real tgauss4 = 1.2566370614359384e+01;
+    real wsurf4 = 5.6294482223164118e+02;
+    real wvol4 = 8.9831826598968121e+02;
+    real wmean4 = 2.7919979791835988e+01;
+    real wgauss4 = 1.2566370614359384e+01;
 }
 
 namespace spacefill8
 {
     real eps = 1e-11;
 
-    real tsurf1 = 2.0463884395426987e+02;
-    real tvol1 = 1.4643719063583632e+02;
-    real tmean1 = 2.7522143594160436e+01;
-    real tgauss1 = 4.6185277824406512e-14;
+    real wsurf1 = 2.0463884395426987e+02;
+    real wvol1 = 1.4643719063583632e+02;
+    real wmean1 = 2.7522143594160436e+01;
+    real wgauss1 = 4.6185277824406512e-14;
 
-    real tsurf2 = 1.2823760169392571e+02;
-    real tvol2 = 9.1832775962667768e+01;
-    real tmean2 = 4.0316043147031522e+01;
-    real tgauss2 = 1.2566370614359208e+01;
+    real wsurf2 = 1.2823760169392571e+02;
+    real wvol2 = 9.1832775962667768e+01;
+    real wmean2 = 4.0316043147031522e+01;
+    real wgauss2 = 1.2566370614359208e+01;
 
-    real tsurf3 = 3.7832193105724031e+02;
-    real tvol3 = 5.4656197306822060e+02;
-    real tmean3 = 3.0403262893128861e+01;
-    real tgauss3 = 1.2566370614359105e+01;
+    real wsurf3 = 3.7832193105724031e+02;
+    real wvol3 = 5.4656197306822060e+02;
+    real wmean3 = 3.0403262893128861e+01;
+    real wgauss3 = 1.2566370614359105e+01;
 
-    real tsurf4 = 2.7848118751422726e+02;
-    real tvol4 = 3.7071695985570642e+02;
-    real tmean4 = 4.2299792919200009e+01;
-    real tgauss4 = 1.2566370614359428e+01;
+    real wsurf4 = 2.7848118751422726e+02;
+    real wvol4 = 3.7071695985570642e+02;
+    real wmean4 = 4.2299792919200009e+01;
+    real wgauss4 = 1.2566370614359428e+01;
 }
 
 namespace spacefill9
@@ -826,134 +826,134 @@ namespace spacefill11
 {
     real eps = 1e-11;
 
-    real tsurf1 = 7.6966579211897511e+01;
-    real tvol1 = 4.8886755622637324e+01;
-    real tmean1 = 2.1222759650620212e+01;
-    real tgauss1 = 1.2566370614359174e+01;
+    real wsurf1 = 7.6966579211897511e+01;
+    real wvol1 = 4.8886755622637324e+01;
+    real wmean1 = 2.1222759650620212e+01;
+    real wgauss1 = 1.2566370614359174e+01;
 
-    real tsurf2 = 3.9106376754519977e+02;
-    real tvol2 = 3.5654330077451897e+02;
-    real tmean2 = -3.3784536350820197e+01;
-    real tgauss2 = 1.2566370614359840e+01;
+    real wsurf2 = 3.9106376754519977e+02;
+    real wvol2 = 3.5654330077451897e+02;
+    real wmean2 = -3.3784536350820197e+01;
+    real wgauss2 = 1.2566370614359840e+01;
 }
 
 namespace spacefill12
 {
     real eps = 1e-12;
 
-    real tsurf = 3.3364781088174334e+02;
-    real tvol = 4.6193387403690645e+02;
-    real tmean = -2.4910700481608494e+01;
-    real tgauss = 1.2566370614359146e+01;
+    real wsurf = 3.3364781088174334e+02;
+    real wvol = 4.6193387403690645e+02;
+    real wmean = -2.4910700481608494e+01;
+    real wgauss = 1.2566370614359146e+01;
 }
 
 namespace spacefill13
 {
     real eps = 1e-12;
 
-    real tsurf = 5.9510048668678610e+03;
-    real tvol = 7.0007608943143759e+03;
-    real tmean = -3.4280614420923152e+03;
-    real tgauss = -1.2692034320502939e+03;
+    real wsurf = 5.9510048668678610e+03;
+    real wvol = 7.0007608943143759e+03;
+    real wmean = -3.4280614420923152e+03;
+    real wgauss = -1.2692034320502939e+03;
 }
 
 namespace spacefill14
 {
     real eps = 1e-12;
 
-    real tsurf = 9.8406624043027623e+03;
-    real tvol = 3.3096194011455969e+04;
+    real wsurf = 9.8406624043027623e+03;
+    real wvol = 3.3096194011455969e+04;
 }
 
 namespace spacefill15
 {
     real eps = 1e-12;
 
-    real tsurf = 2.2418822970919769e+04;
-    real tvol = 1.9498064882365394e+04;
-    real tmean = -1.3219711935951129e+04;
-    real tgauss = -1.1121237993707919e+04;
+    real wsurf = 2.2418822970919769e+04;
+    real wvol = 1.9498064882365394e+04;
+    real wmean = -1.3219711935951129e+04;
+    real wgauss = -1.1121237993707919e+04;
 }
 
 namespace spacefill16
 {
     real eps = 1e-12;
 
-    real tsurf1 = 8.0507709977953482e+01;
-    real tvol1 = 6.2189600530461675e+01;
-    real tmean1 = 2.7169550074279524e+01;
-    real tgauss1 = 1.2566370614359172e+01;
+    real wsurf1 = 8.0507709977953482e+01;
+    real wvol1 = 6.2189600530461675e+01;
+    real wmean1 = 2.7169550074279524e+01;
+    real wgauss1 = 1.2566370614359172e+01;
 
     // // current AlphaMol can't handle linear structure
-    // real tsurf2 = 1.0768876961681238e+02;
-    // real tvol2 = 8.7761567828078398e+01;
-    // real tmean2 = 2.8452376682979153e+01;
-    // real tgauss2 = 1.2566370614359172e+01;
+    // real wsurf2 = 1.0768876961681238e+02;
+    // real wvol2 = 8.7761567828078398e+01;
+    // real wmean2 = 2.8452376682979153e+01;
+    // real wgauss2 = 1.2566370614359172e+01;
 
     // // current AlphaMol can't handle linear structure
-    // real tsurf3 = 1.3486982925567125e+02;
-    // real tvol3 = 1.1333353512569514e+02;
-    // real tmean3 = 2.9735203291678783e+01;
-    // real tgauss3 = 1.2566370614359172e+01;
+    // real wsurf3 = 1.3486982925567125e+02;
+    // real wvol3 = 1.1333353512569514e+02;
+    // real wmean3 = 2.9735203291678783e+01;
+    // real wgauss3 = 1.2566370614359172e+01;
 
     // // current AlphaMol can't handle linear structure
-    // real tsurf4 = 1.6205088889453015e+02;
-    // real tvol4 = 1.3890550242331187e+02;
-    // real tmean4 = 3.1018029900378412e+01;
-    // real tgauss4 = 1.2566370614359172e+01;
+    // real wsurf4 = 1.6205088889453015e+02;
+    // real wvol4 = 1.3890550242331187e+02;
+    // real wmean4 = 3.1018029900378412e+01;
+    // real wgauss4 = 1.2566370614359172e+01;
 
     // // current AlphaMol can't handle linear structure
-    // real tsurf5 = 1.8923194853338904e+02;
-    // real tvol5 = 1.6447746972092861e+02;
-    // real tmean5 = 3.2300856509078045e+01;
-    // real tgauss5 = 1.2566370614359176e+01;
+    // real wsurf5 = 1.8923194853338904e+02;
+    // real wvol5 = 1.6447746972092861e+02;
+    // real wmean5 = 3.2300856509078045e+01;
+    // real wgauss5 = 1.2566370614359176e+01;
 }
 
 namespace spacefill17
 {
     real eps = 1e-12;
 
-    real tsurf1 = 1.0461240501465556e+02;
-    real tvol1 = 8.6798832770223640e+01;
-    real tmean1 = 2.6840517349409460e+01;
-    real tgauss1 = 1.2566370614359174e+01;
+    real wsurf1 = 1.0461240501465556e+02;
+    real wvol1 = 8.6798832770223640e+01;
+    real wmean1 = 2.6840517349409460e+01;
+    real wgauss1 = 1.2566370614359174e+01;
 
     // // current AlphaMol can't handle planar cases
-    // real tsurf2 = 0;
-    // real tvol2 = 0;
-    // real tmean2 = 0;
-    // real tgauss2 = 0;
+    // real wsurf2 = 0;
+    // real wvol2 = 0;
+    // real wmean2 = 0;
+    // real wgauss2 = 0;
 
     // // current AlphaMol can't handle planar cases
-    // real tsurf3 = 0;
-    // real tvol3 = 0;
-    // real tmean3 = 0;
-    // real tgauss3 = 0;
+    // real wsurf3 = 0;
+    // real wvol3 = 0;
+    // real wmean3 = 0;
+    // real wgauss3 = 0;
 }
 
 namespace spacefill18
 {
     real eps = 1e-12;
 
-    real tsurf1 = 1.3432061739107870e+04;
-    real tvol1 = 9.3962899509222407e+04;
-    real tmean1 = -5.8034107548983657e+03;
-    real tgauss1 = 1.2566370614337638e+01;
+    real wsurf1 = 1.3432061739107870e+04;
+    real wvol1 = 9.3962899509222407e+04;
+    real wmean1 = -5.8034107548983657e+03;
+    real wgauss1 = 1.2566370614337638e+01;
 
-    real tsurf2 = 1.7530586224051065e+04;
-    real tvol2 = 9.0589476801628611e+04;
-    real tmean2 = -2.9362704657856179e+04;
-    real tgauss2 = 9.6886717436708277e+03;
+    real wsurf2 = 1.7530586224051065e+04;
+    real wvol2 = 9.0589476801628611e+04;
+    real wmean2 = -2.9362704657856179e+04;
+    real wgauss2 = 9.6886717436708277e+03;
 
-    real tsurf3 = 1.3446000964486200e+04;
-    real tvol3 = 9.3975936859299472e+04;
-    real tmean3 = -5.7609279765661158e+03;
-    real tgauss3 = 1.2566370618132733e+01;
+    real wsurf3 = 1.3446000964486200e+04;
+    real wvol3 = 9.3975936859299472e+04;
+    real wmean3 = -5.7609279765661158e+03;
+    real wgauss3 = 1.2566370618132733e+01;
 
     // // current AlphaMol can't near symmetric cases
-    // real tsurf4 = 0;
-    // real tvol4 = 0;
-    // real tmean4 = 0;
-    // real tgauss4 = 0;
+    // real wsurf4 = 0;
+    // real wvol4 = 0;
+    // real wmean4 = 0;
+    // real wgauss4 = 0;
 }
 }

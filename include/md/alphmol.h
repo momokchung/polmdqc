@@ -12,10 +12,6 @@ namespace polmdqc
 //                                               //
 ///////////////////////////////////////////////////
 
-// tsurf     total surface area of the system
-// tvol      total volume of the system
-// tmean     total mean curvature of the system
-// tgauss    total gaussian curvature of the system
 // wsurf     weighted surface area of the system
 // wvol      weighted volume of the system
 // wmean     weighted mean curvature of the system
@@ -39,10 +35,6 @@ namespace polmdqc
 // ndmean    mean curvature cartesian numerical gradient
 // ndgauss   gaussian curvature cartesian numerical gradient
 
-MDQC_EXTERN real tsurf;
-MDQC_EXTERN real tvol;
-MDQC_EXTERN real tmean;
-MDQC_EXTERN real tgauss;
 MDQC_EXTERN real wsurf;
 MDQC_EXTERN real wvol;
 MDQC_EXTERN real wmean;

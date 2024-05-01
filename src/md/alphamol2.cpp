@@ -71,7 +71,7 @@ void alphamol2(bool deriv)
     real xmin,ymin,zmin;
     real xmax,ymax,zmax;
     real rmax;
-    std::vector<int> Nval(nthdDlny + 1, 0);
+    std::vector<int> Nval(alfnthd + 1, 0);
     xmin = retmin(x);
     ymin = retmin(y);
     zmin = retmin(z);
@@ -79,7 +79,7 @@ void alphamol2(bool deriv)
     ymax = retmax(y);
     zmax = retmax(z);
     rmax = retmax(radii);
-    alforder(xmin,ymin,zmin,xmax,ymax,zmax,rmax,nthdDlny,Nval);
+    alforder(xmin,ymin,zmin,xmax,ymax,zmax,rmax,alfnthd,Nval);
     gettime(t2, u2);
     diff = gettimediff(t1, u1, t2, u2);
     if (verbose) {
@@ -87,7 +87,23 @@ void alphamol2(bool deriv)
         total += diff;
     }
 
-    printf("nthdDlny %d\n", nthdDlny);
+    // run AlphaMol algorithm
+    gettime(t1, u1);
+    int natoms = alfatoms.size();
+    // double WGeom[4];
+    // double *geom = new double[4*(natoms+8)];
+    // double *geom_order = new double[4*(natoms+8)];
+    // double *dgeom = new double[12*(natoms+8)];
+    double buffer = 2*rmax;
+
+    gettime(t2, u2);
+    diff = gettimediff(t1, u1, t2, u2);
+    if (verbose) {
+        printf("\n MeasureMol compute time : %10.6f ms\n", diff*1000);
+        total += diff;
+    }
+
+    printf("alfnthd %d\n", alfnthd);
     if (verbose) {
         printf("\n AlphaMol2 compute time : %10.6f ms\n", total*1000);
     }

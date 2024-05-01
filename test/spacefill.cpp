@@ -21,10 +21,10 @@ TEST_CASE("spacefill-1", "[spacefill][AMOEBA][water09]") {
     test = true;
     spacefill(argc, argv);
 
-    COMPARE_REALS(tsurf, spacefill1::tsurf, spacefill1::eps);
-    COMPARE_REALS(tvol, spacefill1::tvol, spacefill1::eps);
-    COMPARE_REALS(tmean, spacefill1::tmean, spacefill1::eps);
-    COMPARE_REALS(tgauss, spacefill1::tgauss, spacefill1::eps);
+    COMPARE_REALS(wsurf, spacefill1::wsurf, spacefill1::eps);
+    COMPARE_REALS(wvol, spacefill1::wvol, spacefill1::eps);
+    COMPARE_REALS(wmean, spacefill1::wmean, spacefill1::eps);
+    COMPARE_REALS(wgauss, spacefill1::wgauss, spacefill1::eps);
     
     int n = 6;
     for (int i = 0; i < n; i++) {
@@ -58,10 +58,10 @@ TEST_CASE("spacefill-2", "[spacefill][AMOEBA][water09]") {
     test = true;
     spacefill(argc, argv);
 
-    COMPARE_REALS(tsurf, spacefill2::tsurf, spacefill2::eps);
-    COMPARE_REALS(tvol, spacefill2::tvol, spacefill2::eps);
-    COMPARE_REALS(tmean, spacefill2::tmean, spacefill2::eps);
-    COMPARE_REALS(tgauss, spacefill2::tgauss, spacefill2::eps);
+    COMPARE_REALS(wsurf, spacefill2::wsurf, spacefill2::eps);
+    COMPARE_REALS(wvol, spacefill2::wvol, spacefill2::eps);
+    COMPARE_REALS(wmean, spacefill2::wmean, spacefill2::eps);
+    COMPARE_REALS(wgauss, spacefill2::wgauss, spacefill2::eps);
 
     int n = 6;
     for (int i = 0; i < n; i++) {
@@ -95,10 +95,10 @@ TEST_CASE("spacefill-3", "[spacefill][AMOEBA][water09]") {
     test = true;
     spacefill(argc, argv);
 
-    COMPARE_REALS(tsurf, spacefill3::tsurf, spacefill3::eps);
-    COMPARE_REALS(tvol, spacefill3::tvol, spacefill3::eps);
-    COMPARE_REALS(tmean, spacefill3::tmean, spacefill3::eps);
-    COMPARE_REALS(tgauss, spacefill3::tgauss, spacefill3::eps);
+    COMPARE_REALS(wsurf, spacefill3::wsurf, spacefill3::eps);
+    COMPARE_REALS(wvol, spacefill3::wvol, spacefill3::eps);
+    COMPARE_REALS(wmean, spacefill3::wmean, spacefill3::eps);
+    COMPARE_REALS(wgauss, spacefill3::wgauss, spacefill3::eps);
 
     int n = 6;
     for (int i = 0; i < n; i++) {
@@ -132,10 +132,10 @@ TEST_CASE("spacefill-4", "[spacefill][AMOEBA][water09]") {
     test = true;
     spacefill(argc, argv);
 
-    COMPARE_REALS(tsurf, spacefill4::tsurf, spacefill4::eps);
-    COMPARE_REALS(tvol, spacefill4::tvol, spacefill4::eps);
-    COMPARE_REALS(tmean, spacefill4::tmean, spacefill4::eps);
-    COMPARE_REALS(tgauss, spacefill4::tgauss, spacefill4::eps);
+    COMPARE_REALS(wsurf, spacefill4::wsurf, spacefill4::eps);
+    COMPARE_REALS(wvol, spacefill4::wvol, spacefill4::eps);
+    COMPARE_REALS(wmean, spacefill4::wmean, spacefill4::eps);
+    COMPARE_REALS(wgauss, spacefill4::wgauss, spacefill4::eps);
 
     int n = 6;
     for (int i = 0; i < n; i++) {
@@ -216,31 +216,31 @@ TEST_CASE("spacefill-6", "[spacefill][AMOEBA][alatet]") {
     test = true;
 
     spacefill(argc1, argv1);
-    COMPARE_REALS(tsurf, spacefill6::tsurf1, spacefill6::eps);
-    COMPARE_REALS(tvol, spacefill6::tvol1, spacefill6::eps);
-    COMPARE_REALS(tmean, spacefill6::tmean1, spacefill6::eps);
-    COMPARE_REALS(tgauss, spacefill6::tgauss1, spacefill6::eps);
+    COMPARE_REALS(wsurf, spacefill6::wsurf1, spacefill6::eps);
+    COMPARE_REALS(wvol, spacefill6::wvol1, spacefill6::eps);
+    COMPARE_REALS(wmean, spacefill6::wmean1, spacefill6::eps);
+    COMPARE_REALS(wgauss, spacefill6::wgauss1, spacefill6::eps);
     final();
 
     spacefill(argc2, argv2);
-    COMPARE_REALS(tsurf, spacefill6::tsurf2, spacefill6::eps);
-    COMPARE_REALS(tvol, spacefill6::tvol2, spacefill6::eps);
-    COMPARE_REALS(tmean, spacefill6::tmean2, spacefill6::eps);
-    COMPARE_REALS(tgauss, spacefill6::tgauss2, spacefill6::eps);
+    COMPARE_REALS(wsurf, spacefill6::wsurf2, spacefill6::eps);
+    COMPARE_REALS(wvol, spacefill6::wvol2, spacefill6::eps);
+    COMPARE_REALS(wmean, spacefill6::wmean2, spacefill6::eps);
+    COMPARE_REALS(wgauss, spacefill6::wgauss2, spacefill6::eps);
     final();
 
     spacefill(argc3, argv3);
-    COMPARE_REALS(tsurf, spacefill6::tsurf3, spacefill6::eps);
-    COMPARE_REALS(tvol, spacefill6::tvol3, spacefill6::eps);
-    COMPARE_REALS(tmean, spacefill6::tmean3, spacefill6::eps);
-    COMPARE_REALS(tgauss, spacefill6::tgauss3, spacefill6::eps);
+    COMPARE_REALS(wsurf, spacefill6::wsurf3, spacefill6::eps);
+    COMPARE_REALS(wvol, spacefill6::wvol3, spacefill6::eps);
+    COMPARE_REALS(wmean, spacefill6::wmean3, spacefill6::eps);
+    COMPARE_REALS(wgauss, spacefill6::wgauss3, spacefill6::eps);
     final();
 
     spacefill(argc4, argv4);
-    COMPARE_REALS(tsurf, spacefill6::tsurf4, spacefill6::eps);
-    COMPARE_REALS(tvol, spacefill6::tvol4, spacefill6::eps);
-    COMPARE_REALS(tmean, spacefill6::tmean4, spacefill6::eps);
-    COMPARE_REALS(tgauss, spacefill6::tgauss4, spacefill6::eps);
+    COMPARE_REALS(wsurf, spacefill6::wsurf4, spacefill6::eps);
+    COMPARE_REALS(wvol, spacefill6::wvol4, spacefill6::eps);
+    COMPARE_REALS(wmean, spacefill6::wmean4, spacefill6::eps);
+    COMPARE_REALS(wgauss, spacefill6::wgauss4, spacefill6::eps);
     final();
 }
 
@@ -286,31 +286,31 @@ TEST_CASE("spacefill-7", "[spacefill][AMOEBA][alatet]") {
     test = true;
 
     spacefill(argc1, argv1);
-    COMPARE_REALS(tsurf, spacefill7::tsurf1, spacefill7::eps);
-    COMPARE_REALS(tvol, spacefill7::tvol1, spacefill7::eps);
-    COMPARE_REALS(tmean, spacefill7::tmean1, spacefill7::eps);
-    COMPARE_REALS(tgauss, spacefill7::tgauss1, spacefill7::eps);
+    COMPARE_REALS(wsurf, spacefill7::wsurf1, spacefill7::eps);
+    COMPARE_REALS(wvol, spacefill7::wvol1, spacefill7::eps);
+    COMPARE_REALS(wmean, spacefill7::wmean1, spacefill7::eps);
+    COMPARE_REALS(wgauss, spacefill7::wgauss1, spacefill7::eps);
     final();
 
     spacefill(argc2, argv2);
-    COMPARE_REALS(tsurf, spacefill7::tsurf2, spacefill7::eps);
-    COMPARE_REALS(tvol, spacefill7::tvol2, spacefill7::eps);
-    COMPARE_REALS(tmean, spacefill7::tmean2, spacefill7::eps);
-    COMPARE_REALS(tgauss, spacefill7::tgauss2, spacefill7::eps);
+    COMPARE_REALS(wsurf, spacefill7::wsurf2, spacefill7::eps);
+    COMPARE_REALS(wvol, spacefill7::wvol2, spacefill7::eps);
+    COMPARE_REALS(wmean, spacefill7::wmean2, spacefill7::eps);
+    COMPARE_REALS(wgauss, spacefill7::wgauss2, spacefill7::eps);
     final();
 
     spacefill(argc3, argv3);
-    COMPARE_REALS(tsurf, spacefill7::tsurf3, spacefill7::eps);
-    COMPARE_REALS(tvol, spacefill7::tvol3, spacefill7::eps);
-    COMPARE_REALS(tmean, spacefill7::tmean3, spacefill7::eps);
-    COMPARE_REALS(tgauss, spacefill7::tgauss3, spacefill7::eps);
+    COMPARE_REALS(wsurf, spacefill7::wsurf3, spacefill7::eps);
+    COMPARE_REALS(wvol, spacefill7::wvol3, spacefill7::eps);
+    COMPARE_REALS(wmean, spacefill7::wmean3, spacefill7::eps);
+    COMPARE_REALS(wgauss, spacefill7::wgauss3, spacefill7::eps);
     final();
 
     spacefill(argc4, argv4);
-    COMPARE_REALS(tsurf, spacefill7::tsurf4, spacefill7::eps);
-    COMPARE_REALS(tvol, spacefill7::tvol4, spacefill7::eps);
-    COMPARE_REALS(tmean, spacefill7::tmean4, spacefill7::eps);
-    COMPARE_REALS(tgauss, spacefill7::tgauss4, spacefill7::eps);
+    COMPARE_REALS(wsurf, spacefill7::wsurf4, spacefill7::eps);
+    COMPARE_REALS(wvol, spacefill7::wvol4, spacefill7::eps);
+    COMPARE_REALS(wmean, spacefill7::wmean4, spacefill7::eps);
+    COMPARE_REALS(wgauss, spacefill7::wgauss4, spacefill7::eps);
     final();
 }
 
@@ -356,31 +356,31 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
     test = true;
 
     spacefill(argc1, argv1);
-    COMPARE_REALS(tsurf, spacefill8::tsurf1, spacefill8::eps);
-    COMPARE_REALS(tvol, spacefill8::tvol1, spacefill8::eps);
-    COMPARE_REALS(tmean, spacefill8::tmean1, spacefill8::eps);
-    COMPARE_REALS(tgauss, spacefill8::tgauss1, spacefill8::eps);
+    COMPARE_REALS(wsurf, spacefill8::wsurf1, spacefill8::eps);
+    COMPARE_REALS(wvol, spacefill8::wvol1, spacefill8::eps);
+    COMPARE_REALS(wmean, spacefill8::wmean1, spacefill8::eps);
+    COMPARE_REALS(wgauss, spacefill8::wgauss1, spacefill8::eps);
     final();
 
     spacefill(argc2, argv2);
-    COMPARE_REALS(tsurf, spacefill8::tsurf2, spacefill8::eps);
-    COMPARE_REALS(tvol, spacefill8::tvol2, spacefill8::eps);
-    COMPARE_REALS(tmean, spacefill8::tmean2, spacefill8::eps);
-    COMPARE_REALS(tgauss, spacefill8::tgauss2, spacefill8::eps);
+    COMPARE_REALS(wsurf, spacefill8::wsurf2, spacefill8::eps);
+    COMPARE_REALS(wvol, spacefill8::wvol2, spacefill8::eps);
+    COMPARE_REALS(wmean, spacefill8::wmean2, spacefill8::eps);
+    COMPARE_REALS(wgauss, spacefill8::wgauss2, spacefill8::eps);
     final();
 
     spacefill(argc3, argv3);
-    COMPARE_REALS(tsurf, spacefill8::tsurf3, spacefill8::eps);
-    COMPARE_REALS(tvol, spacefill8::tvol3, spacefill8::eps);
-    COMPARE_REALS(tmean, spacefill8::tmean3, spacefill8::eps);
-    COMPARE_REALS(tgauss, spacefill8::tgauss3, spacefill8::eps);
+    COMPARE_REALS(wsurf, spacefill8::wsurf3, spacefill8::eps);
+    COMPARE_REALS(wvol, spacefill8::wvol3, spacefill8::eps);
+    COMPARE_REALS(wmean, spacefill8::wmean3, spacefill8::eps);
+    COMPARE_REALS(wgauss, spacefill8::wgauss3, spacefill8::eps);
     final();
 
     spacefill(argc4, argv4);
-    COMPARE_REALS(tsurf, spacefill8::tsurf4, spacefill8::eps);
-    COMPARE_REALS(tvol, spacefill8::tvol4, spacefill8::eps);
-    COMPARE_REALS(tmean, spacefill8::tmean4, spacefill8::eps);
-    COMPARE_REALS(tgauss, spacefill8::tgauss4, spacefill8::eps);
+    COMPARE_REALS(wsurf, spacefill8::wsurf4, spacefill8::eps);
+    COMPARE_REALS(wvol, spacefill8::wvol4, spacefill8::eps);
+    COMPARE_REALS(wmean, spacefill8::wmean4, spacefill8::eps);
+    COMPARE_REALS(wgauss, spacefill8::wgauss4, spacefill8::eps);
     final();
 }
 
@@ -458,17 +458,17 @@ TEST_CASE("spacefill-11", "[spacefill][AMOEBA][concat]") {
     test = true;
 
     spacefill(argc, argv1);
-    COMPARE_REALS(tsurf, spacefill11::tsurf1, spacefill11::eps);
-    COMPARE_REALS(tvol, spacefill11::tvol1, spacefill11::eps);
-    COMPARE_REALS(tmean, spacefill11::tmean1, spacefill11::eps);
-    COMPARE_REALS(tgauss, spacefill11::tgauss1, spacefill11::eps);
+    COMPARE_REALS(wsurf, spacefill11::wsurf1, spacefill11::eps);
+    COMPARE_REALS(wvol, spacefill11::wvol1, spacefill11::eps);
+    COMPARE_REALS(wmean, spacefill11::wmean1, spacefill11::eps);
+    COMPARE_REALS(wgauss, spacefill11::wgauss1, spacefill11::eps);
     final();
 
     spacefill(argc, argv2);
-    COMPARE_REALS(tsurf, spacefill11::tsurf2, spacefill11::eps);
-    COMPARE_REALS(tvol, spacefill11::tvol2, spacefill11::eps);
-    COMPARE_REALS(tmean, spacefill11::tmean2, spacefill11::eps);
-    COMPARE_REALS(tgauss, spacefill11::tgauss2, spacefill11::eps);
+    COMPARE_REALS(wsurf, spacefill11::wsurf2, spacefill11::eps);
+    COMPARE_REALS(wvol, spacefill11::wvol2, spacefill11::eps);
+    COMPARE_REALS(wmean, spacefill11::wmean2, spacefill11::eps);
+    COMPARE_REALS(wgauss, spacefill11::wgauss2, spacefill11::eps);
     final();
 }
 
@@ -486,10 +486,10 @@ TEST_CASE("spacefill-12", "[spacefill][AMOEBA][chloride27]") {
 
     spacefill(argc, argv);
 
-    COMPARE_REALS(tsurf, spacefill12::tsurf, spacefill12::eps);
-    COMPARE_REALS(tvol, spacefill12::tvol, spacefill12::eps);
-    COMPARE_REALS(tmean, spacefill12::tmean, spacefill12::eps);
-    COMPARE_REALS(tgauss, spacefill12::tgauss, spacefill12::eps);
+    COMPARE_REALS(wsurf, spacefill12::wsurf, spacefill12::eps);
+    COMPARE_REALS(wvol, spacefill12::wvol, spacefill12::eps);
+    COMPARE_REALS(wmean, spacefill12::wmean, spacefill12::eps);
+    COMPARE_REALS(wgauss, spacefill12::wgauss, spacefill12::eps);
 
     final();
 }
@@ -507,10 +507,10 @@ TEST_CASE("spacefill-13", "[spacefill][AMOEBA][3ibk]") {
 
     spacefill(argc, argv);
 
-    COMPARE_REALS(tsurf, spacefill13::tsurf, spacefill13::eps);
-    COMPARE_REALS(tvol, spacefill13::tvol, spacefill13::eps);
-    COMPARE_REALS(tmean, spacefill13::tmean, spacefill13::eps);
-    COMPARE_REALS(tgauss, spacefill13::tgauss, spacefill13::eps);
+    COMPARE_REALS(wsurf, spacefill13::wsurf, spacefill13::eps);
+    COMPARE_REALS(wvol, spacefill13::wvol, spacefill13::eps);
+    COMPARE_REALS(wmean, spacefill13::wmean, spacefill13::eps);
+    COMPARE_REALS(wgauss, spacefill13::wgauss, spacefill13::eps);
 
     final();
 }
@@ -528,8 +528,8 @@ TEST_CASE("spacefill-14", "[spacefill][AMOEBA][3cln]") {
 
     spacefill(argc, argv);
 
-    COMPARE_REALS(tsurf, spacefill14::tsurf, spacefill14::eps);
-    COMPARE_REALS(tvol, spacefill14::tvol, spacefill14::eps);
+    COMPARE_REALS(wsurf, spacefill14::wsurf, spacefill14::eps);
+    COMPARE_REALS(wvol, spacefill14::wvol, spacefill14::eps);
 
     final();
 }
@@ -547,10 +547,10 @@ TEST_CASE("spacefill-15", "[spacefill][AMOEBA][waterbox30]") {
 
     spacefill(argc, argv);
 
-    COMPARE_REALS(tsurf, spacefill15::tsurf, spacefill15::eps);
-    COMPARE_REALS(tvol, spacefill15::tvol, spacefill15::eps);
-    COMPARE_REALS(tmean, spacefill15::tmean, spacefill15::eps);
-    COMPARE_REALS(tgauss, spacefill15::tgauss, spacefill15::eps);
+    COMPARE_REALS(wsurf, spacefill15::wsurf, spacefill15::eps);
+    COMPARE_REALS(wvol, spacefill15::wvol, spacefill15::eps);
+    COMPARE_REALS(wmean, spacefill15::wmean, spacefill15::eps);
+    COMPARE_REALS(wgauss, spacefill15::wgauss, spacefill15::eps);
 
     final();
 }
@@ -591,38 +591,38 @@ TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
     test = true;
 
     spacefill(argc, argv1);
-    COMPARE_REALS(tsurf, spacefill16::tsurf1, spacefill16::eps);
-    COMPARE_REALS(tvol, spacefill16::tvol1, spacefill16::eps);
-    COMPARE_REALS(tmean, spacefill16::tmean1, spacefill16::eps);
-    COMPARE_REALS(tgauss, spacefill16::tgauss1, spacefill16::eps);
+    COMPARE_REALS(wsurf, spacefill16::wsurf1, spacefill16::eps);
+    COMPARE_REALS(wvol, spacefill16::wvol1, spacefill16::eps);
+    COMPARE_REALS(wmean, spacefill16::wmean1, spacefill16::eps);
+    COMPARE_REALS(wgauss, spacefill16::wgauss1, spacefill16::eps);
     final();
 
     spacefill(argc, argv2);
-    // COMPARE_REALS(tsurf, spacefill16::tsurf2, spacefill16::eps);
-    // COMPARE_REALS(tvol, spacefill16::tvol2, spacefill16::eps);
-    // COMPARE_REALS(tmean, spacefill16::tmean2, spacefill16::eps);
-    // COMPARE_REALS(tgauss, spacefill16::tgauss2, spacefill16::eps);
+    // COMPARE_REALS(wsurf, spacefill16::wsurf2, spacefill16::eps);
+    // COMPARE_REALS(wvol, spacefill16::wvol2, spacefill16::eps);
+    // COMPARE_REALS(wmean, spacefill16::wmean2, spacefill16::eps);
+    // COMPARE_REALS(wgauss, spacefill16::wgauss2, spacefill16::eps);
     final();
 
     spacefill(argc, argv3);
-    // COMPARE_REALS(tsurf, spacefill16::tsurf3, spacefill16::eps);
-    // COMPARE_REALS(tvol, spacefill16::tvol3, spacefill16::eps);
-    // COMPARE_REALS(tmean, spacefill16::tmean3, spacefill16::eps);
-    // COMPARE_REALS(tgauss, spacefill16::tgauss3, spacefill16::eps);
+    // COMPARE_REALS(wsurf, spacefill16::wsurf3, spacefill16::eps);
+    // COMPARE_REALS(wvol, spacefill16::wvol3, spacefill16::eps);
+    // COMPARE_REALS(wmean, spacefill16::wmean3, spacefill16::eps);
+    // COMPARE_REALS(wgauss, spacefill16::wgauss3, spacefill16::eps);
     final();
 
     spacefill(argc, argv4);
-    // COMPARE_REALS(tsurf, spacefill16::tsurf4, spacefill16::eps);
-    // COMPARE_REALS(tvol, spacefill16::tvol4, spacefill16::eps);
-    // COMPARE_REALS(tmean, spacefill16::tmean4, spacefill16::eps);
-    // COMPARE_REALS(tgauss, spacefill16::tgauss4, spacefill16::eps);
+    // COMPARE_REALS(wsurf, spacefill16::wsurf4, spacefill16::eps);
+    // COMPARE_REALS(wvol, spacefill16::wvol4, spacefill16::eps);
+    // COMPARE_REALS(wmean, spacefill16::wmean4, spacefill16::eps);
+    // COMPARE_REALS(wgauss, spacefill16::wgauss4, spacefill16::eps);
     final();
 
     spacefill(argc, argv5);
-    // COMPARE_REALS(tsurf, spacefill16::tsurf5, spacefill16::eps);
-    // COMPARE_REALS(tvol, spacefill16::tvol5, spacefill16::eps);
-    // COMPARE_REALS(tmean, spacefill16::tmean5, spacefill16::eps);
-    // COMPARE_REALS(tgauss, spacefill16::tgauss5, spacefill16::eps);
+    // COMPARE_REALS(wsurf, spacefill16::wsurf5, spacefill16::eps);
+    // COMPARE_REALS(wvol, spacefill16::wvol5, spacefill16::eps);
+    // COMPARE_REALS(wmean, spacefill16::wmean5, spacefill16::eps);
+    // COMPARE_REALS(wgauss, spacefill16::wgauss5, spacefill16::eps);
     final();
 }
 
@@ -650,24 +650,24 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
     test = true;
 
     spacefill(argc, argv1);
-    COMPARE_REALS(tsurf, spacefill17::tsurf1, spacefill17::eps);
-    COMPARE_REALS(tvol, spacefill17::tvol1, spacefill17::eps);
-    COMPARE_REALS(tmean, spacefill17::tmean1, spacefill17::eps);
-    COMPARE_REALS(tgauss, spacefill17::tgauss1, spacefill17::eps);
+    COMPARE_REALS(wsurf, spacefill17::wsurf1, spacefill17::eps);
+    COMPARE_REALS(wvol, spacefill17::wvol1, spacefill17::eps);
+    COMPARE_REALS(wmean, spacefill17::wmean1, spacefill17::eps);
+    COMPARE_REALS(wgauss, spacefill17::wgauss1, spacefill17::eps);
     final();
 
     spacefill(argc, argv2);
-    // COMPARE_REALS(tsurf, spacefill17::tsurf2, spacefill17::eps);
-    // COMPARE_REALS(tvol, spacefill17::tvol2, spacefill17::eps);
-    // COMPARE_REALS(tmean, spacefill17::tmean2, spacefill17::eps);
-    // COMPARE_REALS(tgauss, spacefill17::tgauss2, spacefill17::eps);
+    // COMPARE_REALS(wsurf, spacefill17::wsurf2, spacefill17::eps);
+    // COMPARE_REALS(wvol, spacefill17::wvol2, spacefill17::eps);
+    // COMPARE_REALS(wmean, spacefill17::wmean2, spacefill17::eps);
+    // COMPARE_REALS(wgauss, spacefill17::wgauss2, spacefill17::eps);
     final();
 
     spacefill(argc, argv3);
-    // COMPARE_REALS(tsurf, spacefill17::tsurf3, spacefill17::eps);
-    // COMPARE_REALS(tvol, spacefill17::tvol3, spacefill17::eps);
-    // COMPARE_REALS(tmean, spacefill17::tmean3, spacefill17::eps);
-    // COMPARE_REALS(tgauss, spacefill17::tgauss3, spacefill17::eps);
+    // COMPARE_REALS(wsurf, spacefill17::wsurf3, spacefill17::eps);
+    // COMPARE_REALS(wvol, spacefill17::wvol3, spacefill17::eps);
+    // COMPARE_REALS(wmean, spacefill17::wmean3, spacefill17::eps);
+    // COMPARE_REALS(wgauss, spacefill17::wgauss3, spacefill17::eps);
     final();
 }
 
@@ -702,31 +702,31 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
 //     test = true;
 
 //     spacefill(argc, argv1);
-//     COMPARE_REALS(tsurf, spacefill18::tsurf1, spacefill18::eps);
-//     COMPARE_REALS(tvol, spacefill18::tvol1, spacefill18::eps);
-//     COMPARE_REALS(tmean, spacefill18::tmean1, spacefill18::eps);
-//     COMPARE_REALS(tgauss, spacefill18::tgauss1, spacefill18::eps);
+//     COMPARE_REALS(wsurf, spacefill18::wsurf1, spacefill18::eps);
+//     COMPARE_REALS(wvol, spacefill18::wvol1, spacefill18::eps);
+//     COMPARE_REALS(wmean, spacefill18::wmean1, spacefill18::eps);
+//     COMPARE_REALS(wgauss, spacefill18::wgauss1, spacefill18::eps);
 //     final();
 
 //     spacefill(argc, argv2);
-//     COMPARE_REALS(tsurf, spacefill18::tsurf2, spacefill18::eps);
-//     COMPARE_REALS(tvol, spacefill18::tvol2, spacefill18::eps);
-//     COMPARE_REALS(tmean, spacefill18::tmean2, spacefill18::eps);
-//     COMPARE_REALS(tgauss, spacefill18::tgauss2, spacefill18::eps);
+//     COMPARE_REALS(wsurf, spacefill18::wsurf2, spacefill18::eps);
+//     COMPARE_REALS(wvol, spacefill18::wvol2, spacefill18::eps);
+//     COMPARE_REALS(wmean, spacefill18::wmean2, spacefill18::eps);
+//     COMPARE_REALS(wgauss, spacefill18::wgauss2, spacefill18::eps);
 //     final();
 
 //     spacefill(argc, argv3);
-//     COMPARE_REALS(tsurf, spacefill18::tsurf3, spacefill18::eps);
-//     COMPARE_REALS(tvol, spacefill18::tvol3, spacefill18::eps);
-//     COMPARE_REALS(tmean, spacefill18::tmean3, spacefill18::eps);
-//     COMPARE_REALS(tgauss, spacefill18::tgauss3, spacefill18::eps);
+//     COMPARE_REALS(wsurf, spacefill18::wsurf3, spacefill18::eps);
+//     COMPARE_REALS(wvol, spacefill18::wvol3, spacefill18::eps);
+//     COMPARE_REALS(wmean, spacefill18::wmean3, spacefill18::eps);
+//     COMPARE_REALS(wgauss, spacefill18::wgauss3, spacefill18::eps);
 //     final();
 
 //     spacefill(argc, argv4);
-//     // COMPARE_REALS(tsurf, spacefill18::tsurf4, spacefill18::eps);
-//     // COMPARE_REALS(tvol, spacefill18::tvol4, spacefill18::eps);
-//     // COMPARE_REALS(tmean, spacefill18::tmean4, spacefill18::eps);
-//     // COMPARE_REALS(tgauss, spacefill18::tgauss4, spacefill18::eps);
+//     // COMPARE_REALS(wsurf, spacefill18::wsurf4, spacefill18::eps);
+//     // COMPARE_REALS(wvol, spacefill18::wvol4, spacefill18::eps);
+//     // COMPARE_REALS(wmean, spacefill18::wmean4, spacefill18::eps);
+//     // COMPARE_REALS(wgauss, spacefill18::wgauss4, spacefill18::eps);
 //     final();
 // }
 }

@@ -55,7 +55,7 @@ void spacefill(int argc, char** argv)
     real exclude;
     real eps,eps0;
     real old;
-    real tsurf0,tvol0,tmean0,tgauss0;
+    real wsurf0,wvol0,wmean0,wgauss0;
     std::vector<real> denorm;
     std::vector<real> ndenorm;
     std::vector<real> told;
@@ -266,10 +266,10 @@ void spacefill(int argc, char** argv)
                 precision = 4;
             }
 
-            printf("\n Total Area :              %*.*f Square Angstroms", width, precision, tsurf);
-            printf("\n Total Volume :            %*.*f Square Angstroms", width, precision, tvol);
-            printf("\n Total Mean Curvature :    %*.*f Square Angstroms", width, precision, tmean);
-            printf("\n Total Gaussian Curvature :%*.*f Square Angstroms\n", width, precision, tgauss);
+            printf("\n Total Area :              %*.*f Square Angstroms", width, precision, wsurf);
+            printf("\n Total Volume :            %*.*f Square Angstroms", width, precision, wvol);
+            printf("\n Total Mean Curvature :    %*.*f Square Angstroms", width, precision, wmean);
+            printf("\n Total Gaussian Curvature :%*.*f Square Angstroms\n", width, precision, wgauss);
         }
 
         // get the Cartesian component two-sided numerical gradients
@@ -289,10 +289,10 @@ void spacefill(int argc, char** argv)
                         z[i] -= (real)0.5 * eps;
                     }
                     alfmol(false);
-                    tsurf0 = tsurf;
-                    tvol0 = tvol;
-                    tmean0 = tmean;
-                    tgauss0 = tgauss;
+                    wsurf0 = wsurf;
+                    wvol0 = wvol;
+                    wmean0 = wmean;
+                    wgauss0 = wgauss;
                     if (j == 0) {
                         x[i] += eps;
                     }
@@ -312,10 +312,10 @@ void spacefill(int argc, char** argv)
                     else if (j == 2) {
                         z[i] = old;
                     }
-                    ndsurf[3*i+j] = (tsurf - tsurf0) / eps;
-                    ndvol[3*i+j] = (tvol - tvol0) / eps;
-                    ndmean[3*i+j] = (tmean - tmean0) / eps;
-                    ndgauss[3*i+j] = (tgauss - tgauss0) / eps;
+                    ndsurf[3*i+j] = (wsurf - wsurf0) / eps;
+                    ndvol[3*i+j] = (wvol - wvol0) / eps;
+                    ndmean[3*i+j] = (wmean - wmean0) / eps;
+                    ndgauss[3*i+j] = (wgauss - wgauss0) / eps;
                 }
             }
         }

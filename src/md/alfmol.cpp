@@ -18,7 +18,8 @@ namespace polmdqc
 
 void alfmol(bool deriv)
 {
-    if (alfmeth == AlfMethod::AlphaMol) alphamol(deriv);
-    else if (alfmeth == AlfMethod::AlphaMol2) alphamol2(deriv);
+    alphamol(deriv);
+    // if (alfmeth == AlfMethod::AlphaMol) alphamol(deriv);
+    // else if (alfmeth == AlfMethod::AlphaMol2) alphamol2(deriv);
 }
 }

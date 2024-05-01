@@ -20,7 +20,6 @@ namespace polmdqc
 // gaussian curvature; also computes derivatives
 
 void alphavol(real& WSurf, real& WVol, real& WMean, real& WGauss,
-    real& Surf, real& Vol, real& Mean, real& Gauss,
     real* ballwsurf, real* ballwvol, real* ballwmean, real* ballwgauss,
     real* dsurf_coord, real* dvol_coord, real* dmean_coord, real* dgauss_coord, bool compder)
 {
@@ -63,13 +62,9 @@ void alphavol(real& WSurf, real& WVol, real& WMean, real& WGauss,
 
     // initialize results arrays
     WSurf = 0;
-    Surf  = 0;
     WVol  = 0;
-    Vol   = 0;
     WMean = 0;
-    Mean  = 0;
     WGauss= 0;
-    Gauss = 0;
     for (int i = 0; i < nvertices; i++) {
         ballwsurf[i] = 0.;
         ballwvol[i] = 0.;
@@ -132,7 +127,7 @@ void alphavol(real& WSurf, real& WVol, real& WMean, real& WGauss,
         id = tetra[idx].vertices[3];
 
         if (vertices[ia].status==0 || vertices[ib].status==0
-        || vertices[ic].status==0 || vertices[id].status==0) continue;
+         || vertices[ic].status==0 || vertices[id].status==0) continue;
 
         ra = vertices[ia].r; ra2 = ra*ra;
         rb = vertices[ib].r; rb2 = rb*rb;
@@ -269,7 +264,7 @@ void alphavol(real& WSurf, real& WVol, real& WMean, real& WGauss,
         ic = faces[idx].vertices[2];
 
         if (vertices[ia].status==0 || vertices[ib].status==0
-        || vertices[ic].status==0 ) continue;
+         || vertices[ic].status==0 ) continue;
 
 
         coefaS = vertices[ia].coefs; coefaV = vertices[ia].coefv; 
@@ -434,21 +429,21 @@ void alphavol(real& WSurf, real& WVol, real& WMean, real& WGauss,
         coefaS = vertices[i].coefs; coefaV = vertices[i].coefv;
         coefaM = vertices[i].coefm; coefaG = vertices[i].coefg;
 
-        Surf           += ballwsurf[i];
-        ballwsurf[i]    = ballwsurf[i]*coefaS;
-        WSurf          += ballwsurf[i];
+        real bwsurf = ballwsurf[i]*coefaS;
+        ballwsurf[i] = bwsurf;
+        WSurf += bwsurf;
 
-        Vol           += ballwvol[i];
-        ballwvol[i]    = ballwvol[i]*coefaV;
-        WVol          += ballwvol[i];
+        real bwvol = ballwvol[i]*coefaV;
+        ballwvol[i] = bwvol;
+        WVol += bwvol;
 
-        Mean          += ballwmean[i];
-        ballwmean[i]   = ballwmean[i]*coefaM;
-        WMean         += ballwmean[i];
+        real bwmean = ballwmean[i]*coefaM;
+        ballwmean[i] = bwmean;
+        WMean += bwmean;
 
-        Gauss         += ballwgauss[i];
-        ballwgauss[i]  = ballwgauss[i]*coefaG;
-        WGauss        += ballwgauss[i];
+        real bwgauss = ballwgauss[i]*coefaG;
+        ballwgauss[i] = bwgauss;
+        WGauss += bwgauss;
     }
 
     // shift as 4 first vertices are pseudo atoms
