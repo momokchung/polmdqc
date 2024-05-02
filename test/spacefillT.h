@@ -879,6 +879,11 @@ namespace spacefill16
 {
     real eps = 1e-12;
 
+    real wsurf0 = 5.3326650339094584e+01;
+    real wvol0 = 3.6617633232844945e+01;
+    real wmean0 = 2.5886723465579895e+01;
+    real wgauss0 = 1.2566370614359172e+01;
+
     real wsurf1 = 8.0507709977953482e+01;
     real wvol1 = 6.2189600530461675e+01;
     real wmean1 = 2.7169550074279524e+01;

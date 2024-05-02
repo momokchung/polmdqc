@@ -557,6 +557,12 @@ TEST_CASE("spacefill-15", "[spacefill][AMOEBA][waterbox30]") {
 
 TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
     int argc = 7;
+    const char* strings0[] = {
+        "analyze",
+        "../../test/testFiles/spacefill/chloride1.xyz",
+        "1","Y","N","N","N"
+    };
+    char** argv0 = const_cast<char**>(strings0);
     const char* strings1[] = {
         "analyze",
         "../../test/testFiles/spacefill/lchloride2.xyz",
@@ -589,6 +595,13 @@ TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
     char** argv5 = const_cast<char**>(strings5);
 
     test = true;
+
+    spacefill(argc, argv0);
+    COMPARE_REALS(wsurf, spacefill16::wsurf0, spacefill16::eps);
+    COMPARE_REALS(wvol, spacefill16::wvol0, spacefill16::eps);
+    COMPARE_REALS(wmean, spacefill16::wmean0, spacefill16::eps);
+    COMPARE_REALS(wgauss, spacefill16::wgauss0, spacefill16::eps);
+    final();
 
     spacefill(argc, argv1);
     COMPARE_REALS(wsurf, spacefill16::wsurf1, spacefill16::eps);
