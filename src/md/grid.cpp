@@ -33,25 +33,25 @@ void splitGrid(AlfAtom *alfatoms, int size, real xmin, real ymin, real zmin, rea
     Zlim[1] = zmax + offset;
 
     Nx = 1; Ny = 1; Nz = 1;
-    if(ncube == 1) {
+    if (ncube == 1) {
         Nx = 1; Ny = 1; Nz = 1;
     }
-    else if(ncube == 2) {
+    else if (ncube == 2) {
         Nx = 2; Ny = 1; Nz = 1;
     }
-    else if(ncube == 4) {
+    else if (ncube == 4) {
         Nx = 2; Ny = 2; Nz = 1;
     }
-    else if(ncube == 8) {
+    else if (ncube == 8) {
         Nx = 2; Ny = 2; Nz = 2;
     }
-    else if(ncube == 16) {
+    else if (ncube == 16) {
         Nx = 4; Ny = 2; Nz = 2;
     }
-    else if(ncube == 32) {
+    else if (ncube == 32) {
         Nx = 4; Ny = 4; Nz = 2;
     }
-    else if(ncube == 64) {
+    else if (ncube == 64) {
         Nx = 4; Ny = 4; Nz = 4;
     }
 

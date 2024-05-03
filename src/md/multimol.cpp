@@ -100,7 +100,6 @@ void* singlemol(void* data)
 
     for (int i = 0; i < natm; i++) {
         newatoms[i] = alfatoms[N1+i];
-        // newatoms[i].index = i;
     }
     // TODO: might not need
     sort3DHilbert(newatoms, natm, 0, 0, xmax, ymax, zmax, xmax, ymax, zmax, 0);
@@ -129,7 +128,7 @@ void* singlemol(void* data)
 
     alphamol(ntot, newatoms, tmp1, tmp2, tmp3, tmp4,
         surfthd, volthd, meanthd, gaussthd,
-        dsurfthd,dvolthd, dmeanthd, dgaussthd, deriv);
+        dsurfthd, dvolthd, dmeanthd, dgaussthd, deriv);
 
     // transfer information to thread
     info[threadid].wsurf = 0;
