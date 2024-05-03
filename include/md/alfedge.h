@@ -2,7 +2,7 @@
 // Year:   2024
 
 #pragma once
-#include "precision.h"
+#include "vertex.h"
 #include <vector>
 
 namespace polmdqc
@@ -13,6 +13,6 @@ namespace polmdqc
 //                                                       //
 ///////////////////////////////////////////////////////////
 
-void alfedge(real* a, real* b, real ra, real rb, 
+void alfedge(std::vector<Vertex>& vertices, real* a, real* b, real ra, real rb, 
     real* cg, std::vector<int>& listcheck, int& irad, int& iattach, real alpha);
 }

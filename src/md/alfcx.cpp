@@ -6,30 +6,29 @@
 #include "alfedge.h"
 #include "alftetra.h"
 #include "alftrig.h"
-#include "dlauny.h"
 #include "findedge.h"
 #include "inform.h"
 
 namespace polmdqc
 {
-//////////////////////////////////////////////
-//                                          //
-//  alfcx  --  build alpha complex from DT  //
-//                                          //
-//////////////////////////////////////////////
+// //////////////////////////////////////////////
+// //                                          //
+// //  alfcx  --  build alpha complex from DT  //
+// //                                          //
+// //////////////////////////////////////////////
 
-// "alfcx" builds the alpha complex based on
-// the weighted Delaunay triangulation
+// // "alfcx" builds the alpha complex based on
+// // the weighted Delaunay triangulation
 
-inline void getcoord2(int ia, int ja, real* a, real* b, real* cg, real& ra, real& rb);
-inline void getcoord4(int ia, int ja, int ka, int la, real* a, real* b,
-    real* c, real* d, real& ra, real& rb, real& rc, real& rd);
-inline void getcoord5(int ia, int ja, int ka, int la,
+inline void getcoord2(std::vector<Vertex>& vertices, int ia, int ja, real* a, real* b, real* cg, real& ra, real& rb);
+inline void getcoord4(std::vector<Vertex>& vertices, int ia, int ja, int ka, int la,
+    real* a, real* b, real* c, real* d, real& ra, real& rb, real& rc, real& rd);
+inline void getcoord5(std::vector<Vertex>& vertices, int ia, int ja, int ka, int la,
     int ma, real* a, real* b, real* c, real* d, real* e,
     real& ra, real& rb, real& rc, real& rd, real& re);
 void vertattach(real* a, real* b, real ra, real rb, int& testa, int& testb);
 
-void alfcx(real alpha)
+void alfcx(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra, real alpha)
 {
     real ra,rb,rc,rd,re;
     real a[4],b[4],c[4],d[4],e[4],cg[3];
@@ -58,7 +57,7 @@ void alfcx(real alpha)
         i = tetra[idx].vertices[0]; j = tetra[idx].vertices[1];
         k = tetra[idx].vertices[2]; l = tetra[idx].vertices[3];
 
-        getcoord4(i, j, k, l, a, b, c, d, ra, rb, rc, rd);
+        getcoord4(vertices, i, j, k, l, a, b, c, d, ra, rb, rc, rd);
 
         int iflag;
         alftetra(a, b, c, d, ra, rb, rc, rd, iflag, alpha);
@@ -119,11 +118,11 @@ void alfcx(real alpha)
                 int m;
                 if (jtetra>=0) {
                     m = tetra[jtetra].vertices[jtrig];
-                    getcoord5(i, j, k, l, m, a, b, c, d, e, ra, rb, rc, rd, re);
+                    getcoord5(vertices, i, j, k, l, m, a, b, c, d, e, ra, rb, rc, rd, re);
                 }
                 else {
                     m = -1;
-                    getcoord4(i, j, k, l, a, b, c, d, ra, rb, rc, rd);
+                    getcoord4(vertices, i, j, k, l, a, b, c, d, ra, rb, rc, rd);
                 }
                 int irad, iattach;
                 alftrig(a, b, c, d, e, ra, rb, rc, rd, re, m, irad, iattach, alpha);
@@ -268,9 +267,9 @@ void alfcx(real alpha)
             // smaller than the radius of the sphere orthogonal
             // to the two balls corresponding to the edge
 
-            getcoord2(i, j, a, b, cg, ra, rb);
+            getcoord2(vertices, i, j, a, b, cg, ra, rb);
             int irad, iattach;
-            alfedge(a, b, ra, rb, cg, listcheck, irad, iattach, alpha);
+            alfedge(vertices, a, b, ra, rb, cg, listcheck, irad, iattach, alpha);
 
             if (iattach==0 && irad == 1) {
                 tetra[idx].info_edge[iedge] = 1;
@@ -315,7 +314,7 @@ void alfcx(real alpha)
 // getcoord2 extracts two atoms from the global array
 // containing all atoms of the protein, centers them on (0,0,0),
 // recomputes their weights and stores them in local arrays
-inline void getcoord2(int ia, int ja, real* a, real* b, real* cg, real& ra, real& rb)
+inline void getcoord2(std::vector<Vertex>& vertices, int ia, int ja, real* a, real* b, real* cg, real& ra, real& rb)
 {
     real x;
 
@@ -339,7 +338,7 @@ inline void getcoord2(int ia, int ja, real* a, real* b, real* cg, real& ra, real
 // getcoord4 extracts four atoms from the global array
 // containing all atoms of the protein, centers them on (0,0,0),
 // recomputes their weights and stores them in local arrays
-inline void getcoord4(int ia, int ja, int ka, int la, real* a, real* b,
+inline void getcoord4(std::vector<Vertex>& vertices, int ia, int ja, int ka, int la, real* a, real* b,
     real* c, real* d, real& ra, real& rb, real& rc, real& rd)
 {
     real x;
@@ -371,7 +370,7 @@ inline void getcoord4(int ia, int ja, int ka, int la, real* a, real* b,
 // getcoord5 extracts five atoms from the global array
 // containing all atoms of the protein, centers them on (0,0,0),
 // recomputes their weights and stores them in local arrays
-inline void getcoord5(int ia, int ja, int ka, int la,
+inline void getcoord5(std::vector<Vertex>& vertices, int ia, int ja, int ka, int la,
     int ma, real* a, real* b, real* c, real* d, real* e,
     real& ra, real& rb, real& rc, real& rd, real& re)
 {

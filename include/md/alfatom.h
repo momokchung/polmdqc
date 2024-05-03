@@ -32,8 +32,7 @@ public:
     real w;
     real coefs,coefv,coefm,coefg;
 
-    AlfAtom() {
-    }
+    AlfAtom() {}
 
     AlfAtom(int idx, real x, real y, real z, real r, real coefs, real coefv, real coefm, real coefg);
 

@@ -1,9 +1,6 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
-#include "alphmol.h"
-#include "atoms.h"
-#include "dlauny.h"
 #include "initdelcx.h"
 #include <algorithm>
 #include <cmath>
@@ -18,15 +15,16 @@ namespace polmdqc
 
 // "initdelcx" initializes and sets up Delaunay triangulation
 
-inline void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord, real* brad);
+inline void addBogus(int npoints, AlfAtom* alfatoms, real* bcoord, real* brad);
 
-void initdelcx()
+void initdelcx(int natoms, AlfAtom* alfatoms, std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
+    std::queue<std::pair<int,int>>& link_facet,std::queue<std::pair<int,int>>& link_index,std::stack<int>& free,std::vector<int>& kill)
 {
     // initialize vertices and tetra
     vertices.clear();
-    vertices.reserve(n+4);
+    vertices.reserve(natoms+4);
     tetra.clear();
-    tetra.reserve(10*n);
+    tetra.reserve(10*natoms);
 
     while (!link_facet.empty()) {
         link_facet.pop();
@@ -53,27 +51,27 @@ void initdelcx()
 
     // copy atoms into vertex list
     real xi, yi, zi, ri, cs, cv, cm, cg;
-    for (int i = 0; i < n; i++) {
-        xi = x[i];
-        yi = y[i];
-        zi = z[i];
-        ri = radii[i];
-        cs = coefS[i];
-        cv = coefV[i];
-        cm = coefM[i];
-        cg = coefG[i];
+    for (int i = 0; i < natoms; i++) {
+        xi = alfatoms[i].coord[0];
+        yi = alfatoms[i].coord[1];
+        zi = alfatoms[i].coord[2];
+        ri = alfatoms[i].r;
+        cs = alfatoms[i].coefs;
+        cv = alfatoms[i].coefv;
+        cm = alfatoms[i].coefm;
+        cg = alfatoms[i].coefg;
         Vertex vert(xi, yi, zi, ri, cs, cv, cm, cg);
         vert.info[0] = 1;
         vert.status = 1;
         vertices.push_back(vert);
     }
 
-    // if n < 4, add "bogus" points
-    if (n < 4) {
-        int new_points = 4-n;
+    // if natoms < 4, add "bogus" points
+    if (natoms < 4) {
+        int new_points = 4-natoms;
         real *bcoord = new real[3*new_points];
         real *brad   = new real[new_points];
-        addBogus(n, x.ptr(), y.ptr(), z.ptr(), radii.ptr(), bcoord, brad); 
+        addBogus(natoms, alfatoms, bcoord, brad);
         for (int i = 0; i < new_points; i++) {
             xi = bcoord[3*i];
             yi = bcoord[3*i+1];
@@ -117,7 +115,7 @@ void initdelcx()
     tetra.push_back(t);
 }
 
-inline void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* bcoord, real* brad)
+inline void addBogus(int npoints, AlfAtom* alfatoms, real* bcoord, real* brad)
 {
     if (npoints > 3) return;
 
@@ -135,22 +133,22 @@ inline void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* 
     for (int i = 0; i < 3 * np; ++i) bcoord[i] = 0;
 
     if (npoints==1) {
-        Rmax = radii[0];
-        bcoord[0] = x[0] + 3*Rmax;
-        bcoord[3*1+1] = y[0] + 3*Rmax;
-        bcoord[3*2+2] = z[0] + 3*Rmax;
+        Rmax = alfatoms[0].r;
+        bcoord[0] = alfatoms[0].coord[0] + 3*Rmax;
+        bcoord[3*1+1] = alfatoms[0].coord[1] + 3*Rmax;
+        bcoord[3*2+2] = alfatoms[0].coord[2] + 3*Rmax;
         for (int i = 0; i < np; i++) {
             brad[i] = Rmax/20;
         }
     }
     else if (npoints==2) {
-        Rmax = std::max(radii[0], radii[1]);
-        c1x = x[0];
-        c1y = y[0];
-        c1z = z[0];
-        c2x = x[1];
-        c2y = y[1];
-        c2z = z[1];
+        Rmax = std::max(alfatoms[0].r, alfatoms[1].r);
+        c1x = alfatoms[0].coord[0];
+        c1y = alfatoms[0].coord[1];
+        c1z = alfatoms[0].coord[2];
+        c2x = alfatoms[1].coord[0];
+        c2y = alfatoms[1].coord[1];
+        c2z = alfatoms[1].coord[2];
         cx = 0.5*(c1x+c2x);
         cy = 0.5*(c1y+c2y);
         cz = 0.5*(c1z+c2z);
@@ -177,20 +175,19 @@ inline void addBogus(int npoints, real* x, real* y, real* z, real* radii, real* 
         bcoord[1+3] = cy + (2*d+3*Rmax)*w1y;
         bcoord[2] = cz + (2*d+3*Rmax)*v1z;
         bcoord[2+3] = cz + (2*d+3*Rmax)*w1z;
-
         brad[0] = Rmax/20; brad[1] = Rmax/20;
     }
     else {
-        Rmax = std::max(std::max(radii[0], radii[1]), radii[2]);
-        c1x = x[0];
-        c1y = y[0];
-        c1z = z[0];
-        c2x = x[1];
-        c2y = y[1];
-        c2z = z[1];
-        c3x = x[2];
-        c3y = y[2];
-        c3z = z[2];
+        Rmax = std::max(std::max(alfatoms[0].r, alfatoms[1].r), alfatoms[2].r);
+        c1x = alfatoms[0].coord[0];
+        c1y = alfatoms[0].coord[1];
+        c1z = alfatoms[0].coord[2];
+        c2x = alfatoms[1].coord[0];
+        c2y = alfatoms[1].coord[1];
+        c2z = alfatoms[1].coord[2];
+        c3x = alfatoms[2].coord[0];
+        c3y = alfatoms[2].coord[1];
+        c3z = alfatoms[2].coord[2];
         cx = (c1x+c2x+c3x)/3;
         cy = (c1y+c2y+c3y)/3;
         cz = (c1z+c2z+c3z)/3;

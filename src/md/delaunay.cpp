@@ -19,12 +19,12 @@ namespace polmdqc
 
 // "delaunay" computes the weighted Delaunay triangulation
 
-inline void locatejw(int ipoint, int& tetra_loc, bool& iredundant);
-inline void reordertetra();
-inline void removeinf();
-inline void peel(int& flag);
+inline void locatejw(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra, int ipoint, int& tetra_loc, bool& iredundant);
+inline void reordertetra(std::vector<Tetrahedron>& tetra);
+inline void removeinf(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra);
+inline void peel(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra, int& flag);
 
-void delaunay()
+void delaunay(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra, std::queue<std::pair<int,int>>& link_facet, std::queue<std::pair<int,int>>& link_index, std::stack<int>& free, std::vector<int>& kill)
 {
     int tetra_loc;
     int ipoint;
@@ -38,7 +38,7 @@ void delaunay()
 
         // first locate the point in the list of known tetrahedra
         tetra_loc = tetra_last;
-        locatejw(ipoint, tetra_loc, iredundant);
+        locatejw(vertices, tetra, ipoint, tetra_loc, iredundant);
 
         // if the point is redundant, move to next point
         if (iredundant) {
@@ -48,10 +48,10 @@ void delaunay()
 
         // otherwise, add point to tetrahedron: 1-4 flip
         int dummy;
-        flip_1_4(ipoint, tetra_loc, dummy);
+        flip_1_4(tetra, ipoint, tetra_loc, dummy, link_facet, link_index, free, kill);
 
         // now scan link_facet list, and flip till list is empty
-        flip();
+        flip(vertices, tetra, link_facet, link_index, free, kill);
 
         // At this stage, I should have a regular triangulation
         // of the i+4 points (i-th real points+4 "infinite" points)
@@ -59,11 +59,11 @@ void delaunay()
     }
 
     // reorder the tetrahedra, such that vertices are in increasing order
-    reordertetra();
+    reordertetra(tetra);
 
     // I have the regular triangulation: I need to remove the
     // simplices including infinite points, and define the convex hull
-    removeinf();
+    removeinf(vertices, tetra);
 
     // peel off flat tetrahedra at the boundary of the DT
     // int nt = 0;
@@ -71,12 +71,12 @@ void delaunay()
     // if (nt > 1) {
     //     int flag;
     //     do {
-    //         peel(flag);
+    //         peel(vertices, tetra, flag);
     //     } while (flag != 0);
     // }
     int flag;
     do {
-        peel(flag);
+        peel(vertices, tetra, flag);
     } while (flag != 0);
 }
 
@@ -96,9 +96,9 @@ void delaunay()
 // It also checks if the point is redundant in the current
 // tetrahedron. If it is, the search terminates.
 
-inline void insidetetra(int p, int a, int b, int c, int d, int iorient, bool& is_in, bool& redundant, int& ifail);
+inline void insidetetra(std::vector<Vertex>& vertices, int p, int a, int b, int c, int d, int iorient, bool& is_in, bool& redundant, int& ifail);
 
-inline void locatejw(int ipoint, int& tetra_loc, bool& iredundant)
+inline void locatejw(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra, int ipoint, int& tetra_loc, bool& iredundant)
 {
     // define starting tetrahedron
     iredundant = false;
@@ -134,7 +134,7 @@ inline void locatejw(int ipoint, int& tetra_loc, bool& iredundant)
         iorient = -1;
         if (tetra[itetra].info[0]==1) iorient = 1;
 
-        insidetetra(ipoint, a, b, c, d, iorient, test_in, test_red, idx);
+        insidetetra(vertices, ipoint, a, b, c, d, iorient, test_in, test_red, idx);
 
         if (!test_in) itetra = tetra[itetra].neighbors[idx];
 
@@ -155,7 +155,7 @@ inline void locatejw(int ipoint, int& tetra_loc, bool& iredundant)
 // defined by four points (a,b,c,d) with orientation "iorient".
 // If p is inside the tetrahedron, check if redundant
 
-inline void insidetetra(int p, int a, int b, int c, int d, int iorient, bool& is_in, bool& redundant, int& ifail)
+inline void insidetetra(std::vector<Vertex>& vertices, int p, int a, int b, int c, int d, int iorient, bool& is_in, bool& redundant, int& ifail)
 {
 
     int i,j,k,l;
@@ -839,10 +839,10 @@ inline void insidetetra(int p, int a, int b, int c, int d, int iorient, bool& is
 // "reordertetra" reorders the vertices of a list of tetrahedron,
 // such that now the indices are in increasing order
 
-inline void reordertetra()
+inline void reordertetra(std::vector<Tetrahedron>& tetra)
 {
     int ntetra = tetra.size();
-    int vert[4], idx[4], neighbor[4];
+    int vert[4],idx[4],neighbor[4];
     int n = 4;
     int nswap;
     char nidx[4];
@@ -894,9 +894,9 @@ inline void reordertetra()
 // "removeinf" sets to 0 the status of tetrahedron
 // that contains infinite points
 
-inline void markzero(int itetra, int ivertex);
+inline void markzero(std::vector<Tetrahedron>& tetra, int itetra, int ivertex);
 
-inline void removeinf()
+inline void removeinf(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra)
 {
     int a, b, c, d;
     int ntetra = tetra.size();
@@ -912,10 +912,10 @@ inline void removeinf()
         if (a<4 || b<4 || c<4 || d<4) {
             tetra[i].info[2] = 1;
             tetra[i].info[1] = 0;
-            if (a < 4) markzero(i, 0);
-            if (b < 4) markzero(i, 1);
-            if (c < 4) markzero(i, 2);
-            if (d < 4) markzero(i, 3);
+            if (a < 4) markzero(tetra, i, 0);
+            if (b < 4) markzero(tetra, i, 1);
+            if (c < 4) markzero(tetra, i, 2);
+            if (d < 4) markzero(tetra, i, 3);
         }
     }
 
@@ -924,7 +924,7 @@ inline void removeinf()
     }
 }
 
-inline void markzero(int itetra, int ivertex)
+inline void markzero(std::vector<Tetrahedron>& tetra, int itetra, int ivertex)
 {
     int jtetra, jvertex;
 
@@ -946,7 +946,7 @@ inline void markzero(int itetra, int ivertex)
 
 real tetravol(real* a, real* b, real* c, real* d);
 
-inline void peel(int& flag)
+inline void peel(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra, int& flag)
 {
     int ia, ib, ic, id;
     int k, l;

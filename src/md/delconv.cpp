@@ -2,13 +2,13 @@
 // Year:   2024
 
 #include "alffunc.h"
-#include "delaunay.h"
+#include "delconv.h"
 #include "deldet.h"
 #include "delsort.h"
 #include "dlauny.h"
 #include "libfunc.h"
-#include <bitset>
 #include <cassert>
+#include <vector>
 
 namespace polmdqc
 {
@@ -20,7 +20,7 @@ namespace polmdqc
 
 // "regular_convex" checks for local regularity and convexity
 
-void regular_convex(int a, int b, int c, int p, int o, int itest_abcp,
+void regular_convex(std::vector<Vertex>& vertices, int a, int b, int c, int p, int o, int itest_abcp,
     bool& regular, bool& convex, bool& test_abpo, bool& test_bcpo, bool& test_capo) 
 {
     int i,j,k,l,m;

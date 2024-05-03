@@ -2,7 +2,6 @@
 // Year:   2024
 
 #include "alfcxedges.h"
-#include "dlauny.h"
 #include "findedge.h"
 
 namespace polmdqc
@@ -16,7 +15,7 @@ namespace polmdqc
 // "alfcxedges" generates the list of edges in
 // the Alpha complex
 
-void alfcxedges()
+void alfcxedges(std::vector<Tetrahedron>& tetra, std::vector<Edge>& edges)
 {
     int face_info[6][2] = {
         { 0, 1},
@@ -36,17 +35,16 @@ void alfcxedges()
         { 0, 1},
     };
 
-    edges.clear();
-
     // define mask on edges of tetrahedra, to check if already seen
-
     int ntetra = tetra.size();
     std::bitset<6> *tetra_mask = new std::bitset<6>[ntetra];
-
     std::bitset<6> zero(std::string("000000"));
     for (int i = 0; i < ntetra; i++) {
         tetra_mask[i] = zero;
     }
+
+    edges.clear();
+    edges.reserve(ntetra);
 
     // define mask on edges of tetrahedra, to check if already seen
     // loop over all tetrahedron: if it belongs to the Delaunay triangulation,

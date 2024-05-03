@@ -21,25 +21,9 @@ namespace polmdqc
 
 // deleps       epsilon value
 // delepsvol    epsilon volume value
-// vertices     vertices
-// tetra        tetrahedrons
-// edges        edges
-// faces        faces
-// link_facet   
-// link_index   
-// free         
-// kill         
 
 constexpr real deleps = 1e-3;
 constexpr real delepsvol = 1e-13;
-MDQC_EXTERN std::vector<Vertex> vertices;
-MDQC_EXTERN std::vector<Tetrahedron> tetra;
-MDQC_EXTERN std::vector<Edge> edges;
-MDQC_EXTERN std::vector<Face> faces;
-MDQC_EXTERN std::queue<std::pair<int,int>> link_facet;
-MDQC_EXTERN std::queue<std::pair<int,int>> link_index;
-MDQC_EXTERN std::stack<int> free;
-MDQC_EXTERN std::vector<int> kill;
 
 constexpr int inf4_1[4] = {1, 1, 0, 0};
 constexpr int sign4_1[4] = {-1, 1, 1, -1};

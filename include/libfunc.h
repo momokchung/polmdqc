@@ -2,7 +2,6 @@
 // Year:   2023
 
 #pragma once
-
 #include "precision.h"
 #include <cmath>
 

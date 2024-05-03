@@ -3,8 +3,6 @@
 
 #pragma once
 #include "alfc.h"
-#include "alffunc.h"
-#include "alftetra.h"
 #include "libfunc.h"
 #include "precision.h"
 

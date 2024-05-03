@@ -2,11 +2,12 @@
 // Year:   2024
 
 #pragma once
-#include "dlauny.h"
 #include "libfunc.h"
 #include "mathConst.h"
 #include "precision.h"
+#include "vertex.h"
 #include "tetra.h"
+#include <vector>
 
 namespace polmdqc
 {
@@ -16,7 +17,7 @@ namespace polmdqc
 //                                                            //
 ////////////////////////////////////////////////////////////////
 
-inline real dist2(int n1, int n2)
+inline real dist2(std::vector<Vertex>& vertices, int n1, int n2)
 {
     real x;
     real dist = 0;

@@ -3,7 +3,6 @@
 
 #include "alfc.h"
 #include "alfcxfaces.h"
-#include "dlauny.h"
 
 namespace polmdqc
 {
@@ -16,7 +15,7 @@ namespace polmdqc
 // "alfcxfaces" procedure generates the list of boundary
 // faces in the alpha complex
 
-void alfcxfaces()
+void alfcxfaces(std::vector<Tetrahedron>& tetra, std::vector<Face>& faces)
 {
     int face_edge[4][3] = {
         { 2, 1, 0},
@@ -31,9 +30,9 @@ void alfcxfaces()
     int i, j, k;
     double coef;
 
-    faces.clear();
-
     int ntetra = tetra.size();
+    faces.clear();
+    faces.reserve(ntetra);
 
     int e_1, e_2, e_3; 
 

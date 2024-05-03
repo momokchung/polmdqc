@@ -267,9 +267,9 @@ void spacefill(int argc, char** argv)
             }
 
             printf("\n Total Area :              %*.*f Square Angstroms", width, precision, wsurf);
-            printf("\n Total Volume :            %*.*f Square Angstroms", width, precision, wvol);
-            printf("\n Total Mean Curvature :    %*.*f Square Angstroms", width, precision, wmean);
-            printf("\n Total Gaussian Curvature :%*.*f Square Angstroms\n", width, precision, wgauss);
+            printf("\n Total Volume :            %*.*f Cubic Angstroms", width, precision, wvol);
+            printf("\n Total Mean Curvature :    %*.*f Angstrom^-1", width, precision, wmean);
+            printf("\n Total Gaussian Curvature :%*.*f Angstrom^-1\n", width, precision, wgauss);
         }
 
         // get the Cartesian component two-sided numerical gradients

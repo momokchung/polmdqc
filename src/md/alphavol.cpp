@@ -3,7 +3,6 @@
 
 #include "alfsphere.h"
 #include "alphavol.h"
-#include "dlauny.h"
 #include "gausscorners.h"
 #include "libfunc.h"
 #include "mathConst.h"
@@ -19,7 +18,9 @@ namespace polmdqc
 // "alphavol" computes the surface area, volume, mean, and
 // gaussian curvature; also computes derivatives
 
-void alphavol(real& WSurf, real& WVol, real& WMean, real& WGauss,
+void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
+    std::vector<Edge>& edges, std::vector<Face>& faces,
+    real& WSurf, real& WVol, real& WMean, real& WGauss,
     real* ballwsurf, real* ballwvol, real* ballwmean, real* ballwgauss,
     real* dsurf_coord, real* dvol_coord, real* dmean_coord, real* dgauss_coord, bool compder)
 {
@@ -90,7 +91,7 @@ void alphavol(real& WSurf, real& WVol, real& WMean, real& WGauss,
         coefaM = vertices[ia].coefm; coefbM = vertices[ib].coefm;
         coefaG = vertices[ia].coefg; coefbG = vertices[ib].coefg;
 
-        rab2 = dist2(ia, ib);
+        rab2 = dist2(vertices, ia, ib);
         rab = REAL_SQRT(rab2);
 
         twosph(ra, ra2, rb, rb2, rab, rab2, surfa, surfb, vola, volb, r, phi, l);

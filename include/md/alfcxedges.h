@@ -2,6 +2,9 @@
 // Year:   2024
 
 #pragma once
+#include "edge.h"
+#include "tetrahedron.h"
+#include <vector>
 
 namespace polmdqc
 {
@@ -11,5 +14,5 @@ namespace polmdqc
 //                                          //
 //////////////////////////////////////////////
 
-void alfcxedges();
+void alfcxedges(std::vector<Tetrahedron>& tetra, std::vector<Edge>& edges);
 }

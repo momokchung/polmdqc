@@ -20,7 +20,8 @@ namespace polmdqc
 void initalfatm()
 {
     // resize alfatoms
-    alfatoms.resize(n);
+    alfatoms.clear();
+    alfatoms.reserve(n);
 
     // copy atoms into alfatoms list
     real xi, yi, zi, ri, cs, cv, cm, cg;
@@ -34,7 +35,7 @@ void initalfatm()
         cm = coefM[i];
         cg = coefG[i];
         AlfAtom atm(i, xi, yi, zi, ri, cs, cv, cm, cg);
-        alfatoms[i] = atm;
+        alfatoms.push_back(atm);
     }
 
     // If needed, randomly shuffle the atoms

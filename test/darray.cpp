@@ -56,6 +56,24 @@ TEST_CASE("darray-1", "[MDQCArray]") {
     REQUIRE(mdqcv1_3 == 8);
     REQUIRE(mdqcv1_4 == 9);
 
+    mdqcv1[0] = 0;
+    mdqcv1[1] = 1;
+    mdqcv1[2] = 2;
+    mdqcv1[3] = 3;
+    mdqcv1[4] = 4;
+    ptr = &mdqcv1[2];
+    ptr[0] = 5;
+    ptr[1] = 6;
+    mdqcv1_0 = ptr[0];
+    mdqcv1_1 = ptr[1];
+    REQUIRE(mdqcv1[0] == 0);
+    REQUIRE(mdqcv1[1] == 1);
+    REQUIRE(mdqcv1[2] == 5);
+    REQUIRE(mdqcv1[3] == 6);
+    REQUIRE(mdqcv1[4] == 4);
+    REQUIRE(mdqcv1_0 == 5);
+    REQUIRE(mdqcv1_1 == 6);
+
     mdqcv1.deallocate();
     REQUIRE(mdqcv1.size() == 0);
 }

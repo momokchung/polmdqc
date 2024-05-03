@@ -47,9 +47,15 @@ public:
         return len;
     }
 
-    // Return pointer to the underlying array
+    // return pointer to the underlying array
     T* ptr() {
         return array;
+    }
+
+    // return the address of the array at index
+    T* operator& (int index)
+    {
+        return &array[index];
     }
 
     // allocate array
@@ -110,7 +116,7 @@ public:
         return len2;
     }
 
-    // Return pointer to the underlying array
+    // return pointer to the underlying array
     T (*ptr())[n] {
         return array;
     }
@@ -179,7 +185,7 @@ public:
         return len3;
     }
 
-    // Return pointer to the underlying array
+    // return pointer to the underlying array
     T (*ptr())[n][o] {
         return array;
     }
@@ -247,7 +253,7 @@ public:
         return len2;
     }
 
-    // Return pointer to the underlying array
+    // return pointer to the underlying array
     T** ptr() {
         return array;
     }
@@ -325,7 +331,7 @@ public:
         return len3;
     }
 
-    // Return pointer to the underlying array
+    // return pointer to the underlying array
     T*** ptr() {
         return array;
     }
@@ -415,7 +421,7 @@ public:
         return len4;
     }
 
-    // Return pointer to the underlying array
+    // return pointer to the underlying array
     T**** ptr() {
         return array;
     }

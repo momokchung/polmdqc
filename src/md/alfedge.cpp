@@ -2,7 +2,6 @@
 // Year:   2024
 
 #include "alfedge.h"
-#include "dlauny.h"
 
 namespace polmdqc
 {
@@ -17,7 +16,7 @@ namespace polmdqc
 inline void edgeradius(real* a, real* b, real ra, real rb, real* Dab, real* Sab, real* Tab, int& testr, real alpha);
 inline void edgeattach(real* a, real* b, real* c, real ra, real rb, real rc, real* Dab, real* Sab, real* Tab, int& testa);
 
-void alfedge(real* a, real* b, real ra, real rb, 
+void alfedge(std::vector<Vertex>& vertices, real* a, real* b, real ra, real rb, 
     real* cg, std::vector<int>& listcheck, int& irad, int& iattach, real alpha)
 {
     real Dab[4], Sab[3], Tab[3];

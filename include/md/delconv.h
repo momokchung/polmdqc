@@ -2,6 +2,8 @@
 // Year:   2024
 
 #pragma once
+#include "vertex.h"
+#include <vector>
 
 namespace polmdqc
 {
@@ -11,6 +13,6 @@ namespace polmdqc
 //                                                                //
 ////////////////////////////////////////////////////////////////////
 
-void regular_convex(int a, int b, int c, int p, int o, int itest_abcp,
-    bool& regular, bool& convex, bool& test_abpo, bool& test_bcpo, bool& test_capo) ;
+void regular_convex(std::vector<Vertex>& vertices, int a, int b, int c, int p, int o, int itest_abcp,
+    bool& regular, bool& convex, bool& test_abpo, bool& test_bcpo, bool& test_capo);
 }
