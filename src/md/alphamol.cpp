@@ -109,8 +109,23 @@ void alphamol(int natoms, AlfAtom* alfatoms, real& wsurf, real& wvol, real& wmea
     }
 
     start_s = clock();
-    alphavol(vertices, tetra, edges, faces, wsurf, wvol, wmean, wgauss, surf, vol, mean, gauss,
+    alphavol(vertices, tetra, edges, faces, surf, vol, mean, gauss,
         dsurf, dvol, dmean, dgauss, deriv);
+    if (alfmeth==AlfMethod::AlphaMol) {
+        wsurf = 0;
+        wvol = 0;
+        wmean = 0;
+        wgauss = 0;
+        int nvertices = vertices.size();
+        int nballs = 0;
+        for (int i = 0; i < nvertices; i++) if (vertices[i].status==1) nballs++;
+        for (int i = 0; i < nballs; i++) {
+            wsurf += surf[i];
+            wvol += vol[i];
+            wmean += mean[i];
+            wgauss += gauss[i];
+        }
+    }
     stop_s = clock();
 
     if (verbose and alfmeth==AlfMethod::AlphaMol) {

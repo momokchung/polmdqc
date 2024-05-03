@@ -1,6 +1,7 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
+#include "alfboxsize.h"
 #include "alforder.h"
 #include "alfp.h"
 #include "alphamol2.h"
@@ -9,7 +10,7 @@
 #include "dlauny2.h"
 #include "hilbert.h"
 #include "inform.h"
-#include "initalfatm.h"
+#include "multimol.h"
 #include "retmax.h"
 #include "retmin.h"
 #include <algorithm>
@@ -56,30 +57,14 @@ void alphamol2(bool deriv)
     real t1,t2,u1,u2,diff;
     real total = 0;
 
-    // initialize the alfatoms vector
-    gettime(t1, u1);
-    initalfatm();
-    gettime(t2, u2);
-    diff = gettimediff(t1, u1, t2, u2);
-    if (verbose) {
-        printf("\n Initalfatm compute time : %10.6f ms\n", diff*1000);
-        total += diff;
-    }
-
     // if needed, reorder  atoms
     gettime(t1, u1);
     real xmin,ymin,zmin;
     real xmax,ymax,zmax;
     real rmax;
     std::vector<int> Nval(alfnthd + 1, 0);
-    xmin = retmin(x);
-    ymin = retmin(y);
-    zmin = retmin(z);
-    xmax = retmax(x);
-    ymax = retmax(y);
-    zmax = retmax(z);
-    rmax = retmax(radii);
-    alforder(xmin,ymin,zmin,xmax,ymax,zmax,rmax,alfnthd,Nval);
+    alfboxsize(&alfatoms[0], alfatoms.size(), xmin, ymin, zmin, xmax, ymax, zmax, rmax);
+    alforder(xmin, ymin, zmin, xmax, ymax, zmax, rmax, alfnthd, Nval);
     gettime(t2, u2);
     diff = gettimediff(t1, u1, t2, u2);
     if (verbose) {
@@ -90,20 +75,15 @@ void alphamol2(bool deriv)
     // run AlphaMol algorithm
     gettime(t1, u1);
     int natoms = alfatoms.size();
-    // double WGeom[4];
-    // double *geom = new double[4*(natoms+8)];
-    // double *geom_order = new double[4*(natoms+8)];
-    // double *dgeom = new double[12*(natoms+8)];
-    double buffer = 2*rmax;
-
+    real buffer = 2*rmax;
+    multimol(buffer, deriv, alfnthd, Nval);
     gettime(t2, u2);
     diff = gettimediff(t1, u1, t2, u2);
     if (verbose) {
-        printf("\n MeasureMol compute time : %10.6f ms\n", diff*1000);
+        printf("\n MultiMol compute time : %10.6f ms\n", diff*1000);
         total += diff;
     }
 
-    printf("alfnthd %d\n", alfnthd);
     if (verbose) {
         printf("\n AlphaMol2 compute time : %10.6f ms\n", total*1000);
     }

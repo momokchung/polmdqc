@@ -147,7 +147,7 @@ inline int splitHilbert(AlfAtom *alfatoms, int size, int gc0, int gc1,
 
 // "sort3DHilbert" sorts points using the 3d Hilbert curve
 
-void sort3DHilbert(AlfAtom *alfatoms, int size, int e, int d, real xmin, real xmax, real ymin, real ymax, real zmin, real zmax, int depth)
+void sort3DHilbert(AlfAtom *alfatoms, int size, int e, int d, real xmin, real ymin, real zmin, real xmax, real ymax, real zmax, int depth)
 {
     int N = 3;
     int mask = 7;
@@ -232,7 +232,7 @@ void sort3DHilbert(AlfAtom *alfatoms, int size, int e, int d, real xmin, real xm
                 z1 = zmin;
                 z2 = 0.5 * (zmin + zmax);
             }
-            sort3DHilbert(&(alfatoms[p[w]]), p[w+1] - p[w], ei, di, x1, x2, y1, y2, z1, z2, depth+1);
+            sort3DHilbert(&(alfatoms[p[w]]), p[w+1] - p[w], ei, di, x1, y1, z1, x2, y2, z2, depth+1);
         } // if (p[w+1] - p[w] > 1)
     } // w
 }
@@ -245,16 +245,16 @@ void sort3DHilbert(AlfAtom *alfatoms, int size, int e, int d, real xmin, real xm
 
 // "brioHilbert" sorts points using brio / 3d Hilbert curve
 
-void brioHilbert(AlfAtom *alfatoms, int size, real xmin, real xmax, real ymin, real ymax, real zmin, real zmax, int depth)
+void brioHilbert(AlfAtom *alfatoms, int size, real xmin, real ymin, real zmin, real xmax, real ymax, real zmax, int depth)
 {
     int middle = 0;
 
     if(size >= brio_threshold) {
         depth++;
         middle = size*brio_ratio;
-        brioHilbert(alfatoms, middle, xmin, xmax, ymin, ymax, zmin, zmax, depth);
+        brioHilbert(alfatoms, middle, xmin, ymin, zmin, xmax, ymax, zmax, depth);
     }
 
-    sort3DHilbert(&(alfatoms[middle]), size - middle, 0, 0, xmin, xmax, ymin, ymax, zmin, zmax, 0);
+    sort3DHilbert(&(alfatoms[middle]), size - middle, 0, 0, xmin, ymin, zmin, xmax, ymax, zmax, 0);
 }
 }

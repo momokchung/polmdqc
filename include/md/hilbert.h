@@ -14,7 +14,7 @@ namespace polmdqc
 
 void initHilbert(int ndim);
 
-void sort3DHilbert(AlfAtom *alfatoms, int size, int e, int d, real xmin, real xmax, real ymin, real ymax, real zmin, real zmax, int depth);
+void sort3DHilbert(AlfAtom *alfatoms, int size, int e, int d, real xmin, real ymin, real zmin, real xmax, real ymax, real zmax, int depth);
 
-void brioHilbert(AlfAtom *alfatoms, int size, real xmin, real xmax, real ymin, real ymax, real zmin, real zmax, int depth);
+void brioHilbert(AlfAtom *alfatoms, int size, real xmin, real ymin, real zmin, real xmax, real ymax, real zmax, int depth);
 }

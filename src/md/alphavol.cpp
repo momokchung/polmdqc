@@ -20,7 +20,6 @@ namespace polmdqc
 
 void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
     std::vector<Edge>& edges, std::vector<Face>& faces,
-    real& WSurf, real& WVol, real& WMean, real& WGauss,
     real* ballwsurf, real* ballwvol, real* ballwmean, real* ballwgauss,
     real* dsurf_coord, real* dvol_coord, real* dmean_coord, real* dgauss_coord, bool compder)
 {
@@ -62,10 +61,6 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
     int ntetra = tetra.size();
 
     // initialize results arrays
-    WSurf = 0;
-    WVol  = 0;
-    WMean = 0;
-    WGauss= 0;
     for (int i = 0; i < nvertices; i++) {
         ballwsurf[i] = 0.;
         ballwvol[i] = 0.;
@@ -430,21 +425,10 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
         coefaS = vertices[i].coefs; coefaV = vertices[i].coefv;
         coefaM = vertices[i].coefm; coefaG = vertices[i].coefg;
 
-        real bwsurf = ballwsurf[i]*coefaS;
-        ballwsurf[i] = bwsurf;
-        WSurf += bwsurf;
-
-        real bwvol = ballwvol[i]*coefaV;
-        ballwvol[i] = bwvol;
-        WVol += bwvol;
-
-        real bwmean = ballwmean[i]*coefaM;
-        ballwmean[i] = bwmean;
-        WMean += bwmean;
-
-        real bwgauss = ballwgauss[i]*coefaG;
-        ballwgauss[i] = bwgauss;
-        WGauss += bwgauss;
+        ballwsurf[i] *= coefaS;
+        ballwvol[i] *= coefaV;
+        ballwmean[i] *= coefaM;
+        ballwgauss[i] *= coefaG;
     }
 
     // shift as 4 first vertices are pseudo atoms

@@ -25,10 +25,11 @@ void alfmol(bool deriv)
     initalfatm();
 
     // run AlphaMol
-    alphamol(alfatoms.size(), &(alfatoms[0]), wsurf, wvol, wmean, wgauss,
+    if (alfmeth == AlfMethod::AlphaMol) {
+        alphamol(alfatoms.size(), &(alfatoms[0]), wsurf, wvol, wmean, wgauss,
         surf.ptr(), vol.ptr(), mean.ptr(), gauss.ptr(),
         dsurf.ptr(), dvol.ptr(), dmean.ptr(), dgauss.ptr(), deriv);
-    // if (alfmeth == AlfMethod::AlphaMol) alphamol(deriv);
-    // else if (alfmeth == AlfMethod::AlphaMol2) alphamol2(deriv);
+    }
+    else if (alfmeth == AlfMethod::AlphaMol2) alphamol2(deriv);
 }
 }

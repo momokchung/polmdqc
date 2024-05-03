@@ -12,5 +12,5 @@ namespace polmdqc
 //                                                    //
 ////////////////////////////////////////////////////////
 
-void splitGrid(AlfAtom *alfatoms, int size, real xmin, real xmax, real ymin, real ymax, real zmin, real zmax, int ncube, std::vector<int>& Nval);
+void splitGrid(AlfAtom *alfatoms, int size, real xmin, real ymin, real zmin, real xmax, real ymax, real zmax, int ncube, std::vector<int>& Nval);
 }

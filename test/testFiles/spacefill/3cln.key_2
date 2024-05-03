@@ -1,0 +1,5 @@
+parameters        ../../params/amoebabio18
+
+digits 8
+multipoleterm only
+alf-method alphamol2

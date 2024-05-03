@@ -27,13 +27,13 @@ void alforder(real xmin, real ymin, real zmin, real xmax, real ymax, real zmax, 
     int depth = 0;
 
     if (alfsort == AlfSort::Sort3D) {
-        sort3DHilbert(&alfatoms[0], alfatoms.size(), 0, 0, xmin, xmax, ymin, ymax, zmin, zmax, depth);
+        sort3DHilbert(&alfatoms[0], alfatoms.size(), 0, 0, xmin, ymin, zmin, xmax, ymax, zmax, depth);
     }
     else if (alfsort == AlfSort::BRIO) {
-        brioHilbert(&alfatoms[0], alfatoms.size(), xmin, xmax, ymin, ymax, zmin, zmax, depth);
+        brioHilbert(&alfatoms[0], alfatoms.size(), xmin, ymin, zmin, xmax, ymax, zmax, depth);
     }
     else if (alfsort == AlfSort::Split) {
-        splitGrid(&alfatoms[0], alfatoms.size(), xmin, xmax, ymin, ymax, zmin, zmax, nthreads, Nval);
+        splitGrid(&alfatoms[0], alfatoms.size(), xmin, ymin, zmin, xmax, ymax, zmax, nthreads, Nval);
     }
     else if (alfsort == AlfSort::KDTree) {
         int nsplit = (int) std::log2((double) nthreads);

@@ -4,6 +4,7 @@ src/promo.cpp
 src/rootdir.cpp
 src/md/active.cpp
 src/md/alfatom.cpp
+src/md/alfboxsize.cpp
 src/md/alfcx.cpp
 src/md/alfcxedges.cpp
 src/md/alfcxfaces.cpp
@@ -81,6 +82,7 @@ src/md/lattice.cpp
 src/md/lowcase.cpp
 src/md/mechanic.cpp
 src/md/molecule.cpp
+src/md/multimol.cpp
 src/md/mutate.cpp
 src/md/nextarg.cpp
 src/md/numeral.cpp

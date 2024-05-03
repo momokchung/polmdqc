@@ -1,0 +1,8 @@
+parameters        ../../params/amoebabio09
+
+digits 8
+multipoleterm only
+alf-method alphamol2
+
+active -14 20
+active 5 6 7

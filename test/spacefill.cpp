@@ -1,3 +1,4 @@
+#include "alfp.h"
 #include "alphmol.h"
 #include "final.h"
 #include "inform.h"
@@ -10,9 +11,10 @@ namespace polmdqc
 TEST_CASE("spacefill-1", "[spacefill][AMOEBA][water09]") {
     // Van der Waals Area and Volume
     // include hydrogen
-    int argc = 7;
+    int argc = 9;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/water09.key",
         "../../test/testFiles/spacefill/water09.xyz",
         "1","Y","N","Y","N"
     };
@@ -20,6 +22,8 @@ TEST_CASE("spacefill-1", "[spacefill][AMOEBA][water09]") {
 
     test = true;
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
 
     COMPARE_REALS(wsurf, spacefill1::wsurf, spacefill1::eps);
     COMPARE_REALS(wvol, spacefill1::wvol, spacefill1::eps);
@@ -47,9 +51,10 @@ TEST_CASE("spacefill-1", "[spacefill][AMOEBA][water09]") {
 TEST_CASE("spacefill-2", "[spacefill][AMOEBA][water09]") {
     // Van der Waals Area and Volume
     // exclude hydrogen
-    int argc = 7;
+    int argc = 9;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/water09.key",
         "../../test/testFiles/spacefill/water09.xyz",
         "1","N","N","Y","N"
     };
@@ -57,6 +62,8 @@ TEST_CASE("spacefill-2", "[spacefill][AMOEBA][water09]") {
 
     test = true;
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
 
     COMPARE_REALS(wsurf, spacefill2::wsurf, spacefill2::eps);
     COMPARE_REALS(wvol, spacefill2::wvol, spacefill2::eps);
@@ -84,9 +91,10 @@ TEST_CASE("spacefill-2", "[spacefill][AMOEBA][water09]") {
 TEST_CASE("spacefill-3", "[spacefill][AMOEBA][water09]") {
     // Accessible Area and Excluded Volume
     // include hydrogen
-    int argc = 8;
+    int argc = 10;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/water09.key",
         "../../test/testFiles/spacefill/water09.xyz",
         "2","1.4","Y","N","Y","N"
     };
@@ -94,6 +102,8 @@ TEST_CASE("spacefill-3", "[spacefill][AMOEBA][water09]") {
 
     test = true;
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
 
     COMPARE_REALS(wsurf, spacefill3::wsurf, spacefill3::eps);
     COMPARE_REALS(wvol, spacefill3::wvol, spacefill3::eps);
@@ -121,9 +131,10 @@ TEST_CASE("spacefill-3", "[spacefill][AMOEBA][water09]") {
 TEST_CASE("spacefill-4", "[spacefill][AMOEBA][water09]") {
     // Accessible Area and Excluded Volume
     // exclude hydrogen
-    int argc = 8;
+    int argc = 10;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/water09.key",
         "../../test/testFiles/spacefill/water09.xyz",
         "2","1.4","N","N","Y","N"
     };
@@ -131,6 +142,8 @@ TEST_CASE("spacefill-4", "[spacefill][AMOEBA][water09]") {
 
     test = true;
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
 
     COMPARE_REALS(wsurf, spacefill4::wsurf, spacefill4::eps);
     COMPARE_REALS(wvol, spacefill4::wvol, spacefill4::eps);
@@ -157,9 +170,10 @@ TEST_CASE("spacefill-4", "[spacefill][AMOEBA][water09]") {
 
 TEST_CASE("spacefill-5", "[spacefill][AMOEBA][water09]") {
     // numerical gradient
-    int argc = 9;
+    int argc = 11;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/water09.key",
         "../../test/testFiles/spacefill/water09.xyz",
         "2","1.4","Y","N","N","Y","1e-5"
     };
@@ -167,6 +181,8 @@ TEST_CASE("spacefill-5", "[spacefill][AMOEBA][water09]") {
 
     test = true;
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
 
     int n = 6;
     for (int i = 0; i < 3*n; i++) {
@@ -181,33 +197,37 @@ TEST_CASE("spacefill-5", "[spacefill][AMOEBA][water09]") {
 
 TEST_CASE("spacefill-6", "[spacefill][AMOEBA][alatet]") {
     // 1
-    int argc1 = 7;
+    int argc1 = 9;
     const char* strings1[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/alatet.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "1","Y","N","N","N"
     };
     char** argv1 = const_cast<char**>(strings1);
     // 2
-    int argc2 = 7;
+    int argc2 = 9;
     const char* strings2[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/alatet.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "1","N","N","N","N"
     };
     char** argv2 = const_cast<char**>(strings2);
     // 3
-    int argc3 = 8;
+    int argc3 = 10;
     const char* strings3[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/alatet.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "2","1.4","Y","N","N","N"
     };
     char** argv3 = const_cast<char**>(strings3);
     // 4
-    int argc4 = 8;
+    int argc4 = 10;
     const char* strings4[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/alatet.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "2","1.4","N","N","N","N"
     };
@@ -216,6 +236,7 @@ TEST_CASE("spacefill-6", "[spacefill][AMOEBA][alatet]") {
     test = true;
 
     spacefill(argc1, argv1);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill6::wsurf1, spacefill6::eps);
     COMPARE_REALS(wvol, spacefill6::wvol1, spacefill6::eps);
     COMPARE_REALS(wmean, spacefill6::wmean1, spacefill6::eps);
@@ -223,6 +244,7 @@ TEST_CASE("spacefill-6", "[spacefill][AMOEBA][alatet]") {
     final();
 
     spacefill(argc2, argv2);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill6::wsurf2, spacefill6::eps);
     COMPARE_REALS(wvol, spacefill6::wvol2, spacefill6::eps);
     COMPARE_REALS(wmean, spacefill6::wmean2, spacefill6::eps);
@@ -230,6 +252,7 @@ TEST_CASE("spacefill-6", "[spacefill][AMOEBA][alatet]") {
     final();
 
     spacefill(argc3, argv3);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill6::wsurf3, spacefill6::eps);
     COMPARE_REALS(wvol, spacefill6::wvol3, spacefill6::eps);
     COMPARE_REALS(wmean, spacefill6::wmean3, spacefill6::eps);
@@ -237,6 +260,7 @@ TEST_CASE("spacefill-6", "[spacefill][AMOEBA][alatet]") {
     final();
 
     spacefill(argc4, argv4);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill6::wsurf4, spacefill6::eps);
     COMPARE_REALS(wvol, spacefill6::wvol4, spacefill6::eps);
     COMPARE_REALS(wmean, spacefill6::wmean4, spacefill6::eps);
@@ -249,7 +273,7 @@ TEST_CASE("spacefill-7", "[spacefill][AMOEBA][alatet]") {
     // 1
     int argc1 = 9;
     const char* strings1[] = {
-        "analyze",
+        "spacefill",
         "-k", "../../test/testFiles/spacefill/inactive.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "1","Y","N","N","N"
@@ -258,7 +282,7 @@ TEST_CASE("spacefill-7", "[spacefill][AMOEBA][alatet]") {
     // 2
     int argc2 = 9;
     const char* strings2[] = {
-        "analyze",
+        "spacefill",
         "-k", "../../test/testFiles/spacefill/inactive.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "1","N","N","N","N"
@@ -267,7 +291,7 @@ TEST_CASE("spacefill-7", "[spacefill][AMOEBA][alatet]") {
     // 3
     int argc3 = 10;
     const char* strings3[] = {
-        "analyze",
+        "spacefill",
         "-k", "../../test/testFiles/spacefill/inactive.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "2","1.4","Y","N","N","N"
@@ -276,7 +300,7 @@ TEST_CASE("spacefill-7", "[spacefill][AMOEBA][alatet]") {
     // 4
     int argc4 = 10;
     const char* strings4[] = {
-        "analyze",
+        "spacefill",
         "-k", "../../test/testFiles/spacefill/inactive.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "2","1.4","N","N","N","N"
@@ -286,6 +310,7 @@ TEST_CASE("spacefill-7", "[spacefill][AMOEBA][alatet]") {
     test = true;
 
     spacefill(argc1, argv1);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill7::wsurf1, spacefill7::eps);
     COMPARE_REALS(wvol, spacefill7::wvol1, spacefill7::eps);
     COMPARE_REALS(wmean, spacefill7::wmean1, spacefill7::eps);
@@ -293,6 +318,7 @@ TEST_CASE("spacefill-7", "[spacefill][AMOEBA][alatet]") {
     final();
 
     spacefill(argc2, argv2);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill7::wsurf2, spacefill7::eps);
     COMPARE_REALS(wvol, spacefill7::wvol2, spacefill7::eps);
     COMPARE_REALS(wmean, spacefill7::wmean2, spacefill7::eps);
@@ -300,6 +326,7 @@ TEST_CASE("spacefill-7", "[spacefill][AMOEBA][alatet]") {
     final();
 
     spacefill(argc3, argv3);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill7::wsurf3, spacefill7::eps);
     COMPARE_REALS(wvol, spacefill7::wvol3, spacefill7::eps);
     COMPARE_REALS(wmean, spacefill7::wmean3, spacefill7::eps);
@@ -307,6 +334,7 @@ TEST_CASE("spacefill-7", "[spacefill][AMOEBA][alatet]") {
     final();
 
     spacefill(argc4, argv4);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill7::wsurf4, spacefill7::eps);
     COMPARE_REALS(wvol, spacefill7::wvol4, spacefill7::eps);
     COMPARE_REALS(wmean, spacefill7::wmean4, spacefill7::eps);
@@ -319,7 +347,7 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
     // 1
     int argc1 = 9;
     const char* strings1[] = {
-        "analyze",
+        "spacefill",
         "-k", "../../test/testFiles/spacefill/active.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "1","Y","N","N","N"
@@ -328,7 +356,7 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
     // 2
     int argc2 = 9;
     const char* strings2[] = {
-        "analyze",
+        "spacefill",
         "-k", "../../test/testFiles/spacefill/active.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "1","N","N","N","N"
@@ -337,7 +365,7 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
     // 3
     int argc3 = 10;
     const char* strings3[] = {
-        "analyze",
+        "spacefill",
         "-k", "../../test/testFiles/spacefill/active.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "2","1.4","Y","N","N","N"
@@ -346,7 +374,7 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
     // 4
     int argc4 = 10;
     const char* strings4[] = {
-        "analyze",
+        "spacefill",
         "-k", "../../test/testFiles/spacefill/active.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "2","1.4","N","N","N","N"
@@ -356,6 +384,7 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
     test = true;
 
     spacefill(argc1, argv1);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill8::wsurf1, spacefill8::eps);
     COMPARE_REALS(wvol, spacefill8::wvol1, spacefill8::eps);
     COMPARE_REALS(wmean, spacefill8::wmean1, spacefill8::eps);
@@ -363,6 +392,7 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
     final();
 
     spacefill(argc2, argv2);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill8::wsurf2, spacefill8::eps);
     COMPARE_REALS(wvol, spacefill8::wvol2, spacefill8::eps);
     COMPARE_REALS(wmean, spacefill8::wmean2, spacefill8::eps);
@@ -370,6 +400,7 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
     final();
 
     spacefill(argc3, argv3);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill8::wsurf3, spacefill8::eps);
     COMPARE_REALS(wvol, spacefill8::wvol3, spacefill8::eps);
     COMPARE_REALS(wmean, spacefill8::wmean3, spacefill8::eps);
@@ -377,6 +408,7 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
     final();
 
     spacefill(argc4, argv4);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill8::wsurf4, spacefill8::eps);
     COMPARE_REALS(wvol, spacefill8::wvol4, spacefill8::eps);
     COMPARE_REALS(wmean, spacefill8::wmean4, spacefill8::eps);
@@ -386,9 +418,10 @@ TEST_CASE("spacefill-8", "[spacefill][AMOEBA][alatet]") {
 
 TEST_CASE("spacefill-9", "[spacefill][AMOEBA][alatet]") {
     // atomic surface area, volume, mean curvature, and gaussian curvature
-    int argc = 7;
+    int argc = 9;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/alatet.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "1","Y","N","N","N"
     };
@@ -396,6 +429,8 @@ TEST_CASE("spacefill-9", "[spacefill][AMOEBA][alatet]") {
 
     test = true;
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     
     int n = 42;
     for (int i = 0; i < n; i++) {
@@ -410,9 +445,10 @@ TEST_CASE("spacefill-9", "[spacefill][AMOEBA][alatet]") {
 
 TEST_CASE("spacefill-10", "[spacefill][AMOEBA][alatet]") {
     // gradient surface area, volume, mean curvature, and gaussian curvature
-    int argc = 8;
+    int argc = 10;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/alatet.key",
         "../../test/testFiles/spacefill/alatet.xyz",
         "1","Y","N","Y","Y","1e-5"
     };
@@ -420,6 +456,8 @@ TEST_CASE("spacefill-10", "[spacefill][AMOEBA][alatet]") {
 
     test = true;
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     
     int n = 42;
     for (int i = 0; i < 3*n; i++) {
@@ -441,15 +479,17 @@ TEST_CASE("spacefill-10", "[spacefill][AMOEBA][alatet]") {
 
 TEST_CASE("spacefill-11", "[spacefill][AMOEBA][concat]") {
     // ability to read concatenated files
-    int argc = 7;
+    int argc = 9;
     const char* strings1[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/alatetwater.key",
         "../../test/testFiles/spacefill/alatetwater.xyz",
         "1","Y","N","N","N"
     };
     char** argv1 = const_cast<char**>(strings1);
     const char* strings2[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/wateralatet.key",
         "../../test/testFiles/spacefill/wateralatet.xyz",
         "1","Y","N","N","N"
     };
@@ -458,6 +498,7 @@ TEST_CASE("spacefill-11", "[spacefill][AMOEBA][concat]") {
     test = true;
 
     spacefill(argc, argv1);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill11::wsurf1, spacefill11::eps);
     COMPARE_REALS(wvol, spacefill11::wvol1, spacefill11::eps);
     COMPARE_REALS(wmean, spacefill11::wmean1, spacefill11::eps);
@@ -465,6 +506,7 @@ TEST_CASE("spacefill-11", "[spacefill][AMOEBA][concat]") {
     final();
 
     spacefill(argc, argv2);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill11::wsurf2, spacefill11::eps);
     COMPARE_REALS(wvol, spacefill11::wvol2, spacefill11::eps);
     COMPARE_REALS(wmean, spacefill11::wmean2, spacefill11::eps);
@@ -474,9 +516,10 @@ TEST_CASE("spacefill-11", "[spacefill][AMOEBA][concat]") {
 
 TEST_CASE("spacefill-12", "[spacefill][AMOEBA][chloride27]") {
     // symmetric object
-    int argc = 7;
+    int argc = 9;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/chloride27.key",
         "../../test/testFiles/spacefill/chloride27.xyz",
         "1","Y","N","N","N"
     };
@@ -485,6 +528,8 @@ TEST_CASE("spacefill-12", "[spacefill][AMOEBA][chloride27]") {
     test = true;
 
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
 
     COMPARE_REALS(wsurf, spacefill12::wsurf, spacefill12::eps);
     COMPARE_REALS(wvol, spacefill12::wvol, spacefill12::eps);
@@ -495,9 +540,10 @@ TEST_CASE("spacefill-12", "[spacefill][AMOEBA][chloride27]") {
 }
 
 TEST_CASE("spacefill-13", "[spacefill][AMOEBA][3ibk]") {
-    int argc = 7;
+    int argc = 9;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/3ibk.key",
         "../../test/testFiles/spacefill/3ibk.xyz",
         "1","Y","N","N","N"
     };
@@ -506,6 +552,8 @@ TEST_CASE("spacefill-13", "[spacefill][AMOEBA][3ibk]") {
     test = true;
 
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
 
     COMPARE_REALS(wsurf, spacefill13::wsurf, spacefill13::eps);
     COMPARE_REALS(wvol, spacefill13::wvol, spacefill13::eps);
@@ -516,9 +564,10 @@ TEST_CASE("spacefill-13", "[spacefill][AMOEBA][3ibk]") {
 }
 
 TEST_CASE("spacefill-14", "[spacefill][AMOEBA][3cln]") {
-    int argc = 8;
+    int argc = 10;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/3cln.key",
         "../../test/testFiles/spacefill/3cln.xyz",
         "2","1.4","Y","N","N","N"
     };
@@ -528,6 +577,8 @@ TEST_CASE("spacefill-14", "[spacefill][AMOEBA][3cln]") {
 
     spacefill(argc, argv);
 
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
+
     COMPARE_REALS(wsurf, spacefill14::wsurf, spacefill14::eps);
     COMPARE_REALS(wvol, spacefill14::wvol, spacefill14::eps);
 
@@ -535,9 +586,10 @@ TEST_CASE("spacefill-14", "[spacefill][AMOEBA][3cln]") {
 }
 
 TEST_CASE("spacefill-15", "[spacefill][AMOEBA][waterbox30]") {
-    int argc = 7;
+    int argc = 9;
     const char* strings[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/waterbox30.key",
         "../../test/testFiles/spacefill/waterbox30.xyz",
         "1","Y","N","N","N"
     };
@@ -546,6 +598,8 @@ TEST_CASE("spacefill-15", "[spacefill][AMOEBA][waterbox30]") {
     test = true;
 
     spacefill(argc, argv);
+
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
 
     COMPARE_REALS(wsurf, spacefill15::wsurf, spacefill15::eps);
     COMPARE_REALS(wvol, spacefill15::wvol, spacefill15::eps);
@@ -556,39 +610,45 @@ TEST_CASE("spacefill-15", "[spacefill][AMOEBA][waterbox30]") {
 }
 
 TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
-    int argc = 7;
+    int argc = 9;
     const char* strings0[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/chloride1.key",
         "../../test/testFiles/spacefill/chloride1.xyz",
         "1","Y","N","N","N"
     };
     char** argv0 = const_cast<char**>(strings0);
     const char* strings1[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/lchloride2.key",
         "../../test/testFiles/spacefill/lchloride2.xyz",
         "1","Y","N","N","N"
     };
     char** argv1 = const_cast<char**>(strings1);
     const char* strings2[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/lchloride3.key",
         "../../test/testFiles/spacefill/lchloride3.xyz",
         "1","Y","N","N","N"
     };
     char** argv2 = const_cast<char**>(strings2);
     const char* strings3[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/lchloride4.key",
         "../../test/testFiles/spacefill/lchloride4.xyz",
         "1","Y","N","N","N"
     };
     char** argv3 = const_cast<char**>(strings3);
     const char* strings4[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/lchloride5.key",
         "../../test/testFiles/spacefill/lchloride5.xyz",
         "1","Y","N","N","N"
     };
     char** argv4 = const_cast<char**>(strings4);
     const char* strings5[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/lchloride6.key",
         "../../test/testFiles/spacefill/lchloride6.xyz",
         "1","Y","N","N","N"
     };
@@ -597,6 +657,7 @@ TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
     test = true;
 
     spacefill(argc, argv0);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill16::wsurf0, spacefill16::eps);
     COMPARE_REALS(wvol, spacefill16::wvol0, spacefill16::eps);
     COMPARE_REALS(wmean, spacefill16::wmean0, spacefill16::eps);
@@ -604,6 +665,7 @@ TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
     final();
 
     spacefill(argc, argv1);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill16::wsurf1, spacefill16::eps);
     COMPARE_REALS(wvol, spacefill16::wvol1, spacefill16::eps);
     COMPARE_REALS(wmean, spacefill16::wmean1, spacefill16::eps);
@@ -611,6 +673,7 @@ TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
     final();
 
     spacefill(argc, argv2);
+    // REQUIRE(alfmeth == AlfMethod::AlphaMol);
     // COMPARE_REALS(wsurf, spacefill16::wsurf2, spacefill16::eps);
     // COMPARE_REALS(wvol, spacefill16::wvol2, spacefill16::eps);
     // COMPARE_REALS(wmean, spacefill16::wmean2, spacefill16::eps);
@@ -618,6 +681,7 @@ TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
     final();
 
     spacefill(argc, argv3);
+    // REQUIRE(alfmeth == AlfMethod::AlphaMol);
     // COMPARE_REALS(wsurf, spacefill16::wsurf3, spacefill16::eps);
     // COMPARE_REALS(wvol, spacefill16::wvol3, spacefill16::eps);
     // COMPARE_REALS(wmean, spacefill16::wmean3, spacefill16::eps);
@@ -625,6 +689,7 @@ TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
     final();
 
     spacefill(argc, argv4);
+    // REQUIRE(alfmeth == AlfMethod::AlphaMol);
     // COMPARE_REALS(wsurf, spacefill16::wsurf4, spacefill16::eps);
     // COMPARE_REALS(wvol, spacefill16::wvol4, spacefill16::eps);
     // COMPARE_REALS(wmean, spacefill16::wmean4, spacefill16::eps);
@@ -632,6 +697,7 @@ TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
     final();
 
     spacefill(argc, argv5);
+    // REQUIRE(alfmeth == AlfMethod::AlphaMol);
     // COMPARE_REALS(wsurf, spacefill16::wsurf5, spacefill16::eps);
     // COMPARE_REALS(wvol, spacefill16::wvol5, spacefill16::eps);
     // COMPARE_REALS(wmean, spacefill16::wmean5, spacefill16::eps);
@@ -640,21 +706,24 @@ TEST_CASE("spacefill-16", "[spacefill][AMOEBA][lchloride]") {
 }
 
 TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
-    int argc = 7;
+    int argc = 9;
     const char* strings1[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/pchloride3.key",
         "../../test/testFiles/spacefill/pchloride3.xyz",
         "1","Y","N","N","N"
     };
     char** argv1 = const_cast<char**>(strings1);
     const char* strings2[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/pchloride4.key",
         "../../test/testFiles/spacefill/pchloride4.xyz",
         "1","Y","N","N","N"
     };
     char** argv2 = const_cast<char**>(strings2);
     const char* strings3[] = {
-        "analyze",
+        "spacefill",
+        "-k", "../../test/testFiles/spacefill/pchloride5.key",
         "../../test/testFiles/spacefill/pchloride5.xyz",
         "1","Y","N","N","N"
     };
@@ -663,6 +732,7 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
     test = true;
 
     spacefill(argc, argv1);
+    REQUIRE(alfmeth == AlfMethod::AlphaMol);
     COMPARE_REALS(wsurf, spacefill17::wsurf1, spacefill17::eps);
     COMPARE_REALS(wvol, spacefill17::wvol1, spacefill17::eps);
     COMPARE_REALS(wmean, spacefill17::wmean1, spacefill17::eps);
@@ -670,6 +740,7 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
     final();
 
     spacefill(argc, argv2);
+    // REQUIRE(alfmeth == AlfMethod::AlphaMol);
     // COMPARE_REALS(wsurf, spacefill17::wsurf2, spacefill17::eps);
     // COMPARE_REALS(wvol, spacefill17::wvol2, spacefill17::eps);
     // COMPARE_REALS(wmean, spacefill17::wmean2, spacefill17::eps);
@@ -677,6 +748,7 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
     final();
 
     spacefill(argc, argv3);
+    // REQUIRE(alfmeth == AlfMethod::AlphaMol);
     // COMPARE_REALS(wsurf, spacefill17::wsurf3, spacefill17::eps);
     // COMPARE_REALS(wvol, spacefill17::wvol3, spacefill17::eps);
     // COMPARE_REALS(wmean, spacefill17::wmean3, spacefill17::eps);
@@ -686,27 +758,31 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
 
 // TEST_CASE("spacefill-18", "[spacefill][AMOEBA][crystal8k]") {
 //     // symmetric object; optional
-//     int argc = 7;
+//     int argc = 9;
 //     const char* strings1[] = {
-//         "analyze",
+//         "spacefill",
+//         "-k", "../../test/testFiles/spacefill/crystal8k_1.key",
 //         "../../test/testFiles/spacefill/crystal8k_1.xyz",
 //         "1","Y","N","N","N"
 //     };
 //     char** argv1 = const_cast<char**>(strings1);
 //     const char* strings2[] = {
-//         "analyze",
+//         "spacefill",
+//         "-k", "../../test/testFiles/spacefill/crystal8k_2.key",
 //         "../../test/testFiles/spacefill/crystal8k_2.xyz",
 //         "1","Y","N","N","N"
 //     };
 //     char** argv2 = const_cast<char**>(strings2);
 //     const char* strings3[] = {
-//         "analyze",
+//         "spacefill",
+//         "-k", "../../test/testFiles/spacefill/crystal8k_3.key",
 //         "../../test/testFiles/spacefill/crystal8k_3.xyz",
 //         "1","Y","N","N","N"
 //     };
 //     char** argv3 = const_cast<char**>(strings3);
 //     const char* strings4[] = {
-//         "analyze",
+//         "spacefill",
+//         "-k", "../../test/testFiles/spacefill/crystal8k_4.key",
 //         "../../test/testFiles/spacefill/crystal8k_4.xyz",
 //         "1","Y","N","N","N"
 //     };
@@ -715,6 +791,7 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
 //     test = true;
 
 //     spacefill(argc, argv1);
+//     REQUIRE(alfmeth == AlfMethod::AlphaMol);
 //     COMPARE_REALS(wsurf, spacefill18::wsurf1, spacefill18::eps);
 //     COMPARE_REALS(wvol, spacefill18::wvol1, spacefill18::eps);
 //     COMPARE_REALS(wmean, spacefill18::wmean1, spacefill18::eps);
@@ -722,6 +799,7 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
 //     final();
 
 //     spacefill(argc, argv2);
+//     REQUIRE(alfmeth == AlfMethod::AlphaMol);
 //     COMPARE_REALS(wsurf, spacefill18::wsurf2, spacefill18::eps);
 //     COMPARE_REALS(wvol, spacefill18::wvol2, spacefill18::eps);
 //     COMPARE_REALS(wmean, spacefill18::wmean2, spacefill18::eps);
@@ -729,6 +807,7 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
 //     final();
 
 //     spacefill(argc, argv3);
+//     REQUIRE(alfmeth == AlfMethod::AlphaMol);
 //     COMPARE_REALS(wsurf, spacefill18::wsurf3, spacefill18::eps);
 //     COMPARE_REALS(wvol, spacefill18::wvol3, spacefill18::eps);
 //     COMPARE_REALS(wmean, spacefill18::wmean3, spacefill18::eps);
@@ -736,6 +815,7 @@ TEST_CASE("spacefill-17", "[spacefill][AMOEBA][pchloride]") {
 //     final();
 
 //     spacefill(argc, argv4);
+//     REQUIRE(alfmeth == AlfMethod::AlphaMol);
 //     // COMPARE_REALS(wsurf, spacefill18::wsurf4, spacefill18::eps);
 //     // COMPARE_REALS(wvol, spacefill18::wvol4, spacefill18::eps);
 //     // COMPARE_REALS(wmean, spacefill18::wmean4, spacefill18::eps);

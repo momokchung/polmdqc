@@ -7,6 +7,7 @@
 #include "keys.h"
 #include "openmp.h"
 #include "upcase.h"
+#include <cmath>
 #include <sstream>
 
 namespace polmdqc
@@ -20,6 +21,13 @@ namespace polmdqc
 // "kalf" assigns the parameters to be used in computing
 // surface area and volume using AlphaMol/AlphaMol2
 
+inline int roundDownToPowerOf2(int x) {
+    if (x <= 0)
+        return 1;
+    int exponent = static_cast<int>(std::floor(std::log2(x)));
+    return static_cast<int>(std::pow(2, exponent));
+}
+
 void kalf()
 {
     int next;
@@ -32,7 +40,7 @@ void kalf()
     // set default parameters
     alfmeth = AlfMethod::AlphaMol2;
     alfsort = AlfSort::KDTree;
-    alfnthd = nthread;
+    alfnthd = roundDownToPowerOf2(nthread);
 
     // process keywords containing AlphaMol parameters
     for (int i = 0; i < nkey; i++) {

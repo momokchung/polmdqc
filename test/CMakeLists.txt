@@ -23,6 +23,8 @@ numeral.cpp
 rotpole.cpp
 sort.cpp
 spacefill.cpp
+spacefill2.cpp
+spacefillT.cpp
 torphase.cpp
 trimhead.cpp
 trimtext.cpp

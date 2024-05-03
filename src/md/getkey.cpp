@@ -126,6 +126,7 @@ void getkey()
             iss.clear();
             iss.str(string);
             if (!(iss >> nthread)) break;
+            if (nthread == 0) nthread = 1;
             omp_set_num_threads(nthread);
         }
     }

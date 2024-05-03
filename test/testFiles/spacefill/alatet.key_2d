@@ -1,0 +1,6 @@
+parameters        ../../params/amoebabio09
+
+digits 8
+multipoleterm only
+alf-method alphamol2
+alf-sort split

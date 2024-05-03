@@ -4,6 +4,7 @@
 #include "alfc.h"
 #include "alfcx.h"
 #include "alfedge.h"
+#include "alfp.h"
 #include "alftetra.h"
 #include "alftrig.h"
 #include "findedge.h"
@@ -11,14 +12,14 @@
 
 namespace polmdqc
 {
-// //////////////////////////////////////////////
-// //                                          //
-// //  alfcx  --  build alpha complex from DT  //
-// //                                          //
-// //////////////////////////////////////////////
+//////////////////////////////////////////////
+//                                          //
+//  alfcx  --  build alpha complex from DT  //
+//                                          //
+//////////////////////////////////////////////
 
-// // "alfcx" builds the alpha complex based on
-// // the weighted Delaunay triangulation
+// "alfcx" builds the alpha complex based on
+// the weighted Delaunay triangulation
 
 inline void getcoord2(std::vector<Vertex>& vertices, int ia, int ja, real* a, real* b, real* cg, real& ra, real& rb);
 inline void getcoord4(std::vector<Vertex>& vertices, int ia, int ja, int ka, int la,
@@ -300,7 +301,7 @@ void alfcx(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra, real 
         vertices[i].info[7] = 1;
     }
 
-    if (verbose) {
+    if (verbose and alfmeth==AlfMethod::AlphaMol) {
         printf("\n Number of tetrahedra in Delaunay complex : %d", ntet_del);
         printf("\n Number of tetrahedra in Alpha complex    : %d", ntet_alp);
         printf("\n Number of triangles in Alpha complex     : %d", ntrig);

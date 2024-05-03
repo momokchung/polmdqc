@@ -16,7 +16,7 @@ namespace polmdqc
 // "grid" consists of a set of procedures for sorting point
 // geometrically using a 3D grid for AlphaMol2
 
-void splitGrid(AlfAtom *alfatoms, int size, real xmin, real xmax, real ymin, real ymax, real zmin, real zmax, int ncube, std::vector<int>& Nval)
+void splitGrid(AlfAtom *alfatoms, int size, real xmin, real ymin, real zmin, real xmax, real ymax, real zmax, int ncube, std::vector<int>& Nval)
 {
     int Nx,Ny,Nz;
     int idx,Ix,Iy,Iz;

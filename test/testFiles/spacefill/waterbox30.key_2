@@ -1,0 +1,5 @@
+parameters        ../../params/water03
+
+digits 8
+multipoleterm only
+alf-method alphamol2

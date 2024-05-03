@@ -19,7 +19,6 @@ namespace polmdqc
 
 void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
     std::vector<Edge>& edges, std::vector<Face>& faces,
-    real& WSurf, real& WVol, real& WMean, real& WGauss,
     real* ballwsurf, real* ballwvol, real* ballwmean, real* ballwgauss,
     real* dsurf_coord, real* dvol_coord, real* dmean_coord, real* dgauss_coord, bool compder);
 }
