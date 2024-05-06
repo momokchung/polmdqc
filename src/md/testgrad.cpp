@@ -588,6 +588,7 @@ void testgrad(int argc, char** argv)
 }
 
 static void resizeNumDer() {
+    // allocate
     ndesum.allocate(3*n);
     ndeb.allocate(3*n);
     ndea.allocate(3*n);
@@ -617,5 +618,38 @@ static void resizeNumDer() {
     ndelf.allocate(3*n);
     ndeg.allocate(3*n);
     ndex.allocate(3*n);
+
+    // initialize
+    for (int i = 0; i < 3*n; i++) {
+        ndesum[i] = 0;
+        ndeb[i] = 0;
+        ndea[i] = 0;
+        ndeba[i] = 0;
+        ndeub[i] = 0;
+        ndeaa[i] = 0;
+        ndeopb[i] = 0;
+        ndeopd[i] = 0;
+        ndeid[i] = 0;
+        ndeit[i] = 0;
+        ndet[i] = 0;
+        ndept[i] = 0;
+        ndebt[i] = 0;
+        ndeat[i] = 0;
+        ndett[i] = 0;
+        ndev[i] = 0;
+        nder[i] = 0;
+        ndedsp[i] = 0;
+        ndec[i] = 0;
+        ndecd[i] = 0;
+        nded[i] = 0;
+        ndem[i] = 0;
+        ndep[i] = 0;
+        ndect[i] = 0;
+        nderxf[i] = 0;
+        ndes[i] = 0;
+        ndelf[i] = 0;
+        ndeg[i] = 0;
+        ndex[i] = 0;
+    }
 }
 }

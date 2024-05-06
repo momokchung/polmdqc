@@ -358,10 +358,19 @@ void spacefill(int argc, char** argv)
 }
 
 static void resizeNumDer() {
+    // allocate
     ndsurf.allocate(3*n);
     ndvol.allocate(3*n);
     ndmean.allocate(3*n);
     ndgauss.allocate(3*n);
+
+    // initialize
+    for (int i = 0; i < 3*n; i++) {
+        ndsurf[i] = 0;
+        ndvol[i] = 0;
+        ndmean[i] = 0;
+        ndgauss[i] = 0;
+    }
 }
 
 static void printAtomic()
