@@ -12,6 +12,7 @@ src/md/alfedge.cpp
 src/md/alfmol.cpp
 src/md/alforder.cpp
 src/md/alphamol.cpp
+src/md/alphamol1.cpp
 src/md/alphamol2.cpp
 src/md/alphavol.cpp
 src/md/alterchg.cpp

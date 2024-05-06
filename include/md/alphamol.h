@@ -12,7 +12,6 @@ namespace polmdqc
 //                                                 //
 /////////////////////////////////////////////////////
 
-void alphamol(int natoms, AlfAtom* alfatoms, real& wsurf, real& wvol, real& wmean, real& wgauss,
-    real* surf, real* vol, real* mean, real* gauss,
+void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, real* gauss,
     real* dsurf, real* dvol, real* dmean, real* dgauss, bool deriv);
 }

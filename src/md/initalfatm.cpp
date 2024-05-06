@@ -9,27 +9,46 @@
 
 namespace polmdqc
 {
-//////////////////////////////////////////////////
-//                                              //
-//  initalfatm  --  initialize AlphaMol2 Atoms  //
-//                                              //
-//////////////////////////////////////////////////
+/////////////////////////////////////////////////
+//                                             //
+//  initalfatm  --  initialize AlphaMol Atoms  //
+//                                             //
+/////////////////////////////////////////////////
 
 // "initalfatm" initializes the alfatoms vector
 
-void initalfatm()
+void initalfatm(bool deriv)
 {
     // resize alfatoms
     alfatoms.clear();
     alfatoms.reserve(n);
 
+    // initialize atomic
+    for (int i = 0; i < n; i++) {
+        surf[i] = 0;
+        vol[i] = 0;
+        mean[i] = 0;
+        gauss[i] = 0;
+    }
+
+    // initialize derivatives
+    if (deriv) {
+        for (int i = 0; i < 3*n; i++) {
+            dsurf[i] = 0;
+            dvol[i] = 0;
+            dmean[i] = 0;
+            dgauss[i] = 0;
+        }
+    }
+
     // copy atoms into alfatoms list
     real xi, yi, zi, ri, cs, cv, cm, cg;
-    for(int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
+        ri = radii[i];
+        if (ri == 0) continue;
         xi = x[i];
         yi = y[i];
         zi = z[i];
-        ri = radii[i];
         cs = coefS[i];
         cv = coefV[i];
         cm = coefM[i];

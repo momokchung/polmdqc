@@ -400,7 +400,7 @@ namespace spacefill6
 
 namespace spacefill7
 {
-    real eps = 1e-11;
+    real eps = 1e-10;
 
     real wsurf1 = 3.7438627956288832e+02;
     real wvol1 = 3.3746153037235064e+02;

@@ -112,10 +112,6 @@ void* singlemol(void* data)
     }
 
     int nfudge = 8;
-    real tmp1;
-    real tmp2;
-    real tmp3;
-    real tmp4;
     real* surfthd = new real[ntot+nfudge];
     real* volthd = new real[ntot+nfudge];
     real* meanthd = new real[ntot+nfudge];
@@ -126,8 +122,7 @@ void* singlemol(void* data)
     real* dgaussthd = new real[3*(ntot+nfudge)];
     bool deriv = info[threadid].deriv;
 
-    alphamol(ntot, newatoms, tmp1, tmp2, tmp3, tmp4,
-        surfthd, volthd, meanthd, gaussthd,
+    alphamol(ntot, newatoms, surfthd, volthd, meanthd, gaussthd,
         dsurfthd, dvolthd, dmeanthd, dgaussthd, deriv);
 
     // transfer information to thread
@@ -148,7 +143,10 @@ void* singlemol(void* data)
         info[threadid].vol[newatoms[i].index] = volthd[i];
         info[threadid].mean[newatoms[i].index] = meanthd[i];
         info[threadid].gauss[newatoms[i].index] = gaussthd[i];
-        if (deriv) {
+    }
+
+    if (deriv) {
+        for (int i = 0; i < natm; i++) {
             for (int j = 0; j < 3; j++) {
                 info[threadid].dsurf[3*newatoms[i].index + j] = dsurfthd[3*i+j];
                 info[threadid].dvol[3*newatoms[i].index + j] = dvolthd[3*i+j];

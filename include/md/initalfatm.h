@@ -5,13 +5,13 @@
 
 namespace polmdqc
 {
-//////////////////////////////////////////////////
-//                                              //
-//  initalfatm  --  initialize AlphaMol2 Atoms  //
-//                                              //
-//////////////////////////////////////////////////
+/////////////////////////////////////////////////
+//                                             //
+//  initalfatm  --  initialize AlphaMol Atoms  //
+//                                             //
+/////////////////////////////////////////////////
 
 // "initalfatm" initializes the alfatoms vector
 
-void initalfatm();
+void initalfatm(bool deriv);
 }

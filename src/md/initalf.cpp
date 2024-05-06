@@ -28,16 +28,15 @@ void initalf(real scoef, real vcoef, real exclude, bool deriv)
     coefG.allocate(n);
 
     // perform dynamic allocation of some global arrays
-    int nfudge = 8;
-    surf.allocate(n+nfudge);
-    vol.allocate(n+nfudge);
-    mean.allocate(n+nfudge);
-    gauss.allocate(n+nfudge);
+    surf.allocate(n);
+    vol.allocate(n);
+    mean.allocate(n);
+    gauss.allocate(n);
     if (deriv) {
-        dsurf.allocate(3*(n+nfudge));
-        dvol.allocate(3*(n+nfudge));
-        dmean.allocate(3*(n+nfudge));
-        dgauss.allocate(3*(n+nfudge));
+        dsurf.allocate(3*n);
+        dvol.allocate(3*n);
+        dmean.allocate(3*n);
+        dgauss.allocate(3*n);
     }
 
     // set radii and initialize coefficients
