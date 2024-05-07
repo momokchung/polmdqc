@@ -43,7 +43,7 @@ void getword(std::string& string, std::string& word, int& next)
     int end = start;
     for (int i = start; i < stringLength; i++) {
         char c = string[i];
-        if (c == ' ' or c == '\t' or c == ',' or c == ':' or c == ';') {
+        if (c == ' ' or c == '\t' or c == '\n' or c == ',' or c == ':' or c == ';') {
             break;
         }
         end++;
