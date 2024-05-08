@@ -17,7 +17,7 @@ public:
     int vertices[2];
     real gamma;
     real sigma;
-    real len,surf,vol; 
+    real len,surf,vol;
     real coefm1,coefm2,coefg1,coefg2;
     real dsurf,dvol,dmean,dgauss;
 

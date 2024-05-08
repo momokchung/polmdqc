@@ -37,8 +37,6 @@ void regular_convex(std::vector<Vertex>& vertices, int a, int b, int c, int p, i
     real coord1[3],coord2[3],coord3[3],coord4[3],coord5[3];
     bool testc[3];
 
-    bool ifprint = true;
-
     ia = 0;
     ib = 0;
     ic = 0;

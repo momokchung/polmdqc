@@ -130,13 +130,13 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
         rc = vertices[ic].r; rc2 = rc*rc;
         rd = vertices[id].r; rd2 = rd*rd;
 
-        coefaS = vertices[ia].coefs; coefaV = vertices[ia].coefv; 
+        coefaS = vertices[ia].coefs; coefaV = vertices[ia].coefv;
         coefaM = vertices[ia].coefm; coefaG = vertices[ia].coefg;
-        coefbS = vertices[ib].coefs; coefbV = vertices[ib].coefv; 
+        coefbS = vertices[ib].coefs; coefbV = vertices[ib].coefv;
         coefbM = vertices[ib].coefm; coefbG = vertices[ib].coefg;
-        coefcS = vertices[ic].coefs; coefcV = vertices[ic].coefv; 
+        coefcS = vertices[ic].coefs; coefcV = vertices[ic].coefv;
         coefcM = vertices[ic].coefm; coefcG = vertices[ic].coefg;
-        coefdS = vertices[id].coefs; coefdV = vertices[id].coefv; 
+        coefdS = vertices[id].coefs; coefdV = vertices[id].coefv;
         coefdM = vertices[id].coefm; coefdG = vertices[id].coefg;
 
         for (int iedge = 0; iedge < 6; iedge++) {
@@ -263,11 +263,11 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
          || vertices[ic].status==0 ) continue;
 
 
-        coefaS = vertices[ia].coefs; coefaV = vertices[ia].coefv; 
+        coefaS = vertices[ia].coefs; coefaV = vertices[ia].coefv;
         coefaM = vertices[ia].coefm; coefaG = vertices[ia].coefg;
-        coefbS = vertices[ib].coefs; coefbV = vertices[ib].coefv; 
+        coefbS = vertices[ib].coefs; coefbV = vertices[ib].coefv;
         coefbM = vertices[ib].coefm; coefbG = vertices[ib].coefg;
-        coefcS = vertices[ic].coefs; coefcV = vertices[ic].coefv; 
+        coefcS = vertices[ic].coefs; coefcV = vertices[ic].coefv;
         coefcM = vertices[ic].coefm; coefcG = vertices[ic].coefg;
 
         e1 = faces[idx].edges[0];
@@ -361,9 +361,9 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
 
         if (vertices[ia].status==0 || vertices[ib].status==0) continue;
 
-        coefaS = vertices[ia].coefs; coefaV = vertices[ia].coefv; 
+        coefaS = vertices[ia].coefs; coefaV = vertices[ia].coefv;
         coefaM = vertices[ia].coefm; coefaG = vertices[ia].coefg;
-        coefbS = vertices[ib].coefs; coefbV = vertices[ib].coefv; 
+        coefbS = vertices[ib].coefs; coefbV = vertices[ib].coefv;
         coefbM = vertices[ib].coefm; coefbG = vertices[ib].coefg;
 
         ra = vertices[ia].r; ra2 = ra*ra;
@@ -375,10 +375,10 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
         vola, volb, r, phi, l, dsurfa2, dsurfb2, dvola2, dvolb2, 
         dr, dphi, dl, compder);
 
-        ballwsurf[ia] -= coefval*surfa; 
-        ballwsurf[ib] -= coefval*surfb; 
-        ballwvol[ia]  -= coefval*vola; 
-        ballwvol[ib]  -= coefval*volb; 
+        ballwsurf[ia] -= coefval*surfa;
+        ballwsurf[ib] -= coefval*surfb;
+        ballwvol[ia]  -= coefval*vola;
+        ballwvol[ib]  -= coefval*volb;
 
         val = coefe*pi*coefvalS*r*phi;
         ballwmean[ia] -= val;

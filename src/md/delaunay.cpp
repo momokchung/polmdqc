@@ -157,7 +157,6 @@ inline void locatejw(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& te
 
 inline void insidetetra(std::vector<Vertex>& vertices, int p, int a, int b, int c, int d, int iorient, bool& is_in, bool& redundant, int& ifail)
 {
-
     int i,j,k,l;
     int ia,ib,ic,id,ie,idx;
     int ic1,ic5,ic1_k,ic1_l;
@@ -171,8 +170,6 @@ inline void insidetetra(std::vector<Vertex>& vertices, int p, int a, int b, int 
     real coord_a[3],coord_b[3],coord_c[3],coord_d[3],coord_e[3];
     real detij[3],i_p[4],j_p[4],k_p[4],l_p[4];
     bool test_pijk,test_pjil,test_pkjl,test_pikl;
-
-    bool ifprint = true;
 
     // initialize some values
     ia = 0;
@@ -963,7 +960,7 @@ inline void peel(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
             if (tetra[i].neighbors[j]==-1) itest = true;
         }
 
-        if (!itest) continue; 
+        if (!itest) continue;
 
         // This is a tetrahedron at the boundary: we test
         // if it is flat, i.e. if its volume is 0

@@ -22,8 +22,8 @@ namespace polmdqc
 // deleps       epsilon value
 // delepsvol    epsilon volume value
 
-constexpr real deleps = 1e-3;
-constexpr real delepsvol = 1e-13;
+constexpr real deleps = 1e-4;
+constexpr real delepsvol = 1e-4;
 
 constexpr int inf4_1[4] = {1, 1, 0, 0};
 constexpr int sign4_1[4] = {-1, 1, 1, -1};
