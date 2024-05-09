@@ -108,14 +108,8 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
     }
 
     start_s = clock();
-    if (deriv) {
-        alphavol<true>(vertices, tetra, edges, faces, surf, vol, mean, gauss,
-            dsurf, dvol, dmean, dgauss);
-    }
-    else {
-        alphavol<false>(vertices, tetra, edges, faces, surf, vol, mean, gauss,
-            dsurf, dvol, dmean, dgauss);
-    }
+    if (deriv) alphavol<true>(vertices, tetra, edges, faces, surf, vol, mean, gauss, dsurf, dvol, dmean, dgauss);
+    else alphavol<false>(vertices, tetra, edges, faces, surf, vol, mean, gauss, dsurf, dvol, dmean, dgauss);
 
     stop_s = clock();
 
