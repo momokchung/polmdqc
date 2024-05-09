@@ -637,7 +637,7 @@ namespace spacefill10
 {
     real eps = 1e-11;
     real epsg = 1e-9;
-    real eps2 = 1e-7;
+    real eps2 = 1e-6;
 
     std::vector<real> dsurf = {
        -7.4237428124378979e-01, -1.1196492917995160e-01, -1.0300576128747314e+00,

@@ -108,8 +108,15 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
     }
 
     start_s = clock();
-    alphavol(vertices, tetra, edges, faces, surf, vol, mean, gauss,
-        dsurf, dvol, dmean, dgauss, deriv);
+    if (deriv) {
+        alphavol<true>(vertices, tetra, edges, faces, surf, vol, mean, gauss,
+            dsurf, dvol, dmean, dgauss);
+    }
+    else {
+        alphavol<false>(vertices, tetra, edges, faces, surf, vol, mean, gauss,
+            dsurf, dvol, dmean, dgauss);
+    }
+
     stop_s = clock();
 
     if (verbose and alfmeth==AlfMethod::AlphaMol) {

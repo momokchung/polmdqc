@@ -98,9 +98,10 @@ inline void twosph(real ra, real ra2, real rb, real rb2,
 // "twosphder" calculates the surface area and volume derivatives
 // of the intersection of two spheres
 
+template <bool compder>
 inline void twosphder(real ra, real ra2, real rb, real rb2, real rab, real rab2,
     real& surfa, real& surfb, real& vola, real& volb, real& r, real& phi, real& l,
-    real& dsurfa, real& dsurfb, real& dvola, real& dvolb, real& dr, real& dphi, real& dl, bool compder)
+    real& dsurfa, real& dsurfb, real& dvola, real& dvolb, real& dr, real& dphi, real& dl)
 {
     real cosine,vala,valb,lambda,ha,hb;
     real Aab,sa,ca,sb,cb;
@@ -146,7 +147,7 @@ inline void twosphder(real ra, real ra2, real rb, real rb2, real rab, real rab2,
     phi = REAL_ACOS(cosine);
     l = vala/ra + valb/rb;
 
-    if (!compder) return;
+    if constexpr (!compder) return;
 
     dera = - lambda;
     derb = lambda - 1;
@@ -171,11 +172,12 @@ inline void twosphder(real ra, real ra2, real rb, real rb2, real rab, real rab2,
 // "threesphder" calculates the surface area and volume derivatives
 // of the intersection of three spheres
 
+template <bool compder>
 inline void threesphder(real ra, real rb,real rc, real ra2,
     real rb2, real rc2, real rab, real rac, real rbc,
     real rab2, real rac2, real rbc2, real *angle, real deriv[6][3],
     real& surfa, real& surfb, real& surfc, real& vola, real& volb, real& volc,
-    real* dsurfa, real* dsurfb, real* dsurfc, real* dvola, real* dvolb, real* dvolc, bool compder)
+    real* dsurfa, real* dsurfb, real* dsurfc, real* dvola, real* dvolb, real* dvolc)
 {
     real a1,a2,a3,s2,c1,c2;
     real seg_ang_ab,seg_ang_ac,seg_ang_bc;
@@ -205,7 +207,7 @@ inline void threesphder(real ra, real rb,real rc, real ra2,
     // point of intersection of the three spheres such that (A,B,C,P) is ccw.
     // The edge lengths in this tetrahedron are: rab, rac, rAP=ra, rbc, rBP=rb, rCP=rc
 
-    tetdihedder3(rab2, rac2, ra2, rbc2, rb2, rc2, angle, cosine, sine, deriv, compder);
+    tetdihedder3<compder>(rab2, rac2, ra2, rbc2, rb2, rc2, angle, cosine, sine, deriv);
 
     // the seg_ang_ are the dihedral angles around the three edges AB, AC and BC
 
@@ -274,7 +276,7 @@ inline void threesphder(real ra, real rb,real rc, real ra2,
 
     volc = (s2 - c1 - c2)/3;
 
-    if (!compder) return;
+    if constexpr (!compder) return;
 
     der_val1b = l1; der_val1  = 1-l1;
     der_val2b = l2; der_val2  = 1-l2;

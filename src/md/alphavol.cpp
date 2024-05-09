@@ -18,10 +18,11 @@ namespace polmdqc
 // "alphavol" computes the surface area, volume, mean, and
 // gaussian curvature; also computes derivatives
 
+template <bool compder>
 void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
     std::vector<Edge>& edges, std::vector<Face>& faces,
     real* ballwsurf, real* ballwvol, real* ballwmean, real* ballwgauss,
-    real* dsurf_coord, real* dvol_coord, real* dmean_coord, real* dgauss_coord, bool compder)
+    real* dsurf_coord, real* dvol_coord, real* dmean_coord, real* dgauss_coord)
 {
     int ia,ib,ic,id;
     int e1,e2,e3;
@@ -158,22 +159,17 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
         rcd = edges[edge_list[5]].len; rcd2 = rcd*rcd;
 
         // characterize tetrahedron (A,B,C,D)
-        if (!compder) {
-            tetdihed(rab2, rac2, rad2, rbc2, rbd2, rcd2, angle, cosine, sine);
-        }
-        else {
-            tetdihedder(rab2, rac2, rad2, rbc2, rbd2, rcd2, angle, cosine, sine, deriv);
-        }
+        tetdihedder<compder>(rab2, rac2, rad2, rbc2, rbd2, rcd2, angle, cosine, sine, deriv);
 
         // add fraction of tetrahedron that "belongs" to each ball
-        tetvorder(ra2, rb2, rc2, rd2, rab, rac, rad, rbc,
+        tetvorder<compder>(ra2, rb2, rc2, rd2, rab, rac, rad, rbc,
         rbd, rcd, rab2, rac2, rad2, rbc2, rbd2, rcd2, cosine, sine,
-        deriv, vola, volb, volc, vold, dvola, dvolb, dvolc, dvold, compder);
+        deriv, vola, volb, volc, vold, dvola, dvolb, dvolc, dvold);
 
         ballwvol[ia] += vola; ballwvol[ib] += volb;
         ballwvol[ic] += volc; ballwvol[id] += vold;
 
-        if (compder) {
+        if constexpr (compder) {
             for (int iedge = 0; iedge < 6; iedge++) {
                 int i1 = edge_list[iedge];
                 edges[i1].dvol += coefaV*dvola[iedge]
@@ -197,7 +193,7 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
             }
         }
 
-        if (compder) {
+        if constexpr (compder) {
             // Derivative: take into account the derivatives of the edge
             // weight in weightedinclusion-exclusion formula
             for (int iedge = 0; iedge < 6; iedge++) {
@@ -282,12 +278,12 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
         rac = edges[e2].len; rac2=rac*rac;
         rbc = edges[e3].len; rbc2=rbc*rbc;
 
-        threesphder(ra, rb, rc, ra2, rb2, rc2, rab, rac, rbc, rab2, rac2, rbc2,
+        threesphder<compder>(ra, rb, rc, ra2, rb2, rc2, rab, rac, rbc, rab2, rac2, rbc2,
         angle, deriv2, surfa, surfb, surfc, vola, volb, volc, 
-        dsurfa3, dsurfb3, dsurfc3, dvola3, dvolb3, dvolc3, compder);
+        dsurfa3, dsurfb3, dsurfc3, dvola3, dvolb3, dvolc3);
 
-        threesphgss(ra, rb, rc, ra2, rb2, rc2, rab, rac, rbc,
-        rab2, rac2, rbc2, gaussa, gaussb, gaussc, dg, compder);
+        threesphgss<compder>(ra, rb, rc, ra2, rb2, rc2, rab, rac, rbc,
+        rab2, rac2, rbc2, gaussa, gaussb, gaussc, dg);
 
         ballwsurf[ia] += coefval*surfa;
         ballwsurf[ib] += coefval*surfb;
@@ -305,7 +301,7 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
         edges[e2].sigma -= 2*coefval*angle[1];
         edges[e3].sigma -= 2*coefval*angle[3];
 
-        if (compder) {
+        if constexpr (compder) {
             edges[e1].dsurf += coefval*(coefaS*dsurfa3[0]+coefbS*dsurfb3[0]+coefcS*dsurfc3[0]);
             edges[e2].dsurf += coefval*(coefaS*dsurfa3[1]+coefbS*dsurfb3[1]+coefcS*dsurfc3[1]);
             edges[e3].dsurf += coefval*(coefaS*dsurfa3[2]+coefbS*dsurfb3[2]+coefcS*dsurfc3[2]);
@@ -371,9 +367,8 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
 
         rab = edges[iedge].len; rab2 = rab*rab;
 
-        twosphder(ra, ra2, rb, rb2, rab, rab2, surfa, surfb,
-        vola, volb, r, phi, l, dsurfa2, dsurfb2, dvola2, dvolb2, 
-        dr, dphi, dl, compder);
+        twosphder<compder>(ra, ra2, rb, rb2, rab, rab2, surfa, surfb,
+        vola, volb, r, phi, l, dsurfa2, dsurfb2, dvola2, dvolb2, dr, dphi, dl);
 
         ballwsurf[ia] -= coefval*surfa;
         ballwsurf[ib] -= coefval*surfb;
@@ -388,7 +383,7 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
         ballwgauss[ia] -= val;
         ballwgauss[ib] -= val;
 
-        if (compder) {
+        if constexpr (compder) {
             edges[iedge].dsurf  -= coefval* (coefaS*dsurfa2 + coefbS*dsurfb2);
             edges[iedge].dvol   -= coefval* (coefaV*dvola2 + coefbV*dvolb2);
             edges[iedge].dmean  -= coefval* (coefaM*dsurfa2/ra + coefbM*dsurfb2/rb);
@@ -441,7 +436,7 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
         ballwgauss[i]  = ballwgauss[i+4];
     }
 
-    if (!compder) return;
+    if constexpr (!compder) return;
 
     // convert derivatives wrt to distance to derivatives wrt to coordinates
     for (int i = 0; i < 3*nvertices; i++) {
@@ -485,4 +480,14 @@ void alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
         dgauss_coord[i]  = dgauss_coord[i+12];
     }
 }
+
+// explicit instatiation
+template void alphavol<true>(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
+    std::vector<Edge>& edges, std::vector<Face>& faces,
+    real* ballwsurf, real* ballwvol, real* ballwmean, real* ballwgauss,
+    real* dsurf_coord, real* dvol_coord, real* dmean_coord, real* dgauss_coord);
+template void alphavol<false>(std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra,
+    std::vector<Edge>& edges, std::vector<Face>& faces,
+    real* ballwsurf, real* ballwvol, real* ballwmean, real* ballwgauss,
+    real* dsurf_coord, real* dvol_coord, real* dmean_coord, real* dgauss_coord);
 }

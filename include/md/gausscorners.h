@@ -15,7 +15,8 @@ namespace polmdqc
 
 constexpr real gceps = 1e-14;
 
-inline real trig_dradius(real a, real b, real c, real *der_r, bool compder)
+template <bool compder>
+inline real trig_dradius(real a, real b, real c, real *der_r)
 {
     real u = 4*a*b*c - (a+b+c-1)*(a+b+c-1);
     real sqr_u = REAL_SQRT(u);
@@ -25,7 +26,7 @@ inline real trig_dradius(real a, real b, real c, real *der_r, bool compder)
 
     real r = 0.5 + 0.5* sqr_u/sqr_v;
 
-    if (!compder) return r;
+    if constexpr (!compder) return r;
 
     real du_da = 4*b*c - 2*(a+b+c-1);
     real du_db = 4*a*c - 2*(a+b+c-1);
@@ -51,7 +52,8 @@ inline real trig_dradius(real a, real b, real c, real *der_r, bool compder)
 // "trig_darea" omputes the surface area S of a
 // spherical triangle and its derivatives
 
-inline real trig_darea(real a, real b, real c, real *der_S, bool compder)
+template <bool compder>
+inline real trig_darea(real a, real b, real c, real *der_S)
 {
     real tol = 1.e-14;
 
@@ -67,7 +69,7 @@ inline real trig_darea(real a, real b, real c, real *der_S, bool compder)
 
     real S = 2*REAL_ASIN(wt);
 
-    if (!compder) return S;
+    if constexpr (!compder) return S;
 
     if (w>0) {
         der_S[0] = (b+c-a-1)/(a*w);
@@ -115,10 +117,11 @@ inline real sign(real a, real b, real c)
 // 3 vertices of a triangle in the alpha complex to the
 // Gaussian curvature
 
+template <bool compder>
 inline void threesphgss(real ra, real rb, real rc, 
     real ra2, real rb2, real rc2, real rab, real rac, real rbc,
     real rab2, real rac2, real rbc2, real& areaA, real& areaB, 
-    real& areaC, real darea[3][3], bool compder)
+    real& areaC, real darea[3][3])
 {
     real cos_ab, cos_ac, cos_bc;
     real da_ab, db_bc, dc_ac;
@@ -146,17 +149,17 @@ inline void threesphgss(real ra, real rb, real rc,
     sign_c = sign(c, b, a);
 
     der_r[0] = 0; der_r[1] = 0; der_r[2] = 0;
-    r = trig_dradius(a, b, c, der_r, compder);
+    r = trig_dradius<compder>(a, b, c, der_r);
 
     der_S[0] = 0; der_S[1] = 0; der_S[2] = 0;
     der_Sa[0] = 0; der_Sa[1] = 0; der_Sa[2] = 0;
     der_Sb[0] = 0; der_Sb[1] = 0; der_Sb[2] = 0;
     der_Sc[0] = 0; der_Sc[1] = 0; der_Sc[2] = 0;
 
-    S  = trig_darea(a, b, c, der_S, compder);
-    Sa = trig_darea(a, r, r, der_Sa, compder);
-    Sb = trig_darea(r, b, r, der_Sb, compder);
-    Sc = trig_darea(r, r, c, der_Sc, compder);
+    S  = trig_darea<compder>(a, b, c, der_S);
+    Sa = trig_darea<compder>(a, r, r, der_Sa);
+    Sb = trig_darea<compder>(r, b, r, der_Sb);
+    Sc = trig_darea<compder>(r, r, c, der_Sc);
 
     dSa[0] = der_Sa[0] + (der_Sa[1]+der_Sa[2])*der_r[0];
     dSa[1] = (der_Sa[1]+der_Sa[2])*der_r[1];
@@ -193,7 +196,7 @@ inline void threesphgss(real ra, real rb, real rc,
     areaB = 0.5*(sign_a*Sb + sign_c*Sa);
     areaC = 0.5*(sign_b*Sc + sign_a*Sb);
 
-    if (!compder) return;
+    if constexpr (!compder) return;
 
     da_ab = -0.5*rab/(ra*rb);
     db_bc = -0.5*rbc/(rb*rc);
