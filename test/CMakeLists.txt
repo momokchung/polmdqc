@@ -16,6 +16,7 @@ gettext.cpp
 getword.cpp
 hartree.cpp
 hippo.cpp
+inertia.cpp
 justify.cpp
 lowcase.cpp
 main.cpp
