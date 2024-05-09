@@ -14,6 +14,8 @@ namespace polmdqc
 //                                                  //
 //////////////////////////////////////////////////////
 
+constexpr real teteps = 1e-14;
+
 inline real plane_dist(real ra2, real rb2, real rab2)
 {
     real lambda = 0.50 - (ra2-rb2)/(2*rab2);
@@ -101,6 +103,11 @@ inline void tetdihed(real r12sq, real r13sq, real r14sq,
     cosine[5] = det34*val3*val4;
 
     for (int i = 0; i < 6; i++) {
+        if (REAL_ABS(cosine[i] - 1) < teteps) cosine[i] = 1;
+        else if (REAL_ABS(cosine[i] + 1) < teteps) cosine[i] = -1;
+    }
+
+    for (int i = 0; i < 6; i++) {
         angle[i] = REAL_ACOS(cosine[i]);
         sine[i]  = REAL_SIN(angle[i]);
         angle[i] /= twopi;
@@ -124,7 +131,7 @@ inline void tetdihedder(real r12sq, real r13sq, real r14sq,
     real val123,val124,val134,val234;
     real val213,val214,val314,val324,val312;
     real det12,det13,det14,det23,det24,det34;
-    real minori[4]; 
+    real minori[4];
     real dminori[4][6] = {0};
     real det[6],dnum[6][6],val[4];
     real dist[6];
@@ -190,6 +197,11 @@ inline void tetdihedder(real r12sq, real r13sq, real r14sq,
     cosine[3] = det23*val1*val4;
     cosine[4] = det24*val2*val4;
     cosine[5] = det34*val3*val4;
+
+    for (int i = 0; i < 6; i++) {
+        if (REAL_ABS(cosine[i] - 1) < teteps) cosine[i] = 1;
+        else if (REAL_ABS(cosine[i] + 1) < teteps) cosine[i] = -1;
+    }
 
     for (int i = 0; i < 6; i++) {
         angle[i] = REAL_ACOS(cosine[i]);
@@ -288,7 +300,7 @@ inline void tetdihedder3(real r12sq, real r13sq, real r14sq,
     real val123,val124,val134,val234;
     real val213,val214,val314,val324,val312;
     real det12,det13,det14,det23,det24,det34;
-    real minori[4]; 
+    real minori[4];
     real dminori[4][3] = {0};
     real dist[3],det[6],dnum[6][3],val[4];
     constexpr real twopi = 2 * pi;
@@ -355,6 +367,11 @@ inline void tetdihedder3(real r12sq, real r13sq, real r14sq,
     cosine[5] = det34*val3*val4;
 
     for (int i = 0; i < 6; i++) {
+        if (REAL_ABS(cosine[i] - 1) < teteps) cosine[i] = 1;
+        else if (REAL_ABS(cosine[i] + 1) < teteps) cosine[i] = -1;
+    }
+
+    for (int i = 0; i < 6; i++) {
         angle[i] = REAL_ACOS(cosine[i]);
         sine[i]  = REAL_SIN(angle[i]);
         angle[i] /= twopi;
@@ -382,9 +399,9 @@ inline void tetdihedder3(real r12sq, real r13sq, real r14sq,
     det[2] = det23; det[1] = det24; det[0] = det34;
     dist[0] = REAL_SQRT(r12sq); dist[1] = REAL_SQRT(r13sq); dist[2] = REAL_SQRT(r23sq);
 
-    dminori[0][2] = -(val234 + 2*r24sq); 
-    dminori[1][1] = -(val134 + 2*r14sq); 
-    dminori[2][0] = -(val124 + 2*r14sq); 
+    dminori[0][2] = -(val234 + 2*r24sq);
+    dminori[1][1] = -(val134 + 2*r14sq);
+    dminori[2][0] = -(val124 + 2*r14sq);
     dminori[3][0] = -(val123 + 2*r13sq); dminori[3][1] = -(val123 + 2*r12sq); dminori[3][2] = val123;
 
     dnum[5][0] = -2*val134+val123+val124; dnum[5][1] = 2*r12sq + val124; dnum[5][2] = -val124;
@@ -437,7 +454,7 @@ inline void tet3dihedcos(real r12sq, real r13sq, real r14sq,
 {
     real val1, val2, val3, val4;
     real val123, val124, val134, val234;
-    real val213, val214; 
+    real val213, val214;
     real det12, det13, det23;
     real minori[4];
     real dminori[4][3] = {0};
@@ -611,8 +628,14 @@ inline void tetvorder(real ra2,real rb2,real rc2,real rd2,
     rho_bd2 = rb2 - val5b*val5b; rho_cd2 = rc2 - val6b*val6b;
 
     for (int i = 0; i < 6; i++) {
-        invsin[i] = 1.0/sin_ang[i];
-        cotan[i] = cos_ang[i]*invsin[i];
+        if (REAL_ABS(sin_ang[i]) < teteps) {
+            invsin[i] = 0;
+            cotan[i] = 0;
+        }
+        else {
+            invsin[i] = 1.0/sin_ang[i];
+            cotan[i] = cos_ang[i]*invsin[i];
+        }
     }
 
     val_ab = -(cos_abc*cos_abc+cos_abd*cos_abd)*cotan[0]

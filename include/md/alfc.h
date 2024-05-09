@@ -14,7 +14,7 @@ namespace polmdqc
 
 // alfeps   epsilon value
 
-constexpr real alfeps = 1e-10;
+constexpr real alfeps = 1e-5;
 
 constexpr int other3[4][3] = {
     {1, 2, 3},

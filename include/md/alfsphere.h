@@ -17,6 +17,8 @@ namespace polmdqc
 //                                                            //
 ////////////////////////////////////////////////////////////////
 
+constexpr real aseps = 1e-14;
+
 inline real dist2(std::vector<Vertex>& vertices, int n1, int n2)
 {
     real x;
@@ -80,6 +82,8 @@ inline void twosph(real ra, real ra2, real rb, real rb2,
 
     // get angle between normals of the sphere at a point on this circle
     cosine = (ra2+rb2-rab2)/(2.0*ra*rb);
+    if (REAL_ABS(cosine - 1) < aseps) cosine = 1;
+    else if (REAL_ABS(cosine + 1) < aseps) cosine = -1;
     phi = REAL_ACOS(cosine);
 
     l = vala/ra + valb/rb;
@@ -137,6 +141,8 @@ inline void twosphder(real ra, real ra2, real rb, real rb2, real rab, real rab2,
 
     // get angle between normals of the sphere at a point on this circle
     cosine = (ra2+rb2-rab2)/(2.0*ra*rb);
+    if (REAL_ABS(cosine - 1) < aseps) cosine = 1;
+    else if (REAL_ABS(cosine + 1) < aseps) cosine = -1;
     phi = REAL_ACOS(cosine);
     l = vala/ra + valb/rb;
 

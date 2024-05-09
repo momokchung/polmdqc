@@ -13,6 +13,8 @@ namespace polmdqc
 //                                                               //
 ///////////////////////////////////////////////////////////////////
 
+constexpr real gceps = 1e-14;
+
 inline real trig_dradius(real a, real b, real c, real *der_r, bool compder)
 {
     real u = 4*a*b*c - (a+b+c-1)*(a+b+c-1);
@@ -58,8 +60,12 @@ inline real trig_darea(real a, real b, real c, real *der_S, bool compder)
     if (REAL_ABS(u) < tol) u = 0.0;
     real w = REAL_SQRT(REAL_ABS(u));
     real t = REAL_SQRT(v);
+    real wt = w/t;
 
-    real S = 2*REAL_ASIN(w/t);
+    if (REAL_ABS(wt - 1) < gceps) wt = 1;
+    else if (REAL_ABS(wt + 1) < gceps) wt = -1;
+
+    real S = 2*REAL_ASIN(wt);
 
     if (!compder) return S;
 
