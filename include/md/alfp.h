@@ -12,9 +12,10 @@ namespace polmdqc
 //                                       //
 ///////////////////////////////////////////
 
-// alfmeth   algorithm to use (AlphaMol / AlphaMol2)
-// alfsort   algorithm to sort and partition atoms
-// alfnthd   number of threads to use for AlphaMol2
+// alfmeth    algorithm to use (AlphaMol / AlphaMol2)
+// alfsort    algorithm to sort and partition atoms
+// alfdigit   number of digits to store for AlphaMol x,y,z,r
+// alfnthd    number of threads to use for AlphaMol2
 
 enum class AlfMethod
 {
@@ -33,5 +34,6 @@ enum class AlfSort
 
 MDQC_EXTERN AlfMethod alfmeth;
 MDQC_EXTERN AlfSort alfsort;
+MDQC_EXTERN int alfdigit;
 MDQC_EXTERN int alfnthd;
 }

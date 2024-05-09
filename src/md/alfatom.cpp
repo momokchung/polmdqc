@@ -2,6 +2,8 @@
 // Year:   2024
 
 #include "alfatom.h"
+#include "alfp.h"
+#include <cmath>
 
 namespace polmdqc
 {
@@ -17,17 +19,38 @@ namespace polmdqc
 AlfAtom::AlfAtom(int idx, real x, real y, real z, real r, real coefs, real coefv, real coefm, real coefg)
 {
     this->index = idx;
-    this->coord[0] = x;
-    this->coord[1] = y;
-    this->coord[2] = z;
-    this->r = r;
+    this->coord[0] = truncate_real(x,alfdigit);
+    this->coord[1] = truncate_real(y,alfdigit);
+    this->coord[2] = truncate_real(z,alfdigit);
+    this->r = truncate_real(r,alfdigit);
     this->coefs = coefs;
     this->coefv = coefv;
     this->coefm = coefm;
     this->coefg = coefg;
-
-    this->w = x*x + y*y + z*z - r*r;
 }
 
 AlfAtom::~AlfAtom() {}
+
+real AlfAtom::truncate_real(real x, int ndigit)
+{
+    real x_out,y;
+    real fact;
+
+    int mantissa;
+    int digit;
+
+    mantissa = (int) x;
+    y = x - mantissa;
+
+    x_out = mantissa;
+    fact = 1;
+    for (int i = 0; i < ndigit; i++) {
+        fact *= 10;
+        digit = (int) std::round(y*10);
+        y = 10*(y-digit/10.0);
+        x_out += digit/fact;
+    }
+
+    return x_out;
+}
 }

@@ -24,6 +24,7 @@ TEST_CASE("spacefill-1", "[spacefill][AMOEBA][water09]") {
     spacefill(argc, argv);
 
     REQUIRE(alfmeth == AlfMethod::AlphaMol);
+    REQUIRE((alfdigit % 2) == 0);
 
     COMPARE_REALS(wsurf, spacefill1::wsurf, spacefill1::eps);
     COMPARE_REALS(wvol, spacefill1::wvol, spacefill1::eps);

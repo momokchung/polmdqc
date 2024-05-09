@@ -40,6 +40,7 @@ void kalf()
     // set default parameters
     alfmeth = AlfMethod::AlphaMol2;
     alfsort = AlfSort::KDTree;
+    alfdigit = 8;
     alfnthd = roundDownToPowerOf2(nthread);
 
     // process keywords containing AlphaMol parameters
@@ -83,12 +84,21 @@ void kalf()
                 alfmeth = AlfMethod::AlphaMol2;
             }
         }
-        if (keyword == "DLNY-THREADS") {
+        else if (keyword == "DLNY-THREADS") {
             string = record.substr(next);
             iss.clear();
             iss.str(string);
             if (!(iss >> alfnthd)) continue;
             if (alfnthd < 1) alfnthd = 1;
+        }
+        else if (keyword == "ALF-DIGITS") {
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            if (!(iss >> alfdigit)) continue;
+            if (alfdigit < 8) alfdigit = 8;
+            // round alfdigit down to nearest even integer
+            if ((alfdigit % 2) != 0) alfdigit -= 1;
         }
     }
 }

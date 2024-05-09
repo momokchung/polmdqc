@@ -168,7 +168,7 @@ namespace spacefill2
 
 namespace spacefill3
 {
-    real eps = 1e-12;
+    real eps = 1e-10;
     real eps2 = 1e-10;
 
     real wsurf = 1.9765741364451054e+02;

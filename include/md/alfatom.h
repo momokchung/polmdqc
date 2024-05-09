@@ -29,7 +29,6 @@ public:
     int index;
     real r;
     real coord[3];
-    real w;
     real coefs,coefv,coefm,coefg;
 
     AlfAtom() {}
@@ -37,5 +36,8 @@ public:
     AlfAtom(int idx, real x, real y, real z, real r, real coefs, real coefv, real coefm, real coefg);
 
     ~AlfAtom();
+
+private:
+    real truncate_real(real x, int ndigit);
 };
 }

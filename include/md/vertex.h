@@ -42,5 +42,8 @@ public:
     Vertex(real x, real y, real z, real r, real coefs, real coefv, real coefm, real coefg);
 
     ~Vertex();
+
+private:
+    real truncate_real(real x, int ndigit);
 };
 }
