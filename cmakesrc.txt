@@ -24,6 +24,7 @@ src/md/bitors.cpp
 src/md/bonds.cpp
 src/md/chkpole.cpp
 src/md/chkring.cpp
+src/md/chksymm.cpp
 src/md/chkxyz.cpp
 src/md/cluster.cpp
 src/md/command.cpp
@@ -91,6 +92,7 @@ src/md/numeral.cpp
 src/md/optinit.cpp
 src/md/partyze.cpp
 src/md/prmkey.cpp
+src/md/random.cpp
 src/md/readcart.cpp
 src/md/readprm.cpp
 src/md/readxyz.cpp

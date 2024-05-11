@@ -58,34 +58,31 @@ void alphamol2(bool deriv)
     real total = 0;
 
     // if needed, reorder  atoms
-    gettime(t1, u1);
     real xmin,ymin,zmin;
     real xmax,ymax,zmax;
     real rmax;
+    if (verbose) gettime(t1, u1);
     std::vector<int> Nval(alfnthd + 1, 0);
     alfboxsize(&alfatoms[0], alfatoms.size(), xmin, ymin, zmin, xmax, ymax, zmax, rmax);
     alforder(xmin, ymin, zmin, xmax, ymax, zmax, rmax, alfnthd, Nval);
-    gettime(t2, u2);
-    diff = gettimediff(t1, u1, t2, u2);
     if (verbose) {
-        printf("\n Alforder compute time : %10.6f ms\n", diff*1000);
+        gettime(t2, u2);
+        diff = gettimediff(t1, u1, t2, u2);
+        printf("\n Alforder compute time     : %10.6f ms\n", diff*1000);
         total += diff;
     }
 
     // run AlphaMol algorithm
-    gettime(t1, u1);
+    if (verbose) gettime(t1, u1);
     int natoms = alfatoms.size();
     real buffer = 2*rmax;
     multimol(buffer, deriv, alfnthd, Nval);
-    gettime(t2, u2);
-    diff = gettimediff(t1, u1, t2, u2);
     if (verbose) {
-        printf("\n MultiMol compute time : %10.6f ms\n", diff*1000);
+        gettime(t2, u2);
+        diff = gettimediff(t1, u1, t2, u2);
+        printf("\n MultiMol compute time     : %10.6f ms\n", diff*1000);
         total += diff;
-    }
-
-    if (verbose) {
-        printf("\n AlphaMol2 compute time : %10.6f ms\n", total*1000);
+        printf("\n AlphaMol2 compute time    : %10.6f ms\n", total*1000);
     }
 }
 }

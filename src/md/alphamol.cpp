@@ -55,70 +55,61 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
 
     clock_t start_s,stop_s;
     real total = 0;
+    bool alfprint = verbose and alfmeth==AlfMethod::AlphaMol;
 
     // initialize Delaunay procedure
-    start_s = clock();
+    if (alfprint) start_s = clock();
     initdelcx(natoms, alfatoms, vertices, tetra, link_facet, link_index, free, kill);
-    stop_s = clock();
-
-    if (verbose and alfmeth==AlfMethod::AlphaMol) {
+    if (alfprint) {
+        stop_s = clock();
         printf("\n Initdelcx compute time    : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
         total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
     }
 
     // compute Delaunay triangulation
-    start_s = clock();
+    if (alfprint) start_s = clock();
     delaunay(vertices, tetra, link_facet, link_index, free, kill);
-    stop_s = clock();
-
-    if (verbose and alfmeth==AlfMethod::AlphaMol) {
+    if (alfprint) {
+        stop_s = clock();
         printf("\n Delaunay compute time     : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
         total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
     }
 
     // generate alpha complex (with alpha=0.0)
-    start_s = clock();
+    if (alfprint) start_s = clock();
     real alpha = 0;
     alfcx(vertices, tetra, alpha);
-    stop_s = clock();
-
-    if (verbose and alfmeth==AlfMethod::AlphaMol) {
+    if (alfprint) {
+        stop_s = clock();
         printf("\n AlphaCx compute time      : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
         total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
     }
 
     // Compute surface area and, optionally volume of the union of balls.
     // If requested, compute also their derivatives
-    start_s = clock();
+    if (alfprint) start_s = clock();
     alfcxedges(tetra, edges);
-    stop_s = clock();
-
-    if (verbose and alfmeth==AlfMethod::AlphaMol) {
+    if (alfprint) {
+        stop_s = clock();
         printf("\n AlphaCxEdges compute time : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
         total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
     }
 
-    start_s = clock();
+    if (alfprint) start_s = clock();
     alfcxfaces(tetra, faces);
-    stop_s = clock();
-
-    if (verbose and alfmeth==AlfMethod::AlphaMol) {
+    if (alfprint) {
+        stop_s = clock();
         printf("\n AlphaCxFaces compute time : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
         total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
     }
 
-    start_s = clock();
+    if (alfprint) start_s = clock();
     if (deriv) alphavol<true>(vertices, tetra, edges, faces, surf, vol, mean, gauss, dsurf, dvol, dmean, dgauss);
     else alphavol<false>(vertices, tetra, edges, faces, surf, vol, mean, gauss, dsurf, dvol, dmean, dgauss);
-
-    stop_s = clock();
-
-    if (verbose and alfmeth==AlfMethod::AlphaMol) {
+    if (alfprint) {
+        stop_s = clock();
         printf("\n Volumes compute time      : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
         total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
-    }
-
-    if (verbose and alfmeth==AlfMethod::AlphaMol) {
         printf("\n AlphaMol compute time     : %10.6f ms\n", total*1000);
     }
 }

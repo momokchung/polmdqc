@@ -8,6 +8,7 @@ amoebap.cpp
 bounds.cpp
 boyscheb.cpp
 chkpole.cpp
+chksymm.cpp
 darray.cpp
 getline.cpp
 getnumb.cpp
