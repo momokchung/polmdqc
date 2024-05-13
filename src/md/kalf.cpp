@@ -42,7 +42,7 @@ void kalf()
     alfsort = AlfSort::KDTree;
     alfdigit = 8;
     alfnthd = roundDownToPowerOf2(nthread);
-    alfsos = true;
+    alfsos = false;
     delcxeps = 1e-2;
     alfcxeps = 1e-5;
 
@@ -103,8 +103,8 @@ void kalf()
             // round alfdigit down to nearest even integer
             if ((alfdigit % 2) != 0) alfdigit -= 1;
         }
-        else if (keyword == "ALF-NOSOS") {
-            alfsos = false;
+        else if (keyword == "ALF-SOS") {
+            alfsos = true;
         }
         else if (keyword == "DELCX-EPS") {
             string = record.substr(next);

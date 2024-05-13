@@ -46,6 +46,7 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
 
     Delcx delcx;
     Alfcx alfcx;
+    AlphaVol alphavol;
 
     clock_t start_s,stop_s;
     real total = 0;
@@ -84,8 +85,8 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
     // If requested, compute also their derivatives
 
     if (alfprint) start_s = clock();
-    if (deriv) alphavol<true>(vertices, tetra, edges, faces, surf, vol, mean, gauss, dsurf, dvol, dmean, dgauss);
-    else alphavol<false>(vertices, tetra, edges, faces, surf, vol, mean, gauss, dsurf, dvol, dmean, dgauss);
+    if (deriv) alphavol.alphavol<true>(vertices, tetra, edges, faces, surf, vol, mean, gauss, dsurf, dvol, dmean, dgauss);
+    else alphavol.alphavol<false>(vertices, tetra, edges, faces, surf, vol, mean, gauss, dsurf, dvol, dmean, dgauss);
     if (alfprint) {
         stop_s = clock();
         printf("\n Volumes compute time      : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
