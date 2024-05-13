@@ -1,6 +1,7 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
+#include "alfp.h"
 #include "libfunc.h"
 #include "sosgmp.h"
 
@@ -39,7 +40,7 @@ void SOS::init_sos_gmp()
     mpz_init(f1); mpz_init(f2); mpz_init(f3);
     mpz_init(g1); mpz_init(g2); mpz_init(g3);
 
-    scale = 1.e8;
+    scale = (double) (int) pow(10, alfdigit);
 }
 
 void SOS::clear_sos_gmp()
