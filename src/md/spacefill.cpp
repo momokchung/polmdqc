@@ -53,7 +53,7 @@ void spacefill(int argc, char** argv)
     int width;
     int precision;
     real exclude;
-    real eps,eps0;
+    real eps,eps0,epsmin;
     real old;
     real wsurf0,wvol0,wmean0,wgauss0;
     std::vector<real> denorm;
@@ -167,8 +167,9 @@ void spacefill(int argc, char** argv)
 
     // get the stepsize for numerical gradient calculation
     if (donumer) {
-        eps = -1.;
-        eps0 = 0.00001;
+        eps = -1;
+        eps0 = 1e-5;
+        epsmin = 1e-7;
         query = true;
         nextarg(string,exist);
         if (exist) {
@@ -184,7 +185,8 @@ void spacefill(int argc, char** argv)
             iss.str(record);
             iss >> eps;
         }
-        if (eps < 0.) eps = eps0;
+        if (eps < 0) eps = eps0;
+        if (eps < epsmin) eps = epsmin;
     }
 
     // initialize AlphaMol
@@ -230,7 +232,7 @@ void spacefill(int argc, char** argv)
                         kvdw();
                         kalf();
                         initalf(1, 1, exclude, doanalyt);
-                        break;                        
+                        break;
                     }
                 }
             }

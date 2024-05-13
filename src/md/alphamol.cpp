@@ -7,16 +7,13 @@
 #include "alfp.h"
 #include "alphamol.h"
 #include "alphavol.h"
-#include "delaunay.h"
+#include "delcx.cpp"
 #include "edge.h"
 #include "face.h"
 #include "inform.h"
-#include "initdelcx.h"
 #include "tetrahedron.h"
 #include "vertex.h"
 #include <iostream>
-#include <queue>
-#include <stack>
 #include <vector>
 
 namespace polmdqc
@@ -48,10 +45,8 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
     std::vector<Tetrahedron> tetra;
     std::vector<Edge> edges;
     std::vector<Face> faces;
-    std::queue<std::pair<int,int>> link_facet;
-    std::queue<std::pair<int,int>> link_index;
-    std::stack<int> free;
-    std::vector<int> kill;
+
+    Delcx delcx;
 
     clock_t start_s,stop_s;
     real total = 0;
@@ -59,19 +54,20 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
 
     // initialize Delaunay procedure
     if (alfprint) start_s = clock();
-    initdelcx(natoms, alfatoms, vertices, tetra, link_facet, link_index, free, kill);
+    delcx.init(natoms, alfatoms, vertices, tetra);
     if (alfprint) {
         stop_s = clock();
-        printf("\n Initdelcx compute time    : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
+        printf("\n Init compute time         : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
         total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
     }
 
     // compute Delaunay triangulation
     if (alfprint) start_s = clock();
-    delaunay(vertices, tetra, link_facet, link_index, free, kill);
+    if (alfsos) delcx.regular3D<true>(vertices, tetra);
+    else delcx.regular3D<false>(vertices, tetra);
     if (alfprint) {
         stop_s = clock();
-        printf("\n Delaunay compute time     : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
+        printf("\n Regular3D compute time    : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
         total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
     }
 

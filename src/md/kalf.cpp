@@ -42,6 +42,7 @@ void kalf()
     alfsort = AlfSort::KDTree;
     alfdigit = 8;
     alfnthd = roundDownToPowerOf2(nthread);
+    alfsos = true;
 
     // process keywords containing AlphaMol parameters
     for (int i = 0; i < nkey; i++) {
@@ -99,6 +100,9 @@ void kalf()
             if (alfdigit < 8) alfdigit = 8;
             // round alfdigit down to nearest even integer
             if ((alfdigit % 2) != 0) alfdigit -= 1;
+        }
+        else if (keyword == "ALF-NOSOS") {
+            alfsos = false;
         }
     }
 }

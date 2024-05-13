@@ -14,13 +14,15 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -finline-functions -march=native -ffast-math -fopenmp")
 set(CMAKE_CXX_FLAGS "-O3 -finline-functions -ffast-math -fopenmp")
 # Debug
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wunused-parameter -Wunused-variable -Wunused-function")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wunused-parameter -Wunused-variable -Wunused-function -fopenmp")
 
 # Link directories
 # libint2
 link_directories(/Users/moseschung/libint-2.7.2)
 # OpenBLAS
 link_directories(/Users/moseschung/OpenBLAS)
+# gmp
+link_directories(/opt/homebrew/Cellar/gmp/6.3.0/lib)
 
 # Include directories
 include_directories(/usr/local/include)
@@ -30,6 +32,8 @@ include_directories(include/oqc)
 include_directories(include/qc)
 # boost
 include_directories(/opt/homebrew/Cellar/boost/1.83.0/include)
+# gmp
+include_directories(/opt/homebrew/Cellar/gmp/6.3.0/include)
 
 # Include
 include(cmakesrc.txt)
@@ -57,7 +61,7 @@ target_link_libraries(analyze polmdqc)
 # testgrad
 target_link_libraries(testgrad polmdqc)
 # spacefill
-target_link_libraries(spacefill polmdqc)
+target_link_libraries(spacefill polmdqc gmp)
 # tinkerqm
 target_link_libraries(tinkerqm polmdqc openblas int2)
 # analyzeqm

@@ -29,7 +29,6 @@
 #include "chunks.h"
 #include "couple.h"
 #include "ctrpot.h"
-#include "dlauny.h"
 #include "dlauny2.h"
 #include "deriv.h"
 #include "dsppot.h"

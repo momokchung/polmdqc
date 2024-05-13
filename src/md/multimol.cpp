@@ -11,7 +11,7 @@
 
 namespace polmdqc
 {
-#define NUM_THREADS 128 
+#define NUM_THREADS 128
 pthread_t threads[NUM_THREADS];
 
 typedef struct thread_data {

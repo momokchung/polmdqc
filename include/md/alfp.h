@@ -16,6 +16,7 @@ namespace polmdqc
 // alfsort    algorithm to sort and partition atoms
 // alfdigit   number of digits to store for AlphaMol x,y,z,r
 // alfnthd    number of threads to use for AlphaMol2
+// alfsos     flag to use multiprecision simulation of simplicity
 
 enum class AlfMethod
 {
@@ -36,4 +37,5 @@ MDQC_EXTERN AlfMethod alfmeth;
 MDQC_EXTERN AlfSort alfsort;
 MDQC_EXTERN int alfdigit;
 MDQC_EXTERN int alfnthd;
+MDQC_EXTERN bool alfsos;
 }

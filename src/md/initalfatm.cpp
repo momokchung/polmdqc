@@ -61,7 +61,7 @@ void initalfatm(bool deriv)
     chksymm(n, mass.ptr(), xref, yref, zref, symtyp);
 
     // wiggle if system is symmetric
-    real eps = 1e-5;
+    real eps = 1e-3;
     bool dowiggle_linear = symtyp == SymTyp::Linear and n > 2;
     bool dowiggle_planar = symtyp == SymTyp::Planar and n > 3;
     bool dowiggle = dowiggle_linear or dowiggle_planar;
