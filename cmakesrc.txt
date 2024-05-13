@@ -6,9 +6,6 @@ src/md/active.cpp
 src/md/alfatom.cpp
 src/md/alfboxsize.cpp
 src/md/alfcx.cpp
-src/md/alfcxedges.cpp
-src/md/alfcxfaces.cpp
-src/md/alfedge.cpp
 src/md/alfmol.cpp
 src/md/alforder.cpp
 src/md/alphamol.cpp

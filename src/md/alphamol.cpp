@@ -2,8 +2,6 @@
 // Year:   2023
 
 #include "alfcx.h"
-#include "alfcxedges.h"
-#include "alfcxfaces.h"
 #include "alfp.h"
 #include "alphamol.h"
 #include "alphavol.h"
@@ -47,6 +45,7 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
     std::vector<Face> faces;
 
     Delcx delcx;
+    Alfcx alfcx;
 
     clock_t start_s,stop_s;
     real total = 0;
@@ -74,7 +73,7 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
     // generate alpha complex (with alpha=0.0)
     if (alfprint) start_s = clock();
     real alpha = 0;
-    alfcx(vertices, tetra, alpha);
+    alfcx.alfcx(vertices, tetra, edges, faces, alpha);
     if (alfprint) {
         stop_s = clock();
         printf("\n AlphaCx compute time      : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
@@ -83,21 +82,6 @@ void alphamol(int natoms, AlfAtom* alfatoms, real* surf, real* vol, real* mean, 
 
     // Compute surface area and, optionally volume of the union of balls.
     // If requested, compute also their derivatives
-    if (alfprint) start_s = clock();
-    alfcxedges(tetra, edges);
-    if (alfprint) {
-        stop_s = clock();
-        printf("\n AlphaCxEdges compute time : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
-        total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
-    }
-
-    if (alfprint) start_s = clock();
-    alfcxfaces(tetra, faces);
-    if (alfprint) {
-        stop_s = clock();
-        printf("\n AlphaCxFaces compute time : %10.6f ms\n", (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000);
-        total += (stop_s-start_s)/double(CLOCKS_PER_SEC);
-    }
 
     if (alfprint) start_s = clock();
     if (deriv) alphavol<true>(vertices, tetra, edges, faces, surf, vol, mean, gauss, dsurf, dvol, dmean, dgauss);
