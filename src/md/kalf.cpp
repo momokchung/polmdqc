@@ -43,6 +43,8 @@ void kalf()
     alfdigit = 8;
     alfnthd = roundDownToPowerOf2(nthread);
     alfsos = true;
+    delcxeps = 1e-2;
+    alfcxeps = 1e-5;
 
     // process keywords containing AlphaMol parameters
     for (int i = 0; i < nkey; i++) {
@@ -103,6 +105,18 @@ void kalf()
         }
         else if (keyword == "ALF-NOSOS") {
             alfsos = false;
+        }
+        else if (keyword == "DELCX-EPS") {
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            if (!(iss >> delcxeps)) continue;
+        }
+        else if (keyword == "ALFCX-EPS") {
+            string = record.substr(next);
+            iss.clear();
+            iss.str(string);
+            if (!(iss >> alfcxeps)) continue;
         }
     }
 }

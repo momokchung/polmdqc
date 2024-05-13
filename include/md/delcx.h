@@ -103,7 +103,7 @@ protected:
     std::stack<int> free;
     std::vector<int> kill;
 
-    real eps = 1e-2;
+    real eps;
 
     int inf4_1[4] = {1, 1, 0, 0};
     int sign4_1[4] = {-1, 1, 1, -1};

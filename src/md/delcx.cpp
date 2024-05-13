@@ -1,6 +1,7 @@
 // Author: Moses KJ Chung
 // Year:   2024
 
+#include "alfp.h"
 #include "delcx.h"
 #include "delsort.h"
 #include "fatal.h"
@@ -30,6 +31,7 @@ namespace polmdqc
 void Delcx::init(int natoms, AlfAtom* alfatoms, std::vector<Vertex>& vertices, std::vector<Tetrahedron>& tetra)
 {
     sos.init_sos_gmp();
+    eps = delcxeps;
 
     // initialize vertices and tetra
     vertices.clear();
