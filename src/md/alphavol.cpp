@@ -3,7 +3,6 @@
 
 #include "alphavol.h"
 #include "libfunc.h"
-#include "mathConst.h"
 
 namespace polmdqc
 {
@@ -50,7 +49,6 @@ void AlphaVol::alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>&
     real dsurfa3[3],dsurfb3[3],dsurfc3[3];
     real dvola3[3],dvolb3[3],dvolc3[3];
     real dvola[6],dvolb[6],dvolc[6],dvold[6];
-    constexpr real twopi = 2 * pi;
     constexpr real coefe = 1.;
     constexpr real coeff = 2.;
 
@@ -156,12 +154,14 @@ void AlphaVol::alphavol(std::vector<Vertex>& vertices, std::vector<Tetrahedron>&
         rbd = edges[edge_list[4]].len; rbd2 = rbd*rbd;
         rcd = edges[edge_list[5]].len; rcd2 = rcd*rcd;
 
+        real tetvol = tetra_volume(rab2, rac2, rad2, rbc2, rbd2, rcd2);
+
         // characterize tetrahedron (A,B,C,D)
-        tetdihedder<compder>(rab2, rac2, rad2, rbc2, rbd2, rcd2, angle, cosine, sine, deriv);
+        tetdihedder<compder>(rab2, rac2, rad2, rbc2, rbd2, rcd2, tetvol, angle, cosine, sine, deriv);
 
         // add fraction of tetrahedron that "belongs" to each ball
         tetvorder<compder>(ra2, rb2, rc2, rd2, rab, rac, rad, rbc,
-        rbd, rcd, rab2, rac2, rad2, rbc2, rbd2, rcd2, cosine, sine,
+        rbd, rcd, rab2, rac2, rad2, rbc2, rbd2, rcd2, tetvol, cosine, sine,
         deriv, vola, volb, volc, vold, dvola, dvolb, dvolc, dvold);
 
         ballwvol[ia] += vola; ballwvol[ib] += volb;
@@ -506,7 +506,6 @@ inline void AlphaVol::twosph(real ra, real ra2, real rb, real rb2,
 {
     real cosine,vala,valb,lambda,ha,hb;
     real Aab,sa,ca,sb,cb;
-    constexpr real twopi = 2 * pi;
 
     // Get distance between center of sphere A and Voronoi plane
     // between A and B
@@ -566,7 +565,6 @@ inline void AlphaVol::twosphder(real ra, real ra2, real rb, real rb2, real rab, 
     real cosine,vala,valb,lambda,ha,hb;
     real Aab,sa,ca,sb,cb;
     real dera,derb;
-    constexpr real twopi = 2 * pi;
 
     // Get distance between center of sphere A and Voronoi plane
     // between A and B
@@ -654,7 +652,6 @@ inline void AlphaVol::threesphder(real ra, real rb,real rc, real ra2,
     real val2_abc,val2_acb,val2_bca;
     real der_val1b,der_val1,der_val2b,der_val2,der_val3b,der_val3;
     real cosine[6],sine[6];
-    constexpr real twopi = 2 * pi;
 
     l1 = plane_dist(ra2, rb2, rab2);
     l2 = plane_dist(ra2, rc2, rac2);
@@ -834,11 +831,11 @@ inline real AlphaVol::plane_dist(real ra2, real rb2, real rab2)
 ////////////////////////////////////////////////////////////////
 
 // "tetdihedder" computes the derivative of the six
-// dihedral angles of atetrahedronfrom its edge lengths
+// dihedral angles of a tetrahedron wrt its edge lengths
 
 template <bool compder>
 inline void AlphaVol::tetdihedder(real r12sq, real r13sq, real r14sq,
-    real r23sq, real r24sq, real r34sq, real* angle,
+    real r23sq, real r24sq, real r34sq, real tetvol, real* angle,
     real* cosine, real* sine, real deriv[6][6])
 {
     real val1,val2,val3,val4,vala;
@@ -849,7 +846,6 @@ inline void AlphaVol::tetdihedder(real r12sq, real r13sq, real r14sq,
     real dminori[4][6] = {0};
     real det[6],dnum[6][6],val[4];
     real dist[6];
-    constexpr real twopi = 2 * pi;
 
     // Define the Cayley Menger matrix:
     // M = ( 0      r12^2  r13^2  r14^2  1)
@@ -924,6 +920,12 @@ inline void AlphaVol::tetdihedder(real r12sq, real r13sq, real r14sq,
     }
 
     if constexpr (!compder) return;
+
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 6; j++) deriv[i][j] = 0;
+    }
+
+    if (tetvol < teteps) return;
 
     det[5] = det12; det[4] = det13; det[3] = det14;
     det[2] = det23; det[1] = det24; det[0] = det34;
@@ -1019,7 +1021,6 @@ inline void AlphaVol::tetdihedder3(real r12sq, real r13sq, real r14sq,
     real minori[4];
     real dminori[4][3] = {0};
     real dist[3],det[6],dnum[6][3],val[4];
-    constexpr real twopi = 2 * pi;
 
     // Define the Cayley Menger matrix:
     // M = ( 0      r12^2  r13^2  r14^2  1)
@@ -1052,7 +1053,7 @@ inline void AlphaVol::tetdihedder3(real r12sq, real r13sq, real r14sq,
     val2 = 1.0/REAL_SQRT(-minori[2]);
     val1 = 1.0/REAL_SQRT(-minori[3]);
 
-    val[0] = val4; val[1] = val3; val[2] = val2; val[3] = val1;
+    if constexpr (compder) val[0] = val4; val[1] = val3; val[2] = val2; val[3] = val1;
 
     // Now compute all angles (in fact, cosine of the angle):
     //           (-1)^(i+j) * det(Mij)
@@ -1094,6 +1095,14 @@ inline void AlphaVol::tetdihedder3(real r12sq, real r13sq, real r14sq,
     }
 
     if constexpr (!compder) return;
+
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 3; j++) deriv[i][j] = 0;
+    }
+
+    real tetvol = tetra_volume(r12sq, r13sq, r14sq, r23sq, r24sq, r34sq);
+
+    if (tetvol < teteps) return;
 
     // Now compute derivatives of the angles with respect to the edge lengths
     // Since (see above):
@@ -1138,8 +1147,7 @@ inline void AlphaVol::tetdihedder3(real r12sq, real r13sq, real r14sq,
                 val2 = vala/minori[j];
                 val3 = vala/minori[i];
                 for (int l = 0; l < 3; l++) {
-                    deriv[jj][l] = val1*dnum[k][l]
-                    +val2*dminori[j][l]+val3*dminori[i][l];
+                    deriv[jj][l] = val1*dnum[k][l]+val2*dminori[j][l]+val3*dminori[i][l];
                     deriv[jj][l] *= 2*dist[l];
                 }
             }
@@ -1277,7 +1285,7 @@ template <bool compder>
 inline void AlphaVol::tetvorder(real ra2,real rb2,real rc2,real rd2,
     real rab, real rac, real rad, real rbc, real rbd,
     real rcd, real rab2, real rac2, real rad2,real rbc2,
-    real rbd2, real rcd2, real* cos_ang, real* sin_ang,
+    real rbd2, real rcd2, real tetvol, real* cos_ang, real* sin_ang,
     real deriv[6][6], real& vola, real& volb, real& volc,
     real& vold, real* dvola, real* dvolb, real* dvolc, real* dvold)
 {
@@ -1377,6 +1385,15 @@ inline void AlphaVol::tetvorder(real ra2,real rb2,real rc2,real rd2,
     vold = (val3*cap_ad+val5*cap_bd+val6*cap_cd)/6;
 
     if constexpr (!compder) return;
+
+    for (int i = 0; i < 6; i++) {
+        dvola[i] = 0;
+        dvolb[i] = 0;
+        dvolc[i] = 0;
+        dvold[i] = 0;
+    }
+
+    if (tetvol < teteps) return;
 
     dval1b = l1; dval2b = l2; dval3b = l3;
     dval4b = l4; dval5b = l5; dval6b = l6;
@@ -1667,9 +1684,9 @@ inline real AlphaVol::sign(real a, real b, real c)
 // Gaussian curvature
 
 template <bool compder>
-inline void AlphaVol::threesphgss(real ra, real rb, real rc, 
+inline void AlphaVol::threesphgss(real ra, real rb, real rc,
     real ra2, real rb2, real rc2, real rab, real rac, real rbc,
-    real rab2, real rac2, real rbc2, real& areaA, real& areaB, 
+    real rab2, real rac2, real rbc2, real& areaA, real& areaB,
     real& areaC, real darea[3][3])
 {
     real cos_ab, cos_ac, cos_bc;
@@ -1774,6 +1791,31 @@ inline void AlphaVol::threesphgss(real ra, real rb, real rc,
     darea[2][0] = 0.5*(sign_b*dSc_dab + sign_a*dSb_dab);
     darea[2][1] = 0.5*(sign_b*dSc_dac + sign_a*dSb_dac);
     darea[2][2] = 0.5*(sign_b*dSc_dbc + sign_a*dSb_dbc);
+}
+
+inline real AlphaVol::tetra_volume(real r12sq, real r13sq, real r14sq, real r23sq, real r24sq, real r34sq)
+{
+    real val1, val2, val3, det5, vol;
+    real mat5[5][5];
+
+    mat5[0][0] = 0;     mat5[0][1] = r12sq; mat5[0][2] = r13sq; mat5[0][3] = r14sq; mat5[0][4] = 1;
+    mat5[1][0] = r12sq; mat5[1][1] = 0;     mat5[1][2] = r23sq; mat5[1][3] = r24sq; mat5[1][4] = 1;
+    mat5[2][0] = r13sq; mat5[2][1] = r23sq; mat5[2][2] = 0;     mat5[2][3] = r34sq; mat5[2][4] = 1;
+    mat5[3][0] = r14sq; mat5[3][1] = r24sq; mat5[3][2] = r34sq; mat5[3][3] = 0;     mat5[3][4] = 1;
+    mat5[4][0] = 1;     mat5[4][1] = 1;     mat5[4][2] = 1;     mat5[4][3] = 1;     mat5[4][4] = 0;
+
+    val1 = mat5[1][2] - mat5[0][1] - mat5[0][2];
+    val2 = mat5[1][3] - mat5[0][1] - mat5[0][3];
+    val3 = mat5[2][3] - mat5[0][2] - mat5[0][3];
+
+    det5 = 8*mat5[0][1]*mat5[0][2]*mat5[0][3] - 2*val1*val2*val3
+         - 2*mat5[0][1]*val3*val3 - 2*mat5[0][2]*val2*val2
+         - 2*mat5[0][3]*val1*val1;
+
+    if (det5 < 0) det5 = 0;
+    vol = std::sqrt(det5/288.0);
+
+    return vol;
 }
 
 // explicit instatiation
