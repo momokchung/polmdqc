@@ -99,7 +99,7 @@ void kalf()
             iss.clear();
             iss.str(string);
             if (!(iss >> alfdigit)) continue;
-            if (alfdigit < 8) alfdigit = 8;
+            if (alfdigit < 6) alfdigit = 6;
             if (alfdigit > 14) alfdigit = 14;
             // round alfdigit down to nearest even integer
             if ((alfdigit % 2) != 0) alfdigit -= 1;
