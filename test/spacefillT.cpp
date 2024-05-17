@@ -905,9 +905,9 @@ namespace spacefill12
         7.06044292,     -7.06044292,     -7.06044292,
     };
 
-    real wsurf2 = 333.64781009;
-    real wvol2 = 461.93387365;
-    real wmean2 = -24.91069621;
+    real wsurf2 = 333.64780517;
+    real wvol2 = 461.93386931;
+    real wmean2 = -24.91069641;
     real wgauss2 = 12.56637250;
 }
 

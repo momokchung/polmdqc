@@ -2638,6 +2638,7 @@ inline real Delcx::tetra_vol(real* a, real* b, real* c, real* d)
     Sbcd[0] = bd[1]*cd[2] - cd[1]*bd[2];
 
     vol = ad[0]*Sbcd[0] - ad[1]*Sbcd[1] + ad[2]*Sbcd[2];
+    if (vol < 0) vol = 0;
 
     return vol;
 }
@@ -2770,7 +2771,7 @@ void Delcx::addBogus(int npoints, AlfAtom* alfatoms, real* bcoord, real* brad)
                 w1y = -u1x;
                 w1z = 0;
             }
-            else if(u1y != 0) {
+            else if (u1y != 0) {
                 w1x = u1y;
                 w1y = -u1x;
                 w1z = 0;

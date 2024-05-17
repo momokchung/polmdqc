@@ -541,8 +541,8 @@ inline void AlphaVol::twosph(real ra, real ra2, real rb, real rb2,
 
     // get angle between normals of the sphere at a point on this circle
     cosine = (ra2+rb2-rab2)/(2.0*ra*rb);
-    if (REAL_ABS(cosine - 1) < eps) cosine = 1;
-    else if (REAL_ABS(cosine + 1) < eps) cosine = -1;
+    if (cosine > 1) cosine = 1;
+    else if (cosine < -1) cosine = -1;
     phi = REAL_ACOS(cosine);
 
     l = vala/ra + valb/rb;
@@ -600,8 +600,8 @@ inline void AlphaVol::twosphder(real ra, real ra2, real rb, real rb2, real rab, 
 
     // get angle between normals of the sphere at a point on this circle
     cosine = (ra2+rb2-rab2)/(2.0*ra*rb);
-    if (REAL_ABS(cosine - 1) < eps) cosine = 1;
-    else if (REAL_ABS(cosine + 1) < eps) cosine = -1;
+    if (cosine > 1) cosine = 1;
+    else if (cosine < -1) cosine = -1;
     phi = REAL_ACOS(cosine);
     l = vala/ra + valb/rb;
 
@@ -909,8 +909,8 @@ inline void AlphaVol::tetdihedder(real r12sq, real r13sq, real r14sq,
     cosine[5] = det34*val3*val4;
 
     for (int i = 0; i < 6; i++) {
-        if (REAL_ABS(cosine[i] - 1) < eps) cosine[i] = 1;
-        else if (REAL_ABS(cosine[i] + 1) < eps) cosine[i] = -1;
+        if (cosine[i] > 1) cosine[i] = 1;
+        else if (cosine[i] < -1) cosine[i] = -1;
     }
 
     for (int i = 0; i < 6; i++) {
@@ -1084,8 +1084,8 @@ inline void AlphaVol::tetdihedder3(real r12sq, real r13sq, real r14sq,
     cosine[5] = det34*val3*val4;
 
     for (int i = 0; i < 6; i++) {
-        if (REAL_ABS(cosine[i] - 1) < eps) cosine[i] = 1;
-        else if (REAL_ABS(cosine[i] + 1) < eps) cosine[i] = -1;
+        if (cosine[i] > 1) cosine[i] = 1;
+        else if (cosine[i] < -1) cosine[i] = -1;
     }
 
     for (int i = 0; i < 6; i++) {
@@ -1630,8 +1630,8 @@ inline real AlphaVol::trig_darea(real a, real b, real c, real *der_S)
     real t = REAL_SQRT(v);
     real wt = w/t;
 
-    if (REAL_ABS(wt - 1) < eps) wt = 1;
-    else if (REAL_ABS(wt + 1) < eps) wt = -1;
+    if (wt > 1) wt = 1;
+    else if (wt < -1) wt = -1;
 
     real S = 2*REAL_ASIN(wt);
 
